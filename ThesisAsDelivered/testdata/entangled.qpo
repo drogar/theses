@@ -1,0 +1,8 @@
+
+main Start
+  QLoad q |0>
+   QApply 0 !Had
+  QLoad r |0>
+  QPullup q
+  QApply 0 !CNot
+   EndProc

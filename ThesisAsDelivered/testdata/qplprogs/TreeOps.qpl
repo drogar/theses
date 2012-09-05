@@ -1,0 +1,21 @@
+#Import append.qpl
+
+twist :: (inTree : STree(a) ; outTree : STree(a)) = 
+{
+   case inTree of
+     Tip => {outTree = Tip}
+     Fork(left,data,right) => {
+        outTree=Fork(twist(right), data, twist(left))
+     }
+}
+
+flattInOrd ::(inTree : STree(a) ; outList : List(a)) =
+{
+   case  inTree of
+     Tip => {outList = Nil}
+     Fork(left,data,right) => {
+        outList = append(flattInOrd(left),
+                     Cons(data,flattInOrd(right)))
+     }
+}
+

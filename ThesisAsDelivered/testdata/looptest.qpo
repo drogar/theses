@@ -1,0 +1,63 @@
+Main
+
+CreateName b
+AllocInt
+CreateName q
+AllocQbit
+Put Hadamard
+Transform
+Measure
+Cond
+  LoadImmed 1
+  SetInt
+  Swap
+    LoadImmed 0
+    SetInt
+    Pop
+Discard
+Loop 10
+  CreateName q2
+  AllocQbit
+  Put Hadamard
+  Transform
+  Measure
+  Cond
+    LoadImmed 1
+    SetInt
+    Swap
+      LoadImmed 0
+      SetInt
+      Pop
+  Discard
+  Endloop
+CreateName q
+AllocQbit
+Put Hadamard
+Transform
+Measure
+Cond
+  LoadImmed 1
+  SetInt
+  Swap
+    LoadImmed 0
+    SetInt
+    Pop
+Discard
+Loop 10
+  CreateName q2
+  AllocQbit
+  Put Hadamard
+  Transform
+  Measure
+  Cond
+    LoadImmed 1
+    SetInt
+    Swap
+      LoadImmed 0
+      SetInt
+      Pop
+  Discard
+  Endloop
+CreateName f
+CreateName r
+CreateName nm

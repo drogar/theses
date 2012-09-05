@@ -1,0 +1,12 @@
+#Import LengthList.qpl
+
+main:: ()
+= {
+  q = |0>;
+  Had q;
+  measure q of
+   |0> => {listbottom = Nil}
+   |1> => {listbottom = Cons(2,Cons(1,Nil))};
+  theList = Cons(3,listbottom);
+  i = len(theList);
+}

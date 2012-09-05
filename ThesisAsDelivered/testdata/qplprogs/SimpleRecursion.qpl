@@ -1,0 +1,23 @@
+rec :: (p:Qbit, q:Qbit; p:Qbit, q:Qbit)
+= {
+   measure p of
+    |0> => { 
+         r=|0>;
+         Had q <= r ;
+	 rec q r;
+         Not r <= q ;
+         discard r;
+         p = |0>
+    }
+    |1> => {
+         p = |1>
+    }
+}
+
+main :: () = {
+ p=|0>;
+ q=|0>;
+ Had q;
+ Had p;
+ rec p q;
+}

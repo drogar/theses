@@ -1,0 +1,33 @@
+
+CreateName b
+AllocBit
+CreateName q
+AllocQbit
+Put Hadamard
+Transform
+Measure
+Cond
+  LoadImmed One
+  SetBit
+  Swap
+    LoadImmed Zero
+    SetBit
+    Pop
+Discard
+Loop -1
+  CreateName q2
+  Put Hadamard
+  Transform
+  Measure
+  Cond
+    LoadImmed One
+    SetBit
+    Swap
+      LoadImmed Zero
+      SetBit
+      Pop
+  Discard
+  Endloop
+CreateName f
+CreateName r
+CreateName nm

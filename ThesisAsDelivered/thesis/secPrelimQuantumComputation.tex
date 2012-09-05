@@ -1,0 +1,210 @@
+\section{Basic quantum computation}\label{sec:appBasicsOfQC}
+\subsection{Quantum bits}\label{sec:appQuantumBits}
+Quantum computation deals with operations on \qbit{}s. A \qbit{} is typically
+represented in the literature on quantum computation as a complex
+linear combination of \ket{0} and \ket{1}, respectively
+identified with (1,0) and (0,1) in $\C^2$. Because of the 
+identification of the basis vectors, any \qbit{} can be identified
+with a non-zero vector in $\C^2$.
+In standard quantum computation, the important piece of
+ information in a \qbit{} is its direction rather than
+amplitude. In other words, given $q=\alpha\ket{0}+\beta\ket{1}$ and
+$q'=\alpha'\ket{0}+\beta'\ket{1}$ 
+where $\alpha = \gamma\alpha'$ and
+$\beta = \gamma\beta'$, then $q$ and $q'$ represent the same
+quantum state. 
+
+
+
+A \qbit{} that has either $\alpha$ or $\beta$ zero is said to be in
+a \emph{classical state}. Any other combination of values is said to be a 
+\emph{superposition}.
+
+\Vref{sec:QuantumCircuits} will introduce quantum circuits 
+which act on \qbits{}. This section will have some forward 
+references to circuits to illustrate points introduced here.
+
+\subsection{Quantum entanglement}\label{sec:appQuantumEntanglement}
+Consider what happens when working with a pair of \qbit{}s, $p$ and $q$. 
+This can be considered as the a vector in $\C^4$ and written as
+\begin{equation}
+\alpha_{00}\ket{00}+\alpha_{01}\ket{01}+\alpha_{10}\ket{10}+
+\alpha_{11}\ket{11}.\label{eq:appTwoQbits}
+\end{equation}
+In the case where $p$ and $q$ 
+are two independent \qbit{}s, with $p=\alpha\ket{0}+\beta\ket{1}$
+and $q=\gamma\ket{0}+\delta\ket{1}$,
+\begin{equation}
+p \otimes q = \alpha\gamma\ket{00}+\alpha\delta\ket{01}+\beta\gamma\ket{10}+
+\beta\delta\ket{11}
+\end{equation}
+where $p \otimes q$  is the standard tensor product of 
+$p$ and $q$ regarded as vectors. There are states of two \qbits{} 
+that cannot be written as a tensor product. As an example, the state 
+\begin{equation}
+\frac{1}{\sqrt{2}}\ket{00} +
+\frac{1}{\sqrt{2}}\ket{11}\label{eq:appEntangledqbits}
+\end{equation} 
+is not  a tensor product of two distinct \qbit{}s. 
+In this case the two \qbit{}s are said to be \emph{entangled}. 
+
+\subsection{Quantum gates}\label{sec:appQuantumGates}
+\emph{Quantum gates} operate on \qbit{}s. These 
+gates are conceptually similar to logic gates in the classical world.
+ In the
+classical world the only non-trivial single 
+\bit{} gate is the Not gate which 
+sends $0$ to $1$ and $1$ to $0$. However, there are 
+infinitely many non-trivial quantum
+gates.
+
+An $n{-}\qbit{}$ quantum gate is represented by 
+a $2^n \times 2^n$ matrix. A 
+necessary and sufficient condition for such a matrix to be
+a quantum gate is that it is \emph{unitary}. 
+
+The entanglement of two \qbits{}, $p$ and $q$, is accomplished by applying a
+\Had{} transformation to $p$ followed by
+a \nottr{} applied to $q$ controlled by $p$.
+The circuit in
+\vref{qc:appEntangle} shows how to entangle two \qbit{}s that start with
+an initial state of $\ket{00}$. See
+\vref{fig:stackTeleportation} for how this can be done in \lqpl.
+
+A list of some common gates, together with their usual
+quantum circuit representation is given in the next section in
+ \vref{tab:qgatesAndRep}.
+
+\subsection{Measurement}\label{sec:appMeasurement}
+The  other allowed
+operation on a \qbit{} or group of \qbit{}s is 
+measurement. When a  \qbit{} is measured it
+assumes only one of two possible values, either \ket{0} or \ket{1}. Given
+\begin{equation}
+q=\alpha\ket{0}+\beta\ket{1}\label{eq:appSingleQbit}
+\end{equation}
+where $|\alpha|^2+|\beta|^2 = 1$, then measuring $q$ will result in
+\ket{0} with probability $|\alpha|^2$ and \ket{1} with 
+probability $|\beta|^2$.
+Once a \qbit{} is measured, re-measuring will always produce the same
+value. 
+
+In multi-\qbit{} systems the order of measurement does not matter. 
+If $p$ and $q$ are as in \vref{eq:appTwoQbits}, let us suppose measuring $p$
+gives  \ket{0}. The measure will result in  that value with probability 
+$|\alpha_{00}|^2 + |\alpha_{01}|^2$, after which the system 
+collapses to the state:
+\begin{equation}
+\alpha_{00}\ket{00} + \alpha_{01}\ket{01}\label{eq:appCollapsedFirstBit}
+\end{equation}
+
+Measuring the second \qbit{}, $q$, will give \ket{0} with 
+probability $|\alpha_{00}|^2$ or \ket{1} 
+with probability $|\alpha_{01}|^2$. 
+
+Conversely, if  $q$ was measured first and gave us \ket{0}  
+(with a probability of $|\alpha_{00}|^2 + |\alpha_{10}|^2$)
+and then $p$ was measured, $p$ will give us \ket{0} with probability 
+$|\alpha_{00}|^2$ or \ket{1} with probability $|\alpha_{10}|^2$.
+
+Thus, when measuring both $p$ and $q$, the probability of getting \ket{0} 
+from both measures is $|\alpha_{00}|^2$, regardless of which \qbit{}
+is measured first.
+
+Considering states such as in \ref{eq:appEntangledqbits}, 
+measuring either \qbit{} would actually force the other \qbit{} to the
+same value. This type of entanglement is used in 
+many quantum algorithms such as 
+quantum teleportation.
+\subsection{Mixed states}\label{sec:appMixedStates}
+The notion of \emph{mixed states} refers to an outside observer's knowledge of
+the state of a quantum system. Consider a $1$ \qbit{} system
+\begin{equation}
+\nu = \alpha\ket{0} + \beta\ket{1}.\label{eq:appOneQbitSystem}
+\end{equation}
+
+If $\nu$ is measured but the results of the measurement are not examined,
+ the state of the system is either \ket{0} or 
+\ket{1} and is no longer in a superposition. This type of state
+is written as:
+\begin{equation}
+\nu = |\alpha|^2\{\ket{0}\} + |\beta|^2\{\ket{1}\}.\label{eq:appMixedState}
+\end{equation}
+
+An external (to the state) observer knows that the state 
+of $\nu$ is as expressed in
+\vref{eq:appMixedState}. Since the results of the measurement
+were not examined, the exact state ($0$ or $1$) is unknown. 
+Instead, a probability is assigned  as expressed in the equation. 
+Thus, if the \qbit{} $\nu$ is measured and the results are not
+examined, $\nu$ can be treated as a probabilistic \bit{} rather
+than a  \qbit.
+\subsection{Density matrix notation}\label{sec:appDensityMatrix}
+The state of any quantum system of \qbit{}s may be 
+represented via a \emph{density matrix}. In this 
+notation, given a \qbit{} $\nu$,  the coefficients
+of \ket{0} and \ket{1} form a column vector $u$. Then the
+density matrix corresponding to $\nu$ is $uu^{*}$. If
+ $\nu=\alpha\ket{0} + \beta\ket{1}$, 
+\begin{equation}
+\begin{singlespace}
+\nu = \begin{pmatrix}
+\alpha \\
+\beta
+\end{pmatrix}
+\begin{pmatrix}
+\overline{\alpha} & \overline{\beta}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\alpha\overline{\alpha} & \alpha\overline{\beta}\\
+\beta\overline{\alpha} & \beta\overline{\beta}
+\end{pmatrix}.
+\end{singlespace}
+\end{equation}
+
+When working with mixed states  the density matrix of each
+component of the mixed state is added. For example, the mixed state shown in
+\vref{eq:appMixedState} would be represented by the 
+density matrix 
+
+\begin{equation}
+\begin{singlespace}
+|\alpha|^2\begin{pmatrix}
+1&0 \\
+0&0
+\end{pmatrix}
++
+|\beta|^2\begin{pmatrix}
+0&0 \\
+0&1
+\end{pmatrix}
+=
+\begin{pmatrix}
+|\alpha|^2&0 \\
+0&|\beta|^2
+\end{pmatrix}.\label{eq:appDensityOfMixedState}
+\end{singlespace}
+\end{equation}
+
+Note that since the density matrix of mixed states is a linear combination of
+other density matrices, it is possible to have two different mixed states
+represented by the same density matrix.
+
+ The advantage of this notation is
+that it becomes much more compact for mixed state systems. Additionally, 
+scaling issues are handled by insisting the density matrix has a trace = 1.
+During a general quantum computation, as we shall see,
+the trace can actually fall below 1 indicating
+that the computation is not everywhere total.
+
+\subsubsection{Gates and density matrices}\label{app:subsubsecGatesAndDensityMatrices}
+When considering  a \qbit{} $q$ as a column vector and
+a unitary  transform $T$ as a matrix, the  result of applying the transform
+$T$ to $q$ is the new vector $T q$. The
+ density matrix of the original \qbit{} is given by $q\, q^{*}$, while 
+the density matrix of the transformed \qbit{} is 
+$(T q) ( T q)^{*}$, which equals $ T (q q^{*}) T^{*}$. Thus, when
+a \qbit{} $q$ is represented by a density matrix $A$, the
+formula for applying the transform $T$ to $q$ is $T A T^{*}$.
+

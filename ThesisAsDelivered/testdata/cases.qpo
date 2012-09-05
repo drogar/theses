@@ -1,0 +1,22 @@
+Main Start
+   QLoad q |0>
+   QLoad r |1>
+   QCons d1 #C1
+   QBind q
+   QBind r
+   Split (#C1,l1) (#C2,l2) (#C3,l3)
+   Jump lend
+l1 QUnbind q1
+   QUnbind r1
+   QPullup d1
+   QDiscard
+   EndQC
+l2  QUnbind h
+   QPullup d1
+   QDiscard
+   EndQC
+l3 QPullup d1
+   QDiscard
+   EndQC
+lend QLoad s |0>
+   EndProc

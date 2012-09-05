@@ -1,0 +1,24 @@
+main
+createname q
+loadq
+put Hadamard
+transform
+measure
+cond
+  createname i1
+  cload 5
+  loadi
+  swap
+    createname i1
+    cload 12
+    loadi
+    pop
+discard
+use
+  cload 1
+  csadd
+  createname i2
+  loadi
+  enduse
+createname j
+loadi

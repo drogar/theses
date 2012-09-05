@@ -1,0 +1,10 @@
+#Import Prelude.qpl
+
+hadList :: (inqs :List(Qbit) ; outqs : List (Qbit))= 
+{ case inqs of 
+    Nil => { outqs = Nil }
+    Cons(q, inqs') => 
+       {  Had q;
+          hadList inqs';
+          outqs = Cons(q, inqs')}
+}

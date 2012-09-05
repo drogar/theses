@@ -1,0 +1,289 @@
+\section{Semantics of datatypes}\label{sec:semanticsdatatypes}
+To this point, this chapter has only considered quantum stacks with
+two node types, \bit{} and \qbit{}. This section will add nodes for
+constructed datatypes and  probabilistic classical data and statements
+that operate on these nodes.
+
+Constructed datatypes will allow the addition of algebraic datatypes
+to our quantum stacks. This includes   sum, product,  and recursive 
+data types. For example, types
+such as \emph{List} (a recursive type), \emph{Either} (a sum type)
+and \emph{Pair} (a product type) are now definable. 
+
+\subsection{Statements for constructed  datatypes and classical data}
+Two new statements are required to implement datatypes on the
+quantum stack: \emph{node construction} and a \emph{case} statement. 
+A third statement \emph{discard data} is also added. \emph{Discard data}
+ is semantic sugar for doing a \emph{case} without any
+dependent statements.
+
+With the addition of classical data, arithmetic and logical 
+\emph{expressions} are  added to \lqpl{}. 
+The standard \emph{new} and \emph{discard} statements
+as well as a \emph{use} statement are added to the language. The
+\emph{if-else} statement is added to allow choices based on
+classical expressions.
+
+The judgements for expressions are given in \ref{fig:judgeexpressions}
+and for the new statements 
+in \ref{fig:judgementdatatypestatements}. Judgements for expressions
+use the notation
+\[\Gamma_c|\Gamma \eentail e::\tcls,\]
+which means that given the context $\Gamma_c$ of 
+classical variables in the porch and the context $\Gamma$ of
+quantum variables, $e$ is a valid expression, with the classical
+type $\tcls$. Judgements for statements
+will also carry the classical context in the porch as above. Statements
+introduced to this point have not been affected by the classical context,
+nor have their operational semantics affected the classical context.
+The new format of judgements for statements will be:
+\[ \Gamma_c | \Gamma ; \Gamma_c'|\Gamma' \ientail \qins.\]
+
+For the operational semantics, the classical context must also now
+be carried in the porch. Additionally, the data in the classical context
+is not stored in the quantum stack, but in an adjacent standard stack. The
+full format of the semantics of a statement operating on the 
+stacks  will now be:
+\[ \qresultsin{\Gamma_c | \Gamma \qentail \qop{\qins}{(S,C)}}
+          {\Gamma_c' |\Gamma' \qentail (S',C')}
+\]
+In many cases, the classical portions are not involved in the
+semantics and thus may be elided, resulting in
+our original syntax for the operational semantics.
+
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[{\raisebox{3ex}{integers}}]
+   { \Gamma_c|\Gamma
+      \eentail n::Int}
+   {n\in\integers }\qquad
+\infer[{\raisebox{3ex}{Booleans}}]
+   { \Gamma_c|\Gamma
+      \eentail b::Boolean}
+   {n\in \{\text{true, false}\}}\\
+\\
+\infer[{\raisebox{2ex}{operations}}]
+   { \Gamma_c|\Gamma
+      \eentail (e_1\, op \, e_2)::\tau_{op}}
+   { \Gamma_c|\Gamma \eentail e_1 &  \Gamma_c|\Gamma \eentail e_2}\\
+\\
+\infer[{\raisebox{2ex}{identifiers}}]
+   {(n::\tcls), \Gamma_c|\Gamma \eentail n::\tcls}
+   {}
+\end{gathered}
+\]
+\caption{Judgements for expressions in \lqpl.}\label{fig:judgeexpressions}
+\end{figure}
+
+
+
+
+
+
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[{\raisebox{3ex}{new data}}]
+   { (v_1::\tau_0, \dots v_n::\tau_n),\Gamma; (x::\tau(C)),\Gamma 
+      \ientail x = C(v_1,\dots,v_n)}
+   {}\\
+\\
+\infer[{\raisebox{4ex}{case}}]
+   {(nd::\tau),\Gamma ; \Gamma' \ientail {\qcase{nd}{C_i(v_{ij})}{\qins_i}{C_i\in \tau(C_i)}}}
+ {\{\Gamma; \Gamma' \ientail \qins_i\}_i}\\
+\\
+\infer[{\raisebox{2ex}{discard data}}]
+   {(nd::\tau),\Gamma ; \Gamma \ientail {\text{disc }nd}}
+{}\\
+\\
+\infer[{\raisebox{3ex}{new classical}}]
+   { \Gamma_c | \Gamma; \Gamma_c|(x::\tcls),\Gamma 
+      \ientail x = e}
+   {\Gamma_c|\Gamma \eentail e}\\
+\\
+\infer[{\raisebox{2ex}{use}}]
+   {\Gamma_c | (n::\tcls),\Gamma ; \Gamma_c|\Gamma' \ientail 
+        {\quse{n}{\qins}}}
+ {(n::\tcls),\Gamma_c|\Gamma; \Gamma_c|\Gamma' \ientail \qins}\\
+\\
+\infer[{\raisebox{7ex}{if-else}}]
+   {\Gamma_c | \Gamma ; \Gamma_c|\Gamma' \ientail 
+        {\qifelse{e_0}{\qins_0}{e_i}{\qins_i}{i}{\qins_n}}}
+ {\{\Gamma_c|\Gamma \eentail e_i{::}Boolean\}_{i=0,\dots,n-1} &
+    \{\Gamma_c| \Gamma ; \Gamma_c^{i} | \Gamma' \ientail \qins_i\}_{i=0,\dots,n}}\\
+\\
+\infer[{\raisebox{2ex}{discard classical}}]
+   {\Gamma_c|(n::\tcls),\Gamma ;\Gamma_c'| \Gamma' \ientail {\text{disc }n}}
+{}
+\end{gathered}
+\]
+\caption{Judgements for datatype and classical data statements.}\label{fig:judgementdatatypestatements}
+\end{figure}
+
+\subsection{Operational semantics}
+\subsubsection{Semantics for datatype statements}
+In the quantum stack, a datatype node of 
+type $\tau$ has multiple branches, where each branch is 
+labelled with a datatype constructor $C$ of $\tau$ 
+and the \emph{bound nodes} for
+$C$. Constructors may require 0 or more bound nodes. 
+
+The \emph{case} statement provides dependent statements to be executed
+for each of the branches of a datatype node $d$. Upon completion of the 
+case, the node $d$ is no longer available.
+
+In discussing datatypes,  the notation $\theta_z$ is used for
+ creating a ``fresh'' variable. The notation $\tau(Cns)$ for
+the type of the  constructor $Cns$.
+
+The operational semantics for the datatype statements 
+  are given in \ref{fig:qsdatatypetransitions}. As \emph{new data}
+and \emph{discard data} have no effect on the classical context, the 
+original syntax of the semantics statements is retained for these two
+statements. The
+\emph{case} statement, however, does affect the classical context
+in that the classical
+context is reset at the beginning of execution of each set of dependent
+ statements and at completion of the statement. Therefore, the semantics
+for \emph{case} will use the full syntax introduced in this section.
+
+
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[{\raisebox{4.8ex}{new data}}]
+   { \qresultsinUp{(x_i{::}\tau_i)_{i=1,\dots m}, \Gamma \qentail
+          \qop{(nd=Cns(x_1,\dots,x_m))}{S}} 
+         {\quad(nd{::}\tau(Cns)), 
+             (\theta_{x_i}{::}\tau_i)_{i=1,\dots m}, \Gamma'\qentail
+             \qsnodeij{nd}{Cns(\theta_{x_1},\dots,\theta_{x_m})}{S'}{}}}
+   {\qresultsin{(x_i{::}\tau_i)_{i=1,\dots m}, \Gamma \qentail
+         \qop{([\theta_{x_1}/x_1];\dots;[\theta_{x_m};x_m])}{S}} 
+         {(\theta_{x_i}{::}\tau_i)_{i=1,\dots m}, \Gamma'\qentail S'}}\\
+\\
+\infer[{\raisebox{3ex}{discard data}}]
+   {{\qresultsin{(nd::\tau),\Gamma\qentail 
+          \qop{\text{disc nd}}{\qsnodeij{nd}{C_i(x_{ij})}{S_{i}}{}}}
+          {\Gamma'\qentail \sum S'_{i}}}}
+ {\{\qresultsin{\Gamma\qentail 
+       \qop{(\{\text{disc }x_{ij}\}_j)}{S_{i}}}{\Gamma'\qentail S'_i}\}_i}\\ 
+\\
+\infer[{\raisebox{7ex}{case}}]
+   {{\qresultsinUp{\Gamma_c|(nd::\tau),\Gamma\qentail 
+       \qop{\qcase{nd}{Cns_i(v_{ij})}{\qins_i}{}}
+           {(\qsnodeij{nd}{Cns_i(x_{ij})}{S_{i}}{},C)}}
+          {\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\Gamma_c|\Gamma'\qentail (\sum S'_{i},C)}}}
+ {\{\qresultsin{\Gamma_c|\Gamma\qentail 
+       \qop{([v_{ij}/x_{ij}])_j;\qins_i}{(S_{i},C)}}
+               {\Gamma_c'|\Gamma'\qentail (S'_i,C_i)}\}_i}
+\end{gathered}
+\]
+\caption{Operational semantics for datatype statements}\label{fig:qsdatatypetransitions}
+\end{figure}
+
+\subsubsection{Classical data}\label{subsec:quantumstackclassicaldata}
+Adding probabilistic classical data led to adding a second
+data structure for the operational semantics. In order to perform standard 
+arithmetic and logical (or other classically defined) operations on this
+data, a \emph{classical stack} is paired with the quantum stack. 
+
+Classical data nodes extend the concept of probabilistic \bits{} to 
+other types. For example, a node $c$ could hold
+an integer that had value $7$ with probability $.3$, $5$ with probability
+$.2$ and $37$ with probability $.5$. A probabilistic node is
+ restricted to items of all the same type, e.g., all integers, all floats.
+
+The classical stack  is used to operate on
+non-probabilistic classical data and will interact with the classical nodes
+ via \emph{classical construction} and \emph{use}.
+
+The \emph{use} statement had a set of dependent 
+statements, $\qins$, which are
+executed for each sub-stack $S_i$ of a a classical node $c$. Prior to 
+executing $\qins$, the classical value $k_i$ which labels the 
+sub-branch $S_i$ is moved onto the top of the classical stack.
+When the statements $\qins$ have been executed for each of $c$'s sub-stacks, 
+$c$ is removed and the resulting sub-branches are added together.
+
+The classical stack has  standard arithmetic and logic operations defined
+on it. The \emph{if - else} statement is defined to execute various 
+statements depending upon classical expressions.
+
+The judgements for the classical note construction, discarding, use and
+interaction with the classical stack are shown in 
+\ref{fig:qsclassicaltransitions}.
+
+
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[{\raisebox{2.5ex}{new classical}}]
+   { \qresultsin{\Gamma_c|\Gamma \qentail\qop{(n=e)}{(S,C)}} 
+         {\Gamma_c|(n{::}\tcls),\Gamma\qentail
+             (\qsnodeij{n}{e}{S}{},C)}}
+   {\Gamma_c|\Gamma \eentail e}\\ 
+\\
+\infer[{\raisebox{2.5ex}{use}}]
+   {{\qresultsin{\Gamma_c|(n{::}\tcls),\Gamma\qentail \qop{\quse{nd}{\qins}}{(\qsnodeij{nd}{k_i}{S_{i}}{},C)}}
+          {\Gamma_c|\Gamma'\qentail (\sum S'_{i},C)}}}
+ {\{\qresultsin{(n{::}\tcls),\Gamma_c|\Gamma\qentail \qop{\qins}{(S_{i},k_i:C)}}{\Gamma_c'|\Gamma'\qentail (S'_i,C'_i)}\}_i}\\
+\\
+\infer[{\raisebox{2.5ex}{discard classical}}]
+   {{\qresultsin{\Gamma_c|(n{::}\tcls),\Gamma\qentail 
+         \qop{\text{disc n}}{(\qsnodeij{nd}{cv_i}{S_{i}}{},C)}}
+          {\Gamma_c|\Gamma\qentail (\sum S_{i}, C)}}}
+ {}\\
+\\
+\infer[{\raisebox{7ex}{if-else, $e_k$ true}}]
+   {\qresultsin{\Gamma_c | \Gamma \qentail 
+        \qop{\qifelse{e_0}{\qins_0}{e_i}{\qins_i}{i}{\qins_n}}{(S,C)}}
+      {\Gamma_c^k | \Gamma' \qentail (S', C_k)}}
+ { e_k = \text{\texttt{True}} & \{e_j = \text{\texttt{False}}\}_{j<k} & 
+\qresultsin{\Gamma_c | \Gamma \qentail 
+        \qop{\qins_k}{(S,C)}}
+      {\Gamma_c^k | \Gamma' \qentail (S', C_k)}}\\
+\\
+\infer[{\raisebox{7ex}{if-else, else}}]
+   {\qresultsin{\Gamma_c | \Gamma \qentail 
+        \qop{\qifelse{e_0}{\qins_0}{e_i}{\qins_i}{i}{\qins_n}}{(S,C)}}
+      {\Gamma_c^n | \Gamma' \qentail (S', C_n)}}
+ { \{e_j = \text{\texttt{False}}\}_{j=0,\ldots,n-1} & 
+\qresultsin{\Gamma_c | \Gamma \qentail 
+        \qop{\qins_n}{(S,C)}}
+      {\Gamma_c^n | \Gamma' \qentail (S', C_n)}}\\
+\\
+\infer[{\raisebox{2.5ex}{binary op}}]
+   {{\qresultsin{i::\tau_1,j::\tau_2,\Gamma_c|\Gamma\qentail \qop{(\text{capp }op_c)}{(S,v_i:v_j:C)}}
+       {k::\tau_3,\Gamma_c|\Gamma \qentail (S,v_k:C)}}}
+          { v_i\,op_c\,v_j = v_k}
+\end{gathered}
+\]
+\caption{Operational semantics for classical data statements}\label{fig:qsclassicaltransitions}
+\end{figure}
+
+
+
+An important point to note in the transitions for the \semins{use} statement
+is that the classical stack is \emph{reset} at the beginning of each 
+execution and in the final result. This enforces a block-like scoping on the 
+classical stack. This  also applies to \semins{measure} and \semins{case}.
+The  revised judgement for measure is given
+in \vref{fig:revisedtransitionsformeasure}.
+
+
+
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[{\raisebox{7.5ex}{measure'}}]
+   {{\qresultsin{\Gamma_c|\Gamma\qentail \qop{\qmeas{q}{I_0}{I_1}}{(\qsnodeij{q}{ij}{S_{ij}}{},C)}}
+          {\Gamma_c|\Gamma'\qentail ((S_0+S_1),C)}}}
+ {\stacktwo{\qresultsin{\Gamma_c|\Gamma\qentail \qop{I_0}{(S_{00},C)}}
+         {\Gamma_c'|\Gamma'\qentail (S_0,C_0)}}
+    {\qresultsin{\Gamma_c|\Gamma\qentail\qop{I_1}{(S_{11},C)}}
+      {\Gamma_c''|\Gamma'\qentail (S_1,C_1)}}}
+\end{gathered}
+\]
+\caption{Revised semantics for measure with classical stack.}\label{fig:revisedtransitionsformeasure}
+\end{figure}

@@ -1,0 +1,48 @@
+\chapter{Introduction}\label{chap:introduction}
+This thesis introduces a \emph{quantum stack} and its semantics 
+together with a   quantum 
+programming language  which has quantum control and classically controlled
+data types. The work was motivated by the 
+desire to provide a semantically correct programming language for
+programming quantum algorithms at a higher level than \bits{} and \qbits.
+
+The thesis starts with a brief comparison with, 
+and contrast to other Haskell based
+quantum simulators. This is followed by a short (re-)introduction of the 
+basic concepts of linear algebra and quantum computing. 
+
+
+The two main contributions of this thesis, the quantum stack and \lqpl{},
+ may be reviewed independently of
+each other. Some of the appendices refer to both the quantum stack and 
+\lqpl. 
+
+For those interested
+in reviewing the introduction of the quantum stack machine and its 
+implementation the recommended reading path is the chapter on
+semantics, \ref{chap:semantics}, 
+followed by   \ref{chap:quantumStackMachine}. In
+ \ref{chap:qsmadditional}, further details are given on
+quantum stack machine instructions and 
+the translation of \lqpl{} into quantum stack machine code. 
+The details of the Haskell
+implementation of the machine are also covered in 
+  \ref{chap:qsmimplementation}. 
+Implementation  details of the quantum stack are 
+in \ref{subsec:quantumstackdescription} while  details
+of the staged implementation of the quantum stack machine are
+ in   \ref{subsec:QSM:machinedescription}.
+
+ \Ref{chap:informalintroductionLinearQuantumProgrammingLanguage} is
+the primary required reading for learning \lqpl. All facets of the language
+are presented in that chapter interspersed with a number of examples. 
+Further examples of programs in \lqpl{} can be found  in 
+ \ref{app:exampleprograms}. 
+A complete BNF
+description of \lqpl{} is available in  
+ \ref{chap:formalSpecificationLinearQuantumProgrammingLanguage} and a
+ description of how \lqpl{} is translated into quantum stack machine
+code  in  \ref{sec:translationtoqsmcode}. 
+ Details of running the compiler
+ are in   \ref{app:usethesystem}.
+

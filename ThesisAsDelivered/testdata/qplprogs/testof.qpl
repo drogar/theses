@@ -1,0 +1,7 @@
+#Import Prelude.qpl
+
+main :: () =
+{
+  qbl = Cons(|0>,Cons(|0>,Cons(|0>,Cons(|0>,Nil))));
+  UM(15,7,0) qbl;
+}

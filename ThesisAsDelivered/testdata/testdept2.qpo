@@ -1,0 +1,23 @@
+
+UseName a 
+Pullup
+Put Hadamard
+Transform
+UseName b 
+Pullup
+Put Hadamard
+Transform
+UseName c 
+Pullup
+Put Hadamard
+Transform
+UseName d 
+Pullup
+Transform
+UseName e 
+Pullup
+Put Hadamard
+Transform
+UseName f 
+Put Hadamard
+Transform

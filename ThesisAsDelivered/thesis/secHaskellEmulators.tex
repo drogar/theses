@@ -1,0 +1,134 @@
+\section{Haskell based quantum computation emulators}
+\label{sec:haskellemulators}
+\subsection{Functional quantum programming}
+Shin-Cheng Mu and Richard Bird wrote 
+\cite{MuBird2001:Functionalquantumprogramming} in 2001, which
+explores ways to write quantum algorithms in Haskell. In this paper,
+$n$ \qbits{} are represented as a list of $2^n$ values. The paper refers
+to these as \emph{quregs}.
+
+The paper provides Haskell code to perform unitary operations and measurements.
+
+Two examples of quantum algorithms; the Deutsch-Jozsa and Grover's search
+algorithm are provided.
+
+Bird and Mu then make the point that a \emph{qureg} resembles a 
+Haskell monad, in that a \emph{join} function and \emph{return} 
+function may be defined on \emph{quregs}. This resemblance is used 
+to restate the Deutsch-Jozsa algorithm in a monadic format. The importance
+of this approach is that it encourages programmers to consider the 
+algorithm used, rather than concentrating on the multitude of possible
+values a \emph{qureg} may assume.
+
+The approach given in \cite{MuBird2001:Functionalquantumprogramming}
+ is not used by the simulator introduced in this
+thesis.
+
+\subsection{Modelling quantum computation in Haskell}
+In 2003, Amr Sabry \cite{sabry03:qcinH} described a way
+to emulate quantum computation in Haskell.
+
+\subsubsection{Representation of quantum values}
+In the paper a \qbit{} is represented as a map from \emph{basis} values 
+to values in \complex. The \emph{basis}
+ is a list of elements that can be used as
+an orthogonal basis of a vector space. Examples presented in the paper include
+\inlhskl{[False,True]}, \inlhskl{[Up,Down]} and \inlhskl{[Red,}
+ \inlhskl{Green,} \inlhskl{Blue]}, 
+where the latter two
+are made up of constructors for some of the 
+new types introduced in the paper. 
+
+This allows a programmer to represent any \qbit{} once the basis is chosen. 
+For example, a ``False'' \qbit{} is represented as $\{False: 1.0+0.0i\}$ and
+an indeterminate ``False - True'' \qbit{} may be represented as
+\[\{False:\frac{1}{\sqrt{2}}+0.0i;True:\frac{1}{\sqrt{2}}+0.0i\}\]
+The Haskell type used for this is \inlhskl{type\ QV\ a = FiniteMap\ a\ (Complex Double)}.
+
+\subsubsection{Entanglement}
+The concept of \emph{entangled} \qbits{} is handled by extending the 
+basis to pairs of basis elements. Given a \emph{basis} definition
+for elements of type $a$, extend this to a definition of a \emph{basis}
+for  elements of 
+type \inlhskl{(a,a)} by using the product type.
+
+As an example, the standard EPR pair under the \inlhskl{(Bool, Bool)}
+ basis would be
+represented as
+\[\{(False,False):\frac{1}{\sqrt{2}}+0.0i;(True,True):\frac{1}{\sqrt{2}}+0.0i\}.\]
+\subsubsection{Unitary operations}
+Unitary operations are defined as functions of 
+type~\inlhskl{QV Bool -> QV Bool}. The 
+definition of the \Had{} gate is given as 
+
+{\begin{singlespace}
+\begin{lstlisting}[style=hskl]
+had v = let a = pr v False
+            b = pr v True
+	in qv [(False, a+b), (True, a-b)]
+\end{lstlisting}
+\end{singlespace}
+}
+
+In the above \inlhskl{pr} retrieves the value of a 
+basis element from a \qbit{} and 
+\inlhskl{qv} is a smart constructor. \inlhskl{qv} takes a 
+list of \inlhskl{(basis, Complex Double)} pairs
+and turns the list into an element of type \inlhskl{QV basis}.
+
+It is possible to lift operations on standard classical values to ones
+on quantum values \emph{provided the operation is reversible}.  The paper 
+provides Haskell functions
+ for lifting of the base case where the classical
+function is of type \inlhskl{(a->b)}.
+\subsubsection{Measurement}
+Measurements of quantum values are done by  ``collapsing'' the 
+measured value. The code as supplied in the paper requires that measurable 
+quantum values be stored in \inlhskl{IORef} variables. \inlhskl{IORef}
+variables are the Haskell idiom for mutable variables. The measurement
+will generate a random value to pick one of the basis elements (\inlhskl{a})
+ as the result of the measure and then update the variable so 
+that it is now:
+\[\{a:1.0+0.0i\}\]
+This also ensures all future measures will return the same value.
+\subsubsection{Multiple \qbits}
+Operations on multiple \qbits{} are discussed next in the paper and the
+issues with isolating specific sets of \qbits{} to work with are addressed.
+In  Dr. Sabry's simulator, \emph{adaptor}s are required to 
+restructure the form of multiple \qbits. A specific adaptor would,
+for example, take a quantum value of type \inlhskl{QV (a,(b,c))} to
+one of \inlhskl{QV ((a,c),b)}. This then allows the application of 
+a unitary transformation to the first and third \qbits{} of the first type.
+Dr. Sabry assumes that it will be possible to generate any needed adaptors
+rather than writing code for each individual one.
+Candidates for doing this would be template Haskell or a pre-compiler that 
+creates adaptors as required.
+\subsection{Comparison with and contrast to the quantum stack machine}
+Dr. Sabry's paper provided the inspiration for the use of a 
+\inlhskl{class Basis} and a Haskell 
+\inlhskl{Map} from basis elements to values
+ when defining the simulator presented in this thesis. It is used in a 
+slightly different way in that the elements of a \qbit{}'s density
+matrix are indexed by pairs of basis elements as opposed to a 
+single basis element. 
+
+Classical data and constructed datatypes
+ in the quantum stack machine also use 
+the idea of a Haskell \inlhskl{Map} from their 
+``basis'' elements to values. The basis elements for classical data
+are the integers and Booleans. The basis elements for a constructed data
+type are the constructors together with bound nodes.
+
+In contrast to Dr. Sabry's approach, multiple
+\qbit{}s are handled by increasing the depth of the tree, classical and
+quantum data are easily mixed and measurement is approached in a very 
+different way.
+
+One of the largest differences is the  approach to handling
+quantum values. The simulator presented in 
+this thesis (QSM)
+keeps all the probabilities of values as the program proceeds. This allows 
+us to perform the quantum computation just once, and then pick random 
+values as needed to evaluate different results. In Dr. Sabry's presentation,
+the actual quantum algorithm needs to be re-run to determine
+the different possible results.

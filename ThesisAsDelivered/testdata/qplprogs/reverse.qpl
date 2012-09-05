@@ -1,0 +1,36 @@
+#Import append.qpl
+
+reverse :: (l:List (a) ; rl: List (a))
+= { 
+ case l of
+     Nil => {rl = Nil}
+     Cons (a, l1) => {
+         rl = append (reverse (l1), Cons (a, Nil))
+     }
+}
+
+rev1  :: (l:List (a) ; rl: List (a))
+= { 
+ case l of
+     Nil => {rl = Nil}
+     Cons (a, l1) => {
+           reverse l1;
+           rl = append (l1, Cons (a, Nil))
+     }
+}
+
+rev2  :: (l:List (a) ; rl: List (a))
+= {
+    rl = rev3 (l, Nil)
+}
+
+rev3  :: (l:List (a), accin:List(a) ; rl: List (a))
+= { 
+ case l of
+     Nil => {rl = accin}
+     Cons (a, sublist) => {
+          acc = Cons(a, accin);
+          rl = rev3(sublist, acc)
+     }
+}
+

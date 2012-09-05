@@ -1,0 +1,66 @@
+\section{QPL by Peter Selinger}\label{sec:semanticsQPLSelinger}
+In 2002, Peter Selinger presented a description and categorical semantics
+for a functional quantum programming language in \cite{selinger04:qpl}.
+
+Much of the work in this thesis was inspired by and often based upon the
+language described therein. 
+Dr. Selinger first presented a
+diagrammatic language consisting of picture fragments corresponding to 
+various operations in the language. In later sections of the paper, 
+QPL and Block QPL
+are introduced. QPL closely mirrors the diagrammatic language with the
+addition of a few minor restrictions. Block QPL restricts the language
+further by creating a structured language that would allow allocation of
+data in a stack based environment rather than on a heap as required for 
+QPL. The syntax for QPL is given in the appendix, \vref{fig:QPLSyntax}.
+
+\subsection{Comparison with and contrast to \lqpl{}}\label{subsec:qplcomparisontolqpl}
+While inspired by QPL, \lqpl{} has diverged considerably. The syntax  
+of \lqpl{} has been
+changed and extended, data construction has been added and a demarcation
+between classical and quantum data is included in \lqpl.
+
+The two languages are similar in that they both have \qbits{} as 
+a first class datatype and provide standard operations on 
+\qbits. The provided operations include unitary transformations and
+measurement. 
+
+Both languages provide procedures, although with different syntax. 
+Each has an assignment statement. Each is a functional language
+in the sense that a statement of the language is a function from
+its inputs to its outputs.
+
+The greatest difference between QPL and \lqpl{} is 
+that QPL is a \bit{} and \qbit{} oriented language, while
+\lqpl{} was designed to work with algebraic data types. \lqpl{} 
+retains \qbits{}, but \bits{} are not built-in to \lqpl{}. 
+
+The syntax for unitary transformations differs between the languages,
+with QPL using an operator-assignment type of syntax and \lqpl{} syntactically
+treating transformations in the same way as function calls. Quantum control
+in QPL is done via assuming various built-in controlled transforms, while
+\lqpl{} requires specifying the control variables of a transform explicitly.
+
+QPL provides explicit looping based upon a \bit{}'s value. In \lqpl, all
+looping is done via recursion.
+
+The semantics of \lqpl{} is inspired by QPL. We only provide an operational
+semantics in this thesis and semantic comparison is future work.
+
+\section{QML by Altenkirch and Grattage}\label{sec:QML}
+Thorsten Altenkirch, Jonathan Grattage and others have introduced QML in 
+\cite{alti05:qmlc-draft},
+\cite{alti05:jqpl-draft},
+\cite{alti05:functionalQMLlics}, and  \cite{alti05:algebraqpl05}. 
+This is a functional quantum programming language intended to compile
+to a simulator based on  \cite{sabry03:qcinH}.
+
+In the papers, the authors give an operational semantics of the language
+in terms of quantum circuits and a denotational semantics in terms
+of superoperators, similar to that of  \cite{selinger04:qpl}. 
+
+This is somewhat different from the approach of this thesis, which 
+provides a translation from quantum circuits to \lqpl{} and an 
+operational semantics of \lqpl{} with respect to quantum stacks. 
+Using the translation of circuits to \lqpl{} this also gives us an
+operational semantics of quantum circuits. 

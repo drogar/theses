@@ -1,0 +1,116 @@
+\section{Miscellaneous examples}\label{sec:miscExamples}
+\subsection{Quantum teleportation function}\label{subsubsec:quantumTeleportationExample}
+The \lqpl{} program shown in \vref{fig:stackTeleportation}
+ is an implementation of a function that will accomplish 
+quantum teleportation as per the circuit shown previously in 
+\vref{qc:quantumTeleportation}. It also provides a separate function
+to place two \qbits{} into the EPR state.
+
+Note that the teleport function, similarly to the circuit,
+ does not check the precondition that \qbit{}s $a$ and $b$ are in the
+EPR state, which is required to actually have teleportation work.
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{examplecode/teleport.qpl}
+\caption{\lqpl{} code for a teleport routine}\label{fig:stackTeleportation}
+\end{figure}
+
+\subsection{Quantum Fourier transform}
+The \lqpl{} program to implement the quantum Fourier transform in 
+\vref{fig:qft} uses
+two recursive routines, \inlqpl{qft} and \inlqpl{rotate}. These
+functions assume the \qbits{} to transform are in a \inlqpl{List}.
+
+The routine \inlqpl{qft} first applies the \Had{} transform to the
+\qbit{} at the head of the list, then uses the \inlqpl{rotate} routine
+to recursively apply the correct $Rot$ transforms controlled by the
+other \qbits{} in the list. \inlqpl{qft} then recursively calls itself on
+the remaining \qbits{} in the list.
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{examplecode/qft.qpl}
+\caption{\lqpl{} code for a quantum Fourier transform}\label{fig:qft}
+\end{figure}
+
+\subsection{Deutsch-Jozsa algorithm}\label{appsubsec:djalgorithm}
+The \lqpl{} program to implement the Deutsch-Jozsa algorithm is in 
+\vref{fig:dj} with supporting routines in \ref{fig:initlist}, 
+\ref{fig:addnzerps}, \ref{fig:measureinps}. The 
+\inlqpl{hadList} function is defined in \vref{fig:hadList}.
+
+The algorithm decides if a function is balanced or constant on 
+$n$ \bits. This implementation requires supplying the number of
+\bits{} / \qbits{} used by the function, so that the input can 
+be prepared. Additionally, it currently requires an extension to the 
+language where a $n+1-\qbit$ function can be defined from
+a $n-\bit$ function. Assuming the existance of this planned extension,
+the rest of the algorithm is straight-forward.
+
+The function \inlqpl{dj} creates an input list for the function, 
+applies the Hadamard transform to all the elements of that list
+and  applies
+the candidate function. When that is completed, the initial segment
+of the list is transformed again by Hadamard and then measured. 
+
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{examplecode/dj.qpl}
+\caption{\lqpl{} code for the Deutsch-Jozsa algorithm}\label{fig:dj}
+\end{figure}
+
+The function \inlqpl{addNZeroqbs} creates a list of \qbits{} when given
+a length and the last value. Assuming the parameters passed to the 
+function were $3$ and \ket{1}, this would return the list:
+\[[\ket{0},\ket{0},\ket{0},\ket{1}]\]
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{examplecode/addnzeros.qpl}
+\caption{\lqpl{} code to prepend $n$ \ket{0}'s to a \qbit}\label{fig:addnzerps}
+\end{figure}
+
+The \inlqpl{initList} function removes the last element of a list.
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{examplecode/initList.qpl}
+\caption{\lqpl{} code accessing initial part of list}\label{fig:initlist}
+\end{figure}
+
+The \inlqpl{measureInputs} function recursively measures the 
+\qbits{} in a list. If any of them measure to $1$, it returns the 
+value \inlqpl{Balanced}. If all of them measure to $0$, it returns
+the value \inlqpl{Constant}.
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{examplecode/measureInps.qpl}
+\caption{\lqpl{} code to measure a list of  \qbits}\label{fig:measureinps}
+\end{figure}
+
+\subsection{Quantum adder}\label{appsubsec:quantumadder}
+This section provides subroutines that perform \emph{carry-save}
+arithmetic on \qbits{}. The algorithm is from
+\cite{Vedral:1995ga}. The \inlqpl{carry} and \inlqpl{sum}
+routines in \vref{fig:carrysum} function as gates on four \qbits{}
+and three \qbits{} respectively.
+
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{../testdata/arithmetic/carrysumgates.qpl}
+\caption{\lqpl{} code to implement carry and sum gates}\label{fig:carrysum}
+\end{figure}
+
+The addition algorithm adds two lists of \qbits{} and an input
+carried \qbit. The first list
+is unchanged by the algorithm and the second list is changed to hold the 
+sum of the lists, as shown in \vref{fig:quantumadder}.
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{../testdata/arithmetic/adder.qpl}
+\caption{\lqpl{} code to add two lists of \qbits}\label{fig:quantumadder}
+\end{figure}
+
+The program proceeds down the lists $A$ and $B$ of input \qbits, first applying
+the \inlqpl{carry} to the input carried \qbit, the heads of $A$ and $B$ and
+a new zeroed \qbit, $c_1$. When the ends of the lists are reached, a controlled
+not and the \inlqpl{sum} are applied. The output $A+B$ list is then started
+with $c_1$. Otherwise, the program recurses, calling itself
+with $c_1$ and the tails of the input lists. When that returns, \inlqpl{carry}
+and \inlqpl{sum} are applied, the results are ``Consed'' to the existing
+tails of the lists, $c_1$ is discarded and the program returns.

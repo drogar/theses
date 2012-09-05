@@ -1,0 +1,14 @@
+#Import rotate.qpl
+
+qft :: (l:List (Qbit); l:List (Qbit)) =
+{
+   case l of
+     Nil => {l = Nil}
+     Cons(h,t) => {
+        Had h;
+        n := 2;
+	rotate (n) h t;
+        qft t;
+        l = Cons(h,t)
+     }
+}

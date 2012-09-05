@@ -1,0 +1,42 @@
+\chapter{Future Work}\label{chap:futurework}
+As with any piece of research there are many avenues of exploration 
+still left open with respect to \lqpl{} and its quantum stack machine.
+
+\section{Language extensions}\label{sec:languageextensions}
+The programming language \lqpl{}, while currently interesting and
+useful, could use additional features to make it a fully functional and
+powerful tool for developing quantum algorithms.
+
+\subsection{Refinements to the type system}\label{subsec:typesystem}
+In addition to the current \inlqpl{qdata} construction, a corresponding
+construction for classical data creation could be added. This 
+declared classical data would be held in a classical node on the
+quantum stack, but could be moved back and forth to the classical stack.
+
+A type \emph{aliasing} declaration and potentially a \emph{class} system
+to allow for closed types may also be useful.
+
+\subsection{Transform definition}\label{subsec:transformdefinition}
+Currently the language has a finite set of built-in transforms, two of
+which are parametrized by integer values. However, one common feature of 
+quantum algorithms seems to be the application of generic reversible 
+classical computation on \bit{}s as a unitary transformation on \qbit{}s.
+
+This is typically done by using the equivalences:
+\[
+\genfrac{}{}{}{}{\bit^n \rightarrow \bit}{%
+\genfrac{}{}{}{0}{\bit^{n+1} \rightarrow \bit^{n+1}}{%
+\qbit^{n+1} \rightarrow \qbit^{n+1}}}
+\]
+
+We would like to add supporting syntax and semantics to the language to 
+accomplish this, without sacrificing the compile time type safety.
+
+\subsection{Input/Output}\label{subsec:inputoutput}
+The ability to allow a program to read in values and print out results, 
+likely outside of the bounds of any \qbit{} manipulation, is a necessity 
+for future development.
+
+\subsection{Miscellaneous enhancements}\label{subsec:miscellaneousenhancements}
+Additional base types in the language, such as characters and floating
+point numbers, would be useful in some algorithms and in I/O.

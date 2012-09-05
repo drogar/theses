@@ -1,0 +1,8 @@
+#Import Prelude.qpl
+
+append :: (l1:List (a), l2:List (a) ; app: List (a))= 
+{ case l1 of
+     Nil => {app = l2}
+     Cons (a, subl1) => 
+       { app = Cons (a, append(subl1, l2)) }
+}

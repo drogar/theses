@@ -1,0 +1,8 @@
+Main
+UseName q1
+AllocQbit
+UseName q2 
+AllocQbit
+UseName q3 
+AllocQbit
+

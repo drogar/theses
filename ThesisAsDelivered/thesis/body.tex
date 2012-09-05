@@ -1,0 +1,67 @@
+\input{cites}
+\input{chapIntroduction}
+\input{secWhy}
+\input{secHaskellEmulators}
+\input{secOtherQPLs}
+\chapter{Quantum computation and circuits}\label{chap:quantumcompandcircuits}
+\input{secLinearAlgebra}
+\input{secPrelimQuantumComputation}
+\input{secQuantumCircuits}
+\input{secExtensionsToQC}
+%\input{secCategoryTheory}
+\chapter{Semantics}\label{chap:semantics}
+\input{secSemIntroBasicLQPL}
+\input{secTransCircuitsToLQPL}
+\input{secQuantumStackTermLogic}
+\input{secInstructionsForQSTermLogic}
+\input{secInterpretationQuantumCircuits}
+\input{secSemanticsDataTypes}
+\input{secSemanticsIteration}
+\chapter{An Informal Introduction to Linear QPL}\label{chap:informalintroductionLinearQuantumProgrammingLanguage}
+\input{secIntroLQPL}
+\input{secLQPLPrograms}
+\input{secLQPLStatements}
+\input{secLQPLExpressions}
+%\input{secLQPLLinearity} - in intro now.
+%\input{secLQPLOperationalSemantics} Redone in chap 3
+%\section{Examples of programs for the quantum stack machine}\label{sec:examples}
+% Move examples into code.
+\chapter{The quantum stack machine}\label{chap:quantumStackMachine}
+\input{secIntroStackMachine}
+\input{secQSMInStages}
+%\input{secTransformStates} Note about transforming added to Intro.
+\input{secRepresentationOfQstackData}
+\input{secStackOperation}
+%\input{secMachineAbstractSemantics}
+\input{chapFutureWork}
+
+
+
+%\printindex
+\begin{singlespace}
+\bibliography{/home/grads/gilesb/latexFiles/BibTexFiles/formasters}
+\bibliographystyle{plain}
+\end{singlespace}
+% reference formats - after significant appendix referencing in chapintro
+\labelformat{chapter}{appendix~#1}
+\labelformat{section}{appendix~#1}
+\labelformat{subsection}{appendix~#1}
+\labelformat{subsubsection}{appendix~#1}
+\appendix
+\chapter{QPL syntax and semantics}\label{appchap:qplsyntaxandsemantics}
+\input{secQPLSyntax}
+\input{secQPLSemantics}
+\chapter{BNF description of  the Linear Quantum Programming Language}\label{chap:formalSpecificationLinearQuantumProgrammingLanguage}
+\input{secLQPLSyntax}
+\chapter{Quantum stack machine additional details}\label{chap:qsmadditional}
+\input{secInstructionList}
+\input{secTranslationToQSMCode}
+\chapter{Quantum stack machine implementation}\label{chap:qsmimplementation}
+\input{secMachineImplementation}
+\input{secBackgroundData}
+\chapter{Example \protect{\lqpl{}} programs}\label{app:exampleprograms}
+\input{secMiscExamples}
+\input{secShorsFactoring}
+\chapter{Using the system}\label{app:usethesystem}
+\input{secRunningCompiler}
+%\input{secRunningSimulator} Just not going to get time to go through it.

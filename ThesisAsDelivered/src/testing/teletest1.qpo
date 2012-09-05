@@ -1,0 +1,40 @@
+Compiler: Linear QPL Compiler, Version=0.6.2 (Experimental)
+main   Start
+    QLoad alice |0>
+    QLoad bob |0>
+    QPullup alice
+    QApply 0 !Had
+    AddCtrl 
+    QCtrl 
+    QPullup bob
+    QApply 0 !Not
+    UnCtrl 
+    AddCtrl 
+    QPullup nu
+    QCtrl 
+    QPullup alice
+    QApply 0 !Not
+    UnCtrl 
+    QPullup nu
+    QApply 0 !Had
+    QPullup alice
+    Measure lbl0 lbl1
+    Jump lbl2
+lbl0 QDiscard
+    EndQC 
+lbl1 QDiscard
+    QPullup bob
+    QApply 0 !Not
+    EndQC 
+lbl2 NoOp
+    QPullup nu
+    Measure lbl3 lbl4
+    Jump lbl5
+lbl3 QDiscard
+    EndQC 
+lbl4 QDiscard
+    QPullup bob
+    QApply 0 !RhoZ
+    EndQC 
+lbl5 NoOp
+   EndProc

@@ -1,0 +1,127 @@
+\section{Operational semantics for the language \lqpl}
+\label{sec:operationalsemanticslqpl}
+In this section, I provide an operational semantics of \lqpl.
+\subsection{Syntactic sets}\label{subsec:opsyntacticsets}
+\lqpl{} has a variety of different syntactic sets as it is a quantum 
+language with classical features. Traditional syntactic sets are composed
+of unique elements, such as $N$ being the natural numbers. In \lqpl, the
+base elements are sets of (value,probability) pairs, where the sum
+of the probabilities is less than or equal to one. (A probability sum 
+being strictly less than one signifies a chance of non-termination). 
+This is required as
+quantum operations, when a measure is applied, will create results of 
+varying probabilities.
+
+Certain items in the language are uniquely valued, for example, a constant.
+In these cases, the constant will evaluate to the number it represents with
+$100\%$ probability.
+
+In the following list of syntactic sets, $p$ is always a probability
+value between $0$ and $1$ inclusive. The required syntactic sets are:
+\begin{itemize}
+\item{} \n, the set of sets of $(n,p)$ pairs, where $n$ is an integer.
+\item{} \T, the set of sets of $(t,p)$ pairs, 
+where $t \in \{TRUE, FALSE\}$.
+\item{} \Q, the set of quantum values as a single $2\times2$ matrix. ??????
+\item{} \Data, the set of sets of $(d,p)$ pairs, where $d$ is a
+defined constructor and associated items. 
+\item{} \Qloc, the set of quantum locations.
+\item{} \Cloc, the set of classical locations.
+\item{} \Aexp, the set of arithmetic expressions.
+\item{} \Bexp, the set of Boolean expressions.
+\item{} \Cexp, the set of constructor expressions.
+\item{} \Stm, the set of statements.
+\end{itemize}
+
+Following common practice, various letters will be used to range over these
+sets. Sub-scripting and adding of primes to the letter does not change the 
+category they belong to.
+\begin{itemize}
+\item{} $(n,p),(m,p)$ for \n.
+\item{} $q,r$ for \Q.
+\item{} $(d,p)$ for \Data.
+\item{} $Z,Q$ for \Qloc.
+\item{} $X,Y$ for \Cloc.
+\item{} $a$ for \Aexp.
+\item{} $b$ for \Bexp.
+\item{} $c$ for \Cexp.
+\item{} $e$ for $\Aexp + \Bexp + \Cexp$.
+\item{} $s$ for \Stm.
+\end{itemize}
+
+The execution of statements in \lqpl, while functional, may be thought of
+as a function from a state to the next state. That state is composed of the
+disjoint 
+union of the elements in \n, \T, \Q{} and \Data. This set is denoted as 
+\R. Additionally, \Loc{} will denote the disjoint union of 
+\Cloc{} and \Qloc{}. $r$ will range over \R{} and $L$ over \Loc{} 
+where required.
+The \emph{state} $\Sigma$ of a 
+program at a particular point is a function
+ $\sigma: \Loc \to\R$.
+
+As operational semantics are an \emph{evaluation} based semantics,
+the evaluation of a pair consists of an item in one of our 
+expression sets(\Aexp, \Bexp{} and \Cexp)
+ and a state to a value in one of the base sets(\n,\T, \Q{} and \Data).
+I denote this evaluation triplet by:
+\[\eval{e}{\sigma}{r}.\]
+
+\subsection{Operational semantics of arithmetic expressions}\label{subsec:oparithmetic}
+All rules that follow are presented in the premise / conclusion format.
+\subsubsection{Constants and variables}
+\[\infer[\mathrm{numbers}]{\eval{n}{\sigma}{(n,1.0)}}{}\]
+\[
+\infer[\mathrm{Classical}]{\eval{X}{\sigma}{\sigma(X)}}{}
+\qquad
+\infer[\mathrm{Quantum}]{\eval{Z}{\sigma}{\sigma(Z)}}{}
+\]
+\subsubsection{Binary operations}
+\[
+\infer[{n=n_0+n_1}]{\eval{a_0 + a_1}{\sigma}{(n,p_0 \times p_1)}}
+    {\eval{a_0}{\sigma}{(n_0,p_0)}\quad\eval{a_1}{\sigma}{(n_1,p_1)} }
+\]
+\[
+\infer[{n=n_0-n_1}]{\eval{a_0 - a_1}{\sigma}{(n,p_0 \times p_1)}}
+    {\eval{a_0}{\sigma}{(n_0,p_0)}\quad\eval{a_1}{\sigma}{(n_1,p_1)} }
+\]
+\[
+\infer[{n=n_0\times n_1}]{\eval{a_0 * a_1}{\sigma}{(n,p_0 \times p_1)}}
+    {\eval{a_0}{\sigma}{(n_0,p_0)}\quad\eval{a_1}{\sigma}{(n_1,p_1)} }
+\]
+\[
+\infer[{n=n_0 \div n_1}]{\eval{a_0 / a_1}{\sigma}{(n,p_0 \times p_1)}}
+    {\eval{a_0}{\sigma}{(n_0,p_0)}\quad\eval{a_1}{\sigma}{(n_1,p_1)} }
+\]
+\[
+\infer[{n=n_0 - (n_1 \times (n_0 \div n_1))}]{\eval{a_0 \bmod a_1}{\sigma}{(n,p_0 \times p_1)}}
+    {\eval{a_0}{\sigma}{(n_0,p_0)}\quad\eval{a_1}{\sigma}{(n_1,p_1)} }
+\]
+\[
+\infer[{n=n_0 \times 2^{n_1}}]{\eval{a_0 <\!< a_1}{\sigma}{(n,p_0 \times p_1)}}
+    {\eval{a_0}{\sigma}{(n_0,p_0)}\quad\eval{a_1}{\sigma}{(n_1,p_1)} }
+\]
+\[
+\infer[{n=n_0 \div 2^{n_1}}]{\eval{a_0 >\!> a_1}{\sigma}{(n,p_0 \times p_1)}}
+    {\eval{a_0}{\sigma}{(n_0,p_0)}\quad\eval{a_1}{\sigma}{(n_1,p_1)} }
+\]
+
+
+\subsection{Operational semantics of Boolean expressions}\label{subsec:opboolean}
+
+\subsubsection{Constants and variables}
+\[\infer{\eval{\true}{\sigma}{(\true,1.0)}}{}
+\qquad
+\infer{\eval{\false}{\sigma}{(\false,1.0)}}{}
+\]
+\[
+\infer[\mathrm{Classical}]{\eval{X}{\sigma}{\sigma(X)}}{}
+\qquad
+\infer[\mathrm{Quantum}]{\eval{Z}{\sigma}{\sigma(Z)}}{}
+\]
+\subsubsection{Binary operations}
+\[
+\infer[\mathrm{when\ }n\mathrm{\ and\ }m\mathrm{\ are\ equal}]
+     {\eval{a_0 = a_1}{\sigma}{(\true,p_0 \times p_1)}}
+    {\eval{a_0}{\sigma}{(n,p_0)}\quad\eval{a_1}{\sigma}{(m,p_1)} }
+\]

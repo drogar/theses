@@ -1,0 +1,15 @@
+Main Start
+  CLoad 5
+  CLoad 1
+  CLoad 12
+  CApply +
+  QMove i
+  QLoad p |0>
+  QDiscard
+  QLoad p |0>
+  QApply !Not
+  CLoad 1
+  CLoad 12
+  QLoad q |1>
+  QApply !Had
+  EndProc  

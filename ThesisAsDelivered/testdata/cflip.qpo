@@ -1,0 +1,13 @@
+main Start
+   QLoad q |0>
+   QApply 0 !Had
+   Measure l0 l1
+   Jump l3
+l0 QDiscard
+   QCons b #False
+   EndQC
+l1 QDiscard
+   QCons b #True
+   EndQC
+l3 QPullup b
+   EndProc

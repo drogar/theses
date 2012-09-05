@@ -1,0 +1,12 @@
+#Import Prelude.qpl
+
+len ::(list: List (a) ; length:Int) =
+{
+   case list of
+     Nil => {length = 0}
+     Cons (_, tail) => {
+	tlLen= len(tail);
+	use tlLen;
+        length = 1 + tlLen;
+  }
+}

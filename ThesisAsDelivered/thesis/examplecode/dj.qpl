@@ -1,0 +1,13 @@
+#Import initList.qpl
+#Import addnzeros.qpl
+#Import hadList.qpl
+#Import measureInps.qpl
+
+dj ::(size:Int | uFunc: (List(Qbit) -> List(Qbit)); resultType :Ftype)= 
+{  inlist = addNZeroqbs(size | |1>);
+   hadList inlist;
+   uFunc inlist;
+   inputs = initList(inlist);
+   hadList inputs;
+   resultType = measureInputs(inputs);
+}

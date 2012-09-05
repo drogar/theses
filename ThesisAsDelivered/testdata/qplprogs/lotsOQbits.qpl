@@ -1,0 +1,13 @@
+main :: (;)
+= {
+   georgebushlongname = |0>;
+   Had georgebushlongname;
+   q2 = |0>;
+   Had q2;
+   q3 = |0>;
+   q4= |1>;
+   q5=|0>;
+   Had q5;
+   Had q4;
+   Had q3;
+}

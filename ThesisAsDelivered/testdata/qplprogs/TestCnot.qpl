@@ -1,0 +1,9 @@
+main ::() =
+{
+   a = |0>;
+   b = |0>;
+   Had b;
+   Not a <= b;
+   Not b <= a;
+   Not a <= b;
+}

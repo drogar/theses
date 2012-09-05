@@ -1,0 +1,1946 @@
+\documentclass[11pt]{report}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[none,dcucite,abbr]{harvard}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+%\usepackage{harvard}
+\usepackage{graphicx}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{uathesis}
+\usepackage{lscape}
+\usepackage{longtable}
+\usepackage{pstricks,pst-node}
+\usepackage[mathscr]{euscript}
+\usepackage[arrow,matrix,tips]{xy}
+
+
+
+\include{thesisMacros}
+        
+\begin{document}
+\nocite{bib:allen1980,bib:hughes1972,bib:luthar1980,bib:polcino1972,bib:sehgal78}
+\degree{\MSc}%
+
+\dept{Mathematics}%
+%
+
+\field{Algebra}%
+%
+\permanentaddress{93 Fonda Green \\
+Calgary, AB \\
+Canada, T2A 5S4}%
+%
+
+\examiners{S. K. Sehgal, Gerald Gliff, A. Weiss, A. Al-Sallam}
+
+\convocationseason{Fall}%
+%
+
+%BeginExpansion
+%\frontpiece
+THE UNIVERSITY OF ALBERTA
+
+
+
+\title{The Unit Groups of Certain Group Rings}
+\author{Brett G. Giles}
+\admin
+\doublespacing
+\begin{abstract}
+This thesis deals with the problem of describing the unit group of specific group rings over the integers. 
+After a brief introduction to remind one of some of the properties of the group ring we start to discuss 
+the unit groups. A few of the basic results as presented by Sehgal 
+\cite{bib:sehgal78}, Chapter 2, are shown. 
+After this introduction we talk about specifics.
+
+The first method to determine a unit group is then discussed. It is a general method, applicable to
+any group.  However, in practice we see that it is unsuitable for any but a small number of groups.
+In this section we talk in an expository manner as the proofs of the results are normally very
+dependant on the particular group. The ones presented by this method later on are \(S_3, D_4, D_6\)
+and \(A_4\).
+
+Next, we present the method for groups of order $p^3$, where $p$ is an odd prime. 
+These come from
+the paper by Ritter and Sehgal  \cite{bib:ritter1981}.
+ In this paper they also present a method for determining the
+unit group of a particular group of order $p^n$. This will not be treated here. I consider both
+non-abelian groups of order $p^3$ and descriptions of the unit groups of both of their respective
+group rings are presented. Later on in the paper I present the method as applied to the groups of
+order 27.
+
+The last theoretical results are on determining the unit group of the group ring over a group of
+order $pq$ where $p\equiv 1(\mod{q})$. These results come from a 
+paper by Luthar  \cite{bib:luthar1980}. No practical
+examples are done of this method.
+
+The next part deals with presenting actual groups and determining the unit structure of their
+integral group ring. The first two, $S_3$ and $D_4$ are from previous authors. The first was done by
+Hughes and Pearson \cite{bib:hughes1972},
+ the second by C. Polcino-Milies \cite{bib:polcino1972}. The next, $D_6$, is new. The last one
+is merely an expository account of Allen and Hobby's \cite{bib:allen1980}
+ rendering of \( \mathcal{U} ( \mathbb{Z}
+\mathrm{A}_4)\). Our other concrete examples deal with the two non-abelian groups of order 27 as
+presented in  \cite{bib:ritter1981} by Ritter and Sehgal.  
+\end{abstract}
+
+\onehalfspacing %everything from here on will be 1.5 spaced
+
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\bodyoftext 
+\chapter{Preliminaries} 
+\section{Generalities} 
+Throughout this paper the term \emph{group ring} shall be taken as follows: The group ring $KG$ of
+the group $G$ over the ring $K$ (which posesses an identity) is the ring of all formal sums
+\[\alpha=\sum \lambda(g)g \] where \(g \in G\) and \( \lambda(g) \in K\) so that
+ \(\supp(a)= \{g \mid \lambda(g) \neq 0\}\) is a finite set.
+
+The ring structure is inherited from the structures of the group and the ring. The operations on 
+\(KG\) are defined as follows:
+\begin{align*}
+\sum\lambda(g)g &= \sum\mu(g)g &\iff \forall  g \in G, \lambda(g) = \mu(g)\\
+\sum \lambda(g)g + \sum \mu(g)g &= \sum(\lambda(g)+\mu(g))g\\
+\sum \lambda(g)g \centerdot \sum \mu(g)g &= \sum \nu(g)g
+\end{align*}
+where \( \nu(g) = \sum \lambda(x)\mu(y) \) with the last sum being over all  \( (x,y) \in  
+G\times  G \mathrm{\ with} \  x\centerdot y = g\).
+
+In this paper, we will be investigating the
+\emph{unit group} of the group ring. 
+\begin{definition}
+The \emph{unit group} of a group ring \KG\ is the group of all elements invertible under
+the multiplication of \KG. 
+\end{definition}
+
+It should be noted that the multiplicative identity in \KG{} is the
+element \(1e\), where \(1\) is the multiplicitive identity of \(K\) and
+ \(e\) the group identity. Obviously, the unit group of \KG\ contains
+ \( \pm G\). Further definition of the unit group becomes more interesting.
+
+\section{Notation}
+
+Throughout this paper the following will be assumed.
+\begin{description}
+\item[\integers{}] the ring of integers.
+\item[\rat] the ring of rational numbers.
+\item[\( R_n \)] the ring of \(n\) by \(n\) matrices with entries from \(R\).
+\item[\(\ggen{c} \)] The group generated by the element \(c\).  (There may be be more than one element 
+for generating.)
+\item[\(\Delta (G,N)\)] \(\ggen{x-1 : x \in N} \mathrm{ in }\ \integers G\) where $N$ 
+is normal in $G$. This is also \[\left\{\sum_{g \in G} \mu(g)g 
+ | \sum_{x \in N} \mu(gx) = 0\,\  \forall  g \in G\right\}.\]
+\end{description}
+
+\section{General results}
+
+In this section, I will present a few of the results from Sehgal \cite{bib:sehgal78} in order to give the reader a
+feel as to what the unit group of a group ring may become at times.
+
+\begin{proposition}
+
+If $G$ is abelian of order $n$, then \[\mathscr{U}\integers{}G = \pm{}G\times F\] where $F$ is a
+free abelian group of a determinable order. This order is dependent on the number of cyclic
+subgroups of various orders in $G$.
+\end{proposition}
+
+The above theorem helps a great deal when dealing with groups, as it is often possible to get a
+factor or sub-group of your group to fall in this particular category. In particular, this
+proposition can be used to show that the unit group of \(\integers{}\ggen{x}\) where \(x^2=1\) is just
+\(\pm{}\ggen{x}\) This fact is used later.
+
+This proposition along with others can be used to prove the following more powerful theorem.
+
+
+\begin{theorem}
+
+If $G$ is a torsion group\footnote{See definition \ref{defn:torsionGroup} in the appendix.} then \(\mathscr{U}\integers{}G = \pm{}G\) if and only if $G$ is one of
+\begin{enumerate}
+\item an abelian group with \(G^4 = \{1\}\) or
+\item an abelian group with \(G^6 = \{1\}\) or
+\item a Hamiltonian\footnote{See definition \ref{defn:hamiltonianGroup}}
+ 2-group.
+\end{enumerate}
+\end{theorem}
+
+This theorem completely characterizes torsion groups that have trivial
+\(\mathscr{U}\integers{}G\).
+
+In conclusion, we note that there are many different areas one 
+can explore when determining unit
+groups.  These range from finding unit groups of particular 
+integral group rings to determining when
+torsion-free groups have trivial unit groups in their 
+integral group ring.
+
+\chapter{Theoretical considerations}
+\section{Representation theory method}
+
+This method enables us to give a concrete description of 
+the unit groups of certain group rings
+involving \integers.  The first two, $S_3$ and $D_4$ 
+were done by Hughes and Pearson, and Polcino-Milies,
+respectively. The third, which is $D_6$, was done 
+by myself by extending the method of Polcino-Milies. 
+The last one, $A_4$, which is included only in an 
+expository way, was done by Allen and
+Hobby. The general manner in which to apply this method is described below.
+
+Consider the group G. We may use representation theory 
+to determine its non-equivalent irreducible
+representations. Call these $\theta{}_i$. These will be maps 
+from \(\rat{}G\) to matrices over 
+\rat.
+
+If one takes these \(\theta{}_i\) that we have obtained, one may now define a map \(\theta:
+\rat{}G \rightarrow \rat_{i1}\bigoplus\ldots\bigoplus \rat_{in}\), by, if
+\(a \in \rat{}G\), then \(\theta(a) = (\theta_1(a),\ldots,\theta_n(a))\). 
+Considering both sides of the mapping as vector spaces over \rat, it is readily seen that
+$\theta$ is a linear mapping. Let $A$ be the matrix of $\theta$. It will be noticed that
+\(\theta\integers \subset \bigoplus\integers_n\). Next, by using the matrix $A$ and its inverse we
+will be able to deduce a system of linear congruences that give us the restrictions needed for an
+element of \(\bigoplus\integers_n\) to be in \(\integers{}G\). These, together with the fact that a
+matrix with coefficients in \integers{} has to have an integral determinant in order to have an
+integral inverse determine the proper group.
+
+Naturally one sees that a significant problem with this method is the size of the matrix $A$
+involved. It is a square matrix of size \(o(G)\). Another problem is that we have no guarantee that the
+system of congruences will lead to a usable situation.
+
+A further difficulty with the method is that the end result may turn out to be a direct product of
+matrix rings.  In this case, it is just as difficult to determine properties from this description as
+it was from the original.
+
+Despite these difficulties, the method is sufficiently useful enough to apply it to a few groups of
+small size.
+
+\section{Second Method - Groups of order $p^3$}
+
+In this section, we intend to study the unit groups of the integral group rings of groups of order
+\(p^3\), where $p$ is an odd prime.  The first type, the commutative groups of order \(p^3\), are uninteresting
+as their unit groups are just + G.
+
+In dealing with the non-commutative groups of order \(p^3\), we note that there are two non-isomorphic
+groups of that order. They are:
+\[H=\ggen{a,b \vert a^{p^2}=e=b^p, b^{-1}ab=a^{p+1}} \mathrm{and}\]
+\[G=\ggen{a,b,c \vert (a,b) = a^{-1}b^{-1}ab = c, ca=ac, cb=bc, a^p = e = b^p = c^p}.\]
+
+Throughout this section we reserve the letters G and H to mean these two groups.
+
+\subsection{Fibre product}
+
+We must now define a concept that we will be using throughout this section --- that of the fibre
+product.
+
+To understand what a fibre product of rings is, consider the ring $R$ with the two ideals $I,J$ of $R$
+such that $I\cap{}J = 0$.  Then we have the diagram
+\[
+\xymatrix{
+R \ar[r] \ar[d] &
+   R/J \ar[d]^{\tilde{\ }} \\
+R/I \ar[r]_{\hat{\ }} &
+   R/(I+J)\\
+}
+\]
+%\comdiagxy{R}{R/J}{R/I}{R/(I+J)}
+
+Then $R$ is the fibre product of $I$ and $J$ in the sense that
+\[R\cong\{(\alpha,\beta)\vert \alpha{}\in{} R/I, \beta{}\in{} R/J, \hat{\alpha}=\tilde{\beta}\},\]
+where $\hat{}$ is the map from $R/I$ to $R/(I+J)$ and $\tilde{}$ is the map from $R/J$ to $R/(I+J)$.
+
+From the above we can deduce a fibre product of the unit groups as is given by the following diagram.
+\comdiagxy{\mathscr{U}(R)}{\mathscr{U}(R/J)}{\mathscr{U}(R/I)}{\mathscr{U}(R/(I+J))}
+
+\subsection{Use of Fibre Product}
+
+In this section, we are going to apply this to the Group Ring
+\(\integers{}X\) with $J = \Delta(X,N)$ as the kernel of the natural
+homomorphism of $\integers{}X\longrightarrow{}\integers{}X/N$ with $N$ normal in $X$ and 
+\(I = \hat{N}\integers{}G\) where \(N=\sum_{x\in{}N}x\). From here on in, we shall write $\hat{x}$ 
+ for $\ggen{\hat{x}}$.
+
+\subsubsection{Pseudo-diagonals of matrices.}
+        
+To present the proofs of this section, we will need to number certain matrices by their
+pseudo-diagonals. If the $n\times{}n$ matrix $A=[a_{ij}]$ is considered, then the $j$-th
+pseudo-diagonal is given by the elements \[a_{1,j+1}, a_{2,j+2}, \ldots, a_{n-1,j-1}, a_{nj}\] where
+the second subscript is considered $\mod{n}$ and $j=0,1,2,3,...,n-1$.
+
+Some of the matrices that we will be dealing with from here on will be numbered via their
+pseudo-diagonals.  As an example the matrix \(B = [b_{i,j}]\), if numbered by pseudo-diagonals means
+that the element $b_{i,j}$ is located on the $i$-th pseudo-diagonal at the $j$-th spot. When using
+this indexing scheme, we have $0\leq{}i,j\leq{}n-1$.
+
+For convenience, since we will be dealing with many diagonal-like matrices, we introduce the
+following notation: 
+\[
+A =  \mathrm{PDIAG}_i(\series{0}{n-1})
+\] 
+will represent the $n\times{}n$ matrix that has 
+the elements \(x_0,\ldots,x_{n-1}\) on the $i$-th pseudo-diagonal and
+zeroes elsewhere. If we are talking of the $0$-th pseudo-diagonal, we then mean the main diagonal and
+refer to it as \[A =  \mathrm{DIAG}(\series{0}{n-1})\] 
+
+\subsection{Preliminary propositions}
+
+Throughout this section we let $\omega$ denote a primitive $p$-th root of unity.
+
+\begin{proposition}
+Suppose \(\series{0}{p-1}\ \in\ \integers[\omega]\) then there exists \(t_i\ \in\
+\integers[\omega]\) satisfying
+\[\sum^{p-1}_{i=0} t_i\omega^{ij}=x_j, 0\leq{}j\leq{}p-1\] if and only if
+\[\sum^{p-1}_{i=0}x_i\omega^{ki} \in{} p \integers[\omega]\ \forall\ 0\leq{}k\leq{p-1}\]
+\end{proposition}
+
+\begin{proof}
+The system of equations is equivalent to
+\[[\series[t]{0}{p-1}]W = [\series{0}{p-1}]\]
+where $W= [a_{kl}]$, with \(a_{kl} = \omega^{(k-1)(l-1)}\). Now as $W$ is a character matrix, the
+orthogonality relations of a primitive root of unity tell us that\[W^{-1} = \frac{1}{p}[a_{kl}^{-1}]\].
+
+Our system is equivalent to \[[\series[t]{0}{p-1}] = [\series{0}{p-1}]W^{-1}.\]
+
+
+Therefore, there exists a solution if and only if we have
+\[\frac{1}{p}\sum_{i=0}^{p-1}\omega^{ik}x_i \in\ \integers[\omega]\] for all \(0\leq{}k\leq{}p-1\).
+This, of course, is the same as saying \[\sum_{i=0}^{p-1}\omega^{ik}x_i \in\
+p\integers[\omega]\forall{}\ 0\leq{}k\leq{}p-1\].
+\end{proof}
+
+\begin{proposition}
+
+Let $A$ and $B$ be $p \times\ p$ matrices over $\rat[\omega]$, with $A = \mathrm{DIAG}(1, \omega, 
+\omega^2, \ldots, \omega^{p-1})$ and $B$ as the matrix with ones
+on pseudo-diagonal number one, (where numbering of pseudo-diagonals start at zero) and zeroes
+elsewhere, that is $B = \mathrm{PDIAG}_1(1, 1, \ldots, 1)$.
+
+Then the $\integers[\omega]$ span of the matrices $\{A^iB^j, 0\leq{}i,j\leq{}p-1\}$ consists of all elements of the form $M= [x_{ij}]$,
+where the numbering is via the pseudo-diagonals, and such that for each $j,k$ with  $0\leq{}i,j\leq{}p-1$
+ we have\[\sum_{i=0}^{p-1}\ x_{ji}\omega^{ki}\  \in\ p\integers[\omega]\].
+\end{proposition}
+
+\begin{proof}
+
+We see that for a fixed $j$, the matrices $\{A^iB^j, 0\leq{}i,j\leq{}p-1\}$, have non-zero entries only in the $j$-th
+psuedo-diagonal. The vector (\series{0}{p-1}) in $\integers[\omega]$ is a diagonal in the span of $\{A^iB^j\}$ if and only
+if there exists $t_i\ \in\ \integers[\omega]$ such that
+\[\sum_{i=0}^{p-1}\ t_iA^i\ = \ \mathrm{DIAG}(\series{0}{p-1})\]
+
+This, we see, means that\[\sum_{i=0}^{p-1}\ t_i\omega^{ji}\ = \ x_j, 0\leq{}i,j\leq{}p-1 \]
+and now applying the last proposition we now have our answer.
+\end{proof}
+
+\begin{proposition}
+
+Let $o_1 \subset\ o_2$ be \integers-orders in a rational algebra. Then, if an element $\alpha\ \in\ o_1$
+ has  an inverse in $o_2$,
+then $\alpha$ already has an inverse in $o_1$.
+\end{proposition}
+\begin{proof}
+
+As groups, we have that the indices behave in the following manner:
+\[(0_2\ :\ \alpha{}o_1)\ =\ (\alpha{}o_2\ :\ \alpha{}o_1)\ \leq{}\  (o_2\ :\ o_1)\]
+which implies that $\alpha{}o_1 \ = o_1$, and therefore shows us that $\alpha$ is a unit in $o_1$.
+\end{proof}
+
+Now we digress before continuing with our list of propositions.  Let us recall our group $H$ with the
+two generators $a$ and $b$. Let us write $c = a^{-1}b^{-1}ab = a^{p^{2}}$.
+Then we have $H' = \ggen{c}$ of order $p$. Thus $\widetilde{H} = 
+H/\ggen{c}=\ggen{\tilde{a}} \times \ggen{\tilde{b}}$. As before, $\omega$ is a primitive $p$-th 
+root of unity.  Then \[\rat{}H \cong{} \rat{}\widetilde{H} \oplus 
+\rat{}(\omega)_p\] 
+As well as this we have 
+\[\rat{}\widetilde{H} \cong{} \rat{}H/\Delta(H,\ggen{c}) \cong{} 
+\rat{}H\hat{c} \]and
+\[\rat(\omega)_{p} \cong{} \rat{}H/\hat{c}\rat{}H.\]
+
+Clearly this gives us
+\[\integers{}H / \Delta{}(H,\ggen{c}) \cong{} \integers{}\widetilde{H} \] and the mapping
+\[\integers{}H \rightarrow\integers\widetilde{H} \oplus \integers[\omega{}]_{p} ,\]
+with the projection onto the first component. Let us proceed with the calculation of the map with
+respect to the second component. We easily see that
+\[\tilde{c}\integers{}H +(1-c) \integers{}H = p\integers{}H + (1 - c)\integers{}H\]
+as $c$ is the sum of $p$ elements all of which are units of \(\integers{}H\). (They are contained in $+ H$). 
+Also, it is obvious that
+\[\tilde{c}\integers{}H \cap (1-c) \integers{}H = 0 .\]
+
+Thus, it is obvious that we have the fibre product
+\comdiagxy{\integers{}H}{\integers{}\widetilde{H}}%
+{\integers{}H/\tilde{c}\integers{}H}{\integers{}\widetilde{H}/p\integers{}\widetilde{H}}
+%\comdiagxy{1}{2}{3}{4}
+with all the maps being natural.
+
+
+The $p\times p$ matrices \(A =  \mathrm{PDIAG}_1(1,1,\ldots{},1,\omega{})\) and
+$ B = \mathrm{DIAG}(1,\omega{},\omega{}^2,\ldots,\omega{}^{p-1})$ obviously satisfy the
+relations $A^p=\omega{}I, B^p = I, B^{-1}AB = A^{p^{2}+1}$.
+
+The matrices $ \{B^jA^i \vert 0\leq{}i,j\leq{}p-1\}$ are linearly independant over 
+$\integers{}[\omega{}]$ as is shown in the following: Assume 
+\[\sum_{i,j}z_{ij}B^iA^j = 0.\]
+As $A^j$ has non-zero entries only  in the $j$-th pseudo-diagonal we have
+\[\sum_{i}z_{ij}B^iA^j = 0\, \forall{} j,\ 0\leq{}j\leq{}p-1.\]
+As $A$ is a non-singular matrix we have that
+\[\sum_{i}z_{ij}B{i} = 0,\]
+which immediately implies that $z_{ij} = 0\ \forall 0\leq{}i,j\leq{}p-1$.
+
+Let $T=\integers{}H/\hat{c}\integers{}H$, and $S_p$ be the
+$\integers{}[\omega{}]-$span of the matrices $\{B^iA^j\, \vert\, 0\leq{}i,j\leq{}p-1\}$,
+from above. The claim here is that $T \cong{} S_p$. Consider the map
+\[
+\phi{}: \integers{}H \rightarrow{}S_p,\qquad \phi(a) = A,\qquad \phi(b) = B.\]
+As $\hat{c} = (1+c+c^2+...+c^{p-1})$ is mapped by $\phi$ to 
+$(1+\omega{}+\omega{}^2+...+\omega{}^{p-1})I$, which is zero, we have the induced map
+$\phi{}_0: T \rightarrow{} S_p.$
+
+
+Since $\phi{}(a^{pk}a^ib^j) = \omega{}^kA^iB^j$, we have that $\phi{}$ is onto $S_p$. 
+Also we see that $\phi{}_0$ is $1\leftrightarrow{}1$, for if we tensor
+both $T$ and $S_p$ with $\rat{}$ we see that both of them have $\integers{}-$dimension
+ of $p^n-p^{n-1}$
+
+\begin{proposition}
+A matrix $Z \in{} \integers{}[\omega{}]$ is in $S_p$ if and only if the matrix $X = Z'$ satisfies
+\begin{equation}
+\sum_{i=0}^{p-1} x_{j,i}\omega{}^{ki} \in{} p\iom, 
+\forall 0\leq{}j,k\leq{}p-1, \omega^p = 1.
+\label{eqn:spcondition}\\
+\end{equation}
+where $Z'$ is obtained from $Z$ by dividing all the entries below the main diagonal by $\omega{}$.
+\end{proposition}
+\begin{proof}
+
+We make the observation that $A^i = \mathrm{PDIAG}_i(1,1,\ldots,1,\omega,\ldots,\omega)$, 
+where $\omega$ is repeated $i$ times. Thus, to compute $S_p$ it is enough to
+find the span of $\{B^jA^i \vert 0\leq{}i,j\leq{}p-1\}$ separately for each $i$. 
+Therefore, all we need do is to find all $\integers{}[\omega]$ vectors of the form 
+$(z_{i0},\ldots,z_{ip-1})$ such that
+\[\sum_{j=0}^{p-1} t_jB_j\mathrm{DIAG}(1,1,\ldots,1,\omega,\ldots,\omega) = \mathrm{DIAG}(z_{i0},\ldots,z_{ip-1})\]
+which is equivalent to
+\[\sum_{j=0}^{p-1} t_jB_j = \mathrm{DIAG}(z_{i0},\ldots,z_{ip-i-1},\omega^{-1}z_{ip-i},\ldots,\omega^{-1}z_{ip-1})\]
+and the result therefore follows from proposition 2.
+\end{proof}
+
+Now let us consider a fibre product of $\integers{}H$. We have the diagram
+\[
+\xymatrix {
+\integers{}H \ar[r] \ar[d] 
+&\integers\hat{H} \ar[d]\\
+T \ar[r]^{\theta{}_1} \ar[d]_{\phi{}_0} 
+&(\integers/p\integers)\hat{H}\\
+S_p \ar[ur]_{\phi{}_1 = \theta{}_1{\phi{}_0}^{-1}}&
+}\]
+with all the unablelled maps natural,and $\phi_1$ defined as above. Then the diagram above is
+commutative.
+
+Consider $\phi_1$. If $M \in S_p$ we wish to write $M$ as $\sum\alpha_{ij}B^iA^j, 
+\alpha_{ij}\in\integers{}[\omega], 0 \le i,j \le p-1$. Let $M'$
+be obtained from $M$
+by dividing all the elements below the main diagonal by $\omega$.  Then the $j$-th pseudo-diagonal 
+$\series[x]{j,0}{j,p-1}$ of $M'$ is the same as the main diagonal of $\sum\alpha_{ij}B^iA^j$.
+
+We then have
+\[[\series[\alpha]{0,j}{p-1,j}] W = [\series{j,0}{j,p-1}]\]
+where $W=[\omega{}^{ij}], 0\le{}i,j\le{}p-1$. Therefore,
+\[\alpha_{i,j} = \frac{1}{p}\sum_{k}\omega^{-ij}x_{i,j}.\]
+Recalling that we have
+\[M = \sum \alpha_{i,j}B^{i}A^{j}\]
+then from the above commutative diagram we have
+\[\phi_{1}(M) = \sum\tilde{\alpha}_{i,j}b^{i}a^{j}\]
+where $\tilde{\alpha}_{i,j}$  is obtained from $\alpha_{i,j}$ by taking
+$\omega = 1$ and going $\mod{p}$.
+
+In consideration of Proposition 3, we have the following theorem.
+
+\subsection{Main result for type 1 groups of order $p^3$}
+
+\begin{theorem}
+\begin{enumerate}
+\item{}$\integers{}H\cong \{(\alpha,M) \in \integers\widetilde{H} 
+\times \integers{}[\omega{}]_p \vert M'$ satisfies Equation \ref{eqn:spcondition} and 
+$\theta_2(\alpha) = \phi_1(M)\}.$
+\item{}$\mathscr{U}\integers{}H\cong \{(\alpha,M) \in 
+\mathscr{U}\integers\widetilde{H} 
+\times \integers{}[\omega{}]_p \vert M$ is a unit of $\integers{}[\omega{}]_p, M'$
+ satisfies Equation \ref{eqn:spcondition} and 
+$\theta_2(\alpha) = \phi_1(M)\}.$
+\end{enumerate}
+\end{theorem}
+
+In the theorem we have,
+\begin{itemize}
+\item{} $M'$ is obtained from $M$ by dividing every element below the main diagonal by $\omega$
+where $\omega$ is a
+primitive $p$-th root of unity.
+\item{} Equation  \ref{eqn:spcondition} is the one we have encountered many times already
+\[\spcondition
+\]
+where $\{x_{i,j}\}$ are numbered according to the pseudo-diagonals of $M'$.
+\item{}  $\theta_2:\integers\widetilde{H} \rightarrow (\integers/p\integers)
+\widetilde{H}$ is  the natural map $\mod{p}$.
+\item{}$\phi_1(M) =\sum_{i,j}\tilde{\alpha}_{i,j}\tilde{b}^i\tilde{a}^j$
+ where $\alpha_{i,j} = \frac{1}{p}\sum_k\omega^{-ik}x_{jk} 
+\in \integers{}[\omega{}]$ and $\tilde{\alpha}_{i,j}$ is
+obtained from $\alpha_{i,j}$ by
+putting $\omega = 1$ and going $\mod{p}$.
+\end{itemize}
+
+
+\subsection{Groups of type 2 of order $p^3$}
+We now consider our second group of order 3 which we refer to as 
+$G$. Recall
+\begin{equation}
+G= \ggen{a,b,c \vert (a,b) = a^{-1}b^{-1}ab = c, 
+ca=ac, cb=bc, a^p = e = b^p = c^p}\label{eqn:definitionofg}\\
+\end{equation}
+We note that the factor commutator group, $\widetilde{G} = G/\ggen{c}$ is elementary
+abelian of order $p^2, \widetilde{G} = \ggen{\tilde{a}} \times \ggen{\tilde{b}}$. This gives us the 
+decomposition
+\[\rat\cong\rat\widetilde{G} \oplus\rat(\omega)_p.\]
+In fact, we have
+\begin{equation*}
+\rat\widetilde{G} \cong \rat{}G/\Delta(G,\ggen{c})\cong
+\rat{}G\tilde{c}\ \mathrm{and}\ \\
+\rat(\omega)_p\cong\rat{}G/\tilde{c}\rat{}G.\\
+\end{equation*}
+Clearly this gives us
+\begin{equation*}
+\integers{}G/\Delta(G,\ggen{c})\cong\integers\widetilde{G}\ 
+\mathrm{and \ the\ mapping}\ \\
+\integers{}G\rightarrow\integers\widetilde{G}\oplus\integers{}[\omega]_p\\
+\end{equation*}
+with the mapping being projection onto the first component. Our next step will 
+be, as before, to compute the
+the projection into the second component. We consider the fibre 
+product diagram
+\[
+\xymatrix {
+\integers{}G \ar[r] \ar[d] 
+&\integers\widetilde{G} \ar[d]\\
+\integers{}G/\hat{c}\integers{}G \ar[r]_{\theta{}_1} 
+&(\integers/p\integers)\widetilde{G}\\
+}\]
+where all the maps are the natural projections excepting the map $\theta_1$ which is
+\begin{align*}
+\theta_1:\integers{}G/\hat{c}\integers{}G &\rightarrow (\integers/p\integers)\widetilde{G}\ \mathrm{with} \\
+\theta_1(\sum{}zc^ia^jb^k) &= \sum\tilde{z}\tilde{a}^j\tilde{b}^k,\ z \in \integers{}.\\
+\end{align*}
+\subsection{Twisting of Group Rings}
+In order to continue, we need to introduce the notion of \emph{twisted }
+group rings at this
+point. A twisted group ring is constructed in the same manner as 
+an ordinary group ring
+except that the definition of multiplication differs. In the 
+twisted group ring, there is a
+twisting factor that is used to commute elements.
+
+
+Let us take the twisted group ring of a ring $R$ and a group $G$. 
+This is then written as
+$R\circ{}G$. The twisting may (and quite often is) be multiplication by a 
+particular element of R.
+Therefore, if $a,b \in G, r \in R$, we may define the 
+multiplication of $a$ and $b$ in the
+twisted group ring as $ab = rba$.
+
+Using the notation we have just introduced, it is easy to see 
+that $\integers{}G/\hat{c}\integers{}G$ is
+isomorphic as a ring to the twisted group ring $\integers{}[\omega]\circ\widetilde{G}$ with
+$ \tilde{b}\tilde{a} = \omega\tilde{a}\tilde{b}$. After this
+identification, we see that the map $\theta_1$ may be written as
+\[\theta_1(\sum\alpha\tilde{a}^i\tilde{b}^j) = \sum\tilde{\alpha}\tilde{a}^i\tilde{}b^j, \alpha \in \integers{}[\omega].\]
+where we get $\tilde{\alpha}$ from $\alpha$ by substituting $\omega = 1$ and going $\mod{p}$.
+
+Let us now define the map $\phi_0$ from $\integers{}[\omega]\circ\widetilde{G}$
+to $\integers{}[\omega]_p$ by
+\begin{equation*}
+\tilde{a}\rightarrow A = \mathrm{DIAG}(l,\omega,\ldots,\omega^{p-1}),\\
+\tilde{b} \rightarrow B = \mathrm{PDIAG}_1(l,\ldots,1).\\
+\end{equation*}
+We note that $BA = \omega{}AB$ and that $A^p = I = B^p$.
+
+We claim that $\{A^iB^j\}$ is a linearly independent set over $\integers{}[\omega]$
+for $0\le{}i,j\le{}p-1$. This
+can easily be seen as follows. Let $\alpha_{i,j}$ be in $\integers{}[\omega]$ for 
+$0\le{}i,j\le{}p-1$. Then 
+we see that % Is this B sub j or B sup j?
+\[\sum_i\sum_j\alpha_{i,j}A^iB^j = 0 \Longrightarrow \sum_i\alpha_{i,j}A^iB^j = 0,\]
+as $B^j$ has non-zero entries only in the $j$-th diagonal. Since $B$ 
+is non-singular, we may remove
+the $B^j$ from the above result, which implies that   $\alpha_{i,j}= 0$ for all 
+$0\le{}i,j\le{}p-1$. Therefore, we now
+have that if $S_p = \mathrm{span}\{A^iB^j, 0\le{}i,j\le{}p-1\},$ then
+\[\integers{}G/\hat{c}\integers{}G \cong \integers{}[\omega]\circ\widetilde{G}
+\cong S_p.\]
+From proposition 2 it follows that
+\[S_p = \{M\in\iom_p \mid M \mathrm{satisfies }\ \sum_{i=0}^{p-1}
+x_j,i\omega^{ki} \in p\iom\ \forall\, 0\le i,j\le p-l\}.
+\]
+
+Let us consider the following fibre product diagram and extension 
+to $S_p$.
+\[
+\xymatrix{
+\intG \ar[rr] \ar[d] &&\intGtil \ar[d]\\
+\iom\circ\widetilde{G}\cong\intG/\hat{c}\intG \ar[rr]_{\theta_1} \ar[d]_{\phi_0}&&
+    (\integers/p\integers)\widetilde{G}\\
+S_p \ar[urr]_{\phi_1}\\
+}
+\]
+
+In the above, the map from $S_p$ to $(\integers/p\integers)\widetilde{G}$ is denoted by $\phi_1$ and the 
+map from $\intG/\hat{c}\intG$ to
+$S_p$ is denoted by $\phi_0$. Obviously, as before in a similar diagram, 
+we define $\phi_1$ to be the map
+$\theta_1\phi_0^{-1}$.
+
+
+As before, given M in $S_p$ we wish to find $\phi_0^{-1}(M)\in \iom
+\circ \widetilde{G}$. Let $M = \{x^{j,i}\}$ be
+numbered by the pseudo-diagonals. We wish to find $a_i,j\in \iom$ suc that 
+$\sum_{i,j}a_{i,j}A^iB^j = M$. It is
+necessary to find $a_{i,j}$ such that
+\[
+\sum_ia_{i,j}A^i=\mathrm{DIAG}(\series{j,0}{j,p-1}),\ 0\le j\le p-1.
+\]
+
+Again as before we get this is equivalent to the matrix equation
+\[
+[\series[a]{0,j}{p-1,j}]W = [\series{j,0}{j,p-1}]
+\]
+where $W = [w_{i,j}]$ is numbered by columns and rows starting at zero and 
+$w_{i,j} = \omega^{ij}$. Again, by
+following the previous procedure, we see that
+\[
+a_{i,j} = (\frac{1}{p})\sum_{k=0}^{p-1}\omega^{-ki}x_{j,k}.
+\]
+
+From the above we have that   
+\[
+\phi_0^{-1}(M) = \sum_{i,j}a_{i,j}\tilde{a}^i\tilde{b}^j \quad
+\mathrm{and}\quad
+\phi_1(M) = \sum_{i,j}\tilde{a}_{i,j}\tilde{a}^i\tilde{b}^j
+\]
+where $\tilde{a}_{i,j}$ is obtained from $a_{i,j}$ by substituting $\omega = 1$
+ and going 
+$\mod p$.
+
+
+        The above constitutes the first part of the next theorem. The 
+second part follows
+directly from proposition 3 as $S_p$ is an order in $\iom_p$.
+
+
+
+\subsection{Main result for type 2 groups of order $p^3$}
+\begin{theorem}~\\
+\begin{enumerate}
+\item{}\( \intG \cong \{(\alpha,M) \in \intGtil\times\iom_p \vert M'\) satisfies
+condition \ref{eqn:spcondition} and \(\theta_2(\alpha)=\phi_1(M)\}.\)
+\item \(\ug\intG \cong \{(\alpha,M) \in \ug\intGtil\times\iom_p \vert M\) is
+a unit of \(\iom_p, M\) satisfies  \ref{eqn:spcondition} and 
+ \(\theta_2(\alpha)=\phi_1(M)\}.\)
+\end{enumerate}
+\end{theorem}
+
+In the theorem we have,
+\begin{enumerate}
+\item \( \theta_2:\intGtil\rightarrow (\integers/p\integers)\widetilde{G}\) is the natural map mod $p$;
+
+\item The condition  \ref{eqn:spcondition} is the one we have encountered many times 
+\begin{equation*}
+\spcondition
+\end{equation*}
+        where  \(\{x_{j,i}\}\) are numbered according to the pseudo-diagonals of $M$.
+
+\item \(\phi_1(M) = \sum_{i,j}\tilde{a}_{i,j}\tilde{a}^i\tilde{b}^j\)
+ where \( a_{i,j} = \frac{1}{p}\sum_k\omega^{-ki}x_{j,k} \in \iom \)
+and \tildeaij is obtained from \aij by putting $\omega=1$ and going $\mod{p}$.
+\end{enumerate}
+
+
+\subsection{Concluding remarks on groups of order $p^3$}
+        This concludes our section on groups of order $p^3$. It should be 
+noted that there are
+striking similarities in the derivations for both types of 
+groups. However, the proofs do need
+to be presented separately due to the underlying differences. In 
+a paper by Dr. S. Sehgal and
+Dr. J\"urgen Ritter, \cite{bib:ritter1981} the method presented here for type 1 groups 
+of order \(p^3\) is extended to
+similar type groups of order $p^n$.
+
+
+        At the end of this paper, I will present examples of the methods 
+shown in this section,
+using groups of order 27.
+
+
+
+\section{Third method - Groups of order $pq$}\label{sec:thirdmethod}
+\subsection{Generalities}\label{sec:thirdmethod:generalities}
+        In this section, we shall study the unit group of groups of order 
+$pq$, where 
+$p$ and $q$ are
+primes $p\equiv 1 (\mod{q})$. We shall restrict our attention to the 
+non-abelian group of this order. In
+order to refresh your memory, we have
+\begin{equation}
+ G = \ggen{a,b\ \vert\ a^p = b^q, bab^{-1} = a^j \notequiv{}\ 1 \mod{p},\ 
+ j^q \equiv   1 \mod{p}}.
+\end{equation}
+
+In this case, we will need to consider the set of normalized 
+units of \intG{} given by the map:
+\[
+\sigma:\ug{\intG} \to \ug{\integers{}[b]}
+\]
+where
+\[
+\sigma(a) = 1, \ \sigma(b)=b.
+\]
+
+
+        The kernel of this homomorphism is obviously those elements of
+\ug{\intG} 
+for which the
+coefficient of $a^k$ is 1 and the power of b is 0. Let us denote the 
+kernel by $\mathscr{N}$. This set shall be
+the group of {\it{normalized}} units of \intG. We note that any unit of \intG{}
+can be written as the
+product of a normalized unit and a unit of \intb.
+
+
+        Now since the units of \intb{} are known to us and we have the 
+equation
+\[        ba = a^jb\]
+we only need to determine the set of normalized units.
+
+
+        Let $\omega$ be a primitive $p$-th root of unity. Then the 
+field $k = \rat(\omega)$  
+is a cyclic extension
+of \rat{} of order $p-1$. Let $k_0$ be the fixed field of the
+ automorphism $t:\omega \to \omega^j$. Then $k_0$ is of degree
+$(p-1)/q$ over \rat. For any element $\alpha$ of $k$ let
+\[\alpha^t, \alpha^{(2)t}, \ldots , \alpha^{(q-1)t}\]
+be the succesive applications of the automorphism $t$.
+
+
+        Let $R$ and $R_0$ denote the rings of integers of $k$ and $k_0$, 
+respectively. We note that $R$ is
+a free $R_0$-module with the basis\[1,\chi,\supseries[\chi]{2}{q-1}\]
+where
+\[\chi=\omega-1\]
+is the prime    in $R$ over the rational prime $p$. The corresponding 
+prime in $R_0$ is
+\[X_0 = (\omega-1)(\omega^2-1),\ldots,(\omega^q-1).\]
+As $(\omega^i-1)/(\omega-1)$ is a unit, we have that $\chi_0 = \chi^q$ as ideals.
+
+
+Recalling from number theory that in the above situation we have that
+\[\integers/p\integers\cong{}R_0/\chi_0R_0\cong  R/\chi{} R.\]
+Therefore, in particular, we have that each element of $R$ modulo $\chi$ 
+is congruent to a rational
+integer.
+
+
+        At this point, we present a lemma.
+\begin{lemma}
+Suppose $\alpha\in{}R$, with $\alpha\equiv{}s\pmod{x}$, with 
+$s\in\integers$. Then $\alpha$ can be written 
+uniquely as
+\[\alpha = a_0+a_1\omega+\cdots+a_{p-1}\omega^{p-1}\]
+with $\sum{}a_i = s$, and the $a_i\in\integers$.
+\end{lemma}
+
+\begin{proof}
+Write \[\alpha =  c0+c_1\omega+c_2\omega^2+\cdots+c_{p-1}\omega^{p-1}\] 
+where the $c_i$ are rational integers. Since $a\equiv  S \pmod{\chi}$, we 
+therefore have
+\begin{equation}
+       c0+c_1+c_2+\cdots+c_{p-1} \equiv S \pmod{p}.\label{eqn:cisequivSmodp}
+\end{equation}
+
+In full generality the first equation may be rewritten as\[
+\alpha = (c_0+m)+(c_1+m)\omega+(c_2+m)\omega^2+\cdots+(c_{p-1}+m)\omega^{p-1}
+\]where m is a rational integer. The sum of the new coefficients is 
+$s$ if and only if\[ c0+c_1+c_2+\cdots+c_{p-1}+pm = s.\]
+Considering \ref{eqn:cisequivSmodp} above, the relation gives us a unique value for m 
+such that the equality does
+hold.
+\end{proof}
+\subsection{The unit group as matrices over $R$}.
+
+        Recall that it is obvious that $\intG\cong\intab$ and, therefore, 
+an element $x$ of \intG{} can
+be written as\[x(a,b) = x_0(a) + x_1(a)b + \cdots + x_{q-1}(a)b^{q-1}\]
+where $x_i(a)$ is an element of \inta. Therefore, if $x,y,z \in \intG$, 
+written as above, and $z=x\cdot y$, then we would have (upon recalling the definition of 
+multiplication in a group ring)
+the equations
+\begin{align*}
+z_0(a) &=& x_0(a)y_0(a) + x_1(a)y_{q-1}(a^j) +\cdots+ x_{q-1}(a)y_1(a^{j^{q-1}})\\
+z1(a) &=& x_0(a)y_1 (a) + x_1(a)y_0(a^j) +\cdots + x_{q-1}(a)y_2(a^{j^{q-1}})\\
+&\vdots&\\
+z_{q-1} (a) &=& x_0(a)y_{q-1}(a) + x_1(a)y_{q-2}(a^j) + \cdots + x_{q-1}(a)y_0(a^{j^{q-1}})
+\end{align*}
+
+ Recalling that$\inta \cong \intgrgen{X}/X^{p-1}$ we can therefore associate 
+to an
+element $x(a,b) \in\intG$ the 
+elements\[\alpha_0 = x_0(\omega), \alpha_1 = x_1(\omega),\ldots,
+ \alpha_{q-1} = x_{q-1}(\omega),\]
+with $\alpha_i \in R$.
+
+
+        Consider the matrix
+\[
+A = 
+\begin{bmatrix}
+\alpha_0 &\alpha_1 &\cdots&\alpha_{q-1}\\
+\alpha_{q-1}^t &\alpha_0^t &\cdots&\alpha_{q-2}^t\\
+&&\vdots& \\
+ \alpha_1^{(q-1)t} &\alpha_2^{(q-1)t} &\cdots&\alpha_0^{(q-1)t}
+\end{bmatrix}
+\]
+
+with entries in $R$. We shall call matrices with this form matrices 
+of type 1.
+
+
+        From our previous calculations, we see that the obvious map 
+$x(a,b)\to A$ is a
+homomorphism from \intG{} into the matrices of type 1.
+
+
+        Let us consider what happens when $A$ is invertible in $R$. Denoting 
+the first row of $A^{-1}$
+by \series[\beta]{0}{q-1} and we would then have the system of equations
+\begin{align*}
+\beta_0\alpha_0 + \beta_1\alpha^t_{q-1}+\cdots+\beta_{q-1}\alpha_1^{(q-1)t}&=&1\\
+\beta_0\alpha_1 + \beta_1\alpha^t_0 + \cdots+\beta_{q-1}\alpha_2^{(q-1)t}&=&0\\
+&\vdots&\\
+\beta_0\alpha_{q-1} + \beta_1\alpha^t_{q-2} + \cdots+\beta_{q-1}\alpha_0^{(q-1)t}&=&0
+\end{align*}
+If we apply the automorphism $t:\omega\to\omega^j$ to these relations 
+successively we see that
+\[
+A^{-1} = 
+\begin{bmatrix}
+\beta_0 &\beta_1 &\cdots&\beta_{q-1}\\
+\beta_{q-1}^t &\beta_0^t &\cdots&\beta_{q-2}^t\\
+&&\vdots& \\
+ \beta_1^{(q-1)t} &\beta_2^{(q-1)t} &\cdots&\beta_0^{(q-1)t}
+\end{bmatrix}
+\]
+is once again of the same type. Therefore, our conclusion is that 
+the invertible matrices of the
+type 1 form a group.
+
+
+        Let us restrict the homomorphism from \intG{} to type 1 matrices down 
+to $\mathscr{N}$, the group
+of normalized units of \intG{}. Let us further restrict it to 
+matrices of type 1 that satisfy the
+following conditions:
+\begin{align}
+&\alpha_0\equiv1,\alpha_1\equiv0,\cdots,\alpha_{q-1}\equiv0 \pmod{\chi}\mathrm{ or }
+A\equiv I \pmod{\chi}\label{eqn:cond1fortype1}\\
+&\det{A}\mathrm{\ is\ a\ unit\ in\ }R_0\label{eqn:cond2fortype1}.
+\end{align}
+
+We conjecture that the homomorphism is actually an isomorphism. 
+First, we show
+that it is one-to-one. Let $x(a,b)$ be in $\mathscr{N}$, with $x(a,b)$ being 
+mapped to the identity. 
+Then\[x_0(\omega)=1, x_1(\omega)=0,\cdots,x_{q-1}(\omega)=0.\]
+Since $x(a,b)$ is a normalized unit we also have
+\[x_0(1)=1, x_1(1)=0,\cdots,x_{q-1}(1)=0\]
+which means that\[
+x_0(a)=1, x1(a)=0,\cdots,x_{q-1}(a)=0.\]
+That shows that the map is one-to-one.
+
+Now we turn our attention to the matter of onto. Let $A$ be 
+invertible of type 1 and
+satisfy conditions \ref{eqn:cond1fortype1} and 
+\ref{eqn:cond2fortype1}. Let $B$ be the inverse of $A$. Let
+\[\alpha_0 = x_0(\omega), \alpha_1 = x1(\omega),\cdots,
+\alpha_{q-1} = x_{q-1}(\omega).\]
+where the $x_i(X)$ are polynomials with rational integer 
+coefficients of degree $\le{}p-1$, the sum of
+the coefficients of $x_i=1$ or $=0$, corresponding to $i=0$, or 
+$i=1,2,\cdots,q-1$. Form the element
+\[        x(a,b) = x_0(a) + x1(a)b + \cdots + x_{q-1}(a)b^{q-1}\]
+and the corresponding element for $B$
+\[     y(a,b) =   y_0(a) + y_1(a)b +\cdots+ y_{q-1}(a)b^{q-1}\]
+which is        derived in a similiar manner.
+
+Since $AB = I$ we have
+\[\sum_{l+m\equiv i\pmod{p}}x_l(\omega)y_m(\omega) = 1 \mathrm{\ or\ } 0\]
+according as to $i=0$ or $i=1,2,3,\cdots,q-1$.
+We also see that
+\[\sum_{l+m\equiv i\pmod{p}}x_l(1)y_m(1) = 1 \mathrm{\ or\ } 0\]
+according as to $i=0$ or $i=1,2,3,\cdots,q-1$. Therefore, $x(a,b)y(a,b) = 
+1$. In the same manner as
+above we see that $y(a,b)x(a,b) = 1$.
+
+
+        Therefore, we have proven that the group $\mathscr{N}$
+ of normalized units of 
+\intG{} is isomorphic
+to the type 1 matrices in $R$ that satisfy conditions  \ref{eqn:cond1fortype1} and 
+\ref{eqn:cond2fortype1}.
+
+\subsection{The unit group as matrices over $R_0$}
+        In this section, we continue from where we left off at the end of 
+the last section and
+extend our description of $\mathscr{N}$.
+
+  Let us put
+\begin{align*}
+\delta&=&(X-\chi^t)(X-\chi^{2t}) \cdots (X-\chi^{(q-1)t})\\
+&=&X^{q-1}+\delta_1X^{q-2}+\cdots+\delta_{q-1}.
+\end{align*}
+Also let\[\delta=\delta{\chi}.\]
+Since we obviously have $X-\chi \equiv X\pmod{\chi}$, we have that
+\[N_{k/k_0}(X-\chi) \equiv X \pmod{\chi_0},\]
+and, therefore, if we compare coefficients we will have
+\begin{equation}
+\delta_i\equiv \chi^i\pmod{\chi_0}.
+\label{eqn:deltaiequiv}
+\end{equation}
+
+If one lets $\delta_0 = 1$ then let
+\[
+P= 
+\begin{bmatrix}
+1&\chi^1 &\cdots&\chi^{q-1}\\
+1&\chi^t &\cdots&(\chi^t)^{q-2}\\
+&&\vdots& \\
+1& \chi^{(q-1)t} &\cdots&(\chi^{(q-1)t})^{q-1}
+\end{bmatrix}
+\]
+With some work, we can see that $P^{-1}$ is $[p_{i,j}], 1\le{} i,j \le{}q$
+where the numbering 
+is by rows and
+columns and $p_{i,j} = (\delta_{q-i}/\delta)^{(i-1)t}$, where $a^{0t}$
+is, of course, just $a$.
+
+        Let $E = \mathrm{PDIAG}_1(1,1,\cdots,1)$ be a $q \times q$
+ matrix. It is quite obvious that
+$E^{-1} = \mathrm{PDIAG}_{q-1}(1,1,\cdots,1) =  E^{q-1}$. 
+For a matrix $M$ with entries in $k$, we shall denote 
+by $M'$ the
+matrix obtained from $M$ by applying the automorphism $t$ to the 
+entries of $M$. In consideration
+of this, it is obvious that $P' = EP$, and $(P^{-1})' = P^{-1}E^{-1}$. 
+Therefore if $A$ has its entries in $k$, then
+$P^{-1}AP$ has entries in $k_0$ if and only if
+$A' =  E A E^{-1}$.
+
+This is equivalent to the matrix $A$ being a type 1 matrix from the 
+previous section. That is
+\[
+A = 
+\begin{bmatrix}
+\alpha_0 &\alpha_1 &\cdots&\alpha_{q-1}\\
+\alpha_{q-1}^t &\alpha_0^t &\cdots&\alpha_{q-2}^t\\
+&&\vdots& \\
+ \alpha_1^{(q-1)t} &\alpha_2^{(q-1)t} &\cdots&\alpha_0^{(q-1)t}
+\end{bmatrix}
+\]
+where the elements are in $k$.
+
+
+It then follows that the map from $A$ to $X = P^{-1} A P$ is an 
+isomorphism of the ring of
+matrices $A$ of type 1 having entries in $k$ with the ring of $q \times q$ 
+matrices $X$ with entries in $k_0$.
+
+
+Let $X =  [x_{i,j}], 0\le i,j\le q-1$. Suppose that $X$ with entries in $R_0$ 
+satisfies the congruence
+\begin{equation}
+ X\equiv 
+\begin{bmatrix}
+1&0\\
+*&1
+\end{bmatrix}
+\pmod{\chi_0(=\chi^{q-1})}.
+\label{eqn:Xissubdiagonal}
+\end{equation}
+
+
+
+Then the entries in the first row of the corresponding matrix 
+$A = P X P^{-1}$ are
+\begin{align*}
+\alpha_0 &=& \frac{1}{\delta}\left( x_0(\chi)(\delta_{q-1}) + x_1(\chi)(\delta_{q-2}) 
++\cdots + x_{q-1}(\chi)(\delta_0)\right) =\frac{\beta_0}{\delta} \\
+\alpha_1 &=&  \frac{1}{\delta^t}\left( x_0(\chi)(\delta_{q-1})^t + 
+x_1(\chi)(\delta_{q-2})^t 
++\cdots + x_{q-1}(\chi)(\delta_0)^t\right)=\frac{\beta_1}{\delta^t} \\
+&&\vdots \\
+\alpha_{q-1}&=& \frac{1}{\delta^{(q-1)t}}\left( x_0(\chi)(\delta_{q-1})^{(q-1)t} +
+% x_1(\chi)(\delta_{q-2})^{(q-1)t} +
+\cdots + x_{q-1}(\chi)(\delta_0)^{(q-1)t}\right)=\frac{\beta_{q-1}}{\delta^{(q-1)t}}
+\end{align*} 
+where for \boundsq{i},
+\[
+x_i(\chi) = x_{0,i} + x_{1,i}\chi +\cdots+ x_{q-1,1}\chi^{q-1}\equiv 
+\chi^i\pmod{\chi^{i+1}},
+\]
+
+This implies, if we consider the congruences involving the $\delta_i$'s
+and the congruences that one
+can derive by successive applications of the automorphism $t$ to 
+them we have\[\beta_0\equiv q\chi^{q-1}\pmod{\chi}\]
+and
+\[\beta_i\equiv (\chi^{it})^{q-1}+\chi(\chi^{it})^{q-2}+
+\cdots+\chi^{q-2}(\chi^{it})^{q-1}+\chi^{q-1}\pmod{\chi}\]
+
+        Since $\delta$ and its conjugates via the isomorphism $t$ are all 
+associates of $\chi^{q-1}$ this means
+that the $\alpha_i$ are all elements of $R$. As well, $\pmod{\chi}$ we will have 
+the following hold true:
+\begin{align*}
+\frac{\delta}{\chi^{q-1}} &=&\left(1=(\chi^t/\chi)\right) 
+\left(1=(\chi^{2t}/\chi)\right)\cdots \left(1=(\chi^{(q-1)t}/\chi)\right)\\
+&\equiv &(j-1)(j^2-1)\cdots(j^{q-1}-1)\\
+&\equiv &q
+\end{align*}
+
+Therefore, we have that\[  \alpha_0 = \frac{\beta_0}{\delta_0}\equiv 1 \pmod{\chi}.\]
+
+Since
+\[(\frac{\chi^t}{\chi})^q-1 = \left(\frac{\omega^j-1}{\omega-1}\right)^q-1 \equiv
+j^q - 1 \equiv 0 \pmod{\chi},\]
+therefore, $(\chi^t)^q-\chi^q\equiv 0 \pmod{\chi^{q+1}}$, and therefore, 
+noticing that 
+$\chi^t-\chi$ is an associate of $\chi$, we have
+\[\beta_1\equiv\left(\frac{(\chi^t)^q-\chi^q}{\chi^t-\chi}\right)
+\equiv 0 \pmod{\chi^q}\]
+giving us the relation
+\[        \alpha_1 =\frac{\beta_1}{\delta^t}\equiv 0\pmod{\chi}.\]
+
+Similarly, we can continue to show that $\alpha_i\equiv0 \pmod{\chi}$ for 
+$2\le i \le q-1$.
+
+
+        Now let us do the converse. Suppose we have a matrix $A$ of type 1 
+with entries in $R$
+that satisfy the conditions
+\[\alpha_i\equiv 0\mathrm{\ or\ }1 \pmod{\chi}\]
+depending as $i=0$ or $i=1,2,\cdots,q-1$. Let $X = P^{-1} A P$. Number the 
+matrix $X$ as above, $X=[x_{i,j}]$ for \boundsq{i,j},
+the numbering according to columns and rows. In 
+consideration of the above, we
+note that
+\begin{align*}
+x_{i,j}&=&\sum_{u,v}\left((\frac{\delta_{q-i-1}}{\delta})^{(u)t}
+(\alpha_{q-u+v})^{(u)t}(\chi^j)^{(v)t}\right)\\
+&=&\sum_u\left(\sum_v(\frac{\delta_{q-i-1}}{\delta})
+(\alpha_{q-u+v})(\chi^j)^{(v-u)t}\right)^{(u)t} \\
+&=&\sum_u\left(\sum_v(\frac{\delta_{q-i-1}}{\delta})
+(\alpha_{v})(\chi^j)^{(v)t}\right)^{(u)t} \\
+&=&\mathrm{Tr}\left((\frac{\delta_{q-i-1}}{\delta})
+(\sum_v\alpha_{v}(\chi^j)^{(v)t})\right),
+\end{align*}
+
+where Tr is the trace of $k$ over $k_0$. Since $\delta$ is the different of 
+the extension $k$ over $k_0$, we have
+that $x_{i,j}$ is in $R_0$. As well, in view of the congruences involving 
+the $\delta_i$ and the $\alpha_i$, we would have
+that if $j\ge i$,
+\begin{align*}
+x_{i,j}&=&\mathrm{Tr}\left(\left(\frac{\chi^{q-i-1}}{\delta}\right)
+\sum_v\alpha_v(\chi^j)^{(v)t}\right)\\
+ &=&\mathrm{Tr}\left(\frac{\chi_{q-i-1}}{\delta}\alpha_0\chi^j\right)\\
+&=&\mathrm{Tr}\left(\frac{\chi_{q-1+j-i}}{\delta}\right)\\
+&\equiv& 1 \mathrm{\ or \ } 0 \pmod{\chi_0}
+\end{align*}
+according to whether $i =j$ or $i < j$. This means that the matrix $X$ 
+has entries in $R_0$ satisfying
+the conditions in equivalence \ref{eqn:Xissubdiagonal}. 
+Therefore, we have proven the following 
+theorem.
+
+\begin{theorem}
+The group of normalized units $\mathscr{N}$ of \intG{}
+ is isomorphic to the group 
+of $q \times q$ matrices $X$ in $R_0$
+that are invertible in $R_0$ and satisfying the congruences
+\begin{equation*}
+ X\equiv 
+\begin{bmatrix}
+1&0\\
+*&1
+\end{bmatrix}
+\pmod{\chi_0(=\chi^{q-1})}.
+\end{equation*}
+\end{theorem}
+
+        This concludes our section on the groups of order $pq$. The rest of 
+the thesis deals with
+concrete examples.
+\chapter{Applications of Representation Method.}
+
+
+In this section, we shall use the first method described in this 
+paper to describe the unit
+groups of \st, \df, \ds, and, as well, as give a brief expository 
+account of the method findings
+for \af.
+
+
+
+\section{The Unit Group of \intsth.}
+        The first thing we do is consider a map deduced from a 
+representation of \st{} given by
+\begin{align*}
+\theta(1 2) &=& \begin{pmatrix}
+1&-1&
+\begin{pmatrix}
+1&-1\\
+0&-1
+\end{pmatrix}
+\end{pmatrix}\\
+\theta(1 2 3) &=& \begin{pmatrix}
+1&1&
+\begin{pmatrix}
+0&-1\\
+1&-1
+\end{pmatrix}
+\end{pmatrix}
+\end{align*}
+As one can see from the above this gives rise to a map
+\[\theta:\rat~\st\to\rat\oplus\rat\oplus\rat_2.\]
+
+We define the map by linear extension using the convention that 
+cycles multiply from the
+right to the left (for example $(1 2)(1 2 3) = (2 3)$). Since we 
+have defined $\theta$ by linear extension
+we see that this map is a homomorphism.
+
+
+        Let $B_1 = \{e, (1 2), (2 3), (1 3), (1 2 3), (1 3 2)\}$ be a basis of 
+\rat\st{} and let $\alpha=(\alpha_1,\series[\alpha]{2}{6})$ be an element of \rat\st{}
+ with respect to the basis $B_1$. 
+Similarly let $B_2$ be the canonical
+basis for $\rat\oplus\rat\oplus\rat_2$ with $X = (x_1,x_2,\cdots,x_6)$
+ being an element of that 
+space with respect to $B_2$.
+
+        Then we may consider $x=\theta\alpha=\alpha A$ where
+\[A=
+\begin{bmatrix}
+1&1&1&0&0&1\\
+1&-1&1&-1&0&-1\\
+1&-1&-1&0&-1&1\\
+1&-1&0&1&1&0\\
+1&1&0&-1&1&-1\\
+1&1&-1&1&-1&0
+\end{bmatrix}
+\]
+and upon further calculation we see that
+\begin{gather*}
+A^{-1}=\frac{1}{6}
+\begin{bmatrix}
+1&1&1&1&1&1\\
+        1& -1&    -1   &   -1&      1  &1\\
+                2 & 2  &  -2     & 0& -2   & 0\\
+	0&  0 &   -2    &  2& -2  &  2\\
+                0& -2&    0&       2&2&      -2\\
+                2& -2  &  2     &0&0& 2
+\end{bmatrix}
+\end{gather*}
+        As $A$ is invertible, it is readily seen that $\theta$ is an isomorphism. 
+Moreover from the
+elements of $A$ it is readily seen that
+\[
+\theta\intgr{\st} \subset\integers\oplus\integers\oplus\integers_2.\]
+
+ Furthermore, if we consider $A^{-1}$, then for $x_i\in\intgr{\st}$, we have
+\begin{gather*}
+\theta^{-1}x\in\intgr{\st}\iff\\
+\begin{matrix}
+&x_1&+x_2&+2x_3&&&+2x_6&\equiv0\pmod{6}\\
+&x_1  &-x_2&+2x_3& &-2x_5  &-2x_6&\equiv0\pmod{6}\\
+&x_1  &-x_2  &-2x_3  &-2x_4&&+2x_6&\equiv0\pmod{6}\\
+&x_1  &-x_2&&+2x_4&+2x_5&&\equiv0\pmod{6}\\
+&x_1&+x_2  &-2x_3  &-2x_4&+2x_5&&\equiv 0\pmod{6}\\
+&x_1&+x_2 &&+2x_4  &-2x_5 &-2x_6&\equiv0\pmod{6}
+\end{matrix}
+\end{gather*}
+After simple row reduction we see that this reduces to the 
+following set of three equations.
+\[
+\begin{matrix}
+&x_1&+x_2&&+2x_4&+4x_5&+4x_6&\equiv0\pmod{6}\\
+      &  &4x_2&&     &+4x_5&+2x_6&\equiv0\pmod{6}\\
+&     &           &4x_3 &+2x_4&+4x_5 &+2x_6&\equiv 0\pmod{6}
+\end{matrix}
+\]
+
+The second and third reduce respectively to:
+\[
+\begin{matrix}
+&x_2&&\equiv &x_6 &-x_5\pmod{3}\\
+&x_4&+x_5&\equiv&x_3&+x_5\pmod{3}
+\end{matrix}
+\]
+Inspection of the       first equation shows us that
+\[x_1+x_2\equiv0\pmod{2}\]
+If we also consider our first equation as an equation modulo $3$ 
+and combine it with the result
+of the second equation we get
+\[
+x_1\equiv x_4+x_6\pmod{3}.\]
+
+Therefore, the final result is as follows:
+\[
+\begin{matrix}
+&x_1&+x_2&\equiv&0&&\pmod{2}\\
+&&x_2&\equiv&x_6 - &x_5&\pmod{3}\\
+&x_1&&\equiv&x_3+&x_5&\pmod{3}\\
+&&&\equiv&x_4+&x_6&\pmod{3}
+\end{matrix}
+\]
+
+ Keeping all this in mind, we next consider the projection operator 
+$\phi:\rat\oplus\rat\oplus\rat_2\to\rat_2$. Then we can see 
+that
+\[\phi\theta\intsth = \left\{
+\begin{pmatrix}
+x_3&x_4\\
+x_5&x_6
+\end{pmatrix} \left| x_3+x_5 \equiv x_4+x_6\pmod{6}\right. \right\}\]
+
+
+Let us call this space $\Y$.
+
+                Let $X=(x1,\cdots,x6)\in\theta\intsth$, with
+$ x_6\equiv x_3+x_5-x_4\pmod{3}$. Let $\delta=x_3x_6-x_4x_5$.
+Consider
+\[(x_3-x_4)(x_3+x_5) = x_3(x_3+x_5-x_4)-x_4x_5 \equiv
+ x_3x_6-x_4x_5\pmod{3} \equiv\delta\pmod{3} \]
+
+
+In consideration of our row reduced equations it follows that 
+$X^{-1}$ exists and is in $\theta\intsth{} \iff
+x_3x_6-x_4x_5=\delta=\pm 1, x_1 = 1, x_2 = \delta x_1$.
+
+We see by composition of maps, that $\phi\theta$ is a homomorphism of
+\intsth{}
+into $\Y$, and
+therefore induces a homomorphisim of the unit group of \intsth{} into 
+the unit group of $\Y$. We
+will now show that this induced homomorphism is one to one and 
+onto, proving that it is an
+isomorphism.
+
+        Let
+\[Z=
+\begin{pmatrix}
+x_3&x_4 \\
+x_5&x_6
+\end{pmatrix} \in \ugrp{\Y}.
+\]
+Also let $\delta=x_3x_6-x_4x_5= \pm 1$ and if $x_1,x_2 \in \{-1,0,1\}$
+ are defined by the congruences
+\begin{align*}
+x_2 &\equiv x_6-x_5 \pmod{3}\ \textrm{ and}\\
+x_1 &\equiv x_3+x_5 \pmod{3}
+\end{align*}
+then neither $x_1$ nor $x_2$ is zero and all the above conditions are 
+satisified. Therefore $\alpha=\theta^{-1}X$ is a
+unit in \intsth{} with $\phi\theta\alpha=U$. Therefore, by the 
+above we have that $\phi\theta$
+is one to one and onto,
+therefore we have
+
+\begin{theorem}
+The unit group of \intsth{} is isomorphic to:
+\[\left\{
+\begin{pmatrix}
+a&b\\
+c&d
+\end{pmatrix} \in \ugrp{\integers_2} \left| a+c \equiv b+d \pmod{3} \right. \right\}
+\]
+\end{theorem}
+
+
+\section{The units of \intdfr}
+
+In this section, we will determine the group of units of \intdfr,
+where \dfr{} is the dihedral
+group of order 8. This group is determined by the generators $a,b$ 
+together with the relations
+\[a^4=b^2=baba= 1.\]
+Before proceeding with the construction, we give a few 
+definitions. The homomorphism
+$\xi:\intG\to\integers$ with $\xi(g) = 1$ for all $g\in G$
+ is called the \emph{augmentation function}. 
+Denote by $V(\intG)$ the
+normal subgroup of the units $u \in \intG$  such that $\xi(u) = 1$.
+ If $u$ is 
+in $V(\intG)$, it is called a
+\emph{normalized unit}. Finally an automorphism $\theta$ of \intG{}
+ is said to be 
+normalized if $\xi\theta(g) = 1$ for all $g \in G$.
+
+Now, as before, we determine our map from $\rat{}\dfr{}$
+ to a direct sum of 
+matrix rings over \rat. In this case, the map will be
+\[
+\theta:\rat \dfr{} \to \rat\oplus\rat\oplus\rat\oplus\rat\oplus\rat_2
+\]
+given by
+\begin{align*}
+\theta(a) &=\left(1,1,-1,-1,
+\begin{pmatrix}
+0 &-1\\
+1&0
+\end{pmatrix} \right) \ \textrm{ and} \\
+\theta(b) &=\left(1,-1,1,-1,
+\begin{pmatrix}
+0 &1\\
+1&0
+\end{pmatrix} \right) 
+\end{align*}
+
+In the same manner as before, consider $\dfr{}$ as the basis of
+\rat\dfr{} and use the canonical basis for the right hand side of the
+above mapping. Then the map $\theta$ can be represented by $A$ where 
+$A$
+is the following matrix.
+\[
+A=\begin{bmatrix}
+1&1&1&1&1&0&0&1\\
+1& 1&        -1&      -1&      0&       -1&      1&       0\\
+1& 1&         1&       1&       -1&      0&       0&       -1\\
+1& 1&        -1&      -1&      0&       1&       -1&      0\\
+1& -1&        1&       -1&      0&               1&     0\\
+1& -1&        -1&      1&       -1&      0&       0&       1\\
+1& -1&        1&       -1&      0&       -1&      -1&      0\\
+1& -1&        -1&      1&       1&       0&       0&       -1
+\end{bmatrix}
+\]
+
+Continuing our calculations we find that $A^{-1}$ is $\frac{1}{8}$
+ times the
+following matrix.
+\[A^{-1} = \frac{1}{8}\begin{bmatrix}
+1&1&1&1&1&1&1&1\\
+1&1&1&1&-1&-1&-1&-1\\
+1&-1&1&-1&1&-1&1&-1\\
+1&-1&1&-1&-1&1&-1&1\\
+        2& 0&     -2&      0&       0& 2& 0& 2\\
+        0& -2&    0&       2&       2&  0&    -2&      0\\
+        0&  2&    0&       -2&      2&  0&    -2&      0\\
+        2&  0&    -2&      0&       0&  2&    0&       -2
+\end{bmatrix}
+\]
+
+In the same manner as before, we see that if
+\[X=\left(x_1, x_2, x_3, x_4, 
+\begin{pmatrix}
+x_5&x_6\\
+x7&x_8
+\end{pmatrix}
+\right)\]
+with $X \in \integers\oplus\integers\oplus
+\integers\oplus\integers\oplus\integers_2$ then X belongs to$\theta(\intdfr)$ iff
+\[\begin{matrix}
+x_1+&x_2+&x_3+&x_4+&2x_5&& +&2x8&\equiv 0\pmod{8}\\
+&&\bullet\\
+&&\bullet\\
+&&\bullet\\
+x_1 - &x_2- &x_3+&x_4+&2x_5&&-&2x_8&\equiv 0\pmod{8}
+\end{matrix}
+\]
+Applying row reduction in the same manner as the last example we 
+get
+\[
+\begin{matrix}
+        i)      &x_1+&x_2+&x_3+&x_4+2&x_5&& +&2x_8&\equiv0\pmod{8}\\
+        ii)     &&x_2+&x_3&&&&   +&2x_8&=0\pmod{4}\\
+        iii)    &&   &x_3 - &x_4 - &x_5 - &x_6- &x_7+&x_8&\equiv0\pmod{4}\\
+        iv)     &&&&x_4+&x_5&   +&x_7&   &\equiv0\pmod{2}\\
+        v)      &&&&&x_5&&      +&x_8&\equiv0\pmod{2}\\
+        vi)     &&&&&&x_6+&x_7&   &\equiv0\pmod{2}
+\end{matrix}
+\]        
+In addition, if $X$ is to belong to $\theta(\ug{\intdfr})$, then $x_i= \pm 1$
+ for $i=1,2,3,4$ and we must
+have $x_5x_8-x_6x_7= \pm 1$.
+
+Consider $\scrx \in GL(2,\integers)$, with
+\[ \scrx =\mattbt{x_5}{x_6}{x_7}{x_8} \]
+which satisfy equations $v)$ and $vi)$ above. Then there exists $x_i, i=1,2,3,4$
+with $X=\left(x_1, x_2, x_3, x_4, \scrx \in \ug{\intdfr}\right) \iff$ one of $a)$, 
+$b)$ or $c)$ below hold.
+\[\begin{matrix}
+a)&x_8\equiv 1\pmod{2};& x_5+x_6+x_7-x_8\equiv 0\pmod{4};& x_5+x_8\equiv 2\pmod{4}\\
+b)&x_8\equiv 1\pmod{2};& x_5+x_6+x_7-x_8\equiv 2\pmod{4};& x_5+x_8\equiv 0\pmod{4}\\
+c)&x_8\equiv 0\pmod{2};& x_5+x_8\equiv 0 \pmod{4}; &
+\end{matrix}
+\]
+
+Let us do the calculations that show this. Consider: if $X$ is in 
+$\theta(\ug{\dfr})$, then, as noted
+before, we must have $x_1,x_2,x_3$ and $x_4 = \pm 1$. Let $\delta = \pm 1$. Then 
+there are only certain combinations of the above that
+ satisfy equations $i)$ through $vi)$. 
+In particular, it should be noted that either all of $x_1$ to $x_4$
+ are either of the same sign or there are two of one sign and
+two of the other. To see this, consider equations $i)$ and $v)$. If 
+three of $x_1$ to $x_4$ were positive 1
+and the fourth negative 1, then we would have that $x_5 + x_8 \equiv 1 \pmod{4}$. This is an obvious contradiction to equation $v)$.
+
+Therefore, let us consider the cases separately. If $x_1 = x_2 = x_3 
+= x_4 = \delta$, then equation $i)$
+implies that 
+\begin{align*}
+2x_5 + 2x_8 &\equiv 4\pmod{8} \mathrm{\ which\ implies\ that}\\
+x_6+x_8&\equiv0\pmod{4}.
+\end{align*}
+Equation $iii)$ tells us that
+\begin{align*}
+-x_5-x_6-x_7+x_8&\equiv 0\pmod{4} \mathrm{\ which\ implies\ that}\\
+x_5+x_6+x_7-x_8&\equiv 0\pmod{4}.
+\end{align*}
+Finally, equation $ii)$ gives us that
+\begin{align*}
+x_8&\equiv 1\pmod{2}.
+\end{align*}
+It can be readily seen that the above is condition $a)$.
+
+Let us now consider $x_1=x_2= -x_3=-x_4=\delta$. Here we see that equation $i)$ 
+implies
+\begin{align*}
+x_5+x_8&\equiv 0\pmod{4}.
+\end{align*}
+Equation $ii)$ implies
+\begin{align*}
+x_8&\equiv 0\pmod{2}.
+\end{align*}
+We see that we now have condition $c)$. In addition, however, we 
+can see that equation $iii)$
+implies that
+\begin{align*}
+x_5+x_6+x_7-x_8&\equiv 0\pmod{4}.
+\end{align*}
+
+Now suppose that $x_1 = -x_2 = x_3 = -x_4 = \delta$. Then, we will have 
+equation $i)$ implying
+\begin{align*}
+x_5+x_8\equiv 0\pmod{4}.
+\end{align*}
+Equation $ii)$ gives us
+\begin{align*}
+x_8&\equiv 0\pmod{2}.
+\end{align*}
+
+
+Again, we have condition c). This time, though, Equation $iii)$
+shows us
+\begin{align*}
+x_5+x_6+x_6-x_8&\equiv2\pmod{4}.
+\end{align*}
+
+The last combination to consider is $x_1=-x_2=-x_3=x_4=\delta$.
+In this case we get equation $i)$showing that
+\begin{align*}
+x_5+x_8&\equiv 0 \pmod{4}.
+\end{align*}
+Equation $ii)$ implies that
+\begin{align*}
+x_8&\equiv 1 \pmod{2}.
+\end{align*}
+Equation $iii)$ implies that
+\begin{align*}
+x_5+x_6+x_7-x_8&\equiv 2 \pmod{4}.
+\end{align*}
+
+This finally is condition b).
+
+To show the other direction of the if and only if above is quite 
+simple given the above calculations. What one needs to do is to simply choose the 
+particular $x_i\ (i=1,2,3,4)$ as given
+above. These will then satisfy all the equations.
+
+Let us denote by $\Omega$ those matrices of $GL(2,\integers)$ that satisfy 
+equations $v)$ and $vi)$ above
+and any one of a), b) or c). It is obvious by the linearity of 
+the constraints that $\Omega$ is a
+subgroup of $GL(2,\integers)$. For any element $X \in \Omega$ we can see by the 
+above computations that there
+are exactly two elements of $\theta\ug{\intdfr}$ with $X$ as the last member.
+
+Let $\delta=\pm 1$ as above.
+
+If a) holds, then $\mathscr{X}=(\delta,\delta,\delta,\delta,X) \in \theta\ug{\intdfr}$.
+
+
+If b) holds, then $\mathscr{X}=(\delta,-\delta,-\delta,\delta,X) \in \theta\ug{\intdfr}$.
+
+
+If c) holds, there are two cases to consider. If we have the 
+first, which is
+\begin{align*}
+x_5+x_6+x_7-x_8&\equiv 0 \pmod{4}.
+\end{align*}
+holding, then
+\begin{align*}
+\mathscr{X}=(\delta,\delta,-\delta,-\delta,X) \in \theta\ug{\intdfr}.
+\end{align*}
+Otherwise, we have
+\begin{align*}
+x_5+x_6+x_7-x_8&\equiv 2 \pmod{4}.
+\end{align*}
+holding which gives us
+\begin{align*}
+\mathscr{X}=(\delta,-\delta,\delta,-\delta,X) \in \theta\ug{\intdfr}.
+\end{align*}
+
+Now, we are in a position to describe the unit group of \intdfr{}. If 
+we choose $\alpha \in \ug{\intdfr}$ such that 
+ $\theta(\alpha) = (x_1,x_2,x_3,x_4,X)$, then we can observe that 
+$\xi(\alpha)=x_1$. From this and the preceding
+information it is easy to see that since for any element $X$ in $\Omega$ 
+there are exactly two elements
+in $\theta\ug{\intdfr}$, we have the following theorem.
+
+\begin{theorem}
+\begin{align*}
+\theta\ug{\intdfr} \cong \{\pm 1\}\times\Omega.
+\end{align*}
+\end{theorem}
+
+
+\section{Units of \intdsx.}
+In this section, we will show how a minor extension to the method 
+can be used to
+describe groups of higher orders. At this point, we will 
+determine the unit group of \intdsx
+where \dsx is the dihedral group of order 12 given by the 
+generators $a,b$ together with the
+relations
+\begin{align*}
+a^2=b^6=ab^2ab^2=e
+\end{align*}
+
+Now if we applied the method of this section blindly we would be 
+dealing with matrices of
+order 12. This, to say the least, is inelegant. In addition to 
+this the description of \ug{\intdsx}
+would include a direct product of two matrix groups. This does 
+not give us a very satisfying
+description, as determining properties of this type of product is 
+not very easy.
+
+Instead, what we do in this section is to consider $\dsx \cong \ctwo \times \st$
+where $\ctwo$ is the cyclic
+group of order 2,$={ +1,-1}$ under multiplication. \st is, as 
+before, the symmetric group on 3
+elements. Keeping this in mind, we have $\intdsx \cong (\intctwo)\st$, where 
+\intctwo{} is the group ring of the
+group \ctwo{} over the ring \integers, and the whole thing is the group ring 
+of the group \st{} over the ring
+\intctwo. The isomorphism of the above group rings is a well known 
+theorem (See Sehgal\cite{bib:sehgal78}).
+
+At this point, let us denote $\rat \ctwo$ by $\mathscr{R}$. Then what we intend to do 
+is to apply the
+method used previously, replacing \rat{} by  $\mathscr{R}$ and \integers{} by \intctwo. This 
+brings us to the point where we may now define the map $\theta$ as
+\begin{align*}
+\theta \mathscr{R}\st\rightarrow\scr\oplus\scr\oplus\scr
+\end{align*}
+
+where the mapping is defined by
+\begin{align*}
+\theta(1\ 2)&=& \begin{pmatrix}
+1&-1&
+\begin{pmatrix}
+1&-1\\
+0&-1
+\end{pmatrix}
+\end{pmatrix}
+\end{align*}
+and
+\begin{align*}
+\theta(1\ 2\ 3)&=& \begin{pmatrix}
+1&1&
+\begin{pmatrix}
+0&-1\\
+1&-1
+\end{pmatrix}
+\end{pmatrix}
+\end{align*}
+
+At this point, one must keep in mind that the elements of the 
+above vectors are in \scr{}
+not in \rat{} as before.
+
+Now, let us consider the two modules that we have. The first \scr\st{}
+is obviously a free
+module over \scr{} with basis the elements of \st. The second is again a 
+free module over \scr{} being
+a direct sum of matrix rings over \scr. We will use the standard 
+basis for this module.
+
+
+        Considering this, we may look at $\theta$ as a module homomorphism 
+between two free
+modules. We may therefore represent it as a matrix $A$, in this 
+case, a $6\times 6$ matrix. Obviously
+this matrix is going to have the same entries as the one we 
+obtained when looking at \intsth{},
+with the distinction that these elements will be in \scr{} and not 
+just in \rat. For the sake of
+convenience I will rewrite $A$ and $A^{-1}$.
+\begin{align*}
+A&=&\begin{bmatrix}
+1&1&1&0&0&1\\
+        1& -1&    1&       -1&      0&       -1\\
+        1& -1&    -1&      0&       -1&      1\\
+        1& -1&    0&       1&       1&       0\\
+        1&  1&    0&       -1&      1&       -1\\
+        1&  1&    -1&      1&       -1&      0
+\end{bmatrix}
+\end{align*}
+and
+\begin{align*}
+A^{-1}&=&\frac{1}{6}\begin{bmatrix}
+1&1&1&1&1&1\\
+        1& -1&    -1&      -1&      1&       1\\
+        2&  2&    -2&      0&       -2&      0\\
+        0& 0&     -2&      2&       -2&      2\\
+        0& -2&    0&       2&       2&       -2\\
+        2& -2&    2&       0&       0&       2
+\end{bmatrix}
+\end{align*}
+
+As before, since A is invertible we see that $\theta$ is an isomorphism. 
+Also, as before, we are led to a
+set of six congruences that describe when an element of 
+$(\intctwo)\oplus(\intctwo)\oplus(\intctwo)_2$ mapped by $\theta^{-1}$
+
+is in $(\intctwo)\st$. It is not neccessary to re-write the original 
+equations. The result after row
+reduction are the equations:
+\begin{align*}
+x_1+ x_2 & \equiv 0 & \pmod{2}\\
+x_2 & \equiv x_6-x_5 & \pmod{3}\\
+x_1\equiv x_3+x_5 & \equiv x_4+x_6 & \pmod{3}
+\end{align*}
+At the risk of being repititious, we note that the above 
+congruences are in \intctwo.
+Namely that we are considering modulo the ideals generated by $2$ 
+or $3$ in \intctwo in the above
+equations.
+
+Let $\phi$ denote the projection map of $\scr\oplus\scr\oplus\scr_2$ onto $\scr_2$.
+ Then we have that
+\begin{align*}
+\phi \theta((\intctwo)\st) = 
+\begin{pmatrix}    
+x_3&x_4\\
+x_5&x_6
+\end{pmatrix} : x_3+x_5&\equiv x_5+x_6\pmod{3}
+\end{align*}
+
+Let us call the above set $\mathscr{Y}$.
+
+Let us now pause for a moment to consider some of the properties 
+of \intctwo, where $e$ is
+the identity of \ctwo{} and $\eta$ is the other element with $\eta^2=e$. The 
+units of the group ring \intctwo{} are
+easy to determine as they are only $\pm\ctwo$. Therefore, for a matrix 
+to be in the units of $(intctwo)_2$
+the determinant must be one of $\pm e$ or $\pm \eta$.
+
+Let us continue. If $X= (x_1,\cdots,x_6)$ is in $\theta(\intctwo)\st$, then, if we 
+let $\delta$ represent any one of
+$\pm e, \pm \eta$, then as was calculated before, we have that $X^{-1}$ exists 
+and is in  $\theta(\intctwo)\st$ if and only if
+\begin{align*}
+x_3x_6-x_4x_5=\delta, &x_1=\delta, &x_2= \pm\delta.
+\end{align*}
+The mapping $\phi\theta$ is a ring homomorphism of $(\intctwo)\st$ into $\mathscr{Y}$
+ and thus induces a homorphism from $\ug{(\intctwo)\st}\rightarrow\ug{\mathscr{Y}}$. 
+I conjecture that this is an isomorphism onto. To see this let
+\begin{align*}
+\mu&=&\begin{pmatrix}
+x_3&x_4\\
+x_5&x_6
+\end{pmatrix} 
+\in \ug{\mathscr{Y}}.
+\end{align*}
+Then $\delta =x_3x_6-x_4x_5=\pm e$ or $\pm \eta$  and if we choose 
+$x_1,x_2$ which are in $\{e, 0, -e, \eta, -\eta\}$ to satisfy
+\begin{align*}
+x_2&\equiv x_6 - x_5&\pmod{3}\\
+x_1&\equiv x_3+x_5&\pmod{3},
+\end{align*}
+it follows from this that neither $x_1$ nor $x_2$ is 0 and that the 
+above conditions are all satisfied.
+Thus $\alpha=\theta^{-1}X$ is a unit in $(\intctwo)\st$ with 
+$\phi\theta\alpha=\mu$. Furthermore, we can 
+see that from the
+preceding conditions that $\phi\theta$ is one-to-one.
+
+Therefore, remembering that $\intdsx \cong (\intctwo)\st$ and that
+$\ug{\intdsx} \cong \ug{(\intctwo)\st}$ we have
+the following theorem.
+
+\begin{theorem}
+\begin{align*}
+\ug{\intdsx}\cong \left\{
+\begin{pmatrix}
+a&b\\
+c&d
+\end{pmatrix}
+\in \ug{\intctwo} : a+c \equiv b+d \pmod{3}\right\}.
+\end{align*}
+\end{theorem}
+
+\section{The Unit Group of \intaf,(expository)}
+In this section, we will present the charachterization of $\ug{\intaf}$
+as presented by Allen
+and Hobby\cite{bib:allen1980}. We will not include the proofs, as it is felt that 
+nothing new is to be gained from rehashing the method.
+
+As is known \af{} has 4 irreducible representations, call them $\theta_i,i = 
+1,2,3,4$. Also \af{} is
+generated by the two elements $a=(1 2)(3 4)$ and $b=(1 2 3)$. The 
+representations $\theta_i, i=1,2,3$ are easily described as follows. 
+$\theta_i(a)=1$ and $\theta_i(b)=\omega^{i-1}$. The fourth, 
+$\theta_4$ is given as follows
+\begin{align*}
+\theta_4(a) &=\begin{bmatrix}
+-1&0&1\\
+-1&0&1\\
+-1&1&0
+\end{bmatrix} \mathrm{\ and\ }\\
+\theta_4(b) &=\begin{bmatrix}
+-1&1&0\\
+-1&0&0\\
+-1&0&1
+\end{bmatrix}
+\end{align*}
+Let $\theta:\rat\af \rightarrow \rat\oplus\rat\oplus\rat\oplus\rat_3$
+ be defined by $\theta(r) = (\theta_1(r),\theta_2(r),\theta_3(r),\theta_4(r))$.
+ Then we may use this map as in the preceding sections to determine the unit 
+group. The characterization
+arrived at by Allen and Hobby is as follows.
+
+\begin{theorem}
+\begin{align*}
+\ug{\intaf}\cong \{\pm 1\} \times \{X \in SL(3,\integers)\}
+\end{align*}
+ where $X$ satisfies the below 
+conditions 1), 2) and 3)
+
+\begin{itemize}
+\item{}Every column sum of $X$ is congruent to $1\pmod{4}$.
+\item{}No row contains all odd elements.
+\item{}One pseudo-trace is congruent to $-1\pmod{4}$ while the other two 
+are congruent to $0\pmod{4}$.
+\end{itemize}
+\end{theorem}
+
+There are three pseudo-traces on a three by three matrix, they 
+are the sums of the
+elements on the pseudo-diagonals that have been discussed 
+previously.
+\chapter{Groups of order $27$}
+In this section, we will use the method presented earlier in the 
+paper to determine the unit
+group of the integral group rings of the two non-commutative 
+groups of order 27.
+
+The structures of these two groups are:
+\begin{align*}
+G = \langle a,b | (a,b) = c, ca = ac, cb = bc, a3 = b^3 = c^3 = 1\rangle,\mathrm{\ and}\\
+H = \langle a,b | a^9 = b^3 = 1, b^{-1}ab = a^4\rangle.
+\end{align*}
+As is true in general, we have that  
+$\widetilde{G} = \langle\tilde{a}\rangle\times\langle\tilde{b}\rangle$, and 
+$\widetilde{H} = \langle\tilde{a}\rangle\times\langle\tilde{b}\rangle$ 
+are both
+elementary abelian 3-groups. Also, it is well known that
+ $\ug{\intgr{\tilde{G}}} = \pm \tilde{G}$ 
+and $\ug{intgr{\tilde{H}}} = \pm \tilde{H}$. The
+object of this section is to give a concrete description of both 
+$\ug{\intG}$ and $\ug{\intgr{H}}$.
+\section{First group of order 27.}
+Let us consider $G$ first. Referring back to our general proof we 
+would let
+$A=\mathrm{DIAG}(1,\omega,\omega^2)$ and $B = \mathrm{PDIAG}_1$. 
+Our fibre product diagram would become
+\[
+\xymatrix{
+\intG \ar[r] \ar[d] &
+\intgr{\tilde{G}}  \ar[d] \\
+\intgrgen{\omega}^\circ\tilde{G}\cong\intG/\tilde{c}\intG \ar[r] \ar[d]_{\phi_0} &
+(\integers/3\integers)\tilde{G} \\
+S_p \ar[ur]^{\phi_1}\\
+}
+\]
+
+The maps $\phi_0$ and $\phi_1$ are defined in the same way as 
+they were in general.
+
+Specializing the condition (*) from the general theorem we see 
+that the matrix
+\begin{align*}
+M&=&\begin{bmatrix}
+x_{0,0}&x_{1,0}&x_{2,0}\\
+x_{2,1}&x_{0,1}&x_{1,1}\\
+x_{1,2}&x_{2,2}&x_{0,2}
+\end{bmatrix} \in \intgrgen{\omega}_3
+\end{align*}
+belongs to our $S_p$ if and only if for each $i, 0\leq i \leq 2$,
+the conditions
+\begin{align*}
+x_{i,0} + x_{i,1} + x_{i,2} &\in & 3\intgrgen{\omega} \\
+x_{i,0} + x_{i,1}\omega + x_{i,0}\omega^2 &\in & 3\intgrgen{\omega} \\
+x_{i,0} + x_{i,1}\omega^2 + x_{i,2}\omega &\in & 3\intgrgen{\omega}
+\end{align*}
+hold. To find $\phi_1(M)$, we need $a_{i,j} \in \intgrgen{\omega}$ 
+such that $M=\sum a_{i,j}A^iB^j$. This will give us the matrix
+equations
+\begin{equation*}
+\begin{bmatrix}
+a_{0,j}\\
+a_{1,j}\\
+a_{2,j}
+\end{bmatrix} =\frac{1}{3}
+\begin{bmatrix}
+1&1&1\\
+1&\omega^2&\omega\\
+1&\omega&\omega^2
+\end{bmatrix}
+\begin{bmatrix}
+x_{j,0}\\
+x_{j,1}\\
+x_{j,2}
+\end{bmatrix}
+\end{equation*}
+and this is equivalent to
+\begin{equation}\label{eqn:grp27}
+\begin{split}
+a_{0,j} &= \frac{1}{3}(x_{j,0}+x_{j,1}+x_{j,2})\\
+a_{1,j} &= \frac{1}{3}(x_{j,0}+\omega^2 x_{j,1}+ \omega x_{j,2})\\
+a_{2,j} &= \frac{1}{3}(x_{j,0}+\omega x_{j,1}+ \omega^2 x_{j,2})
+\end{split}
+\end{equation}
+
+From our previous work we know that 
+$\phi_1(M) = \sum \tildeaij \tilde{a}^i \tilde{b}^j$.
+Also, we know that the units
+of \intG{} are pairs $(\alpha,M)$, with 
+$\alpha \in \ug{\intgr{\tilde{G}}}$ and $M$ in $S_p$ 
+with $\phi_1(M) = \phi_2(\alpha)$.
+However, since we know that $\ug{\intgr{\tilde{G}}}  = \pm \tilde{G}$, 
+we need matrices $M$ such that
+\begin{equation*}
+\phi_1(M) = \sum \tildeaij \tilde{a}^i \tilde{b}^j = \theta_2(\pm a^m b^n)
+\end{equation*}
+for some $m,n$. If we put $\pi = \omega -1$ we then  get
+\begin{itemize}
+\item{}For two values of $i$ and all $j$, $a_{i,j} \equiv 0 \pmod{\pi}$.
+\item{}Considering the third value for $i$, either 
+\begin{align*}
+a_{i,0} &= \pm 1, & a_{i,1}\equiv a_{i,2} & \equiv 0 \pmod{\pi} \mathrm{\ or}\\
+a_{i,1} &= \pm 1, & a_{i,0}\equiv a_{i,2} & \equiv 0 \pmod{\pi} \mathrm{\ or}\\
+a_{i,2} &= \pm 1, & a_{i,1}\equiv a_{i,1} & \equiv 0 \pmod{\pi}
+\end{align*}
+\end{itemize}
+        This proves the following theorem.
+\begin{theorem}
+\begin{equation*}
+\ug{\intG} \cong \left\{
+M\in\ug{\intgrgen{\omega}}_3 |
+M \mathrm{\ satisfies\ 1.\ and\ 2.\ above\ where\ the\ }a_{i,j}
+\mathrm{\ are\ given\ by\ equation\ }\ref{eqn:grp27}
+\right\}
+\end{equation*}
+\end{theorem}
+        
+From the above it is clear that the matrices in $\ug{\intgrgen{\omega}}_3 $
+ which are congruent to $I \pmod{\pi^3}$ are contained in $\ug{\intG}$
+ and therefore, $\ug{\intG}$ is a 
+congruence subgroup in $SL(3,\intgrgen{\omega})$.
+
+\section{Second group of order 27.}
+        Now, let us describe $\ug{\intgr{H}}$ If we have a matrix
+\begin{equation*}
+X = Z' = \begin{bmatrix}
+x_{0,0}&x_{1,0}&x_{2,0}\\
+x_{2,1}&x_{0,1}&x_{1,1}\\
+x_{1,2}&x_{2,2}&x_{0,2}
+\end{bmatrix}
+\end{equation*}
+satisfying (*) then the corresponding matrix in $S_p$ is
+\begin{equation*}
+Z = \begin{bmatrix}
+x_{0,0}&x_{1,0}&x_{2,0}\\
+\omega x_{2,1}&x_{0,1}&x_{1,1}\\
+\omega x_{1,2}&\omega x_{2,2}&x_{0,2}
+\end{bmatrix}
+\end{equation*}
+
+If we write $A = \sum a_{i,j}B^iA^j$, then $\phi_1(Z) = \pm h, 
+h \in H$  if and only if the matrix X satisfies 1. and 2.
+from above. Then we have the the following theorem.
+
+\begin{theorem}
+\begin{equation*}
+\ug{\intgr{H}} \cong
+\left\{Z \in \ug{\intgrgen{\omega}}_3 |
+Z' \mathrm{\ satisfies\ 1.\ and\ 2.\ above\ where\ the\ }a_{i,j}
+\mathrm{\ are\ given\ by\ equation\ }\ref{eqn:grp27}
+\right\}
+\end{equation*}
+\end{theorem}
+\appendix
+\chapter{Definitions}
+\begin{definition}\label{defn:abelianGroup}
+ $G$ is an \emph{abelian group} when all elementsts of $G$ commute.
+\end{definition}
+\begin{definition}\label{defn:hamiltonianGroup}
+$G$ is \emph{Hamiltonian} when it is non-abelian and where each subgroup is
+normal.  All such groups are of the form $G = Q_8 \times E \times D$ where
+$Q_8$ is the quaternion group of order 8, $D$ is a torsion group and $E$ is a
+direct sum of a finite number of copies of the cyclic group $C_2$.
+A Hamiltonian 2-group is a group of the 
+form $Q_8 \times E $ where \(E^2 = 1\)).
+\end{definition}
+\begin{definition}\label{defn:normalSubGroup}
+$N$ is a \emph{normal} subgroup of $G$ when it is invariant under conjugation. 
+That is $\forall g\in G, n\in N, g^{-1}ng \in N$.
+\end{definition}
+\begin{definition}\label{defn:quaternionGroup}
+A non-abelian group of size 8 denoted as $Q_8$ 
+with the elements $\{1, -1, i, -i, j, -j, k, -k\}$
+ where $i^2 = j^2 = k^2 = ijk = -1$ 
+and $(-1)x = x(-1) = -x\ \forall x \in Q_8$. This is a Hamiltonian group 
+and is included in all Hamiltonian groups.
+\end{definition}
+\begin{definition}\label{defn:torsionGroup}
+ $G$ is a \emph{torsion group} when it is an abelian group and
+every element of $G$ has 
+finite order. This is sometimes referred to as \emph{periodic}.
+\end{definition}
+
+
+\bibliography{tunvyrs}
+\bibliographystyle{plain}
+\end{document}

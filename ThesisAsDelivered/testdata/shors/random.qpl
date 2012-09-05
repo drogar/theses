@@ -1,0 +1,10 @@
+
+random :: (maxval :Int, seed:Int; seed:Int, rand :Int)= 
+{ use seed in {
+      seed = seed *238457 << 3
+   };
+  use maxval,seed;
+  rand = ((((maxval << 3) - 13987) * (maxval -1) * seed) *
+           ((maxval <<2) -1)) mod maxval;
+  seed = seed;
+}

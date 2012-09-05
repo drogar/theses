@@ -1,0 +1,14 @@
+#Import TreeOps.qpl
+
+main::()={
+tree1 = Node(Tip, 12,Node(Tip,17,Tip));
+//tree2 = Node(Tip,2,Tip);
+//treetop = Node(tree1,3,tree2);
+
+//treetwist = twist(treetop);
+//TODO - execution of this has to handle itself - no calling / destroyin of the data....
+//Currently calls and discombobulates everything.
+//listf = flattInOrd(treetwist);
+
+listit = flattInOrd(tree1);
+}

@@ -1,0 +1,19 @@
+square :: (i : Int | ; i2 : Int ) 
+= {
+    i2 = i * i;
+ }
+
+main :: ()
+= {
+  
+   n = 1;
+   m = 3;
+   p = 17;
+   use n,m,p  in {
+    n2 = 2 * n;
+    m2 = m - 7;
+    p2 = p * p ;
+    msq := square(m | );
+    j = msq +5;
+  }
+}

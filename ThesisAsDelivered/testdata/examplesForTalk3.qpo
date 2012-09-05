@@ -1,0 +1,8 @@
+Main Start
+  QLoad q |0>
+  QApply 0 !Had
+  Measure l1 l2
+  Jump l3
+l1 QDiscarcd
+   
+  EndProc

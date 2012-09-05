@@ -1,0 +1,376 @@
+\section{Quantum stacks}\label{sec:quantumstacksemantics}
+This section will define a quantum stack and use quantum stacks to 
+provide an operational semantics
+for \lqpl{} statements. The previous section has 
+provided a translation of quantum circuits  into these statements. 
+\subsection{Definition of a quantum stack}\label{subsec:definitionquantumstack}
+In classical computing, a \emph{stack} is an object together with operations
+for pushing new items onto the stack, retrieving items from the stack and 
+examining whether the stack is empty or not. Refinements are often made in
+terms of adding linear addressing to the stack, multiple push-pull operations
+or defining specific data elements that are allowed on the stack.
+
+A \emph{quantum stack} is a somewhat more complex object, due to the properties
+of entanglement and superpositions. However, the basic 
+idea of an object together with
+methods of adding and removing elements is retained. The initiating 
+idea of the quantum stack was to find a stack-like  way to represent the
+state of a quantum system and therefore the density matrix describing it.
+
+The construction of a quantum stack is given by four judgements, shown
+in \vref{fig:formingaquantumstack}. These judgements show the quantum stack
+is a pair, $\Gamma \qentail S$.  The $\Gamma$, called the \emph{context},
+is a list of names and their types. The $S$, called the \emph{stack}, contains
+the actual stack nodes and traces. The stack will often be written as $S^t$ 
+where the $t$ is an explicitly shown trace.
+
+The judgement rules do not 
+restrict quantum stacks to be Hermitian (i.e., correspond
+to a tuple of matrices, all of which are Hermitian)
+ or to have a trace less than 1.
+However, when applied to a quantum stack with these properties, 
+the statements used to interpret quantum circuits
+ do not increase the trace and take Hermitian stacks to Hermitian stacks.
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[\text{}]
+	{ \qentail \emptyset^{0}}{} \qquad
+\infer[\text{scalar}]
+	{\qentail \alpha^{\sqrt{\alpha\overline{\alpha}}}}{}\\ 
+\\
+\infer[\text{\qbit}]
+	{q{::}\qbit, \Gamma \qentail 
+          \qsnodeij{q}{ij}{S_{ij}}{t_{00} + t_{11}}}
+        {\Gamma \qentail  S_{00}^{t_{00}},S_{01}^{t_{01}},S_{10}^{t_{10}},S_{11}^{t_{11}}}\\
+\\
+\infer[\text{\bit}]
+	{b{::}\bit, \Gamma \qentail  \qsnodeij{b}{i}{S_{i}}{t_{0} + t_{1}}}
+        {\Gamma \qentail  S_{0}^{t_{0}},S_{1}^{t_{1}} }\\
+\end{gathered}
+\]
+\caption{Judgements  for a quantum stack}\label{fig:formingaquantumstack}
+\end{figure}
+
+
+
+\subsubsection{Description of the  quantum stack}
+A quantum stack is a tree where each node is 
+associated with a particular \bit{} or \qbit{}.
+ The nodes associated with
+a \qbit{}  have four branches, corresponding to the density matrix 
+representation of a \qbit. The nodes associated with a \bit{} 
+have two branches, corresponding to the probabilistic representation of a bit.
+(i.e., \bit\ $b=\alpha 0 + \beta 1$, where $\alpha + \beta \le 1.0$). 
+All nodes have a \emph{trace}. 
+Data values, which are the result of multiplying the 
+ probabilities of \bits{} and density matrix entries for \qbits{},
+ are  stored at the leaves of the tree.
+
+The trace of a quantum stack is a non-negative real number. It is defined recursively as shown in 
+\vref{fig:definitionoftrace}.
+
+\begin{figure}[htbp]
+{\begin{singlespace}
+\[  \text{trace}(Q) = 
+\begin{cases}
+\text{trace} (Q_{00}) + \text{trace} (Q_{11}) & \text{when}\ Q=
+\qsqbitUp{q}{Q_{00}}{Q_{01}}{Q_{10}}{Q_{11}}{}\\
+\text{trace} (B_{0}) + \text{trace} (B_{1}) & \text{when}\ Q=b\{0\qsp B_0; 1\qsp B_1\}\\
+\sqrt{v\overline{v}} & \text{when}\ Q=v\ \text{(a scalar at the leaf)}
+\end{cases}
+\]
+\end{singlespace}
+}
+\caption{Definition of the trace of a quantum stack}\label{fig:definitionoftrace}
+\end{figure}
+
+\subsubsection{Examples}
+
+The quantum stack of a single \bit{}, $b$, which is $0$ with a probability
+of $.25$ and $1$ with a probability of $.75$, is represented as: 
+\[\qsbit{b}{.25}{.75}{1.0}.\]
+A \qbit{} $q$ that was $0$ and then subjected to the Hadamard transform 
+followed by a Phase transformation
+is represented as:
+\[\qsqbit{q}{.5}{-.5i}{.5i}{.5}{1.0}.\]
+A general \qbit{} $r$ having the density matrix $\begin{singlespace}\begin{bmatrix}a_{00}&a_{01}\\a_{10}&a_{11}\end{bmatrix}\end{singlespace}$ is
+represented as
+\[\qsnodeij{r}{ij}{a_{ij}}{(a_{00} + a_{11})}\]
+where the $ij$ of the labelling correspond to
+ the row and column of $q$'s density matrix.
+The number at the upper right of the node representation is its trace.
+
+Given a single \bit{} $b$ as above and a \qbit{} $q_1$ which is $0$,
+the representation is
+\[\qsbit{b}{\qsnodeij{q_1}{00}{.25}{.25}}{\qsnodeij{q_1}{00}{.75}{.75}}{1.0}.\]
+As shown in this example,
+ values that are zero probabilities or zero entries of the 
+matrix can be elided without loss of meaning. 
+
+\subsection{Quantum stack equivalence}\label{subsec:quantumstackequivalance}
+The equality judgements for quantum stacks are given in 
+\vref{fig:qstackequality}.
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[\text{reflexivity}]
+	{ \Gamma \qentail S = \Gamma\qentail S}{\Gamma\qentail S} \qquad
+\infer[\text{symmetry}]
+	{\Gamma\qentail S_1 = \Gamma\qentail S_2}
+        {\Gamma\qentail S_2 = \Gamma\qentail S_1}\\ 
+\\
+\infer[\text{transitivity}]
+	{\Gamma\qentail S_1 = \Gamma\qentail S_3}
+        {\Gamma\qentail S_1 = \Gamma\qentail S_2 & \Gamma\qentail S_2 = \Gamma\qentail S_3}\\
+\\\infer[\raisebox{1ex}{rotation}]
+	{ \Gamma,(t{::}\tau),\Gamma'\qentail S =
+     \qop{(\text{rotate }t)}{\Gamma,(t{::}\tau),\Gamma'\qentail S }}
+{\Gamma,(t{::}\tau),\Gamma'\qentail S}
+\end{gathered}
+\]
+\caption{Judgements  for quantum stack equality}\label{fig:qstackequality}
+\end{figure}
+
+
+Rotation  brings a desired node to the top of the stack and 
+then reorganizes the tree so that the 
+Huffman-like encoding of the leaves 
+is invariant.   Given a tree with four 
+nodes ($a,b,c,d$), each of the leaves  can be encoded by the indexes
+depending on the node names. e.g., $v_{i_a;i_b;i_c;i_d}$. Then, after
+rotating a tree, following a particular index path in the tree will
+take you to the same node. That is, if the tree order is now ($d,b,c,a$) with
+$d,c$ \qbits, $a,b$ \bits, then following the path $01\to1\to10\to0$ will
+take you to the leaf $v_{0;1;10;01}$, where the labelling is from
+the original $a,b,c,d$ ordering. An example of this in the 
+\bit, \qbit{} case is provided below.
+
+\subsubsection{Rotation example}
+Consider the following
+single \bit, single \qbit{} quantum stack,
+\[
+{\begin{singlespace}
+\qsbitUp{c}
+    {\qsqbitUp{r}{v_{0;00}}{v_{0;01}}{v_{0;10}}{v_{0;11}}{v_{0;00}+v_{0;11}}}
+    {\qsqbitUp{r}{v_{1;00}}{v_{1;01}}{v_{1;10}}{v_{1;11}}{v_{1;00}+v_{1;11}}}
+    {\sum v}
+\end{singlespace}
+},
+\]
+where $\sum v = v_{0;00}+v_{0;11}+v_{1;00}+v_{1;11}$.
+If the \qbit{} $r$ is rotated to the  top of the quantum stack, the
+resulting stack will be
+\[{\begin{singlespace}\qsqbitUp{r}{\qsbit{c}{v_{0;00}}{v_{1;00}}{v'_{00}}}%
+   {\qsbit{c}{v_{0;01}}{v_{1;01}}{v'_{01}}}%
+   {\qsbit{c}{v_{0;10}}{v_{1;10}}{v'_{10}}}%
+   {\qsbit{c}{v_{0;11}}{v_{1;11}}{v'_{11}}}%
+   {\sum v}
+\end{singlespace}
+},
+\]
+where $\sum v $ is as before and $v'_{ij} = v_{0;ij} + v_{1;ij}$.
+
+
+
+\subsubsection{Details of rotation on a quantum stack}
+Rotation is defined recursively on a quantum stack. Given a 
+target name $t$ and a quantum stack $\Gamma\qentail S$,
+ rotation brings the node named $t$ to the top and 
+thus changes $\Gamma\qentail S$  to the quantum stack 
+$(t:\tau),\Gamma' \qentail S'$. The quantum stack  
+$\Gamma\qentail S$ is equivalent to  $(t:\tau),\Gamma' \qentail S'$.
+
+If a quantum stack has duplicate names, only the highest node with that 
+name will be rotated up.
+Rotation's definition can
+be broken into cases depending on
+whether the target name is at the top, the second element or somewhere lower
+in the stack and whether the nodes being affected are \bits{} or \qbits.
+
+When the target name is the top element of the stack, there is no 
+change to the stack and rotation is just an identity transformation of
+the quantum stack.
+
+In the case where the target name is the second element of the stack,
+ there are four separate cases  to
+consider: \bit{} above a  \bit; \bit{} above a \qbit; 
+\qbit{} above a \qbit{} and \qbit{} above a \bit{}.
+
+{\begin{footnotesize}
+\begin{singlespace}
+\bit{} above a \bit{}:
+\begin{equation*}
+ \begin{footnotesize}\qop{(\text{rotate}_1\ b_2)}
+           {\qsbitUp{b_1}{\qsbit{b_2}{S_{0;0}}{S_{0;1}}{}}%
+				{\qsbit{b_2}{S_{1;0}}{S_{1;1}}{}}{t}} =
+      {\qsbitUp{b_2}{\qsbit{b_1}{S_{0;0}}{S_{1;0}}{}}%
+				{\qsbit{b_1}{S_{0;1}}{S_{1;1}}{}}{t}}.\end{footnotesize}
+\end{equation*}
+\bit{} above a \qbit{}
+\begin{align*}
+&\begin{footnotesize} \qop{(\text{rotate}_1\ q_2)}
+    {\qsbitUp{b_1}{\qsqbitUp{q_2}{S_{0;00}}{S_{0;01}}{S_{0;10}}{S_{0;11}}{}}%
+   {\qsqbitUp{q_2}{S_{1;00}}{S_{1;01}}{S_{1;10}}{S_{1;11}}{}}{t}} \end{footnotesize} \\
+&\begin{footnotesize}    = \qsqbitUp{q_2}{\qsbit{b_1}{S_{0;00}}{S_{1;00}}{}}%
+         {\qsbit{b_1}{S_{0;01}}{S_{1;01}}{}}%
+         {\qsbit{b_1}{S_{0;10}}{S_{1;10}}{}}%
+         {\qsbit{b_1}{S_{0;11}}{S_{1;11}}{}}{t}.\end{footnotesize}
+\end{align*}
+\qbit{} above a \bit{}:
+\begin{align*}
+&\begin{footnotesize}\qop{(\text{rotate}_1\ b_2)}
+{\qsqbitAllUp{q_1}{\qsbit{b_2}{S_{00;0}}{S_{00;1}}{}}%
+         {\qsbit{b_2}{S_{01;0}}{S_{01;1}}{}}%
+         {\qsbit{b_2}{S_{10;0}}{S_{10;1}}{}}%
+         {\qsbit{b_2}{S_{11;0}}{S_{11;1}}{}}{t}} \end{footnotesize} \\
+&\begin{footnotesize}=\qsbitUp{b_2}{\qsqbit{q_1}{S_{00;0}}{S_{01;0}}{S_{10;0}}{S_{11;0}}{}}%
+   {\qsqbit{q_1}{S_{00;1}}{S_{01;1}}{S_{10;1}}{S_{11;1}}{}}{t}.\end{footnotesize}
+\end{align*}
+\qbit{} above a \qbit{}:
+\begin{align*}
+&\begin{footnotesize}\qop{(\text{rotate}_1\ q_2)}
+  {\qsqbitAllUp{q_1}{\qsqbitUp{q_2}{S_{00;00}}{S_{00;01}}{S_{00;10}}{S_{00;11}}{}}%
+   {\qsqbitUp{q_2}{S_{01;00}}{S_{01;01}}{S_{01;10}}{S_{01;11}}{}}% 
+   {\qsqbitUp{q_2}{S_{10;00}}{S_{10;01}}{S_{10;10}}{S_{10;11}}{}}% 
+   {\qsqbitUp{q_2}{S_{11;00}}{S_{11;01}}{S_{11;10}}{S_{11;11}}{}}% 
+   {t}} \end{footnotesize}\\
+&\begin{footnotesize}=\qsqbitAllUp{q_2}{\qsqbitUp{q_1}{S_{00;00}}{S_{01;00}}{S_{10;00}}{S_{11;00}}{}}%
+    {\qsqbitUp{q_1}{S_{00;01}}{S_{01;01}}{S_{10;01}}{S_{11;01}}{}}%
+     {\qsqbitUp{q_1}{S_{00;10}}{S_{01;10}}{S_{10;10}}{S_{11;10}}{}}%
+     {\qsqbitUp{q_1}{S_{00;11}}{S_{01;11}}{S_{10;11}}{S_{11;11}}{}}{t}.\end{footnotesize}
+\end{align*}
+\end{singlespace}
+\end{footnotesize}
+}
+
+When the node to be rotated up is deeper in the quantum stack, we
+recurse down. Otherwise, we just apply $\text{rotate}_1$. That is:
+\begin{align*}
+&\qop{(\text{rotate}\ n_3)}{\qsnodeij{n_1}{\ell_k}
+    {\qsnodeij{n_2}{\ell'_m}{S}{}}{}} \\
+&=  \qop{(\text{rotate}_1\ n_3)}
+      {\qsnodeij{n_1}{\ell_k}{\qop{(\text{rotate}\ n_3)}{\qsnodeij{n_2}{\ell'_m}{S}{}}}{}}
+\end{align*}
+and
+\begin{equation*}
+\qop{(\text{rotate}\ n_2)}{\qsnodeij{n_1}{\ell_k}
+    {\qsnodeij{n_2}{\ell'_m}{S}{}}{}} =
+  \qop{(\text{rotate}_1\ n_2)}
+      {\qsnodeij{n_1}{\ell_k}{\qsnodeij{n_2}{\ell'_m}{S}{}}{}}.
+\end{equation*}
+
+In this way, the desired node ``bubbles'' to the top of the quantum stack.
+
+
+
+\subsection{Basic operations on a quantum stack}\label{subsec:quantumstackbasicops}
+
+Quantum stacks may be added, tensored and multiplied by scalars. 
+Multiplication of a quantum stack $\Gamma\qentail S$
+ by a scalar $\alpha$ recurses down the stack of $S$
+ until the leaves are reached. Each leaf value is then 
+multiplied by $\alpha$. This will also have the effect of multiplying the
+trace of $S$ by $\sqrt{\alpha\overline{\alpha}}$.
+
+When adding two stacks, $\Gamma \qentail S$ and $\Gamma \qentail T$,
+the first step is to align the stacks. Aligning is done by recursively
+rotating nodes in the second stack to correspond with the
+same named nodes in the first stack. When the alignment is completed,
+the values at the corresponding leaves are added to produce a 
+result stack. The trace
+of the resulting quantum stack will be the sum of the traces of $S$ and $T$.
+
+Tensoring of two quantum stacks $\Gamma_1 \qentail S_1$ and
+$\Gamma_2 \qentail S_2$ proceeds by first creating a 
+new context $\Gamma$, which is the concatenation of
+$\Gamma_1$ and $\Gamma_2$. The new stack portion $S$ is
+created by replacing each leaf value of $S_1$ with
+a copy of $S_2$ multiplied by the previous leaf value. The 
+trace of the tensor will be the product of the traces of 
+$S_1$ and $S_2$. The notation for this operation is
+\[S=S_1\otimes S_2.\]
+The judgements for these stack operations are shown 
+in \vref{fig:judgementsbasicstackops}.
+
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[\raisebox{1em}{scalar multiply}]
+   {\Gamma \qentail  (\alpha S)^{t\sqrt{\alpha\overline{\alpha}}}}
+   {\Gamma \qentail  S^t}\\ 
+\\
+\infer[\raisebox{1.5em}{add}]
+   {\Gamma \qentail (S_1 + S_2)^{t_1+t_2}} 
+   {\Gamma \qentail  S_1^{t_1}, S_2^{t_2}}\\ 
+\\
+\infer[\raisebox{1.5em}{tensor}]
+   {\Gamma_1 \Gamma_2 \qentail (S_1 \otimes S_2)^{t_1\times t_2}} 
+   {\Gamma_1 \qentail  S_1^{t_1} & \Gamma_2 \qentail S_2^{t_2}}
+\end{gathered}
+\]
+\caption{Judgements for basic stack operations}\label{fig:judgementsbasicstackops}
+\end{figure}
+
+
+When recursing down stacks to do an addition or a scalar multiplication,
+any elided branches are treated as having the required structure with 
+leaf values of $0$.
+
+As an
+example, consider the following two quantum stacks:
+%WARN - Macros not used for quantumstack display
+\begin{align*}
+S_1 &= q\{00\qsp \qsbit{b}{.1}{.1}{.2};11\qsp b{::}\{1\qsp.1\}^{.25}\}^{.45}\\
+S_2 &= q\{00\qsp \qsbit{b}{.01}{.1}{.15};11\qsp \qsbit{b}{.15}{.25}{.4}\}^{.55}.
+\end{align*}
+In the first stage, recursively add the $00$ branches of each, i.e.:
+\begin{align*}
+S_1[00] &=  \qsbit{b}{.1}{.1}{.2}\\
+S_2[00] &=  \qsbit{b}{.05}{.1}{.15}.
+\end{align*}
+When adding these two branches, each of the labels immediately 
+point to leaves. As leaves are the base case for addition, this gives
+a result of:
+\begin{align*}
+S'[00] &=  \qsbit{b}{.15}{.2}{.35}.
+\end{align*}
+Similarly, apply the addition process in the same manner  to the $11$ branches
+of $S_1$ and $S_2$:
+\begin{align*}
+S_1[11] &=  \qsnodeij{b}{1}{.25}{.25}\\
+S_2[11] &=  \qsbit{b}{.15}{.25}{.4}.
+\end{align*}
+Note that in this case, the first sub-stack does not have a branch labelled
+by $0$, due to elision of zero leaf values. The result of adding this is
+\begin{align*}
+S'[11] &= \qsbit{b}{.15}{.5}{.65},
+\end{align*}
+which gives us the final result of:
+\begin{align*}
+S&=q\{00\qsp \qsbit{b}{.15}{.2}{.35}; 11\qsp \qsbit{b}{.15}{.5}{.65}\}^{1}.
+\end{align*}
+
+The general cases for  addition are given in 
+\vref{fig:definitionofqstackaddtion}. In the figure, the 
+token $ \langle empty \rangle$ stands for any sub-branches that
+have been elided because all leaves below that node are $0$.
+
+\begin{figure}[htbp]
+\begin{singlespace}
+\begin{align*}
+S_1  + \langle empty \rangle &= S_1\\
+\langle empty \rangle + S_2 &= S_2\\
+v_1 + v_2 &= v_1 + v_2 \\
+v_1 + \langle empty \rangle  &= v_1 \\
+\langle empty \rangle + v_2 &=  v_2 \\
+nm{::}\{\ell_{i} \qsp S_i\} +  nm{::}\{\ell_{i} \qsp S'_i\}
+    &= nm{::}\{\ell_i \qsp (S_i + S'_i)\}\\
+S_1 + S_2 &= S_1 +\qop{(\text{rotate}\ nm_{S_1})}{S_2}.
+\end{align*}
+\caption{Definition of addition of quantum stacks}\label{fig:definitionofqstackaddtion}
+\end{singlespace}
+\end{figure} 
+
+
+

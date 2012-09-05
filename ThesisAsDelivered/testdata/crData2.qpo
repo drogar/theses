@@ -1,0 +1,32 @@
+main Start
+   QLoad q1 |0>
+   QApply 0 !Had
+   Measure l1 l2
+   Jump l3
+l1 QDiscard
+   QCons z #Nil
+   EndQC
+l2 QDiscard
+   QCons n #Nil
+   QLoad q2 |0>
+   QApply 0 !Had
+   Measure l4 l5
+   Jump l6
+l4 QDiscard
+   CLoad 42
+   QMove i
+   QCons z #Cons
+   QBind n
+   QBind i
+   EndQC
+l5 QDiscard
+   CLoad 17
+   QMove i
+   QCons z #Cons
+   QBind n
+   QBind i
+   EndQC
+l6 EndQC
+l3 NoOp
+   EndProc
+

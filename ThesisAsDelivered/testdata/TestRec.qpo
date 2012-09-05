@@ -1,0 +1,37 @@
+TestR
+
+Measure
+Cond
+  CreateName r 
+  AllocQbit
+  UseName q 
+  Pullup
+  Put Controlled Hadamard
+  Transform
+  Callrec -1 TestR
+  Put Controlled NOT
+  UseName r
+  Pullup
+  UseName q
+  Pullup
+  Transform
+  UseName r
+  Pullup
+  Discard
+  Swap
+    Pop
+
+
+Main
+
+UseName q
+AllocQbit
+Put Hadamard
+Transform
+UseName p
+AllocQbit
+Put Hadamard
+Transform
+Callrec -1 TestR
+UseName q
+UseName p

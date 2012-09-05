@@ -1,0 +1,66 @@
+
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[\mathrm{start}]
+	{ \qentail \emptyset |\emptyset^{1.0}}{} \qquad
+\infer[\mathrm{empty}]
+	{\emptyset | \emptyset^s \qentail \emptyset |\emptyset^s}{}\\ 
+\\
+\infer[\text{app}\ i\ op]
+    {(b:\bit){:}\Gamma | Q^s \qentail (b:\bit){:}\Gamma' 
+       b{::}\{i \qsp (op\ Q_i) ; (\neg i) \qsp Q_{\neg i}\}^{s'}}
+    { op\ \text{a  quantum stack operation},\quad Q\equiv
+	  b{::}\{i \qsp Q_i ; (\neg i) \qsp Q_{\neg i}\}^{s}}\\
+\\
+\infer[\mathrm{new}\ \bit] 
+      {\Gamma_1 | Q^s \qentail 
+         (b:\bit){:}\Gamma_1 | b{::}\{0\qsp Q\}^s}{} \\ 
+\\
+\infer[\mathrm{new}\ \qbit]
+     {\Gamma_1 | Q^s \qentail (q:\qbit){:}\Gamma_1 | q{::}\{00\qsp Q\}^s}{}\\ 
+\\
+\infer[\mathrm{measure}]
+    {(q_b:\qbit){:}\Gamma_1 | Q^s \qentail 
+           (q_b:\bit){:}\Gamma_1 | q_b{::}\{0\qsp Q_{00};1\qsp Q_{11}\}^s}
+        {q_b:\qbit,\quad Q\equiv \qsqbit{q_b}{Q_{00}}{Q_{01}}{Q_{10}}{Q_{11}}{s}}\\ 
+\\
+\infer[\mathrm{rotation}]
+    {\Gamma_1', g:type, \Gamma_1 | Q^s \qentail 
+         (g:type){:}\Gamma_1',\Gamma_1 | g{::}\{\ell_{ij} \qsp Q_{ij}\}^s}{}\\ 
+\\
+\infer[\mathrm{merge} (s+t \le 1)]
+    {\Gamma_1 | Q_1^s, \Gamma_1 | Q_2^t \qentail \Gamma_1 | (Q_1 + Q_2)^{s+t}}{}\\ 
+\\
+\infer[\mathrm{deletion (\bit)}]
+    {(b:\bit):\Gamma_1 | Q^{s+t} \qentail 
+             \Gamma_1 | (Q_0 + Q_1)^{s+t}}
+    {b:\bit,\qquad Q \equiv b{::}\{0\qsp Q_{0}^s;1\qsp Q_{1}^t\}^{s+t} }\\ 
+\\
+\infer[\mathrm{deletion (\qbit)}]
+    {(q:\qbit):\Gamma_1 | Q^{s+t} \qentail 
+            \Gamma_1 | (Q_{00} + Q_{11})^{s+t}}
+    {q:\qbit,\qquad Q\equiv \qsqbit{q}{Q_{00}^s}{Q_{01}^{p_1}}{Q_{10}^{p_2}}{Q_{11}^t}{s+t}}\\ 
+\\
+\infer[\mathrm{transform}]
+   {\protect{
+        \begin{array}{ll}
+         (q:\qbit):\Gamma_1 | Q^{s+t} \qentail \\ 
+           \qquad\qquad(q:\qbit):\Gamma_1 | 
+              {\protect{\qsqbitUp{q}{{{Q'}_{00}}^{s'}}{{Q'}_{01}^{p'_1}}%
+                            {{Q'}_{10}^{p'_2}}{{Q'}_{11}^{t'}}{s+t(=s'+t')}}}
+            \end{array}}}
+   {\protect{\begin{array}{ll}
+               U\ \mathrm{unitary}, U 
+                {\protect{
+                   \begin{pmatrix}a&b\\c&d\end{pmatrix}}} U^{*} 
+              = {\protect{\begin{pmatrix}a'&b'\\c'&d'\end{pmatrix}}}, \\
+             \qquad\qquad q:\qbit,\quad Q\equiv 
+                {\protect{\qsqbitUp{q}{{Q_{00}}^{s}}{{Q}_{01}^{p_1}}%
+                            {{Q}_{10}^{p_2}}{{Q}_{11}^{t}}{s+t}}}
+    \end{array}} }
+\end{gathered}
+\]
+
+\caption{Term logic of quantum stacks}\label{fig:qstacktermlogic}
+\end{figure}

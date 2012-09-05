@@ -1,0 +1,37 @@
+main Start
+   QCons nil1 #Nil
+   QCons nil2 #Nil
+   CLoad 1
+   QMove a
+   CLoad 3
+   QMove c
+   QLoad q1 |0>
+   QApply 0 !Had
+   Measure l1 l2
+   Jump l3
+l1 QDiscard
+   QCons d1 #Cons
+   QBind nil1
+   QBind a
+   EndQC
+l2 QDiscard
+   QLoad q2 |0>
+   QApply 0 !Had
+   Measure l4 l5
+   Jump l6
+l4 QDiscard
+   QCons d1 #Nil
+   QPullup nil1
+   QDiscard
+   QPullup a
+   QDiscard
+   EndQC
+l5 QDiscard
+   QCons d1 #Cons
+   QBind nil1
+   QBind a
+   EndQC
+l6 EndQC
+l3 QPullup d1
+   EndProc
+

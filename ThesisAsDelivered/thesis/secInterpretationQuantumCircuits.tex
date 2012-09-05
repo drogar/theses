@@ -1,0 +1,157 @@
+\section{Example --- putting it all together on teleport}\label{subsec:semanticsOfQCD}
+
+Circuit diagrams are interpreted in the algebra of
+ quantum stacks. The preceding sections have given a translation
+of quantum circuits to \lqpl{} programs and an operational semantics of 
+\lqpl{} programs. From this, we have an operational
+ semantics of quantum circuits.
+
+
+\subsection{Translation of teleport to basic \lqpl}
+
+The quantum circuit for teleportation makes a 
+variety of assumptions, including
+that the two starting \qbits{} are placed in an EPR state and that the
+target \qbit{} is in some unknown state. 
+\Vref{fig:semantics:quantumTeleportation} shows
+the standard teleport circuit assuming 
+that $\nu$ is in some unknown state, but that
+the \qbits{}
+\emph{alice} and \emph{bob} still need to be placed into an EPR state.
+
+
+\begin{figure}[htbp]
+\centerline{%
+\Qcircuit @C=1em @R=.7em {
+\lstick{\nu} & \qw&\qw &\ctrl{1} & \gate{H} & \measureD{M_1} & \cw &  \control \cw  \cwx[2] \\
+\lstick{\mbox{\emph{alice}}=\ket{0}}  &\gate{H}&\ctrl{1}& \targ & \qw & \measureD{M_2} & \control \cw  \cwx[1] \\
+\lstick{\mbox{\emph{bob}}=\ket{0}} & \qw&\targ& \qw &\qw & \qw & \gate{X} & \gate{Z} & \qw \\
+\lstick{s_0}& \rstick{s_1}& \rstick{s_2} &\rstick{s_3} & \rstick{s_4} &\rstick{s_5} &\rstick{s_6}&\rstick{s_7} }}
+\caption{Preparation and quantum teleportation}
+\label{fig:semantics:quantumTeleportation}
+\end{figure}
+
+
+The translation of this circuit to a basic \lqpl{} program is 
+straightforward and is given in \vref{fig:translationofteleport}.
+
+\begin{figure}
+\begin{align}
+ &\text{\emph{alice}} = \ket{0};\notag  \\
+   &\text{\emph{bob}} = \ket{0}; \tag{$\qins_{s_0}$} \\
+  &Had\ {\text{\emph{alice}}} ;\tag{$\qins_{s_1}$} \\
+  &\qcontrolled{(Not\ \text{\emph{bob}})}{\text{\emph{alice}}} ;\tag{$\qins_{s_2}$} \\
+ &\qcontrolled{Not\ \text{\emph{alice}}}{\nu}; \tag{$\qins_{s_3}$}\\
+   &Had\ \nu;\tag{$\qins_{s_4}$}\\
+ &\qmeasnob{\nu}{\nu_b = 0}{\nu_b =1} ;\notag\\
+   &\qmeasnob{\text{\emph{alice}}}{\text{\emph{alice}}_b = 0}{\text{\emph{alice}}_b=1};\tag{$\qins_{s_5}$}\\
+  &\qcontrolled{Not\ \text{\emph{bob}}}{\text{\emph{alice}}_b} ;\notag\\
+   &\text{disc \emph{alice}}_b;\tag{$\qins_{s_6}$} \\
+ &\qcontrolled{Z\ \text{\emph{bob}}}{\nu_b}; \notag\\
+   &\text{disc }\nu_b \tag{$\qins_{s_7}$}
+\end{align}
+\caption{Basic \lqpl{} program for teleport}\label{fig:translationofteleport}
+\end{figure}
+
+\newcommand{\nustack}[1]{\qsqbitUp{\nu}{#1 \alpha\overline{\alpha}}{#1 \alpha\overline{\beta}}
+                       {#1 \beta\overline{\alpha}}{#1 \beta\overline{\beta}}{}}
+
+
+\subsection{Unfolding the operational semantics on teleport}
+This section will step through the program, using the operational semantics
+to show the changes to the quantum stack at each of the labelled stages.
+Input to the algorithm is assumed to be a single \qbit{}, $\nu$, which
+is in an unknown state, $\alpha \ket{0} +\beta\ket{1}$. Therefore,
+the starting stack is
+\[\nustack{}. \]
+When the instructions $\qins_{s_0}$ are applied, the stack will change
+to
+\[
+ \qsnodeij{\text{\emph{bob}}}{00}{\qsnodeij{\text{\emph{alice}}}{00}{\nustack{}}{}}{}.
+\]
+The next instruction, $\qins_{s_1}$, applies the 
+Hadamard transform to \emph{alice}. \emph{alice} is
+first rotated to the top and then the transformation is applied.
+The stack will then be in the state
+\[
+\qsqbitAllUp{\text{\emph{alice}}}
+	 {\qsnodeij{\text{\emph{bob}}}{00}{\nustack{.5\times}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{00}{\nustack{.5\times}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{00}{\nustack{.5\times}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{00}{\nustack{.5\times}}{}}
+         {}.
+\]
+
+The preparation of EPR state is completed by  doing a \Cnot{}
+between \emph{alice} and \emph{bob}. This results in
+\[
+\qsqbitAllUp{\text{\emph{alice}}}
+	 {\qsnodeij{\text{\emph{bob}}}{00}{\nustack{.5\times}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{10}{\nustack{.5\times}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{01}{\nustack{.5\times}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{11}{\nustack{.5\times}}{}}
+         {}.
+\]
+
+This is followed by the application of
+ the \Cnot{} to $\nu$ and \emph{alice}, giving 
+\[
+\qsqbitAllUp{\nu}
+    {\qsqbitUp{\text{\emph{alice}}}
+	 {\qsnodeij{\text{\emph{bob}}}{00}{.5\times\alpha\overline{\alpha}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{10}{.5\times\alpha\overline{\alpha}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{01}{.5\times\alpha\overline{\alpha}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{11}{.5\times\alpha\overline{\alpha}}{}}
+	{}}
+{\qsqbitUp{\text{\emph{alice}}}
+	 {\qsnodeij{\text{\emph{bob}}}{01}{.5\times\alpha\overline{\beta}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{11}{.5\times\alpha\overline{\beta}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{00}{.5\times\alpha\overline{\beta}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{10}{.5\times\alpha\overline{\beta}}{}}
+	{}}
+{\qsqbitUp{\text{\emph{alice}}}
+	 {\qsnodeij{\text{\emph{bob}}}{00}{.5\times\beta\overline{\alpha}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{10}{.5\times\beta\overline{\alpha}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{01}{.5\times\beta\overline{\alpha}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{11}{.5\times\beta\overline{\alpha}}{}}
+	{}}
+{\qsqbitUp{\text{\emph{alice}}}
+	 {\qsnodeij{\text{\emph{bob}}}{11}{.5\times\beta\overline{\beta}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{01}{.5\times\beta\overline{\beta}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{10}{.5\times\beta\overline{\beta}}{}}
+	 {\qsnodeij{\text{\emph{bob}}}{00}{.5\times\beta\overline{\beta}}{}}
+	{}}{}.
+\]
+
+The \Had{} transform is now applied to $\nu$. Unfortunately, the notation
+used to this point is somewhat too verbose to show the complete 
+resulting quantum stack. It begins with:
+\begin{align*}
+\qsnodeij{\nu}{00} {\qsnodeij{\text{\emph{alice}}}{00}
+                   {\qsqbitUp{\text{\emph{bob}}}
+                             {\frac{\alpha\overline{\alpha}}{4}} 
+		             {\frac{\alpha\overline{\beta}}{4}} 
+                             {\frac{\beta\overline{\alpha}}{4}} 
+                             {\frac{\beta\overline{\beta}}{4}}{}\ldots}{}\ldots}{}\\
+\vdots
+\end{align*}
+
+In the next stage, \emph{alice} is measured and a \nottr{} transform is 
+applied to \emph{bob} depending on the result of the measure. 
+The bit $\text{\emph{alice}}_b$ is then discarded, resulting in
+\[\qsqbitAllUp{\nu}
+{\qsqbitUp{\text{\emph{bob}}}{\alpha\overline{\alpha}/2}{\alpha\overline{\beta}/2}{\beta\overline{\alpha}/2}{\beta\overline{\beta}/2}{}}
+{\qsqbitUp{\text{\emph{bob}}}{\alpha\overline{\alpha}/2}{-\alpha\overline{\beta}/2}{\beta\overline{\alpha}/2}{-\beta\overline{\beta}/2}{}}
+{\qsqbitUp{\text{\emph{bob}}}{\alpha\overline{\alpha}/2}{\alpha\overline{\beta}/2}{-\beta\overline{\alpha}/2}{-\beta\overline{\beta}/2}{}}
+{\qsqbitUp{\text{\emph{bob}}}{\alpha\overline{\alpha}/2}{-\alpha\overline{\beta}/2}{-\beta\overline{\alpha}/2}{\beta\overline{\beta}/2}{}}{}.
+\]
+
+Then, $\nu$ is measured and a $RhoZ$ transform is applied when the resulting 
+\bit{} is 1. The \bit{} $\nu_b$ is then discarded. The
+resulting quantum stack is
+\[\qsqbitUp{\text{\emph{bob}}}
+           {\alpha\overline{\alpha}}{\alpha\overline{\beta}}
+           {\beta\overline{\alpha}}{\beta\overline{\beta}}{},
+\]
+which shows \emph{bob} has been changed to the same state $\nu$ was
+in at the start of the program.

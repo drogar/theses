@@ -1,0 +1,11 @@
+#Import ../qplprogs/Prelude.qpl
+
+intToOneQbitList :: (n :Int ; nq : List (Qbit))= 
+{ use n in 
+  { if n == 0 => {nq = Nil }
+    else => 
+      {  n' = n >> 1;
+         nq' = intToOneQbitList(n');
+	 nq = Cons(|1>, nq') }  
+  }
+}

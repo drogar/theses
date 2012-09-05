@@ -1,0 +1,9 @@
+Main
+
+AllocQbit
+UseName q 
+AllocQbit
+Put Hadamard
+Transform
+Put Controlled Hadamard
+Transform

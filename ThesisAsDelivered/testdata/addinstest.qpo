@@ -1,0 +1,15 @@
+main
+
+loop 10 
+  cload 1
+  cload 0
+  loop 10 
+  set
+  loadq
+  endloop
+
+  cload 0
+  endloop
+
+loadi
+loadi

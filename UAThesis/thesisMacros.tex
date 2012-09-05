@@ -1,0 +1,100 @@
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%\input{tcilatex}
+\newcommand{\boundsq}[1]{\ensuremath{0 \le #1 \le q-1}}
+%\newcommand{\iff}{\Longleftrightarrow}
+\newcommand{\supp}{\mathrm{supp}}
+\newcommand{\KG}{\ensuremath{KG}}
+\newcommand{\integers}{\ensuremath{ \mathbb{Z}}}
+\newcommand{\intgr}[1]{\ensuremath{ \mathbb{Z}#1}}
+\newcommand{\intG}{\intgr{G}}
+\newcommand{\intgrgen}[1]{\intgr{[#1]}}
+\newcommand{\intb}{\intgrgen{b}}%\ensuremath{ \mathbb{Z}{}[b]}}
+\newcommand{\inta}{\intgrgen{a}}
+\newcommand{\intab}{\intgrgen{a,b}}
+\newcommand{\intsth}{\intgr{S_3}}
+\newcommand{\intdfr}{\intgr{D_4}}
+\newcommand{\intdsx}{\intgr{D_6}}
+\newcommand{\intctwo}{\intgr{C_2}}
+\newcommand{\intaf}{\intgr{A_4}}
+\newcommand{\dfr}{\ensuremath{D_4}}
+\newcommand{\dsx}{\ensuremath{D_6}}
+\newcommand{\intGtil}{\intgr{\widetilde{G}}}
+\newcommand{\iom}{\intgrgen{\omega}}
+\newcommand{\ug}[1]{\ensuremath{\mathscr{U}{#1}}}
+\newcommand{\scr}{\ensuremath{\mathscr{R}}}
+
+\newcommand{\spcondition}{\ensuremath{\sum_{i=0}^{p-1} x_{j,i}\omega{}^{ki} \in{} p\iom,\,%
+\forall 0\leq{}j,k\leq{}p-1,\ \omega^p = 1.}}
+\newcommand{\aij}{\ensuremath{a_{i,j}}}
+\newcommand{\tildeaij}{\ensuremath{\tilde{a}_{i,j}}}
+\newcommand{\notequiv}{\ensuremath{\equiv\kern -.92 em/}}
+
+\newcommand{\rat}{\ensuremath{ \mathbb{Q}}}
+\newcommand{\series}[3][x]{\ensuremath{#1_{#2}, \ldots, #1_{#3}}}
+\newcommand{\supseries}[3][x]{\ensuremath{#1^{#2}, \ldots, #1^{#3}}}
+\newcommand{\sandsseries}[5][x]{\ensuremath{#1^{#2}_{#3}, \ldots, #1^{#4}_{#5}}}
+\newcommand{\ggen}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\st}{\ensuremath{S_3}}
+\newcommand{\df}{\ensuremath{D_4}}
+\newcommand{\ds}{\ensuremath{D_6}}
+\newcommand{\ctwo}{\ensuremath{C_2}}
+\newcommand{\af}{\ensuremath{A_4}}
+\newcommand{\Y}{\ensuremath{\mathbf{Y}}}
+\newcommand{\U}{\ensuremath{\mathscr{U}}}
+\newcommand{\scrx}{\ensuremath{\mathscr{X}}}
+\newcommand{\ugrp}[1]{\ensuremath{\mathscr{U}(#1)}}
+%\newcommand{\comdiag}[4]{%
+%\begin{center}%
+%\(%
+%\begin{array}{ccc}%
+%#1&\longrightarrow{}&#2\\%
+%\downarrow&&\downarrow\\%
+%#3&\longrightarrow{}&#4\\%
+%\end{array}%
+%\)%
+%\end{center}}
+\newcommand{\comdiagxy}[4]{\\%
+{\centering{} %
+\xymatrix{%
+#1 \ar[r] \ar[d] &#2 \ar[d]\\%
+#3 \ar[r]&#4\\%
+}\\%
+}}
+
+\newcommand{\mattbt}[4]{\ensuremath{\begin{pmatrix}{#1}&{#2}\\ {#3}&{#4} \end{pmatrix}}}
+
+%\newcommand{\comdiag}[4]{\\\\%
+%\begin{pspicture}(-5.0,2.1)(-3.0,4.1)%
+%\begin{psmatrix}%
+%$#1$&$#2$\\%
+%$#3$&$#4$\\%
+%\psset{arrows=->}%
+%\psset{arrowscale=2.5}%
+%\ncline{1,1}{1,2}%
+%\ncline{1,2}{2,2}%
+%\ncline{2,1}{2,2}%
+%\ncline{1,1}{2,1}%
+%\end{psmatrix}%
+%\end{pspicture}\\\\%
+%}

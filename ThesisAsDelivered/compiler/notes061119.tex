@@ -1,0 +1,124 @@
+\documentclass[12pt,letter]{article}
+\usepackage{palatino,fancyhdr}
+\pagestyle{fancy}
+\setcounter{tocdepth}{2}
+\setlength{\headheight}{15pt}
+\date{2006-04-19}
+\author{Brett Giles}
+\lhead{\bfseries 2006-04-19}
+\chead{\thepage}
+\rhead{\slshape \rightmark}
+\lfoot{\emph{For Review}}
+\cfoot{}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\begin{document}
+\section{Function Calls}\label{sec:functioncalls}
+Currently there are a multitude of ways to call functions. In the 
+following discussion, we assume we have the following function definitions.
+\begin{verbatim}
+f3in2out ::(n:Int, h:Qbit, l:List (Qbit); h:Qbit, l:List (Qbit))
+= {...}
+
+f2in0out :: (i:Int, j:Int;)
+= {...}
+
+f2in2out ::(i:Int, j:Int; i:Int, j:Int)
+= {...}
+
+f2in1out ::(i:Int, j:Int; j:Int)
+= {...}
+\end{verbatim}
+
+The language currently allows the following equivalent methods for calling
+these functions.
+
+For \verb|f3in2out|:
+\begin{verbatim}
+l = f3in2out(n, h,l;h) ;
+f3in2out(n, h, l; h,l);
+f3in2out(n,h;h) l;
+f3in2out(n) h l;
+\end{verbatim}
+Another suggestion is to remove the first option, but allow 
+\begin{verbatim}
+(h,l) = f3in2out(n,h,l);
+\end{verbatim}
+
+My opinion is we have too many options now.
+
+For \verb|f2in0out| there is only one option:
+\begin{verbatim}
+f2in0out(3,4);
+\end{verbatim}
+
+The function \verb|f2in2out| has as many options as our first example:
+\begin{verbatim}
+j = f2in2out(i,j;i);
+f2in2out(i,j;i,j);
+f2in2out(i;i) j;
+f2in2out() i j;
+f2in2out i j;
+\end{verbatim}
+The same pair assignment syntax is suggested here.
+
+The function \verb|f2in1out| has the following equivalent calls:
+\begin{verbatim}
+j = f2in1out(i,j);
+f2in1out(i,j;j);
+f2in1out(i) j;
+\end{verbatim}
+\section{Expressions}\label{sec:Expressions}
+Last time we discussed allowing arithmetic only in the context of an Use 
+statement. I don't thing this is the way to go. For example, in the
+function to get the length of a list,
+\begin{verbatim}
+len ::(l: List (a) ; i:Int) =
+{
+   case l of
+     Nil => {i = 0}
+     Cons (_, l1) => {
+         i = 1 + len(l1)
+     } 
+}
+\end{verbatim}
+the assigment to 'i' at the end really should be allowed. I think that we 
+should just allow general arithmetic, with the realization that if you 
+are not in a Use statement, then any variables are used up by the expression.
+\section{Int and Bit}\label{sec:intandbit}
+The more I look at the system (and especially the machine) the less I think
+we should keep BIT as at type (as you suggested earlier). I think it would
+be best to just switch all BIT things to INT and make the machine work 
+that way. 
+
+This leads to three cases (and probably others)
+\subsection{Allow IF, WHILE to work on INT}
+We could continue to keep an 'IF' based on 'INT', where the 'THEN' clause
+is selected when the 'INT' has value zero, the 'ELSE' clause otherwise.
+
+This would be the fastest and easist to implement. Minor changes are needed
+in the machine to handle this. 
+
+Integer expressions in this case would always evaluate to another integer.
+For example,(using the notation $(i:p_1,j:p_2,\ldots)$ to mean $i$ has 
+percentage $p_1$, $j$ has percentage $p_2$, \ldots)
+we would have
+\begin{itemize}
+\item{} $(3:1.00) > (2:1.00)$ would evaluate to $(1:1.00)$
+\item{} $(3:.50, 0:.50) > (2:.50,-1:.50) = (1:.75,0:.25)$.
+\end{itemize}
+
+Similarly the 'WHILE' could continue to operate on an 'INT' where the loop 
+continues whenever there is a non-zero value.
+\subsection{Drop IF and WHILE}\label{sec:dropifwhile}
+We could just drop the WHILE and IF statements, requiring 
+CASE decomposition for booleans and recursive subroutines. I think this
+leads to a fair bit of awkwardness in the language though.
+
+\subsection{Builtin BOOL}
+This would require a fairly significant overhaul of the machine. I
+don't honestly think it is a viable thing to do right now.
+
+
+\end{document}

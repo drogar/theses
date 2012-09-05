@@ -1,0 +1,7 @@
+#Import LengthList.qpl
+
+main:: ()
+= {
+  l = Cons(2,Cons(1,Cons(0,Nil)));
+  i = len(l);
+}

@@ -1,0 +1,16 @@
+#Import Prelude.qpl `\label{line:itqlimport}` 
+//No classical arguments
+intToQbitList :: (n :Int ;  //Input a quantum int `\label{line:itqlfunctionstart}`
+      nq : List (Qbit), n :Int) = // out-> qbit list, original int `\label{line:itqlfunctionend}`
+{ use n in 
+  { if n == 0 => { nq = Nil; }`\label{line:itqln0}`
+       ((n mod 2) == 0) =>  //Even  `\label{line:itqln1}`
+           {  n' = n >> 1;  `\label{line:itqln2}`
+              (nq', n') = intToQbitList(n');
+              nq = Cons(|0>, nq'); }
+    else => { n' = n >> 1;  `\label{line:itqln3}`
+              intToQbitList(n'; nq',n');
+              nq = Cons(|1>, nq') };
+    n = n; `\label{line:itqln4}`
+  }
+}

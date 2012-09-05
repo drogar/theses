@@ -1,0 +1,21 @@
+
+teleport :: (n:Qbit, a:Qbit, b:Qbit ; b:Qbit)
+= { 
+    CNot n a;
+    Had n;
+    measure a of 
+        |0>  => {}
+        |1>  => {Not b};
+    measure n of
+        |0> => {}
+        |1> => {RhoZ b}
+}
+
+main::() =
+{
+   a=|0>; b=|0>;
+   Had a;
+   CNot a b;
+   n = |1>;
+   teleport(n,a,b;b);
+}

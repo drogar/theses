@@ -1,0 +1,303 @@
+\section{Semantics of basic \protect{\lqpl} statements}\label{sec:programmingaquantumstack}
+\Ref{sec:sembasiclqpl} introduced basic \lqpl{} statements, giving the
+judgements for their formation. This section introduces the concept of
+a statement modifier. Modifiers will be one of 
+\emph{IdOnly, Left}, or \emph{Right}. The judgement  for formation
+of statements with a modifier is:
+\[ \infer[\text{modifier}]
+   {\Gamma;\Gamma' \ientail \qmod \qins}
+   {\qmod\in\{\text{\texttt{IdOnly, Left, Right}}\} &
+     \Gamma; \Gamma' \ientail \qins}
+\] 
+
+An operational semantics for basic \lqpl{} statements is given
+by the judgement diagrams in \vref{fig:qsstatementtransitionspartone}
+and \vref{fig:qsstatementtransitionsparttwo}.
+\Ref{tab:qstacktransitionnotation} gives the additional notation
+used in the  judgements.
+
+
+
+\begin{table}
+\centerline{
+\begin{tabular}{|>{$}l<{$}|p{3.5in}|}
+\hline
+\textbf{Notation} & \textbf{Meaning}\\
+\hline \hline 
+\qvec{z}&A list of names \\[12pt]
+\hline
+\qop{\Gamma;\Gamma'\ientail\qins}{\Gamma\Gamma''\qentail S}&Application 
+of the statements \qins{} to the
+quantum stack $S$.\\[12pt]
+\hline
+\qop{(\Gamma;\Gamma'\ientail\qcontrolled{\qins}{\qvec{z}})}{\Gamma\qentail S} &
+Application of the statements \qins{} to the
+quantum stack $S$, controlled by the \bits{} and \qbits{} in \qvec{z}.\\[12pt]
+\hline
+\qresultsin{\qop{(\Gamma;\Gamma'\ientail\qins)}{\Gamma\qentail S^t}}
+{\Gamma'\qentail {S'}^{t'}}&
+Application of the statements \qins{} with inputs $\Gamma$ and
+output $\Gamma'$ to the quantum stack $S$ in context $\Gamma$  results 
+in the quantum stack $S'$ in context $\Gamma'$.\\
+\hline
+\qresultsin{\Gamma\qentail \qop{\qins}{ S^t}}
+{\Gamma'\qentail {S'}^{t'}}&
+Alternate way to write the application of the statements \qins{} 
+to the quantum stack $S$. $\Gamma$ will contain the input variables of
+$\qins$ and $\Gamma'$ will contain the output variables.\\
+\hline
+\end{tabular}
+}
+\caption{Notation used in judgements for operational semantics}\label{tab:qstacktransitionnotation}
+\end{table} 
+
+The  modifiers ( \emph{IdOnly, Left, Right}) come from examining the effect of
+a controlled transformation in a general setting. When 
+a controlled transform and a general density matrix are multiplied:
+\begin{equation}
+\begin{pmatrix}1&0\\0&U\end{pmatrix} 
+\begin{pmatrix}A&B\\C&D\end{pmatrix} 
+\begin{pmatrix}1&0\\0&U^{*}\end{pmatrix} =
+\begin{pmatrix}A&B U^{*}\\U C&U D U^{*}\end{pmatrix}\label{eq:controlledtransform}
+\end{equation} 
+Equating the density matrix to the quantum stack notation, a controlled
+transformation is 
+controlled by the \qbit{} at the top of the quantum stack. It has
+the four sub-stacks $A,B,C$ and $D$ and the $controlled-U$ 
+transform is applied as in \ref{eq:controlledtransform}.
+The resulting quantum stack, with the same \qbit{} at the 
+top now has the four sub-stacks $A,B U^{*},U C$ and $U D U^{*}$. This 
+leads to the obvious terminology of ``\IdOnly $U$'' for the action on 
+$A$, ``\Right $U$'' for the action on
+$B$ and ``\Left $U$'' for the action on $C$.  The action on $D$ is
+a normal application of the transform $U$ to $D$. As such, it does
+not need a modifier to describe the action.
+
+\Vref{fig:qsstatementtransitionspartone} presents the operational semantics
+of the the \lqpl{} statements \emph{identity, new, discard, measure, compose}  and 
+\emph{control}.
+\Vref{fig:qsstatementtransitionsparttwo} presents the operational semantics 
+of \emph{unitary} and the effects of statement modifiers.
+
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[{\raisebox{2ex}{identity}}]
+   { \qresultsin{\Gamma \qentail\qop{\varepsilon}{S}} 
+         { \Gamma \qentail S}}
+   {}\qquad
+\infer[{\raisebox{4ex}{new \bit}}]
+   { \qresultsinUp{\Gamma \qentail\qop{(b=0)}{S}} 
+         {(b{::}\bit),\Gamma\qentail\qsnodeij{b}{0}{S}{t}}}
+   {}\\[12pt]
+\infer[{\raisebox{2ex}{new \qbit}}]
+   {\qresultsin{\Gamma \qentail \qop{(q=\ket{0})}{S}} 
+         {(q{::}\qbit),\Gamma\qentail \qsnodeij{q}{00}{S}{t}}}
+   {}\\[12pt]
+\infer[{\raisebox{2ex}{delete \bit}}]
+   {\qresultsin{(b{::}\bit),\Gamma\qentail \qop{(\text{disc }b)}{\qsbit{b}{S_0}{S_1}{t}}} 
+         {\Gamma\qentail  (S_0+S_1)^{t}}}
+   {}\\[12pt]
+\infer[{\raisebox{2ex}{delete \qbit}}]
+   {\qresultsin{(q{::}\qbit),\Gamma \qentail 
+        \qop{(\text{disc }q)}
+          {\qsnodeij{q}{ij}{S_{ij}}{t}} 
+%     {\qsqbitUp{q}{S_{00}}{S_{01}}{S_{10}}{S_{11}}{t}}
+     }
+     {\Gamma\qentail  (S_{00}+S_{11})^{t}}} 
+   {}\\[12pt]
+\infer[{\raisebox{6.5ex}{measure}}]
+   {{\qresultsin{(q{::}\qbit)\Gamma\qentail \qop{\qmeas{q}{I_0}{I_1}}{\qsnodeij{q}{ij}{S_{ij}}{t_0+t_1}}}
+          {\Gamma'\qentail (S_0+S_1)^{(t'_0+t'_1)}}}}
+ {\qresultsin{\Gamma\qentail \qop{I_0}{S_{00}^{t_0}}}{\Gamma'\qentail S_0^{t'_0}}\quad
+    \qresultsin{\Gamma\qentail\qop{I_1}{S_{11}^{t_1}}}{\Gamma'\qentail S_1^{t'_1}}}\\[12pt]
+\infer[{\raisebox{1ex}{compose}}]
+   { \qresultsin{\Gamma\qentail\qop{(\qcompose{Op_1}{Op_2})}{S^t}}
+       {\Gamma''\qentail S''^{t''}}}
+ { \qresultsin{\Gamma \qentail\qop{Op_1}{S^t}}{\Gamma'\qentail {S'}^{t'}}\quad
+   \qresultsin{\Gamma' \qentail \qop{Op_2}{{S'}^{t'}}}{\Gamma''\qentail {S''}^{t''}}}\\[12pt]
+\infer[{\raisebox{1ex}{tensor}}]
+   { \qresultsin{\Gamma_1 \Gamma_2\qentail
+        \qop{(\qtensor{Op_1}{Op_2})}
+             {(S_1\otimes S_2)^{t_1\times t_2}}}
+       {\Gamma_1' \Gamma'_2\qentail (S_1'\otimes S_2')^{t'_1\times t'_2}}}
+ { \qresultsin{\Gamma_1 \qentail\qop{Op_1}{S_1^{t_1}}}
+        {\Gamma_1'\qentail {S_1'}^{t_1'}}\quad
+   \qresultsin{\Gamma_2 \qentail \qop{Op_2}{{S_2}^{t_2}}}
+           {\Gamma'_2\qentail {S'_2}^{t'_2}}}\\[12pt]
+\infer[{\raisebox{10ex}{control \bit}}]
+   { \qresultsinUp{(z{::}\bit),\Gamma \qentail \qop{(\qcontrolled{\qins}{\qvec{z},z})}{\qsbitUp{z}{S_0^{t_0}}{S_1^t}{}}}
+     {\qquad\qquad\qquad(z{::}\bit),\Gamma\qentail\qsbitUp{z}{S_0}{S'_1}{t_0+t'}}}
+{\qresultsin{\Gamma \qentail  \qop{\qcontrolled{\qins}{\qvec{z}}}{S_1^t}}
+   {\Gamma\qentail {S'}_1^{t'}}}\\[12pt]
+\infer[{\raisebox{8ex}{control \qbit}}]
+   {\qresultsinUp{(z{::}\qbit),\Gamma \qentail \qop{(\qcontrolled{\qins}{\qvec{z},z})}
+                    {\qsnodeij{z}{ij}{S_{ij}}{}}}
+         {\qquad\qquad\quad(z{::}\qbit),\Gamma \qentail \qsqbitUp{z}{S'_{00}}{S'_{01}}{S'_{10}}{S'_{11}}{t_{00}+t'_{11}}}}
+   {\stacktwo{\qresultsin{\Gamma \qentail  
+                \qop{(\qcontrolled{(\IdOnly\ \qins)}{\qvec{z}})}{S_{00}}}
+                {\Gamma\qentail S'_{00}}}
+    {\stackthree{\qresultsin{\Gamma \qentail  
+                \qop{(\qcontrolled{(\Left\ \qins)}{\qvec{z}})}{S_{10}}}
+                {\Gamma\qentail S'_{10}}}
+   {\qresultsin{\Gamma \qentail  
+                \qop{(\qcontrolled{(\Right\ \qins)}{\qvec{z}})}{S_{01}}}
+                {\Gamma\qentail S'_{01}}}
+    {\qresultsin{\Gamma \qentail  
+                \qop{(\qcontrolled{\qins}{\qvec{z}})}{S_{11}^{t_{11}}}}
+                {\Gamma\qentail {S'}_{11}^{t'_{11}}}}}}
+\end{gathered}
+\]
+\caption{Operational semantics of basic \lqpl{} statements}\label{fig:qsstatementtransitionspartone}
+\end{figure}
+
+
+
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[{\raisebox{7ex}{$U$ a transform}}]
+   { \qresultsinUp{(q{::}\qbit),\Gamma\qentail
+         \qop{U\ q}{\qsnodeij{q}{ij}{S_{ij}}{t}}} 
+         {\quad(q{::}\qbit),\Gamma\qentail 
+	\qsqbitUp{q}{S_{00}'}{S_{01}'}{S_{10}'}{S_{11}'}{t}}}
+   { U\begin{pmatrix}S_{00}&S_{01}\\
+  S_{10}&S_{11}\end{pmatrix} U^{*} = \begin{pmatrix}S_{00}'&S_{01}'\\
+  S_{10}'&S_{11}'\end{pmatrix}}\\ 
+\\
+\infer[{\raisebox{6ex}{$\stacktwo{\IdOnly\ U,}{U \text{ a transform}}$}}]
+   { \qresultsinUp{(q{::}\qbit),\Gamma\qentail
+         \qop{\IdOnly\ U\ q}{\qsnodeij{q}{ij}{S_{ij}}{t}}} 
+         {\quad(q{::}\qbit),\Gamma\qentail 
+	{\qsnodeij{q}{ij}{S_{ij}}{t}}}}
+    {} \\ 
+\\
+\infer[{\raisebox{8ex}{$\stacktwo{\Left\ U,}{U \text{ a transform}}$}}]
+   { \qresultsinUp{(q{::}\qbit),\Gamma\qentail
+         \qop{\Left\ U\ q}{\qsnodeij{q}{ij}{S_{ij}}{t}}} 
+         {\quad(q{::}\qbit),\Gamma\qentail 
+	\qsqbitUp{q}{S_{00}'}{S_{01}'}{S_{10}'}{S_{11}'}{t}}}
+    { U\begin{pmatrix}S_{00}&S_{01}\\
+  S_{10}&S_{11}\end{pmatrix} = \begin{pmatrix}S_{00}'&S_{01}'\\
+  S_{10}'&S_{11}'\end{pmatrix}} \\ 
+\\
+\infer[{\raisebox{8ex}{$\stacktwo{\Right\ U,}{U \text{ a transform}}$}}]
+   { \qresultsinUp{(q{::}\qbit),\Gamma\qentail
+         \qop{\Right\ U\ q}{\qsnodeij{q}{ij}{S_{ij}}{t}}} 
+         {\quad(q{::}\qbit),\Gamma\qentail 
+	\qsqbitUp{q}{S_{00}'}{S_{01}'}{S_{10}'}{S_{11}'}{t}}}
+    { \begin{pmatrix}S_{00}&S_{01}\\
+  S_{10}&S_{11}\end{pmatrix}U^{*} = \begin{pmatrix}S_{00}'&S_{01}'\\
+  S_{10}'&S_{11}'\end{pmatrix}}\\      
+\\
+\infer[\raisebox{1ex}{\qmod \qins, (\qins{} not a transform)}]
+   { \qresultsin{\Gamma\qentail
+         \qop{(\qmod \qins)}{S}}
+         {\Gamma'\qentail S'}}
+    {\qresultsin{\Gamma\qentail \qop{\qins}{S}}
+           {\Gamma'\qentail S'}}\\
+\\
+\infer[\raisebox{2ex}{modifier reduction}]
+   { \qresultsin{\Gamma\qentail
+         \qop{(\qmod_0\ \qmod_1\cdots\qmod_n)\qins}{S}}
+         {\Gamma'\qentail S'}}
+    {\qresultsin{\Gamma\qentail \qop{(\qmod_1\cdots\qmod_n)\qins}{S}}
+           {\Gamma'\qentail S'} & \qmod_0 \equiv \qmod_1}\\
+\\
+\infer[\raisebox{2ex}{modifier elimination}]
+   { \qresultsin{\Gamma\qentail
+         \qop{((\qmod_0\ \qmod_1\cdots\qmod_n)\qins)}{S}}
+         {\Gamma'\qentail S'}}
+    {\qmod_0 \neq \qmod_1 &
+        \qresultsin{\Gamma\qentail \qop{(\text{IdOnly }\qins)}{S}}
+           {\Gamma'\qentail S'} }
+\end{gathered}
+\]
+\caption{Operational semantics of basic \lqpl{} statements, continued}\label{fig:qsstatementtransitionsparttwo}
+\end{figure}
+
+\subsection{Operational semantics commentary}\label{subsec:operationalsemanticscommentary}
+\subsubsection{Identity}
+This has no effect on  the quantum stack or the context.
+
+\subsubsection{New \bit{} and new \qbit}
+These two statements transform the quantum stack $S$ by adding a 
+new node at the top of $S$.
+ Both \bit{} and \qbit{} nodes are added with a single 
+sub-branch which points to $S$. In the case of
+a \bit{} the new sub-branch is labelled with $0$, for a \qbit{} the
+new sub-branch is labelled with $00$. These
+labels mean the \bit{} is $0$ with $100\%$ probability and the 
+\qbit{} is $1.0 \ket{0} + 0.0 \ket{1}$.
+
+
+\subsubsection{Delete \bit{} and delete \qbit}
+On the quantum stack $S$, deletion removes  the top node $x$, merging
+ the appropriate branches below $x$. Deletion of a \bit{} merges
+both the $0$ and $1$ branches. Deletion of a 
+\qbit{} merges only the $00$ and $11$ branches.
+
+
+\subsubsection{Measure}\label{subsubsec:measuretransitions}
+This statement applies separate groups of statements 
+to  the $00$ and $11$ sub-stacks of a \qbit{} node, $q$. After applying those
+statements, the node $q$ is discarded.
+
+
+\subsubsection{Compose}\label{subsubsec:composeqstacktransitions}
+Composition of the operations on a quantum circuit are done in left to right 
+order of their application.
+
+
+\subsubsection{Control by \bit}
+When the statement $\qins_b$ is controlled by the \bit{} $z$, the effect is to
+apply $\qins_b$ only to the $1$ sub-branch of $z$.
+
+\subsubsection{Control by \qbit{}}
+If the statement $\qins_q$ is controlled 
+by the \qbit{} $w$, different operations
+are applied to each of $w$'s sub-branches. The modifiers \texttt{IdOnly, Left}
+and \texttt{Right} are used: (\texttt{IdOnly} $\qins_q$) is applied to the
+the $00$ sub-branch of $w$; (\texttt{Left} $\qins_q$) to the $10$ sub-branch;
+(\texttt{Right} $\qins_q$) to the $01$ sub-branch and the unmodified
+statement, $\qins_q$, is applied to the $11$ sub-branch.
+
+\subsubsection{Unitary transforms}
+Given the unitary transform $U$ and a quantum stack $S$ having the
+\qbit{} $q$ at the top, transforming $q$ by $U$ is defined in
+terms of matrix multiplication. Note that while 
+\ref{fig:qsstatementtransitionsparttwo} only gives the 
+operational semantics for a single \qbit{} transform, the
+same process is applied for higher degree transforms. A 
+quantum stack with two \qbits{} at its top may be converted to 
+the $ 4\times4 $ density matrix of those two \qbits{} in the obvious way.
+A similar process may be used to extend the operation to more \qbits.
+
+\subsubsection{Modifiers of unitary transforms}
+With $U$ a unitary transform, the three rules for \texttt{IdOnly} $U$,
+\texttt{Left} $U$ and \texttt{Right} $U$ are given in
+terms of the appropriate matrix multiplications. As above, these may
+be extended to multiple \qbit{} transformation in the obvious way.
+
+\subsubsection{Modifiers of statements other than unitary transforms}
+Modifiers have no effect on any statement of \lqpl{} except for
+unitary transformations.
+
+\subsubsection{Combinations of modifiers: reduction and elimination}
+When controlling by multiple \qbits, it is possible to have more than
+one modifier applied to a statement. The modifier reduction rule 
+states that applying the same modifier twice in a row has the same
+effect as applying it once.
+
+Modifier elimination, however, reduces the list of modifiers to 
+the single modifier \texttt{IdOnly}
+whenever  two different modifiers follow one another in the modifier list.
+
+
+
+
+
+
+
+
+

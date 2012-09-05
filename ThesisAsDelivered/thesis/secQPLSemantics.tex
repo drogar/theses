@@ -1,0 +1,99 @@
+\section{Semantics of QPL}\label{subsec:semanticsOfQPL}
+Each statement in QPL is to be viewed as a function from tuples of
+matrices to tuples of matrices. For each \bit{} in the programs' context
+there will be two tuple elements. For each \qbit{} within a \bit{}'s 
+sphere of control the size of the 
+matrices in the corresponding tuple position will grow exponentially. 
+Given $n$ \bit{}s and $m_i$ \qbit{}s for each \bit,
+ the context will be
+ $\C^{m_1 \times m_1} \times \cdots \times \C^{m_{2n} \times m_{2n}}$. 
+As explained in Dr. Selinger's paper, \bit{} values 
+correspond to \emph{classical control}. For each distinct bit value, there may
+be a different number of \qbit{}s. Consider the program
+fragment in \vref{fig:fragmentShowingDifferentBits}.
+
+\begin{figure}[htbp]
+\begin{qplcodethesis}
+new bit b:= 0;
+new qbit q := 0;
+q *= Had;
+measure q then
+   b:=0
+ else
+   b:= 1;
+
+if b then
+  new qbit r = 0;
+  new qbit s = 0;
+  r *= Had; \label{progline:manymatrices}
+  r,s *= Cnot
+ else
+  skip;\label{progline:fewmatrics}
+\end{qplcodethesis}
+\caption{Fragment of QPL code showing different contexts}
+\label{fig:fragmentShowingDifferentBits}
+\end{figure}
+
+Measurement in QPL is not destructive, therefore the \qbit{} \texttt{q} 
+remains in scope throughout the program.
+In the fragment at line \ref{progline:manymatrices}, the 
+context has three \qbit{}s: (\texttt{q,r,s}). The \bit{} $b$ is not available
+to the program inside an \texttt{if}. At 
+line \ref{progline:fewmatrics} only one \qbit{} (\texttt{q}) is in context.
+The context after completion of the $if$ statement is the merge of these
+two contexts and would therefore be:
+\[ \C^{8\times 8} \times \C^{2 \times 2}.\]
+
+
+The system can be regarded as being in $\C^{8\times8}$ when the
+\bit{} $b$ is $0$, and in  $\C^{2 \times 2}$ when it is $1$.
+
+Each statement defined for QPL has a realization in these contexts. 
+
+\subsection{Formal semantics for QPL}\label{subsec:formalsemanticsqpl}
+Dr. Selinger presents a categorical semantics for QPL as the
+category $Q$ of superoperators over signatures. 
+I will give an outline of the major points of this semantics. This 
+section uses concepts from linear algebra that are introduced later in this
+thesis in \vref{sec:linearalgebra}.
+
+\subsubsection{Signatures}
+\emph{Signatures} are the objects of $Q$. Each signature is a 
+list of non-zero natural numbers:\[\ell=[n_1,\ldots,n_m].\]
+ Each of these
+signatures is identified with a vector space $V_\ell$ over the complex
+numbers \[V_\ell = \complex^{n_1\times n_1}\times\cdots\times\complex^{n_m\times n_m}.\]
+This vector space is tuples of matrices over the complex numbers. 
+
+
+Specific objects in $Q$ are given names:
+\begin{align*}
+\bit&= [1,1] &
+\qbit&=[2]\\
+I&=[1] &
+0&=[\ ]
+\end{align*}
+
+
+\subsubsection{QPL realizations in $Q$}
+Given the details of the category $Q$ it is now
+straightforward to associate specific maps in $Q$ (superoperators) with
+specific QPL statements. Dr. Selinger gives a complete list. 
+\Vref{tab:instructionsforQPL} repeats a few of these.
+
+{\begin{singlespace}
+\begin{table}[htbp]
+\begin{tabular}{|>{$}p{.7in}<{$}>{$}p{.95in}<{$}>{$}p{1in}<{$}>{$}l<{$}|}
+\hline
+\mathrm{\textbf{QPL}}&\mathrm{\textbf{Map}}&\mathrm{\textbf{Typing}}&\mathrm{\textbf{Result}}\\
+\hline
+b := 0 & set_0: & \bit\to\bit&set_0(a,b) = (a+b,0)\\
+b := 1 & set_1: & \bit\to\bit&set_1(a,b) = (0,a+b)\\
+merge & merge: & \bit\to I&merge(a,b) = a+b\\
+\hline
+\end{tabular}
+\caption{Instructions for QPL and their meaning}\label{tab:instructionsforQPL}
+\end{table}
+\end{singlespace}
+}
+

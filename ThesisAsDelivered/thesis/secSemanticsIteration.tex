@@ -1,0 +1,112 @@
+\section{Semantics of recursion}\label{sec:semanticsiteration}
+This section will extend \lqpl{} with statements for recursion and provide
+the operational semantics for them. 
+
+\subsection{Statements for recursion}
+The only statements added for recursion are  the \emph{proc} and
+\emph{call} statements. \emph{Proc} is used to create a 
+subroutine that is available for the \emph{call} statement.
+
+All \emph{proc} statements are global in scope to a program, hence
+a subroutine may \emph{call} itself or be called by other subroutines 
+defined elsewhere in a program. The judgements for these two new statements
+are given in \vref{fig:judgementsforprocandcall}. The judgements 
+reuse the notation introduced earlier of 
+$\qvec{z_j}$ signifying a vector of elements.
+
+
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[{\raisebox{2ex}{proc}}]
+   {\Gamma_c|\Gamma \ientail 
+             \text{prc}_x ::(\qvec{c_i}{:}\qvec{{\tcls}_i} | 
+                \qvec{qv_j}{:}\qvec{\tau_j} ; 
+                 \qvec{r_k}{:}\qvec{\tau_k}) = \qins}
+   {}\\ 
+\\
+\infer[{\raisebox{2ex}{call}}]
+   {\Gamma_c | (\qvec{qv_j}::\qvec{\tau_j})\Gamma \ientail 
+        (\qvec{r_k}) = \text{prc}_c(\qvec{e_i} | \qvec{qv_j})}
+   {\{\Gamma_c | (\qvec{qv_j}::\qvec{\tau_j})\Gamma \eentail e_i\}_i}
+\end{gathered}
+\]
+\caption{Judgements for formation of proc and call statements}\label{fig:judgementsforprocandcall}
+\end{figure}
+
+
+\subsection{Operational semantics for recursion}
+In order to provide an operational semantics for recursion, the
+ quantum stacks will now be considered a \emph{stream} (also known as an
+infinite list) of quantum stacks. The semantics as given previously in
+this chapter will stay the same, with the
+provision that all of these apply across the entire stream. 
+
+Additional notation is required  for calling subroutines, re-namings (formal
+in and out parameters) and for applying
+ a different transition dependent on the level 
+in the stream. This additional notation is explained in
+ \vref{tab:notationfortransitionsforinteration}. 
+
+
+
+\begin{table}
+\begin{tabular}{|>{$}c<{$}|p{3.75in}|}
+\hline
+\textbf{Notation} & \textbf{Meaning}\\
+\hline \hline 
+[z'/z]\Gamma \qentail [z'/z]S&Substituting $z'$ for $z$ in the context 
+and stack. \\[12pt]
+\hline
+\qresultsindUp{d}{\Gamma_c|\Gamma\qentail\qop{\qins}{(S,C)}}
+{\qquad\Gamma_c'\Gamma'\qentail (S',C')}&
+Application of the statements $\Gamma_c|\Gamma;\Gamma_c'\Gamma' \ientail \qins{}$ to
+to the quantum stack / classical stack pair $(S,C)$ in classical context $\Gamma_c$ and
+context $\Gamma$  results 
+in the quantum stack / classical stack pair  $(S',C')$ in classical context 
+$\Gamma_c'$ and context $\Gamma'$ 
+\emph{at the} $d^{\text{th}}$ \emph{iteration}.\\
+\hline
+\end{tabular}
+\caption[Notation for quantum stack recursion]{Notation used in operational semantics once iteration is added}\label{tab:notationfortransitionsforinteration}
+\end{table} 
+
+
+The operational semantics for recursion is given in 
+ \vref{fig:qsiterationtransitions}.
+Recursion is done in the semantics by first \emph{diverging} at
+the head of the infinite list and then calling a subroutine once at
+the second element, calling twice in the third and so forth. In this 
+way, the program gives a closer and closer approximation of the
+actual results the further one looks down the stream of quantum stacks.
+
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[{\raisebox{2ex}{rename}}]
+   {\qresultsin{(x{::}T),\Gamma \qentail\qop{[x'/x]}{\qsnodeij{x}{v_i}{S_i}{t}}} 
+         {(x'{::}T),\Gamma\qentail\qsnodeij{x'}{v_i}{S_i}{t}}}
+   {}\\ 
+\\
+\infer[{\raisebox{2ex}{base call}}]
+   {\qresultsind{0}{\Gamma_c| (\qvec{z_j}::\qvec{\tau_j})\Gamma \qentail 
+              \qop{(\qvec{w_k}) = \text{prc}_a(\qvec{c_i}|\qvec{z_j})}{(S,C)}}
+         {\Gamma_c|\emptyset\qentail (\emptyset^{0},C)}}
+   {\text{prc}_a ::(\qvec{c_i}{:}\qvec{{\tcls}_i} | \qvec{z_j}{:}\qvec{\tau_j} ; 
+        \qvec{w_k}{:}\qvec{\tau_k}) = \qins_a}\\ 
+\\
+\infer[{\raisebox{2ex}{call $d+1$}}]
+   {\qresultsind{d+1}{\Gamma_c|(\qvec{z_j}::\qvec{\tau_j})\Gamma\qentail 
+         \qop{(\qvec{w_k}) = \text{prc}_a(\qvec{c_i}|\qvec{z_j})}{(S,C)}}
+         {\Gamma_c|\Gamma'\qentail  (S',C)}}
+   {\stackthreec{\qresultsind{d}{\Gamma_c|\Gamma\qentail
+             \qop{\{[z_j'/z_j]\}_j;\qins_a;\{[w_k/w_k']\}_k}{(S,C)}}
+         {\Gamma_c'|(\qvec{w_k}::\qvec{\tau_k})\Gamma'\qentail (S',C')}}
+       {\text{prc}_a ::(\qvec{c_i'}{:}\qvec{{\tcls}_i} | 
+                 \qvec{z_j'}{:}\qvec{\tau_j} ; \qvec{w_k'}{:}\qvec{\tau_k}) = \qins_a}
+{\{\Gamma_c | (\qvec{z_j}::\qvec{\tau_j})\Gamma \eentail e_i{::}{\tcls}_i\}_i}}
+\end{gathered}
+\]
+\caption{Operational semantics for recursion}\label{fig:qsiterationtransitions}
+\end{figure}
+

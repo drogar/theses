@@ -1,0 +1,23 @@
+TestR Start
+   Measure l1 l2
+     Jump l3
+l1  QDiscard
+    QLoad r |0>
+    QPullup q
+    QApply 0 !CNot
+    QPullup r
+    Call 0 TestR
+    EndQC
+l2  QDiscard
+    EndQC
+l3 Return 0
+   EndProc
+
+Main Start
+   QLoad q |0>
+   QApply 0 !Had
+   QLoad p |0>
+   QApply 0 !Had
+   Call 0 TestR
+   EndProc
+

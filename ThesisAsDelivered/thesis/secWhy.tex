@@ -1,0 +1,43 @@
+\section{Why a quantum programming language?}\label{sec:why}
+Currently, it is not  clear that there will ever be a quantum computer
+having a number of \qbits{} comparable to the number of \bits{} available 
+on classical computers. Thus, it is reasonable to ask what is the
+point of a quantum programming language.
+ The compiler for \lqpl{} presented in this thesis
+targets a virtual machine --- the quantum stack machine, which
+is implemented with a classical language on a classical computer. Given
+that, it is highly likely that any significant quantum algorithm written in 
+\lqpl{} will be woefully inefficient.
+
+
+However, there \emph{are} many reasons to create and use a quantum programming
+language.
+
+\paragraph{Theory of algorithms.} The current understanding of the 
+limits of practical computability has led researchers and practitioners
+to probabilistic (and quantum) algorithms to solve problems. This has 
+increased the understanding of those algorithms and led back to
+classical algorithms. An example of this is the recent 
+polynomial time algorithm for primality testing in \cite{agrawal04:primes}.
+
+Quantum algorithms subsume probabilistic algorithms in that
+providing language support for quantum computing also gives probabilistic 
+support. A simple example of this can be seen in the program to 
+generate a coin toss given in \vref{fig:defsec:coin}.
+
+\paragraph{Quantum algorithm experimentation.}
+Thinking about quantum algorithms is enhanced by having 
+a high level way  of expressing these algorithms.
+ A high level language such as \lqpl{}
+allows the researcher or practitioner to design an algorithm at an altogether 
+different level than the standard \bits{} and \qbits{} of quantum circuits.
+A simulator and virtual machine as provided by this 
+thesis allows experimentation with quantum algorithms, allowing a
+broader exploration of the field.
+
+\paragraph{Quantum computer design.}
+The thesis presents a novel view of quantum computation using a quantum 
+stack machine. This suggests a way of organizing
+ quantum computation with a  quantum stack machine as the central 
+element. This may stimulate others to consider how such a machine can be 
+realized efficiently.

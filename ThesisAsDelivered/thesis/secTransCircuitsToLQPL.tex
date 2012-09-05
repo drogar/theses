@@ -1,0 +1,68 @@
+\section{Translation of quantum circuits to basic \lqpl}\label{sec:circuitstolqpl}
+Quantum circuits are translatable to  \lqpl{} 
+statements. The semantic meaning of a circuit is denoted by 
+enclosing the circuit between $\llbracket$ and $\rrbracket$.
+
+
+When a new wire is added to a diagram (at the start of 
+the diagram, this can be done for all wires)
+the meaning is an assignment of \ket{0} to that variable.
+\begin{equation}
+\interpsem{\Qcircuit @C=1em @R=.7em { {\hphantom{\ket{0}\quad}} {\ket{0}\quad }& &\qw^{\quad q} }} 
+= q = \ket{0}\label{eq:meaningofaddline}
+\end{equation}
+An existing line with no operations on it translates to an identity
+statement:
+\begin{equation}
+\interpsem{\Qcircuit @C=1em @R=.7em { &\qw&\qw}}
+= \varepsilon\label{eq:identityline}.
+\end{equation}
+A unitary transform $U$ translates to the  obvious
+corresponding \lqpl{} statement:
+\begin{equation}
+\interpsem{\Qcircuit @C=1em @R=.7em {&\qw_{q}& \gate{U}&\qw_q }} = U\ q.
+\end{equation}
+A renaming of a \qbit{} wire translates to an assign statement:
+\begin{equation}
+\interpsem{\Qcircuit @C=1em @R=.7em {
+  &\qw_y& \gate{x:=y}  & \qw_{\quad x}
+}} = x = y.
+\end{equation}
+A quantum circuit followed by another circuit is the composition 
+of the meanings:
+\begin{equation}
+\interpsem{\Qcircuit @C=1em @R=.7em {&\gate{C_1}& {/^{{}^n}} \qw& \gate{C_2}&\qw }} = \interpsem{C_1} ; \interpsem{C_2}.\label{eq:composecircuits}
+\end{equation}
+A  circuit that is above another is the tensor composition of the 
+two circuits meanings:
+\begin{equation}
+\interpsem{\Qcircuit @C=1em @R=.7em {& {/^{{}^n}} \qw & \gate{C_1}& \qw\\
+                          & {/^{{}^m}} \qw & \gate{C_2}&\qw }} 
+= \interpsem{C_1} ;; \interpsem{C_2}.\label{eq:vertcomposecircuits}
+\end{equation}
+Measurement of a \qbit{} and outputting a \bit{} translates to
+ the measure instruction:
+\begin{equation}
+\interpsem{\Qcircuit @C=1em @R=.7em { &\qw_q&\measureD{q}&\cw_{\ b} }}= \text{meas q }
+\ket{0}=> \{b = 0\}\ \ket{1} => \{b = 1\}.
+\end{equation}
+A destructive measure, where the resulting \bit{} is discarded, is translated
+as a discard:
+\begin{equation}
+\interpsem{\Qcircuit @C=1em @R=.7em { &\qw_q&\measureD{q}& }}= \text{disc q }.
+\end{equation}
+Control of a circuit translates to \lqpl{} control constructions. The 
+controlling variable may be a \qbit{} or \bit:
+\begin{equation}
+\interpsem{\Qcircuit @C=1em @R=.7em {&\qw_z & \control \qw \ar @{-} [d] & \qw \\
+                          & \qw & \gate{C_1} & \qw } }
+= \interpsem{C_1} \Leftarrow z. \label{eq:meaningofcontrol}
+\end{equation}
+
+\Ref{eq:meaningofaddline} through \ref{eq:meaningofcontrol} 
+give a  meaning for 
+all the standard quantum circuit elements and their extensions described in 
+\vref{sec:extensionstoqc}. Certain constructs such as $0-control$ have not
+been included as they are describable in terms of other circuit elements that
+have been assigned a semantics. See \fullref{sec:extensionstoqc} for those
+identities.

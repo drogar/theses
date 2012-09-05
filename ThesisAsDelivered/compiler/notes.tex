@@ -1,0 +1,180 @@
+\documentclass[12pt]{article}
+\usepackage{palatino,fancyhdr}
+\pagestyle{fancy}
+\setcounter{tocdepth}{2}
+\setlength{\headheight}{15pt}
+\date{2006-04-06}
+\author{Brett Giles}
+\lhead{\bfseries 2006-04-06}
+\chead{\thepage}
+\rhead{\slshape \rightmark}
+\lfoot{\emph{Reviewed - revised after 04-06 meeting}}
+\cfoot{}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\begin{document}
+\section{New instructions}\label{sec:newinstructions}
+\begin{description}
+\item{RENAME}
+Renames the top element of the stack to the name in the 'nameRegister'.
+
+Typical usage is to rename the result of an expression. For example,
+code like \verb|m=5| would generate:
+\begin{verbatim}
+UseName c99
+AllocInt
+SetInt 5
+UseName m
+Rename
+\end{verabtim}
+\item{GENRENAME}
+Generalized the renaming, allowing a target / source relationship. This 
+will traverse the stack and rename the first encounter of the name associated
+with the instruction to the name currently in the name register.
+
+To rename 'x' to 'y':
+\begin{verbatim}
+UseName y
+GenRename x
+\end{verbatim}
+\item{ALIASTOP $nm$}
+\emph{DEPRECATED}
+
+Aliases $nm$ to the name on the top of the list.
+
+This is needed primarily for function and constructor expressions,
+due to the way I am generating code for the argument expressions. An 
+expression will leave its value in the top stack element, possibly 
+with a newly 
+generated name. This new name generation is being done at code gen time.
+
+This is then used to alias the elements to argument names for function calls.
+
+\item{\emph{OP}}
+For example, $ADD$, which I envision as adding the top two nodes of the
+stack, discarding both and leaving a new node with a newly generated name.
+
+There either would be individual operation codes for each arithmetic 
+function, or we could do something like $OP\ ADD$. 
+
+Alternately, these operations could create a new element and leave the 
+previous two in existance, requiring us to generate explicit DISCARD 
+instructions.  See section 
+\ref{sec:expressionhandling} on page \pageref{sec:expressionhandling} for 
+further discussion.
+
+Decided at 0406 meeting not to have this - revisiting at 0419 meeting.
+
+\item{USE, ENDUSE}
+This would be similar to a switch / case operation. The integer on
+top of the stack would have its value(s) placed in a special register
+which would then be available non-destructively for the instructions
+contained in the USE / ENDUSE pair. The group of instructions would then
+be executed on each subtree of the integer. 
+
+Typically, we would then generate a DISCARD operation for the 
+top element of the stack (which was USE subject).  See section 
+\ref{sec:usehandling} on page \pageref{sec:usehandling} for 
+further discussion.
+
+\item{USE\emph{OP}}
+For example $USEADD$ which I envision as adding the current use register
+to the top element of the
+stack.
+
+Again, there either would be individual operation codes for each arithmetic 
+function, or we could do something like $OP\ ADD$.
+\item{ALLOCINT}
+Similar to ALLOCBIT, allocates an integer at the top of the stack, 
+initialized to $0$.
+\item{SETINT}
+Similar to SETBIT, sets the integer on the top of the stack to the value
+in the immediate register.
+
+\end{description}
+\section{Modified instructions}\label{sec:modifiedinstructions}
+\begin{description}
+\item{LOADIMMED $n$}
+Loads any interger value into the immediate register. Used to only do 
+bit values.
+
+\end{description}
+\section{Expression handling}\label{sec:expressionhandling}
+My intent in handling expressions is that the code generating an expression
+would leave a single value at the top of the stack. This implies discarding
+values as the expression is generated.
+
+For example, the expression $5+i$ would generate code like:
+\begin{verbatim}
+UseName c1
+AllocInt
+LoadImmed 5
+SetInt
+UseName i
+Pullup
+UseName c2
+Add  -- computes the value(s) of i+5, discarding the 
+     -- top two nodes and creates a new node 'c2' with 
+     -- that result at the top of the stack. 
+\end{verbatim}
+Continuing on, if the full statement had been i = 5+i, the code would conclude
+with:
+\begin{verbatim}
+UseName i
+Rename
+     -- Code generation knows that 'i' had been discarded 
+     -- due to its use in the expression.
+\end{verbatim}
+
+The biggest question is if the binary operation should do the 
+discards automatically. It is probably the easiest thing to implement, but
+it seems to do a lot for one instruction. Generating the actual 
+discards would not be hard to do.
+\section{USE handling}\label{sec:usehandling}
+Currently the new instructions only allow a single ``USE'' at a time.
+This is probably not realistic. We could easily want to USE two or more
+items at a time.
+
+However, this would tend to make the USE\emph{OP} instructions more 
+complex than the rest. We would either need to include a name or 
+level (some way of addressing USE variables at a higher level). 
+
+Syntactically in the language, we should consider how this is done as well.
+We could allow ``use n,m,l in \{ ... \}'' only, with no embeded USE statements
+or just allow them anywhere, such as 
+\begin{verbatim}
+use n in {
+  m = n;
+  use m in {
+    x = 2*m +n
+  }
+}
+\end{verbatim}
+In the above case, only 'x' would be available after the completion of the 
+USE statements. The code generated for the last assignment would have to
+look something like:
+\begin{verbatim}
+Usename c1
+LoadImm 2
+SetInt
+USEMul 
+USEAdd -1 -- Or perhaps even USEAdd n, the name.
+Usename x
+Rename
+\end{verbatim}
+In other cases the nesting would be to produce multiple new variables.
+\begin{verbatim}
+use n in {
+  m = n;
+  use j in {
+    x = 2*j +n
+  }
+}
+\end{verbatim}
+In this case, both  'x' and 'm' would be available after the completion of the 
+USE statements. The code generated for the last assignment would be the same
+as the previous one. The difference would be after the inner USE statement, 
+where 'm' is discarded in the first example and 'j' in the second.
+
+\end{document}

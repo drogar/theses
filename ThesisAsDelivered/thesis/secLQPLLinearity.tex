@@ -1,0 +1,15 @@
+\section{Linearity of \lqpl}\label{sec:lqpllinearity}
+The language \lqpl{} treats all quantum variables as \emph{linear}. This 
+means that any variable \emph{may only be used once}. 
+
+\subsection{Linearity of quantum variables}\label{subsec:linearityofqvs}
+Our primary reason for implementing this is the underlying aspect of 
+linearity of quantum systems, as in the \emph{no-duplication} rule, 
+which must be respected at all times. This allows us to provide
+compile-time checking that enforces this rule.
+
+The compiler and language do
+ provide ways to ``ease the burden'' of linear thinking. 
+For example, function calls provide a specialized syntax for variables
+which are both input and output to a function. 
+

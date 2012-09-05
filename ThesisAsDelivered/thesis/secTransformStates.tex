@@ -1,0 +1,130 @@
+\section{Transforming between the states}\label{sec:statetransforming}
+
+As introduced in \vref{sec:qsmstate}, there are four different 
+state descriptions for the transition diagrams.
+They are:
+\begin{gather*}
+\bms = (\cd,S,Q,D,N)\\
+\bms' = (\cd,S,L(Q),D,N)\\
+\cms = (\cd, C , [(S,L(Q),D,N)])\\
+\ms = \il{(\cd, C , [(S,L(Q),D,N)])} 
+\end{gather*}
+
+These actual states are used in the Haskell implementation for the 
+quantum stack machine. In that implementation, 
+\vref{subsec:QSM:machinedescription}  gives the 
+details of the  higher order functions which
+lift a function on one of the base states (\bms, \bms', \cms) to the 
+machine state (\il{(\cd, C , [(S,L(Q),D,N)])}).
+
+\subsection{Lifting functions on \bms{} to \bms'.}\label{subsec:liftbmstobmsprime}
+An endomorphism of \bms{} is changed to an endomorphism of \bms{}' by 
+ignoring the labelling. That is, lifting of the endomorphism is accomplished
+by commuting it
+with the labelling. So, if
+\[ f\,(\cd,S,Q,D,N) = (\cd_f,S_f,Q_f,D_f,N_f)\]
+then 
+\[ (\text{lift}\ f)(\cd,S,L(Q),D,N) = (\cd_f,S_f,L(Q_f),D_f,N_f).\]
+
+
+\subsection{Lifting functions on \bms{}' to \cms}\label{subsec:liftbmstocms}
+This sub-section describes how to lift a restricted type of
+ endomorphism on $\bms' = (\cd,S,L(Q),D,N)$ to
+an endomorphism on $\cms = (\cd, C , [(S,L(Q),D,N)])$.
+
+When moving from \bms{}' to \cms, the lifting of the function maps it 
+across the list of tuples in \cms, while ignoring the control object $C$. We
+require one restriction on the endomorphism for this to work. 
+The restriction is that the code result of the endomorphism 
+only depends on the code of the input. That is,
+given $f::\bms' \to\bms'$ where
+ $f (\cd,S,L(Q),D,N) = (\cd_f,S_f,L(Q)_f,D_f,N_f) $ then
+$\cd_f = f_1(\cd)$ for some function $f_1$.
+
+The lifting function that does this is defined in a series of smaller steps.
+First, consider
+$(\cd, C , [(S,L(Q),D,N)])$, an
+object in \cms. This can be transformed to
+\[(C,[(\cd,S,L(Q),D,N)])\]
+by duplication $\cd$ and ``pasting'' it in front of each tuple in the list.
+Given the endomorphism $f$ of $\bms'$, it may now be applied to each of 
+the elements of the list, as each of them is an object in \bms'. 
+
+Since  $f$ is restricted as above, it is allowed to reverse
+the ``pasting'' and bring the code portion out of the list of tuples. As
+each code portion was equal before 
+applying $f$ and the code result
+only depends on the code input for $f$, 
+it is safe to simply use the code from the
+first tuple in the list. Removing the code entry from all of the other tuples
+ completes the transformation back to an  object of \cms.
+
+
+\subsection{Lifting functions on \cms{} to \ms}\label{subsec:liftcmstoms}
+This sub-section describes how to lift an
+ endomorphism on  $\cms = (\cd, C , [(S,L(Q),D,N)])$ to 
+an endomorphism on $\ms = \il{(\cd, C , [(S,L(Q),D,N)])}$.
+
+The final stage, from \cms{} to \ms{}, makes use of the fact that
+the infinite list functor is known to be a monad. Thus, 
+the Kleisli lifting will transform any endomorphism in \cms{} to an
+endomorphism in \ms{}.
+
+Infinite lists are given by the co-inductive type 
+defined with the destructors $\hd$, which returns the base type, and
+$\tl$, which returns a new infinite list.
+\[\ila=\nu x.\{\hd: A, \tl: x\}\]
+Categorically this corresponds to the diagram in \vref{fig:inflistalgebra} 
+which defines infinite lists.
+\begin{figure}[htbp]
+\[
+\xymatrix{
+A \ar@{=}[d] &
+    C \ar[l]_{h} \ar[r]^{t} \ar@{.>}[d]^{f}&
+    C \ar@{.>}[d]^{f}\\
+A &
+    \ila \ar[l]^{\hd} \ar[r]_{\tl}&
+    \ila
+ }
+\]
+\caption{Initial algebra diagram for infinite lists}\label{fig:inflistalgebra}
+\end{figure}
+
+Recall that for a monad, given the functor $T$, (which is $\il{\_}$ in
+this case) the natural transformations 
+$\eta::I\to T, \mu::T^2\to T$ so that the
+diagrams in \vref{fig:opstandardmonad} commute must be supplied.
+\begin{figure}[htbp]
+\[
+\xymatrix{
+T^3 \ar[r]^{T\mu} \ar[d]_{\mu T} &
+    T^2 \ar[d]^{\mu} \\
+T^2 \ar[r]_{\mu} &
+    T
+ }\quad \mathrm{\ and\ }\quad
+\xymatrix{
+IT \ar@{=}[dr] \ar[r]^{\eta T} &
+    T^2 \ar[d]^{\mu} &
+    TI \ar[l]_{T\eta} \ar@{=}[dl]\\
+ & T &
+ }
+\]
+\caption{Standard monad coherence diagrams}\label{fig:opstandardmonad}
+\end{figure}
+
+In the case of the infinite list, $\mu=$\emph{diagonal} 
+and $\eta=$\emph{constant}, that is:
+\begin{gather*}
+\mu([[a_{00},a_{01},\ldots],[a_{10},a_{11},\ldots],\ldots]) = 
+[a_{00},a_{11},a_{22},\ldots] \\
+\eta(a) = [a,a,a,\ldots]
+\end{gather*}
+
+What this means is that for any endomorphism in \cms, it is  lifted to \ms{}
+ by
+just applying it across the entire infinite list. When composing these with 
+native endomorphisms of \cms{} (in the quantum stack machine, 
+only the \qsmins{Call} instruction generates
+one of these), composition is done by
+ taking the diagonal of the resulting infinite list of infinite lists.
+\TODO{ - seems a bit light....}

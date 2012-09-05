@@ -1,0 +1,80 @@
+%% Modified documentstyle to documentclass -- compatibility with LaTex2e
+%% N. Mancell (98/03/01).
+
+%%  ucalgthes_root.tex        (NM 98/03/01)
+%   Modified   92-09-18      Add references to dissertation        D. Teale
+%                            Add approval page to toc
+%                            Add ref to Title Degree on approval page
+%
+\documentclass[includeprompt]{ucalgthes}   % Remove [includeprompt] to process all
+\title{Title of Thesis \\ \bigskip Second ThesisTitle Line }
+%
+%            Insert the correct information between the {}
+%
+\author{Student's name}
+\year{year}
+\thesis{thesis}    % the word dissertation can be inserted between {}
+\newcommand{\thesistitle}{Title of Thesis}
+\monthname{monthname}
+\dept{name of department}
+\degree{name of degree in full}
+%
+%                    End of supplied information
+%
+\begin{document}
+\makethesistitle
+\pagenumbering{roman}     % resets page counter to one
+\setcounter{page}{2}
+\altchapter[Approval Page]{THE UNIVERSITY OF CALGARY \\ FACULTY OF GRADUATE STUDIES}
+\pagestyle{plain}
+The undersigned certify that they have read, and recommend
+to the Faculty of Graduate Studies for acceptance, a \Thesis\ entitled
+``\thesistitle'' submitted by \Author\
+in partial fulfillment of the requirements for the degree of
+\Degree.
+
+%
+%                 Substitute  List of Examiners
+%
+\begin{signing}{Department of Academic Computing}
+\signline
+Chairman, Dr.~John D.~Doe \\
+Department of Academic Computing \\
+Services  \\
+\signline
+Dr.~Jane Smith \\
+Department of Academic Computing  \\
+%\newsigncolumn         use this command to start a new column if necessary
+\signline
+Dr.~A.~B.~Brown \\
+Department of Academic Computing  \\
+\end{signing}
+%
+\altchapter{Abstract} 
+Paragraph 1
+
+Paragraph 2
+
+Paragragh 3
+\altchapter{Acknowledgements}
+Paragraph 1
+
+Paragraph 2
+
+Paragraph 3
+
+\begin{singlespace}
+\tableofcontents
+\listoftables
+\listoffigures
+\end{singlespace}
+\clearpage                   % otherwise tables will be numbered wrong
+\pagestyle{myheadings}
+\pagenumbering{arabic}
+\include{chap1}
+\include{chap2}
+\include{chap3}
+\include{chap4}
+\include{chap5}
+\include{append}
+\end{document}

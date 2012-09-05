@@ -1,0 +1,12 @@
+#Import Prelude.qpl
+
+orderFind :: (x:Int , n:Int, t:Int | l1:List (Qbit), l2:List(Qbit);
+                l1:List(Qbit), l2:List(Qbit))= 
+{ case l1 of
+    Nil => 
+      { l2 = l2;
+        l1 = Nil }
+    Cons(q,l1') => 
+      { UM(x,n,t) l2 <= q;
+        (l1,l2)=orderFind(x ,n,t+1 | l1',l2)  }
+}

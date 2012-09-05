@@ -1,0 +1,18 @@
+#Import Prelude.qpl
+
+
+switche ::(x:Either (a, b); y:Either (b, a)) =
+{
+   case x of
+     Left (i) => {y = Right (i)}
+     Right (j) => {y = Left (j)}
+}
+
+switchlist :: (x:List (a); y:List (a)) =
+{
+   case x of
+      Nil => {y = Nil}
+      Cons(c,l) => {
+        y = Cons (switche(c), switchlist (l))
+      }
+}

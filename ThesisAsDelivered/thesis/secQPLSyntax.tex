@@ -1,0 +1,60 @@
+\section{The language QPL}\label{subsec:theLanguageQPL}
+QPL is a fairly low level language with a  minimum of constructs. It
+ supports only the types
+  \bit{} and \qbit{}. Because of this 
+design, it is fairly straightforward to present a semantics for the 
+language. The syntax for QPL is given in \ref{fig:QPLSyntax}.
+\begin{figure}[htbp]
+\begin{bnf}
+<qplProg>   ::= <statement>
+
+<statement> ::= \textbf{new bit} <bitid> := 0 | \textbf{new qbit} <qbitid> := 0 |
+                \textbf{discard} <id> | <bitid> := 0 | <bitid> := 1 |
+                <qbitid list> *= <transform> | \textbf{skip} |
+                <stmt list>|
+                \textbf{if} <bitid> \textbf{then} <statement> \textbf{else} <statement> |
+                \textbf{measure} <qbitid> \textbf{then} <statement> \textbf{else} <statement> |
+                \textbf{while} <bitid> \textbf{do} <statement> |
+                \textbf{proc} <procid>:<signature>\{<statement>\} \textbf{in} <statement> |
+                <idlist> = <procid>(idlist)
+
+<stmt list> ::= <statement> ; <stmt list> | <statement>
+
+<transform> ::= Had | Chad | Not | CNot | Z | X | CZ | CX | V | CV
+
+<id>        ::= <bitid> | <qbitid>
+
+<bitid>     ::= \textbf{b} | <bitid><letterOrDigit>
+
+<qbitid>    ::= \textbf{q} | <qbitid><letterOrDigit>
+
+<procid>    ::= <uppercaseLetter> |
+                <procid><letterOrDigit>
+
+<qbitid list>
+            ::= <qbitid> | <qbitid> , <qbitid list>
+
+<id list>   ::= <id> | <id> , <id list>
+
+<signature> ::= <typespeclist> -> <typespeclist>
+
+<typespeclist>
+            ::= <typespec> | <typespec>,<typespeclist>
+
+<typespec>  ::= <bitid>::\textbf{bit} |
+                <qbitid>::\textbf{qbit} 
+\end{bnf}
+\caption{Description of QPL}\label{fig:QPLSyntax}
+\end{figure}
+
+As the reader will see, some definitions in \vref{fig:QPLSyntax} are 
+not required. For example, the distinctions between \emph{qbitid, bitid, procid} 
+can normally be handled when a compiler does
+ the semantic analysis of the language. 
+
+As a prelude to the work in this thesis, I implemented a simulator
+and compiler based directly on \emph{Block QPL}. 
+That compiler 
+determined \bit{}s, \qbit{}s and procedure identifiers at the semantic
+analysis stage.
+

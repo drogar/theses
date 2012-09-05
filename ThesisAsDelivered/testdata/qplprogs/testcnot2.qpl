@@ -1,0 +1,17 @@
+#Import Prelude.qpl
+
+main :: () =
+{
+  a = |0>;
+  Had a;
+  qbl = Cons(a,Cons(|0>,Nil));
+  Swap qbl;
+  case qbl of
+    Nil => {q=|0>; r=|0>}
+    Cons(q1,l1) =>
+      { q = q1;
+        case l1 of 
+          Nil => {r=|0>}
+          Cons(r1,_) =>{r=r1;}
+      }
+}

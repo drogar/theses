@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2012)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Thesis.aux
+The style file: plain.bst
+Database file #1: tunvyrs.bib
+Warning--can't use both author and editor fields in bib:sehgal78
+You've used 6 entries,
+            2118 wiz_defined-function locations,
+            532 strings with 4643 characters,
+and the built_in function-call counts, 1603 in all, are:
+= -- 156
+> -- 60
+< -- 0
++ -- 27
+- -- 18
+* -- 94
+:= -- 288
+add.period$ -- 19
+call.type$ -- 6
+change.case$ -- 26
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 65
+empty$ -- 133
+format.name$ -- 18
+if$ -- 329
+int.to.chr$ -- 0
+int.to.str$ -- 6
+missing$ -- 7
+newline$ -- 34
+num.names$ -- 12
+pop$ -- 22
+preamble$ -- 1
+purify$ -- 21
+quote$ -- 0
+skip$ -- 44
+stack$ -- 0
+substring$ -- 90
+swap$ -- 7
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 22
+warning$ -- 1
+while$ -- 15
+width$ -- 7
+write$ -- 68
+(There was 1 warning)

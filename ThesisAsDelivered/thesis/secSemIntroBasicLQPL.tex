@@ -1,0 +1,128 @@
+\section{Basic \protect{\lqpl} statements}\label{sec:sembasiclqpl}
+Quantum circuits can be translated into basic \lqpl{} statements, which
+ form a core fragment of the \lqpl{}
+language.  Later sections in this chapter will provide the semantics
+for these statements and progressively build up to 
+providing a semantics of \lqpl.
+
+The language is introduced in a series of judgements which give
+the construction of valid \lqpl{} statements.  Judgements have
+the following form:
+\[\Gamma ; \Gamma' \ientail \qins \]
+where $\Gamma$ is the context input to the 
+statement $\qins$ and $\Gamma'$ is the context
+after it is completed.
+
+Basic \lqpl{} has seven distinct statements: 
+\emph{identity, new, assign, discard, measure, control} and \emph{unitary}. 
+Statements may also be composed, creating a \emph{block} of 
+statements which may be used wherever a statement is required.
+
+
+The  judgements for the creation of basic \lqpl{} statements are given in 
+\vref{fig:judgementscreatestatements}.
+
+The \emph{identity} statement is a do-nothing statement that does
+not change the stack or context. The statements \emph{new} and
+\emph{assign} share a similar syntax and create new variables in the output
+context. \emph{Assign} will remove an existing variable, while  \emph{new}
+just creates the new variable. \emph{Discard} removes a variable from the
+input context. The \emph{measure} statement performs a destructive 
+measure of a \qbit, while applying different sets of dependent statements
+contingent on the result of the measure. \emph{Control} modifies the
+execution of dependent statements, contingent upon the value of the
+attached control variable. The final statement, \emph{unitary}, applies
+unitary transformations to a \qbit.
+
+\begin{figure}[htbp]
+\[
+\begin{gathered}
+\infer[{\raisebox{1ex}{identity}}]
+   {\Gamma ; \Gamma \ientail \varepsilon}
+   {}\\
+\\
+\infer[{\raisebox{2ex}{new \bit}}]
+   {\Gamma ; (x{::}\bit),\Gamma \ientail x = i}
+   {i\in\{0,1\}}\qquad
+\infer[{\raisebox{2ex}{new \qbit}}]
+   {\Gamma ; (q{::}\qbit),\Gamma \ientail x = \ket{k}}
+   {k\in\{0,1\}}\\ 
+\\
+\infer[{\raisebox{2ex}{assign}}]
+   {(x{::}\tau),\Gamma;(y{::}\tau),\Gamma\ientail x = y}
+   {}\qquad
+\infer[{\raisebox{2ex}{discard}}]
+   {(x{::}\tau),\Gamma ; \Gamma\ientail \text{disc }x}
+   {}\\ 
+\\
+\infer[{\raisebox{1ex}{measure}}]
+   {(x{::}\qbit),\Gamma; \Gamma'\ientail \text{meas }x\ \ket{0} =>\qins_0\ 
+    \ket{1} => \qins_1}
+   {\Gamma;\Gamma'\ientail \qins_0 & \Gamma; \Gamma' \ientail \qins_1}\\
+\\
+\infer[{\raisebox{2ex}{control}}]
+   {(z{::}\tau),\Gamma;(z{::}\tau),\Gamma'\ientail \qins <= z}
+   {\Gamma; \Gamma' \ientail \qins}\qquad
+\infer[{\raisebox{1ex}{compose}}]
+   {\Gamma; \Gamma'' \ientail (\qins_1 ; \qins_2)}
+   {\Gamma;\Gamma'\ientail \qins_1 & \Gamma'; \Gamma'' \ientail \qins_2}\\
+\\
+\infer[{\raisebox{2ex}{tensor compose}}]
+    {\Gamma_1 \Gamma_2; \Gamma_1' \Gamma_2' \ientail (\qins_1 ;; \qins_2)}
+   {\Gamma_1;\Gamma_1'\ientail \qins_1 & \Gamma_2; \Gamma_2' \ientail \qins_2}\\
+\\
+\infer[{\raisebox{2ex}{unitary}}]
+   {(x{::}\qbit),\Gamma;(x{::}\qbit),\Gamma\ientail U\ x}{}
+\end{gathered}
+\]
+\caption[Judgements for statement creation]{Judgements for creation of basic \lqpl{} statements.}\label{fig:judgementscreatestatements}
+\end{figure}
+
+
+
+
+
+
+\subsection{Examples of basic \protect{\lqpl} programs}
+The examples in this sub-section use the statements as introduced
+in \ref{fig:judgementscreatestatements} to give some example programs.
+
+\paragraph{Program to swap two \qbits.}
+This program will swap two \qbits{} by successive renaming. Both the
+input and output contexts have two \qbits.
+
+$q,v::\qbit{} ;\ v,q::\qbit{} \ientail$
+\begin{Verbatim}
+      w = q;
+      q = v;
+      v = w;
+\end{Verbatim}
+
+
+\paragraph{Program to do a coinflip.}
+The program has an empty input context and a single \bit{} in its 
+output context. At the end, the \bit{} \terminalio{b} will be $0$ with
+probability $.5$ and $1$ with an equal probability.
+
+
+$\emptyset ;\ b::\bit{} \ientail$
+\begin{Verbatim}
+      q = |0>;
+      Had q;
+      meas q
+       |0> => {b = 0}
+       |1> => {b = 1}
+\end{Verbatim}
+
+
+\paragraph{Program to entangle two \qbits{}.} This program places
+two input \qbits{} into an EPR state.
+
+
+$q, r::\qbit{} ;\  q, r::\qbit{}  \ientail$
+\begin{Verbatim}
+      Had q;
+      Not r <= q;
+\end{Verbatim}
+
+

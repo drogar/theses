@@ -1,0 +1,79 @@
+\documentclass[oneside]{ucalgthes}
+%\documentclass[twoside,openright]{ucthesis}
+%\usepackage[letterpaper,top=1.22in, bottom=1.22in, left=1.40in, right=0.850in]{geometry}
+\input{packageuses}
+
+%
+%include lhs2TeX.fmt
+%include lhs2TeX.sty
+%format ^* = "\ltimes"
+%format *^ = "\rtimes"
+% captionskips do not seem to be defined in uc class
+\makeatletter
+%%\newlength\abovecaptionskip
+%%\newlength\belowcaptionskip
+\setlength\abovecaptionskip{10\p@}
+\setlength\belowcaptionskip{0\p@}
+\makeatother
+
+\input{thesisMacros}
+ 
+\title{Programming with a Quantum Stack}
+
+\author{Brett Gordon Giles}
+\year{2006}
+\thesis{thesis}
+\newcommand{\thesistitle}{Programming with a Quantum Stack}
+\monthname{November}
+\dept{COMPUTER SCIENCE}
+\degree{MASTER OF SCIENCE}
+\begin{document}
+\makethesistitle
+\clearpage
+\pagenumbering{roman}
+\setcounter{page}{2}
+\altchapter[Approval Page]{THE UNIVERSITY OF CALGARY \\ FACULTY OF GRADUATE STUDIES}
+\pagestyle{plain}
+The undersigned certify that they have read, and recommend
+to the Faculty of Graduate Studies for acceptance, a \Thesis\ entitled
+``\thesistitle'' submitted by \Author\
+in partial fulfillment of the requirements for the degree of
+\Degree.
+
+%
+%                 Substitute  List of Examiners
+%
+%%% Fill out this with the information that applies to your examination committee
+\begin{signing}{Department of Computer Science}
+\signline
+Chairman, Dr.~Robin~Cockett \\
+Department of Computer Science \\
+\signline
+Dr.~Peter Hoyer \\
+Department of Computer Science  \\
+%\newsigncolumn         use this command to start a new column if necessary
+\signline
+Dr.~Barry Sanders \\
+Director, Institute for Quantum Information Science\\
+\end{signing}
+\altchapter{Abstract}
+\input{abstract}
+% and acknoledgements to be added 
+\altchapter{Acknowledgments}
+\input{acknowlegements}
+\altchapter{Dedication}
+\input{dedication}
+
+\begin{singlespace}
+\tableofcontents{}
+\listoftables
+\listoffigures
+%\listof{QuantumCircuit}{List of Quantum Circuits}
+\end{singlespace}
+\clearpage
+%\input{epigraph}
+%\clearpage
+\pagestyle{myheadings}
+\pagenumbering{arabic}
+\input{body}
+\end{document}

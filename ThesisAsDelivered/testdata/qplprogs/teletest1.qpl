@@ -1,0 +1,17 @@
+
+main :: ()=
+{
+   n = |1>;
+   a=|0> ; b=|0>;
+   Had a;
+   Not b <= a;
+    Not a <= n ;
+    Had n;
+    measure a of 
+        |0>  => {}
+        |1>  => {Not b};
+    measure n of
+        |0> => {}
+        |1> => {RhoZ b}
+
+}

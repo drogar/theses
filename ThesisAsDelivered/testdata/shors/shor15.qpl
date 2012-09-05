@@ -1,0 +1,42 @@
+#Import random.qpl
+#Import gcd.qpl
+#Import intToOneQbitList.qpl
+#Import intToZeroQbitList.qpl
+#Import hadList.qpl
+#Import inverseQft.qpl
+#Import qbitListToInt.qpl
+#Import orderFind.qpl
+#Import contFrac.qpl
+
+factor ::(seed:Int, n:Int ; fact:Int) =
+{   use n;
+    (seed,x) = random(n,seed); //Trial number
+    use x;
+    g = gcd(n,x);
+    use g;
+    if g == 1 =>  //Need to apply algorithm
+    {  ln = intToOneQbitList(n); //ln is a qbit list of length 4 
+       lt = Cons(|0>, Cons(|0>,
+               intToZeroQbitList(2*n))); //lt length 2*4 + 1 + 1;
+       hadList lt; //Create superpositions
+      (lt,ln) = orderFind(x,n,0 | lt, ln) ; // Order finding execution
+       inverseQft lt; 
+       sr = qbitListToInt(lt); 
+            // sr is phase estimate s/r, regard as
+            // float with the decimal point at the 10 binary
+            // position.
+      cfrac(sr,10; ipart,npart, r);
+      grn = gcd(r,n);
+      use grn in 
+      {   if grn == 1 => {fact = factor(seed,n)} // Try again
+          else => { fact = grn;} }
+    } 
+    else => {fact = g }
+}
+
+main :: () =
+{
+    g = factor(38272,15);
+}
+       
+       

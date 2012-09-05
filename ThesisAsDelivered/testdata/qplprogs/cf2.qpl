@@ -1,0 +1,11 @@
+
+cflip ::(; b:Int) =
+{
+   q = |0>;
+   Had q;
+   measure q of
+     |0> => {b = 0}
+     |1> => {
+         b = 1; 
+         c=5};
+}

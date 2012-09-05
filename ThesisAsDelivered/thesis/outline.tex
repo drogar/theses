@@ -1,0 +1,88 @@
+\documentclass[12pt]{report}
+\usepackage{palatino}
+\usepackage{noweb}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts,amssymb}
+\usepackage[mathscr]{euscript}
+\usepackage[all]{xy}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+%\usepackage{verbatim}
+\usepackage{fancyvrb} 
+\usepackage{proof}
+\usepackage{makeidx}
+%\usepackage{lucidabr}
+%\usepackage{/home/grads/gilesb/latexFiles/proof}
+\noweboptions{longxref,smallcode}
+%include lhs2TeX.fmt
+%include lhs2TeX.sty
+%format ^* = "\ltimes"
+%format *^ = "\rtimes"
+
+
+\setlength{\textheight}{8.5in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{-.3in}
+\setlength{\evensidemargin}{-.3in}
+% macros for processing of the literate files
+\DefineVerbatimEnvironment%
+ {happycodefirst}{Verbatim}{gobble=2,numbers=left,firstnumber=1,fontsize=\footnotesize}
+\DefineVerbatimEnvironment%
+ {happycodecont}{Verbatim}{gobble=2,numbers=left,firstnumber=last,fontsize=\footnotesize}
+% import and redefinition of general macros
+\input{/home/grads/gilesb/latexFiles/macros}
+\newcommand{\inflist}[1]{\ensuremath{\mathbb{IL}({#1})}}
+\renewcommand{\incsec}[1]{\subsection{#1}}
+% end of redefinitions.
+\newcommand{\incsubsec}[1]{\subsubsection{#1}}
+\newcommand{\incsubsubsec}[1]{\paragraph{#1}}
+\newcommand{\qplcode}[1]{\textbf{#1}}
+
+ 
+\DefineVerbatimEnvironment%
+{code}{Verbatim}{numbers=left,fontsize=\footnotesize,firstnumber=1}
+\newcommand{\CodeResetNumbers}{\RecustomVerbatimEnvironment%
+{code}{Verbatim}{numbers=left,fontsize=\footnotesize,firstnumber=1}}
+\newcommand{\CodeContinueNumbers}{\RecustomVerbatimEnvironment%
+{code}{Verbatim}{numbers=left,fontsize=\footnotesize,firstnumber=last}}
+
+% End of macros for literate programming
+
+\makeindex
+\begin{document}
+\author{Brett Giles}
+\title{A Quantum Stack for Quantum Programming}
+\maketitle
+\tableofcontents{}
+\chapter{Introduction}
+\chapter{Previous Work}
+\section{Quantum circuits}
+\section{Semantics of QPL by Peter Selinger}
+\section{Semantics of iteration}
+\section{Semantics of data types}
+\section{Haskell based Quantum computation emulators}
+\chapter{Quantum Stack Machine}
+\section{Representation of Qbits}
+\section{Representation of Bits}
+\section{Representation of general data types}
+\section{Basic stack operations}
+\section{Abstract semantics}
+\chapter{A Quantum Programming Language}
+\section{Definition}
+\section{Syntax}
+\section{Semantics}
+\section{Translation to Stack Machine Code}
+\chapter{Examples of Quantum Programs}
+\section{Miscellaneous examples}
+\section{Shor's Factoring Algorithm}
+
+
+
+%\printindex
+\bibliography{/home/grads/gilesb/latexFiles/BibTexFiles/computingScience}
+\bibliographystyle{plain}
+
+\end{document}

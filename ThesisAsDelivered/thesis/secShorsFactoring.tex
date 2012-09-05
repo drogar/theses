@@ -1,0 +1,192 @@
+\section{Shor's factoring algorithm}\label{sec:shorsFactoring}
+Shor's algorithm is split into a classical computational part and a 
+quantum computational.
+The classical part can be considered as three steps:
+\begin{itemize}
+\item{}Setup;
+\item{}Call order finding (a quantum algorithm);
+\item{}Check to see if an answer has been found, repeat if not.
+\end{itemize}
+
+The code provided in this section is currently work in progress. It
+represents my current understanding of the algorithm and how that
+fits with the capabilities of \lqpl. Future \lqpl{} enhancements and
+study of the algorithm will undoubtedly lead to changes and improvements.
+
+\subsection{Setup for factoring}\label{subsec:setupforfactoring}
+The algorithm begins by assuming input of a number $N$ for factoring. 
+It then chooses a random number $a$ less than $N$ (see
+\vref{fig:randomQPL}) and compute the $\gcd(a,N)$ (see \vref{fig:gcdQPL}).
+If this is one, $a$ is a factor of $N$ and the algorithm is complete.
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{../testdata/shors/random.qpl}
+\caption{\lqpl{} function to get a random number}\label{fig:randomQPL}
+\end{figure}
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{../testdata/shors/gcd.qpl}
+\caption{\lqpl{} function to compute the GCD}\label{fig:gcdQPL}
+\end{figure}
+
+\subsection{Order finding}\label{subsec:orderfinding}
+
+The first part involve creating two \qbit{} ``registers'', which in 
+\lqpl{} are items of type \inlqpl{List(Qbit)}. 
+The lists need to be $\log_2 N$ 
+\qbit{}s each,the first initialized to \ket{0}, the
+second to \ket{1}, and individual Hadamard transforms must be applied
+to the first register. This is accomplished by calling the functions
+\inlqpl{intToZeroQbitList} and \inlqpl{hadList}
+ as shown in \ref{fig:intToZeroqbitlist} and
+\ref{fig:hadList}.
+
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{../testdata/shors/intToZeroQbitList.qpl}
+\caption{Function to take an int and return a list of \qbits}
+\label{fig:intToZeroqbitlist}
+\end{figure}
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{../testdata/shors/hadList.qpl}
+\caption{Function to apply Hadamard to all of a list of \qbits}\label{fig:hadList}
+\end{figure}
+
+The next step is to apply the unitary transform corresponding to the
+function $f$, where $f(x) = a^x \mod N$. This is done via the 
+specialized transform $UM$, which takes $x,N$ and $t$ as parametrization
+inputs and then applies the transform to \emph{a list of \qbit{}s}, controlled
+by the \qbit{s} in the first list. This is
+%TODO - Dr. C - in Order find, can/should recursive call be controlled by q?
+shown in \ref{fig:orderfind}.
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{../testdata/shors/orderFind.qpl}
+\caption{Order finding algorithm}
+\label{fig:orderfind}
+\end{figure}
+
+In the example program, the 
+ matrix of the transformation $UM$ will be a $16\times 16$ matrix
+as it operates on 4 \qbits. Let us determine what the matrix would be 
+in the case $N=15, x=7$. 
+
+First, compute $x^7\mod 15$ for $1,\ldots 14$.
+\[\begin{array}{ccc}
+1^7\equiv 1(= '0001')&6^7\equiv 6(= '0110')&11^7\equiv 11(='1011') \\
+2^7\equiv 8(= '1000')&7^7\equiv 13(= '1110')&12^7\equiv 3(='0011') \\
+3^7\equiv 12(= '1100')&8^7\equiv 2(= '0010')&13^7\equiv 7(='0111') \\
+4^7\equiv 4(= '0100')&9^7\equiv 9(= '1001')&14^7\equiv 14(='1110') \\
+5^7\equiv 5(= '0101')&10^7\equiv 10(= '1010')&\\
+\end{array}\]
+Note also that the bit strings $'0000', '1111'$ are mapped to themselves.
+
+Identifying these numbers (i.e., using their corresponding bit strings)
+ with the basis vectors of $\complex^4$,
+ the function determines a permutation of the basis
+vectors:
+\[\begin{pmatrix}
+\begin{array}{cccccccc}
+0&1&2&3&4&5&6&7\\
+0&1&8&12&4&5&6&13
+\end{array}&
+\begin{array}{cccccccc}
+8&9&10&11&12&13&14&15\\
+2&9&10&11&3&7&14&15
+\end{array}
+\end{pmatrix}
+\]
+This gives us the transformation matrix:
+{\begin{singlespace}
+\[\begin{bmatrix}
+\begin{array}{cccccccc}
+1&0&0&0&0&0&0&0\\
+0&1&0&0&0&0&0&0\\
+0&0&0&0&0&0&0&0\\
+0&0&0&0&0&0&0&0\\
+0&0&0&0&1&0&0&0\\
+0&0&0&0&0&1&0&0\\
+0&0&0&0&0&0&1&0\\
+0&0&0&0&0&0&0&0
+\end{array} &
+\begin{array}{cccccccc}
+0&0&0&0&0&0&0&0\\
+1&0&0&0&0&0&0&0\\
+0&0&0&0&1&0&0&0\\
+0&0&0&0&0&0&0&0\\
+0&0&0&0&0&0&0&0\\
+0&0&0&0&0&0&0&0\\
+0&0&0&0&0&0&0&0\\
+0&0&0&0&0&1&0&0
+\end{array} \\
+&\\
+\begin{array}{cccccccc}
+0&1&0&0&0&0&0&0\\
+0&0&0&0&0&0&0&0\\
+0&0&0&0&0&0&0&0\\
+0&0&0&0&0&0&0&0\\
+0&0&1&0&0&0&0&0\\
+0&0&0&0&0&0&0&0\\
+0&0&0&0&0&0&1&0\\
+0&0&0&0&0&0&0&0
+\end{array} &
+\begin{array}{cccccccc}
+0&0&0&0&0&0&0&0\\
+0&1&0&0&0&0&0&0\\
+0&0&1&0&0&0&0&0\\
+0&0&0&1&0&0&0&0\\
+0&0&0&0&0&0&0&0\\
+0&0&0&0&0&0&0&0\\
+0&0&0&0&0&0&1&0\\
+0&0&0&0&0&0&0&1
+\end{array} 
+\end{bmatrix}
+\]
+\end{singlespace}
+}
+
+
+The algorithm  then applies
+the inverse quantum Fourier transform to the first 
+\qbit{} list. This is given by the functions as shown in \ref{fig:inverseqft}
+and \ref{fig:inverserotate}.
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{../testdata/shors/inverseQft.qpl}
+\caption{Function to apply the inverse quantum Fourier transform}
+\label{fig:inverseqft}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{../testdata/shors/inverseRotate.qpl}
+\caption{Function to apply inverse rotations as part of the inverse QFT}
+\label{fig:inverserotate}
+\end{figure}
+
+The algorithm  then measures
+ the first list,  creating an integer from its value, as in
+\vref{fig:qbitListToInt}. Call  the result of this $y$. 
+
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{../testdata/shors/qbitListToInt.qpl}
+\caption{Function to measure a list and create a probabilistic integer}
+\label{fig:qbitListToInt}
+\end{figure}
+
+The algorithm now takes $y$ and computes the 
+denominator $r'$ of $y/N$ when reduced 
+via a continued fraction algorithm. The code for the 
+continued fraction algorithm is still under active development and 
+not included at this time.
+
+The final program is in \vref{fig:shorsfactoring}.
+
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{../testdata/shors/shor15.qpl}
+\caption{Program to factor 15 via Shor's algorithm}
+\label{fig:shorsfactoring}
+\end{figure}

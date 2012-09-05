@@ -1,0 +1,41 @@
+length Start
+   QPullup  l  
+   Split (#Nil,l1) (#Cons,l2)   
+   Jump l3
+l1  QDiscard
+    CLoad 0
+    QMove i
+    EndQC
+l2  QUnbind lis2
+    QDiscard lis2
+    QUnbind lis1
+    QDiscard
+    QPullup lis1
+    QName lis1 l
+    Call 0 length
+    QPullup i
+    Use l4
+     Jump l5
+l4   QDiscard
+     CLoad 1
+     CApply +
+     QMove i
+     EndQC
+l5  EndQC
+l3  Return 0
+    EndProc
+
+Main Start
+   CLoad 2
+   QMove c2
+   CLoad 1
+   QMove c1
+   QCons nil #Nil
+   QCons l1 #Cons
+   QBind nil
+   QBind c1
+   QCons l #Cons
+   QBind l1
+   QBind c2
+   Call 0 length
+   EndProc

@@ -1,0 +1,13 @@
+qdata List a = {Nil | Cons (a, (List a))}
+
+reverse  :: (l:List (a) ; rl: List (a))= 
+{  rev' (l, Nil ; rl) }
+
+rev'  :: (l:List (a), accumIn:List(a) ; returnList: List (a))= 
+{  case l of `\label{line:rev:caserev}`
+     Nil => {returnList = accumIn}
+     Cons (hd, tail) => 
+       {  acc = Cons(hd, accumIn);
+          returnList = rev'(tail, acc)}
+}
+

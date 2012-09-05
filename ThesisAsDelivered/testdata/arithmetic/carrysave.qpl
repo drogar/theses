@@ -1,0 +1,15 @@
+
+carry::(c0:Qbit, a:Qbit, b:Qbit,c1:Qbit;
+        c0:Qbit, a:Qbit, b:Qbit,c1:Qbit) =
+{
+   Not c1 <= b,a;
+   Not b <= a;
+   Not c1 <= b, c0
+}
+
+sum::(c:Qbit, a:Qbit, b:Qbit;
+      c:Qbit, a:Qbit, b:Qbit) =
+{
+  Not b <= a;
+  Not b <= c;
+}

@@ -1,0 +1,6 @@
+#Import Prelude.qpl
+
+addNZeroqbs ::(size:Int | last :Qbit; resultList :List(Qbit))= 
+{    if (size == 0) => { resultList = Cons(last,Nil)}
+     else { resultList = Cons(|0>,addNZeroqbs(size - 1 | last))}
+}

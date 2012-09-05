@@ -1,0 +1,48 @@
+\lstset{style=inlinqpl}
+\section{Introduction to \lqpl}\label{sec:introlqpl}
+This chapter  presents an overview of the linear quantum
+program language. Explanations of \lqpl{} programs, statements, 
+and expressions are given. The explanations are done
+using expository presentation with  many short examples to
+illustrate relevant points.
+
+
+\lqpl{} is  a language for experimenting with  quantum
+algorithms. The language provides an expressive syntax for creating functions 
+and working with different datatypes. \lqpl{} has \qbit{}s as first class
+citizens of the language, together with quantum control. 
+Classical operations and classical control are also available to 
+work with classical data.
+
+\subsection{Linearity of \lqpl}\label{subsec:lqpllinearity}
+The language \lqpl{} treats all quantum variables as \emph{linear}. This 
+means that any variable \emph{may only be used once}. 
+The primary reason for implementing this is the underlying aspect of 
+linearity of quantum systems, as exemplified by 
+ the \emph{no-duplication} rule which must be respected at all times. 
+This allows us to provide
+compile-time checking that enforces this rule.
+
+The compiler and language do
+ provide ways to ``ease the burden'' of linear thinking. 
+For example, function calls (\vref{subsec:functioncalls}) 
+provide a specialized syntax for variables
+which are both input and output to a function. The classical 
+use statements (\vref{subsec:usestatements}) place values on to the
+classical stack where the values may be used multiple times.
+
+\begin{figure}[htbp]
+\lstinputlisting[style=linqpl]{examplecode/LengthList.qpl}
+\caption{\lqpl{} code to return the length of the list}\label{fig:lenSQPL}
+\end{figure}
+
+An example illustrating linearity is given in \vref{fig:lenSQPL}. In
+line \ref{line:lengthlist:len}, the function \inlqpl{len} is defined
+as taking one argument of type \inlqpl{List (a)} and returning
+a variable of type \inlqpl{Int}. The input only argument, \inlqpl{listIn},
+\emph{must be destroyed in the function}. When the
+case statement refers to \inlqpl{listIn}, the argument is 
+destroyed, fulfilling the requirement of the function to do so.
+
+
+

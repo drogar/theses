@@ -1,0 +1,13 @@
+#Import carrysumgates.qpl
+
+main::()=
+{
+   a = |0>;
+   Had a;
+   b = |1>;
+   c0' = |0>;
+   c1' = |0>;
+   carry c0' a b c1';
+   discard c0';
+}
+

@@ -1,0 +1,7 @@
+#Import Prelude.qpl
+
+intToQbitList::(n:Int | ; nq:List(Qbit))  = 
+{ if n == 0          => { nq = Nil; }
+     (n div 2) == 0  => { nq = Cons(|0>,intToQbitList(n >> 1)) }
+  else               => { nq = Cons(|1>,intToQbitList(n >> 1)) }
+}

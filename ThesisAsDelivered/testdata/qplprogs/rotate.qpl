@@ -1,0 +1,17 @@
+#Import Prelude.qpl
+
+rotate ::(n:Int, h:Qbit, l:List (Qbit); h:Qbit, l:List (Qbit))
+= {
+   case l of
+     Nil => { 
+        discard n;
+        l = Nil 
+     }
+     Cons (x, y) => { 
+        use n;
+        Rot(n) h <= x;
+        m = n+1 ;
+        rotate(m) h y; // Eventually discards m.
+        l = Cons (x,y) 
+     }
+}

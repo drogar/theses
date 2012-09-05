@@ -1,0 +1,10 @@
+cfrac ::(numer:Int, denom :Int ; intpart :Int, numerout:Int, denomout:Int)
+= {
+use numer, denom in
+  {  intpart = numer / denom;
+     numerout = numer % denom;
+     denomout = denom
+}
+}
+
+   

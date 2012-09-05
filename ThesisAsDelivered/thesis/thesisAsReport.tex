@@ -1,0 +1,24 @@
+\documentclass[12pt]{report}
+\input{packageuses}
+%include lhs2TeX.fmt
+%include lhs2TeX.sty
+%format ^* = "\ltimes"
+%format *^ = "\rtimes"
+
+
+\input{thesisMacros}
+
+
+\makeindex
+\begin{document}
+\author{Brett G. Giles}
+\title{A Quantum Stack for Quantum Programming}
+\maketitle
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+\tableofcontents{}
+\listoftables
+\listoffigures
+\input{body}
+\end{document}

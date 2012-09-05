@@ -1,0 +1,5 @@
+gcd :: (a : Int, b: Int; theGcd : Int) = 
+{ use a,b in 
+  { if b == 0 => { theGcd = a } 
+    else => {theGcd = gcd(b, a mod b)} }   
+}

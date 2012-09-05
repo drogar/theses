@@ -1,0 +1,47 @@
+Hi Dr. Cockett
+
+I fixed the issue with teleport not working - it was a small
+typo. When I merge two branches, the first thing it checks is that the
+top level names are the same (i.e. the same node). I had a type on a
+guard that meant the check was never performed. 
+
+I fixed a few other things as well and found that I needed to add a
+"QDelete" operation code. Unlike the "QDiscard" which only discards a
+top node item when it has a single branch below it, this new
+instruction will delete any top node and perform a merge of the
+sub-branches. Additionally, it will delete any bound variables when
+deleting an item from a data element.
+
+The only reason I need this is the "don't care" pattern in case
+statements. For example, if we were working on a List(a) type and were
+decomposing it like:
+  case lista of
+    Nil => {...}
+    Cons(_,subl) =>{...}
+the head of the list is no longer accessible in the program. I had
+been using a "QDiscard" to get rid of it, but that does not work
+unless it is a simple type with only one sub branch. 
+
+At first I thought that we would generate code to use/measure/split
+the element, but that does not work - in the above code, I do not know
+the type of the "don't care" element. It could be a qbit or anything
+else.
+
+The only things I thought of to do were to either just ignore the
+element (making a memory leak in the lqpl generated code) or add this
+"QDelete" instruction.
+
+I've also attached its transistions.
+
+What do you think?
+
+Also, I found that binding has an small issue. My current algorithm
+can create duplicate names, which is obviously not a good thing. I
+have two choices that I can see. Either add a "name generation"
+counter to the machine state (Which I would prefer not to do - I think
+there is enough there already), or change the "QBind" instruction to
+have two names on it. It currently just has the one, the item to be
+bound. The modified one would have the name to be bound and the
+binding name.  
+
+What do you think  - which is better (or is there a third way to go?)

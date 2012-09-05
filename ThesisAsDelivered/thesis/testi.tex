@@ -1,0 +1,79 @@
+\documentclass{ucalgthes}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{palatino,courier}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts,amssymb}
+\usepackage[mathscr]{euscript}
+\usepackage[all]{xy}
+\usepackage{stmaryrd}
+\usepackage{graphics}
+\usepackage{array}
+\usepackage{fancyvrb} 
+\usepackage{proof}
+\usepackage{mchaskell}
+\usepackage{float}
+\usepackage{makeidx}
+\usepackage{url}
+\usepackage{varioref}
+\usepackage{listings}
+\usepackage{eulervm}
+\usepackage{mylhs}
+\reversemarginpar
+
+% captionskips do not seem to be defined in uc class
+
+\input{thesisMacros}
+ 
+\title{A Quantum Stack for Quantum Programming}
+
+\author{Brett G. Giles}
+\year{2006}
+\thesis{thesis}
+\newcommand{\thesistitle}{A Quantum Stack for Quantum Programming}
+\monthname{August}
+\dept{COMPUTER SCIENCE}
+\degree{M.Sc. IN COMPUTER SCIENCE}
+\begin{document}
+\makethesistitle
+\pagenumbering{roman}
+\setcounter{page}{2}
+\altchapter[Approval Page]{THE UNIVERSITY OF CALGARY \\ FACULTY OF GRADUATE STUDIES}
+\pagestyle{plain}
+The undersigned certify that they have read, and recommend
+to the Faculty of Graduate Studies for acceptance, a \Thesis\ entitled
+``\thesistitle'' submitted by \Author\
+in partial fulfillment of the requirements for the degree of
+\Degree.
+
+%
+%                 Substitute  List of Examiners
+%
+%%% Fill out this with the information that applies to your examination committee
+\begin{signing}{Department of Computer Science}
+\signline
+Chairman, Dr.~Robin~Cockett \\
+Department of Computer Science \\
+\signline
+Dr.~Next Examiner \\
+Department of Computer Science  \\
+%\newsigncolumn         use this command to start a new column if necessary
+\signline
+Dr.~Third Examiner \\
+Department of Computer Science  \\
+\end{signing}
+\altchapter{Abstract}
+\input{abstract}
+% and acknoledgements to be added \include{dedication}
+\begin{singlespace}
+\tableofcontents{}
+\listoftables
+\listoffigures
+%\listof{QuantumCircuit}{List of Quantum Circuits}
+\end{singlespace}
+\clearpage
+\pagestyle{myheadings}
+\pagenumbering{arabic}
+\input{InfList.tex}
+\end{document}

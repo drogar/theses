@@ -1,0 +1,8 @@
+#Import Prelude.qpl
+
+colToInt::(inc:Colour; out:Int) =
+{
+   case inc of
+     Red => { out = 0;}
+     Black => { out = 1;}
+}
