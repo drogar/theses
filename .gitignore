@@ -3,6 +3,9 @@
 *.aux
 *.dvi
 *.lof
+*.out
+*.synctex.gz
+*.toc
 *.lot
 *.log
 *.ps
