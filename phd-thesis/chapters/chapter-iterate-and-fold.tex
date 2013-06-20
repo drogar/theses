@@ -423,12 +423,12 @@ The function $S_i$ performs the following actions:
 \end{itemize}
 
 The intended effect of this transform may be seen in figure
-%\ref{fig:transforming_a_subroutine_to_an_iterated_subroutine}
+\ref{fig:transforming_a_subroutine_to_an_iterated_subroutine}
 \begin{figure}[htbp]
-%   \centering
-%     \includegraphics[scale=.4]{diagrams/SubroutineIterationTransform.png}
-%   \caption{Transforming a subroutine to an iterated subroutine}
-%   \label{fig:transforming_a_subroutine_to_an_iterated_subroutine}
+  \centering
+     \includegraphics[scale=.4]{diagrams/SubroutineIterationTransform.png}
+   \caption{Transforming a subroutine to an iterated subroutine}
+   \label{fig:transforming_a_subroutine_to_an_iterated_subroutine}
 \end{figure}
 % subsection iteration_transformation_of_a_subroutine (end)
 
@@ -766,6 +766,15 @@ of $C$. Additionally, we compute a \emph{rank} of each $c$ in $C'$. The
 % subsection subroutine_to_folded_subroutine_transform (end)
 \subsection{Examples of folding} % (fold)
 \label{sub:examples_of_folding}
+\[
+\Qcircuit{
+ &\qw & \qw& &\\
+ &\qw & \qw& &\\
+ &\qw & \multigate{2}{S} & &\\
+ &\qw & \ghost{S} & &\\
+ &\qw & \ghost{S}& &
+}
+\]
 \begin{example}\label{exmpl:fold_example_with_three_mixed_in_out}
   Consider $S=(\_,\{a,b\},\{c\},\{d\},\_,\_,\_)$ and $b_{cio}=\{(a,c),(b,a)\}$
   and an iteration count of $3$. See figure
