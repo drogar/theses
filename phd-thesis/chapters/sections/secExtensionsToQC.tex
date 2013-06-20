@@ -1,0 +1,222 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+\section{Extensions to quantum circuits}\label{sec:extensionstoqc}
+To facilitate the transition to the programming language \lqpl,
+this section  introduces three extensions to quantum circuits. The
+extensions are  \emph{renaming}, \emph{wire bending and  crossing},
+and \emph{scoped control}.
+ Each extension adds expressive power
+to quantum circuits but does not change the semantic power. For
+each of the extensions, examples of how to re-write the extension in
+standard quantum circuit terminology will be provided.
+\subsection{Renaming}\label{subsec:renaming}
+Quantum circuits currently allow renaming to be an implicit part of any
+gate. The circuit in \vref{qc:renaming} gives
+ an operation to explicitly do this and its rewriting in standard
+circuit notation.
+
+\begin{figure}[htbp]
+\centerline{%
+\Qcircuit @C=1em @R=.7em {
+  &\qw_y& \gate{x:=y}  & \qw& \qw_x &\equiv &  &\qw_y& \gate{I} & \qw& \qw_x
+}}
+\caption{Renaming of a \protect{\qubit} and its equivalent diagram}\label{qc:renaming}
+\end{figure}
+
+\subsection{Wire crossing}\label{subsec:extensionwirecrossing}
+Crossing and bending of wires in a circuit diagram is added to allow
+a simpler presentation of algorithms. The circuit in
+\vref{qc:benditbaby} illustrates the concept of re-organizing and
+bending of wires.
+
+\begin{figure}[htbp]
+\[
+\begin{array}{c}
+\Qcircuit @C=1em @R=.7em {
+  &\qw& \multigate{1}{U_1}&\qw \ar @{-} [ddr]\\
+  &\qw& \ghost{U_1}  & \qw & \qw & \qw & \qw & \qw & \qw \\
+  &   &              &                & &\qw & \multigate{1}{U_3} &\qw \\
+  &\qw& \multigate{1}{U_2}  & \qw \ar @{-} [dr] & &  \qw &\ghost{U_3} & \qw \\
+  &\qw& \ghost{U_2}&\qw \ar @{-}  [ur]&&\qw &\qw &\qw
+}
+\end{array}
+\]
+\caption{Bending}\label{qc:benditbaby}
+\end{figure}
+
+
+
+\subsection{Scoped control}
+This extension allows us to group different operations in a circuit and
+show that all of them are controlled by a particular \qubit. This is
+the same as attaching separate control wires to each of the gates in the
+grouped operations. Measurements are not affected by control.
+\Vref{qc:scopedcontrol} shows a scoped control box on the left which
+includes a measure. The right hand side of the same figure
+shows the circuit translated back to
+standard circuit notation, with the measure not being affected by
+the control.
+
+\begin{figure}[htbp]
+\[
+\begin{array}{ccc}
+\Qcircuit @C=1em @R=.7em {
+  &\qw& \gate{H}\gategroup{1}{2}{4}{4}{1.25em}{-}  & \gate{Z}& \qw&\qw\\
+  &\qw& \qswap  & \qw& \qw&\qw\\
+  &\qw& \qswap \qwx  & \qw& \qw&\qw\\
+  &\qw& \qw  & \measureD{M}& \cw&\cw\\
+  &  &    &      &     &  \\
+  &\qw&  \control \ar @{-} [-1,0]+<0ex,.1ex> \qw& \qw&\qw&\qw
+}
+& \qquad \raisebox{-3em}{$\equiv$} \qquad \qquad &
+\Qcircuit @C=1em @R=.7em {
+  & \gate{H} &\qw& \gate{Z}& \qw&\qw\\
+  &\qw& \qswap  & \qw& \qw&\qw\\
+  &\qw& \qswap \qwx  & \qw& \qw&\qw\\
+  &\qw& \qw  & \qw&\measureD{M}& \cw\\
+  &  &    &      &     &  \\
+  &\ctrl{-5}&\ctrl{-3}&  \ctrl{-5}&\qw&\qw
+}
+\end{array}
+\]
+\caption{Scope of control}\label{qc:scopedcontrol}
+\end{figure}
+
+Scoping boxes correspond to procedures and blocks in \lqpl.
+
+Naturally, both scoping and bending may be combined as in
+\ref{qc:allexts}.
+
+
+\begin{figure}[htbp]
+\[
+\begin{array}{c}
+\Qcircuit @C=1em @R=.7em {
+  &\qw& \multigate{1}{U_1}&\qw&\qw&\qw&\multigate{1}{U_3}\gategroup{1}{7}{3}{8}{.8em}{-}  & \gate{Z}& \qw&\qw&\qw\\
+  &\qw& \ghost{U_1}  & \multigate{1}{U_2}&\qw \ar @{-}  [dddr]&&\ghost{U_3} &\measureD{M} &\controlo \cw \cwx[1] &\control \cw \cwx[1] &\cw\\
+  &\qw& \qw  & \ghost{U_2}&\qw \ar @{-}  [ur]&& & &\nowiregate{U_4} &\gate{U_5} &\qw \\
+  &  &    &      &  & & & &   &  \\
+  & & & & & & \control \ar @{-} [-2,0]-<0ex,.9ex> \qw &\qw \ar @{-} @/_/ [uur] &
+}
+\end{array}
+\]
+\caption{Extensions sample}\label{qc:allexts}
+\end{figure}
+
+However, note that exchanging wires is not the same as
+swap. Exchanging a pair of wires is not affected by
+ control, but a swap is affected by control,
+ as shown in \vref{qc:bendisnotswap}.
+
+\begin{figure}[htbp]
+\centerline{%
+\Qcircuit @C=1em @R=1.5em {
+&\qw&\qswap  &\qw \\
+&\qw&\qswap \qwx &\qw\\
+&\qw& \control \qwx \qw & \qw
+ } \quad \raisebox{-1.9em}{$\equiv$} \quad
+\Qcircuit @C=1em @R=1.5em {
+&\qw&\qswap \ghost{U} {\POS"1,2"."2,2"."1,3"."2,3"!C*+<2ex>\frm{-}} &\qw &\raisebox{-4em}{$\neq$}&
+&\qw \ar @{-} [dr] & {\hphantom{ }} \gategroup{1}{7}{2}{8}{2ex}{-} &\qw\\
+&\qw&\qswap \qwx &\qw & &&\qw \ar @{-}[ur] &&\qw\\
+&\qw& \control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw & &
+&\qw&\control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw
+ }\quad \raisebox{-1.9em}{$\equiv$} \quad
+\Qcircuit @C=1em @R=1.5em {
+&\qw \ar @{-} [dr] &  &\qw\\
+&\qw \ar @{-}[ur] &&\qw\\
+&\qw&\qw &\qw
+}
+}
+\caption{Swap in control vs. exchange in control}\label{qc:bendisnotswap}
+\end{figure}
+
+\subsection{Circuit identities}\label{subsec:qcidentites}
+Circuits allow the writing of  the
+same algorithm in multiple ways. This sub-section will list some
+of the circuit identities that hold with the extended notation.
+
+First, note that although a measure may appear inside a
+control box, it is not affected by the control, as in
+\vref{qc:measurenotaffectedbycontrol}. Conversely, a
+measurement commutes with control of a circuit as in
+\vref{qc:measurenotaffectedbycontrol}.
+
+\begin{figure}[htbp]
+\centerline{%
+\Qcircuit @C=1em @R=1.5em {
+&\qw&\measureD{M}\gategroup{1}{2}{1}{3}{2ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\measureD{M}& \qw\\
+&\qw& \control \ar @{-} [-1,0]-<0ex,2.35ex> \qw &\qw & &&\qw&\qw&\qw
+}}
+\caption{Measure is not affected by control}\label{qc:measurenotaffectedbycontrol}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centerline{%
+\Qcircuit @C=1em @R=1.5em {
+&\qw & \measureD{M} & \control \cwx[1] \cw &\cw & & \raisebox{-4em}{$\equiv$}& &\qw &\ctrl{1}  & \measureD{M}& \cw\\
+&\qw& \qw & \gate{C_1} & \qw & & & & \qw & \gate{C_1} &\qw &\qw
+}}
+\caption{Control  is not affected by measure}\label{qc:controlnotaffectedbymeasure}
+\end{figure}
+
+One of the notations introduced earlier was that of \emph{0-control}.
+This type of control is the same as applying a $Not$ transform before
+and after a \emph{1-control}, as shown in \vref{qc:zctrlisonecontrol}.
+
+
+\begin{figure}[htbp]
+\centerline{%
+\Qcircuit @C=1em @R=1.5em {
+&\qw & \gate{U} & \qw & & \raisebox{-4em}{$\equiv$}& &\qw &\qw & \gate{U} &\qw & \qw \\
+&\qw& \ctrlo{-1} & \qw & & & & \qw & \targ & \ctrl{-1} &\targ  &\qw
+}}
+\caption{Zero control is syntactic sugar}\label{qc:zctrlisonecontrol}
+\end{figure}
+
+
+\Vref{qc:scopedctrleqparallelcontrol} shows
+that scoped control of multiple transforms is the same as
+controlling those transforms individually.
+\begin{figure}[htbp]
+\centerline{%
+\Qcircuit @C=1em @R=1.5em {
+&\qw&\gate{U_1}\gategroup{1}{2}{2}{3}{1ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\gate{U_1}&\qw&\qw\\
+&\qw&\gate{U_2}&\qw & &&\qw&\qw&\gate{U_2}&\qw\\
+&\qw& \control \ar @{-} [-1,0]-<0ex,2.1ex> \qw &\qw & &&\qw&\ctrl{-2}&\ctrl{-1}&\qw
+}}
+\caption{Scoped control is parallel control}\label{qc:scopedctrleqparallelcontrol}
+\end{figure}
+\Ref{qc:scopedctrleqserialcontrol} similarly shows
+that scoped control of multiple transforms of the same \qubit{} is
+the same as controlling those transforms serially.
+\begin{figure}[htbp]
+\centerline{%
+\Qcircuit @C=1em @R=1.5em {
+&\qw&\gate{U_1}\gategroup{1}{2}{1}{4}{1ex}{-} &\gate{U_2}&\qw &\raisebox{-2em}{$\equiv$}& &\qw&\gate{U_1}&\gate{U_2}&\qw\\
+&\qw& \control \ar @{-} [-1,0]-<0ex,2.1ex> \qw &\qw &\qw &&&\qw&\ctrl{-1}&\ctrl{-1}&\qw
+}}
+\caption{Scoped control is serial control}\label{qc:scopedctrleqserialcontrol}
+\end{figure}
+
+Multiple control commutes with scoping as shown in
+\vrefrange{qc:scopecommutecontrolone}{qc:scopecommutecontroltwo}.
+\begin{figure}[htbp]
+\centerline{%
+\Qcircuit @C=1em @R=1.5em {
+&\qw&\gate{U_1}\gategroup{1}{2}{2}{3}{2ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\gate{U_1}&\qw\\
+&\qw&\ctrl{-1}&\qw & &&\qw&\ctrl{-1}&\qw\\
+&\qw& \control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw & &&\qw&\ctrl{-1}&\qw
+}}
+\caption{Multiple control}\label{qc:scopecommutecontrolone}
+\end{figure}
+\begin{figure}[htbp]
+\centerline{%
+\Qcircuit @C=1em @R=1.5em {
+&\qw&\ctrl{1}\gategroup{1}{2}{2}{3}{2ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\control \ar @{-} [1,0]+<0ex,2.5ex> \qw&\qw\\
+&\qw&\gate{U_1}&\qw & &&\qw&\gate{U_1}\gategroup{2}{7}{3}{8}{2ex}{-} &\qw\\
+&\qw& \control \ar @{-} [-1,0]-<0ex,2.6ex> \qw &\qw & &&\qw&\ctrl{-1}&\qw
+}}
+\caption{Control scopes commute}\label{qc:scopecommutecontroltwo}
+\end{figure}
+
