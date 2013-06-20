@@ -766,15 +766,7 @@ of $C$. Additionally, we compute a \emph{rank} of each $c$ in $C'$. The
 % subsection subroutine_to_folded_subroutine_transform (end)
 \subsection{Examples of folding} % (fold)
 \label{sub:examples_of_folding}
-\[
-\Qcircuit{
- &\qw & \qw& &\\
- &\qw & \qw& &\\
- &\qw & \multigate{2}{S} & &\\
- &\qw & \ghost{S} & &\\
- &\qw & \ghost{S}& &
-}
-\]
+
 \begin{example}\label{exmpl:fold_example_with_three_mixed_in_out}
   Consider $S=(\_,\{a,b\},\{c\},\{d\},\_,\_,\_)$ and $b_{cio}=\{(a,c),(b,a)\}$
   and an iteration count of $3$. See figure
@@ -782,7 +774,18 @@ of $C$. Additionally, we compute a \emph{rank} of each $c$ in $C'$. The
 \end{example}
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=.5]{diagrams/FoldThreePlusInOut.png}
+    \[
+\Qcircuit{
+ & \dqw& \dqw &\dqw &\dqw &\dqw\ar@{.} [dddr]&\\
+ & \dqw& \dqw\ar@{.}[ddr]\\
+ & \multigate{3}{S_1}_{a_1} & \qw  \ar@{.}[dddr] &  & \multigate{3}{S_2}_{a_2}&\qw\ar@{.}[dddr]&  & \multigate{3}{S_3}_{a_3}&\qw\\
+ & \ghost{S_1}_{b_1} & \qw \ar@{.}[ur]& &\ghost{S_2}_{b_2}&\qw\ar@{.}[ur]& &\ghost{S_3}_{b_3}&\qw\\
+ &  & & & & & & & & & &\\
+ & \ghost{S_1}_{c_1}& \qw_{d_1} \ar@{.}[ddr]& &\ghost{S_2}_{c_2}&\qw_{d_2}\ar@{.}[dr]& &\ghost{S_3}_{c_3}&\qw_{d_3}\\
+ &            &                & &            &              & &\dqw&\dqw\\
+ &            &                & & \dqw      &\dqw           &\dqw&\dqw&\dqw
+}
+\]
   \caption{Fold with extra in/out}
   \label{fig:Fold_with_extra_in_out}
 \end{figure}
