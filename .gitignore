@@ -1,0 +1,9 @@
+*.bbl
+*.blg
+*.aux
+*.dvi
+*.lof
+*.lot
+*.log
+*.ps
+*~
