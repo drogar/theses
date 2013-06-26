@@ -2,83 +2,7 @@
 \chapter{Transformations of Quantum Programs}\label{chap:transformations_of_quantum_programs}
 
 
-\section{Terminology} % (fold)
-\label{sec:terminology}
-\subsection{Basic Types} % (fold)
-\label{sub:basic_types}
-Throughout this note, the types \bit and \qubit will be
-taken as given. These are intended to correspond to the
-classical notions of ``bit'' (i.e., 0 or 1) and ``qubit''
-(i.e., $\alpha\ket{0} + \beta\ket{1}$).
-% subsection basic_types (end)
-\begin{definition}\label{def:endpoint}
-  An \type{Endpoint} is either \bit or \qubit.
-\end{definition}
 
-\begin{definition}\label{def:arity}
-  An \type{Arity} is a partial map from $W\subset\nat$ to \type{Endpoint}.
-\end{definition}
-
-\begin{definition}\label{def:wire}
-  A \emph{wire} is an element of $W\subset\nat$. A \emph{typed wire} is a wire
-  together with a specified \type{Arity}.
-\end{definition}
-
-\begin{definition}\label{def:control}
-  A \emph{control wire} is a pair $(w,b)$ where $w$ is a
-  typed wire and $b::\type{Bool}$.
-\end{definition}
-
-A quantum program uses \emph{typed wire}s as its data.
-
-\begin{definition}\label{def:gate}
-  A \emph{gate} is a function from $W_1$, a set of typed wires, to $W_2$,
-  another
-  set of typed wires. The gate function must be a superoperator
-  as defined in \cite{selinger04:qpl}.
-\end{definition}
-
-\subsection{Types and Shapes} % (fold)
-\label{sub:types_and_shapes}
-Although circuits, gates and low level subroutines are defined at
-the level of wires, programmatically, we would like
-to refer to groupings of wires. For example, a list of \qubit
-or a register (tuple) of \qubit. These groupings may have a
-required leaf type (e.g., \qubit or \bit) or it may be
-considered polymorphic. Additionally, the leaf type may be mixed
-or homogenous.
-
-\todo{Read and work on definitions of shapes and QCData}
-
-\begin{definition}\label{def:singletons}
-  The singleton type \type{B} is defined as having the instance \Bs and the
-  singleton type \type{Q} is defined as having the singleton instance \Qs.
-\end{definition}
-
-\begin{definition}\label{def:qcdata}
-  The type family \type{QCData} consists of algebraic data types
-  built up from \bit or \qubit.
-\end{definition}
-
-Examples of \type{QCData} include $(\bit,\qubit,[\qubit])$ and $\bit$.
-
-\begin{definition}\label{def:shape}
-  Given an instance $I$ of a type \type{T} in \type{QCData},
-  the \emph{shape} of $I$ is the instance $I_s$ obtained from
-  $I$ by replacing all terms of type \bit by  \Bs and all terms
-  of type \qubit by \Qs.
-\end{definition}
-
-For example, a 2 element list of \qubits has shape $[\Qs,\Qs]$
-while a pair of a \qubit and \bit has shape $(\Qs,\Bs)$
-
-
-The concepts of shape and the type \type{QCData} allow us to group
-the wires of a quantum circuit into higher
-order types.
-
-% subsection types_and_shapes (end)
-% section terminology (end)
 \section{Subroutines} % (fold)
 \label{sec:subroutines}
 In the following, we will assume \emph{gate} as above is a given
@@ -506,8 +430,7 @@ s_{out} + h \circ (s_{out} + cio_f + s_{in})^{len(D)}
 \end{example}
 
 For this example, we use the carry portion of the addition algorithm found
-in \cite{Vedral:1995ga}. (See Appendix \ref{sec:diagram_of_folded_carry}
-for full diagram.)
+in \cite{Vedral:1995ga}.
 
 The carry circuit is shown below:
 \[\Qcircuit @C=1em @R=.7em {
@@ -832,8 +755,15 @@ Hence our final result is:
 \end{example}
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=.5]{diagrams/FoldThree.png}
-  \caption{Fold with three iterations}
+    \[
+\Qcircuit{
+ & \multigate{3}{S_1}_{a_1} & \qw  \ar@{.}[dddr] &  & \multigate{3}{S_2}_{a_2}&\qw\ar@{.}[dddr]&  & \multigate{3}{S_3}_{a_3}&\qw\\
+ & \ghost{S_1}_{b_1} & \qw \ar@{.}[ur]& &\ghost{S_2}_{b_2}&\qw\ar@{.}[ur]& &\ghost{S_3}_{b_3}&\qw\\
+ &  & & & & & & & & & &\\
+ & \ghost{S_1}_{c_1}& \qw_{d_1} \ar@{.}[uur]& &\ghost{S_2}_{c_2}&\qw_{d_2}\ar@{.}[uur]& &\ghost{S_3}_{c_3}&\qw_{d_3}\\
+}
+\]
+\caption{Fold with three iterations}
   \label{fig:Fold_with_three_iterations}
 \end{figure}
 
@@ -866,13 +796,29 @@ Hence our final result is:
 \end{align*}
 
 \begin{example}\label{exmpl:fold_transform_example_of_carry}
-  Consider $Carry=(\_,\{r,a\},\{b,c\},\{d,e\},\_,\_,\_)$,
+  Consider $C=(\_,\{r,a\},\{b,c\},\{d,e\},\_,\_,\_)$,
   $b_{cio}=\{(e,r)\}$ and an iteration count of $4$. See figure
   \ref{fig:fold_carry_transformed}.
 \end{example}
 \begin{figure}[htbp]
   \centering
-    \includegraphics[scale=.5]{diagrams/FoldCarryTransformed.png}
+    \[
+\xymatrix @R=7pt @*=<0em>{
+ & \multigate{3}{C}_{r_1} & \qw& \qw & \qw & \qw & \qw & \qw & \qw\\
+ & \ghost{C}_{a_1} & \qw       & \qw & \qw & \qw & \qw & \qw & \qw\\
+ & \ghost{C}_{b_1} & \qw_{d_1} & \qw & \qw & \qw & \qw & \qw & \qw\\
+ & \ghost{C}_{c_1} & \qw_{e_1} & \multigate{3}{C}_{r_2} & \qw & \qw & \qw & \qw  & \qw\\
+ & \qw_{a_2}       & \qw       & \ghost{C} & \qw        & \qw & \qw & \qw & \qw\\
+ & \qw_{b_2}       & \qw       & \ghost{C} & \qw_{d_2}  & \qw & \qw & \qw & \qw \\
+ & \qw_{c_2}       & \qw       & \ghost{C} & \qw_{e_2}  & \multigate{3}{C}_{r_3} &\qw& \qw & \qw\\
+ & \qw_{a_3}       & \qw       & \qw       & \qw        & \ghost{C} &\qw      & \qw & \qw \\
+ & \qw_{b_3}       & \qw       & \qw       & \qw        & \ghost{C} &\qw_{d_3}& \qw & \qw\\
+ & \qw_{c_3}       & \qw       & \qw       & \qw        & \ghost{C} &\qw_{e_3}& \multigate{3}{C}_{r_4} &\qw\\
+ & \qw_{a_4}       & \qw       & \qw       & \qw        & \qw       & \qw     & \ghost{C} &\qw\\
+ & \qw_{b_4}       & \qw       & \qw       & \qw        & \qw       & \qw     & \ghost{C} &\qw_{d_4}\\
+ & \qw_{c_4}       & \qw       & \qw       & \qw        & \qw       & \qw     & \ghost{C} &\qw_{e_4}\\
+}
+\]
   \caption{Fold of Carry}
   \label{fig:fold_carry_transformed}
 \end{figure}
@@ -1028,13 +974,3 @@ from the top left.
 % subsection examples_of_folding (end)
 % section alternate_algorithm_for_fold_transformation (end)
 
-
-
-\section{Diagram of Folded Carry} % (fold)
-\label{sec:diagram_of_folded_carry}
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[scale=.6]{diagrams/FoldedCarry.png}
-  \caption{Folding Carry}
-  \label{fig:folding_carry}
-\end{figure}
