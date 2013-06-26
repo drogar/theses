@@ -25,14 +25,14 @@
 %%% suggestions, and to Conal Elliott <conal@MICROSOFT.com> for pointing out
 %%% a tricky bug.
 %%%
-%%% TODO ======================================================================
+%%% 2DO ======================================================================
 %%%
 %%% B ~ bug; F ~ feature
 %%%
 %%% * F: Along the lines of the discussion with Martin Erwig add support for
 %%%      keywords etc (see the emails)
 %%%
-%%% * B: If we have as input 
+%%% * B: If we have as input
 %%%
 %%%        \<map
 %%%        g\>
@@ -58,21 +58,21 @@
 %%%
 %%% * It would be nice to have different styles (indentation after in of
 %%%   let-in or not) etc; either to be set with a package option or in the
-%%%   preamble (the latter probably makes more sense). 
+%%%   preamble (the latter probably makes more sense).
 %%%
 %%% * Literate programming facility: Variant of the `haskell' env (maybe
 %%%   `hschunk', which is named and can be used in other chunks).  But maybe
 %%%   it is not necessary to provide a chunk-based reordering mechanism,
 %%%   because most of the Haskell stuff can be in any order anyway...
 %%%   Important is to provide a way to define visually pleasing layout
-%%%   together with the raw Haskell form for program output. (Maybe `haskell*' 
+%%%   together with the raw Haskell form for program output. (Maybe `haskell*'
 %%%   as Haskell env that outputs its contents?)
 %%%
 
 %% Initialization
 %% ==============
 
-\NeedsTeXFormat{LaTeX2e} 
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{mchaskell}[2000/10/05 v1.0e Chilli's Haskell Style]
 
 
@@ -160,14 +160,14 @@
 % Inline Haskell phrases are delimited by `\<' and `\>'.
 %
 % Note: `\>' is only locally redefined.
-% 
+%
 \newcommand{\<}{%
   \@hsmathorg
   \mathit\bgroup
   \@hsSpaceToApp
   \@hsRmNumbers
   \let\>=\@endhs
-  \let\(=\@hsmath  
+  \let\(=\@hsmath
   \def\\{\cr}           % for Haskell alignments
   }
 \newcommand{\@endhs}{%
@@ -177,7 +177,7 @@
 
 % Displayed Haskell (environment `haskell' and `haskell*')
 %
-% There are two kind of preambles for \halign: \hs@preambleNorm is for 
+% There are two kind of preambles for \halign: \hs@preambleNorm is for
 % `amsmath' style alignments and \hs@preambleStar for `equation' style
 % alignments (but with an unbound number of columns to its right)
 %
@@ -203,13 +203,13 @@
   \@endhaskell
   }
 %
-% auxiliary definition getting the preamble as its first argument and starting 
+% auxiliary definition getting the preamble as its first argument and starting
 % the environment:
 %
 \def\@haskell#1{%
   \bgroup
   \vspace\abovedisplayskip
-  \let\(=\@hsmath               % Important when `\(' occurs after `&'!  
+  \let\(=\@hsmath               % Important when `\(' occurs after `&'!
   \edef\@preamble{%
     \halign\bgroup\hskip\hsmargin#1\cr}
   \@preamble
@@ -245,7 +245,7 @@
 %
 % check for an optional star and combine prefix (in #1) with one of the two
 % preambles (with star means to center the material between the first and
-% second &) 
+% second &)
 %
 \def\hs@align#1{%
   \@ifstar
@@ -258,7 +258,7 @@
 \def\hs@align@pre#1{%
   \@testopt{\hs@align@prealign#1}t}
 %
-% got all arguments, now for the real code; #1: preamble; #2: alignment; 
+% got all arguments, now for the real code; #1: preamble; #2: alignment;
 % #3: body (the material set by the \halign)
 %
 \def\hs@align@prealign#1[#2]#3{%
@@ -379,7 +379,7 @@
     #3
     }%
   }
-  
+
 % if expression
 %
 \hscommand{\hsif}[4][t]{%
@@ -387,7 +387,7 @@
     \hskwd{if} #2 \hskwd{then}\\
     \quad\hsalign{#3}\\
     \hskwd{else}\\
-    \quad\hsalign{#4}% 
+    \quad\hsalign{#4}%
     }%
   }
 
@@ -399,7 +399,7 @@
     \quad\hsalign{#3}%
     }%
   }
-  
+
 % where clause
 %
 % * it is important to take the \quad into the preamble, so that nested

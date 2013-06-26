@@ -28,7 +28,7 @@
    <10><10.95><12><14.4><17.28><20.74><24.88>cmbtt10}{}
 \DeclareFontShape{OT1}{cmtex}{bx}{n}
   {<-> ssub * cmtt/bx/n}{}
-\newcommand{\tex}[1]{\text{\texfamily#1}}	% NEU
+\newcommand{\tex}[1]{\text{\texfamily#1}} % NEU
 
 \newcommand{\Sp}{\hskip.33334em\relax}
 
@@ -81,7 +81,7 @@
 
 \newcommand{\hsindent}[1]{\quad}% default is fixed indentation
 \newcommand{\NB}{\textbf{NB}}
-\newcommand{\Todo}[1]{$\langle$\textbf{To do:}~#1$\rangle$}
+%\newcommand{\Todo}[1]{$\langle$\textbf{To do:}~#1$\rangle$}
 
 \makeatother
 \EndFmtInput
@@ -92,7 +92,7 @@
 %
 %
 % This package provides two environments suitable to take the place
-% of hscode, called "plainhscode" and "arrayhscode". 
+% of hscode, called "plainhscode" and "arrayhscode".
 %
 % The plain environment surrounds each code block by vertical space,
 % and it uses \abovedisplayskip and \belowdisplayskip to get spacing
@@ -167,8 +167,8 @@
 
 \newcommand{\arrayhs}{\sethscode{arrayhscode}}
 
-% The mathhscode environment also makes use of polytable's parray 
-% environment. It is supposed to be used only inside math mode 
+% The mathhscode environment also makes use of polytable's parray
+% environment. It is supposed to be used only inside math mode
 % (I used it to typeset the type rules in my thesis).
 
 \newenvironment{mathhscode}%

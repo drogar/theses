@@ -272,7 +272,7 @@ The entanglement of two \qubits{}, $p$ and $q$, is accomplished by applying a
 a \nottr{} applied to $q$ controlled by $p$.
 The circuit in
 \vref{qc:appEntangle} shows how to entangle two \qubit{}s that start with
-an initial state of $\ket{00}$. See \todo{reference for lqpl teleportation}
+an initial state of $\ket{00}$. See %todo {reference for lqpl teleportation}
 %\vref{fig:stackTeleportation}
 for how this can be done in \lqpl.
 
@@ -667,7 +667,8 @@ applies to all of the first three \qubits{} and
 The examples above have only shown  control based upon
 a \qubit{} being \ket{1}. Circuits also allow control on a
 \qubit{} being \ket{0} and upon classical values. The circuit
-in \vref{qc:zctrlAndClassicalControl} with four \qubit{}s $(r_1, r_2, p$ and
+%todo vref the below later
+in \ref{qc:zctrlAndClassicalControl} with four \qubit{}s $(r_1, r_2, p$ and
 $q)$ illustrates all these forms of control.
 
 At $g_1$, a  \Had{} is  $1-$controlled by $r_2$ and
@@ -978,7 +979,7 @@ state $\ket{a,b}$ to $\ket{a,b\oplus f(a)}$
 where $\oplus$ is the exclusive-or operator and $a$ is $n$ \bit{} values.
 If we name this operator
 $U_f$,  the circuit in \vref{qc:djAlgorithm} will solve the problem
-with  just one application. See the appendix, \todo{vref{appsubsec:djalgorithm}}
+with  just one application. See the appendix, %todo {vref{appsubsec:djalgorithm}}
 for how this would be done in \lqpl.
 \begin{figure}[htbp]
 \centerline{%
@@ -1023,7 +1024,7 @@ algorithms, including Shor's factoring algorithm.
 The quantum Fourier transform is definable  on an arbitrary number of \qubits.
 This is typically presented by eliding the $3^{\text{rd}}$ to the
 $n-3^{\text{rd}}$ lines and interior processing. The \lqpl{} code for
-the quantum Fourier transform  is in the appendix, \todo{vref{fig:qft}}.
+the quantum Fourier transform  is in the appendix, %todo {vref{fig:qft}}.
  In this circuit, the parametrized transform $R_n$ is
 the rotation transform, given by:
 \[
@@ -1055,7 +1056,7 @@ from right to left. This process changes the original quantum Fourier
 circuit to its inverse as  shown in
 \vref{qc:inverseqft}. The \lqpl{} code for the
 inverse quantum Fourier transform is in the
-appendix, \todo{vrefrange{fig:inverseqft}{fig:inverserotate}}.
+appendix, %todo {vrefrange{fig:inverseqft}{fig:inverserotate}}.
 \begin{figure}[htbp]
 \centerline{%
 \Qcircuit @C=1em @R=.7em {
@@ -1324,22 +1325,34 @@ Multiple control commutes with scoping as shown in
 
 
 
-\section{An Alternate Description of Quantum Circuits} % (fold)
+\section{An alternate description of quantum circuits} % (fold)
 \label{sec:an_alternate_description_of_quantum_circuits}
 
-\subsection{Basic Types} % (fold)
-\label{sub:basic_types}
-Throughout this note, the types \bit and \qubit will be
-taken as given. These are intended to correspond to the
-classical notions of ``bit'' (i.e., 0 or 1) and ``qubit''
+In order to explore transforms of quantum circuits, it is helpful to have a
+algebraic description which will allow manipulation of the circuits. The goals of
+the algebraic description are:
+\begin{itemize}
+  \item Represent \qubits and \bits;
+  \item represent gates;
+  \item allow algorithmic manipulations of the circuit;
+  \item allow proving that correctness of manipulations.
+\end{itemize}
+
+Note that measurement is not included in this representation.
+
+\subsection{Base types} % (fold)
+\label{sub:base_types}
+The base types \bit and \qubit are needed for any circuit. These will be
+taken as elemental and correspond to the
+classical notions of ``bit'' (i.e., $0$ or $1$) and ``qubit''
 (i.e., $\alpha\ket{0} + \beta\ket{1}$).
 % subsection basic_types (end)
 \begin{definition}\label{def:endpoint}
-  An \type{Endpoint} is either \bit or \qubit.
+  The type \type{endpoint} is either \bit or \qubit.
 \end{definition}
 
 \begin{definition}\label{def:arity}
-  An \type{Arity} is a partial map from $W\subset\nat$ to \type{Endpoint}.
+  The type \type{Arity} is a partial map from $W\subset\nat$ to \type{Endpoint}.
 \end{definition}
 
 \begin{definition}\label{def:wire}
@@ -1371,7 +1384,7 @@ required leaf type (e.g., \qubit or \bit) or it may be
 considered polymorphic. Additionally, the leaf type may be mixed
 or homogenous.
 
-\todo{Read and work on definitions of shapes and QCData}
+%todo {Read and work on definitions of shapes and QCData}
 
 \begin{definition}\label{def:singletons}
   The singleton type \type{B} is defined as having the instance \Bs and the
