@@ -9,6 +9,34 @@
 %\setlength{\evensidemargin}{-.3in}
 % macros for processing of the literate files
 
+
+% ----------------------------------------------------------------------
+% Theorem like environments
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{notethm}[theorem]{Note}
+
+%\theoremstyle{definition}
+\newtheorem*{sltheorem}{Theorem}
+\newtheorem*{sldefinition}{Definition}
+\newtheorem*{slproposition}{Proposition}
+\newtheorem*{slnotation}{Notation}
+\newtheorem*{slexample}{Example}
+\newtheorem*{slexercise}{Exercise}
+\newtheorem*{sllemma}{Lemma}
+
 % reference formats -
 \labelformat{chapter}{chapter~#1}
 \labelformat{section}{section~#1}

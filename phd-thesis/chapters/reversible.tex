@@ -1,0 +1,144 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+
+\chapter{Reversible computation}\label{chap:reversible_computation}
+
+Bennet, in \cite{bennett:1973reverse}, showed that it was possible to
+emulate a standard Turing machine via a reversible Turing machine and
+vice-versa. This showed the equivalence of  standard and reversible
+Turing machines. We reproduce the essence of this proof below.
+
+\section{Reversible Turing machines} % (fold)
+\label{sec:reversible_turing_machines}
+
+Turing machines consist of a tape, a read-write head positioned over
+the tape, a machine state and a set of instructions. The set of instructions
+may be given as a set of transitions determining the movement of the
+read-write head, what it writes and the resulting state of the machine.
+
+\begin{definition}\label{def:standard_tape}
+  Given an alphabet $A$ which does not contain a space, a tape is in standard
+  format when:
+  \begin{enumerate}
+    \item The tape head is positioned directly over a blank space;
+    \item The spaces to the left (the $+1$ direction) contain only
+    elements of $A$.
+    \item All other spaces of the tape are blank.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}\label{def:turing_machine}
+  A \emph{standard Turing machine} is given by a set of \emph{turing quintuples}:
+  $Q=\{(s,\alpha,\alpha',\delta,s')\}$ where:
+  \begin{enumerate}
+    \item $s,s' \in S$, a set of predefined states of the machine;
+    \item $\alpha, \alpha'\in A$, the set of glyphs that may be
+      written on the machine and
+    \item $\delta \in \{-1,0,1\}$ corresponds to the movement of the
+    read-write head.
+  \end{enumerate}
+  We require that a particular $s,\alpha$ occur only
+  once in the first two positions of the quintuple.
+  Furthermore, the tape is in standard format and there are two special
+  quintuples contained $Q$:
+  \begin{enumerate}
+    \item $(s_1,\_,\_,+1,s_2)$, the start quintuple;
+    \item $(s_{t-1}, \_, \_, 0, s_{t})$, the end quintuple where
+    $t$ is the number of states and is the final state of the machine.
+  \end{enumerate}
+  Finally, if the machine halts, it will halt in state $s_t$ and the output
+  will be in standard format.
+\end{definition}
+
+The turing quintuples may also be regarded as giving the data for a partial
+function in \sets: $\tau:S\times A \to A\times\{-1,0,1\}\times S$.
+\begin{remark}
+  A multi-tape Turing machine with $n$ tapes and read-write heads
+  can be described by modifying
+  definition \ref{def:turing_machine} such that $\alpha$ is an $n$-tuple
+  of the set of glyphs for the Turing machine and $\delta$ is an
+  $n$-tuple of movement directions.
+\end{remark}
+
+\begin{example}\label{exa:simple_turing_program}
+  Suppose $S=\{start,run,reset,done\}$, $A=\{0,1,\_\}$ and the Turing machine
+  program is given by the quintuples
+  \begin{align*}
+    &(start,\_,\_,+1,run),\\
+    &(run,0,1,+1,run), (run,1,0,+1,run),\\
+    &(run,\_,\_,-1,reset),\\
+    &(reset,0,0,-1,reset),(reset,1,1,-1,reset),\\
+    &(reset,\_,\_,0,done).
+  \end{align*}
+  This program will perform a ``bit-flip'' of all $0$s and $1$s on the tape
+  until it reads a space, reposition the read head to the standard format
+  and then it will halt.
+\end{example}
+
+As can be seen from \ref{exa:simple_turing_program}, it is \emph{possible}
+that a Turing machine program is reversible. If we had chosen the second
+quintuple to be $(run,0,0,+1,run)$ instead, the program would not have been
+reversible.
+
+The essential property that a Turing machine program would need to be reversible
+is that the function $\tau$ defined from the quintuples is injective.
+
+\begin{definition}\label{def:turing_quadruple}
+  A \emph{turing quadruple} is given by a quadruple
+  \[(s,[b_1,b_2,\ldots,b_n],[b'_1,b'_2,\ldots,b'_n],s')\]
+  such that:
+  \begin{itemize}
+    \item $s,s'\in S$, some set of states;
+    \item $b_i\in A  \cup \{\phi\}$ where $A$ is some alphabet;
+    \item $b'_i\in A  + \{-1,0,1\}$ ;
+    \item $b'_i \in \{-1,0,1\}$ if and only if $b_i = \phi$.
+  \end{itemize}
+\end{definition}
+
+A turing quadruple explicitly splits the read/write action of the
+Turing machine away from the movement. In a particular step for
+tape $k$, the
+turing machine would either read and write an item or it would not
+read and then move.
+
+Any turing quintuple may be split into two
+turing quadruples by the addition of a new state $a''$ in $A$, where the
+first quadruple will consist of all the read-write operations and
+leave the Turing machine in state $a''$. The second quintuple will start
+in state $a''$ and all the $b_i$ will be $\phi$, with $b'_i$ being
+movements on each of the $n$ tapes.
+
+\begin{definition}\label{def:reversible_turing_quadruple}
+  A set of turing quadruples $Q$ is called \emph{reversible set of turing
+  quadruples} when given $q_1,q_2\in Q$, with $q_1=(a,[b_i], [b'_i], a')$ and
+  $q_2=(c,[d_i], [d'_i], c')$:
+\begin{itemize}
+  \item  if $a=c$, then there is a \kay where $b_\kay, d_\kay \in A$ and
+    $b_\kay \ne d_\kay$;
+  \item if $a' = c'$, then there is a \jay with $b'_\jay, d'_\jay \in A$ and
+    $b'_\jay \ne d'_\jay$.
+\end{itemize}
+\end{definition}
+
+Similarly to turing quintuples, turing quadruples may be taken as the
+data for a function in \sets:
+\[\rho:S\times(A  \cup \{\phi\}) \to (A  + \{-1,0,1\}) \times S.\]
+We can see by inspection that $\rho$ is a reversible partial function when
+the set of turing quadruples that give $\rho$ is a reversible set of turing
+quadruples.
+
+\begin{definition}\label{def:reversible_turing_machine}
+  A \emph{reversible Turing machine} is one that is described by a
+  set of reversible turing quadruples.
+\end{definition}
+
+We will show that a reversible Turing machine with three tapes can emulate
+a Turing machine.
+
+
+
+
+
+
+
+
+% section reversible_turing_machines (end)
