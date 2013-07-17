@@ -26,27 +26,40 @@ read-write head, what it writes and the resulting state of the machine.
   \end{enumerate}
 \end{definition}
 
+\begin{definition}\label{def:turing_quintuple}
+  A \emph{turing quintuple} is a quintuple $(s,\alpha,\alpha',\delta,s')$ where:
+  \begin{enumerate}
+    \item $s,s' \in S$, where $S$ is a predefined set of states;
+    \item $\alpha, \alpha'\in A$ is predefined set of glyphs;
+    \item $\delta \in \{-1,0,1\}$.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  A \emph{standard turing quintuple set} $Q$ consists of a set of turing quintuples
+  such that:
+  \begin{enumerate}
+    \item If $q_1 = (s_1,\alpha_1,\alpha'_1,\delta_1,s'_1)$ and
+      $q_2 = (s_2,\alpha_2,\alpha'_2,\delta_2,s'_2)$ are in $Q$, then either
+      $s_1 \ne s_2$ or $\alpha_1\ne \alpha_2$ or both are not equal.
+    \item There are two special  quintuples contained in $Q$:
+      \begin{enumerate}
+        \item $(s_1,\_,\_,+1,s_2)$\footnote{Here, $\_$ is used to signify a blank.},
+          the \emph{start quintuple};
+        \item $(s_{t-1}, \_, \_, 0, s_{t})$, the \emph{end quintuple} where
+        $t$ is the number of states and is the final state of the machine.
+      \end{enumerate}
+  \end{enumerate}
+\end{definition}
+
 \begin{definition}\label{def:turing_machine}
-  A \emph{standard Turing machine} is given by a set of \emph{turing quintuples}:
-  $Q=\{(s,\alpha,\alpha',\delta,s')\}$ where:
-  \begin{enumerate}
-    \item $s,s' \in S$, a set of predefined states of the machine;
-    \item $\alpha, \alpha'\in A$, the set of glyphs that may be
-      written on the machine and
-    \item $\delta \in \{-1,0,1\}$ corresponds to the movement of the
-    read-write head.
-  \end{enumerate}
-  We require that a particular $s,\alpha$ occur only
-  once in the first two positions of the quintuple.
-  Furthermore, the tape is in standard format and there are two special
-  quintuples contained $Q$:
-  \begin{enumerate}
-    \item $(s_1,\_,\_,+1,s_2)$, the start quintuple;
-    \item $(s_{t-1}, \_, \_, 0, s_{t})$, the end quintuple where
-    $t$ is the number of states and is the final state of the machine.
-  \end{enumerate}
-  Finally, if the machine halts, it will halt in state $s_t$ and the output
-  will be in standard format.
+  A \emph{standard Turing machine} is given by
+  \begin{itemize}
+    \item a standard turing quintuple set;
+    \item a tape that starts in standard format;
+    \item and the condition that   and if the machine halts, it will halt in state
+      $s_t$, the final state of the end quintuple and the output will be in standard format.
+  \end{itemize}
 \end{definition}
 
 The turing quintuples may also be regarded as giving the data for a partial
@@ -74,13 +87,15 @@ function in \sets: $\tau:S\times A \to A\times\{-1,0,1\}\times S$.
   and then it will halt.
 \end{example}
 
-As can be seen from \ref{exa:simple_turing_program}, it is \emph{possible}
+As can be seen from example \ref{exa:simple_turing_program}, it is \emph{possible}
 that a Turing machine program is reversible. If we had chosen the second
 quintuple to be $(run,0,0,+1,run)$ instead, the program would not have been
 reversible.
 
-The essential property that a Turing machine program would need to be reversible
-is that the function $\tau$ defined from the quintuples is injective.
+The essential property that a Turing machine program needs to be reversible
+is that the function $\tau$ defined from the quintuples is injective. In order
+to simplify the discovery the function being injective, we reformulate the
+turing quintuples as quadruples.
 
 \begin{definition}\label{def:turing_quadruple}
   A \emph{turing quadruple} is given by a quadruple
@@ -88,29 +103,33 @@ is that the function $\tau$ defined from the quintuples is injective.
   such that:
   \begin{itemize}
     \item $s,s'\in S$, some set of states;
-    \item $b_i\in A  \cup \{\phi\}$ where $A$ is some alphabet;
-    \item $b'_i\in A  + \{-1,0,1\}$ ;
-    \item $b'_i \in \{-1,0,1\}$ if and only if $b_i = \phi$.
+    \item $b_\jay\in A  \cup \{\phi\}$ where $A$ is some alphabet;
+    \item $b'_\jay\in A  + \{-1,0,1\}$ ;
+    \item $b'_\jay \in \{-1,0,1\}$ if and only if $b_\jay = \phi$.
   \end{itemize}
+  In this definition, $b_\jay = \phi$ means that the value of tape
+  \jay is ignored.
 \end{definition}
 
 A turing quadruple explicitly splits the read/write action of the
 Turing machine away from the movement. In a particular step for
 tape $k$, the
-turing machine would either read and write an item or it would not
+turing machine will either read and write an item or it will not
 read and then move.
 
-Any turing quintuple may be split into two
-turing quadruples by the addition of a new state $a''$ in $A$, where the
-first quadruple will consist of all the read-write operations and
-leave the Turing machine in state $a''$. The second quintuple will start
-in state $a''$ and all the $b_i$ will be $\phi$, with $b'_i$ being
-movements on each of the $n$ tapes.
+\begin{remark}\label{rem:quintuple_to_quadruple}
+  Any turing quintuple may be split into two
+  turing quadruples by the addition of a new state $a''$ in $A$, where the
+  first quadruple will consist of all the read-write operations and
+  leave the Turing machine in state $a''$. The second quadruple will start
+  in state $a''$ and all the $b_\jay$ will be $\phi$, with $b'_\jay$ being
+  movements on each of the $n$ tapes.
+\end{remark}
 
 \begin{definition}\label{def:reversible_turing_quadruple}
   A set of turing quadruples $Q$ is called \emph{reversible set of turing
-  quadruples} when given $q_1,q_2\in Q$, with $q_1=(a,[b_i], [b'_i], a')$ and
-  $q_2=(c,[d_i], [d'_i], c')$:
+  quadruples} when given $q_1,q_2\in Q$, with $q_1=(a,[b_\jay], [b'_\jay], a')$ and
+  $q_2=(c,[d_\jay], [d'_\jay], c')$:
 \begin{itemize}
   \item  if $a=c$, then there is a \kay where $b_\kay, d_\kay \in A$ and
     $b_\kay \ne d_\kay$;
@@ -134,11 +153,27 @@ quadruples.
 We will show that a reversible Turing machine with three tapes can emulate
 a Turing machine.
 
+\begin{theorem}[Bennet\cite{bennett:1973reverse}]\label{thm:reversible_turing_machine_emulates_standard}
+  Given a standard Turing Machine $M$, it may be emulated by a three tape reversible
+  Turing machine $R$. In this case, emulated means:
+  \begin{itemize}
+    \item $M$ halts on standard input $I$ if and only if $R$ halts on standard input $(I,\_,\_)$.
+    \item $M$ halts on standard input $I$ producint standard output $O$,
+      if and only if $R$ halts on input ($I,\_,\_$) producing standard output $(I,\_,O)$.
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  (Sketch only).
 
+  The essence of the proof is to convert the quintuples of $M$ to the quadruples of
+  $R$ as noted in remark \ref{rem:quintuple_to_quadruple}. Explicitly,
+  \begin{align}
+    (s,[a_\jay],[a'_\jay],[\delta_\jay],s') \mapsto \left((s,[a_\jay],[a'_\jay],s''),
+          (s'',[\phi,\phi,\ldots,\phi],[\delta_\jay],s')\right).\label{eqn:quint_to_quad}
+  \end{align}
 
-
-
-
+  In equation \eqref{eqn:quint_to_quad}, $s''$ is a fresh state, not in the states of $M$.
+\end{proof}
 
 
 % section reversible_turing_machines (end)
