@@ -67,7 +67,7 @@ function in \sets: $\tau:S\times A \to A\times\{-1,0,1\}\times S$.
 \begin{remark}
   A multi-tape Turing machine with $n$ tapes and read-write heads
   can be described by modifying
-  definition \ref{def:turing_machine} such that $\alpha$ is an $n$-tuple
+  definition \vref{def:turing_machine} such that $\alpha$ is an $n$-tuple
   of the set of glyphs for the Turing machine and $\delta$ is an
   $n$-tuple of movement directions.
 \end{remark}
@@ -87,7 +87,7 @@ function in \sets: $\tau:S\times A \to A\times\{-1,0,1\}\times S$.
   and then it will halt.
 \end{example}
 
-As can be seen from example \ref{exa:simple_turing_program}, it is \emph{possible}
+As can be seen from example \vref{exa:simple_turing_program}, it is \emph{possible}
 that a Turing machine program is reversible. If we had chosen the second
 quintuple to be $(run,0,0,+1,run)$ instead, the program would not have been
 reversible.
@@ -165,14 +165,35 @@ a Turing machine.
 \begin{proof}
   (Sketch only).
 
-  The essence of the proof is to convert the quintuples of $M$ to the quadruples of
-  $R$ as noted in remark \ref{rem:quintuple_to_quadruple}. Explicitly,
+  The crux of the proof is to convert the quintuples of $M$ to the quadruples of
+  $R$ as noted in remark \vref{rem:quintuple_to_quadruple}. Explicitly,
   \begin{align}
     (s,[a_\jay],[a'_\jay],[\delta_\jay],s') \mapsto \left((s,[a_\jay],[a'_\jay],s''),
           (s'',[\phi,\phi,\ldots,\phi],[\delta_\jay],s')\right).\label{eqn:quint_to_quad}
   \end{align}
 
-  In equation \eqref{eqn:quint_to_quad}, $s''$ is a fresh state, not in the states of $M$.
+  To do that, first assign an order to quintuples of $M$, where the start
+  quintuple is the first in the order and the end quintuple comes last. Convert these
+  as in the remark. We may then proceed to create three groups of quadruples for $R$.
+  We call these \emph{emulation, copy,} and \emph{restore}.
+
+  The emulation phase pairs of quadruples are created directly from the pairs of
+  quadruples of $M$:
+  \begin{align}
+    (s,a,a',s'') & \mapsto (s,[a,\phi,\_],[a',+1,\_],s'')\\
+    (s'',\phi,\delta,s') & \mapsto
+          (s'',[\phi,\_,\phi],[\delta,m,0],s'),
+  \end{align}
+  where the $m$ corresponds to this being the $m^{\text{th}}$ pair in the ordering we chose.
+
+  The effect of the emulation phase is to transform tape 1 into the output that $M$ would have
+  produced, write the number of pairs of quadruples on tape 2 and write 0s on tape 3.
+
+  For the copy phase
+
+
+
+  In \vref{eqn:quint_to_quad}, $s''$ is a fresh state, not in the states of $M$.
 \end{proof}
 
 

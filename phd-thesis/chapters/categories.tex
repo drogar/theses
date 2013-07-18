@@ -114,7 +114,7 @@ and therefore $f h \le g h$.
 \eproofenum
 \end{proof}
 
-Lemma \ref{lem:restriction_cats_are_partial_order_enriched} shows that restriction categories are enriched in
+\Vref{lem:restriction_cats_are_partial_order_enriched} shows that restriction categories are enriched in
 partial orders.
 
 \begin{definition}
@@ -158,14 +158,14 @@ Conversely, given $f \le g\cap h$, we have $f = \restr{f} (g\cap h) =
 \restr{f} g \cap \restr{f} h \le \restr{f} g $. But $f \le \restr{f}
 g$ means $f = \restr{f}\,\restr{f} g = \restr{f}g$ and therefore $f \le
 g$. Similarly, $f \le h$.
-\item From \ref{lemsub:properties_of_meets_one}, as by definition, $f\cap g \le g$ and $f \cap g \le f$.
+\item From \vref{lemsub:properties_of_meets_one}, as by definition, $f\cap g \le g$ and $f \cap g \le f$.
 
 \item $f\cap 1 = \restr{f\cap 1} (f \cap 1)=
 (\restr{f \cap 1} f ) \cap (\restr{f \cap 1}) \le \restr{f \cap 1}$ from
 which the result follows. %definition of $\le$, \rthree and \rone
 
 \item By definition and transitivity, $(f\cap g)\cap h \le f, g, h$
-therefore by \ref{lemsub:properties_of_meets_one} $(f \cap g) \cap h \le
+therefore by \vref{lemsub:properties_of_meets_one} $(f \cap g) \cap h \le
  f \cap (g \cap h)$. Similarly, $f \cap (g \cap h) \le(f \cap g) \cap h$
 giving the equality.
 \item Given  $r f \cap g \le r f$, calculate:
@@ -193,11 +193,11 @@ f r \cap g
 =\restr{\restr{f}(f\cap g)}
 =\restr{(\restr{f}f)\cap g}
 =\restr{f\cap g}.\]
-The second claim then follows by \ref{lemsub:properties_of_meets_two}
+The second claim then follows by \vref{lemsub:properties_of_meets_two}
 \item Given $ f \cap 1 \leq f$:
 \[ f \cap 1 \leq f \iff  \restr{f \cap 1} f = f \cap 1
 \iff  (f \cap 1) f = f \cap 1\]
-where the last step is by item \ref{lemsub:properties_of_meets_three} of this lemma.
+where the last step is by item \vref{lemsub:properties_of_meets_three} of this lemma.
 \item As $e$ is idempotent, $e (e\cap 1) = (e e \cap e) = e$.
 
 \eproofenum
@@ -241,8 +241,9 @@ $h f \restr{g} = k f \restr{g}$. Therefore:
 h \restr{f g} f &= k \restr{f g} f &\rfour\\
 h \restr{f g}\,\restr{f} &= k \restr{f g}\, \restr{f} & f\text{
 partial monic}\\
-h \restr{fg}&= k \restr{fg} & \text{Lemma
-\ref{lem:identities_involving_restriction}, \ref{lemsub:restriction_identities_two}}
+h \restr{fg}&= k \restr{fg} & \text{
+    lemma \ref{lem:identities_involving_restriction},
+      \ref{lemsub:restriction_identities_two}}
 \end{align*}
 \item Suppose $g f = k f$. Then, $g\restr{f} = g f h = k f h = k \restr{f}$.
 \item We have $f h = \restr{f}$ and $g h' = \restr{g}$. Therefore,
@@ -428,7 +429,7 @@ $ (e_1\cap 1)(e_1\cap 1) f  (e_2 \cap 1) =
 (e_1\cap 1) (f  e_2 \cap f ) = (e_1\cap 1) (f \cap f)= (e_1\cap 1) f$, therefore,
 $V(f):V((A,e_1)) \to V((B,e_2))$.
 \itembf{Identities:} $V(e) = (e\cap 1 ) e = e \cap 1$ by
-lemma \ref{lem:properties_of_meets_in_restriction_categories}.
+\vref{lem:properties_of_meets_in_restriction_categories}.
 \itembf{Composition:} $V(f) V(g)
 = (e_1\cap 1 ) f (e_2 \cap 1) g
 = (e_1\cap 1 ) f e_2 (e_2 \cap 1) g
@@ -438,16 +439,16 @@ lemma \ref{lem:properties_of_meets_in_restriction_categories}.
 = V(f g)$.
 \ed
 
-Recalling from Lemma \ref{lem:properties_of_meets_in_restriction_categories}, $(e\cap 1)$ is a restriction
+Recalling from \vref{lem:properties_of_meets_in_restriction_categories}, $(e\cap 1)$ is a restriction
  idempotent. Using this fact, the commutativity of restriction idempotents
-and the general idempotent identities from  Lemma \ref{lem:properties_of_meets_in_restriction_categories}, the
+and the general idempotent identities from  \vref{lem:properties_of_meets_in_restriction_categories}, the
 composite functor $U V$ is the identity on $\spl{r}{\X}$ as when $e$ is a
 restriction idempotent,
 $e = e (e\cap 1) = (e\cap 1) e = (e\cap 1)$.
 
 For the other direction,  note that for a particular idempotent $e:A\to A$,
 this gives the maps $e:(A,e)\to(A,e\cap 1)$ and
-$e\cap 1 : (A,e\cap 1) \to (A,e)$, again by Lemma \ref{lem:properties_of_meets_in_restriction_categories}.
+$e\cap 1 : (A,e\cap 1) \to (A,e)$, again by \vref{lem:properties_of_meets_in_restriction_categories}.
 These maps give the natural isomorphism between $I$ and $V U$ as
 \[\xymatrix{
 (A,e)\ar[r]^e \ar[dr]_{e} &(A,e\cap 1)\ar[d]^{e\cap 1}\\
@@ -468,7 +469,7 @@ and define $\mbf \capspl \mbg$ as the map given by the \X map $f \cap g$, where
 $\mbf,\mbg:(A,d)\to(B,e)$ in $\spl{R}{\X}$ and $f,g:A\to B$ in \X . This is
 a map in $\spl{R}{\X}$ as
 $d(f \cap g)e = (d\uts f \cap d\uts g) e = (f \cap g) e = (f e \cap g) = f\cap g$
- where the penultimate equality is by Lemma \ref{lem:properties_of_meets_in_restriction_categories}. By definition
+ where the penultimate equality is by \vref{lem:properties_of_meets_in_restriction_categories}. By definition
  $\restr{\mbf \capspl \mbg }$ is $d\restr{f\cap g}$.
 
 It is necessary to show \capspl satisfies the four meet properties.
@@ -672,7 +673,7 @@ In a Cartesian restriction category:
 \begin{proof}
 \bproofenum
 \item To show closure, it is necessary to show that $\<f g,1\>$ has a partial inverse.
-By Lemma \ref{lem:rcs_partial_monic_section_inverse_properties}, the uniqueness of the partial inverse gives
+By \vref{lem:rcs_partial_monic_section_inverse_properties}, the uniqueness of the partial inverse gives
 \[\inv{(\<f,1\> ; \<g,1\>\times 1)} = \inv{\<g,1\>} \times 1 ; \inv{\<f,1\>} .\]
  By the definition of the restriction product, $\rst{\<f g,1\>} = \rst{f g}$. Additionally,
 a straightforward calculation shows that $\rst{\<f,1\>;\<g,1\> \times 1} = \rst{\<f\<g,1\>, 1\>} = \rst{f ;\< g,1\>}

@@ -162,9 +162,9 @@ $A$ and $B$ are the sets of quantum terms of shape $s$
 \end{definition}
 
 \begin{definition}\label{def:structured_subroutine_call}
-  Given the data for a subroutine call as above in definition
-  \ref{def:subroutine_call}, a \emph{structured subroutine call} is a
-  high level structure as in definition \ref{def:high_level_structure}
+  Given the data for a subroutine call as above in 
+  \vref{def:subroutine_call}, a \emph{structured subroutine call} is a
+  high level structure as in \vref{def:high_level_structure}
   and a pair of quantum terms $(a,b)$ such that:
   \begin{itemize}
     \item $i_s(a) = f+g$ and
@@ -183,7 +183,7 @@ $A$ and $B$ are the sets of quantum terms of shape $s$
 We are interested in two transformed calls of subroutines. Iteration and
 folding. We provide the necessary information for creating either a
 transformed call or first transforming the subroutine and then doing a
-standard call as in subsection \ref{sub:subroutine_calls}.
+standard call as in \vref{sub:subroutine_calls}.
 
 \subsection{Iteration} % (fold)
 \label{sub:iteration}
@@ -209,7 +209,7 @@ Discussion points:
   case that has already been handled?)
 \end{itemize}
 \begin{definition}\label{def:iterated_subroutine_call}
-  Given a subroutine as in subsection \vref{sub:subroutine_calls},
+  Given a subroutine as in \vref{sub:subroutine_calls},
   and a subroutine call $(f,g,h,i,ncf,ctrls)$
   an \emph{iterated call} of the subroutine
   $S = ([gates],C,I,O,r,c,n)$ consists of all elements of a
@@ -233,7 +233,7 @@ Discussion points:
 \begin{definition}\label{def:structured_iterated_call}
   Given the data for an iterated call,
   a \emph{structured iterated call} is a high level structure as in
-  definition \ref{def:high_level_structure} and a pair of quantum
+  \vref{def:high_level_structure} and a pair of quantum
   terms $(a,b)$ such that:
   \begin{itemize}
     \item $i_s(a) = f_{in}+g$ and
@@ -346,8 +346,8 @@ The function $S_i$ performs the following actions:
   \item Connect the $O$ wires of copy $n$ to the $O'$ wires.
 \end{itemize}
 
-The intended effect of this transform may be seen in figure
-\ref{fig:transforming_a_subroutine_to_an_iterated_subroutine}
+The intended effect of this transform may be seen in
+\vref{fig:transforming_a_subroutine_to_an_iterated_subroutine}
 \begin{figure}[htbp]
   \centering
      \includegraphics[scale=.4]{diagrams/SubroutineIterationTransform.png}
@@ -464,7 +464,7 @@ Discussion points:
   \item Is there a non-linear safe use case? Carry seemed quite simple,
     but it required linear safe inputs when folded.
   \item Each fold iteration input might be multiple \qubit{s},
-  combined into a single data structure, as in example
+  combined into a single data structure, as in 
     \vref{ex:fold_over_carry}.
   \item The number of inputs and outputs no longer need
     to agree as they did in iteration.  An example would be a subroutine that
@@ -692,8 +692,8 @@ of $C$. Additionally, we compute a \emph{rank} of each $c$ in $C'$. The
 
 \begin{example}\label{exmpl:fold_example_with_three_mixed_in_out}
   Consider $S=(\_,\{a,b\},\{c\},\{d\},\_,\_,\_)$ and $b_{cio}=\{(a,c),(b,a)\}$
-  and an iteration count of $3$. See figure
-  \ref{fig:Fold_with_extra_in_out}.
+  and an iteration count of $3$. See 
+  \vref{fig:Fold_with_extra_in_out}.
 \end{example}
 \begin{figure}[htbp]
   \centering
@@ -748,10 +748,10 @@ Hence our final result is:
 \end{align*}
 
 \begin{example}\label{exmpl:fold_example_with_partial_bcio}
-  Consider $S=(\_,\{a,b\},\{c\},\{d\},\_,\_,\_)$ as in Example
-  \ref{exmpl:fold_example_with_three_mixed_in_out} and
-  $b_{cio}=\{(a,c),(b,a),(d,b)\}$ and an iteration count of $3$. See figure
-  \ref{fig:Fold_with_three_iterations}.
+  Consider $S=(\_,\{a,b\},\{c\},\{d\},\_,\_,\_)$ as in 
+  \vref{exmpl:fold_example_with_three_mixed_in_out} and
+  $b_{cio}=\{(a,c),(b,a),(d,b)\}$ and an iteration count of $3$. See 
+  \vref{fig:Fold_with_three_iterations}.
 \end{example}
 \begin{figure}[htbp]
   \centering
@@ -797,8 +797,8 @@ Hence our final result is:
 
 \begin{example}\label{exmpl:fold_transform_example_of_carry}
   Consider $C=(\_,\{r,a\},\{b,c\},\{d,e\},\_,\_,\_)$,
-  $b_{cio}=\{(e,r)\}$ and an iteration count of $4$. See figure
-  \ref{fig:fold_carry_transformed}.
+  $b_{cio}=\{(e,r)\}$ and an iteration count of $4$. See 
+  \vref{fig:fold_carry_transformed}.
 \end{example}
 \begin{figure}[htbp]
   \centering
@@ -863,8 +863,8 @@ Hence our final result is:
 \label{sec:alternate_algorithm_for_fold_transformation}
 In  this section, we present an alternate algorithm for calculating the
 type and names of control, input and output wires for a folded
-subroutine.  The starting point is Definition
-\ref{def:fold_transform_of_a_subroutine}
+subroutine.  The starting point is 
+\vref{def:fold_transform_of_a_subroutine}
 and the ordered pairs of $b_{cio}$: A set of ordered pairs
 $\{(f,t)|f\in C\cup I, t \in C\cup O\}$.
 
@@ -938,10 +938,10 @@ of wires in/out.}
 \subsection{Examples of folding with Alternate Algorithm} % (fold)
 \label{sub:examples_of_folding_with_alternate_algorithm}
 \begin{example}\label{exmpl:alternate_fold_example_with_three_mixed_in_out}
-  We repeat Example \ref{exmpl:fold_example_with_three_mixed_in_out}, that is,
+  We repeat \vref{exmpl:fold_example_with_three_mixed_in_out}, that is,
   $S=(\_,\{a,b\},\{c\},\{d\},\_,\_,\_)$ and $b_{cio}=\{(a,c),(b,a),(d,b)\}$
-  and an iteration count of $3$. See figure
-  \ref{fig:Fold_with_three_iterations}.
+  and an iteration count of $3$. See 
+  \vref{fig:Fold_with_three_iterations}.
 \end{example}
 There are two control wires $a,b$, an input wire $d$ and one output
 wire $d$. We  will do three iterations. Our set $\mathcal{C}$ of pairs
