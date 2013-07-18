@@ -204,7 +204,7 @@
 % environment signing and command signline
 \newlength{\signwidth}
 \newenvironment{signing}[1]{\settowidth{\signwidth}{#1} %     %width of longest signature
-\def\signline{ \null\vskip 1em\makebox[\signwidth]{\hrulefill}\\}	%signature line
+\def\signline{ \null\vskip 1em\makebox[\signwidth]{\hrulefill}\\} %signature line
 \def\newsigncolumn{\end{minipage}\hfill\begin{minipage}[t]{\signwidth}\raggedleft}% added raggedleft 2009nm allow for more than one column of signatures
 \singlespace
 \noindent\begin{minipage}{\textwidth}
@@ -588,7 +588,7 @@
 \def\ext@figure{lof}
 \def\fnum@figure{Figure \thefigure}
 \def\figure{\@float{figure}}
-\let\endfigure\end@float
+\def\endfigure{\end@float}
 \@namedef{figure*}{\@dblfloat{figure}}
 \@namedef{endfigure*}{\end@dblfloat}
 
@@ -602,7 +602,7 @@
 \def\ext@table{lot}
 \def\fnum@table{Table \thetable}
 \def\table{\@float{table}}
-\let\endtable\end@float
+\def\endtable{\end@float}
 \@namedef{table*}{\@dblfloat{table}}
 \@namedef{endtable*}{\end@dblfloat}
 
@@ -737,4 +737,4 @@
 \pagenumbering{arabic}      % Arabic page numbers
 \onecolumn                  % Single-column.
 \if@twoside\else\raggedbottom\fi % Ragged bottom unless twoside option.
-\setstretch{1.7}		% Initial baselinestretch
+\setstretch{1.7}    % Initial baselinestretch

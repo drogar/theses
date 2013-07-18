@@ -1,7 +1,5 @@
-%% Modified documentstyle to documentclass -- compatibility with LaTex2e
-%% N. Mancell (98/03/01).
+% tm project ignores: !(/\.(?!htaccess)[^/]*|\.(tmproj|o|pyc|toc|aux|xyc|bbl|blg|lof|lot|out|synctex\.gz)|/Icon\r|/svn-commit(\.[2-9])?\.tmp)$
 
-%%  ucalgthes_root.tex        (NM 98/03/01)
 %   Modified   92-09-18      Add references to dissertation        D. Teale
 %                            Add approval page to toc
 %                            Add ref to Title Degree on approval page
@@ -31,15 +29,33 @@
 %\renewcommand{\headrulewidth}{0pt}
 %\fancyhead[RO,LE]{\thepage}
 %Define other usepackages here
-\usepackage{hyperref}
-\title{Title of Thesis \\ \bigskip Second ThesisTitle Line }
+
+\input{packageuses}
+
+\graphicspath{{./diagrams/}{.}}
+%
+%include lhs2TeX.fmt
+%include lhs2TeX.sty
+%format ^* = "\ltimes"
+%format *^ = "\rtimes"
+% captionskips do not seem to be defined in uc class
+\makeatletter
+%%\newlength\abovecaptionskip
+%%\newlength\belowcaptionskip
+\setlength\abovecaptionskip{10\p@}
+\setlength\belowcaptionskip{0\p@}
+\makeatother
+
+\input{macros-all}
+\title{An investigation of the underpinnings of quantum and reversible computing \\
+\bigskip subtitle }
 %
 %            Insert the correct information between the {}
 %
 \author{Brett Gordon Giles}
 \thesisyear{2013}
 \thesis{dissertation}    % the word dissertation can be inserted between {}
-\newcommand{\thesistitle}{Title of Thesis}
+\newcommand{\thesistitle}{An investigation of the underpinnings of quantum and reversible computing}
 \monthname{August}
 \dept{COMPUTER SCIENCE}
 \degree{DOCTOR OF PHILOSOPHY}
@@ -96,19 +112,11 @@
 \newpage
 \phantomsection
 \altchapter{\bf{Abstract}}
-Paragraph 1
 
-Paragraph 2
-
-Paragragh 3
 \newpage
 \phantomsection
 \altchapter{\bf{Acknowledgements}}
-Paragraph 1
 
-Paragraph 2
-
-Paragraph 3
 
 \begin{singlespace}
 \newpage
@@ -130,21 +138,20 @@ Paragraph 3
 \phantomsection
 \chapter*{\bf{List of Symbols, Abbreviations and Nomenclature}\hfill} \addcontentsline{toc}{chapter}{List of Symbols}
 \listofsymbols
-\pagestyle{plain}
-\clearpage
+%\pagestyle{plain}
+%\clearpage
 
 
 \pagenumbering{arabic}
-\include{chapter1}
-%\include{chapter2}
-%\include{chapter3}
-%\include{chapter4}
-%\include{chapter5}
+\input{chapters/categories}
+\input{chapters/reversible}
+\input{chapters/quantum-computation}
+\input{chapters/chapter-iterate-and-fold}
 
 \begin{singlespace}
 \bibliography{bibentries-phd}
 \bibliographystyle{plain}
 \end{singlespace}
 \appendix
-\include{appendix1}
+%\input{appendix1}
 \end{document}
