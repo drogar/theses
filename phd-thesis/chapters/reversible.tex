@@ -44,9 +44,9 @@ read-write head, what it writes and the resulting state of the machine.
       $s_1 \ne s_2$ or $\alpha_1\ne \alpha_2$ or both are not equal.
     \item There are two special  quintuples contained in $Q$:
       \begin{enumerate}
-        \item $(s_1,\_,\_,+1,s_2)$\footnote{Here, $\_$ is used to signify a blank.},
+        \item $(s_1,\blank,\blank,+1,s_2)$\footnote{Here, $\blank$ is used to signify a blank.},
           the \emph{start quintuple};
-        \item $(s_{t-1}, \_, \_, 0, s_{t})$, the \emph{end quintuple} where
+        \item $(s_{t-1}, \blank, \blank, 0, s_{t})$, the \emph{end quintuple} where
         $t$ is the number of states and is the final state of the machine.
       \end{enumerate}
   \end{enumerate}
@@ -73,14 +73,14 @@ function in \sets: $\tau:S\times A \to A\times\{-1,0,1\}\times S$.
 \end{remark}
 
 \begin{example}\label{exa:simple_turing_program}
-  Suppose $S=\{start,run,reset,done\}$, $A=\{0,1,\_\}$ and the Turing machine
+  Suppose $S=\{start,run,reset,done\}$, $A=\{0,1,\blank\}$ and the Turing machine
   program is given by the quintuples
   \begin{align*}
-    &(start,\_,\_,+1,run),\\
+    &(start,\blank,\blank,+1,run),\\
     &(run,0,1,+1,run), (run,1,0,+1,run),\\
-    &(run,\_,\_,-1,reset),\\
+    &(run,\blank,\blank,-1,reset),\\
     &(reset,0,0,-1,reset),(reset,1,1,-1,reset),\\
-    &(reset,\_,\_,0,done).
+    &(reset,\blank,\blank,0,done).
   \end{align*}
   This program will perform a ``bit-flip'' of all $0$s and $1$s on the tape
   until it reads a space, reposition the read head to the standard format
@@ -157,9 +157,9 @@ a Turing machine.
   Given a standard Turing Machine $M$, it may be emulated by a three tape reversible
   Turing machine $R$. In this case, emulated means:
   \begin{itemize}
-    \item $M$ halts on standard input $I$ if and only if $R$ halts on standard input $(I,\_,\_)$.
+    \item $M$ halts on standard input $I$ if and only if $R$ halts on standard input $(I,\blank,\blank)$.
     \item $M$ halts on standard input $I$ producint standard output $O$,
-      if and only if $R$ halts on input ($I,\_,\_$) producing standard output $(I,\_,O)$.
+      if and only if $R$ halts on input ($I,\blank,\blank$) producing standard output $(I,\blank,O)$.
   \end{itemize}
 \end{theorem}
 \begin{proof}
@@ -186,18 +186,18 @@ a Turing machine.
   To create the emulation phase quadruples, we examine the pairs of quadruples of $M$
 	in the sorted order and produce a pair of quadruples for $R$.
   \begin{align*}
-    \text{Pair 1}\quad (s_1,\_,\_,s_1'') & \mapsto (s_1,[\_,\phi,\_],[\_,+1,\_],e_1)\\
+    \text{Pair 1}\quad (s_1,\blank,\blank,s_1'') & \mapsto (s_1,[\blank,\phi,\blank],[\blank,+1,\blank],e_1)\\
     (s_1'',\phi,\delta,s_2) & \mapsto
-          (e_1,[\phi,\_,\phi],[\delta,1,0],s_2)\\
+          (e_1,[\phi,\blank,\phi],[\delta,1,0],s_2)\\
 					& \vdots \\
     \text{Pair \jay}\quad  (s_\kay,a_\jay,a'_\jay,s''_\kay) & 
-					\mapsto (s_\kay,[a_\jay,\phi,\_],[a'_\jay,+1,\_],e_\jay)\\
+					\mapsto (s_\kay,[a_\jay,\phi,\blank],[a'_\jay,+1,\blank],e_\jay)\\
      (s_\kay'',\phi,\delta,s_i) & \mapsto
-          (e_\jay,[\phi,\_,\phi],[\delta_\jay,\jay,0],s_i)\\
+          (e_\jay,[\phi,\blank,\phi],[\delta_\jay,\jay,0],s_i)\\
 					& \vdots \\
-    \text{Pair }n \quad (s_\ell,\_,\_,s_\ell'') & \mapsto (s_\ell,[\_,\phi,\_],[\_,+1,\_],e_n)\\
+    \text{Pair }n \quad (s_\ell,\blank,\blank,s_\ell'') & \mapsto (s_\ell,[\blank,\phi,\blank],[\blank,+1,\blank],e_n)\\
      (s_\ell'',\phi,0,s_f) & \mapsto
-          (e_n,[\phi,\_,\phi],[0,n,0],s_f).
+          (e_n,[\phi,\blank,\phi],[0,n,0],s_f).
   \end{align*}
   By inspection, one can see that even if the quadruples of $M$ were not a reversible set, the
 	set created for $R$ is a reversible set, due to the writing of the quadruple index on tape 2.
@@ -206,30 +206,38 @@ a Turing machine.
 	
 	For the copy phase, we create the following quadruples:
 	\begin{align*}
-		(s_f,[\_,n,\_],&[\_,n,\_],c_1 )\\
+		(s_f,[\blank,n,\blank],&[\blank,n,\blank],c_1 )\\
 		(c_1,[\phi,\phi,\phi],&[+1,0,+1],c'_1 )\\
-		(c'_1,[x,n,\_],&[x,n,x],c_1 )\quad \text{when } x \ne \_\\
-		(c'_1,[\_,n,\_],&[\_,n,x],c_2 )\\
+		(c'_1,[x,n,\blank],&[x,n,x],c_1 )\quad \text{when } x \ne \blank\\
+		(c'_1,[\blank,n,\blank],&[\blank,n,x],c_2 )\\
 		(c_2,[\phi,\phi,\phi],&[-1,0,-1],c'_2 )\\
-		(c'_2,[x,n,x],&[x,n,x],c_2 )\quad \text{when }x \ne \_\\
-		(c'_2,[\_,n,_],&[\_,n,\_],r_\ell).
+		(c'_2,[x,n,x],&[x,n,x],c_2 )\quad \text{when }x \ne \blank\\
+		(c'_2,[\blank,n,_],&[\blank,n,\blank],r_\ell).
 	\end{align*}
-
+	In these quadruples, the states $\{c_1,c'_1,c_2,c'_2\}$ should be chosen to be
+	distinct from the states in the emulation phase. As an example, set them as follows:
+	\[
+		c_1 = (\{c\},s_1)\quad c'_1 = (\{c'\},s_1)\quad	c_2 = (\{c\},s_f)\quad c'_1 = (\{c'\},s_f).
+	\]
   At the completion of this phase, tapes 1 and 2 will be unchanged and tape 3 will be a copy
 	of tape 1. 
-	
+
 	Finally we perform the restore phase where the history will be erased and tape 1 reset to
 	the input. The quadruples that will accomplish this are:
 	\begin{align*}
-	    \text{Pair }n \quad (r_n,[\phi,n,\phi],&[0,\_,0],r'_n)\\
-			(r'_n,[\_,\phi,\_],&[\_,-1,\_],r_{n-1})\\
+	    \text{Pair }n \quad (r_n,[\phi,n,\phi],&[0,\blank,0],r'_n)\\
+			(r'_n,[\blank,\phi,\blank],&[\blank,-1,\blank],r_{n-1})\\
 			&\vdots\\
-	    \text{Pair }\jay \quad (r_\kay,[\phi,\jay,\phi],&[-\delta_\jay,\_,0],r'_\jay)\\
-			(r'_\jay,[a'_\jay,\phi,\_],&[a_\jay,-1,\_],r_i)\\
+	    \text{Pair }\jay \quad (r_\kay,[\phi,\jay,\phi],&[-\delta_\jay,\blank,0],r'_\jay)\\
+			(r'_\jay,[a'_\jay,\phi,\blank],&[a_\jay,-1,\blank],r_i)\\
 			&\vdots\\
-			\text{Pair 1} \quad (r_2,[\phi,1,\phi],&[-1,\_,0],r'_1)\\
-			(r'_1,[\_,\phi,\_],&[\_,-1,\_],r_1).
+			\text{Pair 1} \quad (r_2,[\phi,1,\phi],&[-1,\blank,0],r'_1)\\
+			(r'_1,[\blank,\phi,\blank],&[\blank,-1,\blank],r_1).
 	\end{align*}
+  The $r$ states are derived from the $s$ states of the emulation phase.
+  \[
+    r_\jay = (\{r\},s_\jay) \qquad    r'_\jay = (\{r'\}, s_\jay).
+  \]
 	In this restore phase, the indexes of the states $r$ match up to the indexes of states $s$. The
 	quadruples reverse the actions of the emulate phase on tape 1, erase the history on tape 2 and
 	make no change to tape 3.
