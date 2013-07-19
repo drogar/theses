@@ -166,34 +166,74 @@ a Turing machine.
   (Sketch only).
 
   The crux of the proof is to convert the quintuples of $M$ to the quadruples of
-  $R$ as noted in remark \vref{rem:quintuple_to_quadruple}. Explicitly,
+  $R$ as noted in remark \vref{rem:quintuple_to_quadruple}. Explicitly for a single
+	tape machine, we have
   \begin{align}
-    (s,[a_\jay],[a'_\jay],[\delta_\jay],s') \mapsto \left((s,[a_\jay],[a'_\jay],s''),
-          (s'',[\phi,\phi,\ldots,\phi],[\delta_\jay],s')\right).\label{eqn:quint_to_quad}
+    (s,a,a,\delta,s') \mapsto \left((s,a,a',s''),
+          (s'',\phi,\delta,s')\right).\label{eq:quint_to_quad}
   \end{align}
+	
+	In Equation~\eqref{eq:quint_to_quad}, $s''$ is a new state for the machine $M$, 
+	not in the current set of states.
 
-  To do that, first assign an order to quintuples of $M$, where the start
-  quintuple is the first in the order and the end quintuple comes last. Convert these
-  as in the remark. We may then proceed to create three groups of quadruples for $R$.
+  Assign an order to the $n$ quintuples of $M$, where the start
+  quintuple is the first in the order and the end quintuple comes last. Convert these to
+	quadruples as in Equation~\eqref{eq:quint_to_quad}. 
+	
+	We then proceed to create three groups of quadruples for $R$.
   We call these \emph{emulation, copy,} and \emph{restore}.
 
-  The emulation phase pairs of quadruples are created directly from the pairs of
-  quadruples of $M$:
-  \begin{align}
-    (s,a,a',s'') & \mapsto (s,[a,\phi,\_],[a',+1,\_],s'')\\
-    (s'',\phi,\delta,s') & \mapsto
-          (s'',[\phi,\_,\phi],[\delta,m,0],s'),
-  \end{align}
-  where the $m$ corresponds to this being the $m^{\text{th}}$ pair in the ordering we chose.
+  To create the emulation phase quadruples, we examine the pairs of quadruples of $M$
+	in the sorted order and produce a pair of quadruples for $R$.
+  \begin{align*}
+    \text{Pair 1}\quad (s_1,\_,\_,s_1'') & \mapsto (s_1,[\_,\phi,\_],[\_,+1,\_],e_1)\\
+    (s_1'',\phi,\delta,s_2) & \mapsto
+          (e_1,[\phi,\_,\phi],[\delta,1,0],s_2)\\
+					& \vdots \\
+    \text{Pair \jay}\quad  (s_\kay,a_\jay,a'_\jay,s''_\kay) & 
+					\mapsto (s_\kay,[a_\jay,\phi,\_],[a'_\jay,+1,\_],e_\jay)\\
+     (s_\kay'',\phi,\delta,s_i) & \mapsto
+          (e_\jay,[\phi,\_,\phi],[\delta_\jay,\jay,0],s_i)\\
+					& \vdots \\
+    \text{Pair }n \quad (s_\ell,\_,\_,s_\ell'') & \mapsto (s_\ell,[\_,\phi,\_],[\_,+1,\_],e_n)\\
+     (s_\ell'',\phi,0,s_f) & \mapsto
+          (e_n,[\phi,\_,\phi],[0,n,0],s_f).
+  \end{align*}
+  By inspection, one can see that even if the quadruples of $M$ were not a reversible set, the
+	set created for $R$ is a reversible set, due to the writing of the quadruple index on tape 2.
+	Upon completion of the emulation phase, tape 1 will be the same as $M$ would have produced on
+	its single tape, tape 2 will be $[1,2,\dots,n]$ and tape 3 will be blanks.
+	
+	For the copy phase, we create the following quadruples:
+	\begin{align*}
+		(s_f,[\_,n,\_],&[\_,n,\_],c_1 )\\
+		(c_1,[\phi,\phi,\phi],&[+1,0,+1],c'_1 )\\
+		(c'_1,[x,n,\_],&[x,n,x],c_1 )\quad \text{when } x \ne \_\\
+		(c'_1,[\_,n,\_],&[\_,n,x],c_2 )\\
+		(c_2,[\phi,\phi,\phi],&[-1,0,-1],c'_2 )\\
+		(c'_2,[x,n,x],&[x,n,x],c_2 )\quad \text{when }x \ne \_\\
+		(c'_2,[\_,n,_],&[\_,n,\_],r_\ell).
+	\end{align*}
 
-  The effect of the emulation phase is to transform tape 1 into the output that $M$ would have
-  produced, write the number of pairs of quadruples on tape 2 and write 0s on tape 3.
+  At the completion of this phase, tapes 1 and 2 will be unchanged and tape 3 will be a copy
+	of tape 1. 
+	
+	Finally we perform the restore phase where the history will be erased and tape 1 reset to
+	the input. The quadruples that will accomplish this are:
+	\begin{align*}
+	    \text{Pair }n \quad (r_n,[\phi,n,\phi],&[0,\_,0],r'_n)\\
+			(r'_n,[\_,\phi,\_],&[\_,-1,\_],r_{n-1})\\
+			&\vdots\\
+	    \text{Pair }\jay \quad (r_\kay,[\phi,\jay,\phi],&[-\delta_\jay,\_,0],r'_\jay)\\
+			(r'_\jay,[a'_\jay,\phi,\_],&[a_\jay,-1,\_],r_i)\\
+			&\vdots\\
+			\text{Pair 1} \quad (r_2,[\phi,1,\phi],&[-1,\_,0],r'_1)\\
+			(r'_1,[\_,\phi,\_],&[\_,-1,\_],r_1).
+	\end{align*}
+	In this restore phase, the indexes of the states $r$ match up to the indexes of states $s$. The
+	quadruples reverse the actions of the emulate phase on tape 1, erase the history on tape 2 and
+	make no change to tape 3.
 
-  For the copy phase
-
-
-
-  In \vref{eqn:quint_to_quad}, $s''$ is a fresh state, not in the states of $M$.
 \end{proof}
 
 
