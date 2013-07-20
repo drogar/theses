@@ -1198,26 +1198,29 @@ However, note that exchanging wires is not the same as
 swap. Exchanging a pair of wires is not affected by
  control, but a swap is affected by control,
  as shown in \vref{qc:bendisnotswap}.
-
+%TODO - consider rewriting qcircuits in tikz
 \begin{figure}[htbp]
 \[
-\Qcircuit @C=1em @R=1.5em {
-&\qw&\qswap  &\qw \\
-&\qw&\qswap \qwx &\qw\\
-&\qw& \control \qwx \qw & \qw
- } \quad \raisebox{-1.9em}{$\equiv$} \quad
-\Qcircuit @C=1em @R=1.5em {
-&\qw&\qswap \ghost{U} {\POS"1,2"."2,2"."1,3"."2,3"!C*+<2ex>\frm{-}} &\qw &\raisebox{-4em}{$\neq$}&
-&\qw \ar @{-} [dr] & {\hphantom{ }} \gategroup{1}{7}{2}{8}{2ex}{-} &\qw\\
-&\qw&\qswap \qwx &\qw & &&\qw \ar @{-}[ur] &&\qw\\
-&\qw& \control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw & &
-&\qw&\control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw
- }\quad \raisebox{-1.9em}{$\equiv$} \quad
-\Qcircuit @C=1em @R=1.5em {
-&\qw \ar @{-} [dr] &  &\qw\\
-&\qw \ar @{-}[ur] &&\qw\\
-&\qw&\qw &\qw
-}
+  \Qcircuitnocompile @C=1em @R=1.5em {
+    &\qw&\qswap  &\qw \\
+    &\qw&\qswap \qwx &\qw\\
+    &\qw& \control \qwx \qw & \qw
+  }
+  \quad \raisebox{-1.9em}{$\equiv$} \quad
+  \Qcircuitnocompile @C=1em @R=1.5em {
+    &\qw&\qswap \ghost{U} {\POS"1,2"."2,2"."1,3"."2,3"!C*+<2ex>\frm{-}} 
+      &\qw &\raisebox{-4em}{$\neq$}& 
+      &\qw \ar @{-} [dr] & {\hphantom{ }} \gategroup{1}{7}{2}{8}{2ex}{-} &\qw\\
+    &\qw&\qswap \qwx &\qw & &&\qw \ar @{-}[ur] &&\qw\\
+    &\qw& \control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw & &
+      &\qw&\control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw
+  }
+  \quad \raisebox{-1.9em}{$\equiv$} \quad
+  \Qcircuitnocompile @C=1em @R=1.5em {
+    &\qw \ar @{-} [dr] &  &\qw\\
+    &\qw \ar @{-}[ur] &&\qw\\
+    &\qw&\qw &\qw
+  }
 \]
 \caption{Swap in control vs. exchange in control}\label{qc:bendisnotswap}
 \end{figure}
@@ -1241,7 +1244,7 @@ measurement commutes with control of a circuit as in
 
 \begin{figure}[htbp]
 \centerline{%
-\Qcircuit @C=1em @R=1.5em {
+\Qcircuitnocompile @C=1em @R=1.5em {
 &\qw&\measureD{M}\gategroup{1}{2}{1}{3}{2ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\measureD{M}& \qw\\
 &\qw& \control \ar @{-} [-1,0]-<0ex,2.35ex> \qw &\qw & &&\qw&\qw&\qw
 }}
@@ -1251,7 +1254,7 @@ measurement commutes with control of a circuit as in
 
 \begin{figure}[htbp]
 \centerline{%
-\Qcircuit @C=1em @R=1.5em {
+\Qcircuitnocompile @C=1em @R=1.5em {
 &\qw & \measureD{M} & \control \cwx[1] \cw &\cw & & \raisebox{-4em}{$\equiv$}& &\qw &\ctrl{1}  & \measureD{M}& \cw\\
 &\qw& \qw & \gate{C_1} & \qw & & & & \qw & \gate{C_1} &\qw &\qw
 }}
@@ -1265,7 +1268,7 @@ and after a \emph{1-control}, as shown in \vref{qc:zctrlisonecontrol}.
 
 \begin{figure}[htbp]
 \centerline{%
-\Qcircuit @C=1em @R=1.5em {
+\Qcircuitnocompile @C=1em @R=1.5em {
 &\qw & \gate{U} & \qw & & \raisebox{-4em}{$\equiv$}& &\qw &\qw & \gate{U} &\qw & \qw \\
 &\qw& \ctrlo{-1} & \qw & & & & \qw & \targ & \ctrl{-1} &\targ  &\qw
 }}
@@ -1278,7 +1281,7 @@ that scoped control of multiple transforms is the same as
 controlling those transforms individually.
 \begin{figure}[htbp]
 \centerline{%
-\Qcircuit @C=1em @R=1.5em {
+\Qcircuitnocompile @C=1em @R=1.5em {
 &\qw&\gate{U_1}\gategroup{1}{2}{2}{3}{1ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\gate{U_1}&\qw&\qw\\
 &\qw&\gate{U_2}&\qw & &&\qw&\qw&\gate{U_2}&\qw\\
 &\qw& \control \ar @{-} [-1,0]-<0ex,2.1ex> \qw &\qw & &&\qw&\ctrl{-2}&\ctrl{-1}&\qw
@@ -1290,7 +1293,7 @@ that scoped control of multiple transforms of the same \qubit{} is
 the same as controlling those transforms serially.
 \begin{figure}[htbp]
 \centerline{%
-\Qcircuit @C=1em @R=1.5em {
+\Qcircuitnocompile @C=1em @R=1.5em {
 &\qw&\gate{U_1}\gategroup{1}{2}{1}{4}{1ex}{-} &\gate{U_2}&\qw &\raisebox{-2em}{$\equiv$}& &\qw&\gate{U_1}&\gate{U_2}&\qw\\
 &\qw& \control \ar @{-} [-1,0]-<0ex,2.1ex> \qw &\qw &\qw &&&\qw&\ctrl{-1}&\ctrl{-1}&\qw
 }}
@@ -1301,7 +1304,7 @@ Multiple control commutes with scoping as shown in
 \vrefrange{qc:scopecommutecontrolone}{qc:scopecommutecontroltwo}.
 \begin{figure}[htbp]
 \centerline{%
-\Qcircuit @C=1em @R=1.5em {
+\Qcircuitnocompile @C=1em @R=1.5em {
 &\qw&\gate{U_1}\gategroup{1}{2}{2}{3}{2ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\gate{U_1}&\qw\\
 &\qw&\ctrl{-1}&\qw & &&\qw&\ctrl{-1}&\qw\\
 &\qw& \control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw & &&\qw&\ctrl{-1}&\qw
@@ -1310,7 +1313,7 @@ Multiple control commutes with scoping as shown in
 \end{figure}
 \begin{figure}[htbp]
 \centerline{%
-\Qcircuit @C=1em @R=1.5em {
+\Qcircuitnocompile @C=1em @R=1.5em {
 &\qw&\ctrl{1}\gategroup{1}{2}{2}{3}{2ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\control \ar @{-} [1,0]+<0ex,2.5ex> \qw&\qw\\
 &\qw&\gate{U_1}&\qw & &&\qw&\gate{U_1}\gategroup{2}{7}{3}{8}{2ex}{-} &\qw\\
 &\qw& \control \ar @{-} [-1,0]-<0ex,2.6ex> \qw &\qw & &&\qw&\ctrl{-1}&\qw
