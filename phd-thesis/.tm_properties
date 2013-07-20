@@ -1,0 +1,5 @@
+TM_GIT   = "/usr/bin/git"
+excludeFiles = "*.{bbl,blg,aux,dvi,lof,out,toc,lot,xyc,synctex.gz}"
+softTabs = true
+softWrap = false
+showInvisibles = true
