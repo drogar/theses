@@ -266,8 +266,8 @@ into $w'_1$ and duplicate $w_1$ into both $w'_1$ and $w'_4$.
 The data required to transform a subroutine is similar to that of an iterated subroutine call.
 
 \begin{definition}\label{def:iteration_transform}
-  The \emph{iteration transform} of a subroutine is a function $S_i$ with parameters $(n,c_p,io_b)$
-  which takes the subroutine $(gates,C,I,O,r,c,n)$ to the subroutine $(gates',C',I',O',r,c,n)$. The
+  The \emph{iteration transform} of a subroutine is a function $\Sigma_i$ with parameters $(n,c_p,io_b)$
+  which takes the subroutine $S=(g,C,I,O,r,c,n)$ to $S'(g',C',I',O',r,c,n)$, an itere. The
   parameters have the following types:
   \begin{align*}
     n&::\type{Int}, n>0;\\
@@ -276,7 +276,7 @@ The data required to transform a subroutine is similar to that of an iterated su
   \end{align*}
 \end{definition}
 
-The function $S_i$ performs the following actions:
+The function $\Sigma_i$ performs the following actions:
 \begin{itemize}
   \item Type checking:
   \begin{itemize}
@@ -328,9 +328,9 @@ duplication on the control wires is allow
     \item $CI_f::\type{Arity}, \dom{CI_f} \subset \dom{C}\cup \dom{I}$,
     \item $CO_f::\type{Arity}, \dom{CO_f} \subset \dom{C}\cup \dom{O}$,
     \item $g:\dom{C}\cup\dom I / \dom{CI_f} \to W_1$ and $g$ is injective,
-    \item $h:\dom{C}\cup\dom O /\dom{CO_f} \to W_2$ and $h$ is injective
-    \item $ciof_b$ is a bijection between $(\dom{C}\cup\dom{O})/\dom{CO_f}$
-      and $(\dom{C}\cup\dom{I})/\dom{CI_f}$,
+    \item $h:\dom{C}\cup\dom O /\dom{CO_f} \to W_2$ and $h$ is injective,
+    \item $ciof_b$ is a bijection between the sets $(\dom{C}\,\cup\,\dom{O})/\dom{CO_f}$
+      and $(\dom{C}\,\cup\,\dom{I})/\dom{CI_f}$,
     \item $s_{in}: \dom{CI_f} \to W_1$ (pulls from $D$),
     \item $s_{out}: \dom{CO_f} \to W_2$ (pushes to $E$),
     \item $g + s_{in} \in F(\nothing,I,W_1)$,
@@ -415,7 +415,7 @@ Discussion points:
     at each leaf would need to be known.
   \item The $F(C,K,W)$ permissible functions are not quite right for
     linear-only folds --- we do not want to allow duplication of any of
-    the inputs, so $F(C,K,W)$ becomes $F(\nothing,C+K,W)$.
+    the inputs, so rather than $F(C,K,W)$ we must use $F(\nothing,C+K,W)$.
 \end{itemize}
 
 \begin{definition}\label{def:subroutine_fold}
@@ -471,7 +471,7 @@ This allows us to derive a new $C,I,O$ for the fold subroutine. We proceed with 
 definition.
 \begin{definition}\label{def:fold_transform_of_a_subroutine}
   The \emph{fold transform} of a subroutine is a function $S_f$ with parameters $(n,b_{cio})$ which
-  takes the subroutine $(gates,C,I,O,r,c,n)$ to the subroutine $(gates',C',I',O',r,c,n)$. The
+  takes the subroutine $(g,C,I,O,r,c,n)$ to the subroutine $(g',C',I',O',r,c,n)$. The
   parameters have the following types:
   \begin{align*}
     n&::\type{Int}, n>0;\\
@@ -758,7 +758,7 @@ From the data, we have:
 Now, following the steps of the algorithm,
 \begin{enumerate}
   \item $I' \mapsto \{b_1,c_1\}$.
-  \item No element of $I$ appears in $b_{cio}$, therefore we now have
+  \item No element of $I$ is in $b_{cio}$, therefore we have
     $I' \mapsto \{b_1,c_1,b_2,c_2,b_3,c_3,b_4,c_4\}$
   \item $O' \mapsto \{d_4,e_4\}$.
   \item Only $e$ is in the range of $b_{cio}$, therefore we add
