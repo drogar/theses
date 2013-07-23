@@ -589,9 +589,9 @@ all of the first three \qubits{} and the measurement applies to the first two \q
 
 
 The examples above have only shown control based upon a \qubit{} being \ket{1}. Circuits also allow
-control on a \qubit{} being \ket{0} and upon classical values. The circuit %todo vref the below
-later in \ref{qc:zctrlAndClassicalControl} with four \qubit{}s $(r_1, r_2, p$ and $q)$ illustrates
-all these forms of control.
+control on a \qubit{} being \ket{0} and upon classical values. These forms of control are illustrated
+by the circuit 
+in \vref{qc:zctrlAndClassicalControl} with four \qubit{}s $(r_1, r_2, p$ and $q)$.
 
 At $g_1$, a \Had{} is $1-$controlled by $r_2$ and is applied to each of $r_1$ and $p$. This is
 followed in column $g_2$ with the \nottr{} transform applied to $r_2$ being $0-$controlled by $r_1$
@@ -830,7 +830,8 @@ now in the same state as the \qubit{} Alice wanted to send. The circuit for this
   \caption{Quantum teleportation}
   \label{qc:quantumTeleportation}
 \end{figure}
-For comparison , see % todo \vref{fig:stackTeleportation} showing how this would be implemented in
+For comparison , see % todo lqpl program for \vref{fig:stackTeleportation} 
+showing how this would be implemented in
 \lqpl{}.
 
 % subsubsection quantum_teleportation (end)
@@ -858,8 +859,8 @@ The algorithm relies on being able to construct an $n+1$ order unitary operator 
 general, a unitary operator like this may be constructed by mapping the state $\ket{a,b}$ to
 $\ket{a,b\oplus f(a)}$ where $\oplus$ is the exclusive-or operator and $a$ is $n$ \bit{} values. If
 we name this operator $U_f$, the circuit in \vref{qc:djAlgorithm} will solve the problem with just
-one application. See the appendix, %todo {vref{appsubsec:djalgorithm}} for how this would be done
-in \lqpl.
+one application. See the appendix, %todo lqpl program {vref{appsubsec:djalgorithm}} 
+for how this would be done in \lqpl.
 \begin{figure}[htbp]
   \centerline{%
     \Qcircuit @C=1em @R=.7em {
@@ -895,7 +896,8 @@ including Shor's factoring algorithm.
 
 The quantum Fourier transform is definable on an arbitrary number of \qubits. This is typically
 presented by eliding the $3^{\text{rd}}$ to the $n-3^{\text{rd}}$ lines and interior processing.
-The \lqpl{} code for the quantum Fourier transform is in the appendix, %todo {vref{fig:qft}}. 
+The \lqpl{} code for the quantum Fourier transform is in the appendix, 
+%todo lqpl for quantum fourier transform {vref{fig:qft}}. 
 In this circuit, the parametrized transform $R_n$ is the rotation transform, given by:
 \[
   R_n=
@@ -923,7 +925,7 @@ In this circuit, the parametrized transform $R_n$ is the rotation transform, giv
 The inverse of a circuit is determined by traversing the circuit from right to left. This process
 changes the original quantum Fourier circuit to its inverse as shown in \vref{qc:inverseqft}. The
 \lqpl{} code for the inverse quantum Fourier transform is in the appendix, 
-%todo {vrefrange{fig:inverseqft}{fig:inverserotate}}.
+%todo lqpl code for {vrefrange{fig:inverseqft}{fig:inverserotate}}.
 \begin{figure}[htbp]
   \centerline{%
     \Qcircuit @C=1em @R=.7em {
@@ -1207,13 +1209,13 @@ $\alpha\ket{0} + \beta\ket{1}$).
   The type \type{endpoint} is either \bit or \qubit.
 \end{definition}
 
-\begin{definition}\label{def:arity}
-  The type \type{Arity} is a partial map from $W\subset\nat$ to \type{Endpoint}.
+\begin{definition}\label{def:qarity}
+  The type \type{Q-Arity} is a partial map from $W\subset\nat$ to \type{Endpoint}.
 \end{definition}
 
 \begin{definition}\label{def:wire}
   A \emph{wire} is an element of $W\subset\nat$. A \emph{typed wire} is a wire together with a
-  specified \type{Arity}.
+  specified \type{Q-Arity}.
 \end{definition}
 
 \begin{definition}\label{def:control}

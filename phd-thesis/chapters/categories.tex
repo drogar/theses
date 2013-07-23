@@ -90,7 +90,7 @@ $\restr{f} g = f$, where $f,g:A\to B$.
   \bproofenum
     \item With $f,g,h$ parallel maps in \X, each of the requirements for a partial order is 
       shown below:
-      \bd
+      \begin{description}
         \itembf{Reflexivity:} $\restr{f} f = f$ and therefore, $ f \le f$.
         \itembf{Anti-Symmetry:} Given $\restr{f}g = f$ and $\restr{g}f = g$, it follows:
           \[
@@ -102,7 +102,7 @@ $\restr{f} g = f$, where $f,g:A\to B$.
             \restr{f} h = \restr{\restr{f} g} h = \restr{f}\, \restr{g} h = \restr{f} g = f
           \]
           showing that $f \le h$.
-      \ed
+      \end{description}
     \item The premise is that $\restr{f} g = f$. From this,
       $ \restr{f}\, \restr{g} = \restr{\restr{f} g} = \restr{f}$, showing
       $\restr{f} \le \restr{g}$.
@@ -430,7 +430,7 @@ preserved by splitting.
   $(A,e\cap 1)$ and the map $f:(A,e_1)\to (B,e_2)$ to $(e_1\cap 1)f $.
 
   $V$ is a functor as:
-  \bd
+  \begin{description}
     \itembf{Well Defined:} If  $f:(A,e_1) \to (B,e_2)$, then
       $(e_1\cap 1) f $ is a map in \X from $A$ to $B$ and
       $ (e_1\cap 1)(e_1\cap 1) f  (e_2 \cap 1) =
@@ -445,7 +445,7 @@ preserved by splitting.
       = (e_1\cap 1 ) f e_2 g
       = (e_1\cap 1 ) f g
       = V(f g)$.
-  \ed
+  \end{description}
 
   Recalling from Lemma \ref{lem:properties_of_meets_in_restriction_categories}, $(e\cap 1)$ 
   is a restriction idempotent. Using this fact, the commutativity of restriction idempotents

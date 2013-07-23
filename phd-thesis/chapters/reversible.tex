@@ -87,7 +87,7 @@ function in \sets: $\tau:S\times A \to A\times\{-1,0,1\}\times S$.
   and then it will halt.
 \end{example}
 
-As can be seen from example \vref{exa:simple_turing_program}, it is \emph{possible}
+As we see in example \vref{exa:simple_turing_program}, it is \emph{possible}
 that a Turing machine program is reversible. If we had chosen the second
 quintuple to be $(run,0,0,+1,run)$ instead, the program would not have been
 reversible.
@@ -246,3 +246,163 @@ a Turing machine.
 
 
 % section reversible_turing_machines (end)
+
+\section{Reversible automota and linear combinatory algebras} % (fold)
+\label{sec:reversible_automota_and_linear_combinatory_algebras}
+While reversible Turing machines, as described in Section~\ref{sec:reversible_turing_machines},
+show that reversible computing is as powerful as standard computing, they do not 
+give us a sense of what may be considered to be happening at a higher level. 
+
+To accomplish that task we examine the results of the paper 
+``A Structural Approach to Reversible Computation''\cite{abramsky05:reversible}. In this paper,
+Abramsky gives a description of a reversible automaton together with a linear combinatory 
+algebra. We will begin by revisiting some definitions and constructions necessary for 
+discussing automota. The next subsection will introduce combinatory algebras, after which we will
+describe the reversible automata of \cite{abramsky05:reversible} and add a short proof that 
+it can emulate a reversible turing machine.
+
+\subsection{Automota} % (fold)
+\label{sub:automota}
+We will describe the automota as a term-rewriting system. This requires, of course, giving a 
+few basic definitions. See, e.g., \cite{termrewriting2003}.
+\begin{definition}\label{def:arity}
+  An \emph{arity} is a function from a function to the natural numbers. The arity of
+  $F$ is the number of inputs (arguments) required by $F$.
+\end{definition} 
+\begin{definition}\label{def:signature}
+  A \emph{signature} $\Sigma$ is a set of \emph{function symbols} $F,G,\ldots$, each of which
+  has an arity.  
+\end{definition}
+
+\begin{remark}
+  We refer to functions with low arity in the following ways:
+  \begin{itemize}
+    \item $Arity = 0$.  These are known as \emph{nullary} functions or constants.
+    \item $Arity = 1$.  These are known as \emph{unary} functions.
+    \item $Arity = 2$.  These are known as \emph{binary} functions.
+  \end{itemize}
+\end{remark}
+
+\begin{definition}\label{def:term_alphabet}
+  A \emph{term alphabet} is a set $A$ containing a signature $\Sigma$ and a countably infinite 
+  set $X$, the variables. Furthermore, $\Sigma \cap X = \phi$.
+\end{definition}
+
+\begin{definition}\label{def:term_algebra}
+  A \emph{term algebra} of the term alphabet  $\Sigma \cup X$ is denoted by $T_\Sigma(X)$ and 
+  defined as follows:
+  \begin{itemize}
+    \item $x\in V \implies x \in T_\Sigma$ and
+    \item For any $F\in\Sigma$, with $arity(F) = n$, and $\{t_1,\ldots,t_n\} \subseteq T_\Sigma$,
+    then $F(t_1,\ldots,t_n)\in T_\Sigma$. In the case where $arity(F) = 0$, we write 
+    $F \in T_\Sigma$.
+  \end{itemize}
+\end{definition}
+
+\begin{definition}\label{def:ground_terms}
+  The \emph{ground terms} of a term algebra are those terms that do not contain any variable.
+  The set of these terms is designated as $T_\Sigma.$
+\end{definition}
+
+\begin{remark}
+  Note the ground terms consist of the constants and recursively applying the function
+  symbols of $\Sigma$ to them.
+\end{remark}
+
+As we are considering rewrite systems, we will need to consider aspects of substitution and 
+unification.
+
+\begin{definition}\label{def:substitution}
+  A \emph{substitution} is a map $\sigma:\tavar \to \tavar$ which is natural for all function
+  symbols in $\Sigma$. In particular if $arity(c) = 0$ then $\sigma(c) = c$.
+\end{definition}
+
+Note that given the above definition a substitution $\sigma$ is completely determined by its action
+on variables. If $\sigma:X\to X$ and is injective, we call $\sigma$ a renaming. Moreover, if 
+$\sigma$ restricted to the variables in a term $t$ is an injective map of $X$ on those variables,
+we call $sigma$ a renaming of $t$.
+
+Substitution allows us to define a partial order on $\tavar$, as follows:
+\begin{definition}\label{def:subsumption_order}
+  In $\tavar$, let $\sigma(t) = s$. Then we say $s$ is an \emph{instance} of $t$, written 
+  $s\preceq t$. Moreover, if $\sigma$ is not just a renaming for $t$, then we write $s\prec t$. If
+  $\sigma$ is a renaming of $t$, we write $s\simeq t$.
+\end{definition}
+
+\begin{lemma}\label{lem:subsumption_is_a_partial_order}
+  Subsumption, as defined in \vref{def:subsumption_order} is a partial order, i.e., it is
+  transitive and reflexive.
+\end{lemma}
+\begin{proof}
+  % TODO - Prove that subsumption (term algebra substitution is partial order)
+\end{proof}
+
+\begin{lemma}\label{lem:most_general_instance}
+  Given terms $r,t$ such that there is at least one $s$ with $s\preceq r$ and $s\preceq t$, 
+  then there exists a $g$ such that $g\preceq r$ and $g\preceq t$ and for any 
+  $s'$ with $s'\preceq r$ and $s'\preceq t$ we will have $s' \preceq g$.
+\end{lemma}
+\begin{proof}
+  % TODO Prove most general instance of terms with common instance
+  \begin{enumerate}
+    \item Algorithm to compute supremum of $p,q$ terms.
+    \item Strict $\prec$ has no infinite ascending chains.
+    \item Shows main part - there exists.
+    \item Can now show it is unique up to renaming.
+  \end{enumerate}
+\end{proof}
+
+The subsumption ordering can be used to derive a similar ordering on substitutions:
+\begin{definition}\label{def:substituion_ordering}
+  $\sigma \preceq \tau$ if and only if there is a $\rho$ with $\sigma = \tau \rho$, where
+  $\tau \rho$ is the diagrammatic order composition of the two substitutions.
+\end{definition}
+
+\begin{definition}\label{def:unifier}
+  For terms $s,t$, if $\sigma(t) = \sigma(s)$, then the substitution $\sigma$ is called a 
+  \emph{unifier} for the terms $s,t$.
+\end{definition}
+
+\begin{lemma}\label{lem:most_general_unifier}
+  If $s,t$ are terms with a unifier $\sigma$, there exists a substitution $\tau$ that 
+  unifies $s,t$ such that $\tau \preceq \rho$ whenever $\rho$ unifies $s,t$. $\rho$ is called 
+  the \emph{most general unifier} of $s$ and $t$.
+\end{lemma}
+\begin{proof}
+  % TODO Prove most general unifier exists
+  Follows from \vref{lem:most_general_instance}.
+\end{proof}
+
+\begin{notation}
+  Following \cite{abramsky05:reversible}, we write \uniftus if $\sigma$ is the 
+  most general unifier of terms $t,u$. 
+\end{notation}
+% subsection automota (end)
+
+% section reversible_automota_and_linear_combinatory_algebras (end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
