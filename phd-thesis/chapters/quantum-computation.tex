@@ -748,14 +748,14 @@ summarized in \vref{tab:qcdSyntax}.
       & \ctrl{1} & \qw \\
       & \targ &\qw
     }  \\[4pt]\hline
-    Measurement & A \emph{D-box} shaped node with optional names or comments inside. One to $n$
-    single wires are attached on the left (\qubit{}s coming in) and $0$ to $n$ classical \bit{}
-    wires on the left. Classical \bits{} may be dropped as desired.
+    Measurement & A \emph{D} shaped node with optional names or comments inside. One to $n$
+    single wires are attached on the left (\qubit{}s coming in) and $0$ to $m$ classical \bit{}
+    wires on the right where $m\le n$. Classical \bits{} may be dropped as desired.
     &\Qcircuit @C=1em @R=.7em {
       & \ctrl{1} & \multimeasureD{1}{q,r} & \cw \\
       & \gate{H} & \ghost{q,r}
     }  \\[4pt]\hline
-    Classical control & Control bullets attached to horizontal classical wires, with vertical
+    Classical control & Control bullets are attached to horizontal classical wires, with vertical
     classical wires attached to the controlled gate.
     &\Qcircuit @C=1em @R=.7em {
       &  \measureD{r} & \control \cw \cwx[1] \\

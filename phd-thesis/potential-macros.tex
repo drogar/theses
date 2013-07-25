@@ -1,4 +1,222 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+%--------------------------------------------------------------------------------------
+% General formatting macros
+
+\newcommand{\quest}[1]{\fbox{\fbox{\parbox{5in}{\footnotesize \textbf{ (Question): }#1}}}}
+\newcommand{\note}[1]{\par\fbox{\fbox{\parbox{5in}{\footnotesize \textbf{(Internal Note): }#1}}}}
+
+\newcommand{\bproofenum}{\vspace{12pt} \hspace{-12pt} \renewcommand{\theenumi}{(\roman{enumi})}\renewcommand{\labelenumi}{\theenumi}\begin{enumerate}}
+\newcommand{\eproofenum}{\end{enumerate}\renewcommand{\theenumi}{\arabic{enumi}}\renewcommand{\labelenumi}{\theenumi.}}
+\newcommand{\bproofitemize}{ \vspace{12pt} \hspace{-12pt} \begin{itemize}}
+\newcommand{\eproofitemize}{\end{itemize}}
+\newcommand{\bproofdesc}{ \vspace{12pt} \hspace{-12pt} \begin{description}}
+\newcommand{\eproofdesc}{\end{description}}
+
+
+
+%------------------------------------------------------------------------------
+% Restriction categories
+\newcommand{\blank}{\ensuremath{\text{\textvisiblespace}}}
+\newcommand{\rone}{[\emph{\bfseries R.1}]\xspace}
+\newcommand{\rtwo}{[\emph{\bfseries R.2}]\xspace}
+\newcommand{\rthree}{[\emph{\bfseries R.3}]\xspace}
+\newcommand{\rfour}{[\emph{\bfseries R.4}]\xspace}
+\newcommand{\restr}[1]{\overline{#1}}
+\newcommand{\rst}[1]{\restr{#1}}
+\newcommand{\rcategory}[5]{%
+\begin{description}%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
+\item{\textbf{Restriction: }}{#5}%
+\end{description}%
+%
+}
+
+\newcommand{\rcategoryequiv}[5]{%
+\begin{description}%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Equivalence Classes of Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
+\item{\textbf{Restriction: }}{#5}%
+\end{description}%
+%
+}
+
+
+%------------------------------------------------------------------------------
+% General math notation macros
+\newcommand{\nothing}{\phi}
+\newcommand{\nin}{\ensuremath{\in\hspace{-0.8em}/\hspace{0.2em}}}
+
+\newcommand{\BigO}[1]{\ensuremath{\mathscr{O}({#1})}}
+\DeclareMathOperator*{\dom}{dom}
+\DeclareMathOperator*{\rng}{range}
+
+\newcommand{\union}{\ensuremath{\bigcup}}
+\newcommand{\disjunion}{\ensuremath{\sqcup}}
+\newcommand{\intersect}{\ensuremath{\bigcap}}
+\newcommand{\logor}{\ensuremath{\lor}}
+\newcommand{\logand}{\ensuremath{\land}}
+\newcommand{\lognand}{\ensuremath{\barwedge}}
+\newcommand{\natmap}{\ensuremath{\Rightarrow}}
+\newcommand{\fctrmap}{\ensuremath{\to}}
+\newcommand{\fnctrmap}{\fctrmap}
+\newcommand{\fmap}{\ensuremath{\to}}
+\newcommand{\produces}{\ensuremath{\to}}
+\newcommand{\ladjoint}{\ensuremath{\dashv}}
+\newcommand{\pproj}{\ensuremath{\preceq_p}}
+
+\newcommand{\tr}[1]{\ensuremath{\text{tr}(#1)}}
+
+\newcommand{\colvec}[1]{\ensuremath{
+\begin{pmatrix}#1\end{pmatrix}}}
+
+\newcommand{\tbtmatrix}[4]{\ensuremath{
+\begin{pmatrix}
+#1&#2\\
+#3&#4
+\end{pmatrix}
+}}
+
+\newcommand{\quadmatrix}[4]{\ensuremath{
+\left(
+\begin{array}{c|c}
+#1&#2\\
+\hline
+#3&#4
+\end{array}
+\right)
+}}
+
+
+%------------------------------------------------------------------------------
+% Types and special math notation
+
+\newcommand{\typecontext}{\ensuremath{\mathbb{T}}\xspace}
+
+\newcommand{\type}[1]{\ensuremath{\mathbf{{#1}}}\xspace}
+\newcommand{\bit}{\type{bit}}
+\newcommand{\qubit}{\type{qubit}}
+\newcommand{\qubits}{\qubit{s}\xspace}
+\newcommand{\bits}{\bit{s}\xspace}
+
+\newcommand{\Qs}{\ensuremath{Q_{()}}\xspace}
+\newcommand{\Bs}{\ensuremath{B_{()}}\xspace}
+
+\newcommand{\mbf}{\ensuremath{\mathbf{f}}}
+\newcommand{\mbg}{\ensuremath{\mathbf{g}}}
+\newcommand{\mbh}{\ensuremath{\mathbf{h}}}
+
+
+\newcommand{\cp}[1]{\amalg_{#1}}
+\newcommand{\cpa}{\cp{0}}
+\newcommand{\cpb}{\cp{1}}
+\let\*\otimes
+\let\+\oplus
+\let\<\langle
+\let\>\rangle
+\newcommand{\uts}{\hspace{0.1pt}}
+
+
+\newcommand{\spl}[2]{\ensuremath{\text{K}_{#1}(#2)}}
+\newcommand{\capspl}{\ensuremath{\cap_{\text{K}}}\xspace}
+\newcommand{\inv}[1]{\ensuremath{{#1}^{(-1)}}}
+\newcommand{\dual}[1]{\ensuremath{{#1}^{*}}}
+\newcommand{\dgr}[1]{\ensuremath{{#1}^{\dagger}}}
+
+\newcommand{\uleft}[1]{\ensuremath{u_{#1}^l}}
+\newcommand{\uright}[1]{\ensuremath{u_{#1}^r}}
+\newcommand{\usl}{\uleft{\*}}
+\newcommand{\usr}{\uright{\*}}
+\newcommand{\upl}{\uleft{+}}
+\newcommand{\upr}{\uright{+}}
+\newcommand{\nm}{\ensuremath{n\times{}m}}
+\newcommand{\mn}{\ensuremath{m\times{}n}}
+
+
+%--------------------------------------------------------------------------------------
+% Notation for inverse categories
+\newcommand{\Xt}{\ensuremath{\widetilde{\X}}\xspace}
+
+
+\newcommand{\hypXt}{\texorpdfstring{\Xt}{Xt}}
+\newcommand{\hypX}{\texorpdfstring{\X}{X}}
+
+\newcommand{\xtdmn}[2]{\ensuremath{{#1}_{|{#2}}}}
+
+
+\newcommand{\xequiv}[1]{\ensuremath{\overset{\scriptscriptstyle #1}{\simeq}}}
+
+
+%------------------------------------------------------------------------------------
+% General notation for categories
+
+\newcommand{\specialcat}[1]{\textsc{#1}\xspace}
+\newcommand{\ltrcat}[1]{\ensuremath{\mathfrak{#1}}\xspace}
+\newcommand{\ltrcatbb}[1]{\ensuremath{\mathbb{#1}}\xspace}
+\newcommand{\B}{\ltrcatbb{B}}
+\newcommand{\C}{\ltrcatbb{C}}
+\newcommand{\D}{\ltrcatbb{D}}
+\newcommand{\E}{\ltrcatbb{E}}
+\newcommand{\Lat}{\ltrcatbb{L}}
+\newcommand{\X}{\ltrcatbb{X}}
+\newcommand{\Y}{\ltrcatbb{Y}}
+\newcommand{\Z}{\ltrcatbb{Z}}
+
+
+\newcommand{\Hil}{\ensuremath{\mathcal{H}}\xspace}
+
+\newcommand{\sets}{\specialcat{Sets}}
+\newcommand{\rel}{\specialcat{Rel}}
+\newcommand{\fdh}{\specialcat{FdHilb}}
+\newcommand{\mon}{\specialcat{Mon}}
+\newcommand{\ring}{\specialcat{Rng}}
+\newcommand{\Par}{\specialcat{Par}}
+\newcommand{\cring}{\specialcat{CRng}}
+\newcommand{\cat}{\specialcat{Cat}}
+\newcommand{\poset}{\specialcat{Poset}}
+\newcommand{\preorder}{\specialcat{Preorder}}
+\newcommand{\mcat}{\ensuremath{\mathcal{M}\text{\cat}}\xspace}
+
+\newcommand{\Mstab}{\ensuremath{\mathcal{M}}\xspace}
+
+\newcommand{\obj}[1]{\ensuremath{#1_{obj}}}
+\newcommand{\bottom}[1]{\perp_{#1}}
+\newcommand{\finpower}{\mathscr{P}_{fin}}
+
+\newcommand{\category}[4]{%
+\begin{description}%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
+ \end{description}%
+%
+}
+
+\newcommand{\pfcategory}[3]{%
+\begin{description}%
+\item{\textbf{Well-Defined: }}{#1}%
+\item{\textbf{Identities: }}{#2}%
+\item{\textbf{Associativity: }}{#3}%
+\end{description}}
+
+
+
+% Additional gates
+
+\newcommand{\nowiregate}[1]{*{\xy *+<.6em>{#1};p\save+LU;+RU **\dir{-}\restore\save+RU;+RD **\dir{-}\restore\save+RD;+LD **\dir{-}\restore\POS+LD;+LU **\dir{-}\endxy}}
+
+%-------------------------------------------------
+% subscripting
+
+\newcommand{\jay}{\ensuremath{j}\xspace}
+\newcommand{\kay}{\ensuremath{k}\xspace}
+
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
 %\floatstyle{boxed}
 %\newfloat{QuantumCircuit}{htp}{qci}[chapter]
 %\floatname{QuantumCircuit}{Circuit}
@@ -46,6 +264,8 @@
 \labelformat{table}{table~#1}
 \labelformat{figure}{figure~#1}
 
+%-------------------------------------------------------------------------------
+% Code environments for Verbatim package
 
 \DefineVerbatimEnvironment%
  {happycodefirst}{Verbatim}{gobble=2,numbers=left,firstnumber=1,fontsize=\footnotesize}
@@ -55,14 +275,6 @@
  {bnf}{Verbatim}{commandchars=\\\{\},fontfamily=courier,fontsize=\footnotesize}
 \DefineVerbatimEnvironment%
  {happycodecont}{Verbatim}{gobble=2,numbers=left,firstnumber=last,fontsize=\footnotesize}
-% import and redefinition of general macros
-\input{macros-notation}
-\newcommand{\inflist}[1]{\ensuremath{\mathbb{IL}({#1})}}
-\newcommand{\incsec}[1]{\subsection{#1}}
-% end of redefinitions.
-\newcommand{\incsubsec}[1]{\subsubsection{#1}}
-\newcommand{\incsubsubsec}[1]{\paragraph{#1}}
-\newcommand{\qplcode}[1]{\textbf{#1}}
 \DefineVerbatimEnvironment%
 {code}{Verbatim}{numbers=left,fontsize=\footnotesize,firstnumber=1}
 \newcommand{\CodeResetNumbers}{\RecustomVerbatimEnvironment%
@@ -71,10 +283,8 @@
 {code}{Verbatim}{numbers=left,fontsize=\footnotesize,firstnumber=last}}
 \renewcommand{\C}{\ensuremath{\mathbb{C}}}
 
-\input{Qcircuit} % for quantum circuits
-
-\newcommand{\marginnote}[1]{\marginpar{\tiny #1}}
-
+%----------------------------------------------------------------------------------
+% Code environments and definitions for listings
 
 
 \lstdefinestyle{hskl}{language=Haskell,
@@ -121,6 +331,9 @@
 \lstdefinestyle{inlinqpl}{language=lqpl,basicstyle=\footnotesize\ttfamily,%
   escapechar=`}
 
+%-----------------------------------------------------------------------------------
+% Extra macros for describing the LQPL language
+
 \newcommand{\lbl}{{\cdptr}}
 \newcommand{\cd}{\ensuremath{\mathcal{C}}}
 \newcommand{\lblcd}{{\cd}}
@@ -143,7 +356,21 @@
 \newcommand{\Datatype}{\stacknode{datatype}}
 \newcommand{\Bool}{\stacknode{Bool}}
 
-\newcommand{\vc}[1]{\ensuremath{\mathbf{#1}}}
+
+
+%-----------------------------------------------------------------------------------
+% Macros for including code 
+\newcommand{\incsubsec}[1]{\subsubsection{#1}}
+\newcommand{\incsubsubsec}[1]{\paragraph{#1}}
+\newcommand{\qplcode}[1]{\textbf{#1}}
+
+
+%------------------------------------------------------------------------------------
+% Formatting macros
+\newcommand{\marginnote}[1]{\marginpar{\tiny #1}}
+
+%------------------------------------------------------------------------------------
+%  Notation for describing syntax of language (lqpl primarily)
 \newcommand{\syntacticset}[1]{\ensuremath{\mathbf{#1}}}
 
 \newcommand{\n}{\syntacticset{N}}
@@ -199,6 +426,8 @@
                         11\qsp {#5}%
                         \end{array}%
                \right\}^{#6}}}
+
+
 
 \newcommand{\eentail}{\ensuremath{\Vdash\!\!\dashv}}
 \newcommand{\ientail}{\ensuremath{\Vdash}}
@@ -263,3 +492,10 @@
 \newcommand{\IdOnly}{\lqplmodifier{IdOnly}}
 \newcommand{\Left}{\lqplmodifier{Left}}
 \newcommand{\Right}{\lqplmodifier{Right}}
+
+
+
+% import and redefinition of general macros
+
+\newcommand{\inflist}[1]{\ensuremath{\mathbb{IL}({#1})}}
+\newcommand{\incsec}[1]{\subsection{#1}}
