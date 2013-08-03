@@ -554,14 +554,14 @@ is the cardinality of $C$. Additionally, we compute a \emph{rank} of each $c$ in
 \emph{rank} of $c$ is the number of iterations that $c$ will go through.
 \begin{enumerate}
   \item Add all members of $I$ to $I'$, subscripting with $1$.
-  \item For all $i\in I$ where $i \nin \rng b_{cio}$, add $i_2,i_3,\ldots,i_n$ to $I'$.
+  \item For all $i\in I$ where $i \not\in \rng b_{cio}$, add $i_2,i_3,\ldots,i_n$ to $I'$.
   \item Add all members of $O$ to $O'$, subscripting with $n$.
-  \item For all $o\in O$ where $o \nin \dom b_{cio}$, add $o_1,o_2,\ldots,o_{n-1}$ to $O'$.
+  \item For all $o\in O$ where $o \not\in \dom b_{cio}$, add $o_1,o_2,\ldots,o_{n-1}$ to $O'$.
   \item Partition $C$ into four subsets:
   \begin{align*}
-    C_*    &= \{c|c\nin \dom b_{cio}\text{ and }c\nin \rng b_{cio}\},\\
-    C_d    &= \{c|c\in \dom b_{cio}\text{ and }c\nin \rng b_{cio}\},\\
-    C_r    &= \{c|c\nin \dom b_{cio}\text{ and }c\in \rng b_{cio}\},\\
+    C_*    &= \{c|c\not\in \dom b_{cio}\text{ and }c\not\in \rng b_{cio}\},\\
+    C_d    &= \{c|c\in \dom b_{cio}\text{ and }c\not\in \rng b_{cio}\},\\
+    C_r    &= \{c|c\not\in \dom b_{cio}\text{ and }c\in \rng b_{cio}\},\\
     C_{dr} &= \{c|c\in \dom b_{cio}\text{ and }c\in \rng b_{cio}\}.
   \end{align*}
   \item For each $c\in C_*$, add $c_1,c_2,\ldots,c_n$ to $C'$. Set the
@@ -850,9 +850,10 @@ The algorithm steps are:
     where $X$ is any of $C,I,O$, the names of each entry will be the companion
     name with the ``type''.
 \end{enumerate}
-\note{The algorithm above works correctly, but likely has too high of a complexity, depending on
-the number of iterations. Need to revise in the next version to see if we can make the complexity
-proportional to the number of wires in/out.}
+% TODO Revise algorithm for folding
+%The algorithm above works correctly, but likely has too high of a complexity, depending on
+%the number of iterations. Need to revise in the next version to see if we can make the complexity
+%proportional to the number of wires in/out.}
 
 \subsection{Examples of folding with Alternate Algorithm} % (fold)
 \label{sub:examples_of_folding_with_alternate_algorithm}

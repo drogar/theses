@@ -5,8 +5,6 @@
 \newcommand{\quest}[1]{\fbox{\fbox{\parbox{5in}{\footnotesize \textbf{ (Question): }#1}}}}
 \newcommand{\note}[1]{\par\fbox{\fbox{\parbox{5in}{\footnotesize \textbf{(Internal Note): }#1}}}}
 
-\newcommand{\bproofenum}{\vspace{12pt} \hspace{-12pt} \renewcommand{\theenumi}{(\roman{enumi})}\renewcommand{\labelenumi}{\theenumi}\begin{enumerate}}
-\newcommand{\eproofenum}{\end{enumerate}\renewcommand{\theenumi}{\arabic{enumi}}\renewcommand{\labelenumi}{\theenumi.}}
 \newcommand{\bproofitemize}{ \vspace{12pt} \hspace{-12pt} \begin{itemize}}
 \newcommand{\eproofitemize}{\end{itemize}}
 \newcommand{\bproofdesc}{ \vspace{12pt} \hspace{-12pt} \begin{description}}
@@ -16,13 +14,6 @@
 
 %------------------------------------------------------------------------------
 % Restriction categories
-\newcommand{\blank}{\ensuremath{\text{\textvisiblespace}}}
-\newcommand{\rone}{[\emph{\bfseries R.1}]\xspace}
-\newcommand{\rtwo}{[\emph{\bfseries R.2}]\xspace}
-\newcommand{\rthree}{[\emph{\bfseries R.3}]\xspace}
-\newcommand{\rfour}{[\emph{\bfseries R.4}]\xspace}
-\newcommand{\restr}[1]{\overline{#1}}
-\newcommand{\rst}[1]{\restr{#1}}
 \newcommand{\rcategory}[5]{%
 \begin{description}%
 \item{\textbf{Objects: }}{#1}%
@@ -34,26 +25,10 @@
 %
 }
 
-\newcommand{\rcategoryequiv}[5]{%
-\begin{description}%
-\item{\textbf{Objects: }}{#1}%
-\item{\textbf{Equivalence Classes of Maps: }}{#2}%
-\item{\textbf{Identity: }}{#3}%
-\item{\textbf{Composition: }}{#4}%
-\item{\textbf{Restriction: }}{#5}%
-\end{description}%
-%
-}
-
-
 %------------------------------------------------------------------------------
 % General math notation macros
-\newcommand{\nothing}{\phi}
 \newcommand{\nin}{\ensuremath{\in\hspace{-0.8em}/\hspace{0.2em}}}
 
-\newcommand{\BigO}[1]{\ensuremath{\mathscr{O}({#1})}}
-\DeclareMathOperator*{\dom}{dom}
-\DeclareMathOperator*{\rng}{range}
 
 \newcommand{\union}{\ensuremath{\bigcup}}
 \newcommand{\disjunion}{\ensuremath{\sqcup}}
@@ -97,33 +72,14 @@
 
 \newcommand{\typecontext}{\ensuremath{\mathbb{T}}\xspace}
 
-\newcommand{\type}[1]{\ensuremath{\mathbf{{#1}}}\xspace}
-\newcommand{\bit}{\type{bit}}
-\newcommand{\qubit}{\type{qubit}}
-\newcommand{\qubits}{\qubit{s}\xspace}
-\newcommand{\bits}{\bit{s}\xspace}
 
-\newcommand{\Qs}{\ensuremath{Q_{()}}\xspace}
-\newcommand{\Bs}{\ensuremath{B_{()}}\xspace}
-
-\newcommand{\mbf}{\ensuremath{\mathbf{f}}}
-\newcommand{\mbg}{\ensuremath{\mathbf{g}}}
-\newcommand{\mbh}{\ensuremath{\mathbf{h}}}
 
 
 \newcommand{\cp}[1]{\amalg_{#1}}
 \newcommand{\cpa}{\cp{0}}
 \newcommand{\cpb}{\cp{1}}
-\let\*\otimes
-\let\+\oplus
-\let\<\langle
-\let\>\rangle
-\newcommand{\uts}{\hspace{0.1pt}}
 
 
-\newcommand{\spl}[2]{\ensuremath{\text{K}_{#1}(#2)}}
-\newcommand{\capspl}{\ensuremath{\cap_{\text{K}}}\xspace}
-\newcommand{\inv}[1]{\ensuremath{{#1}^{(-1)}}}
 \newcommand{\dual}[1]{\ensuremath{{#1}^{*}}}
 \newcommand{\dgr}[1]{\ensuremath{{#1}^{\dagger}}}
 
@@ -154,48 +110,30 @@
 %------------------------------------------------------------------------------------
 % General notation for categories
 
-\newcommand{\specialcat}[1]{\textsc{#1}\xspace}
 \newcommand{\ltrcat}[1]{\ensuremath{\mathfrak{#1}}\xspace}
-\newcommand{\ltrcatbb}[1]{\ensuremath{\mathbb{#1}}\xspace}
 \newcommand{\B}{\ltrcatbb{B}}
-\newcommand{\C}{\ltrcatbb{C}}
 \newcommand{\D}{\ltrcatbb{D}}
 \newcommand{\E}{\ltrcatbb{E}}
 \newcommand{\Lat}{\ltrcatbb{L}}
-\newcommand{\X}{\ltrcatbb{X}}
-\newcommand{\Y}{\ltrcatbb{Y}}
-\newcommand{\Z}{\ltrcatbb{Z}}
 
 
 \newcommand{\Hil}{\ensuremath{\mathcal{H}}\xspace}
 
-\newcommand{\sets}{\specialcat{Sets}}
 \newcommand{\rel}{\specialcat{Rel}}
 \newcommand{\fdh}{\specialcat{FdHilb}}
 \newcommand{\mon}{\specialcat{Mon}}
 \newcommand{\ring}{\specialcat{Rng}}
-\newcommand{\Par}{\specialcat{Par}}
 \newcommand{\cring}{\specialcat{CRng}}
 \newcommand{\cat}{\specialcat{Cat}}
 \newcommand{\poset}{\specialcat{Poset}}
 \newcommand{\preorder}{\specialcat{Preorder}}
 \newcommand{\mcat}{\ensuremath{\mathcal{M}\text{\cat}}\xspace}
 
-\newcommand{\Mstab}{\ensuremath{\mathcal{M}}\xspace}
 
 \newcommand{\obj}[1]{\ensuremath{#1_{obj}}}
 \newcommand{\bottom}[1]{\perp_{#1}}
 \newcommand{\finpower}{\mathscr{P}_{fin}}
 
-\newcommand{\category}[4]{%
-\begin{description}%
-\item{\textbf{Objects: }}{#1}%
-\item{\textbf{Maps: }}{#2}%
-\item{\textbf{Identity: }}{#3}%
-\item{\textbf{Composition: }}{#4}%
- \end{description}%
-%
-}
 
 \newcommand{\pfcategory}[3]{%
 \begin{description}%
@@ -206,9 +144,6 @@
 
 
 
-% Additional gates
-
-\newcommand{\nowiregate}[1]{*{\xy *+<.6em>{#1};p\save+LU;+RU **\dir{-}\restore\save+RU;+RD **\dir{-}\restore\save+RD;+LD **\dir{-}\restore\POS+LD;+LU **\dir{-}\endxy}}
 
 %-------------------------------------------------
 % subscripting
@@ -340,16 +275,12 @@
 %\newcommand{\lblcd}{\ensuremath{@\lbl}}
 \newcommand{\cdptr}{\ensuremath{\triangleright\cd}}
 %\newcommand{\ 2 do}[1]{\begin{quote}2 do: \textbf{#1}\end{quote}}
-\newcommand{\lqpl}{L-QPL}
 \newcommand{\linearqpl}{Linear QPL}
 
 \newcommand{\inlqpl}[1]{\protect{\lstinline[style=inlinqpl]!#1!}}
 \newcommand{\inlhskl}[1]{\lstinline[style=hskl]!#1!}
 
 
-\newcommand{\Had}{\text{Hadamard}}
-\newcommand{\nottr}{\text{Not}}
-\newcommand{\Cnot}{controlled{-}\nottr}
 
 \newcommand{\stacknode}[1]{\ensuremath{\mathrm{\texttt{#1}}}}
 \newcommand{\Int}{\stacknode{Int}}

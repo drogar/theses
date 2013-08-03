@@ -429,7 +429,7 @@ components as input to gates as in the circuit in \vref{qc:cnotcircuit}.
       \lstick{\ket{1}}  & \ctrl{-1} & \rstick{\ket{1}} \qw \\
     }
   }
-  \caption{Controlled-\nottr{} of $\ket{1}$ and $\ket{1}$}
+  \caption{\cnot{} of $\ket{1}$ and $\ket{1}$}
   \label{qc:cnotcircuit}
 \end{figure}
 
@@ -439,7 +439,7 @@ discussion.
 Controlled gates, where the gate action depends upon another \qubit, are shown by attaching a wire
 between the wire of the control \qubit{} and the controlled gate. The circuit in
 \vref{qc:appEntangle} shows two \qubit{}s, where a \Had{} is applied to the top \qubit{}, followed
-by a \Cnot{} applied to the second \qubit{}. In circuits, the control \qubit{} is on the vertical
+by a \cnot{} applied to the second \qubit{}. In circuits, the control \qubit{} is on the vertical
 wire with the solid dot. This is then connected via a horizontal wire to the gate being controlled.
 
 A list of common gates, their circuits and corresponding matrices is given in
@@ -795,7 +795,7 @@ transformation} and its inverse.
 The standard presentation of this algorithm involves two participants $A$ and $B$. (Henceforth
 known as Alice and Bob). Alice and Bob first initialize two \qubit{}s to \ket{00}, then place them
 into what is known as an \emph{EPR} (for Einstein, Podolsky and Rosen) state. This is accomplished
-by first applying the \Had{} gate to Alice's \qubit{}, followed by a \Cnot{} to the pair of
+by first applying the \Had{} gate to Alice's \qubit{}, followed by a \cnot{} to the pair of
 \qubits{} controlled by Alice's \qubit{}.
 
 Then, Bob travels somewhere distant from Alice, taking his \qubit{} with him\footnote{Notice that
@@ -803,7 +803,7 @@ all other physical constraints are ignored in this algorithm. There is no concer
 separates the \qubit{}s, transports the \qubit{} or potential decoherence of the \qubit{}s.}.
 
 At this point, Alice receives a \qubit{}, $\nu$, in an unknown state and has to pass $\nu$ on to
-Bob. She then uses $\nu$ as the control and applies a {\Cnot{}} transform to this new pair. Alice
+Bob. She then uses $\nu$ as the control and applies a {\cnot{}} transform to this new pair. Alice
 then applies a \Had{} transform applied to $\nu$.
 
 Alice now measures the two \qubit{}s and sends the resulting two \bits{} of classical information
