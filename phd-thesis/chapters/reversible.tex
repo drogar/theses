@@ -379,6 +379,180 @@ The subsumption ordering can be used to derive a similar ordering on substitutio
 \end{notation}
 % subsection automota (end)
 
+\subsection{Combinatory Algebra} % (fold)
+\label{sub:combinatory_algebra}
+
+\begin{definition}\label{def:combinatory_algebra}
+  A \emph{combinatory algebra} is an algebra with one binary operation, $\cdot$ written in infix
+  notation. The operation is not assumed to be associative. Multi-element expressions such as 
+  $a \. b \. c$ are to be taken as associating to the left, that is,
+  \[
+    a \. b \. c = (a \.b)\.c.
+  \]
+  The combinatory algebra may possess distinguished elements that are subject to 
+  specific rewrite rules.
+\end{definition}
+
+\begin{definition}\label{def:combinatory_logic}
+  \emph{Combinatory logic} is the combinatory algebra with two distinguished elements, \Kc and \Sc,
+  such that the following hold:
+  \begin{singlespace}
+    \begin{align*}
+      &\Kc \cdot x \cdot y &&= x\\
+      &\Sc \cdot x \cdot y \cdot z &&= x \cdot z \cdot (y \cdot z).
+    \end{align*}
+  \end{singlespace}
+\end{definition}
+
+Note that combinatory logic does not require a specific set that must be used for the algebra,
+simply that it has the two distinguished elements. 
+
+Combinatory logic was shown to be equivalent to the $\lambda$ calculus by 
+% TODO Get reference for who showed CL = lambda, and who did it.
+
+For example, we may define the identity combinator \Ic as $\Ic = \Sc \. \Kc \. \Kc$. 
+Further combinators may be defined, such as the \Bc combinator, defined by
+$\Bc \. a \. b \. c = a \. (b\. c)$. The \Sc and \Kc combinators are complete, in that other
+combinators such as \Bc may be defined from them. E.g., $\Bc = \Sc\.(\Kc\.\Sc)\.\Kc$. 
+In fact, we may define an alternate combinatory algebra that is equivalent to Combinatory Logic.
+
+\begin{definition}\label{def:bckw_algebra}
+  A \emph{BCKW-Combinatory algebra} is a Combinatory Algebra with four distinguish elements, 
+  \Bc, \Cc, \Kc, and \Wc subject to the following equations:
+  \begin{singlespace}
+    \begin{align*}
+      &\Bc \. a\.b\.c   &&=a\.(b\.c)&\qquad\qquad\qquad\qquad\qquad\qquad\\
+      &\Cc \. a\.b\.c   &&=a\.c\.b\\
+      &\Kc \. a\.b      &&=a\\
+      &\Wc\. a\.b       && = a\.b\.b
+    \end{align*}
+  \end{singlespace}
+\end{definition}
+
+In fact, a BCKW-Combinatory algebra is equivalent to a Combinatory logic.
+
+\begin{lemma}\label{lem:bckw_combinatory_is_sk_combinatory}
+  The distinguished elements of a BCKW-Combinatory algebra may be represented by \Sc and \Kc. 
+  Conversly, the \Sc and \Kc of a Combinatory logic may be created from \Bc,\Cc,\Kc and \Wc.
+\end{lemma}
+\begin{proof}
+  For the first statement, we have:
+  \begin{singlespace}
+    \begin{align*}
+      &\Bc &&= \Sc\. (\Kc\.\Sc)\.\Kc\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\\
+      &\Cc &&= \Sc\.(\Sc\.(\Kc\.(\Sc\.(\Kc\.\Sc)\.\Kc))\.\Sc)\.(\Kc\.\Kc)\\
+      &\Kc &&= \Kc\\
+      &\Wc &&= \Sc\.\Sc\.(\Sc\.\Kc).\\
+      \\
+      \text{Going the other direction, we have:}\\
+      &\Ic &&= \Wc\.\Kc\\
+      &\Kc &&= \Kc\\
+      &\Sc &&= \Bc\.(\Bc\.(\Bc\.\Wc)\.\Cc)\.(\Bc\.\Bc) \text{ and}\\
+      &    &&= \Bc\.(\Bc\.\Wc)\.(\Bc\.\Bc\.\Cc).
+    \end{align*}
+  \end{singlespace}
+  
+  We show the computations of \Bc and \Sc in detail.
+  \begin{singlespace}
+    \begin{align*}
+      \Bc\.a\.b\.c &=\Sc\. (\Kc\.\Sc)\.\Kc \.a\.b\.c \\
+       &= (\Kc\.\Sc)\.a\.(\Kc\.a)\.b\.c\\
+       &= \Sc\.(\Kc\.a)\.b\.c\\
+       &= \Kc\.a\.c\.(b\.c)\\
+       &= a\.(b\.c)\\
+       \\
+      \Sc\.a\.b\.c&=\Bc\.(\Bc\.\Wc)\.(\Bc\.\Bc\.\Cc)\.a\.b\.c\\
+      &=(\Bc\.\Wc)\.((\Bc\.\Bc\.\Cc)\.a)\.b\.c\\
+      &=\Bc\.\Wc\.((\Bc\.\Bc\.\Cc)\.a)\.b\.c\\
+      &=\Wc\.(((\Bc\.\Bc\.\Cc)\.a)\.b)\.c\\
+      &=(((\Bc\.\Bc\.\Cc)\.a)\.b)\.c\.c\\
+      &=\Bc\.\Bc\.\Cc\.a\.b\.c\.c\\
+      &=\Bc\.(\Cc\.a)\.b\.c\.c\\
+      &=(\Cc\.a)\.(b\.c)\.c\\
+      &=\Cc\.a\.(b\.c)\.c\\
+      &=a\.c\.(b\.c)
+    \end{align*}
+  \end{singlespace}
+\end{proof}
+
+If we use the notation $a^n \. b$ to mean $a\.a\.\cdots\.a\.b$ where $a$ is repeated $n$ times,
+then we can terms which correspond to the Church numbers of lambda calculus:
+\[
+  \bar{n}\equiv (\Sc\.\Bc)^n\.(\Kc\.\Ic)
+\]
+% TODO find or create definition of B combinator from S and K
+
+\begin{definition}\label{def:functions_representable_in_combinatory_logic}
+  A partial function $f:\nat \to \nat$ is \emph{representable} in combinatory logic if there is a
+  term $M_f$ such that $M_f\.\bar{n} = \bar{m}$ whenever $f(n) = m$ and $M_f\.\bar{n} $ does
+  not have a normal form if $f(n)\uparrow$.
+\end{definition}
+
+When we say that combinatory logic with \Sc and \Kc is complete, we mean the following theorem:
+\begin{theorem}\label{thm:combinatory_logic_is_complete}
+  The partial functions that are representable in combinatory logic are exactly the partial 
+  recursive functions.  
+\end{theorem}
+
+% subsection combinatory_algebra (end)
+
+\subsection{Linear Combinatory Algebra} % (fold)
+\label{sub:linear_combinatory_algebra}
+
+\begin{definition}\label{def:linear_combinatory_algebra}
+  A \emph{Linear Combinatory Algebra} $(A,\.,!)$ is an algebra $A$ with an applicative binary 
+  operation $\.$, an unary operator $!:A\to A$ and eight distinquished elements: \Bc, \Cc, \Ic,
+  \Kc, \Dc, \dc, \Fc and \Wc in $A$ which satisfy the following rules:
+  \begin{singlespace}
+    \begin{align*}
+      &1.\ \Bc\. a\.b\.c     &&=a\.(b\.c)&\qquad\qquad\qquad\qquad\qquad\qquad\\
+      &2.\ \Cc \. a\.b\.c    &&=a\.c\.b\\
+      &3.\ \Ic \. a          &&=a\\
+      &4.\ \Kc \. a\.{!}b    &&=a\\
+      &5.\ \Dc\.{!}a         &&=a\\
+      &6.\ \dc\.{!}a         &&={!!}a\\
+      &7.\ \Fc\.{!}a\.{!}b   &&={!}(a\.b)\\
+      &8.\ \Wc\. a\.{!}b     && = a\.{!}b\.{!}b
+    \end{align*}
+  \end{singlespace}
+\end{definition}
+
+Note that a Linear Combinatory Algebra always contains a BCKW-Combinatory algebra.
+
+Define $\Dc' = \Cc\.(\Bc\.\Bc\.\Ic)\.(\Bc\.\Dc\.\Ic)$ and the binary operator $\bullet$ on $A$ such
+that $a\bullet b \equiv a\.{!}b$. Then, define the following:
+\begin{align*}
+  &\Bc_s  &&=\Cc\.(\Bc\.(\Bc\.\Bc\.\Bc)\.(\Dc'\.\Ic))\.(\Cc\.((\Bc\.\Bc)\.\Fc)\.\dc)\\
+  &\Cc_s  &&=\Dc'\.\Cc\\
+  &\Kc_s  &&=\Dc'\.\Kc\\
+  &\Wc_s  &&=\Dc'\.\Wc.
+\end{align*}
+
+\begin{lemma}\label{lem:linear_combinatory_algebra_has_a_bckw_algebra}
+  Given and Linear Combinatory Algebra $(A,\.,{!})$, then $(A,\bullet)$ is a BCKW-Combinatory
+  algebra with $\Bc,\Cc,\Kc,\Wc$ set to $\Bc_s,\Cc_s,\Kc_s,\Wc_s$ from above.
+\end{lemma}
+\begin{proof}
+  We show the calculation for $\Kc_s$, the others are similar.
+  \begin{singlespace}
+    \begin{align*}
+      \Kc\bullet a\bullet b &\equiv\Dc'\. \Kc \. {!}a \. {!}b\\
+       &= \Cc\.(\Bc\.\Bc\.\Ic)\.(\Bc\.\Dc\.\Ic)\. \Kc \. {!}a \. {!}b\\
+       &= (\Bc\.\Bc\.\Ic\. \Kc)\.(\Bc\.\Dc\.\Ic) \. {!}a \. {!}b\\
+       &= \Bc\.(\Ic\. \Kc)\.(\Bc\.\Dc\.\Ic) \. {!}a \. {!}b\\
+       &= (\Ic\. \Kc)\.((\Bc\.\Dc\.\Ic) \. {!}a) \. {!}b\\
+       &= \Kc\.((\Bc\.\Dc\.\Ic) \. {!}a) \. {!}b\\
+       &= (\Bc\.\Dc\.\Ic) \. {!}a\\
+       &= \Dc\.(\Ic \. {!}a)\\
+       &= \Dc\. {!}a\\
+       &= a\\
+    \end{align*}
+  \end{singlespace}
+  
+\end{proof}
+
+% subsection linear_combinatory_algebra (end)
+
 % section reversible_automota_and_linear_combinatory_algebras (end)
 
 
