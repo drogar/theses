@@ -62,6 +62,9 @@
 \newcommand{\bproofenum}{\vspace{12pt} \hspace{-12pt} \renewcommand{\theenumi}{(\roman{enumi})}\renewcommand{\labelenumi}{\theenumi}\begin{enumerate}}
 \newcommand{\eproofenum}{\end{enumerate}\renewcommand{\theenumi}{\arabic{enumi}}\renewcommand{\labelenumi}{\theenumi.}}
 
+\newcommand{\bproofdesc}{ \vspace{12pt} \hspace{-12pt} \begin{description}}
+\newcommand{\eproofdesc}{\end{description}}
+
 \newcommand{\itembf}[1]{\item{\textbf{#1}}}
 \newcommand{\itemem}[1]{\item{\emph{#1}}}
 \newcommand{\itemtt}[1]{\item{\texttt{#1}}}
@@ -199,13 +202,21 @@
 \newcommand{\specialcat}[1]{\textsc{#1}\xspace}
 \newcommand{\ltrcatbb}[1]{\ensuremath{\mathbb{#1}}\xspace}
 
+\newcommand{\A}{\ltrcatbb{A}}
+\newcommand{\B}{\ltrcatbb{B}}
 \newcommand{\C}{\ltrcatbb{C}}
 \newcommand{\X}{\ltrcatbb{X}}
 \newcommand{\Y}{\ltrcatbb{Y}}
 
+\newcommand{\Lat}{\ltrcatbb{L}}
+\newcommand{\Mstab}{\ensuremath{\mathcal{M}}\xspace}
 
 \newcommand{\sets}{\specialcat{Sets}}
 \newcommand{\Par}{\specialcat{Par}}
+
+\newcommand{\rel}{\specialcat{Rel}}
+
+\newcommand{\fdh}{\specialcat{FdHilb}}
 
 \newcommand{\spl}[2]{\ensuremath{\text{K}_{#1}(#2)}}
 
@@ -232,14 +243,42 @@
 \newcommand{\restr}[1]{\overline{#1}}
 \newcommand{\rst}[1]{\restr{#1}}
 
-\newcommand{\Mstab}{\ensuremath{\mathcal{M}}\xspace}
 
 %--------------------------------------------------------------------------------------
 % Notation for inverse categories
 
 
+\newcommand{\uleft}[1]{\ensuremath{u_{#1}^l}}
+\newcommand{\uright}[1]{\ensuremath{u_{#1}^r}}
+\newcommand{\usl}{\uleft{\*}}
+\newcommand{\usr}{\uright{\*}}
+
+\newcommand{\exchange}[1]{\ensuremath{e\!x_{#1}}}
+\newcommand{\excs}{\exchange{\*}}
+
+\newcommand{\Invc}[1]{\ensuremath{Inv(#1)}\xspace}
+\newcommand{\Invf}{\ensuremath{\mathbf{INV}}\xspace}
+\newcommand{\Inv}[1]{\ensuremath{\mathbf{INV}({#1})}\xspace}
+
+\newcommand{\Xt}{\ensuremath{\widetilde{\X}}\xspace}
+
+
+\newcommand{\hypXt}{\texorpdfstring{\Xt}{Xt}}
+\newcommand{\hypX}{\texorpdfstring{\X}{X}}
+
+\newcommand{\xtdmn}[2]{\ensuremath{{#1}_{|{#2}}}}
+\newcommand{\xequiv}[1]{\ensuremath{\overset{\scriptscriptstyle #1}{\simeq}}}
+
+
+\newcommand{\wtc}{\ensuremath{\widetilde{(\_)}}\xspace}
+\newcommand{\wtf}{\ensuremath{\mathbf{T}}\xspace}
+\newcommand{\wt}[1]{\ensuremath{\mathbf{T}({#1})}\xspace}
 %-------------------------------------------------
 % sub/super scripting and decorating
+
+\newcommand{\dual}[1]{\ensuremath{{#1}^{*}}}
+
+\newcommand{\dgr}[1]{\ensuremath{{#1}^{\dagger}}}
 
 \newcommand{\jay}{\ensuremath{j}\xspace}
 \newcommand{\kay}{\ensuremath{k}\xspace}
