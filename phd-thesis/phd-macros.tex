@@ -111,6 +111,7 @@
 \newcommand{\Dw}{\ensuremath{\D[\omega]}\xspace}
 \newcommand{\Zb}{\ensuremath{\Z_2}\xspace}
 \newcommand{\Zbw}{\ensuremath{\Zb[\omega]}\xspace}
+\newcommand{\Zss}{\ensuremath{\Zb[\sqrt{2}]}\xspace}
 
 \newcommand{\inv}[1]{\ensuremath{{#1}^{(-1)}}}
 
@@ -132,8 +133,31 @@
 \DeclareMathOperator*{\dom}{dom}
 \DeclareMathOperator*{\rng}{range}
 
+%-----------------------------------------------------------------------------
+% Regular expressions, MA algo
+
+
+\newcommand{\cC}{{\mathcal C}}
+\newcommand{\cL}{{\mathcal L}}
+\newcommand{\cK}{{\mathcal K}}
+\newcommand{\emptyseq}{\varepsilon}
+\newcommand{\sem}[1]{[\![#1]\!]}
+\newcommand{\tuple}[1]{(#1)}
+\newcommand{\seqeq}{\equiv}
+
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\sW}{{\mathscr{S}^\omega}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sCp}{\mathscr{C}\,'}
+\newcommand{\sHp}{\mathscr{H}\,'}
+\newcommand{\sH}{\mathscr{H}}
+\newcommand{\sm}{\setminus}  
+\newcommand{\seq}{\subseteq}
+\newcommand{\pp}{{++}}
+
 %------------------------------------------------------------------------------
 % Special math notation
+
 
 
 \let\*\otimes
@@ -157,7 +181,21 @@
 
 
 \newcommand{\bigI}{\rule[-1.5ex]{0mm}{4ex}~I~}
+% ----------------------------------------------------------------------
+% Various macros to assist with TikZ drawing
 
+\newcommand\umatrix[4]{\ensuremath{\begin{bmatrix}#1&#2\\#3&#4\end{bmatrix}}}
+\newcommand*\leftrightfrom[3]{edge [<-] node[left] {$\scriptstyle #1$} %
+                          node[right] {$\scriptstyle #2$} %
+                          (#3)}
+\newcommand*\leftrightto[3]{edge [->] node[left] {$\scriptstyle #1$} %
+                          node[right] {$\scriptstyle #2$} %
+                          (#3)}
+\newcommand\starportfrom[3]{edge [<-] node[xshift=.5mm, yshift=-.5mm, above left] %
+                    {$\scriptstyle #1$} %
+                    node[xshift=-.5mm, yshift=.5mm, below right] %
+                    {$\scriptstyle #2$}%
+                    (#3)}
 %------------------------------------------------------------------------------
 % Types notation
 
@@ -291,6 +329,8 @@
 
 \newcommand{\s}[1]{\{#1\}}
 \newcommand{\da}{^{\dagger}}
+
+\newcommand{\inverse}{^{-1}}
 %----------------------------------------------------------------------
 % Alphabetic labels
 {\makeatletter
