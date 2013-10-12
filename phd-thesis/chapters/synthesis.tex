@@ -11,7 +11,286 @@ accuracy $\epsilon$; the former problem is known as {\em exact synthesis} and th
 approximate synthesis} {\cite{Kliuchnikov-et-al}}.
 
 % section introduction_to_synthesis (end)
+\section{Algebraic background} % (fold)
+\label{sec:algebraic_background}
 
+We first introduce some notation and terminology, following {\cite{Kliuchnikov-et-al}} where
+possible. Recall that $\N$ is the set of natural numbers including 0, and $\Z$ is the ring of
+\linebreak integers. We write $\Zb=\Z/2\Z$ for the ring of integers modulo 2. Let $\D$ be the ring
+of {\em dyadic fractions}, defined as $\D = \Z[\frac12] = \s{\frac{a}{2^n}\mid a\in\Z, n\in\N}$.
+
+Let $\omega = e^{i\pi/4} = (1+i)/\sqrt{2}$. Note that $\omega$ is an 8th root of unity satisfying
+$\omega^2=i$ and $\omega^4=-1$. We will consider three different rings related to $\omega$:
+
+\begin{definition}
+  Consider the following rings. Note that the first two are subrings of the complex numbers, and
+  the third one is not:
+  \begin{itemize}
+    \item $\Dw = \s{a\omega^3+b\omega^2+c\omega+d \mid a,b,c,d\in\D}$.
+    \item $\Zw = \s{a\omega^3+b\omega^2+c\omega+d \mid a,b,c,d\in\Z}$.
+    \item $\Zbw = \s{p\omega^3+q\omega^2+r\omega+s \mid p,q,r,s\in\Zb}$.
+  \end{itemize}
+  Note that the ring $\Zbw$ only has 16 elements. The laws of addition and multiplication are
+  uniquely determined by the ring axioms and the property $\omega^4=1\ (\mod 2)$. We call the
+  elements of $\Zbw$ {\em residues} (more precisely, residue classes of $\Zw$ modulo 2).
+\end{definition}
+
+\begin{remark}
+  The ring $\Dw$ is the same as the ring $\Z[\frac1{\sqrt{2}},i]$. However, as already pointed out
+  in {\cite{Kliuchnikov-et-al}}, the formulation in terms of $\omega$ is far more convenient
+  algebraically.
+\end{remark}
+
+\begin{remark}
+  The ring $\Zw$ is also called the {\em ring of algebraic integers} of $\Dw$. It has an intrinsic
+  definition, i.e., one that is independent of the particular presentation of $\Dw$. Namely, a
+  complex number is called an {\em algebraic integer} if it is the root of some polynomial with
+  integer coefficients and leading coefficient 1. It follows that $\omega$, $i$, and $\sqrt{2}$ are
+  algebraic integers, whereas, for example, $1/\sqrt{2}$ is not. The ring $\Zw$ then consists of
+  precisely those elements of $\Dw$ that are algebraic integers.
+\end{remark}
+
+\subsection{Conjugate and norm} % (fold)
+\label{sub:conjugate_and_norm}
+\begin{remark}[Complex conjugate and norm]
+  Since $\Dw$ and $\Zw$ are subrings of the complex numbers, they inherit the usual notion of
+  complex conjugation. We note that $\omega\da = -\omega^3$. This yields the following formula:
+  \begin{equation}\label{eqn-adjoint}
+    (a\omega^3+b\omega^2+c\omega+d)\da = -c\omega^3-b\omega^2-a\omega+d.
+  \end{equation}
+  Similarly, the sets $\Dw$ and $\Zw$ inherit the usual norm from the complex numbers. It is given
+  by the following explicit formula, for $t=a\omega^3+b\omega^2+c\omega+d$:
+  \begin{equation}\label{eqn-cplx-norm}
+    \snorm{t}^2 = t\da t = (a^2+b^2+c^2+d^2) + (cd+bc+ab-da) \sqrt{2}.
+  \end{equation}
+\end{remark}
+
+\begin{definition}[Weight]
+  For $t\in\Dw$ or $t\in\Zw$, the {\em weight} of $t$ is denoted $\sweight{t}$, and is given by:
+  \begin{equation}\label{eqn-weight}
+    \sweight{t}^2 = a^2+b^2+c^2+d^2.
+  \end{equation}
+\end{definition}
+
+Note that the square of the norm is valued in $\D[\sqrt{2}]$, whereas the square of the weight is
+valued in $\D$. We also extend the definition of norm and weight to vectors in the obvious way: For
+$u = (u_\jay)_\jay$, we define
+\[
+  \norm{u}^2 = \sum_\jay\norm{u_\jay}^2
+  \quad\mbox{and}\quad
+  \weight{u}^2 = \sum_\jay\weight{u_\jay}^2.
+\]
+
+\begin{lemma}\label{lem-ring-norm}
+  Consider a vector $u\in\Dw^n$. If $\norm{u}^2$ is an integer, then $\weight{u}^2=\norm{u}^2$.
+\end{lemma}
+
+\begin{proof}
+  Any $t\in\D[\sqrt{2}]$ can be uniquely written as $t=a+b\sqrt{2}$, where $a,b\in\D$. We can call
+  $a$ the {\em dyadic part} of $t$. Now the claim is obvious, because $\weight{u}^2$ is exactly the
+  dyadic part of $\norm{u}^2$.
+\end{proof}
+
+% subsection conjugate_and_norm (end)
+
+\subsection{Denominator exponents} % (fold)
+\label{sub:denominator_exponents}
+\begin{definition}
+  Let $t\in\Dw$. A natural number $k\in\N$ is called a {\em denominator exponent} for $t$ if
+  $\sqrt{2}^k t \in \Zw$. It is obvious that such $k$ always exists. The least such $k$ is called
+  the {\em least denominator exponent} of $t$.
+
+  More generally, we say that $k$ is a denominator exponent for a vector or matrix if it is a
+  denominator exponent for all of its entries. The least denominator exponent for a vector or
+  matrix is therefore the least $k$ that is a denominator exponent for all of its entries.
+\end{definition}
+
+\begin{remark}
+  Our notion of least denominator exponent is almost the same as the ``smallest denominator
+  exponent'' of {\cite{Kliuchnikov-et-al}}, except that we do not permit $k<0$.
+\end{remark}
+
+% subsection denominator_exponents (end)
+
+\subsection{Residues} % (fold)
+\label{sub:residues}
+\begin{remark}
+  The ring $\Zbw$ is not a subring of the complex numbers; rather, it is a quotient of the ring
+  $\Zw$. Indeed, consider the {\em parity function} $\parity{()}:\Z\to\Zb$, which is the unique
+  ring homomorphism. It satisfies $\parity{a}=0$ if $a$ is even and $\parity{a}=1$ if $a$ is odd.
+  The parity map induces a surjective ring homomorphism $\rho:\Zw\to\Zbw$, defined by
+  \[ 
+    \rho(a\omega^3+b\omega^2+c\omega+d) =
+    \parity{a}\omega^3+\parity{b}\omega^2+\parity{c}\omega+\parity{d}.
+  \]
+  We call $\rho$ the {\em residue map}, and we call $\rho(t)$ the {\em residue} of $t$.
+\end{remark}
+
+\begin{convention}
+  Since residues will be important for the constructions of this thesis, we introduce a shortcut
+  notation, writing each residue $p\omega^3+q\omega^2+r\omega+s$ as a string of binary digits
+  $pqrs$.
+\end{convention}
+
+What makes residues useful for our purposes is that many important operations on $\Zw$ are
+well-defined on residues. Here, we say that an operation $f:\Zw\to\Zw$ is {\em well-defined on
+residues} if for all $t,s$, $\rho(t)=\rho(s)$ implies $\rho(f(t))=\rho(f(s))$.
+
+For example, two operations that are obviously well-defined on residues are complex conjugation,
+which takes the form $(pqrs)\da = rqps$ by (\ref{eqn-adjoint}), and multiplication by $\omega$,
+which is just a cyclic shift $\omega(pqrs)=qrsp$. Table~\ref{tab-residue} shows two other important
+operations on residues, namely multiplication by $\sqrt{2}$ and the squared norm.
+
+%TODO - add column of a+a^t / \sqrt(2) or just make a remark that generators follow this
+\begin{table}
+  \[ \begin{array}{c|c|c} \rho(t) & \rho(\sqrt{2}\,t) & \rho(t\da t)\\\hline
+    0000 & 0000 & 0000 \\
+    0001 & 1010 & 0001 \\
+    0010 & 0101 & 0001 \\
+    0011 & 1111 & 1010 \\
+
+    0100 & 1010 & 0001 \\
+    0101 & 0000 & 0000 \\
+    0110 & 1111 & 1010 \\
+    0111 & 0101 & 0001 \\
+  \end{array}\qquad
+  \begin{array}{c|c|c} \rho(t) & \rho(\sqrt{2}\,t) & \rho(t\da t)\\\hline
+    1000 & 0101 & 0001 \\
+    1001 & 1111 & 1010 \\
+    1010 & 0000 & 0000 \\
+    1011 & 1010 & 0001 \\
+
+    1100 & 1111 & 1010 \\
+    1101 & 0101 & 0001 \\
+    1110 & 1010 & 0001 \\
+    1111 & 0000 & 0000 \\
+  \end{array}
+  \]
+  \caption{Some operations on residues}\label{tab-residue}
+\end{table}
+
+\begin{definition}[$k$-Residue]
+  Let $t\in\Dw$ and let $k$ be a (not necessarily least) denominator exponent for $t$. The {\em
+  $k$-residue of $t$}, in symbols $\rho_k(t)$, is defined to be
+  \[ 
+    \rho_k(t) = \rho(\sqrt{2}^k t).
+  \]
+\end{definition}
+
+\begin{definition}[Reducibility]
+  We say that a residue $x\in\Zbw$ is {\em reducible} if it is of the form $\sqrt{2}\,y$, for some
+  $y\in\Zbw$. Moreover, we say that $x\in\Zbw$ is {\em twice reducible} if it is of the form $2y$,
+  for some $y\in\Zbw$.
+\end{definition}
+
+\begin{lemma}\label{lem-reducible}
+  For a residue $x$, the following are equivalent:
+  \begin{enumerate}\alphalabels
+    \item $x$ is reducible;
+    \item $x\in\s{0000,0101,1010,1111}$;
+    \item $\sqrt{2}\,x = 0000$;
+    \item $x\da x=0000$.
+  \end{enumerate}
+  Moreover, $x$ is twice reducible iff $x=0000$.
+\end{lemma}
+
+\begin{proof}
+  By inspection of Table~\ref{tab-residue}.
+\end{proof}
+
+\begin{lemma}\label{lem-reducible2}
+  Let $t\in\Zw$. Then $t/2\in\Zw$ if and only if $\rho(t)$ is twice reducible, and
+  $t/\sqrt{2}\in\Zw$ if and only if $\rho(t)$ is reducible.
+\end{lemma}
+
+\begin{proof}
+  The first claim is trivial, as $\rho(t)=0000$ if and only if all components of $t$ are even. For
+  the second claim, the left-to-right implication is also trivial: assume $t'=t/\sqrt{2}\in\Zw$.
+  Then $\rho(t) = \rho(\sqrt{2}\,t')$, which is reducible by definition. Conversely, let $t\in\Zw$
+  and assume that $\rho(t)$ is reducible. Then $\rho(t)\in\s{0000, 0101, 1010, 1111}$, and it can
+  be seen from Table~\ref{tab-residue} that $\rho(\sqrt{2}\,t)=0000$. Therefore, $\sqrt{2}\,t$ is
+  twice reducible by the first claim; hence $t$ is reducible.
+\end{proof}
+
+\begin{corollary}\label{cor-reducible3}
+  Let $t\in\Dw$ and let $k>0$ be a denominator exponent for $t$. Then $k$ is the least denominator
+  exponent for $t$ if and only if $\rho_k(t)$ is irreducible.
+\end{corollary}
+
+\begin{proof}
+  Since $k$ is a denominator exponent for $t$, we have $\sqrt{2}^k t \in \Zw$. Moreover, $k$ is
+  least if and only if $\sqrt{2}^{k-1} t\not\in\Zw$. By Lemma~\ref{lem-reducible2}, this is the
+  case if and only if $\rho(\sqrt{2}^k t)=\rho_k(t)$ is irreducible.
+\end{proof}
+
+\begin{lemma}\label{lem-divisiblebyroot2}
+  For all $a$ in $\Zw$, $a+a^t$ is divisible by $\sqrt{2}$ in $\Zw$.
+\end{lemma}
+\begin{proof}
+  It is sufficient to show this on the generators $\{1,\omega,\omega^2,\omega^3\}$.
+  \begin{enumerate}
+    \item $1+1 = 2$ and $\frac{2}{\sqrt{2}} = \sqrt{2} = \omega-\omega^3$.
+    \item $\omega+\omega^t = \omega-\omega^3 = \sqrt{2}$.
+    \item $\omega^2+(\omega^2)^t = \omega^2 - \omega^2 = 0$.
+    \item $\omega^3+(\omega^3)^t = \omega^3 - \omega = -\sqrt{2}$.
+  \end{enumerate}
+\end{proof}
+
+\begin{definition}
+  The notions of residue, $k$-residue, reducibility, and twice-reducibility all extend in an
+  obvious componentwise way to vectors and matrices. Thus, the residue $\rho(u)$ of a vector or
+  matrix $u$ is obtained by taking the residue of each of its entries, and similar for
+  $k$-residues. Also, we say that a vector or matrix is reducible if each of its entries is
+  reducible, and similarly for twice-reducibility.
+\end{definition}
+
+
+\begin{example}\label{exa-k-residue}
+  Consider the matrix
+  \[ \small U \,{=}\, \frac{\small 1}{\small \sqrt{2}^3}\!\footnotesize\zmatrix{cccc}{
+    -\omega^3+\omega -1          
+			& \omega^2+\omega+1 
+				& \omega^2 
+					& -\omega\\
+    \omega^2+\omega 
+			& -\omega^3+\omega^2 
+				& -\omega^2-1
+					& \omega^3+\omega \\
+    \omega^3+\omega^2
+			& -\omega^3-1
+				& 2\omega^2 
+					&0 \\
+    -1
+			& \omega
+				& 1 
+					& -\omega^3+2\omega
+    }.
+  \]
+  It has least denominator exponent $3$. Its $3$-, $4$-, and $5$-residues are:
+  \[ 
+    \begin{split}
+    &
+    \rho_3(U) = \zmatrix{cccc}{
+      1011 & 0111 & 0100 & 0010\\
+      0110 & 1100 & 0101 & 1010\\
+      1100 & 1001 & 0000 & 0000\\
+      0001 & 0010 & 0001 & 1000
+    },
+    \\&
+    \rho_4(U) = \zmatrix{cccc}{
+      1010 & 0101 & 1010 & 0101\\
+      1111 & 1111 & 0000 & 0000\\
+      1111 & 1111 & 0000 & 0000\\
+      1010 & 0101 & 1010 & 0101
+    },\quad
+    \rho_5(U) = 0.\end{split}
+  \]
+\end{example}
+
+% subsection residues (end)
+
+
+% section algebraic_background (end)
 \section{Exact synthesis of single qubit operators} % (fold)
 \label{sec:exact_synthesis_of_single_qubit_operators}
 
@@ -723,216 +1002,8 @@ operator, as do $YS.TH.TH$ and $TH.TH.X\omega$.
 
 \subsection{Matsumoto-Amano normal forms and U(2)} % (fold)
 \label{sub:matsumoto_amano_normal_forms_and_u_2_}
-We first introduce some notation and terminology, following {\cite{Kliuchnikov-et-al}} where
-possible. Recall that $\N$ is the set of natural numbers including 0, and $\Z$ is the ring of
-integers. We write $\Zb=\Z/2\Z$ for the ring of integers modulo 2. Let $\D$ be the ring of {\em
-dyadic fractions}, defined as $\D = \Z[\frac12] = \s{\frac{a}{2^n}\mid a\in\Z, n\in\N}$.
 
-Let $\omega = e^{i\pi/4} = (1+i)/\sqrt{2}$. Note that $\omega$ is an 8th root of unity satisfying
-$\omega^2=i$ and $\omega^4=-1$. We will consider three different rings related to $\omega$:
-
-\begin{definition}
-  Consider the following rings. Note that the first two are subrings of the complex numbers, and
-  the third one is not:
-  \begin{itemize}
-  \item $\Dw = \s{a\omega^3+b\omega^2+c\omega+d \mid a,b,c,d\in\D}$.
-  \item $\Zw = \s{a\omega^3+b\omega^2+c\omega+d \mid a,b,c,d\in\Z}$.
-  \item $\Zbw = \s{p\omega^3+q\omega^2+r\omega+s \mid p,q,r,s\in\Zb}$.
-  \end{itemize}
-  Note that the ring $\Zbw$ only has 16 elements. The laws of addition and multiplication are
-  uniquely determined by the ring axioms and the property $\omega^4=1\ (\mod 2)$. We call the
-  elements of $\Zbw$ {\em residues} (more precisely, residue classes of $\Zw$ modulo 2).
-\end{definition}
-
-\begin{remark}
-  The ring $\Dw$ is the same as the ring $\Z[\frac1{\sqrt{2}},i]$. However, as already pointed out
-  in {\cite{Kliuchnikov-et-al}}, the formulation in terms of $\omega$ is far more convenient
-  algebraically.
-\end{remark}
-
-\begin{remark}
-  The ring $\Zw$ is also called the {\em ring of algebraic integers} of $\Dw$. It has an intrinsic
-  definition, i.e., one that is independent of the particular presentation of $\Dw$. Namely, a
-  complex number is called an {\em algebraic integer} if it is the root of some polynomial with
-  integer coefficients and leading coefficient 1. It follows that $\omega$, $i$, and $\sqrt{2}$ are
-  algebraic integers, whereas, for example, $1/\sqrt{2}$ is not. The ring $\Zw$ then consists of
-  precisely those elements of $\Dw$ that are algebraic integers.
-\end{remark}
-\subsubsection{Conjugate and norm} % (fold)
-\label{ssub:conjugate_and_norm}
-
-\begin{remark}[Complex conjugate and norm]
-  Since $\Dw$ and $\Zw$ are subrings of the complex numbers, they inherit the usual notion of
-  complex conjugation. We note that $\omega\da = -\omega^3$. This yields the following formula:
-  \begin{equation}\label{eqn-adjoint}
-    (a\omega^3+b\omega^2+c\omega+d)\da = -c\omega^3-b\omega^2-a\omega+d.
-  \end{equation}
-  Similarly, the sets $\Dw$ and $\Zw$ inherit the usual norm from the complex numbers. It is given
-  by the following explicit formula, for $t=a\omega^3+b\omega^2+c\omega+d$:
-  \begin{equation}\label{eqn-cplx-norm}
-    \snorm{t}^2 = t\da t = (a^2+b^2+c^2+d^2) + (cd+bc+ab-da) \sqrt{2}.
-  \end{equation}
-\end{remark}
-
-We extend the definition of norm to vectors in the obvious way: For $u = (u_\jay)_\jay$, we define
-\[ 
-  \norm{u}^2 = \sum_\jay\norm{u_\jay}^2\quad.
-\]
-
-% subsubsection conjugate_and_norm (end)
-
-\subsubsection{Denominator exponents} % (fold)
-\label{ssub:denominator_exponents}
-
-\begin{definition}
-  Let $t\in\Dw$. A natural number $k\in\N$ is called a {\em denominator exponent} for $t$ if
-  $\sqrt{2}^k t \in \Zw$. It is obvious that such $k$ always exists. The least such $k$ is called
-  the {\em least denominator exponent} of $t$.
-
-  More generally, we say that $k$ is a denominator exponent for a vector or matrix if it is a
-  denominator exponent for all of its entries. The least denominator exponent for a vector or
-  matrix is therefore the least $k$ that is a denominator exponent for all of its entries.
-\end{definition}
-
-\begin{remark}
-  Our notion of least denominator exponent is almost the same as the ``smallest denominator
-  exponent'' of {\cite{Kliuchnikov-et-al}}, except that we do not permit $k<0$.
-\end{remark}
-% subsubsection denominator_exponents (end)
-
-\subsubsection{Residues} % (fold)
-\label{ssub:residues}
-\begin{remark}
-  The ring $\Zbw$ is not a subring of the complex numbers; rather, it is a quotient of the ring
-  $\Zw$. Indeed, consider the {\em parity function} $\parity{()}:\Z\to\Zb$, which is the unique
-  ring homomorphism. It satisfies $\parity{a}=0$ if $a$ is even and $\parity{a}=1$ if $a$ is odd.
-  The parity map induces a surjective ring homomorphism $\rho:\Zw\to\Zbw$, defined by
-  \[
-    \rho(a\omega^3+b\omega^2+c\omega+d) =
-    \parity{a}\omega^3+\parity{b}\omega^2+\parity{c}\omega+\parity{d}.
-  \]
-  We call $\rho$ the {\em residue map}, and we call $\rho(t)$ the {\em residue} of $t$.
-\end{remark}
-
-\begin{convention}
-  Since residues will be important for the constructions of this paper, we introduce a shortcut
-  notation, writing each residue $p\omega^3+q\omega^2+r\omega+s$ as a string of binary digits
-  $pqrs$.
-\end{convention}
-
-What makes residues useful for our purposes is that many important operations on $\Zw$ are
-well-defined on residues. Here, we say that an operation $f:\Zw\to\Zw$ is {\em well-defined on
-residues} if for all $t,s$, $\rho(t)=\rho(s)$ implies $\rho(f(t))=\rho(f(s))$.
-
-For example, two operations that are obviously well-defined on residues are complex conjugation,
-which takes the form $(pqrs)\da = rqps$ by (\ref{eqn-adjoint}), and multiplication by $\omega$,
-which is just a cyclic shift $\omega(pqrs)=qrsp$. Table~\ref{tab-residue} shows two other important
-operations on residues, namely multiplication by $\sqrt{2}$ and the squared norm.
-%TODO - add column of a+a^t / \sqrt(2) or just make a remark that generators follow this
-\begin{table}
-  \[ \begin{array}{c|c|c} \rho(t) & \rho(\sqrt{2}\,t) & \rho(t\da t)\\\hline
-    0000 & 0000 & 0000 \\
-    0001 & 1010 & 0001 \\
-    0010 & 0101 & 0001 \\
-    0011 & 1111 & 1010 \\
-
-    0100 & 1010 & 0001 \\
-    0101 & 0000 & 0000 \\
-    0110 & 1111 & 1010 \\
-    0111 & 0101 & 0001 \\
-  \end{array}\qquad
-  \begin{array}{c|c|c} \rho(t) & \rho(\sqrt{2}\,t) & \rho(t\da t)\\\hline
-    1000 & 0101 & 0001 \\
-    1001 & 1111 & 1010 \\
-    1010 & 0000 & 0000 \\
-    1011 & 1010 & 0001 \\
-
-    1100 & 1111 & 1010 \\
-    1101 & 0101 & 0001 \\
-    1110 & 1010 & 0001 \\
-    1111 & 0000 & 0000 \\
-  \end{array}
-  \]
-  \caption{Some operations on residues}\label{tab-residue}
-\end{table}
-
-\begin{definition}[$k$-Residue]
-  Let $t\in\Dw$ and let $k$ be a (not necessarily least) denominator exponent for $t$. The {\em
-  $k$-residue of $t$}, in symbols $\rho_k(t)$, is defined to be
-  \[ 
-    \rho_k(t) = \rho(\sqrt{2}^k t).
-  \]
-\end{definition}
-
-\begin{definition}[Reducibility]
-  We say that a residue $x\in\Zbw$ is {\em reducible} if it is of the form $\sqrt{2}\,y$, for some
-  $y\in\Zbw$. Moreover, we say that $x\in\Zbw$ is {\em twice reducible} if it is of the form $2y$,
-  for some $y\in\Zbw$.
-\end{definition}
-
-\begin{lemma}\label{lem-reducible}
-  For a residue $x$, the following are equivalent:
-  \begin{enumerate}\alphalabels
-  \item $x$ is reducible;
-  \item $x\in\s{0000,0101,1010,1111}$;
-  \item $\sqrt{2}\,x = 0000$;
-  \item $x\da x=0000$.
-  \end{enumerate}
-  Moreover, $x$ is twice reducible iff $x=0000$.
-\end{lemma}
-
-\begin{proof}
-  By inspection of Table~\ref{tab-residue}.
-\end{proof}
-
-\begin{lemma}\label{lem-reducible2}
-  Let $t\in\Zw$. Then $t/2\in\Zw$ if and only if $\rho(t)$ is twice reducible, and
-  $t/\sqrt{2}\in\Zw$ if and only if $\rho(t)$ is reducible.
-\end{lemma}
-
-\begin{proof}
-  The first claim is trivial, as $\rho(t)=0000$ if and only if all components of $t$ are even. For
-  the second claim, the left-to-right implication is also trivial: assume $t'=t/\sqrt{2}\in\Zw$.
-  Then $\rho(t) = \rho(\sqrt{2}\,t')$, which is reducible by definition. Conversely, let $t\in\Zw$
-  and assume that $\rho(t)$ is reducible. Then $\rho(t)\in\s{0000, 0101, 1010, 1111}$, and it can
-  be seen from Table~\ref{tab-residue} that $\rho(\sqrt{2}\,t)=0000$. Therefore, $\sqrt{2}\,t$ is
-  twice reducible by the first claim; hence $t$ is reducible.
-\end{proof}
-
-\begin{corollary}\label{cor-reducible3}
-  Let $t\in\Dw$ and let $k>0$ be a denominator exponent for $t$. Then $k$ is the least denominator
-  exponent for $t$ if and only if $\rho_k(t)$ is irreducible.
-\end{corollary}
-
-\begin{proof}
-  Since $k$ is a denominator exponent for $t$, we have $\sqrt{2}^k t \in \Zw$. Moreover, $k$ is
-  least if and only if $\sqrt{2}^{k-1} t\not\in\Zw$. By Lemma~\ref{lem-reducible2}, this is the
-  case if and only if $\rho(\sqrt{2}^k t)=\rho_k(t)$ is irreducible.
-\end{proof}
-
-\begin{lemma}\label{lem-divisiblebyroot2}
-  For all $a$ in $\Zw$, $a+a^t$ is divisible by $\sqrt{2}$ in $\Zw$.
-\end{lemma}
-\begin{proof}
-  It is sufficient to show this on the generators $\{1,\omega,\omega^2,\omega^3\}$.
-  \begin{enumerate}
-    \item $1+1 = 2$ and $\frac{2}{\sqrt{2}} = \sqrt{2} = \omega-\omega^3$.
-    \item $\omega+\omega^t = \omega-\omega^3 = \sqrt{2}$.
-    \item $\omega^2+(\omega^2)^t = \omega^2 - \omega^2 = 0$.
-    \item $\omega^3+(\omega^3)^t = \omega^3 - \omega = -\sqrt{2}$.
-  \end{enumerate}
-\end{proof}
-
-\begin{definition}
-  The notions of residue, $k$-residue, reducibility, and twice-reducibility all extend in an
-  obvious componentwise way to vectors and matrices. Thus, the residue $\rho(u)$ of a vector or
-  matrix $u$ is obtained by taking the residue of each of its entries, and similar for
-  $k$-residues. Also, we say that a vector or matrix is reducible if each of its entries is
-  reducible, and similarly for twice-reducibility.
-\end{definition}
-
-
-\begin{example}\label{exa-k-residue}
+\begin{example}\label{exa-k-residue-for-single}
   Consider the matrix
   \[ U \,{=}\, \frac{\scriptstyle 1}{\scriptstyle \sqrt{2}^3}\!\scriptscriptstyle\zmatrix{cc}{
     \omega^2+\omega         & -2\omega^3+\omega^2+\omega \\
@@ -953,8 +1024,6 @@ operations on residues, namely multiplication by $\sqrt{2}$ and the squared norm
     \rho_5(U) = 0.
   \end{equation*}
 \end{example}
-
-% subsubsection residues (end)
 
 \begin{figure}
   \begin{tikzpicture}[node distance=1cm and 1.6cm]
@@ -1243,272 +1312,6 @@ also obtain a characterization of the Clifford+$T$ group on $n$ qubits without a
 It is important to note that, unlike in the single-qubit case, the circuit synthesized here are not
 in any sense canonical, and very far from optimal. Thus, the question of {\em efficient} synthesis
 is not addressed here.
-
-\subsection{Algebraic background} % (fold)
-\label{sub:algebraic_background}
-We first introduce some notation and terminology, following {\cite{Kliuchnikov-et-al}} where
-possible. Recall that $\N$ is the set of natural numbers including 0, and $\Z$ is the ring of
-\linebreak integers. We write $\Zb=\Z/2\Z$ for the ring of integers modulo 2. Let $\D$ be the ring
-of {\em dyadic fractions}, defined as $\D = \Z[\frac12] = \s{\frac{a}{2^n}\mid a\in\Z, n\in\N}$.
-
-Let $\omega = e^{i\pi/4} = (1+i)/\sqrt{2}$. Note that $\omega$ is an 8th root of unity satisfying
-$\omega^2=i$ and $\omega^4=-1$. We will consider three different rings related to $\omega$:
-
-\begin{definition}
-  Consider the following rings. Note that the first two are subrings of the complex numbers, and
-  the third one is not:
-  \begin{itemize}
-    \item $\Dw = \s{a\omega^3+b\omega^2+c\omega+d \mid a,b,c,d\in\D}$.
-    \item $\Zw = \s{a\omega^3+b\omega^2+c\omega+d \mid a,b,c,d\in\Z}$.
-    \item $\Zbw = \s{p\omega^3+q\omega^2+r\omega+s \mid p,q,r,s\in\Zb}$.
-  \end{itemize}
-  Note that the ring $\Zbw$ only has 16 elements. The laws of addition and multiplication are
-  uniquely determined by the ring axioms and the property $\omega^4=1\ (\mod 2)$. We call the
-  elements of $\Zbw$ {\em residues} (more precisely, residue classes of $\Zw$ modulo 2).
-\end{definition}
-
-\begin{remark}
-  The ring $\Dw$ is the same as the ring $\Z[\frac1{\sqrt{2}},i]$ mentioned in the statement of
-  Theorem~\ref{thm-main}. However, as already pointed out in {\cite{Kliuchnikov-et-al}}, the
-  formulation in terms of $\omega$ is far more convenient algebraically.
-\end{remark}
-
-\begin{remark}
-  The ring $\Zw$ is also called the {\em ring of algebraic integers} of $\Dw$. It has an intrinsic
-  definition, i.e., one that is independent of the particular presentation of $\Dw$. Namely, a
-  complex number is called an {\em algebraic integer} if it is the root of some polynomial with
-  integer coefficients and leading coefficient 1. It follows that $\omega$, $i$, and $\sqrt{2}$ are
-  algebraic integers, whereas, for example, $1/\sqrt{2}$ is not. The ring $\Zw$ then consists of
-  precisely those elements of $\Dw$ that are algebraic integers.
-\end{remark}
-
-\subsubsection{Conjugate and norm} % (fold)
-\label{ssub:conjugate_and_norm}
-\begin{remark}[Complex conjugate and norm]
-  Since $\Dw$ and $\Zw$ are subrings of the complex numbers, they inherit the usual notion of
-  complex conjugation. We note that $\omega\da = -\omega^3$. This yields the following formula:
-  \begin{equation}\label{eqn-adjoint}
-    (a\omega^3+b\omega^2+c\omega+d)\da = -c\omega^3-b\omega^2-a\omega+d.
-  \end{equation}
-  Similarly, the sets $\Dw$ and $\Zw$ inherit the usual norm from the complex numbers. It is given
-  by the following explicit formula, for $t=a\omega^3+b\omega^2+c\omega+d$:
-  \begin{equation}\label{eqn-cplx-norm}
-    \snorm{t}^2 = t\da t = (a^2+b^2+c^2+d^2) + (cd+bc+ab-da) \sqrt{2}.
-  \end{equation}
-\end{remark}
-
-\begin{definition}[Weight]
-  For $t\in\Dw$ or $t\in\Zw$, the {\em weight} of $t$ is denoted $\sweight{t}$, and is given by:
-  \begin{equation}\label{eqn-weight}
-    \sweight{t}^2 = a^2+b^2+c^2+d^2.
-  \end{equation}
-\end{definition}
-
-Note that the square of the norm is valued in $\D[\sqrt{2}]$, whereas the square of the weight is
-valued in $\D$. We also extend the definition of norm and weight to vectors in the obvious way: For
-$u = (u_\jay)_\jay$, we define
-\[
-  \norm{u}^2 = \sum_\jay\norm{u_\jay}^2
-  \quad\mbox{and}\quad
-  \weight{u}^2 = \sum_\jay\weight{u_\jay}^2.
-\]
-
-\begin{lemma}\label{lem-ring-norm}
-  Consider a vector $u\in\Dw^n$. If $\norm{u}^2$ is an integer, then $\weight{u}^2=\norm{u}^2$.
-\end{lemma}
-
-\begin{proof}
-  Any $t\in\D[\sqrt{2}]$ can be uniquely written as $t=a+b\sqrt{2}$, where $a,b\in\D$. We can call
-  $a$ the {\em dyadic part} of $t$. Now the claim is obvious, because $\weight{u}^2$ is exactly the
-  dyadic part of $\norm{u}^2$.
-\end{proof}
-
-% subsubsection conjugate_and_norm (end)
-
-\subsubsection{Denominator exponents} % (fold)
-\label{ssub:denominator_exponents}
-\begin{definition}
-  Let $t\in\Dw$. A natural number $k\in\N$ is called a {\em denominator exponent} for $t$ if
-  $\sqrt{2}^k t \in \Zw$. It is obvious that such $k$ always exists. The least such $k$ is called
-  the {\em least denominator exponent} of $t$.
-
-  More generally, we say that $k$ is a denominator exponent for a vector or matrix if it is a
-  denominator exponent for all of its entries. The least denominator exponent for a vector or
-  matrix is therefore the least $k$ that is a denominator exponent for all of its entries.
-\end{definition}
-
-\begin{remark}
-  Our notion of least denominator exponent is almost the same as the ``smallest denominator
-  exponent'' of {\cite{Kliuchnikov-et-al}}, except that we do not permit $k<0$.
-\end{remark}
-
-% subsubsection denominator_exponents (end)
-
-\subsubsection{Residues} % (fold)
-\label{ssub:residues}
-\begin{remark}
-  The ring $\Zbw$ is not a subring of the complex numbers; rather, it is a quotient of the ring
-  $\Zw$. Indeed, consider the {\em parity function} $\parity{()}:\Z\to\Zb$, which is the unique
-  ring homomorphism. It satisfies $\parity{a}=0$ if $a$ is even and $\parity{a}=1$ if $a$ is odd.
-  The parity map induces a surjective ring homomorphism $\rho:\Zw\to\Zbw$, defined by
-  \[ 
-    \rho(a\omega^3+b\omega^2+c\omega+d) =
-    \parity{a}\omega^3+\parity{b}\omega^2+\parity{c}\omega+\parity{d}.
-  \]
-  We call $\rho$ the {\em residue map}, and we call $\rho(t)$ the {\em residue} of $t$.
-\end{remark}
-
-\begin{convention}
-  Since residues will be important for the constructions of this paper, we introduce a shortcut
-  notation, writing each residue $p\omega^3+q\omega^2+r\omega+s$ as a string of binary digits
-  $pqrs$.
-\end{convention}
-
-What makes residues useful for our purposes is that many important operations on $\Zw$ are
-well-defined on residues. Here, we say that an operation $f:\Zw\to\Zw$ is {\em well-defined on
-residues} if for all $t,s$, $\rho(t)=\rho(s)$ implies $\rho(f(t))=\rho(f(s))$.
-
-For example, two operations that are obviously well-defined on residues are complex conjugation,
-which takes the form $(pqrs)\da = rqps$ by (\ref{eqn-adjoint}), and multiplication by $\omega$,
-which is just a cyclic shift $\omega(pqrs)=qrsp$. Table~\ref{tab-residue} shows two other important
-operations on residues, namely multiplication by $\sqrt{2}$ and the squared norm.
-
-\begin{table}
-  \[ \begin{array}{c|c|c} \rho(t) & \rho(\sqrt{2}\,t) & \rho(t\da t)\\\hline
-    0000 & 0000 & 0000 \\
-    0001 & 1010 & 0001 \\
-    0010 & 0101 & 0001 \\
-    0011 & 1111 & 1010 \\
-
-    0100 & 1010 & 0001 \\
-    0101 & 0000 & 0000 \\
-    0110 & 1111 & 1010 \\
-    0111 & 0101 & 0001 \\
-  \end{array}\qquad
-  \begin{array}{c|c|c} \rho(t) & \rho(\sqrt{2}\,t) & \rho(t\da t)\\\hline
-    1000 & 0101 & 0001 \\
-    1001 & 1111 & 1010 \\
-    1010 & 0000 & 0000 \\
-    1011 & 1010 & 0001 \\
-
-    1100 & 1111 & 1010 \\
-    1101 & 0101 & 0001 \\
-    1110 & 1010 & 0001 \\
-    1111 & 0000 & 0000 \\
-  \end{array}
-  \]
-  \caption{Some operations on residues}\label{tab-residue}
-\end{table}
-
-\begin{definition}[$k$-Residue]
-  Let $t\in\Dw$ and let $k$ be a (not necessarily least) denominator exponent for $t$. The {\em
-  $k$-residue of $t$}, in symbols $\rho_k(t)$, is defined to be
-  \[ 
-    \rho_k(t) = \rho(\sqrt{2}^k t).
-  \]
-\end{definition}
-
-\begin{definition}[Reducibility]
-  We say that a residue $x\in\Zbw$ is {\em reducible} if it is of the form $\sqrt{2}\,y$, for some
-  $y\in\Zbw$. Moreover, we say that $x\in\Zbw$ is {\em twice reducible} if it is of the form $2y$,
-  for some $y\in\Zbw$.
-\end{definition}
-
-\begin{lemma}\label{lem-reducible}
-  For a residue $x$, the following are equivalent:
-  \begin{enumerate}\alphalabels
-    \item $x$ is reducible;
-    \item $x\in\s{0000,0101,1010,1111}$;
-    \item $\sqrt{2}\,x = 0000$;
-    \item $x\da x=0000$.
-  \end{enumerate}
-  Moreover, $x$ is twice reducible iff $x=0000$.
-\end{lemma}
-
-\begin{proof}
-  By inspection of Table~\ref{tab-residue}.
-\end{proof}
-
-\begin{lemma}\label{lem-reducible2}
-  Let $t\in\Zw$. Then $t/2\in\Zw$ if and only if $\rho(t)$ is twice reducible, and
-  $t/\sqrt{2}\in\Zw$ if and only if $\rho(t)$ is reducible.
-\end{lemma}
-
-\begin{proof}
-  The first claim is trivial, as $\rho(t)=0000$ if and only if all components of $t$ are even. For
-  the second claim, the left-to-right implication is also trivial: assume $t'=t/\sqrt{2}\in\Zw$.
-  Then $\rho(t) = \rho(\sqrt{2}\,t')$, which is reducible by definition. Conversely, let $t\in\Zw$
-  and assume that $\rho(t)$ is reducible. Then $\rho(t)\in\s{0000, 0101, 1010, 1111}$, and it can
-  be seen from Table~\ref{tab-residue} that $\rho(\sqrt{2}\,t)=0000$. Therefore, $\sqrt{2}\,t$ is
-  twice reducible by the first claim; hence $t$ is reducible.
-\end{proof}
-
-\begin{corollary}\label{cor-reducible3}
-  Let $t\in\Dw$ and let $k>0$ be a denominator exponent for $t$. Then $k$ is the least denominator
-  exponent for $t$ if and only if $\rho_k(t)$ is irreducible.
-\end{corollary}
-
-\begin{proof}
-  Since $k$ is a denominator exponent for $t$, we have $\sqrt{2}^k t \in \Zw$. Moreover, $k$ is
-  least if and only if $\sqrt{2}^{k-1} t\not\in\Zw$. By Lemma~\ref{lem-reducible2}, this is the
-  case if and only if $\rho(\sqrt{2}^k t)=\rho_k(t)$ is irreducible.
-\end{proof}
-
-\begin{definition}
-  The notions of residue, $k$-residue, reducibility, and twice-reducibility all extend in an
-  obvious componentwise way to vectors and matrices. Thus, the residue $\rho(u)$ of a vector or
-  matrix $u$ is obtained by taking the residue of each of its entries, and similar for
-  $k$-residues. Also, we say that a vector or matrix is reducible if each of its entries is
-  reducible, and similarly for twice-reducibility.
-\end{definition}
-
-
-\begin{example}\label{exa-k-residue}
-  Consider the matrix
-  \[ \small U \,{=}\, \frac{\small 1}{\small \sqrt{2}^3}\!\footnotesize\zmatrix{cccc}{
-    -\omega^3+\omega -1          
-			& \omega^2+\omega+1 
-				& \omega^2 
-					& -\omega\\
-    \omega^2+\omega 
-			& -\omega^3+\omega^2 
-				& -\omega^2-1
-					& \omega^3+\omega \\
-    \omega^3+\omega^2
-			& -\omega^3-1
-				& 2\omega^2 
-					&0 \\
-    -1
-			& \omega
-				& 1 
-					& -\omega^3+2\omega
-    }.
-  \]
-  It has least denominator exponent $3$. Its $3$-, $4$-, and $5$-residues are:
-  \[ 
-    \begin{split}
-    &
-    \rho_3(U) = \zmatrix{cccc}{
-      1011 & 0111 & 0100 & 0010\\
-      0110 & 1100 & 0101 & 1010\\
-      1100 & 1001 & 0000 & 0000\\
-      0001 & 0010 & 0001 & 1000
-    },
-    \\&
-    \rho_4(U) = \zmatrix{cccc}{
-      1010 & 0101 & 1010 & 0101\\
-      1111 & 1111 & 0000 & 0000\\
-      1111 & 1111 & 0000 & 0000\\
-      1010 & 0101 & 1010 & 0101
-    },\quad
-    \rho_5(U) = 0.\end{split}
-  \]
-\end{example}
-
-% subsubsection residues (end)
-
-
-% subsection algebraic_background (end)
 
 \subsection{Decomposition into two-level matrices} % (fold)
 \label{sub:decomposition_into_two_level_matrices}
