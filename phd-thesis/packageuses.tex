@@ -32,7 +32,7 @@
 \usepackage[colorlinks=true,citecolor=magenta]{hyperref} 
 \usepackage{hyperref}
 %\usepackage{lqpl}
-\usepackage{prettyref}
+%\usepackage{prettyref}
 \usepackage[shortlabels]{enumitem}
 \usepackage{multicol}
 \usepackage{tikz}
@@ -43,6 +43,16 @@
 \captionsetup{style=default,labelfont={bf}}
 \def\figurename{Figure}
 \def\tablename{Table}
+
+% label formats for use with varioref
+
+\labelformat{section}{section~#1}
+\labelformat{chapter}{chapter~#1}
+\labelformat{equation}{equation~(#1)}
+\labelformat{theorem}{theorem~#1}
+\labelformat{lemma}{lemma~#1}
+\labelformat{proposition}{proposition~#1}
+\labelformat{definition}{definition~#1}
 
 % This causes horrid processing error - text garbage appearing instead of 
 % The diagram. DO NOT USE \CompileMatrices

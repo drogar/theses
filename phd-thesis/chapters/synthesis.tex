@@ -137,8 +137,8 @@ well-defined on residues. Here, we say that an operation $f:\Zw\to\Zw$ is {\em w
 residues} if for all $t,s$, $\rho(t)=\rho(s)$ implies $\rho(f(t))=\rho(f(s))$.
 
 For example, two operations that are obviously well-defined on residues are complex conjugation,
-which takes the form $(pqrs)\da = rqps$ by (\ref{eqn-adjoint}), and multiplication by $\omega$,
-which is just a cyclic shift $\omega(pqrs)=qrsp$. Table~\ref{tab-residue} shows two other important
+which takes the form $(pqrs)\da = rqps$ by (\vref{eqn-adjoint}), and multiplication by $\omega$,
+which is just a cyclic shift $\omega(pqrs)=qrsp$. Table~\vref{tab-residue} shows two other important
 operations on residues, namely multiplication by $\sqrt{2}$ and the squared norm.
 
 %TODO - add column of a+a^t / \sqrt(2) or just make a remark that generators follow this
@@ -195,7 +195,7 @@ operations on residues, namely multiplication by $\sqrt{2}$ and the squared norm
 \end{lemma}
 
 \begin{proof}
-  By inspection of Table~\ref{tab-residue}.
+  By inspection of Table~\vref{tab-residue}.
 \end{proof}
 
 \begin{lemma}\label{lem-reducible2}
@@ -208,7 +208,7 @@ operations on residues, namely multiplication by $\sqrt{2}$ and the squared norm
   the second claim, the left-to-right implication is also trivial: assume $t'=t/\sqrt{2}\in\Zw$.
   Then $\rho(t) = \rho(\sqrt{2}\,t')$, which is reducible by definition. Conversely, let $t\in\Zw$
   and assume that $\rho(t)$ is reducible. Then $\rho(t)\in\s{0000, 0101, 1010, 1111}$, and it can
-  be seen from Table~\ref{tab-residue} that $\rho(\sqrt{2}\,t)=0000$. Therefore, $\sqrt{2}\,t$ is
+  be seen from Table~\vref{tab-residue} that $\rho(\sqrt{2}\,t)=0000$. Therefore, $\sqrt{2}\,t$ is
   twice reducible by the first claim; hence $t$ is reducible.
 \end{proof}
 
@@ -219,7 +219,7 @@ operations on residues, namely multiplication by $\sqrt{2}$ and the squared norm
 
 \begin{proof}
   Since $k$ is a denominator exponent for $t$, we have $\sqrt{2}^k t \in \Zw$. Moreover, $k$ is
-  least if and only if $\sqrt{2}^{k-1} t\not\in\Zw$. By Lemma~\ref{lem-reducible2}, this is the
+  least if and only if $\sqrt{2}^{k-1} t\not\in\Zw$. By Lemma~\vref{lem-reducible2}, this is the
   case if and only if $\rho(\sqrt{2}^k t)=\rho_k(t)$ is irreducible.
 \end{proof}
 
@@ -373,12 +373,12 @@ sequences are equal as tuples, and $s=t$ if they are equal as operators, i.e., i
 
 \begin{proof}
   Since $\sS$ is an 8-element subgroup of $\sC$, it has three left cosets. They are $\sS$, $H\sS$,
-  and $SH\sS$. Since $\sC$ is the disjoint union of these cosets, (\ref{eqn-CHS}) and
-  (\ref{eqn-CSHS}) immediately follow. For (\ref{eqn-SHHS}), first notice that $\sS S=\sS$, and
+  and $SH\sS$. Since $\sC$ is the disjoint union of these cosets, (\vref{eqn-CHS}) and
+  (\vref{eqn-CSHS}) immediately follow. For (\vref{eqn-SHHS}), first notice that $\sS S=\sS$, and
   therefore $\sS\sHp = \sS H\cup \sS SH = \sS H$. Since $\sS H$ is a non-trivial right coset of
   $\sS$, it follows that $\sS H \seq \sC\sm\sS = \sCp$. Combining these facts with
-  (\ref{eqn-CSHS}), we have (\ref{eqn-SHHS}). Finally, the equations (\ref{eqn-STTS}) and
-  (\ref{eqn-TSTS}) are trivial consequences of the equations $ST=TS$, $XT=TXS$, and $TT=S$.
+  (\vref{eqn-CSHS}), we have (\vref{eqn-SHHS}). Finally, the equations (\vref{eqn-STTS}) and
+  (\vref{eqn-TSTS}) are trivial consequences of the equations $ST=TS$, $XT=TXS$, and $TT=S$.
 \end{proof}
 
 \begin{proposition}[Matsumoto and Amano {\cite{MA08}}]\label{prop-ma}
@@ -391,8 +391,8 @@ sequences are equal as tuples, and $s=t$ if they are equal as operators, i.e., i
     M = C_n\;T\;C_{n-1}\;\cdots\;C_1\;T\;C_0,
   \end{equation}
   for some $n\geq 0$, where $C_0,\ldots,C_n\in\sC$. First note that if $C_i\in\sS$ for any
-  $i\in\s{1,\ldots,n-1}$, then we can immediately use (\ref{eqn-TSTS}) to replace $TC_iT$ by a
-  single Clifford operator. This yields a shorter expression of the form (\ref{eqn-M}) for $M$. We
+  $i\in\s{1,\ldots,n-1}$, then we can immediately use (\vref{eqn-TSTS}) to replace $TC_iT$ by a
+  single Clifford operator. This yields a shorter expression of the form (\vref{eqn-M}) for $M$. We
   may therefore assume without loss of generality that $C_i\not\in\sS$ for $i=1,\ldots,n-1$. If
   $n=0$, then $M$ is a Clifford operator, and there is nothing to show. Otherwise, we have
   \begin{align}
@@ -402,9 +402,9 @@ sequences are equal as tuples, and $s=t$ if they are equal as operators, i.e., i
     &\seq~ \sH\;T\;\sHp\;\cdots\;\sHp\;T\;\sC &&\mbox{ by
       (\ref{eqn-SHHS}) and (\ref{eqn-STTS}).}\label{eqn-HTHpTC}
   \end{align}
-  Note how, in the last step, the relations (\ref{eqn-SHHS}) and (\ref{eqn-STTS}) were used to move
+  Note how, in the last step, the relations (\vref{eqn-SHHS}) and (\vref{eqn-STTS}) were used to move
   all occurrences of $\sS$ to the right, where they were absorbed into the final $\sC$. It is now
-  trivial to see that every element of (\ref{eqn-HTHpTC}) can be written in Matsumoto-Amano normal
+  trivial to see that every element of (\vref{eqn-HTHpTC}) can be written in Matsumoto-Amano normal
   form, finishing the proof.
 \end{proof}
 
@@ -415,7 +415,7 @@ sequences are equal as tuples, and $s=t$ if they are equal as operators, i.e., i
 \end{corollary}
 
 \begin{proof}
-  The proof of Proposition~\ref{prop-ma} already contains an algorithm for reducing any sequence of
+  The proof of Proposition~\vref{prop-ma} already contains an algorithm for reducing any sequence of
   Clifford+$T$ operators to Matsumoto-Amano normal form. However, in the stated form, it is perhaps
   not obvious that the algorithm runs in linear time. Indeed, a naive implementation of the first
   step would require up to $n$ searches of the entire sequence for a term of the form $T\sS T$,
@@ -441,8 +441,8 @@ sequences are equal as tuples, and $s=t$ if they are equal as operators, i.e., i
 \end{corollary}
 
 \begin{proof}
-  This is an immediately consequence of the proof of Proposition~\ref{prop-ma}, because the
-  reduction from (\ref{eqn-M}) to (\ref{eqn-HTHpTC}) does not increase the $T$-count.
+  This is an immediately consequence of the proof of Proposition~\vref{prop-ma}, because the
+  reduction from (\vref{eqn-M}) to (\vref{eqn-HTHpTC}) does not increase the $T$-count.
 \end{proof}
 
 % subsection _t_optimality (end)
@@ -588,18 +588,18 @@ $H$, $S$, and $T$ are:
 \end{lemma}
 
 \begin{proof}
-  By induction on the length of the Matsumoto-Amano normal form $M$. Figure~\ref{fig-so3-action}
+  By induction on the length of the Matsumoto-Amano normal form $M$. Figure~\vref{fig-so3-action}
   shows the action of Matsumoto-Amano operators on parity matrices. Each vertex represents a
   $\sim_{\sC}$-equivalence class of $k$-parities. The vertex labelled ``Start'' represents the
   empty Matsumoto-Amano normal form, i.e., the identity operator. Each arrow represents left
   multiplication by the relevant operator, i.e., a Clifford operator, $T$, $H$, or $S$. Thus, each
   Matsumoto-Amano normal form, read from right to left, gives rise to a unique path in the graph of
-  Figure~\ref{fig-so3-action}. The label $k\pp$ on an arrow indicates that the least denominator
+  Figure~\vref{fig-so3-action}. The label $k\pp$ on an arrow indicates that the least denominator
   exponent increases by $1$. The claims of the lemma then immediately follow from
-  Figure~\ref{fig-so3-action}.
+  Figure~\vref{fig-so3-action}.
 \end{proof}
 
-\begin{proof}[Proof of Theorem~\ref{thm-ma}]
+\begin{proof}[Proof of Theorem~\vref{thm-ma}]
   This is an immediate consequence of Lemma~\ref{lem-ma}. Indeed, suppose that $M$ and $N$ are two
   Matsumoto-Amano normal forms describing the same Bloch sphere operator $U$. We show that $M=N$ by
   induction on the length of $M$. Let $k$ be the least denominator exponent of $U$. If $k=0$, then
@@ -613,7 +613,7 @@ $H$, $S$, and $T$ are:
 
 \subsection{The Matsumoto-Amano decomposition algorithm} % (fold)
 \label{sub:the_matsumoto_amano_decomposition_algorithm}
-As an immediate consequence of Lemma~\ref{lem-ma}, we can an efficient algorithm for calculating
+As an immediate consequence of Lemma~\vref{lem-ma}, we can an efficient algorithm for calculating
 the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
 
 \begin{theorem}\label{thm:ma-decomposition}
@@ -625,10 +625,10 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
 \begin{proof}
   By assumption, $U$ is the Bloch sphere representation of some Clifford+$T$ operator. Let $M$ be
   the unique Matsumoto-Amano normal form of this operator\footnote{Todo: treat phase correctly}.
-  Note that, by Lemma~\ref{lem-ma}, the $T$-count of $M$ is $k$. We compute $M$ recursively. If
-  $k=0$, then by Lemma~\ref{lem-ma}, $M$ is a Clifford operator; it can be determined from the
+  Note that, by Lemma~\vref{lem-ma}, the $T$-count of $M$ is $k$. We compute $M$ recursively. If
+  $k=0$, then by Lemma~\vref{lem-ma}, $M$ is a Clifford operator; it can be determined from the
   matrix $U$ in constant time. If $k>0$, we compute $p_k(U)$, which must be one of the three cases
-  listed in Lemma~\ref{lem-ma}. This determines whether the leftmost syllable of $M$ is $T$, $HT$,
+  listed in Lemma~\vref{lem-ma}. This determines whether the leftmost syllable of $M$ is $T$, $HT$,
   or $SHT$. Let $N$ be this syllable, so that $M=NM'$, for some Matsumoto-Amano normal form $M'$.
   Then $M'$ can be recursively computed as the Matsumoto-Amano normal form of $U'=\hat N\inverse U$;
   moreover, since $M'$ has $T$-count $k-1$, the recursion terminates after $k$ steps. Since each
@@ -684,13 +684,13 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
     \right).
   \end{equation}
   Since $U\da U=I$, we have $\<v_\jay,v_\jay\>=1$, and $\<v_\jay,v_\ell\> = 0$ when $\ell \ne
-  \jay$. Therefore, the coefficient of $\sqrt{2}$ in equation \eqref{eqn-dotprod_of_vl_and_vj} must
-  be zero, proving \eqref{eqn-abba} and \eqref{eqn-aacc}. Equations {\eqref{eqn-abcd}} and
-  {\eqref{eqn-a2c2}} immediately follow by letting $\jay=\ell$.
+  \jay$. Therefore, the coefficient of $\sqrt{2}$ in equation \vref{eqn-dotprod_of_vl_and_vj} must
+  be zero, proving \vref{eqn-abba} and \vref{eqn-aacc}. Equations {\vref{eqn-abcd}} and
+  {\vref{eqn-a2c2}} immediately follow by letting $\jay=\ell$.
 \end{proof}
 
 \begin{remark}
-  In Lemma~\ref{lem:dot_product_is_simpler_in_ds}, we have worked with columns $v_\jay$ of the
+  In Lemma~\vref{lem:dot_product_is_simpler_in_ds}, we have worked with columns $v_\jay$ of the
   matrix $U$. But since $U$ is orthogonal, the analogous properties also hold for the rows of $U$.
 \end{remark}
 
@@ -701,11 +701,11 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
 
 \begin{proof}
   Let $v_j$ be any column of $U$, with the notation of
-  Lemma~\ref{lem:dot_product_is_simpler_in_ds}. By {\eqref{eqn-a2c2}}, we have
+  Lemma~\vref{lem:dot_product_is_simpler_in_ds}. By {\vref{eqn-a2c2}}, we have
   $a_\jay^2+c_\jay^2+e_\jay^2+2(b_\jay^2+d_\jay^2+f_\jay^2)=1$. Since each summand is a positive
   integer, we must have $b_\jay,d_\jay,f_\jay = 0$, and exactly one of $a_\jay$, $c_\jay$ or
   $e_\jay=\pm1$, for each $\jay=1,2,3$. Therefore, all the matrix entries are in $\s{-1,0,1}$, and
-  the claim follows by Remark~\ref{rem-bloch}.
+  the claim follows by Remark~\vref{rem-bloch}.
 \end{proof}
 
 \begin{lemma}\label{lem:parity_u_gives_a_row_in_the_algorithm}
@@ -721,14 +721,14 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
 \end{lemma}
 \begin{proof}
   First consider the case $k=0$. Let $v_\jay$ be any column of $U$, with the notation of
-  Lemma~\ref{lem:dot_product_is_simpler_in_ds}. By {\eqref{eqn-a2c2}}, we have
+  Lemma~\vref{lem:dot_product_is_simpler_in_ds}. By {\vref{eqn-a2c2}}, we have
   $a_\jay^2+c_\jay^2+e_\jay^2+2(b_\jay^2+d_\jay^2+f_\jay^2)=1$. Since each summand is a positive
   integer, we must have $b_\jay,d_\jay,f_\jay = 0$, and exactly one of $a_\jay$, $c_\jay$ or
   $e_\jay=\pm1$, for each $\jay=1,2,3$. Noting that the columns of $U$ are orthogonal, we see that
   $p_k(U)\sim_{\sC}M_1$.
 
   Now consider the case $k>0$. Let $v_\jay$ be any row or column of $U$, with the notation of
-  Lemma~\ref{lem:dot_product_is_simpler_in_ds}. By {\eqref{eqn-a2c2}}, it follows that $a_\jay^2 +
+  Lemma~\vref{lem:dot_product_is_simpler_in_ds}. By {\vref{eqn-a2c2}}, it follows that $a_\jay^2 +
   c_\jay^2 + e_\jay^2$ is even, and therefore an even number of $a_\jay$, $c_\jay$, and $e_\jay$
   have parity $1$. Therefore, each row or column of $p_k(U)$ has an even number of $1$'s. Moreover,
   since $k$ is the least denominator exponent of $U$, $p_k(U)$ has at least one non-zero entry.
@@ -740,7 +740,7 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
     (d)~ \zmatrix{ccc}{1&1&0 \\ 1&0&1 \\ 0&1&1}.
    \]
    In cases (a)--(c), we are done. Case (d) is impossible because it implies that
-   $a_1a_2+c_1c_2+e_1e_2$ is odd, contradicing the fact that it is even by {\eqref{eqn-aacc}}.
+   $a_1a_2+c_1c_2+e_1e_2$ is odd, contradicing the fact that it is even by {\vref{eqn-aacc}}.
 \end{proof}
 
 \begin{lemma}\label{lem:applying_a_t_symbol_decreases_k}
@@ -750,7 +750,7 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
 \end{lemma}
 
 \begin{proof}
-  By Lemma~\ref{lem:parity_u_gives_a_row_in_the_algorithm}, we know that $p_k(U)\sim_{\sC} M$, for
+  By Lemma~\vref{lem:parity_u_gives_a_row_in_the_algorithm}, we know that $p_k(U)\sim_{\sC} M$, for
   some $M\in\{M_T, M_H, M_S\}$. We consider each of these cases.
   \begin{enumerate}
     \item \label{lemparitycase:applyt}$p_k(U) \sim_{\sC} M_T$.
@@ -759,7 +759,7 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
       \[ v =
       \frac{1}{\sqrt{2}^k}\zmatrix{c}{a+b\sqrt{2}\\c+d\sqrt{2}\\e+f\sqrt{2}}
       \]
-      be any such column. By {\eqref{eqn-abcd}},
+      be any such column. By {\vref{eqn-abcd}},
       we have $ab+cd+ef = 0$. Since $\bar e = 0$, we have
       $\bar a \bar b+ \bar c \bar d = 0$. Since $\bar a = \bar c = 1$,
       we can conclude $\bar b+\bar d = 0$.
@@ -803,21 +803,21 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
         p_k(\hat{T}^{-1}U) \sim_{\sC}
         \begin{bmatrix} 0&0&x \\0&0&y \\0&0&z\end{bmatrix}.
       \]
-      But $\hat{T}^{-1}U$ is orthogonal, so by {\eqref{eqn-a2c2}},
+      But $\hat{T}^{-1}U$ is orthogonal, so by {\vref{eqn-a2c2}},
       applied to each row of $\hat{T}^{-1}U$, we conclude that
       $x=y=z=0$. It follows that the least denominator exponent of
       $\hat{T}^{-1}U$ is $k-1$. 
     \item \label{lemparitycase:applyh}$p_k(U) \sim_{\sC} M_H$.
       In this case, $p_k(\hat{H}^{-1}U) \sim_{\sC} p(\hat{H}^{-1}M_H) = M_T$.
-      We then continue as in case \ref{lemparitycase:applyt}.
+      We then continue as in case \vref{lemparitycase:applyt}.
     \item \label{lemparitycase:applys}$p_k(U) \sim_{\sC} M_S$.
       In this case, $p_k(\hat{H}\inverse\hat{S}^{-1}U) \sim_{\sC} p(\hat{H}\inverse\hat{S}^{-1}M_S) = M_T$.
-      We then continue as in case \ref{lemparitycase:applyt}.\qedhere
+      We then continue as in case \vref{lemparitycase:applyt}.\qedhere
   \end{enumerate}
 \end{proof}
 
-Combining Lemmas~\ref{lem:k0-clifford} and
-{\ref{lem:parity_u_gives_a_row_in_the_algorithm}}, we easily get the
+Combining Lemmas~\vref{lem:k0-clifford} and
+{\vref{lem:parity_u_gives_a_row_in_the_algorithm}}, we easily get the
 following result:
 
 \begin{theorem}\label{thm:completness_of_algorithm}
@@ -829,7 +829,7 @@ following result:
 \begin{proof}
   The ``only if'' direction is trivial, since all the generators of
   the Clifford+$T$ group have this property (see
-  {\eqref{bloch-generators}}). To prove the ``if'' direction, let $k$
+  {\ref{bloch-generators}}). To prove the ``if'' direction, let $k$
   be the least denominator exponent of $U$. We proceed by induction on
   $k$. If $k=0$, by Lemma~\ref{lem:k0-clifford}, $U$ is the Bloch
   sphere representation of some Clifford operator, and therefore a
@@ -841,7 +841,7 @@ following result:
 \end{proof}
 
 \begin{remark}
-  Combining this result with the algorithm of Theorem~\ref{thm:ma-decomposition}, we have a
+  Combining this result with the algorithm of Theorem~\vref{thm:ma-decomposition}, we have a
   linear-time algorithm for computing the Matsumoto-Amano normal form of any unitary operator $U\in
   SO(3)$ with entries in $\Ds$.
 \end{remark}
@@ -853,14 +853,14 @@ following result:
 
 \begin{proof}
   Again, the ``only if'' direction is trivial, as it is true for the generators. For the ``if''
-  direction, it suffices to note that, by {\eqref{eqn-bloch-conversion}}, whenever $U$ takes its
+  direction, it suffices to note that, by {\vref{eqn-bloch-conversion}}, whenever $U$ takes its
   entries in $\D[\sqrt{2},i]$, then $\hat U$ takes its entries in $\Ds$.\footnote{Todo: treat phase
   correctly; also introduce the ring $\D[\sqrt{2},i]$ at some appropriate time}
 \end{proof}
 
-Corollary~\ref{cor-u2} was first proved by Kliuchnikov et al.~{\cite{Kliuchnikov-et-al}}, using a direct method
+Corollary~\vref{cor-u2} was first proved by Kliuchnikov et al.~{\cite{Kliuchnikov-et-al}}, using a direct method
 (i.e., not going via the Bloch sphere representation). It is interesting to note that
-Theorem~\ref{thm:completness_of_algorithm} is stronger than Corollary~\ref{cor-u2}, in the sense
+Theorem~\vref{thm:completness_of_algorithm} is stronger than Corollary~\vref{cor-u2}, in the sense
 that the Theorem obviously implies the Corollary, whereas it is not a priori obvious that the
 Corollary implies the Theorem.
 % subsection a_characterization_of_clifford_t_on_the_bloch_sphere (end)
@@ -893,7 +893,7 @@ $Z$-bases. On the Bloch sphere, it represents a rotation by 120 degrees about th
 The operators $E$ and $E^2$ have properties analogous to $H$ and $SH$. Specifically, if we let $\sH
 = \s{I,E,E^2}$ and $\sHp = \s{E,E^2}$, then the properties of Lemma~\ref{lem-SH} are satisfied. The
 proofs of Proposition~\ref{prop-ma} and Corollary~\ref{cor-efficient} only depend on these
-properties, and the uniqueness proof (Theorem~\ref{thm-ma}) also goes through without significant
+properties, and the uniqueness proof (Theorem~\vref{thm-ma}) also goes through without significant
 changes. We therefore have:
 
 \begin{proposition}[$E$-$T$ normal form]
@@ -923,7 +923,7 @@ different axes:
   \end{array}
 \]
 Using the commutativities $ET_x = T_yE$, $ET_y = T_zE$, and $ET_z = T_xE$, it is then clear that
-every expression of the form (\ref{eqn-et}) can be uniquely rewritten as a sequence of $T_x$,
+every expression of the form (\vref{eqn-et}) can be uniquely rewritten as a sequence of $T_x$,
 $T_y$, and $T_z$ rotations, with no repeated symbol, followed by a Clifford operator. This can be
 easily proved by induction, but is best seen in an example:
 \[
@@ -968,12 +968,12 @@ This normal form is not unique; for example, $H.H$ and $I$ are two different nor
 the same operator, as are $SHTH.Z$ and $H.SHTH$. (Here we have used a dot to delimit syllables;
 this is for readability only). Recall that two regular expressions are {\em equivalent} if they
 define the same set of strings. Using laws of regular expressions, we can equivalently rewrite
-(\ref{eqn-bs1}) as
+(\vref{eqn-bs1}) as
 \begin{equation}\label{eqn-bs2}
   ((\epsilon\mid T\mid SHT) (HT\mid HSHT)^*\,H{\cC}) ~\mid~ \cC.
 \end{equation}
 Since $H\cC$ is just a redundant way to write a Clifford operator, we can simplify it to $\cC$;
-moreover, in this case, $\epsilon\cC$ and $\cC$ are the same, so (\ref{eqn-bs2}) simplifies to
+moreover, in this case, $\epsilon\cC$ and $\cC$ are the same, so (\vref{eqn-bs2}) simplifies to
 \begin{equation}\label{eqn-bs3}
     (\epsilon\mid T\mid SHT) (HT\mid HSHT)^*\,{\cC}.
 \end{equation}
@@ -983,9 +983,9 @@ with $HSHT$, so the $SHT$ syllable is redundant and we can eliminate it:
     (\epsilon\mid T) (HT\mid HSHT)^*\,{\cC}.
 \end{equation}
 Let us say that an operator is in {\em Bocharov-Svore normal form} if it is written in the form
-(\ref{eqn-bs4}). This version of the Bocharov-Svore normal form is indeed unique; note that it is
+(\vref{eqn-bs4}). This version of the Bocharov-Svore normal form is indeed unique; note that it is
 almost the same as the Matsumoto-Amano normal form, except that the syllable $SHT$ has been
-replaced by $HSHT$. Since the set $\sH=\s{I,H,HSH}$ satisfies Lemma~\ref{lem-SH}, existence,
+replaced by $HSHT$. Since the set $\sH=\s{I,H,HSH}$ satisfies Lemma~\vref{lem-SH}, existence,
 uniqueness, $T$-optimality, and efficiency are proved in the same way as for the Matsumoto-Amano
 and $E$-$T$ normal forms.
 
@@ -1223,7 +1223,7 @@ operator, as do $YS.TH.TH$ and $TH.TH.X\omega$.
   \end{enumerate}
 \end{remark}
 \begin{remark}
-  The residue matrices in figure \ref{fig:u2-transitions} are modulo $\sim_\sW$.
+  The residue matrices in figure \vref{fig:u2-transitions} are modulo $\sim_\sW$.
 \end{remark}
 \begin{lemma}\label{lem-columncannotbe1s}
   Let $k\ge2$ and $b,d \in \Zw$. Then $\frac{1}{\sqrt{2}^k}\begin{pmatrix}1+2b\\1+2d\end{pmatrix}$
@@ -1235,7 +1235,7 @@ operator, as do $YS.TH.TH$ and $TH.TH.X\omega$.
     2^k = &1+2(b+b^t) +4bb^t +\\
           &1+2(d+d^t) +4dd^t,
   \end{align*}
-  so $2 = 2^k - 2(b+b^t) - 2(d+d^t) - 4(bb^t + dd^t)$. By lemma \ref{lem-divisiblebyroot2}, the
+  so $2 = 2^k - 2(b+b^t) - 2(d+d^t) - 4(bb^t + dd^t)$. By lemma \vref{lem-divisiblebyroot2}, the
   right hand side of this is divisible in $\Zw$ by $2 \sqrt{2}$, while the left hand side is not.
   Thus we have a contradiction.
 \end{proof}
@@ -1248,21 +1248,21 @@ operator, as do $YS.TH.TH$ and $TH.TH.X\omega$.
   then, $\rho_k(U) = \umatrix{0010}{1101}{1101}{0010}$
 \end{lemma}
 \begin{proof}
-  Referencing Table \ref{tab-residue}, we see the first condition limits the possible choices for
+  Referencing Table \vref{tab-residue}, we see the first condition limits the possible choices for
   the entries of $\rho_k(U)$ to the set $\{0010, 0111, 1000, 1101\}$. The second condition implies
   that $\rho_{k+1}(H U)$ is reducible and in fact that each entry is $1111$. This means each column
   of $U$ must be either $[0010, 1101]^t, [1101, 0010]^t, [0111,1000]^t$ or $[1000,0111]^t$. As we
   are considering equivalence classes, we can assume without loss of generality, that the columns
-  are in $\{[0010, 1101]^t, [1101, 0010]^t\}$. But by Lemma \ref{lem-columncannotbe1s}, we can not
+  are in $\{[0010, 1101]^t, [1101, 0010]^t\}$. But by Lemma \vref{lem-columncannotbe1s}, we can not
   have a row like $[0010, 0010]$, therefore $U = \umatrix{0010}{1101}{1101}{0010}$.
 \end{proof}
 \begin{corollary}
-  In Figure \ref{fig:u2-transitions}, the transitions labelled with ``Reduce'' are correct.
+  In Figure \vref{fig:u2-transitions}, the transitions labelled with ``Reduce'' are correct.
 \end{corollary}
 \begin{proof}
-  For the left most reduce, we directly apply Lemma \ref{lem-reduction} and then note that
+  For the left most reduce, we directly apply Lemma \vref{lem-reduction} and then note that
   \[\umatrix{0001}{1110}{1110}{0001}\sim_\sW\umatrix{0010}{1101}{1101}{0010}.\] For the rightmost
-  reduce, the same argument as shown in Lemma \ref{lem-reduction} can be applied to the
+  reduce, the same argument as shown in Lemma \vref{lem-reduction} can be applied to the
   preconditions of this reduce, giving us a similar result.
 \end{proof}
 
@@ -1356,12 +1356,12 @@ and we say that $a\level{\jay}$  is a one-level matrix {\em of type $a$}.
 \end{lemma}
 
 \begin{proof}
-  It can be seen from Table~\ref{tab-residue} that $x_1\da x_1$ is either $0000$, $1010$, or $0001$.
+  It can be seen from Table~\vref{tab-residue} that $x_1\da x_1$ is either $0000$, $1010$, or $0001$.
   \begin{itemize}
   \item Case 1: $x_1\da x_1 = x_2\da x_2 = 0000$. In this case, $\rho_k(u)$ is already reducible,
     and there is nothing to show.
   \item Case 2: $x_1\da x_1 = x_2\da x_2 = 1010$. In this case, we know from
-    Table~\ref{tab-residue} that $x_1,x_2\in\s{0011, 0110, 1100, 1001}$. In particular, $x_1$ is a
+    Table~\vref{tab-residue} that $x_1,x_2\in\s{0011, 0110, 1100, 1001}$. In particular, $x_1$ is a
     cyclic permutation of $x_2$, say, $x_1=\omega^m x_2$. Let $v=HT^mu$. Then
     \[
       \begin{split}
@@ -1374,7 +1374,7 @@ and we say that $a\level{\jay}$  is a one-level matrix {\em of type $a$}.
     \]
     This shows that $\rho_k(\sqrt{2}\,v)$ is twice reducible; therefore, $\rho_k(v)$ is defined and
     reducible as claimed.
-  \item Case 3: $x_1\da x_1 = x_2\da x_2 = 0001$. In this case, we know from Table~\ref{tab-residue}
+  \item Case 3: $x_1\da x_1 = x_2\da x_2 = 0001$. In this case, we know from Table~\vref{tab-residue}
     that $x_1,x_2\in\s{0001,0010,0100,1000}\cup\s{0111,1110,1101,1011}$. If both $x_1,x_2$ are in
     the first set, or both are in the second set, then $x_1$ and $x_2$ are cyclic permutations of
     each other, and we proceed as in case 2. The only remaining cases are that $x_1$ is a cyclic
@@ -1390,7 +1390,7 @@ and we say that $a\level{\jay}$  is a one-level matrix {\em of type $a$}.
       \end{split}
     \]
     Since this is reducible, $u'$ has denominator exponent $k$. Let $\rho_k(u')=(y_1,y_2)$. Because
-    $\sqrt{2}\,y_1=\sqrt{2}\,y_2=1111$, we see from Table~\ref{tab-residue} that
+    $\sqrt{2}\,y_1=\sqrt{2}\,y_2=1111$, we see from Table~\vref{tab-residue} that
     $y_1,y_2\in\s{0011,0110,1100,1001}$ and $y_1\da y_1=y_2\da y_2=1010$. Therefore, $u'$ satisfies
     the condition of case 2 above. Proceeding as in case 2, we find $m'$ such that $v=HT^{m'}
     u'=HT^{m'} HT^mu$ has denominator exponent $k-1$. This finishes the proof.\qedhere
@@ -1409,7 +1409,7 @@ and we say that $a\level{\jay}$  is a one-level matrix {\em of type $a$}.
   $u=(u_1,\ldots,u_n)^T$.
   \begin{itemize}
   \item Base case. Suppose $k=0$. Then $u\in\Zw^n$. Since by assumption $\norm{u}^2=1$, it follows 
-    by Lemma~\ref{lem-ring-norm} that $\weight{u}^2=1$. Since $u_1,\ldots,u_n$ are elements of
+    by Lemma~\vref{lem-ring-norm} that $\weight{u}^2=1$. Since $u_1,\ldots,u_n$ are elements of
     $\Zw$, their weights are non-negative integers. It follows that there is precisely one $\jay$
     with $\weight{u_\jay}=1$, and $\weight{u_\ell}=0$ for all $\ell\neq \jay$. Let
     $u'=X\level{1,\jay}u$ if $\jay\neq 1$, and $u'=u$ otherwise. Now $u'_1$ is of the form
@@ -1421,17 +1421,17 @@ and we say that $a\level{\jay}$  is a one-level matrix {\em of type $a$}.
     \begin{equation}
       x_1\da x_1+\ldots+x_n\da x_n = 0000.
     \end{equation}
-    It can be seen from Table~\ref{tab-residue} that each summand $x_\jay\da x_\jay$ is either
+    It can be seen from Table~\vref{tab-residue} that each summand $x_\jay\da x_\jay$ is either
     $0000$, $0001$, or $1010$. Since their sum is $0000$, it follows that there is an even number
     of $\jay$ such that $x_\jay\da x_\jay=0001$, and an even number of $\jay$ such that $x_\jay\da
     x_\jay=1010$.
 
     We do an inner induction on the number of irreducible components of $x$. If $x$ is reducible,
-    then $u$ has denominator exponent $k-1$ by Corollary~\ref{cor-reducible3}, and we can apply the
+    then $u$ has denominator exponent $k-1$ by Corollary~\vref{cor-reducible3}, and we can apply the
     outer induction hypothesis. Now suppose there is some $\jay$ such that $x_\jay$ is irreducible;
-    then $x_\jay\da x_\jay\neq 0000$ by Lemma~\ref{lem-reducible}. Because of the evenness property
+    then $x_\jay\da x_\jay\neq 0000$ by Lemma~\vref{lem-reducible}. Because of the evenness property
     noted above, there must exist some $\ell\neq \jay$ such that $x_\jay\da x_\jay=x_\ell\da
-    x_\ell$. Applying Lemma~\ref{lem-row} to $u'=(u_\jay,u_\ell)^T$, we find a sequence $\vec U$ of
+    x_\ell$. Applying Lemma~\vref{lem-row} to $u'=(u_\jay,u_\ell)^T$, we find a sequence $\vec U$ of
     row operations of types $H$ and $T$, making $\rho_k(\vec Uu')$ reducible. We can lift this to a
     two-level operation $\vec U\level{\jay,\ell}$ acting on $u$; thus $\rho_k(\vec
     U\level{\jay,\ell}u)$ has fewer irreducible components than $x=\rho_k(u)$, and the inner
@@ -1483,7 +1483,7 @@ and we say that $a\level{\jay}$  is a one-level matrix {\em of type $a$}.
     }.
     \end{array}
   \]
-	Rows 2 and 3 satisfy case 2 of Lemma~\ref{lem-row}. As they are not aligned, first apply
+	Rows 2 and 3 satisfy case 2 of Lemma~\vref{lem-row}. As they are not aligned, first apply
   $T_{[2,3]}^3$ and then $H_{[2,3]}$. Rows 1 and 4 satisfy case 3. Applying $H_{[1,4]} T_{[1,4]}^2$,
   the residues become $\rho_3(u'_1)=0011$ and $\rho_3(u'_4)=1001$, which requires applying $H_{[1,4]}
   T_{[1,4]}$. We now have
@@ -1566,10 +1566,10 @@ conjectured by Kliuchnikov et al.~{\cite{Kliuchnikov-et-al}}:
 Moreover, in (a), a single ancilla is always sufficient.
 \end{theorem}
 \begin{proof}
-  First note that, since all the elementary Clifford+$T$ gates, as shown in (\ref{eqn-generators}),
+  First note that, since all the elementary Clifford+$T$ gates, as shown in (\vref{eqn-generators}),
   take their matrix entries in $\Dw=\Z[\frac1{\sqrt{2}},i]$, the implication (a) $\implies$ (b) is
   trivial. For the converse, let $U$ be a unitary $2^n\times 2^n$ matrix with entries from $\Dw$.
-  By Lemma~\ref{lem-matrix-decomposition}, $U$ can be decomposed into one- and two-level matrices
+  By Lemma~\vref{lem-matrix-decomposition}, $U$ can be decomposed into one- and two-level matrices
   of types $X$, $H$, $T$, and $\omega$. It is well-known that each such matrix can be further
   decomposed into controlled-not gates and multiply-controlled $X$, $H$, $T$, and $\omega$-gates,
   for example using Gray codes {\cite[Sec.~4.5.2]{neilsen2000:QuantumComputationAndInfo}}. But all of these gates have
@@ -1720,7 +1720,7 @@ Moreover, in (a), a single ancilla is always sufficient.
 \end{proof}
 
 \begin{remark}
-  The fact that one ancilla is always sufficient in Theorem~\ref{thm-main} is primarily of
+  The fact that one ancilla is always sufficient in Theorem~\vref{thm-main} is primarily of
   theoretical interest. In practice, one may assume that on most quantum computing architectures,
   ancillas are relatively cheap. Moreover, the use of additional ancillas can significantly reduce
   the size and depth of the generated circuits (see e.g.~\cite{Selinger-toffoli}).
@@ -1731,28 +1731,28 @@ Moreover, in (a), a single ancilla is always sufficient.
 \subsection{The no-ancilla case} % (fold)
 \label{sub:the_no_ancilla_case}
 \begin{lemma}\label{lem-det1}
-  Under the hypotheses of Theorem~\ref{thm-main}, assume that $\det U=1$. Then $U$ can be exactly
+  Under the hypotheses of Theorem~\vref{thm-main}, assume that $\det U=1$. Then $U$ can be exactly
   represented by a Clifford+$T$ circuit with no ancillas.
 \end{lemma}
 
 \begin{proof}
-  This requires only minor modifications to the proof of Theorem~\ref{thm-main}. First observe that
-  whenever an operator of the form $HT^m$ was used in the proof of Lemma~\ref{lem-row}, we can
+  This requires only minor modifications to the proof of Theorem~\vref{thm-main}. First observe that
+  whenever an operator of the form $HT^m$ was used in the proof of Lemma~\vref{lem-row}, we can
   instead use $T^{-m}(iH)T^m$ without altering the rest of the argument. In the base case of
-  Lemma~\ref{lem-column}, the operator $X\level{1,\jay}$ can be replaced by $iX\level{1,\jay}$.
-  Also, in the base case of Lemma~\ref{lem-column}, whenever $n\geq 2$, the operator
+  Lemma~\vref{lem-column}, the operator $X\level{1,\jay}$ can be replaced by $iX\level{1,\jay}$.
+  Also, in the base case of Lemma~\vref{lem-column}, whenever $n\geq 2$, the operator
   $\omega\level{1}$ can be replaced by $W\level{1,2}$, where
   \[ 
     W = \zmatrix{cc}{\omega&0\\0&\omega^{-1}}.
   \]
-  Therefore, the decomposition of Lemma~\ref{lem-matrix-decomposition} can be performed so as to
+  Therefore, the decomposition of Lemma~\vref{lem-matrix-decomposition} can be performed so as to
   yield only two-level matrices of types
   \begin{equation}\label{eqn-det1}
     iX,\quad T^{-m}(iH)T^m,\quad \mbox{and}\ W,
   \end{equation}
   plus at most one one-level matrix of type $\omega^m$. But since all two-level matrices of types
-  (\ref{eqn-det1}), as well as $U$ itself, have determinant 1, it follows that $\omega^m = 1$. We
-  finish the proof by observing that the multiply-controlled operators of types (\ref{eqn-det1})
+  (\vref{eqn-det1}), as well as $U$ itself, have determinant 1, it follows that $\omega^m = 1$. We
+  finish the proof by observing that the multiply-controlled operators of types (\vref{eqn-det1})
   possess ancilla-free Clifford+$T$ representations, with the latter two given by
   \[
     \m{\begin{tikzqcircuit}[scale=0.47]
@@ -1824,18 +1824,18 @@ for all $n$:
   element $D_n$ whose determinant is $d_n$, namely $D_n=I$ for $n\geq 4$, $D_3=T\otimes I\otimes
   I$, $D_2=T\otimes I$, $D_1=T$, and $D_0=\omega$. Now consider some $U$ satisfying (b). By
   assumption, $\det U=d_n^m$ for some $m$. Let $U'=UD_n^{-m}$, then $\det U'=1$. By
-  Lemma~\ref{lem-det1}, $U'$, and therefore $U$, is in the Clifford+$T$ group with no ancillas.
+  Lemma~\vref{lem-det1}, $U'$, and therefore $U$, is in the Clifford+$T$ group with no ancillas.
 \end{proof}
 
 \begin{remark}
-  Note that the last condition in Corollary~\ref{cor-noancilla}, namely that $\det U$ is a power of
+  Note that the last condition in Corollary~\vref{cor-noancilla}, namely that $\det U$ is a power of
   $\omega$ for $n\leq 1$, is of course redundant, as this already follows from $\det
   U\in\Z[\frac1{\sqrt{2}},i]$ and $|\det U|=1$. We stated the condition for consistency with the
   case $n\geq 2$.
 \end{remark}
 
 \begin{remark}
-  The situation of Theorem~\ref{thm-main} and Corollary~\ref{cor-noancilla} is analogous to the
+  The situation of Theorem~\vref{thm-main} and Corollary~\vref{cor-noancilla} is analogous to the
   case of classical reversible circuits. It is well-known that the not-gate, controlled-not gate,
   and Toffoli gate generate all classical reversible functions on $n\leq 3$ bits. For $n\geq 4$
   bits, they generate exactly those reversible boolean functions that define an {\em even
@@ -1848,14 +1848,14 @@ for all $n$:
 
 \subsection{Complexity} % (fold)
 \label{sub:complexity}
-The proof of Theorem~\ref{thm-main} immediately yields an algorithm, albeit not a very efficient
+The proof of Theorem~\vref{thm-main} immediately yields an algorithm, albeit not a very efficient
 one, for synthesizing a Clifford+$T$ circuit with ancillas from a given operator $U$. We estimate
 the size of the generated circuits.
 
 We first estimate the number of (one- and two-level) operations generated by the matrix
-decomposition of Lemma~\ref{lem-matrix-decomposition}. The row operation from Lemma~\ref{lem-row}
+decomposition of Lemma~\vref{lem-matrix-decomposition}. The row operation from Lemma~\vref{lem-row}
 requires only a constant number of operations. Reducing a single $n$-dimensional column from
-denominator exponent $k$ to $k-1$, as in the induction step of Lemma~\ref{lem-column}, requires
+denominator exponent $k$ to $k-1$, as in the induction step of Lemma~\vref{lem-column}, requires
 $O(n)$ operations; therefore, the number of operations required to reduce the column completely is
 $O(nk)$.
 
@@ -1870,7 +1870,7 @@ the third column requires up to $O(9(n-2)k)$ operations, and so on. Using the id
 $\sum_{j=0}^{n-1}3^j(n-j) = (3^{n+1}-2n-3)/4$, this results in a total of $O(3^nk)$ one- and
 two-level operations for Lemma~\ref{lem-matrix-decomposition}.
 
-In the context of Theorem~\ref{thm-main}, we are dealing with $n$ qubits, i.e., a $2^n\times
+In the context of Theorem~\vref{thm-main}, we are dealing with $n$ qubits, i.e., a $2^n\times
 2^n$-operator, which therefore decomposes into $O(3^{2^n}k)$ two-level operations. Using one
 ancilla, each two-level operation can be decomposed into $O(n)$ Clifford+$T$ gates, resulting in a
 total gate count of $O(3^{2^n}\!nk)$ elementary Clifford+$T$ gates.

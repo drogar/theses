@@ -19,26 +19,26 @@ read-write head, what it writes and the resulting state of the machine.
   Given an alphabet $A$ which does not contain a space, a tape is in \emph{standard
   format} when:
   \begin{enumerate}
-    \item The tape head is positioned directly over a blank space;
-    \item The spaces to the left (the $+1$ direction) contain only
+    \item[\axiom{T}{1}] The tape head is positioned directly over a blank space;
+    \item[\axiom{T}{2}] The spaces to the left (the $+1$ direction) contain only
     elements of $A$.
-    \item All other spaces of the tape are blank.
+    \item[\axiom{T}{3}] All other spaces of the tape are blank.
   \end{enumerate}
 \end{definition}
 
 \begin{definition}\label{def:turing_quintuple}
   A \emph{turing quintuple} is a quintuple $(s,\alpha,\alpha',\delta,s')$ where:
   \begin{enumerate}
-    \item $s,s' \in S$, where $S$ is a predefined set of states;
-    \item $\alpha, \alpha'\in A$ is predefined set of glyphs;
-    \item $\delta \in \{-1,0,1\}$.
+    \item[\axiom{Q}{1}] $s,s' \in S$, where $S$ is a predefined set of states;
+    \item[\axiom{Q}{2}] $\alpha, \alpha'\in A$ is predefined set of glyphs;
+    \item[\axiom{Q}{3}] $\delta \in \{-1,0,1\}$.
   \end{enumerate}
 \end{definition}
 
 \begin{definition}
   A \emph{standard turing quintuple set} $Q$ consists of a set of turing quintuples
   such that:
-  \begin{enumerate}
+  \begin{enumerate}[{(}i{)}]
     \item If $q_1 = (s_1,\alpha_1,\alpha'_1,\delta_1,s'_1)$ and
       $q_2 = (s_2,\alpha_2,\alpha'_2,\delta_2,s'_2)$ are in $Q$, then either
       $s_1 \ne s_2$ or $\alpha_1\ne \alpha_2$ or both are not equal.
@@ -55,9 +55,9 @@ read-write head, what it writes and the resulting state of the machine.
 \begin{definition}\label{def:turing_machine}
   A \emph{standard Turing machine} is given by
   \begin{itemize}
-    \item a standard turing quintuple set;
-    \item a tape that starts in standard format;
-    \item and the condition that   and if the machine halts, it will halt in state
+    \item[\axiom{TM}{1}] a standard turing quintuple set;
+    \item[\axiom{TM}{2}] a tape that starts in standard format;
+    \item[\axiom{TM}{3}] and the condition that   and if the machine halts, it will halt in state
       $s_t$, the final state of the end quintuple and the output will be in standard format.
   \end{itemize}
 \end{definition}
@@ -101,7 +101,7 @@ turing quintuples as quadruples.
   A \emph{turing quadruple} is given by a quadruple
   \[(s,[b_1,b_2,\ldots,b_n],[b'_1,b'_2,\ldots,b'_n],s')\]
   such that:
-  \begin{itemize}
+  \begin{itemize}[{(}i{)}]
     \item $s,s'\in S$, some set of states;
     \item $b_\jay\in A  \cup \{\phi\}$ where $A$ is some alphabet;
     \item $b'_\jay\in A  + \{-1,0,1\}$ ;
@@ -131,9 +131,9 @@ read and then move.
   quadruples} when given $q_1,q_2\in Q$, with $q_1=(a,[b_\jay], [b'_\jay], a')$ and
   $q_2=(c,[d_\jay], [d'_\jay], c')$:
 \begin{itemize}
-  \item  if $a=c$, then there is a \kay where $b_\kay, d_\kay \in A$ and
+  \item[\axiom{RTM}{1}]  if $a=c$, then there is a \kay where $b_\kay, d_\kay \in A$ and
     $b_\kay \ne d_\kay$;
-  \item if $a' = c'$, then there is a \jay with $b'_\jay, d'_\jay \in A$ and
+  \item[\axiom{RTM}{2}] if $a' = c'$, then there is a \jay with $b'_\jay, d'_\jay \in A$ and
     $b'_\jay \ne d'_\jay$.
 \end{itemize}
 \end{definition}
@@ -156,7 +156,7 @@ a Turing machine.
 \begin{theorem}[Bennet\cite{bennett:1973reverse}]\label{thm:reversible_turing_machine_emulates_standard}
   Given a standard Turing Machine $M$, it may be emulated by a three tape reversible
   Turing machine $R$. In this case, emulated means:
-  \begin{itemize}
+  \begin{itemize}[{(}i{)}]
     \item $M$ halts on standard input $I$ if and only if $R$ halts on standard input $(I,\blank,\blank)$.
     \item $M$ halts on standard input $I$ producint standard output $O$,
       if and only if $R$ halts on input ($I,\blank,\blank$) producing standard output $(I,\blank,O)$.
@@ -173,12 +173,12 @@ a Turing machine.
           (s'',\phi,\delta,s')\right).\label{eq:quint_to_quad}
   \end{align}
   
-  In Equation~\eqref{eq:quint_to_quad}, $s''$ is a new state for the machine $M$, 
+  In \vref{eq:quint_to_quad}, $s''$ is a new state for the machine $M$, 
   not in the current set of states.
 
   Assign an order to the $n$ quintuples of $M$, where the start
   quintuple is the first in the order and the end quintuple comes last. Convert these to
-  quadruples as in Equation~\eqref{eq:quint_to_quad}. 
+  quadruples as in \vref{eq:quint_to_quad}. 
   
   We then proceed to create three groups of quadruples for $R$.
   We call these \emph{emulation, copy,} and \emph{restore}.
@@ -249,7 +249,7 @@ a Turing machine.
 
 \section{Reversible automota and linear combinatory algebras} % (fold)
 \label{sec:reversible_automota_and_linear_combinatory_algebras}
-While reversible Turing machines, as described in Section~\ref{sec:reversible_turing_machines},
+While reversible Turing machines, as described in \vref{sec:reversible_turing_machines},
 show that reversible computing is as powerful as standard computing, they do not 
 give us a sense of what may be considered to be happening at a higher level. 
 
@@ -344,6 +344,7 @@ Substitution allows us to define a partial order on $\tavar$, as follows:
 \end{lemma}
 \begin{proof}
   % TODO Prove most general instance of terms with common instance
+  \prepprooflist
   \begin{enumerate}
     \item Algorithm to compute supremum of $p,q$ terms.
     \item Strict $\prec$ has no infinite ascending chains.

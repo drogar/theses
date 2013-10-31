@@ -232,7 +232,6 @@ when describing a functor that lifts the inverse category to a Cartesian restric
 \begin{lemma}\label{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}
   In a discrete inverse category \X with the tensor $\*$ and $\Delta$ defined as above, where
   $e=\rst{e}$ is a restriction idempotent and $f,g,h$ are arrows in \X, the following are true:
-  \prepprooflist
   \begin{enumerate}[{(}i{)}]
     \item{}$e=\Delta (e\* 1) \inv{\Delta}$.\label{le:eisde1}
     \item{}$e\Delta (f \* g) = \Delta (e f \* g) $ (and $= \Delta (f \* e g) $ and 
@@ -250,7 +249,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item[\ref{le:eisde1}]This is shown by proving both sides
+    \item[\vref{le:eisde1}]This is shown by proving both sides
       equal $\Delta (e\* 1) \inv{\Delta} \Delta (e\* 1) \inv{\Delta}$.
       \begin{align*}
         \Delta (e\* 1) &\inv{\Delta} \Delta (e\* 1) \inv{\Delta}
@@ -276,7 +275,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
         &=\Delta (e \* 1) \inv{\Delta} &\Delta\text{ total}\
       \end{align*}
       which gives $e = \Delta (e \* 1) \inv{\Delta}$.
-    \item[\ref{le:deltaefg}]This equality starts by using the previous equality:
+    \item[\vref{le:deltaefg}]This equality starts by using the previous equality:
       \begin{align*}
         e\Delta &(f \* g) = \Delta (e\* 1) \inv{\Delta} \Delta(f \* g) 
           &\text{by part \ref{le:eisde1}}\\
@@ -287,7 +286,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
       \end{align*}
       The second and third equalities follow by cocommutativity, naturality of $\Delta$ and $e$
       being a restriction idempotent.
-    \item[\ref{le:efginvdelta}] As in (\ref{le:deltaefg}), details are only given for the 
+    \item[\vref{le:efginvdelta}] As in (\vref{le:deltaefg}), details are only given for the 
       first equality.
       \begin{align*}
         (f \* g)&\inv{\Delta} e \\
@@ -298,7 +297,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
       \end{align*}
       The other equalities follow from co-commutativity, naturality of $\Delta$ and $e$ being
       a restriction idempotent.
-    \item[\ref{le:restfg}]Here, we start by using the fact all maps have a partial inverse:
+    \item[\vref{le:restfg}]Here, we start by using the fact all maps have a partial inverse:
       \begin{align*}
         ~&\restr{\Delta (f \* g) \inv{\Delta} } \\
         &=\Delta (f \* g) \inv{\Delta} \Delta (\inv{f} \* \inv{g}) \inv{\Delta} \\
@@ -325,7 +324,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
       naturality of the commutativity isomorphism and finishing with the co-commutativity of
       $\inv{\Delta}$. In future proofs, these steps will be combined to a single line and referred to
       as commutativity.
-    \item[\ref{le:hge}]Beginning with the assumption,
+    \item[\vref{le:hge}]Beginning with the assumption,
       \begin{align*}
         (\Delta (h \* g) &\inv{\Delta})h  = \rst{\Delta (h \* g) \inv{\Delta}}h&\\
         &=\Delta(1 \* g \inv{h}) \inv{\Delta}h&\text{This lemma(\ref{le:restfg})}\\
@@ -342,7 +341,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
         &=\Delta(h\*g)\inv{\Delta}&\text{property of inverse}.
       \end{align*}
 
-    \item[\ref{le:dfgisfg}]As $\Delta$ is total and natural, we start with:
+    \item[\vref{le:dfgisfg}]As $\Delta$ is total and natural, we start with:
       \begin{align*}
         f&=\Delta(f\*f)\inv{\Delta}  & \\
         &= \Delta(f\*1)(1\*f)\inv{\Delta} &  \\
@@ -353,7 +352,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
         &= g\Delta\inv{\Delta} & \Delta \text{ natural}\\
         &= g&\Delta\text{ total}.
       \end{align*}
-    \item[\ref{le:fgisfg}] Immediate from part \ref{le:dfgisfg}.
+    \item[\vref{le:fgisfg}] Immediate from part \vref{le:dfgisfg}.
   \end{enumerate}
 \end{proof}
 
@@ -527,7 +526,7 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
   \category{objects as in \X}
   {
     equivalence classes of maps (the equivalence class is defined below in Definition 
-    \ref{defn:xequivalence}) with the following structure in \X: %
+    \vref{defn:xequivalence}) with the following structure in \X: %
     \[
       \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
       \]
@@ -582,7 +581,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
 
 
 \begin{lemma}\label{lem:mediating_map_equivalence_is_symmetric_reflexive_and_transitive}
-  Definition \ref{defn:xequivalence} gives a symmetric, reflexive equivalence class of maps in \X.
+  Definition \vref{defn:xequivalence} gives a symmetric, reflexive equivalence class of maps in \X.
 \end{lemma}
 \begin{proof}
   \prepprooflist
@@ -670,7 +669,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
 \end{lemma}
 \begin{proof}
   The maps are well defined, as shown in lemma
-  \ref{lem:mediating_map_equivalence_is_symmetric_reflexive_and_transitive}. The existence of the
+  \vref{lem:mediating_map_equivalence_is_symmetric_reflexive_and_transitive}. The existence of the
   identity map is due to the tensor $\*$ being defined on \X, an inverse category, hence
   $\inv{\usr}$ is defined.
 
@@ -742,7 +741,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
   for all maps $A\xrightarrow{(f,C)}B$ in \Xt.
 
   First, we see $\restr{f (\inv{\usr}\*1) a_{\*}} = \restr{f}$ by Lemma
-  \ref{lem:identities_involving_restriction}. Then, calculating in \X, we have a mediating map of
+  \vref{lem:identities_involving_restriction}. Then, calculating in \X, we have a mediating map of
   $1 \* \usl$ as shown below.
   \[
     \xymatrix @C=50pt @R=45pt{
@@ -758,7 +757,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
   \]
 
   Next, $\restr{\inv{\usr} (f \*1)  a_{\*}} = \restr{f}$ by the naturality of $\inv{\usr}$ and
-  Lemma \ref{lem:identities_involving_restriction}. The diagram below
+  Lemma \vref{lem:identities_involving_restriction}. The diagram below
   \[
     \xymatrix @C=50pt @R=45pt{
       A \ar@{=}[dd] \ar[r]^{\inv{\usr}} \ar[dr]_{f}
@@ -1036,7 +1035,7 @@ where associativity is assumed as needed. Note that with the associativity maps,
     &= \rst{f} \rst{g}\inv{\usr}\inv{\usr} a_{\*} &  \inv{\usr}\text{ natural.}
   \end{align*}
   The restriction of the left hand side and the right hand side, in \X, is $\rst{\rst{f} \rst{g}}$.
-  This is done by applying Lemma \ref{lem:identities_involving_restriction} once on the left and
+  This is done by applying Lemma \vref{lem:identities_involving_restriction} once on the left and
   thrice on the right.
 
   Thus, this shows $\rst{\<f,g\>}=\rst{f} \rst{g}$ in \Xt where the mediating map in \X is
@@ -1091,9 +1090,9 @@ leads us to the following theorem:
 \end{theorem}
 \begin{proof}
   The fact that \Xt is a Cartesian restriction category is immediate from lemmas
-  \ref{lem:xt_is_a_category}, \ref{lem:xt_is_a_restriction_category},
-  \ref{lem:tensor_unit_of_x_is_terminal_object_of_xt} and
-  \ref{lem:tensor_on_x_is_the_restriction_product_on_xt}.
+  \vref{lem:xt_is_a_category}, \vref{lem:xt_is_a_restriction_category},
+  \vref{lem:tensor_unit_of_x_is_terminal_object_of_xt} and
+  \vref{lem:tensor_on_x_is_the_restriction_product_on_xt}.
 
   To show that it is discrete, we need only show that the map $(\Delta \inv{\usr},1)$ is in the
   same equivalence class as $\Xt$'s $\Delta(= \<1,1\> = \<(\inv{\usr},1),(\inv{\usr},1))$. As both
@@ -1198,7 +1197,7 @@ result.
       &F(f) \ar@{=}[r] & F(f\inv{\usr})\pi_0
     }
   \]
-  As $\eta$ is identity on the objects, diagram \ref{dia:universal_property_of_inverse_categories}
+  As $\eta$ is identity on the objects, diagram \vref{dia:universal_property_of_inverse_categories}
   commutes.
 \end{proof}
 
@@ -1233,16 +1232,16 @@ result.
 \end{proof}
 
 \begin{corollary}\label{cor:f_sharp_is_unique}
-  The functor $F^{\#}$ in diagram \ref{dia:universal_property_of_inverse_categories} is unique.
+  The functor $F^{\#}$ in diagram \vref{dia:universal_property_of_inverse_categories} is unique.
 \end{corollary}
 \begin{proof}
-  This follows immediately from lemma \ref{lem:inv_is_full_and_faithful}, $\Invf$ is faithful.
+  This follows immediately from lemma \vref{lem:inv_is_full_and_faithful}, $\Invf$ is faithful.
 \end{proof}
 \begin{corollary}\label{cor:eta_and_xt_are_universal_for_inv}
   The category \Xt and functor $\eta:\X\to \Inv{\Xt}$ is a universal pair for the functor $\Invf$.
 \end{corollary}
 \begin{proof}
-  Immediate from Corollary \ref{cor:f_sharp_is_unique} and Lemma \ref{lem:universal_diagram_is_a_commutative_diagram}.
+  Immediate from Corollary \vref{cor:f_sharp_is_unique} and Lemma \vref{lem:universal_diagram_is_a_commutative_diagram}.
 \end{proof}
 
 \begin{lemma}\label{lem:the_functor_eta_is_an_isomorphism}
@@ -1250,7 +1249,7 @@ result.
 \end{lemma}
 \begin{proof}
   As $\eta$ is an identity on objects functor, we need only show that it is full and faithful.
-  Referring to Lemma \ref{lem:all_invertible_maps_in_xt_are_of_the_form_f_inv_usr} above, we
+  Referring to Lemma \vref{lem:all_invertible_maps_in_xt_are_of_the_form_f_inv_usr} above, we
   immediately see that $\eta$ is full. For faithful, if we assume $(f\inv{\usr},1)$ is equal in \Xt
   to $(g\inv{\usr},1)$. This means in \X, that $\rst{f} = \rst{g}$ and there is a $h$ such that
   \[
@@ -1263,7 +1262,7 @@ result.
     }
   \]
   This simplifies out to $g = f \Delta (1\* h) \inv{\Delta}$. But by Lemma
-  \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}, part \ref{le:restfg},
+  \vref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}, part \vref{le:restfg},
   $\Delta (1\* h) \inv{\Delta} = \rst{\Delta (1\* h) \inv{\Delta}}$. Setting $\Delta (1\* h)
   \inv{\Delta}$ as $k$, we have $g = f \rst{k}$. But this gives us:
   \[
@@ -1283,7 +1282,7 @@ result.
   \begin{equation}
     (\eta,\varepsilon):\wtf \vdash \Invf :D_{ic} \to D_{rc} \label{eq:inv_and_wtf_are_adjoint_pair}
   \end{equation}
-  By lemma \ref{lem:the_functor_eta_is_an_isomorphism} we know $\eta$ is an isomorphism. But this
+  By lemma \vref{lem:the_functor_eta_is_an_isomorphism} we know $\eta$ is an isomorphism. But this
   means the functor $\wtf$ is full and faithful, as shown in, e.g., Proposition 2.2.6 of
   \cite{cockett2009:ctcs}. From lemma \ref{lem:inv_is_full_and_faithful} we know that $\Invf$ is
   full and faithful. But again by the previous reference, this means $\varepsilon$ is an

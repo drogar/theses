@@ -18,10 +18,10 @@ Restriction categories were introduced in
   compositions\footnote{Note that composition is
   written in diagrammatic order throughout this paper.} are defined.
   \begin{align*}
-    &[\text{\rone}]\ \restr{f} f = f & &
-    [\text{\rtwo}]\ \restr{g}  \restr{f} = \restr{f}  \restr{g}\\
-    &[\text{\rthree}]\ \restr{\restr{f}  g} = \restr{f}   \restr{g} & &
-    [\text{\rfour}]\  f \restr{g} = \restr{f g} f
+    &\rone\ \restr{f} f = f & &
+    \rtwo\ \restr{g}  \restr{f} = \restr{f}  \restr{g}\\
+    &\rthree\ \restr{\restr{f}  g} = \restr{f}   \restr{g} & &
+    \rfour\  f \restr{g} = \restr{f g} f
   \end{align*}
 \end{definition}
 
@@ -49,6 +49,7 @@ shown in \cite{cockett2002:restcategories1} pp 4-5:
       \item{} $\rst{f}\,\rst{g} = \rst{\rst{f}\,\rst{g}}$;
       \item{} $f$ monic implies $\rst{f} = 1$;
       \item{} $f = \rst{g} f \implies \rst{g}\,\rst{f} = \rst{f}$.
+      \\
     \end{enumerate}
   \end{multicols}
 \end{lemma}
@@ -115,7 +116,7 @@ $\restr{f} g = f$, where $f,g:A\to B$.
   \end{enumerate}
 \end{proof}
 
-Lemma \ref{lem:restriction_cats_are_partial_order_enriched} shows that restriction 
+Lemma \vref{lem:restriction_cats_are_partial_order_enriched} shows that restriction 
 categories are enriched in partial orders.
 
 \begin{definition}
@@ -160,12 +161,12 @@ The following are basic results on meets:
       $f = \restr{f} (g\cap h) = \restr{f} g \cap \restr{f} h \le \restr{f} g $. But 
       $f \le \restr{f} g$ means $f = \restr{f}\,\restr{f} g = \restr{f}g$ and therefore 
       $f \le g$. Similarly, $f \le h$.
-    \item From \ref{lemsub:properties_of_meets_one}, as by definition, $f\cap g \le g$ and 
+    \item From \vref{lemsub:properties_of_meets_one}, as by definition, $f\cap g \le g$ and 
       $f \cap g \le f$.
     \item $f\cap 1 = \restr{f\cap 1} (f \cap 1)= (\restr{f \cap 1} f ) \cap (\restr{f \cap 1})
       \le \restr{f \cap 1}$ from which the result follows. %def of $\le$, \rthree and \rone
     \item By definition and transitivity, $(f\cap g)\cap h \le f, g, h$ therefore by 
-      \ref{lemsub:properties_of_meets_one} $(f \cap g) \cap h \le f \cap (g \cap h)$. Similarly, 
+      \vref{lemsub:properties_of_meets_one} $(f \cap g) \cap h \le f \cap (g \cap h)$. Similarly, 
       $f \cap (g \cap h) \le(f \cap g) \cap h$ giving the equality.
     \item Given  $r f \cap g \le r f$, calculate:
       \[
@@ -195,12 +196,12 @@ The following are basic results on meets:
         \restr{f\cap g}\, \restr{f} =\restr{\restr{f}(f\cap g)}\\
         =\restr{(\restr{f}f)\cap g} =\restr{f\cap g}.
       \]
-      The second claim then follows by \ref{lemsub:properties_of_meets_two}.
+      The second claim then follows by \vref{lemsub:properties_of_meets_two}.
     \item Given $ f \cap 1 \leq f$:
       \[ 
         f \cap 1 \leq f \iff  \restr{f \cap 1} f = f \cap 1 \iff  (f \cap 1) f = f \cap 1
       \]
-      where the last step is by item \ref{lemsub:properties_of_meets_three} of this lemma.
+      where the last step is by item \vref{lemsub:properties_of_meets_three} of this lemma.
     \item As $e$ is idempotent, $e (e\cap 1) = (e e \cap e) = e$.
   \end{enumerate}
 \end{proof}
@@ -441,7 +442,7 @@ preserved by splitting.
       (e_1\cap 1) (f  e_2 \cap f ) = (e_1\cap 1) (f \cap f)= (e_1\cap 1) f$, therefore,
       $V(f):V((A,e_1)) \to V((B,e_2))$.
     \itembf{Identities:} $V(e) = (e\cap 1 ) e = e \cap 1$ by
-      lemma \ref{lem:properties_of_meets_in_restriction_categories}.
+      lemma \vref{lem:properties_of_meets_in_restriction_categories}.
     \itembf{Composition:} $V(f) V(g)
       = (e_1\cap 1 ) f (e_2 \cap 1) g
       = (e_1\cap 1 ) f e_2 (e_2 \cap 1) g
@@ -451,7 +452,7 @@ preserved by splitting.
       = V(f g)$.
   \end{description}
 
-  Recalling from Lemma \ref{lem:properties_of_meets_in_restriction_categories}, $(e\cap 1)$ 
+  Recalling from Lemma \vref{lem:properties_of_meets_in_restriction_categories}, $(e\cap 1)$ 
   is a restriction idempotent. Using this fact, the commutativity of restriction idempotents
   and the general idempotent identities from  
   \vref{lem:properties_of_meets_in_restriction_categories}, the composite functor $U V$ is 
@@ -694,7 +695,7 @@ are graphic.
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
     \item To show closure, it is necessary to show that $\<f g,1\>$ has a partial inverse.
-      By Lemma \ref{lem:rcs_partial_monic_section_inverse_properties}, the uniqueness of the 
+      By Lemma \vref{lem:rcs_partial_monic_section_inverse_properties}, the uniqueness of the 
       partial inverse gives
       \[
         \inv{(\<f,1\> ; \<g,1\>\times 1)} = \inv{\<g,1\>} \times 1 ; \inv{\<f,1\>} .
