@@ -58,12 +58,7 @@
 
 %--------------------------------------------------------------------------------------
 % General formatting macros
-
-\newcommand{\bproofenum}{\vspace{12pt} \hspace{-12pt} \renewcommand{\theenumi}{(\roman{enumi})}\renewcommand{\labelenumi}{\theenumi}\begin{enumerate}}
-\newcommand{\eproofenum}{\end{enumerate}\renewcommand{\theenumi}{\arabic{enumi}}\renewcommand{\labelenumi}{\theenumi.}}
-
-\newcommand{\bproofdesc}{ \vspace{12pt} \hspace{-12pt} \begin{description}}
-\newcommand{\eproofdesc}{\end{description}}
+\newcommand{\prepprooflist}{\vspace{12pt} \hspace{-12pt}}
 
 \newcommand{\itembf}[1]{\item{\textbf{#1}}}
 \newcommand{\itemem}[1]{\item{\emph{#1}}}
@@ -95,6 +90,22 @@
 \newcommand{\dc}{\ensuremath{\delta}\xspace}
 \newcommand{\Fc}{\distinguished{F}}
 
+%-----------------------------------------------------------------------------
+% Axiom number and referencing
+\newcommand{\axiom}[2]{\ensuremath{[\text{\emph{\bfseries {#1}.{#2}}}]}\xspace}
+
+\newcommand{\rstaxiom}[1]{\axiom{R}{#1}}
+
+\newcommand{\rgaxiom}[1]{\axiom{RR}{#1}}
+\newcommand{\rone}{\rstaxiom{1}}
+\newcommand{\rtwo}{\rstaxiom{1}}
+\newcommand{\rthree}{\rstaxiom{1}}
+\newcommand{\rfour}{\rstaxiom{1}}
+
+\newcommand{\rrone}{\rgaxiom{1}}
+\newcommand{\rrtwo}{\rgaxiom{2}}
+\newcommand{\rrthree}{\rgaxiom{3}}
+\newcommand{\rrfour}{\rgaxiom{4}}
 
 %------------------------------------------------------------------------------
 % General math notation macros
@@ -272,11 +283,6 @@
 %
 }
 
-
-\newcommand{\rone}{[\emph{\bfseries R.1}]\xspace}
-\newcommand{\rtwo}{[\emph{\bfseries R.2}]\xspace}
-\newcommand{\rthree}{[\emph{\bfseries R.3}]\xspace}
-\newcommand{\rfour}{[\emph{\bfseries R.4}]\xspace}
 
 \newcommand{\restr}[1]{\overline{#1}}
 \newcommand{\rst}[1]{\restr{#1}}

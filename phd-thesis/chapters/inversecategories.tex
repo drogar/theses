@@ -232,7 +232,8 @@ when describing a functor that lifts the inverse category to a Cartesian restric
 \begin{lemma}\label{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}
   In a discrete inverse category \X with the tensor $\*$ and $\Delta$ defined as above, where
   $e=\rst{e}$ is a restriction idempotent and $f,g,h$ are arrows in \X, the following are true:
-  \bproofenum
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
     \item{}$e=\Delta (e\* 1) \inv{\Delta}$.\label{le:eisde1}
     \item{}$e\Delta (f \* g) = \Delta (e f \* g) $ (and $= \Delta (f \* e g) $ and 
       $ = \Delta (e f \* e g)$.)\label{le:deltaefg}
@@ -244,10 +245,11 @@ when describing a functor that lifts the inverse category to a Cartesian restric
       $(\Delta (h \* g) \inv{\Delta}) h = \Delta (h \* g) \inv{\Delta}$.\label{le:hge}
     \item{}$\Delta (f\*1) = \Delta (g\*1) \implies f = g$.\label{le:dfgisfg}
     \item{}$(f\*1) = (g\*1) \implies f = g$.\label{le:fgisfg}
-  \eproofenum
+  \end{enumerate}
 \end{lemma}
 \begin{proof}
-  \bproofenum
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
     \item[\ref{le:eisde1}]This is shown by proving both sides
       equal $\Delta (e\* 1) \inv{\Delta} \Delta (e\* 1) \inv{\Delta}$.
       \begin{align*}
@@ -352,7 +354,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
         &= g&\Delta\text{ total}.
       \end{align*}
     \item[\ref{le:fgisfg}] Immediate from part \ref{le:dfgisfg}.
-  \eproofenum
+  \end{enumerate}
 \end{proof}
 
 \begin{proposition}
@@ -583,7 +585,8 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
   Definition \ref{defn:xequivalence} gives a symmetric, reflexive equivalence class of maps in \X.
 \end{lemma}
 \begin{proof}
-  \bproofdesc
+  \prepprooflist
+  \begin{description}
     \itembf{Reflexivity: } Choose $h$ as the identity map.
     \itembf{Symmetry: } Suppose $f\xequiv{h}g$. Then, $\restr{f} = \restr{g}$ and $f k = g$ where
       $k = (\Delta\* 1) \, a_{\*}\, (1\*h)\, \inv{a_{\*}}\,(\inv{\Delta}\* 1)$. Applying $\inv{k}$,
@@ -633,7 +636,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
           (\Delta \* 1)(1 \* k)(\inv{\Delta}\* 1)&\Delta\text{ Total}\\
         &= \ell
       \end{align*}
-  \eproofdesc
+  \end{description}
   and therefore $f\xequiv{\ell}f''$.
 \end{proof}
 

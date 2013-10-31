@@ -5,9 +5,8 @@
 \label{sec:restriction_categories}
 
 
-Restriction categories were originally introduced in
- \cite{cockett2002:restcategories1} as an algebraic way to formulate
-partial map categories:
+Restriction categories were introduced in
+ \cite{cockett2002:restcategories1} as a convenient axiomatization of partial maps.
 \begin{definition}
   A \emph{restriction category} is a category \X\ together with a \emph{restriction operator} on
   maps:
@@ -41,15 +40,17 @@ $\rst{f}=\rst{\rst{f}}$. Below, we record some basic facts for restriction categ
 shown in \cite{cockett2002:restcategories1} pp 4-5:
 \begin{lemma}\label{lem:identities_involving_restriction}
   In a restriction category \X,
-  \bproofenum
-    \item{}$\rst{f}$ is idempotent;
-    \item{} $\rst{f g} = \rst{f g} \, \rst{f}$;\label{lemsub:restriction_identities_two}
-    \item{} $\rst{f g} = \rst{f \rst{g}}$ ;
-    \item{} $\rst{\rst{f}} = \rst{f}$;
-    \item{} $\rst{f}\,\rst{g} = \rst{\rst{f}\,\rst{g}}$;
-    \item{} $f$ monic implies $\rst{f} = 1$;
-    \item{} $f = \rst{g} f \implies \rst{g}\,\rst{f} = \rst{f}$.
-  \eproofenum
+  \begin{multicols}{2}
+    \begin{enumerate}[{(}i{)}]
+      \item{}$\rst{f}$ is idempotent;
+      \item{} $\rst{f g} = \rst{f g} \, \rst{f}$;\label{lemsub:restriction_identities_two}
+      \item{} $\rst{f g} = \rst{f \rst{g}}$ ;
+      \item{} $\rst{\rst{f}} = \rst{f}$;
+      \item{} $\rst{f}\,\rst{g} = \rst{\rst{f}\,\rst{g}}$;
+      \item{} $f$ monic implies $\rst{f} = 1$;
+      \item{} $f = \rst{g} f \implies \rst{g}\,\rst{f} = \rst{f}$.
+    \end{enumerate}
+  \end{multicols}
 \end{lemma}
 
 A map $f:A\to B$ in a restriction category is said to be \emph{total} when
@@ -78,16 +79,17 @@ $\restr{f} g = f$, where $f,g:A\to B$.
 
 \begin{lemma}\label{lem:restriction_cats_are_partial_order_enriched}
   In a restriction category \X:
-  \bproofenum
+  \begin{enumerate}[{(}i{)}]
     \item  $\le$ as defined  above is a partial order on each hom-set;
     \item $f \le g \implies \restr{f} \le \restr{g}$;
     \item $f \le g \implies h f \le h g$;
     \item $f \le g \implies f h \le g h$;
     \item $f \le 1 \iff f = \restr{f}$.
-  \eproofenum
+  \end{enumerate}
 \end{lemma}
 \begin{proof}
-  \bproofenum
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
     \item With $f,g,h$ parallel maps in \X, each of the requirements for a partial order is 
       shown below:
       \begin{description}
@@ -110,7 +112,7 @@ $\restr{f} g = f$, where $f,g:A\to B$.
     \item $\restr{f} g = f$, this shows  $\restr{f h} g h = \restr{\restr{f} g h} g h
       = \restr{f}\, \restr{g h} g h = \restr{f} g h = f h$ and therefore $f h \le g h$.
     \item As $f \le 1$ means precisely $\restr{f}1 = f$.
-  \eproofenum
+  \end{enumerate}
 \end{proof}
 
 Lemma \ref{lem:restriction_cats_are_partial_order_enriched} shows that restriction 
@@ -132,7 +134,7 @@ The following are basic results on meets:
   \label{lem:properties_of_meets_in_restriction_categories}
   In a restriction category \X with meets, where $f, g, h$ are maps in
   \X, the following are true:
-  \bproofenum
+  \begin{enumerate}[{(}i{)}]
     \item $f\le g \text{ and } f \le h \iff f \le g\cap h$; 
         \label{lemsub:properties_of_meets_one}
     \item $f\cap g = g \cap f$;\label{lemsub:properties_of_meets_two}
@@ -144,10 +146,11 @@ The following are basic results on meets:
     \item $ (f \cap 1) f = f \cap 1$;
     \item $ e(e \cap 1) = e$ where $e$ is idempotent.
   %\item $ e \cap e' = e e'$
-  \eproofenum
+  \end{enumerate}
 \end{lemma}
 \begin{proof}
-  \bproofenum
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
     \item $f\le g \text{ and } f \le h$ means precisely $f = \restr{f} g$ and $f = \restr{f} h$.
       Therefore,
       \[
@@ -199,7 +202,7 @@ The following are basic results on meets:
       \]
       where the last step is by item \ref{lemsub:properties_of_meets_three} of this lemma.
     \item As $e$ is idempotent, $e (e\cap 1) = (e e \cap e) = e$.
-  \eproofenum
+  \end{enumerate}
 \end{proof}
 % subsection enrichment_and_meets (end)
 \subsection{Partial monics, sections and isomorphisms} % (fold)
@@ -223,17 +226,18 @@ some their basic properties.
 \begin{lemma}
   \label{lem:rcs_partial_monic_section_inverse_properties}
   In a restriction category:
-  \bproofenum
+  \begin{enumerate}[{(}i{)}]
     \item $f,\ g$ partial monic implies $f g$ is partial monic;
     \item $f$ a partial section implies $f$ is partial monic;
     \item $f,\ g$ partial sections implies $f g$ is a partial section;
     \item The partial inverse of $f$, when it exists, is unique;
     \item If $f,\ g$ have partial inverses and $f\,g$ exists, then $f\,g$ has a partial inverse;
     \item A restriction monic $s$ is a partial isomorphism.
-  \eproofenum
+  \end{enumerate}
 \end{lemma}
 \begin{proof}
-  \bproofenum
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
     \item Suppose $h f g = k f g$. As $g$ is partial monic, $h f \restr{g} = k f \restr{g}$. 
       Therefore:
       \begin{align*}
@@ -287,7 +291,7 @@ some their basic properties.
       $s (\restr{r s}\,r)
       = s r \restr{s} %sr = 1 as r is the retraction of the section s
       = \restr{s}$.
-  \eproofenum
+  \end{enumerate}
 \end{proof}
 
 
@@ -311,10 +315,10 @@ An interesting property of inverse categories:
 \label{sub:split_restriction_categories}
 
 The split restriction category, $\spl{E}{\X}$  is defined as: 
-  \category{$(A,e)$, where $A$ is an object of \X, $e:A\to A$ and $e\in E$.}
-    {$f:(A,d)\to(B,e)$ is given by $f:A\to B$ in \X, where $f = d\uts f e$.}
-    {The map $e$ for $(A,e)$.}
-    {inherited from \X.}
+\category{$(A,e)$, where $A$ is an object of \X, $e:A\to A$ and $e\in E$.}
+  {$f:(A,d)\to(B,e)$ is given by $f:A\to B$ in \X, where $f = d\uts f e$.}
+  {The map $e$ for $(A,e)$.}
+  {inherited from \X.}
 This is the standard idempotent splitting construction, also known as the Karoubi
 envelope.
 
@@ -680,14 +684,15 @@ have partial inverses. A Cartesian restriction category is \emph{graphic} when a
 are graphic.
 \begin{lemma}\label{lem:graphic_maps_are_closed_in_a_cartesian_restriction_category}
   In a Cartesian restriction category:
-  \bproofenum
+  \begin{enumerate}[{(}i{)}]
     \item Graphic maps are closed under composition;
     \item Graphic maps are closed under the restriction;
     \item An object is discrete if and only if its identity map is graphic.
-  \eproofenum
+  \end{enumerate}
 \end{lemma}
 \begin{proof}
-  \bproofenum
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
     \item To show closure, it is necessary to show that $\<f g,1\>$ has a partial inverse.
       By Lemma \ref{lem:rcs_partial_monic_section_inverse_properties}, the uniqueness of the 
       partial inverse gives
@@ -737,7 +742,7 @@ are graphic.
     \item Given a discrete object $A$, the map $1_A$ is graphic as $\<1_A,1\> = \Delta$ 
       and therefore $\inv{\<1,1\>} = \inv{\Delta}$. Conversely, if $\<1_A,1\>$ has an inverse, 
       then $\Delta = \<1_A,1\>$ has that same inverse and therefore the object is discrete.
-  \eproofenum
+  \end{enumerate}
 \end{proof}
 
 \begin{lemma}\label{lem:a_discrete_crc_is_precisely_a_graphic_crc}
