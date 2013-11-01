@@ -1,4 +1,157 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+%--------------------------------------------------------------------------------------
+% General formatting macros
+
+\newcommand{\quest}[1]{\fbox{\fbox{\parbox{5in}{\footnotesize \textbf{ (Question): }#1}}}}
+\newcommand{\note}[1]{\par\fbox{\fbox{\parbox{5in}{\footnotesize \textbf{(Internal Note): }#1}}}}
+
+\newcommand{\bproofitemize}{ \vspace{12pt} \hspace{-12pt} \begin{itemize}}
+\newcommand{\eproofitemize}{\end{itemize}}
+\newcommand{\bproofdesc}{ \vspace{12pt} \hspace{-12pt} \begin{description}}
+\newcommand{\eproofdesc}{\end{description}}
+
+
+
+%------------------------------------------------------------------------------
+% Restriction categories
+\newcommand{\rcategory}[5]{%
+\begin{description}%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
+\item{\textbf{Restriction: }}{#5}%
+\end{description}%
+%
+}
+
+%------------------------------------------------------------------------------
+% General math notation macros
+\newcommand{\nin}{\ensuremath{\in\hspace{-0.8em}/\hspace{0.2em}}}
+
+
+\newcommand{\union}{\ensuremath{\bigcup}}
+\newcommand{\disjunion}{\ensuremath{\sqcup}}
+\newcommand{\intersect}{\ensuremath{\bigcap}}
+\newcommand{\logor}{\ensuremath{\lor}}
+\newcommand{\logand}{\ensuremath{\land}}
+\newcommand{\lognand}{\ensuremath{\barwedge}}
+\newcommand{\natmap}{\ensuremath{\Rightarrow}}
+\newcommand{\fctrmap}{\ensuremath{\to}}
+\newcommand{\fnctrmap}{\fctrmap}
+\newcommand{\fmap}{\ensuremath{\to}}
+\newcommand{\produces}{\ensuremath{\to}}
+\newcommand{\ladjoint}{\ensuremath{\dashv}}
+\newcommand{\pproj}{\ensuremath{\preceq_p}}
+
+\newcommand{\tr}[1]{\ensuremath{\text{tr}(#1)}}
+
+\newcommand{\colvec}[1]{\ensuremath{
+\begin{pmatrix}#1\end{pmatrix}}}
+
+\newcommand{\tbtmatrix}[4]{\ensuremath{
+\begin{pmatrix}
+#1&#2\\
+#3&#4
+\end{pmatrix}
+}}
+
+\newcommand{\quadmatrix}[4]{\ensuremath{
+\left(
+\begin{array}{c|c}
+#1&#2\\
+\hline
+#3&#4
+\end{array}
+\right)
+}}
+
+
+%------------------------------------------------------------------------------
+% Types and special math notation
+
+\newcommand{\typecontext}{\ensuremath{\mathbb{T}}\xspace}
+
+
+
+
+\newcommand{\cp}[1]{\amalg_{#1}}
+\newcommand{\cpa}{\cp{0}}
+\newcommand{\cpb}{\cp{1}}
+
+
+\newcommand{\dual}[1]{\ensuremath{{#1}^{*}}}
+\newcommand{\dgr}[1]{\ensuremath{{#1}^{\dagger}}}
+
+\newcommand{\uleft}[1]{\ensuremath{u_{#1}^l}}
+\newcommand{\uright}[1]{\ensuremath{u_{#1}^r}}
+\newcommand{\usl}{\uleft{\*}}
+\newcommand{\usr}{\uright{\*}}
+\newcommand{\upl}{\uleft{+}}
+\newcommand{\upr}{\uright{+}}
+\newcommand{\nm}{\ensuremath{n\times{}m}}
+\newcommand{\mn}{\ensuremath{m\times{}n}}
+
+
+%--------------------------------------------------------------------------------------
+% Notation for inverse categories
+\newcommand{\Xt}{\ensuremath{\widetilde{\X}}\xspace}
+
+
+\newcommand{\hypXt}{\texorpdfstring{\Xt}{Xt}}
+\newcommand{\hypX}{\texorpdfstring{\X}{X}}
+
+\newcommand{\xtdmn}[2]{\ensuremath{{#1}_{|{#2}}}}
+
+
+\newcommand{\xequiv}[1]{\ensuremath{\overset{\scriptscriptstyle #1}{\simeq}}}
+
+
+%------------------------------------------------------------------------------------
+% General notation for categories
+
+\newcommand{\ltrcat}[1]{\ensuremath{\mathfrak{#1}}\xspace}
+\newcommand{\B}{\ltrcatbb{B}}
+\newcommand{\D}{\ltrcatbb{D}}
+\newcommand{\E}{\ltrcatbb{E}}
+\newcommand{\Lat}{\ltrcatbb{L}}
+
+
+\newcommand{\Hil}{\ensuremath{\mathcal{H}}\xspace}
+
+\newcommand{\rel}{\specialcat{Rel}}
+\newcommand{\fdh}{\specialcat{FdHilb}}
+\newcommand{\mon}{\specialcat{Mon}}
+\newcommand{\ring}{\specialcat{Rng}}
+\newcommand{\cring}{\specialcat{CRng}}
+\newcommand{\cat}{\specialcat{Cat}}
+\newcommand{\poset}{\specialcat{Poset}}
+\newcommand{\preorder}{\specialcat{Preorder}}
+\newcommand{\mcat}{\ensuremath{\mathcal{M}\text{\cat}}\xspace}
+
+
+\newcommand{\obj}[1]{\ensuremath{#1_{obj}}}
+\newcommand{\bottom}[1]{\perp_{#1}}
+\newcommand{\finpower}{\mathscr{P}_{fin}}
+
+
+\newcommand{\pfcategory}[3]{%
+\begin{description}%
+\item{\textbf{Well-Defined: }}{#1}%
+\item{\textbf{Identities: }}{#2}%
+\item{\textbf{Associativity: }}{#3}%
+\end{description}}
+
+
+
+
+%-------------------------------------------------
+% subscripting
+
+\newcommand{\jay}{\ensuremath{j}\xspace}
+\newcommand{\kay}{\ensuremath{k}\xspace}
+
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
 %\floatstyle{boxed}
 %\newfloat{QuantumCircuit}{htp}{qci}[chapter]
 %\floatname{QuantumCircuit}{Circuit}
@@ -46,6 +199,8 @@
 \labelformat{table}{table~#1}
 \labelformat{figure}{figure~#1}
 
+%-------------------------------------------------------------------------------
+% Code environments for Verbatim package
 
 \DefineVerbatimEnvironment%
  {happycodefirst}{Verbatim}{gobble=2,numbers=left,firstnumber=1,fontsize=\footnotesize}
@@ -55,14 +210,6 @@
  {bnf}{Verbatim}{commandchars=\\\{\},fontfamily=courier,fontsize=\footnotesize}
 \DefineVerbatimEnvironment%
  {happycodecont}{Verbatim}{gobble=2,numbers=left,firstnumber=last,fontsize=\footnotesize}
-% import and redefinition of general macros
-\input{macros-notation}
-\newcommand{\inflist}[1]{\ensuremath{\mathbb{IL}({#1})}}
-\newcommand{\incsec}[1]{\subsection{#1}}
-% end of redefinitions.
-\newcommand{\incsubsec}[1]{\subsubsection{#1}}
-\newcommand{\incsubsubsec}[1]{\paragraph{#1}}
-\newcommand{\qplcode}[1]{\textbf{#1}}
 \DefineVerbatimEnvironment%
 {code}{Verbatim}{numbers=left,fontsize=\footnotesize,firstnumber=1}
 \newcommand{\CodeResetNumbers}{\RecustomVerbatimEnvironment%
@@ -71,10 +218,8 @@
 {code}{Verbatim}{numbers=left,fontsize=\footnotesize,firstnumber=last}}
 \renewcommand{\C}{\ensuremath{\mathbb{C}}}
 
-\input{Qcircuit} % for quantum circuits
-
-\newcommand{\marginnote}[1]{\marginpar{\tiny #1}}
-
+%----------------------------------------------------------------------------------
+% Code environments and definitions for listings
 
 
 \lstdefinestyle{hskl}{language=Haskell,
@@ -121,29 +266,42 @@
 \lstdefinestyle{inlinqpl}{language=lqpl,basicstyle=\footnotesize\ttfamily,%
   escapechar=`}
 
+%-----------------------------------------------------------------------------------
+% Extra macros for describing the LQPL language
+
 \newcommand{\lbl}{{\cdptr}}
 \newcommand{\cd}{\ensuremath{\mathcal{C}}}
 \newcommand{\lblcd}{{\cd}}
 %\newcommand{\lblcd}{\ensuremath{@\lbl}}
 \newcommand{\cdptr}{\ensuremath{\triangleright\cd}}
 %\newcommand{\ 2 do}[1]{\begin{quote}2 do: \textbf{#1}\end{quote}}
-\newcommand{\lqpl}{L-QPL}
 \newcommand{\linearqpl}{Linear QPL}
 
 \newcommand{\inlqpl}[1]{\protect{\lstinline[style=inlinqpl]!#1!}}
 \newcommand{\inlhskl}[1]{\lstinline[style=hskl]!#1!}
 
 
-\newcommand{\Had}{\text{Hadamard}}
-\newcommand{\nottr}{\text{Not}}
-\newcommand{\Cnot}{controlled{-}\nottr}
 
 \newcommand{\stacknode}[1]{\ensuremath{\mathrm{\texttt{#1}}}}
 \newcommand{\Int}{\stacknode{Int}}
 \newcommand{\Datatype}{\stacknode{datatype}}
 \newcommand{\Bool}{\stacknode{Bool}}
 
-\newcommand{\vc}[1]{\ensuremath{\mathbf{#1}}}
+
+
+%-----------------------------------------------------------------------------------
+% Macros for including code 
+\newcommand{\incsubsec}[1]{\subsubsection{#1}}
+\newcommand{\incsubsubsec}[1]{\paragraph{#1}}
+\newcommand{\qplcode}[1]{\textbf{#1}}
+
+
+%------------------------------------------------------------------------------------
+% Formatting macros
+\newcommand{\marginnote}[1]{\marginpar{\tiny #1}}
+
+%------------------------------------------------------------------------------------
+%  Notation for describing syntax of language (lqpl primarily)
 \newcommand{\syntacticset}[1]{\ensuremath{\mathbf{#1}}}
 
 \newcommand{\n}{\syntacticset{N}}
@@ -199,6 +357,8 @@
                         11\qsp {#5}%
                         \end{array}%
                \right\}^{#6}}}
+
+
 
 \newcommand{\eentail}{\ensuremath{\Vdash\!\!\dashv}}
 \newcommand{\ientail}{\ensuremath{\Vdash}}
@@ -263,3 +423,10 @@
 \newcommand{\IdOnly}{\lqplmodifier{IdOnly}}
 \newcommand{\Left}{\lqplmodifier{Left}}
 \newcommand{\Right}{\lqplmodifier{Right}}
+
+
+
+% import and redefinition of general macros
+
+\newcommand{\inflist}[1]{\ensuremath{\mathbb{IL}({#1})}}
+\newcommand{\incsec}[1]{\subsection{#1}}

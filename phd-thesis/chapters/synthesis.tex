@@ -1,0 +1,1881 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+\chapter{Synthesis of quantum operations} % (fold)
+\label{cha:synthesis_of_quantum_operations}
+
+\section{Introduction to synthesis} % (fold)
+\label{sec:introduction_to_synthesis}
+An important problem in quantum information theory is the decomposition of arbitrary unitary
+operators into gates from some fixed universal set {\cite{neilsen2000:QuantumComputationAndInfo}}.
+Depending on the operator to be decomposed, this may either be done exactly or to within some given
+accuracy $\epsilon$; the former problem is known as {\em exact synthesis} and the latter as {\em
+approximate synthesis} {\cite{Kliuchnikov-et-al}}.
+
+% section introduction_to_synthesis (end)
+\section{Algebraic background} % (fold)
+\label{sec:algebraic_background}
+
+We first introduce some notation and terminology, following {\cite{Kliuchnikov-et-al}} where
+possible. Recall that $\N$ is the set of natural numbers including 0, and $\Z$ is the ring of
+\linebreak integers. We write $\Zb=\Z/2\Z$ for the ring of integers modulo 2. Let $\D$ be the ring
+of {\em dyadic fractions}, defined as $\D = \Z[\frac12] = \s{\frac{a}{2^n}\mid a\in\Z, n\in\N}$.
+
+Let $\omega = e^{i\pi/4} = (1+i)/\sqrt{2}$. Note that $\omega$ is an 8th root of unity satisfying
+$\omega^2=i$ and $\omega^4=-1$. We will consider three different rings related to $\omega$:
+
+\begin{definition}
+  Consider the following rings. Note that the first two are subrings of the complex numbers, and
+  the third one is not:
+  \begin{itemize}
+    \item $\Dw = \s{a\omega^3+b\omega^2+c\omega+d \mid a,b,c,d\in\D}$.
+    \item $\Zw = \s{a\omega^3+b\omega^2+c\omega+d \mid a,b,c,d\in\Z}$.
+    \item $\Zbw = \s{p\omega^3+q\omega^2+r\omega+s \mid p,q,r,s\in\Zb}$.
+  \end{itemize}
+  Note that the ring $\Zbw$ only has 16 elements. The laws of addition and multiplication are
+  uniquely determined by the ring axioms and the property $\omega^4=1\ (\mod 2)$. We call the
+  elements of $\Zbw$ {\em residues} (more precisely, residue classes of $\Zw$ modulo 2).
+\end{definition}
+
+\begin{remark}
+  The ring $\Dw$ is the same as the ring $\Z[\frac1{\sqrt{2}},i]$. However, as already pointed out
+  in {\cite{Kliuchnikov-et-al}}, the formulation in terms of $\omega$ is far more convenient
+  algebraically.
+\end{remark}
+
+\begin{remark}
+  The ring $\Zw$ is also called the {\em ring of algebraic integers} of $\Dw$. It has an intrinsic
+  definition, i.e., one that is independent of the particular presentation of $\Dw$. Namely, a
+  complex number is called an {\em algebraic integer} if it is the root of some polynomial with
+  integer coefficients and leading coefficient 1. It follows that $\omega$, $i$, and $\sqrt{2}$ are
+  algebraic integers, whereas, for example, $1/\sqrt{2}$ is not. The ring $\Zw$ then consists of
+  precisely those elements of $\Dw$ that are algebraic integers.
+\end{remark}
+
+\subsection{Conjugate and norm} % (fold)
+\label{sub:conjugate_and_norm}
+\begin{remark}[Complex conjugate and norm]
+  Since $\Dw$ and $\Zw$ are subrings of the complex numbers, they inherit the usual notion of
+  complex conjugation. We note that $\omega\da = -\omega^3$. This yields the following formula:
+  \begin{equation}\label{eqn-adjoint}
+    (a\omega^3+b\omega^2+c\omega+d)\da = -c\omega^3-b\omega^2-a\omega+d.
+  \end{equation}
+  Similarly, the sets $\Dw$ and $\Zw$ inherit the usual norm from the complex numbers. It is given
+  by the following explicit formula, for $t=a\omega^3+b\omega^2+c\omega+d$:
+  \begin{equation}\label{eqn-cplx-norm}
+    \snorm{t}^2 = t\da t = (a^2+b^2+c^2+d^2) + (cd+bc+ab-da) \sqrt{2}.
+  \end{equation}
+\end{remark}
+
+\begin{definition}[Weight]
+  For $t\in\Dw$ or $t\in\Zw$, the {\em weight} of $t$ is denoted $\sweight{t}$, and is given by:
+  \begin{equation}\label{eqn-weight}
+    \sweight{t}^2 = a^2+b^2+c^2+d^2.
+  \end{equation}
+\end{definition}
+
+Note that the square of the norm is valued in $\D[\sqrt{2}]$, whereas the square of the weight is
+valued in $\D$. We also extend the definition of norm and weight to vectors in the obvious way: For
+$u = (u_\jay)_\jay$, we define
+\[
+  \norm{u}^2 = \sum_\jay\norm{u_\jay}^2
+  \quad\mbox{and}\quad
+  \weight{u}^2 = \sum_\jay\weight{u_\jay}^2.
+\]
+
+\begin{lemma}\label{lem-ring-norm}
+  Consider a vector $u\in\Dw^n$. If $\norm{u}^2$ is an integer, then $\weight{u}^2=\norm{u}^2$.
+\end{lemma}
+
+\begin{proof}
+  Any $t\in\D[\sqrt{2}]$ can be uniquely written as $t=a+b\sqrt{2}$, where $a,b\in\D$. We can call
+  $a$ the {\em dyadic part} of $t$. Now the claim is obvious, because $\weight{u}^2$ is exactly the
+  dyadic part of $\norm{u}^2$.
+\end{proof}
+
+% subsection conjugate_and_norm (end)
+
+\subsection{Denominator exponents} % (fold)
+\label{sub:denominator_exponents}
+\begin{definition}
+  Let $t\in\Dw$. A natural number $k\in\N$ is called a {\em denominator exponent} for $t$ if
+  $\sqrt{2}^k t \in \Zw$. It is obvious that such $k$ always exists. The least such $k$ is called
+  the {\em least denominator exponent} of $t$.
+
+  More generally, we say that $k$ is a denominator exponent for a vector or matrix if it is a
+  denominator exponent for all of its entries. The least denominator exponent for a vector or
+  matrix is therefore the least $k$ that is a denominator exponent for all of its entries.
+\end{definition}
+
+\begin{remark}
+  Our notion of least denominator exponent is almost the same as the ``smallest denominator
+  exponent'' of {\cite{Kliuchnikov-et-al}}, except that we do not permit $k<0$.
+\end{remark}
+
+% subsection denominator_exponents (end)
+
+\subsection{Residues} % (fold)
+\label{sub:residues}
+\begin{remark}
+  The ring $\Zbw$ is not a subring of the complex numbers; rather, it is a quotient of the ring
+  $\Zw$. Indeed, consider the {\em parity function} $\parity{()}:\Z\to\Zb$, which is the unique
+  ring homomorphism. It satisfies $\parity{a}=0$ if $a$ is even and $\parity{a}=1$ if $a$ is odd.
+  The parity map induces a surjective ring homomorphism $\rho:\Zw\to\Zbw$, defined by
+  \[ 
+    \rho(a\omega^3+b\omega^2+c\omega+d) =
+    \parity{a}\omega^3+\parity{b}\omega^2+\parity{c}\omega+\parity{d}.
+  \]
+  We call $\rho$ the {\em residue map}, and we call $\rho(t)$ the {\em residue} of $t$.
+\end{remark}
+
+\begin{convention}
+  Since residues will be important for the constructions of this thesis, we introduce a shortcut
+  notation, writing each residue $p\omega^3+q\omega^2+r\omega+s$ as a string of binary digits
+  $pqrs$.
+\end{convention}
+
+What makes residues useful for our purposes is that many important operations on $\Zw$ are
+well-defined on residues. Here, we say that an operation $f:\Zw\to\Zw$ is {\em well-defined on
+residues} if for all $t,s$, $\rho(t)=\rho(s)$ implies $\rho(f(t))=\rho(f(s))$.
+
+For example, two operations that are obviously well-defined on residues are complex conjugation,
+which takes the form $(pqrs)\da = rqps$ by (\vref{eqn-adjoint}), and multiplication by $\omega$,
+which is just a cyclic shift $\omega(pqrs)=qrsp$. Table~\vref{tab-residue} shows two other important
+operations on residues, namely multiplication by $\sqrt{2}$ and the squared norm.
+
+%TODO - add column of a+a^t / \sqrt(2) or just make a remark that generators follow this
+\begin{table}
+  \[ \begin{array}{c|c|c} \rho(t) & \rho(\sqrt{2}\,t) & \rho(t\da t)\\\hline
+    0000 & 0000 & 0000 \\
+    0001 & 1010 & 0001 \\
+    0010 & 0101 & 0001 \\
+    0011 & 1111 & 1010 \\
+
+    0100 & 1010 & 0001 \\
+    0101 & 0000 & 0000 \\
+    0110 & 1111 & 1010 \\
+    0111 & 0101 & 0001 \\
+  \end{array}\qquad
+  \begin{array}{c|c|c} \rho(t) & \rho(\sqrt{2}\,t) & \rho(t\da t)\\\hline
+    1000 & 0101 & 0001 \\
+    1001 & 1111 & 1010 \\
+    1010 & 0000 & 0000 \\
+    1011 & 1010 & 0001 \\
+
+    1100 & 1111 & 1010 \\
+    1101 & 0101 & 0001 \\
+    1110 & 1010 & 0001 \\
+    1111 & 0000 & 0000 \\
+  \end{array}
+  \]
+  \caption{Some operations on residues}\label{tab-residue}
+\end{table}
+
+\begin{definition}[$k$-Residue]
+  Let $t\in\Dw$ and let $k$ be a (not necessarily least) denominator exponent for $t$. The {\em
+  $k$-residue of $t$}, in symbols $\rho_k(t)$, is defined to be
+  \[ 
+    \rho_k(t) = \rho(\sqrt{2}^k t).
+  \]
+\end{definition}
+
+\begin{definition}[Reducibility]
+  We say that a residue $x\in\Zbw$ is {\em reducible} if it is of the form $\sqrt{2}\,y$, for some
+  $y\in\Zbw$. Moreover, we say that $x\in\Zbw$ is {\em twice reducible} if it is of the form $2y$,
+  for some $y\in\Zbw$.
+\end{definition}
+
+\begin{lemma}\label{lem-reducible}
+  For a residue $x$, the following are equivalent:
+  \begin{enumerate}\alphalabels
+    \item $x$ is reducible;
+    \item $x\in\s{0000,0101,1010,1111}$;
+    \item $\sqrt{2}\,x = 0000$;
+    \item $x\da x=0000$.
+  \end{enumerate}
+  Moreover, $x$ is twice reducible iff $x=0000$.
+\end{lemma}
+
+\begin{proof}
+  By inspection of Table~\vref{tab-residue}.
+\end{proof}
+
+\begin{lemma}\label{lem-reducible2}
+  Let $t\in\Zw$. Then $t/2\in\Zw$ if and only if $\rho(t)$ is twice reducible, and
+  $t/\sqrt{2}\in\Zw$ if and only if $\rho(t)$ is reducible.
+\end{lemma}
+
+\begin{proof}
+  The first claim is trivial, as $\rho(t)=0000$ if and only if all components of $t$ are even. For
+  the second claim, the left-to-right implication is also trivial: assume $t'=t/\sqrt{2}\in\Zw$.
+  Then $\rho(t) = \rho(\sqrt{2}\,t')$, which is reducible by definition. Conversely, let $t\in\Zw$
+  and assume that $\rho(t)$ is reducible. Then $\rho(t)\in\s{0000, 0101, 1010, 1111}$, and it can
+  be seen from Table~\vref{tab-residue} that $\rho(\sqrt{2}\,t)=0000$. Therefore, $\sqrt{2}\,t$ is
+  twice reducible by the first claim; hence $t$ is reducible.
+\end{proof}
+
+\begin{corollary}\label{cor-reducible3}
+  Let $t\in\Dw$ and let $k>0$ be a denominator exponent for $t$. Then $k$ is the least denominator
+  exponent for $t$ if and only if $\rho_k(t)$ is irreducible.
+\end{corollary}
+
+\begin{proof}
+  Since $k$ is a denominator exponent for $t$, we have $\sqrt{2}^k t \in \Zw$. Moreover, $k$ is
+  least if and only if $\sqrt{2}^{k-1} t\not\in\Zw$. By Lemma~\vref{lem-reducible2}, this is the
+  case if and only if $\rho(\sqrt{2}^k t)=\rho_k(t)$ is irreducible.
+\end{proof}
+
+\begin{lemma}\label{lem-divisiblebyroot2}
+  For all $a$ in $\Zw$, $a+a^t$ is divisible by $\sqrt{2}$ in $\Zw$.
+\end{lemma}
+\begin{proof}
+  It is sufficient to show this on the generators $\{1,\omega,\omega^2,\omega^3\}$.
+  \begin{enumerate}
+    \item $1+1 = 2$ and $\frac{2}{\sqrt{2}} = \sqrt{2} = \omega-\omega^3$.
+    \item $\omega+\omega^t = \omega-\omega^3 = \sqrt{2}$.
+    \item $\omega^2+(\omega^2)^t = \omega^2 - \omega^2 = 0$.
+    \item $\omega^3+(\omega^3)^t = \omega^3 - \omega = -\sqrt{2}$.
+  \end{enumerate}
+\end{proof}
+
+\begin{definition}
+  The notions of residue, $k$-residue, reducibility, and twice-reducibility all extend in an
+  obvious componentwise way to vectors and matrices. Thus, the residue $\rho(u)$ of a vector or
+  matrix $u$ is obtained by taking the residue of each of its entries, and similar for
+  $k$-residues. Also, we say that a vector or matrix is reducible if each of its entries is
+  reducible, and similarly for twice-reducibility.
+\end{definition}
+
+
+\begin{example}\label{exa-k-residue}
+  Consider the matrix
+  \[ \small U \,{=}\, \frac{\small 1}{\small \sqrt{2}^3}\!\footnotesize\zmatrix{cccc}{
+    -\omega^3+\omega -1          
+			& \omega^2+\omega+1 
+				& \omega^2 
+					& -\omega\\
+    \omega^2+\omega 
+			& -\omega^3+\omega^2 
+				& -\omega^2-1
+					& \omega^3+\omega \\
+    \omega^3+\omega^2
+			& -\omega^3-1
+				& 2\omega^2 
+					&0 \\
+    -1
+			& \omega
+				& 1 
+					& -\omega^3+2\omega
+    }.
+  \]
+  It has least denominator exponent $3$. Its $3$-, $4$-, and $5$-residues are:
+  \[ 
+    \begin{split}
+    &
+    \rho_3(U) = \zmatrix{cccc}{
+      1011 & 0111 & 0100 & 0010\\
+      0110 & 1100 & 0101 & 1010\\
+      1100 & 1001 & 0000 & 0000\\
+      0001 & 0010 & 0001 & 1000
+    },
+    \\&
+    \rho_4(U) = \zmatrix{cccc}{
+      1010 & 0101 & 1010 & 0101\\
+      1111 & 1111 & 0000 & 0000\\
+      1111 & 1111 & 0000 & 0000\\
+      1010 & 0101 & 1010 & 0101
+    },\quad
+    \rho_5(U) = 0.\end{split}
+  \]
+\end{example}
+
+% subsection residues (end)
+
+
+% section algebraic_background (end)
+\section{Exact synthesis of single qubit operators} % (fold)
+\label{sec:exact_synthesis_of_single_qubit_operators}
+
+
+Matsumoto and Amano {\cite{MA08}} showed that every single-qubit Clifford+$T$ operator can be
+uniquely written in the following form, which we call the {\em Matsumoto-Amano normal form:}
+\begin{equation}\label{eqn-ma}
+ (T\mid\emptyseq)\,(HT\mid SHT)^*\,{\cC}.
+\end{equation}
+Here, we have used the syntax of regular expressions {\cite{regexp}} to denote a set of sequences
+of operators. The symbol $\varepsilon$ denotes the empty sequence (more precisely, the singleton
+set containing just the empty sequence); if $\cL$ and $\cK$ are two sets of sequences, then
+$\cL\mid \cK$ denotes their union; $\cL \cK$ denotes the set $\s{st\mid s\in\cL, t\in\cK}$; $\cL^*$
+denotes the set $\s{s_1\ldots s_n \mid n\geq 0; s_1,\ldots,s_n\in\cL}$; and $\cC$ denotes any
+Clifford operator. In words, the Matsumoto-Amano representation of an operator consists of a
+Clifford operator, followed by any number of {\em syllables} of the form $HT$ or $SHT$, followed by
+an optional syllable $T$. (We follow the usual convention of multiplying operators right-to-left,
+so when we say one operator ``follows'' another, we mean that it appears to its left).
+
+The most important properties of the Matsumoto-Amano decomposition are:
+\begin{itemize}
+  \item Existence: every single-qubit Clifford+$T$ operator can be written in Matsumoto-Amano
+    normal form (moreover, there is an efficient algorithm for converting the operator to normal
+    form);
+
+  \item Uniqueness: no operator can be written in Matsumoto-Amano normal form in more than one way;
+
+  \item $T$-optimality: of all the possible exact decompositions of a given operator into the
+    Clifford+$T$ set of gates, the Matsumoto-Amano normal form contains the smallest possible number
+    of $T$-gates.
+\end{itemize}
+It is perhaps less well-known that the uniqueness proof given by Matsumoto and Amano yields an
+efficient {\em algorithm} for $T$-optimal exact single-qubit synthesis. One may contrast this, for
+example, with the recent algorithm by Kliuchnikov et al.~{\cite{Kliuchnikov-et-al}}, which is
+efficient, but only asymptotically $T$-optimal. The purpose of this note is to give a detailed
+presentation of the algorithmic content of Matsumoto and Amano's result. Along the way, we also
+simplify Matsumoto and Amano's proofs, and we give an intrinsic characterization of the
+Clifford+$T$ subgroup of $SO(3)$.
+
+\subsection{Existence} % (fold)
+\label{sub:existence}
+In the following, we will often speak of sequences of operators. For our purposes, a sequence is
+just an $n$-tuple. We write $st$ for the operation of concatenating two sequences, and we write
+$\emptyseq$ for the empty sequence. We identify a 1-tuple $(A)$ with the operator $A$ itself. If
+$s=\tuple{A_1,\ldots,A_n}$ is a sequence of operators, we write $\sem{s}=A_1\cdots A_n$ for the
+product of the operators in the sequence; naturally, $\sem{\emptyseq}=I$. Note that the notation is
+ambiguous; for example, depending on the context, $SHT$ may denote either the sequence
+$\tuple{S,H,T}$ of 3 operators, or their product, which is a single operator. To alleviate the
+ambiguity, we assume that everything is a sequence by default, and we write $s\seqeq t$ if two
+sequences are equal as tuples, and $s=t$ if they are equal as operators, i.e., if $\sem{s}=\sem{t}$.
+
+\begin{remark}
+  Consider any operator $A$ in Matsumoto-Amano normal form. If $\lambda$ is any unit scalar, then
+  $\lambda A$ can clearly also be written in Matsumoto-Amano normal form with the same $T$-count,
+  namely by multiplying $\lambda$ into the rightmost Clifford operator. Moreover, if $A$ can be
+  {\em uniquely} written in Matsumoto-Amano normal form, then the same is true for $\lambda A$.
+  Therefore, nothing is added or lost to the Matsumoto-Amano normal form whether one allows
+  arbitrary global phases, a suitable discrete set of global phases (for example, powers of
+  $e^{i\pi/4}$), or whether one works modulo global phase. Since it is convenient to work modulo
+  global phase, we do so in the remainder; however, this does not restrict the generality of the
+  results.
+\end{remark}
+
+\begin{definition}
+  Let $\sC$ denote the Clifford group on one qubit, modulo global phases. This group has 24
+  elements. Let $\sS$ be the 8-element subgroup spanned by $S$ and $X$. Let $\sCp = \sC\sm\sS$. Let
+  $\sH = \s{I,H,SH}$ and $\sHp = \s{H,SH}$.
+\end{definition}
+
+\begin{lemma}\label{lem-SH}
+  The following hold:
+  \begin{align}
+    \sC ~&=~ \sH\sS,\label{eqn-CHS}\\
+    \sCp ~&=~ \sHp\sS,\label{eqn-CSHS}\\
+    \sS\sHp ~&\seq~ \sHp\sS,\label{eqn-SHHS}\\
+    \sS T ~&=~ T \sS,\label{eqn-STTS}\\
+    T \sS T ~&=~ \sS.\label{eqn-TSTS}
+  \end{align}
+\end{lemma}
+
+\begin{proof}
+  Since $\sS$ is an 8-element subgroup of $\sC$, it has three left cosets. They are $\sS$, $H\sS$,
+  and $SH\sS$. Since $\sC$ is the disjoint union of these cosets, (\vref{eqn-CHS}) and
+  (\vref{eqn-CSHS}) immediately follow. For (\vref{eqn-SHHS}), first notice that $\sS S=\sS$, and
+  therefore $\sS\sHp = \sS H\cup \sS SH = \sS H$. Since $\sS H$ is a non-trivial right coset of
+  $\sS$, it follows that $\sS H \seq \sC\sm\sS = \sCp$. Combining these facts with
+  (\vref{eqn-CSHS}), we have (\vref{eqn-SHHS}). Finally, the equations (\vref{eqn-STTS}) and
+  (\vref{eqn-TSTS}) are trivial consequences of the equations $ST=TS$, $XT=TXS$, and $TT=S$.
+\end{proof}
+
+\begin{proposition}[Matsumoto and Amano {\cite{MA08}}]\label{prop-ma}
+  Every single-qubit Clifford+$T$ operator can be written in Matsumoto-Amano normal form.
+\end{proposition}
+
+\begin{proof}
+  Let $M$ be a single-qubit Clifford+$T$ operator. Clearly, $M$ can be written as
+  \begin{equation}\label{eqn-M}
+    M = C_n\;T\;C_{n-1}\;\cdots\;C_1\;T\;C_0,
+  \end{equation}
+  for some $n\geq 0$, where $C_0,\ldots,C_n\in\sC$. First note that if $C_i\in\sS$ for any
+  $i\in\s{1,\ldots,n-1}$, then we can immediately use (\vref{eqn-TSTS}) to replace $TC_iT$ by a
+  single Clifford operator. This yields a shorter expression of the form (\vref{eqn-M}) for $M$. We
+  may therefore assume without loss of generality that $C_i\not\in\sS$ for $i=1,\ldots,n-1$. If
+  $n=0$, then $M$ is a Clifford operator, and there is nothing to show. Otherwise, we have
+  \begin{align}
+    M ~&\in~ \sC\;T\;\sCp\;\cdots\;\sCp\;T\;\sC &&\mbox{ by (\ref{eqn-M})}\\
+    &=~ \sH\sS\;T\;\sHp\sS\;\cdots\;\sHp\sS\;T\;\sC &&\mbox{ by
+      (\ref{eqn-CHS}) and (\ref{eqn-CSHS})}\\
+    &\seq~ \sH\;T\;\sHp\;\cdots\;\sHp\;T\;\sC &&\mbox{ by
+      (\ref{eqn-SHHS}) and (\ref{eqn-STTS}).}\label{eqn-HTHpTC}
+  \end{align}
+  Note how, in the last step, the relations (\vref{eqn-SHHS}) and (\vref{eqn-STTS}) were used to move
+  all occurrences of $\sS$ to the right, where they were absorbed into the final $\sC$. It is now
+  trivial to see that every element of (\vref{eqn-HTHpTC}) can be written in Matsumoto-Amano normal
+  form, finishing the proof.
+\end{proof}
+
+\begin{corollary}\label{cor-efficient}
+  There exists a linear-time algorithm for symbolically reducing any sequence of Clifford+$T$
+  operators to Matsumoto-Amano normal form. More precisely, this algorithm runs in time at most
+  $O(n)$, where $n$ is the length of the input sequence.
+\end{corollary}
+
+\begin{proof}
+  The proof of Proposition~\vref{prop-ma} already contains an algorithm for reducing any sequence of
+  Clifford+$T$ operators to Matsumoto-Amano normal form. However, in the stated form, it is perhaps
+  not obvious that the algorithm runs in linear time. Indeed, a naive implementation of the first
+  step would require up to $n$ searches of the entire sequence for a term of the form $T\sS T$,
+  which can take time $O(n^2)$.
+
+  One obtains a linear time algorithm from the following observation: if $M$ is already in
+  Matsumoto-Amano normal form, and $A$ is either a Clifford operator or $T$, then $MA$ can be
+  reduced to Matsumoto-Amano normal form in constant time. This is trivial when $A$ is a Clifford
+  operator, because it will simply be absorbed into the rightmost Clifford operator of $M$. In the
+  case where $A=T$, a simple case distinction shows that at most the rightmost 5 elements of $MA$
+  need to be updated. The normal form of a sequence of operators $A_1A_2\ldots A_n$ can now be
+  computed by starting with $M=I$ and repeatedly right-multiplying by $A_1,\ldots,A_n$, reducing to
+  normal form after each step.
+\end{proof}
+
+% subsection existence (end)
+
+\subsection{$T$-Optimality} % (fold)
+\label{sub:_t_optimality}
+\begin{corollary}
+  Let $M$ be an operator in the Clifford+$T$ group, and assume that $M$ can be written with
+  $T$-count $n$. Then there exists a Matsumoto-Amano normal form for $M$ with $T$-count at most $n$.
+\end{corollary}
+
+\begin{proof}
+  This is an immediately consequence of the proof of Proposition~\vref{prop-ma}, because the
+  reduction from (\vref{eqn-M}) to (\vref{eqn-HTHpTC}) does not increase the $T$-count.
+\end{proof}
+
+% subsection _t_optimality (end)
+
+\subsection{Uniqueness} % (fold)
+\label{sub:uniqueness}
+\begin{theorem}[Matsumoto and Amano {\cite{MA08}}]\label{thm-ma}
+  If $M$ and $N$ are two different Matsumoto-Amano normal forms, then they describe different
+  operators.
+\end{theorem}
+
+Recall that each single-qubit unitary operator (modulo global phase) can be uniquely represented as
+a rotation on the Bloch sphere, or equivalently, as an element of $SO(3)$, the real orthogonal
+$3\times 3$ matrices with determinant 1. The relationship between an operator $U\in U(2)$ and its
+Bloch sphere representation $\hat U\in SO(3)$ is given by
+\begin{equation}\label{eqn-bloch-conversion}
+  \hat U\zmatrix{c}{x\\y\\z} ~=~ \zmatrix{c}{x'\\y'\\z'}
+  \quad\Longleftrightarrow\quad
+  U\,(xX+yY+zZ)\;U\da ~=~ x'X + y'Y + z'Z,
+\end{equation}
+where $X$, $Y$, and $Z$ are the Pauli operators. The Bloch sphere representations of the operators
+$H$, $S$, and $T$ are:
+\begin{equation}\label{bloch-generators}
+  \hat H = \zmatrix{ccc}{0&0&1\\0&-1&0\\1&0&0}, \quad
+  \hat S = \zmatrix{ccc}{0&-1&0\\1&0&0\\0&0&1}, \quad
+  \hat T = \frac{1}{\sqrt{2}}\zmatrix{ccc}{1&-1&0\\1&1&0\\0&0&\sqrt{2}}.
+\end{equation}
+\begin{remark}\label{rem-bloch}
+  The Bloch sphere representation of any scalar is the identity matrix. The Bloch sphere
+  representations of the 24 Clifford operators (modulo phase) are precisely those elements of
+  $SO(3)$ that can be written with matrix entries in $\s{-1,0,1}$; these are exactly the 24
+  symmetries of the cube $\s{(x,y,z)\mid -1\leq x,y,z\leq 1}$.
+\end{remark}
+
+\begin{definition}
+  Recall that $\N$ denotes the natural numbers including 0; $\Z$ denotes the integers; and $\Z_2$
+  denotes the integers modulo 2. We define three subrings of the real numbers:
+  \begin{itemize}
+    \item $\D = \Z[\frac12] = \s{\frac{a}{2^n}\mid a\in\Z,
+        n\in\N}$. This is the ring of {\em dyadic fractions}.
+    \item $\Zs = \s{a+b\sqrt 2 \mid a,b\in\Z}$. This is the ring of {\em
+        quadratic integers} with radicand 2.
+    \item $\Ds = \Z[\frac1{\sqrt2}] = \s{r+s\sqrt 2 \mid r,s\in\D}$.
+  \end{itemize}
+  We will also need a fourth ring, which is not a subring of the real numbers.
+  \begin{itemize}
+    \item $\Zss = \s{a+b\sqrt 2 \mid a,b\in\Z_2}$.
+  \end{itemize}
+  Note that the ring $\Zss$ has only 4 elements; they are residue classes modulo 2 of the ring
+  $\Z[\sqrt 2]$. For brevity, we refer to the elements of $\Zss$ as {\em residues}.
+\end{definition}
+
+
+\begin{definition}[Residue\footnote{I don't think we need residue here,
+  which is good as it will then be used only in section 7, the $U(2)$ case}
+  and parity]
+  Consider the unique ring homomorphism $\Z\to\Z_2$, mapping $a\in\Z$ to $\bar a\in\Z_2$, where
+  $\bar a=0$ if $a$ is even and $\bar a=1$ if $a$ is odd. This induces a surjective ring
+  homomorphism $\rho:\Zs\to\Zss$, defined by $\rho(a+b\sqrt{2}) = \bar a + \bar b\sqrt{2}$. For any
+  given $x\in\Zs$, we refer to $\rho(x)$ as the {\em residue of $x$}.
+
+  Moreover, consider the ring homomorphism $p:\Zs\to\Z_2$ given by $p(a+b\sqrt{2}) = \bar a$. We
+  refer to $p(x)$ as the {\em parity} of $x$.
+\end{definition}
+
+\begin{definition}[Denominator exponent]
+  For every element $q\in\Ds$, there exists some natural number $k\geq 0$ such that
+  $\sqrt{2}^kq\in\Zs$, or equivalently, such that $q$ can be written as $\frac{x}{\sqrt{2}^k}$, for
+  some quadratic integer $x$. Such $k$ is called a {\em denominator exponent} for $q$. The least
+  such $k$ is called the {\em least denominator exponent} of $q$.
+
+  More generally, we say that $k$ is a denominator exponent for a vector or matrix if it is a
+  denominator exponent for all of its entries. The least denominator exponent for a vector or
+  matrix is therefore the least $k$ that is a denominator exponent for all of its entries.
+\end{definition}
+
+\begin{definition}[$k$-parity]
+  Let $k$ be a denominator exponent for $q\in\Ds$. We define the {\em $k$-residue} of $q$, in
+  symbols $\rho_k(q)\in \Zss$, and the {\em $k$-parity} of $q$, in symbols $p_k(q)\in\Z_2$, by
+  \[
+    \rho_k(q) = \rho(\sqrt{2}^k q),
+    \hspace{0.5in}
+    p_k(q) = p(\sqrt{2}^k q).
+  \]
+  The $k$-residue and $k$-parity of a vector or matrix are defined componentwise.
+\end{definition}
+
+% ......................................................................
+\begin{figure}
+  \[
+  \xymatrix{
+    *+{\makebox[0in][r]{Start:~}\zmatrix{ccc}{1&0&0 \\ 0&1&0 \\ 0&0&1}}
+    \ar[d]^<>(.5){\displaystyle T}_<>(.5){k\pp}
+    \ar@<1.5ex>@(dr,r)[]+R_<>(.53){\displaystyle \sC}
+    \\
+    *+{\zmatrix{ccc}{1&1&0 \\ 1&1&0 \\ 0&0&0}}
+    \ar@<-0.5ex>@/_/[d]_<>(.5){\displaystyle H}
+    \\
+    *+{\zmatrix{ccc}{0&0&0 \\ 1&1&0 \\ 1&1&0}}
+    \ar[r]_<>(.5){\displaystyle S}
+    \ar@<-0.5ex>@/_/[u]_<>(.6){\displaystyle T}_<>(.25){k\pp}
+    &
+    *+{\zmatrix{ccc}{1&1&0 \\ 0&0&0 \\ 1&1&0}}
+    \ar@<-2ex>@/_4ex/[ul]_<>(.5){\displaystyle T}^<>(.5){k\pp}
+  }
+  \]
+  \caption{The action of Matsumoto-Amano normal forms on
+    $k$-parities. All matrices are written modulo the right action
+    of the Clifford group, i.e., modulo a permutation of the
+    columns.}\label{fig-so3-action}
+\end{figure}
+% ......................................................................
+
+\begin{remark}
+  Let $C$ be any Clifford operator, and $\hat C$ its Bloch sphere representation. As noted above,
+  the matrix entries of $\hat C$ are in $\s{-1,0,1}$; it follows that $\hat C$ has denominator
+  exponent 0. In particular, it follows that multiplication by $\hat C$ is a well-defined operation
+  on parity matrices: for any $3\times 3$-matrix $U$ with entries in $\Zss$, we define $U\bullet C
+  := U\cdot p(\hat C)$. This defines a right action of the Clifford group on the set of parity
+  matrices.
+\end{remark}
+
+\begin{definition}\label{def-simg}
+  If $G$ is any subgroup of the Clifford group, we define $\sim_G$ the be the equivalence relation
+  induced by this right action, i.e., for parity matrices $U,V$, we write $U\sim_G V$ if there
+  exists some $C\in G$ such that $V=U\bullet G$. In case $G=\sC$ is the entire Clifford group,
+  $U\sim_{\sC} V$ holds if and only if $U$ and $V$ differ by a permutation of columns.
+\end{definition}
+
+\begin{lemma}\label{lem-ma}
+  Let $M$ be a Matsumoto-Amano normal form, and $\hat M\in SO(3)$ the Bloch sphere operator of $M$.
+  Let $k$ be the least denominator exponent of $\hat M$. Then exactly one of the following holds:\rm
+  \begin{itemize}
+    \item $k=0$, and $M$ is a Clifford operator.
+    \item $k>0$, $p_k(\hat M)\sim_{\sC} \zmatrix{ccc}{1&1&0 \\ 1&1&0 \\
+        0&0&0}$, and the leftmost syllable in $M$ is $T$.
+    \item $k>0$, $p_k(\hat M)\sim_{\sC} \zmatrix{ccc}{0&0&0 \\ 1&1&0 \\ 1&1&0}$, and the
+      leftmost syllable in $M$ is $HT$.
+    \item $k>0$, $p_k(\hat M)\sim_{\sC} \zmatrix{ccc}{1&1&0 \\ 0&0&0 \\
+        1&1&0}$, and the leftmost syllable in $M$ is $SHT$.
+  \end{itemize}
+  Moreover, the $T$-count of $M$ is equal to $k$.
+\end{lemma}
+
+\begin{proof}
+  By induction on the length of the Matsumoto-Amano normal form $M$. Figure~\vref{fig-so3-action}
+  shows the action of Matsumoto-Amano operators on parity matrices. Each vertex represents a
+  $\sim_{\sC}$-equivalence class of $k$-parities. The vertex labelled ``Start'' represents the
+  empty Matsumoto-Amano normal form, i.e., the identity operator. Each arrow represents left
+  multiplication by the relevant operator, i.e., a Clifford operator, $T$, $H$, or $S$. Thus, each
+  Matsumoto-Amano normal form, read from right to left, gives rise to a unique path in the graph of
+  Figure~\vref{fig-so3-action}. The label $k\pp$ on an arrow indicates that the least denominator
+  exponent increases by $1$. The claims of the lemma then immediately follow from
+  Figure~\vref{fig-so3-action}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\vref{thm-ma}]
+  This is an immediate consequence of Lemma~\ref{lem-ma}. Indeed, suppose that $M$ and $N$ are two
+  Matsumoto-Amano normal forms describing the same Bloch sphere operator $U$. We show that $M=N$ by
+  induction on the length of $M$. Let $k$ be the least denominator exponent of $U$. If $k=0$, then
+  by Lemma~\ref{lem-ma}, both $M$ and $N$ are Clifford operators; since they describe the same
+  Bloch sphere operator, they differ only by a phase.\footnote{Todo: fix the treatment of phases}
+  If $k>0$, then by Lemma~\ref{lem-ma}, the Matsumoto-Amano normal forms $M$ and $N$ have the same
+  leftmost operator (either $T$, $H$, or $S$), and the claim follows by induction hypothesis.
+\end{proof}
+
+% subsection uniqueness (end)
+
+\subsection{The Matsumoto-Amano decomposition algorithm} % (fold)
+\label{sub:the_matsumoto_amano_decomposition_algorithm}
+As an immediate consequence of Lemma~\vref{lem-ma}, we can an efficient algorithm for calculating
+the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
+
+\begin{theorem}\label{thm:ma-decomposition}
+  Let $U\in SO(3)$ be the Bloch sphere representation of some Clifford+$T$ operator. Let $k$ be the
+  least denominator exponent of $U$. Then the Matsumoto-Amano normal form $M$ of $U$ can be
+  efficiently computed with $O(k)$ arithmetic operations.
+\end{theorem}
+
+\begin{proof}
+  By assumption, $U$ is the Bloch sphere representation of some Clifford+$T$ operator. Let $M$ be
+  the unique Matsumoto-Amano normal form of this operator\footnote{Todo: treat phase correctly}.
+  Note that, by Lemma~\vref{lem-ma}, the $T$-count of $M$ is $k$. We compute $M$ recursively. If
+  $k=0$, then by Lemma~\vref{lem-ma}, $M$ is a Clifford operator; it can be determined from the
+  matrix $U$ in constant time. If $k>0$, we compute $p_k(U)$, which must be one of the three cases
+  listed in Lemma~\vref{lem-ma}. This determines whether the leftmost syllable of $M$ is $T$, $HT$,
+  or $SHT$. Let $N$ be this syllable, so that $M=NM'$, for some Matsumoto-Amano normal form $M'$.
+  Then $M'$ can be recursively computed as the Matsumoto-Amano normal form of $U'=\hat N\inverse U$;
+  moreover, since $M'$ has $T$-count $k-1$, the recursion terminates after $k$ steps. Since each
+  induction step only requires a constant number of arithmetic operations, the total number of
+  operations is $O(k)$.
+\end{proof}
+
+% subsection the_matsumoto_amano_decomposition_algorithm (end)
+
+\subsection{A characterization of Clifford+$T$ on the Bloch sphere} % (fold)
+\label{sub:a_characterization_of_clifford_t_on_the_bloch_sphere}
+\begin{lemma}\label{lem:dot_product_is_simpler_in_ds}
+  Let $U\in SO(3)$ be an orthogonal matrix with entries in $\Ds$. Let $k$ be a denominator exponent
+  of $U$, and let $v_1,v_2,v_3$ be the columns of $U$, with
+  \[v_\jay = \frac{1}{\sqrt{2}^k}\left(\begin{matrix}
+      a_\jay+b_\jay\sqrt{2} \\
+      c_\jay+d_\jay\sqrt{2} \\
+      e_\jay+f_\jay\sqrt{2}
+    \end{matrix}\right),\]
+  for $a_\jay,\ldots,f_\jay\in\Z$.
+  Then for all $\jay,\ell\in\s{1,2,3}$,
+  \begin{equation}\label{eqn-abba}
+    a_\jay b_\ell+b_\jay a_\ell+                             
+            c_\jay d_\ell+d_\jay c_\ell+e_\jay f_\ell+f_\jay e_\ell = 0
+  \end{equation}
+  and
+  \begin{equation}\label{eqn-aacc}
+    a_\jay a_\ell+c_\jay c_\ell+e_\jay e_\ell+
+    2(b_\jay b_\ell+d_\jay d_\ell+f_\jay f_\ell) 
+    = 2^k\<v_\jay,v_\ell\>. 
+  \end{equation}
+  In particular, we have, for all $\jay\in\s{1,2,3}$,
+  \begin{equation}\label{eqn-abcd}
+    a_\jay b_\jay+                             
+    c_\jay d_\jay+e_\jay f_\jay = 0
+  \end{equation}    
+  and
+  \begin{equation}\label{eqn-a2c2}
+    a_\jay^2 + c_\jay^2 + e_\jay^2 + 2(b_\jay^2 + d_\jay^2 + f_\jay^2) = 2^k.
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  Computing the inner product, we have
+  \begin{equation}  \label{eqn-dotprod_of_vl_and_vj}
+    \<v_\jay,v_\ell\> =
+    \frac{1}{2^k}
+    \left(
+      a_\jay a_\ell+c_\jay c_\ell+e_\jay e_\ell+
+      2(b_\jay b_\ell+d_\jay d_\ell+f_\jay f_\ell)
+      +\sqrt{2}(a_\jay b_\ell+b_\jay a_\ell+
+      c_\jay d_\ell+d_\jay c_\ell+e_\jay f_\ell+f_\jay e_\ell)
+    \right).
+  \end{equation}
+  Since $U\da U=I$, we have $\<v_\jay,v_\jay\>=1$, and $\<v_\jay,v_\ell\> = 0$ when $\ell \ne
+  \jay$. Therefore, the coefficient of $\sqrt{2}$ in equation \vref{eqn-dotprod_of_vl_and_vj} must
+  be zero, proving \vref{eqn-abba} and \vref{eqn-aacc}. Equations {\vref{eqn-abcd}} and
+  {\vref{eqn-a2c2}} immediately follow by letting $\jay=\ell$.
+\end{proof}
+
+\begin{remark}
+  In Lemma~\vref{lem:dot_product_is_simpler_in_ds}, we have worked with columns $v_\jay$ of the
+  matrix $U$. But since $U$ is orthogonal, the analogous properties also hold for the rows of $U$.
+\end{remark}
+
+\begin{lemma}\label{lem:k0-clifford}
+  Let $U\in SO(3)$ be an orthogonal matrix with entries in $\Ds$, and with least denominator
+  exponent $k=0$. Then $U$ the Bloch sphere representation of some Clifford operator.
+\end{lemma}
+
+\begin{proof}
+  Let $v_j$ be any column of $U$, with the notation of
+  Lemma~\vref{lem:dot_product_is_simpler_in_ds}. By {\vref{eqn-a2c2}}, we have
+  $a_\jay^2+c_\jay^2+e_\jay^2+2(b_\jay^2+d_\jay^2+f_\jay^2)=1$. Since each summand is a positive
+  integer, we must have $b_\jay,d_\jay,f_\jay = 0$, and exactly one of $a_\jay$, $c_\jay$ or
+  $e_\jay=\pm1$, for each $\jay=1,2,3$. Therefore, all the matrix entries are in $\s{-1,0,1}$, and
+  the claim follows by Remark~\vref{rem-bloch}.
+\end{proof}
+
+\begin{lemma}\label{lem:parity_u_gives_a_row_in_the_algorithm}
+  Let $U\in SO(3)$ be an orthogonal matrix with entries in $\Ds$, and let $k$ be the least
+  denominator exponent of $U$. If $k=0$, then $p_k(U)\sim_{\sC} M_1$. If $k>0$, then
+  $p_k(U)\sim_{\sC} M$ for some $M\in\s{M_T,M_H,M_S}$, where
+  \[
+     M_1 = \zmatrix{ccc}{1&0&0 \\ 0&1&0 \\ 0&0&1},\quad
+     M_T = \zmatrix{ccc}{1&1&0 \\ 1&1&0 \\ 0&0&0},\quad
+     M_H = \zmatrix{ccc}{0&0&0 \\ 1&1&0 \\ 1&1&0},\quad
+     M_S = \zmatrix{ccc}{1&1&0 \\ 0&0&0 \\ 1&1&0}.
+  \]
+\end{lemma}
+\begin{proof}
+  First consider the case $k=0$. Let $v_\jay$ be any column of $U$, with the notation of
+  Lemma~\vref{lem:dot_product_is_simpler_in_ds}. By {\vref{eqn-a2c2}}, we have
+  $a_\jay^2+c_\jay^2+e_\jay^2+2(b_\jay^2+d_\jay^2+f_\jay^2)=1$. Since each summand is a positive
+  integer, we must have $b_\jay,d_\jay,f_\jay = 0$, and exactly one of $a_\jay$, $c_\jay$ or
+  $e_\jay=\pm1$, for each $\jay=1,2,3$. Noting that the columns of $U$ are orthogonal, we see that
+  $p_k(U)\sim_{\sC}M_1$.
+
+  Now consider the case $k>0$. Let $v_\jay$ be any row or column of $U$, with the notation of
+  Lemma~\vref{lem:dot_product_is_simpler_in_ds}. By {\vref{eqn-a2c2}}, it follows that $a_\jay^2 +
+  c_\jay^2 + e_\jay^2$ is even, and therefore an even number of $a_\jay$, $c_\jay$, and $e_\jay$
+  have parity $1$. Therefore, each row or column of $p_k(U)$ has an even number of $1$'s. Moreover,
+  since $k$ is the least denominator exponent of $U$, $p_k(U)$ has at least one non-zero entry.
+  Modulo a permutation of columns, this leaves exactly four possibilities for $p_k(U)$:
+  \[ 
+    (a)~ \zmatrix{ccc}{1&1&0 \\ 1&1&0 \\ 0&0&0},\quad
+    (b)~ \zmatrix{ccc}{0&0&0 \\ 1&1&0 \\ 1&1&0},\quad
+    (c)~ \zmatrix{ccc}{1&1&0 \\ 0&0&0 \\ 1&1&0},\quad
+    (d)~ \zmatrix{ccc}{1&1&0 \\ 1&0&1 \\ 0&1&1}.
+   \]
+   In cases (a)--(c), we are done. Case (d) is impossible because it implies that
+   $a_1a_2+c_1c_2+e_1e_2$ is odd, contradicing the fact that it is even by {\vref{eqn-aacc}}.
+\end{proof}
+
+\begin{lemma}\label{lem:applying_a_t_symbol_decreases_k}
+  Let $U \in SO(3)$ be an orthogonal matrix with entries in $\Ds$, and with least denominator
+  exponent $k > 0$. Then there exists $N\in\s{T, HT, SHT}$ such that the least denominator exponent
+  of $\hat N\inverse U$ is $k-1$.
+\end{lemma}
+
+\begin{proof}
+  By Lemma~\vref{lem:parity_u_gives_a_row_in_the_algorithm}, we know that $p_k(U)\sim_{\sC} M$, for
+  some $M\in\{M_T, M_H, M_S\}$. We consider each of these cases.
+  \begin{enumerate}
+    \item \label{lemparitycase:applyt}$p_k(U) \sim_{\sC} M_T$.
+      By assumption, $U$ has two columns $v$ with $p_k(v) = (1,1,0)^T$.
+      Let
+      \[ v =
+      \frac{1}{\sqrt{2}^k}\zmatrix{c}{a+b\sqrt{2}\\c+d\sqrt{2}\\e+f\sqrt{2}}
+      \]
+      be any such column. By {\vref{eqn-abcd}},
+      we have $ab+cd+ef = 0$. Since $\bar e = 0$, we have
+      $\bar a \bar b+ \bar c \bar d = 0$. Since $\bar a = \bar c = 1$,
+      we can conclude $\bar b+\bar d = 0$.
+      Applying $\hat{T}^{-1}$ to $v$, we compute:
+      \[
+        \hat{T}^{-1}v = \frac{1}{\sqrt{2}^{k+1}}
+        \begin{bmatrix}
+          c+a &+& (d+b)\sqrt{2} \\
+          c-a &+& (d-b)\sqrt{2} \\
+          e\sqrt{2} &+& 2f
+        \end{bmatrix}
+        = \frac{1}{\sqrt{2}^{k-1}}
+        \begin{bmatrix}
+          \frac{c+a}{2} &+& \frac{d+b}{\sqrt{2}} \\
+          \frac{c-a}{2} &+& \frac{d-b}{\sqrt{2}} \\
+          \frac{e}{\sqrt{2}} &+& f
+        \end{bmatrix}
+        = \frac{1}{\sqrt{2}^{k-1}}
+        \begin{bmatrix}
+          a' &+& b'{\sqrt{2}} \\
+          c' &+& d'{\sqrt{2}} \\
+          f &+ & e'{\sqrt{2}}
+        \end{bmatrix}
+      \]
+      where $a' = \frac{c+a}{2}, b' = \frac{d+b}{2}, c' =
+      \frac{c-a}{2}, d' = \frac{d-b}{2}$ and $e' = \frac{e}{2}$ are
+      all integers. Hence, $k-1$ is a denominator exponent of
+      $\hat{T}^{-1}v$. Moreover, since $a'+c'=c$ is odd, one of $a'$
+      and $c'$ is odd, proving that $k-1$ is the least denominator
+      exponent of $\hat{T}^{-1}v$. 
+
+      Now consider the third column $w$ of $U$, where $p_k(w) =
+      (0,0,0)^T$. Then $k-1$ is a denominator exponent of $w$, so that
+      $k$ is a denominator exponent for $\hat{T}^{-1}w$. Let
+      \[
+        p_k(\hat{T}^{-1}w) = \zmatrix{c}{x\\y\\z}.
+      \]
+      As the least denominator exponent of the other two column of
+      $p_k(\hat{T}^{-1}U)$ is $k-1$, we have
+      \[
+        p_k(\hat{T}^{-1}U) \sim_{\sC}
+        \begin{bmatrix} 0&0&x \\0&0&y \\0&0&z\end{bmatrix}.
+      \]
+      But $\hat{T}^{-1}U$ is orthogonal, so by {\vref{eqn-a2c2}},
+      applied to each row of $\hat{T}^{-1}U$, we conclude that
+      $x=y=z=0$. It follows that the least denominator exponent of
+      $\hat{T}^{-1}U$ is $k-1$. 
+    \item \label{lemparitycase:applyh}$p_k(U) \sim_{\sC} M_H$.
+      In this case, $p_k(\hat{H}^{-1}U) \sim_{\sC} p(\hat{H}^{-1}M_H) = M_T$.
+      We then continue as in case \vref{lemparitycase:applyt}.
+    \item \label{lemparitycase:applys}$p_k(U) \sim_{\sC} M_S$.
+      In this case, $p_k(\hat{H}\inverse\hat{S}^{-1}U) \sim_{\sC} p(\hat{H}\inverse\hat{S}^{-1}M_S) = M_T$.
+      We then continue as in case \vref{lemparitycase:applyt}.\qedhere
+  \end{enumerate}
+\end{proof}
+
+Combining Lemmas~\vref{lem:k0-clifford} and
+{\vref{lem:parity_u_gives_a_row_in_the_algorithm}}, we easily get the
+following result:
+
+\begin{theorem}\label{thm:completness_of_algorithm}
+  Let $U \in SO(3)$ be an orthogonal matrix. Then $U$ is the Bloch
+  sphere representation of some Clifford+$T$ operator $M$ if and only
+  if the entries of $U$ are in the ring $\Ds$.
+\end{theorem}
+
+\begin{proof}
+  The ``only if'' direction is trivial, since all the generators of
+  the Clifford+$T$ group have this property (see
+  {\ref{bloch-generators}}). To prove the ``if'' direction, let $k$
+  be the least denominator exponent of $U$. We proceed by induction on
+  $k$. If $k=0$, by Lemma~\ref{lem:k0-clifford}, $U$ is the Bloch
+  sphere representation of some Clifford operator, and therefore a
+  Clifford+$T$ operator. If $k>0$, then by
+  Lemma~\ref{lem:parity_u_gives_a_row_in_the_algorithm}, we can write
+  $U=\hat NU'$, where $N\in\s{T,HT,SHT}$ and $U'$ has least
+  denominator exponent $k-1$. By induction hypothesis, $U'$ is a
+  Clifford+$T$ operator, and therefore so is $U$.   
+\end{proof}
+
+\begin{remark}
+  Combining this result with the algorithm of Theorem~\vref{thm:ma-decomposition}, we have a
+  linear-time algorithm for computing the Matsumoto-Amano normal form of any unitary operator $U\in
+  SO(3)$ with entries in $\Ds$.
+\end{remark}
+
+\begin{corollary}[Kliuchnikov et al. {\cite{Kliuchnikov-et-al}}]\label{cor-u2}
+  Let $U\in U(2)$ be a unitary matrix. Then $U$ is a Clifford+$T$ operator if and only if the
+  matrix entries of $U$ are in the ring $\D[\sqrt{2},i]$.
+\end{corollary}
+
+\begin{proof}
+  Again, the ``only if'' direction is trivial, as it is true for the generators. For the ``if''
+  direction, it suffices to note that, by {\vref{eqn-bloch-conversion}}, whenever $U$ takes its
+  entries in $\D[\sqrt{2},i]$, then $\hat U$ takes its entries in $\Ds$.\footnote{Todo: treat phase
+  correctly; also introduce the ring $\D[\sqrt{2},i]$ at some appropriate time}
+\end{proof}
+
+Corollary~\vref{cor-u2} was first proved by Kliuchnikov et al.~{\cite{Kliuchnikov-et-al}}, using a direct method
+(i.e., not going via the Bloch sphere representation). It is interesting to note that
+Theorem~\vref{thm:completness_of_algorithm} is stronger than Corollary~\vref{cor-u2}, in the sense
+that the Theorem obviously implies the Corollary, whereas it is not a priori obvious that the
+Corollary implies the Theorem.
+% subsection a_characterization_of_clifford_t_on_the_bloch_sphere (end)
+\subsection{Alternative normal forms} % (fold)
+\label{sub:alternative_normal_forms}
+
+With the exception of the left-most and right-most gates, the Matsumoto-Amano normal form uses
+syllables of the form $HT$ and $SHT$. It is of course possible to use different sets of syllables
+instead.
+
+\subsubsection{$E$-$T$ normal form} % (fold)
+\label{ssub:_e_t_normal_form}
+Consider the Clifford operator
+\[
+  E = HS^3\omega^3 = \frac{1}{2}\zmatrix{cc}{-1+i & 1+i \\ -1+i & -1-i}.
+\]
+It has the following properties:
+\[
+  E^3 = I,
+  \quad EXE\inverse = Y, 
+  \quad EYE\inverse = Z, 
+  \quad EZE\inverse = X.
+\]
+The operator $E$ serves as a convenient operator for switching between the $X$-, $Y$-, and
+$Z$-bases. On the Bloch sphere, it represents a rotation by 120 degrees about the axis $(1,1,1)^T$:
+\[
+  \hat E = \zmatrix{ccc}{0&0&1\\1&0&0\\0&1&0}.
+\]
+
+The operators $E$ and $E^2$ have properties analogous to $H$ and $SH$. Specifically, if we let $\sH
+= \s{I,E,E^2}$ and $\sHp = \s{E,E^2}$, then the properties of Lemma~\ref{lem-SH} are satisfied. The
+proofs of Proposition~\ref{prop-ma} and Corollary~\ref{cor-efficient} only depend on these
+properties, and the uniqueness proof (Theorem~\vref{thm-ma}) also goes through without significant
+changes. We therefore have:
+
+\begin{proposition}[$E$-$T$ normal form]
+  Every single-qubit Clifford+$T$ operator can be uniquely written in the form
+  \begin{equation}\label{eqn-et}
+    (T\mid\emptyseq)\,(ET\mid E^2T)^*\,{\cC}.
+  \end{equation}
+  Moreover, this normal form has minimal $T$-count, and there exists a linear-time algorithm for
+  symbolically reducing any sequence of Clifford+$T$ operators to this normal form.
+\end{proposition}
+
+% subsubsection _e_t_normal_form (end)
+
+\subsubsection{$T_x$-$T_y$-$T_z$ normal form} % (fold)
+\label{ssub:_t_x_t_y_t_z_normal_form}
+It is plain to see that every syllable of the $E$-$T$ normal form (except perhaps the first or last
+one) consists of a 45 degree $z$-rotation, followed by a basis change that rotates either the $x$-
+or $y$-axis into the $z$-position. Abstracting away from these basis changes, the entire normal
+form can therefore be regarded as a sequence of 45-degree rotations about the $x$-, $y$-, and
+$z$-axes. More precisely, let us define variants of the $T$-gate that rotate about the three
+different axes:
+\[
+ \begin{array}{l}
+    T_x = ETE^2, \\
+    T_y = E^2TE, \\
+    T_z = T.
+  \end{array}
+\]
+Using the commutativities $ET_x = T_yE$, $ET_y = T_zE$, and $ET_z = T_xE$, it is then clear that
+every expression of the form (\vref{eqn-et}) can be uniquely rewritten as a sequence of $T_x$,
+$T_y$, and $T_z$ rotations, with no repeated symbol, followed by a Clifford operator. This can be
+easily proved by induction, but is best seen in an example:
+\[
+  \begin{array}{rcl}
+    TETETE^2TEC
+    &=& T_zET_zET_zE^2T_zEC \\
+    &\rightarrow& T_zT_xE^2T_zE^2T_zEC \\
+    &\rightarrow& T_zT_xT_yE^4T_zEC \\
+    &\rightarrow& T_zT_xT_yET_zEC \\
+    &\rightarrow& T_zT_xT_yT_xE^2C \\
+    &\rightarrow& T_zT_xT_yT_xC'. \\
+  \end{array}
+\]
+We have:
+\begin{proposition}[$T_x$-$T_y$-$T_z$ normal form]
+  Every single-qubit Clifford+$T$ operator can be uniquely written in the form
+  \[
+    T_{r_1}T_{r_2}\ldots T_{r_n} C,
+  \]
+  where $n\geq 0$, $r_1,\ldots,r_n\in\s{x,y,z}$, and $r_i\neq r_{i+1}$ for all $i\leq n-1$. We
+  define the $T$-count of such an expression to be $n$; then this normal form has minimal
+  $T$-count. Moreover, there exists a linear-time algorithm for symbolically reducing any sequence
+  of Clifford+$T$ operators to this normal form.
+\end{proposition}
+
+The $T_x$-$T_y$-$T_z$ normal form is, in a sense, the most ``canonical'' one of the normal forms
+considered here; it also explains why $T$-count is an appropriate measure of the size of a
+Clifford+$T$ operator. In a physical quantum computer with error correction, there is in general no
+reason to expect the $T_z$ gate to be more privileged than the $T_x$ or $T_y$ gates; one may
+imagine that it would be efficient for a quantum computer to provide all three $T$-gates as
+primitive logical operations.
+% subsubsection _t_x_t_y_t_z_normal_form (end)
+
+\subsubsection{Bocharov-Svore normal form} % (fold)
+\label{ssub:bocharov_svore_normal_form}
+Bocharov and Svore {\cite[Prop.1]{BS}} consider the following normal form for single-qubit
+Clifford+$T$ circuits:
+\begin{equation}\label{eqn-bs1}
+  (H\mid\emptyseq)\,(TH\mid SHTH)^*\,{\cC}.
+\end{equation}
+This normal form is not unique; for example, $H.H$ and $I$ are two different normal forms denoting
+the same operator, as are $SHTH.Z$ and $H.SHTH$. (Here we have used a dot to delimit syllables;
+this is for readability only). Recall that two regular expressions are {\em equivalent} if they
+define the same set of strings. Using laws of regular expressions, we can equivalently rewrite
+(\vref{eqn-bs1}) as
+\begin{equation}\label{eqn-bs2}
+  ((\epsilon\mid T\mid SHT) (HT\mid HSHT)^*\,H{\cC}) ~\mid~ \cC.
+\end{equation}
+Since $H\cC$ is just a redundant way to write a Clifford operator, we can simplify it to $\cC$;
+moreover, in this case, $\epsilon\cC$ and $\cC$ are the same, so (\vref{eqn-bs2}) simplifies to
+\begin{equation}\label{eqn-bs3}
+    (\epsilon\mid T\mid SHT) (HT\mid HSHT)^*\,{\cC}.
+\end{equation}
+Moreover, since $SHT=HSHT.X$, any expression starting with $SHT$ can be rewritten as one starting
+with $HSHT$, so the $SHT$ syllable is redundant and we can eliminate it:
+\begin{equation}\label{eqn-bs4}
+    (\epsilon\mid T) (HT\mid HSHT)^*\,{\cC}.
+\end{equation}
+Let us say that an operator is in {\em Bocharov-Svore normal form} if it is written in the form
+(\vref{eqn-bs4}). This version of the Bocharov-Svore normal form is indeed unique; note that it is
+almost the same as the Matsumoto-Amano normal form, except that the syllable $SHT$ has been
+replaced by $HSHT$. Since the set $\sH=\s{I,H,HSH}$ satisfies Lemma~\vref{lem-SH}, existence,
+uniqueness, $T$-optimality, and efficiency are proved in the same way as for the Matsumoto-Amano
+and $E$-$T$ normal forms.
+
+Bocharov and Svore {\cite[Prop.2]{BS}} also consider a second normal form, which has Clifford
+operators on both sides, but the first four interior syllables restricted to $TH$:
+\begin{equation}
+  \cC\,(\epsilon\mid TH\mid (TH)^2 \mid (TH)^3 \mid (TH)^4(TH\mid SHTH)^*)\,\cC
+\end{equation}
+However, this normal form is not at all unique; for instance, $Z.TH$ and $TH.X$ denote the same
+operator, as do $YS.TH.TH$ and $TH.TH.X\omega$.
+
+% subsubsection bocharov_svore_normal_form (end)
+% subsection alternative_normal_forms (end)
+
+\subsection{Matsumoto-Amano normal forms and U(2)} % (fold)
+\label{sub:matsumoto_amano_normal_forms_and_u_2_}
+
+\begin{example}\label{exa-k-residue-for-single}
+  Consider the matrix
+  \[ U \,{=}\, \frac{\scriptstyle 1}{\scriptstyle \sqrt{2}^3}\!\scriptscriptstyle\zmatrix{cc}{
+    \omega^2+\omega         & -2\omega^3+\omega^2+\omega \\
+     \omega^3 -2\omega^2-1  & -\omega^3+1
+    }.
+  \]
+  It has least denominator exponent $3$. Its $3$-, $4$-, and
+  $5$-residues are:
+  \begin{equation*}
+    \rho_3(U) = \zmatrix{cc}{
+      0110 & 0110\\
+      1001 & 1001
+    },\quad
+    \rho_4(U) = \zmatrix{cc}{
+      1111 & 1111\\
+      1111 & 1111
+    },\quad
+    \rho_5(U) = 0.
+  \end{equation*}
+\end{example}
+
+\begin{figure}
+  \begin{tikzpicture}[node distance=1cm and 1.6cm]
+    \node (filler) {};
+
+    \node (r1c1) [right=of filler]
+          {\umatrix{0001}{0000}{0000}{0001}};
+
+    \node [xshift=-4mm,yshift=-1.5mm] at (r1c1.west) {Start:};
+
+    \draw [->] ([xshift=-7mm] r1c1.north) arc[start angle=0, end angle=270, x radius=4mm, y radius=4mm];
+    \node at ([xshift=.15cm, yshift=.55cm] r1c1.north west) {$\scriptscriptstyle \omega,S,X$};
+
+    \node [xshift=-.3cm] at (r1c1.south east) {$\scriptscriptstyle H=T=2k=0$};
+
+    \node (r2c1) [below=of r1c1]
+          {\umatrix{0001}{0001}{0001}{0001}}
+          \leftrightfrom{H}{k++}{r1c1};
+    \node [xshift=-.2cm] at (r2c1.south east) {$\scriptscriptstyle H+1=T+2=2k=2$};
+
+    \node (r2c2) [right=of r2c1]
+          {\umatrix{0001}{0001}{0100}{0100}}
+          edge [<-] node[above] {$\scriptstyle S$} (r2c1);
+    \node [xshift=-.2cm] at (r2c2.south east) {$\scriptscriptstyle H+1=T+2=2k=2$};
+
+    \node (r2c3) [right=of r2c2]
+          {\umatrix{0001}{0010}{0001}{0010}};
+    \node [xshift=-.2cm] at (r2c3.south east) {$\scriptscriptstyle H+1=T+1=2k=2$};
+
+    \node (r2c4) [right=of r2c3]
+          {\umatrix{0001}{0010}{0100}{1000}}
+          edge [<-] node[above] {$\scriptstyle S$} (r2c3);
+    \node [xshift=-.2cm] at (r2c4.south east) {$\scriptscriptstyle H+1=T+1=2k=2$};
+
+    \node (r1c3) [above=of r2c3]
+          {\umatrix{0001}{0000}{0000}{0010}}
+          edge [<-] node[above ]{$\scriptstyle T$} (r1c1)
+          \leftrightto{H}{k++}{r2c3};
+    \node [xshift=-.3cm] at (r1c3.south east) {$\scriptscriptstyle H=T-1=2k=0$};
+
+    \node (r3c1) [below=of r2c1]
+          {\umatrix{0001}{0001}{0010}{0010}}
+          edge [<-] node[left] {$\scriptstyle T$} (r2c1);
+    \node [xshift=-.2cm] at (r3c1.south east) {$\scriptscriptstyle H+1=T+1=2k=2$};
+
+    \node (r3c2) [right=of r3c1]
+          {\umatrix{0001}{0001}{1000}{1000}}
+          edge [<-] node[left] {$\scriptstyle T$} (r2c2);
+    \node [xshift=-.2cm] at (r3c2.south east) {$\scriptscriptstyle H+1=T+1=2k=2$};
+
+    \node (r3c3) [right=of r3c2]
+          {\umatrix{0001}{0010}{0010}{0100}}
+          edge [<-] node[left] {$\scriptstyle T$} (r2c3);
+    \node [xshift=-.2cm] at (r3c3.south east) {$\scriptscriptstyle H+1=T=2k=2$};
+
+    \node (r3c4) [right=of r3c3]
+          {\umatrix{0001}{0010}{1000}{0001}}
+          edge [<-] node[left] {$\scriptstyle T$} (r2c4);
+    \node [xshift=-.2cm] at (r3c4.south east) {$\scriptscriptstyle H+1=T=2k=2$};
+
+    \node (r4c1) [below=of r3c1]
+          {\umatrix{0011}{0011}{0011}{0011}}
+          \leftrightfrom{H}{k++}{r3c1}
+          \starportfrom{H}{k++}{r3c2};
+    \node [xshift=-.2cm] at (r4c1.south east) {$\scriptscriptstyle H+2=T+3=2k\ge4$};
+
+    \node (r4c2) [right=of r4c1]
+          {\umatrix{0011}{0011}{1100}{1100}}
+          edge [<-] node[above] {$\scriptstyle S$} (r4c1);
+    \node [xshift=-.2cm] at (r4c2.south east) {$\scriptscriptstyle H+2=T+3=2k\ge4$};
+
+    \node (r4c3) [right=of r4c2]
+          {\umatrix{0011}{0110}{0011}{0110}}
+          \leftrightfrom{H}{k++}{r3c3}
+          \starportfrom{H}{k++}{r3c4};
+    \node [xshift=-.2cm] at (r4c3.south east) {$\scriptscriptstyle H+2=T+2=2k\ge4$};
+
+    \node (r4c4) [right=of r4c3]
+          {\umatrix{0011}{0110}{1100}{1001}}
+          edge [<-] node[above] {$\scriptstyle S$} (r4c3);
+    \node [xshift=-.2cm] at (r4c4.south east) {$\scriptscriptstyle H+2=T+2=2k\ge4$};
+
+    \node (r5c1) [below=of r4c1]
+          {\umatrix{0011}{0011}{0110}{0110}}
+          edge [<-] node[left] {$\scriptstyle T$} (r4c1);
+    \node [xshift=-.2cm] at (r5c1.south east) {$\scriptscriptstyle H+2=T+2=2k\ge4$};
+
+    \node (r5c2) [right=of r5c1]
+          {\umatrix{0011}{0011}{1001}{1001}}
+          edge [<-] node[left] {$\scriptstyle T$} (r4c2);
+    \node [xshift=-.2cm] at (r5c2.south east) {$\scriptscriptstyle H+2=T+2=2k\ge4$};
+
+    \node (r5c3) [right=of r5c2]
+          {\umatrix{0011}{0110}{0110}{1100}}
+          edge [<-] node[left] {$\scriptstyle T$} (r4c3);
+    \node [xshift=-.2cm] at (r5c3.south east) {$\scriptscriptstyle H+2=T+1=2k\ge4$};
+
+    \node (r5c4) [right=of r5c3]
+          {\umatrix{0011}{0110}{1001}{0011}}
+          edge [<-] node[left] {$\scriptstyle T$} (r4c4);
+    \node [xshift=-.2cm] at (r5c4.south east) {$\scriptscriptstyle H+2=T+1=2k\ge4$};
+
+    \node (r6c1) [below=of r5c1]
+          {\umatrix{0101}{0101}{0101}{0101}}
+          \leftrightfrom{H}{k++}{r5c1}
+          \starportfrom{H}{k++}{r5c2};
+    \node [xshift=-.2cm] at (r6c1.south east) {$\scriptscriptstyle H+3=T+4=2k\ge6$};
+
+
+    \node (r6c3) [below=of r5c3]
+          {\umatrix{0101}{1010}{0101}{1010}}
+          \leftrightfrom{H}{k++}{r5c3}
+          \starportfrom{H}{k++}{r5c4};
+    \node [xshift=-.2cm] at (r6c3.south east) {$\scriptscriptstyle H+3=T+3=2k\ge6$};
+
+    \node (r7c1) [below=of r6c1]
+          {\umatrix{0001}{1110}{1110}{0001}}
+          edge [<-] node[left] {\footnotesize Reduce}  node[right] {$\scriptstyle k--$} (r6c1);
+    \node [xshift=-.2cm] at (r7c1.south east) {$\scriptscriptstyle H+1=T+2=2k\ge4$};
+
+    \node (r7c2) [right=of r7c1]
+          {\umatrix{0001}{1110}{1011}{0100}}
+          edge [<-] node[above] {$\scriptstyle S$} (r7c1);
+    \node [xshift=-.2cm] at (r7c2.south east) {$\scriptscriptstyle H+1=T+2=2k\ge4$};
+
+    \node (r7c3) [right=of r7c2]
+          {\umatrix{0001}{1101}{1110}{0010}}
+          edge [<-] node[left] {\footnotesize Reduce}  node[right] {$\scriptstyle k--$} (r6c3);
+    \node [xshift=-.2cm] at (r7c3.south east) {$\scriptscriptstyle H+1=T+1=2k\ge4$};
+
+    \node (r7c4) [right=of r7c3]
+          {\umatrix{0001}{1101}{1011}{1000}}
+          edge [<-] node[above] {$\scriptstyle S$} (r7c3);
+    \node [xshift=-.2cm] at (r7c4.south east) {$\scriptscriptstyle H+1=T+1=2k\ge4$};
+
+
+    \node (r8c1) [below=of r7c1]
+          {\umatrix{0001}{1110}{1101}{0010}}
+          edge [<-] node[left] {$\scriptstyle T$} (r7c1);
+    \node [xshift=-.2cm] at (r8c1.south east) {$\scriptscriptstyle H+1=T+1=2k\ge4$};
+
+    \node (r8c2) [right=of r8c1]
+          {\umatrix{0001}{1110}{0111}{1000}}
+          edge [<-] node[left] {$\scriptstyle T$} (r7c2);
+    \node [xshift=-.2cm] at (r8c2.south east) {$\scriptscriptstyle H+1=T+1=2k\ge4$};
+
+    \node (r8c3) [right=of r8c2]
+          {\umatrix{0001}{1101}{1101}{0100}}
+          edge [<-] node[left] {$\scriptstyle T$} (r7c3);
+    \node [xshift=-.2cm] at (r8c3.south east) {$\scriptscriptstyle H+1=T=2k\ge4$};
+
+    \node (r8c4) [right=of r8c3]
+          {\umatrix{0001}{1101}{0111}{0001}}
+          edge [<-] node[left] {$\scriptstyle T$} (r7c4);
+    \node [xshift=-.2cm] at (r8c4.south east) {$\scriptscriptstyle H+1=T=2k\ge4$};
+
+    \node (r9c1) [below=of r8c1]
+          {\umatrix{0011}{0011}{0011}{0011}}
+          \leftrightfrom{H}{k++}{r8c1}
+          \starportfrom{H}{k++}{r8c2};
+    \node [xshift=-.2cm] at (r9c1.south east) {$\scriptscriptstyle H+2=T+3=2k\ge6$};
+
+    \draw [->, thick, double] ([xshift=.2cm] r9c1.west) to
+            [out=180,in=270] ([xshift=-1.6cm,yshift=.5cm]  r9c1) to
+            ([xshift=-1.6cm,yshift=-.5cm]  r4c1) to
+            [out=90,in=180] ([xshift=.2cm]  r4c1.west);
+
+    \node (r9c3) [below=of r8c3]
+          {\umatrix{0011}{0110}{0011}{0110}}
+          \leftrightfrom{H}{k++}{r8c3}
+          \starportfrom{H}{k++}{r8c4};
+    \node [xshift=-.2cm] at (r9c3.south east) {$\scriptscriptstyle H+2=T+2=2k\ge6$};
+
+    \draw [->, thick, double] ([xshift=.2cm] r9c3.west) to
+            [out=180,in=270] ([xshift=-1.6cm,yshift=.5cm]  r9c3) to
+            ([xshift=-1.6cm,yshift=-.5cm]  r4c3) to
+            [out=90,in=180] ([xshift=.2cm]  r4c3.west);
+  \end{tikzpicture}
+  \caption{Transitions of residue matrices in U2 when applying the
+  Matsumoto-Amano algorithm}
+  \label{fig:u2-transitions}
+\end{figure}
+
+\begin{definition}
+  Let $\sW$ be the 64-element subgroup of the Clifford group in U(2) spanned by $S, X$ and
+  $\omega$. Then $\sim_\sW$ defined by right multiplication by $\sW$ is an equivalence relation on
+  the residue matrices of operators in the Clifford+$T$ group.
+\end{definition}
+\begin{remark}
+  The equivalence relation $\sim_\sW$ is characterized by the following operations:
+  \begin{enumerate}
+    \item ``Rotating'' all of the entries in the matrix by 1,2 or 3 positions. This corresponds to
+      multiplication by a power of $\omega$.
+    \item Swapping the two columns. The corresponds to the right action of $X$.
+    \item ``Rotating'' the entries of the second column by two positions. This corresponds to the
+      right action of $S$.
+  \end{enumerate}
+\end{remark}
+\begin{remark}
+  The residue matrices in figure \vref{fig:u2-transitions} are modulo $\sim_\sW$.
+\end{remark}
+\begin{lemma}\label{lem-columncannotbe1s}
+  Let $k\ge2$ and $b,d \in \Zw$. Then $\frac{1}{\sqrt{2}^k}\begin{pmatrix}1+2b\\1+2d\end{pmatrix}$
+  is not a unit vector.
+\end{lemma}
+\begin{proof}
+  Suppose otherwise, then
+  \begin{align*}
+    2^k = &1+2(b+b^t) +4bb^t +\\
+          &1+2(d+d^t) +4dd^t,
+  \end{align*}
+  so $2 = 2^k - 2(b+b^t) - 2(d+d^t) - 4(bb^t + dd^t)$. By lemma \vref{lem-divisiblebyroot2}, the
+  right hand side of this is divisible in $\Zw$ by $2 \sqrt{2}$, while the left hand side is not.
+  Thus we have a contradiction.
+\end{proof}
+\begin{lemma}\label{lem-reduction}
+  Given a unitary matrix $U \in \Dw^{2\times2}$ with least denominator exponent $k\ge2$, such that:
+  \begin{enumerate}
+    \item $\rho_{k+1}(U) = \umatrix{0101}{0101}{0101}{0101}$ and
+    \item $\rho_k(H U) = \umatrix{0011}{0011}{0110}{0110}$,
+  \end{enumerate}
+  then, $\rho_k(U) = \umatrix{0010}{1101}{1101}{0010}$
+\end{lemma}
+\begin{proof}
+  Referencing Table \vref{tab-residue}, we see the first condition limits the possible choices for
+  the entries of $\rho_k(U)$ to the set $\{0010, 0111, 1000, 1101\}$. The second condition implies
+  that $\rho_{k+1}(H U)$ is reducible and in fact that each entry is $1111$. This means each column
+  of $U$ must be either $[0010, 1101]^t, [1101, 0010]^t, [0111,1000]^t$ or $[1000,0111]^t$. As we
+  are considering equivalence classes, we can assume without loss of generality, that the columns
+  are in $\{[0010, 1101]^t, [1101, 0010]^t\}$. But by Lemma \vref{lem-columncannotbe1s}, we can not
+  have a row like $[0010, 0010]$, therefore $U = \umatrix{0010}{1101}{1101}{0010}$.
+\end{proof}
+\begin{corollary}
+  In Figure \vref{fig:u2-transitions}, the transitions labelled with ``Reduce'' are correct.
+\end{corollary}
+\begin{proof}
+  For the left most reduce, we directly apply Lemma \vref{lem-reduction} and then note that
+  \[\umatrix{0001}{1110}{1110}{0001}\sim_\sW\umatrix{0010}{1101}{1101}{0010}.\] For the rightmost
+  reduce, the same argument as shown in Lemma \vref{lem-reduction} can be applied to the
+  preconditions of this reduce, giving us a similar result.
+\end{proof}
+
+
+% subsection matsumoto_amano_normal_forms_and_u_2_ (end)
+% section exact_synthesis_of_single_qubit_operators (end)
+
+
+\section{Exact synthesis of multi-qubit operators} % (fold)
+\label{sec:exact_synthesis_of_multi_qubit_operators}
+Here, we focus on the problem of exact synthesis for $n$-qubit operators, using the Clifford+$T$
+universal gate set. Recall that the Clifford group on $n$ qubits is generated by the Hadamard gate
+$H$, the phase gate $S$, the controlled-not gate, and the scalar $\omega=e^{i\pi/4}$ (one may allow
+arbitrary unit scalars, but it is not convenient for our purposes to do so). It is well-known that
+one obtains a universal gate set by adding the non-Clifford operator $T$
+{\cite{neilsen2000:QuantumComputationAndInfo}}.
+
+\begin{equation}\label{eqn-generators}
+  \begin{array}{c}
+  \displaystyle
+  \omega = e^{i\pi/4},\quad
+  H = \frac{1}{\sqrt{2}}\zmatrix{cc}{1&1\\1&-1},\quad 
+  S = \zmatrix{cc}{1&0\\0&i},\\\\[-1.5ex]
+  \displaystyle
+  {\it CNOT} = \zmatrix{cccc}{1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0},\quad
+  T = \zmatrix{cc}{1&0\\0&e^{i\pi/4}}.
+\end{array}
+\end{equation}
+
+In addition to the Clifford+$T$ group on $n$ qubits, as defined above, we also consider the
+slightly larger group of Clifford+$T$ operators ``with ancillas''. We say that an $n$-qubit
+operator $U$ is a Clifford+$T$ operator {\em with ancillas} if there exists $m\geq 0$ and a
+Clifford+$T$ operator $U'$ on $n+m$ qubits, such that $U'(\ket{\phi}\otimes\ket{0})=
+(U\ket{\phi})\otimes\ket{0}$ for all $n$-qubit states $\ket{\phi}$.
+
+Kliuchnikov, Maslov, and Mosca {\cite{Kliuchnikov-et-al}} showed that a single-qubit operator $U$
+is in the Clifford+$T$ group if and only if all of its matrix entries belong to the ring
+$\Z[\frac1{\sqrt{2}},i]$. They also showed that the Clifford+$T$ groups ``with ancillas'' and
+``without ancillas'' coincide for $n=1$, but not for $n\geq 2$. Moreover, Kliuchnikov et
+al.~conjectured that for all $n$, an $n$-qubit operator $U$ is in the Clifford+$T$ group with
+ancillas if and only if its matrix entries belong to $\Z[\frac1{\sqrt{2}},i]$. They also
+conjectured that a single ancilla qubit is always sufficient in the representation of a
+Clifford+$T$ operator with ancillas. This section of the thesis will prove these conjectures. In
+particular, this yields an algorithm for exact Clifford+$T$ synthesis of $n$-qubit operators. We
+also obtain a characterization of the Clifford+$T$ group on $n$ qubits without ancillas.
+
+It is important to note that, unlike in the single-qubit case, the circuit synthesized here are not
+in any sense canonical, and very far from optimal. Thus, the question of {\em efficient} synthesis
+is not addressed here.
+
+\subsection{Decomposition into two-level matrices} % (fold)
+\label{sub:decomposition_into_two_level_matrices}
+Recall that a {\em two-level matrix} is an $n\times n$-matrix that acts non-trivially on at most
+two vector components {\cite{neilsen2000:QuantumComputationAndInfo}}. If
+\[
+  U=\zmatrix{cc}{a&b\\c&d}
+\]
+is a $2\times 2$-matrix and $\jay\neq\ell$, we write $U\level{\jay,\ell}$ for the two-level
+$n\times n$-matrix defined by
+\[
+  U\level{\jay,\ell}=\begin{blockarray}{cccccc}
+    &\matindex{\cdots}& \matindex{\jay} &\matindex{\cdots}& \matindex{\ell} &\matindex{\cdots} \\
+    \begin{block}{c(c|c|c|c|c)}
+      \matindex{\vdots} & \bigI &&&& \\\cline{2-6}
+      \matindex{\jay} & & a && b \\\cline{2-6}
+      \matindex{\vdots} & && \bigI && \\\cline{2-6}
+      \matindex{\ell} & & c && d &  \\\cline{2-6}
+      \matindex{\vdots} &&&&& \bigI \\
+    \end{block}
+  \end{blockarray}\,,
+\]
+and we say that $U\level{\jay,\ell}$ is a two-level matrix {\em of type $U$}. Similarly, if $a$ is
+a scalar, we write $a\level{\jay}$ for the one-level matrix
+\[
+  a\level{\jay} = \begin{blockarray}{cccc}
+    &\matindex{\cdots}& \matindex{\jay} &\matindex{\cdots} \\
+    \begin{block}{c(c|c|c)}
+      \matindex{\vdots} & \bigI && \\\cline{2-4}
+      \matindex{\jay} & & a & \\\cline{2-4}
+      \matindex{\vdots} & && \bigI\\
+    \end{block}
+  \end{blockarray}\,,
+\]
+and we say that $a\level{\jay}$  is a one-level matrix {\em of type $a$}.
+
+\begin{lemma}[Row operation]\label{lem-row}
+  Let $u=(u_1,u_2)^T\in\Dw^2$ be a vector with denominator exponent $k>0$ and $k$-residue
+  $\rho_k(u)=(x_1,x_2)$, such that $x_1\da x_1 = x_2\da x_2$. Then there exists a sequence of
+  matrices $U_1,\ldots,U_h$, each of which is $H$ or $T$, such that $v=U_1\cdots U_hu$ has
+  denominator exponent $k-1$, or equivalently, $\rho_k(v)$ is defined and reducible.
+\end{lemma}
+
+\begin{proof}
+  It can be seen from Table~\vref{tab-residue} that $x_1\da x_1$ is either $0000$, $1010$, or $0001$.
+  \begin{itemize}
+  \item Case 1: $x_1\da x_1 = x_2\da x_2 = 0000$. In this case, $\rho_k(u)$ is already reducible,
+    and there is nothing to show.
+  \item Case 2: $x_1\da x_1 = x_2\da x_2 = 1010$. In this case, we know from
+    Table~\vref{tab-residue} that $x_1,x_2\in\s{0011, 0110, 1100, 1001}$. In particular, $x_1$ is a
+    cyclic permutation of $x_2$, say, $x_1=\omega^m x_2$. Let $v=HT^mu$. Then
+    \[
+      \begin{split}
+        \rho_k(\sqrt{2}\,v) &=
+        \rho_k(\zmatrix{cc}{1&1\\1&-1}\zmatrix{cc}{1&0\\0&\omega^m}\zmatrix{c}{u_1\\u_2})
+        \\&= \rho_k\zmatrix{c}{u_1+\omega^m u_2\\ u_1-\omega^m u_2} \\&=
+        \zmatrix{c}{x_1+\omega^m x_2\\x_1-\omega^m x_2} =
+        \zmatrix{c}{0000\\0000}.
+      \end{split}
+    \]
+    This shows that $\rho_k(\sqrt{2}\,v)$ is twice reducible; therefore, $\rho_k(v)$ is defined and
+    reducible as claimed.
+  \item Case 3: $x_1\da x_1 = x_2\da x_2 = 0001$. In this case, we know from Table~\vref{tab-residue}
+    that $x_1,x_2\in\s{0001,0010,0100,1000}\cup\s{0111,1110,1101,1011}$. If both $x_1,x_2$ are in
+    the first set, or both are in the second set, then $x_1$ and $x_2$ are cyclic permutations of
+    each other, and we proceed as in case 2. The only remaining cases are that $x_1$ is a cyclic
+    permutation of $0001$ and $x_2$ is a cyclic permutation of $0111$, or vice versa. But then
+    there exists some $m$ such that $x_1+\omega^mx_2=1111$. Letting $u'=HT^mu$, we have
+    \[
+      \begin{split}
+        \rho_k(\sqrt{2}\,u') &=
+        \rho_k(\zmatrix{cc}{1&1\\1&-1}\zmatrix{cc}{1&0\\0&\omega^m}\zmatrix{c}{u_1\\u_2})
+        \\&= \rho_k\zmatrix{c}{u_1+\omega^m u_2\\ u_1-\omega^m u_2} \\&=
+        \zmatrix{c}{x_1+\omega^m x_2\\x_1-\omega^m x_2} =
+        \zmatrix{c}{1111\\1111}.
+      \end{split}
+    \]
+    Since this is reducible, $u'$ has denominator exponent $k$. Let $\rho_k(u')=(y_1,y_2)$. Because
+    $\sqrt{2}\,y_1=\sqrt{2}\,y_2=1111$, we see from Table~\vref{tab-residue} that
+    $y_1,y_2\in\s{0011,0110,1100,1001}$ and $y_1\da y_1=y_2\da y_2=1010$. Therefore, $u'$ satisfies
+    the condition of case 2 above. Proceeding as in case 2, we find $m'$ such that $v=HT^{m'}
+    u'=HT^{m'} HT^mu$ has denominator exponent $k-1$. This finishes the proof.\qedhere
+  \end{itemize}
+\end{proof}
+
+\begin{lemma}[Column lemma]\label{lem-column}
+  Consider a unit vector $u\in\Dw^n$, i.e., an $n$-dimensional column vector of norm 1 with entries
+  from the ring $\Dw$. Then there exist a sequence $U_1,\ldots,U_h$ of one- and two-level unitary
+  matrices of types $X$, $H$, $T$, and $\omega$ such that $U_1\cdots U_hu = e_1$, the first
+  standard basis vector.
+\end{lemma}
+
+\begin{proof}
+  The proof is by induction on $k$, the least denominator exponent of $u$. Let
+  $u=(u_1,\ldots,u_n)^T$.
+  \begin{itemize}
+  \item Base case. Suppose $k=0$. Then $u\in\Zw^n$. Since by assumption $\norm{u}^2=1$, it follows 
+    by Lemma~\vref{lem-ring-norm} that $\weight{u}^2=1$. Since $u_1,\ldots,u_n$ are elements of
+    $\Zw$, their weights are non-negative integers. It follows that there is precisely one $\jay$
+    with $\weight{u_\jay}=1$, and $\weight{u_\ell}=0$ for all $\ell\neq \jay$. Let
+    $u'=X\level{1,\jay}u$ if $\jay\neq 1$, and $u'=u$ otherwise. Now $u'_1$ is of the form
+    $\omega^{-m}$, for some $m\in\s{0,\ldots,7}$, and $u'_\ell=0$ for all $\ell\neq 1$. We have
+    $\omega^m\level{1}u'=e_1$, as desired.
+  \item Induction step. Suppose $k>0$. Let $v=\sqrt{2}^ku\in\Zw^n$, and let $x=\rho_k(u) =
+    \rho(v)$. From $\norm{u}^2=1$, it follows that $\norm{v}^2 = v_1\da v_1+\ldots+v_n\da v_n = 2^k$.
+    Taking residues of the last equation, we have
+    \begin{equation}
+      x_1\da x_1+\ldots+x_n\da x_n = 0000.
+    \end{equation}
+    It can be seen from Table~\vref{tab-residue} that each summand $x_\jay\da x_\jay$ is either
+    $0000$, $0001$, or $1010$. Since their sum is $0000$, it follows that there is an even number
+    of $\jay$ such that $x_\jay\da x_\jay=0001$, and an even number of $\jay$ such that $x_\jay\da
+    x_\jay=1010$.
+
+    We do an inner induction on the number of irreducible components of $x$. If $x$ is reducible,
+    then $u$ has denominator exponent $k-1$ by Corollary~\vref{cor-reducible3}, and we can apply the
+    outer induction hypothesis. Now suppose there is some $\jay$ such that $x_\jay$ is irreducible;
+    then $x_\jay\da x_\jay\neq 0000$ by Lemma~\vref{lem-reducible}. Because of the evenness property
+    noted above, there must exist some $\ell\neq \jay$ such that $x_\jay\da x_\jay=x_\ell\da
+    x_\ell$. Applying Lemma~\vref{lem-row} to $u'=(u_\jay,u_\ell)^T$, we find a sequence $\vec U$ of
+    row operations of types $H$ and $T$, making $\rho_k(\vec Uu')$ reducible. We can lift this to a
+    two-level operation $\vec U\level{\jay,\ell}$ acting on $u$; thus $\rho_k(\vec
+    U\level{\jay,\ell}u)$ has fewer irreducible components than $x=\rho_k(u)$, and the inner
+    induction hypothesis applies.\qedhere
+  \end{itemize}
+\end{proof}
+
+\begin{lemma}[Matrix decomposition]\label{lem-matrix-decomposition}
+  Let $U$ be a unitary $n\times n$-matrix with entries in $\Dw$. Then there exists a sequence
+  $U_1,\ldots,U_h$ of one- and two-level unitary matrices of types $X$, $H$, $T$, and $\omega$ such
+  that $U=U_1\cdots U_h$.
+\end{lemma}
+
+\begin{proof}
+  Equivalently, it suffices to show that there exist one- and two-level unitary matrices
+  $V_1,\ldots,V_h$ of types $X$, $H$, $T$, and $\omega$ such that $V_h\cdots V_1U=I$. This is an
+  easy consequence of the column lemma, exactly as in e.g. {\cite[Sec.~4.5.1]{neilsen2000:QuantumComputationAndInfo}}.
+  Specifically, first use the column lemma to find suitable one- and two-level row operations
+  $V_1,\ldots,V_{h_1}$ such that the leftmost column of $V_{h_1}\cdots V_1 U$ is $e_1$. Because
+  $V_{h_1}\cdots V_1 U$ is unitary, it is of the form
+  \[ 
+    \zmatrix{c|c}{1&0\\\hline \rule{0mm}{2.1ex}0&U'}.
+  \]
+  Now recursively find row operations to reduce $U'$ to the identity matrix.
+\end{proof}
+
+\begin{example}\label{exa-decomp}
+  We will decompose the matrix $U$ from Example~\ref{exa-k-residue}. We start with the first column
+  $u$ of $U$:
+	\[
+    \begin{array}{c}
+    \displaystyle
+    u=\frac{1}{\sqrt{2}^3}\zmatrix{c}{
+    -\omega^3+\omega -1\\
+    \omega^2+\omega \\
+    \omega^3+\omega^2\\
+    -1
+    }, \\\\[-1.5ex]
+    \rho_3(u) = \zmatrix{c}{
+    1011\\
+    0110\\
+    1100\\
+    0001
+    },\quad \rho_3(u_\jay\da u_\jay) = \zmatrix{c}{
+    0001\\
+    1010 \\
+    1010\\
+    0001
+    }.
+    \end{array}
+  \]
+	Rows 2 and 3 satisfy case 2 of Lemma~\vref{lem-row}. As they are not aligned, first apply
+  $T_{[2,3]}^3$ and then $H_{[2,3]}$. Rows 1 and 4 satisfy case 3. Applying $H_{[1,4]} T_{[1,4]}^2$,
+  the residues become $\rho_3(u'_1)=0011$ and $\rho_3(u'_4)=1001$, which requires applying $H_{[1,4]}
+  T_{[1,4]}$. We now have
+	\[
+    \begin{array}{@{}c@{}}
+      \displaystyle 
+      H_{[1,4]} T_{[1,4]} H_{[1,4]} T_{[1,4]}^2 H_{[2,3]} T_{[2,3]}^3 u=
+  	  v=\frac{1}{\footnotesize\sqrt{2}^2}\small\zmatrix{c}{
+      0 \\
+  		0 \\
+      \omega^2{+}\omega  \\
+      -\omega {+}1 
+      }, \\\\[-1.5ex]
+      \rho_2(v) = \zmatrix{c}{
+      0000\\
+      0000\\
+      0110\\
+      0011
+      },\quad \rho_2(v_\jay\da v_\jay) = \zmatrix{c}{
+      0000\\
+      0000\\
+      1010\\
+      1010
+      }.
+    \end{array}
+  \]
+	Rows 3 and 4 satisfy case 2, while rows 1 and 2 are already reduced. We reduce rows 3 and 4 by
+  applying $H_{[3,4]} T_{[3,4]}$. Continuing, the first column is completely reduced to $e_1$ by
+  further applying $\omega_{[1]}^7 X_{[1,4]} H_{[3,4]} T_{[3,4]}^3$. The complete decomposition of
+  $u$ is therefore given by
+	\[
+    \begin{split}
+      W_1={}&\omega_{[1]}^7  X_{[1,4]} H_{[3,4]} T_{[3,4]}^3H_{[3,4]} T_{[3,4]}\\&
+      H_{[1,4]} T_{[1,4]} H_{[1,4]} T_{[1,4]}^2 H_{[2,3]} T_{[2,3]}^3.
+    \end{split}
+    \]
+	Applying this to the original matrix $U$, we have $W_1U=$
+	\[
+    \small \frac{\small 1}{\small\sqrt{2}^3}\footnotesize\zmatrix{cccc}{
+    \sqrt{2}^3             & 0      & 0                           & 0\\
+    0 & \omega^3{-}\omega^2{+}\omega{+}1  & {-}\omega^2{-}\omega{-}1          & \omega^2\\
+    0 & 0                           & \omega^3{+}\omega^2{-}\omega{+}1  & \omega^3{+}\omega^2{-}\omega{-}1\\
+    0 & \omega^3{+}\omega^2{+}\omega{+}1 & \omega^2                    & \omega^3{-}\omega^2{+}1
+    }.
+  \]
+  Continuing with the rest of the columns, we find $W_2 = \omega_{[2]}^6 H_{[2,4]} T_{[2,4]}^3
+  H_{[2,4]} T_{[2,4]}$, $W_3 = \omega_{[3]}^4 H_{[3,4]} T_{[3,4]}^3 H_{[3,4]}$, and
+  $W_4=\omega_{[4]}^5$. We then have $U = W_1\da\, W_2\da\, W_3\da\, W_4\da$, or explicitly:
+  \[
+    \begin{split} 
+      U ={}&  T_{[2,3]}^5 H_{[2,3]} T_{[1,4]}^6 H_{[1,4]} T_{[1,4]}^7 H_{[1,4]}\\&
+    					T_{[3,4]}^7 H_{[3,4]} 
+    					T_{[3,4]}^5 H_{[3,4]}
+                                            X_{[1,4]} \omega_{[1]}\\&
+      T_{[2,4]}^7 H_{[2,4]} T_{[2,4]}^5 H_{[2,4]} \omega_{[2]}^2
+      H_{[3,4]} T_{[3,4]}^5 H_{[3,4]} \omega_{[3]}^4
+      \omega_{[4]}^3.
+    \end{split}
+  \]
+\end{example}
+
+
+% subsection decomposition_into_two_level_matrices (end)
+
+\subsection{Main result} % (fold)
+\label{sub:main_result}
+Consider the ring $\Z[\frac1{\sqrt{2}},i]$, consisting of complex numbers of the form
+\[
+  \frac{1}{2^n} (a + bi + c\sqrt{2} + di\sqrt{2}),
+\]
+where $n\in\N$ and $a,b,c,d\in\Z$. Our goal is to prove the following theorem, which was
+conjectured by Kliuchnikov et al.~{\cite{Kliuchnikov-et-al}}:
+\begin{theorem}\label{thm-main}
+  Let $U$ be a unitary $2^n\times 2^n$ matrix. Then the following are equivalent:
+\begin{enumerate}\alphalabels
+  \item[(a)] $U$ can be exactly represented by a quantum circuit over the Clifford+$T$ gate set,
+    possibly using some finite number of ancillas that are initialized and finalized in state $\ket0$.
+  \item[(b)] The entries of $U$ belong to the ring $\Z[\frac1{\sqrt{2}},i]$.
+\end{enumerate}
+Moreover, in (a), a single ancilla is always sufficient.
+\end{theorem}
+\begin{proof}
+  First note that, since all the elementary Clifford+$T$ gates, as shown in (\vref{eqn-generators}),
+  take their matrix entries in $\Dw=\Z[\frac1{\sqrt{2}},i]$, the implication (a) $\implies$ (b) is
+  trivial. For the converse, let $U$ be a unitary $2^n\times 2^n$ matrix with entries from $\Dw$.
+  By Lemma~\vref{lem-matrix-decomposition}, $U$ can be decomposed into one- and two-level matrices
+  of types $X$, $H$, $T$, and $\omega$. It is well-known that each such matrix can be further
+  decomposed into controlled-not gates and multiply-controlled $X$, $H$, $T$, and $\omega$-gates,
+  for example using Gray codes {\cite[Sec.~4.5.2]{neilsen2000:QuantumComputationAndInfo}}. But all of these gates have
+  well-known exact representations in Clifford+$T$ with ancillas, see e.g. {\cite[Fig.~4(a) and
+  Fig.~9]{AMMR12}} (and noting that a controlled-$\omega$ gate is the same as a $T$-gate). This
+  finishes the proof of (b) $\implies$ (a).
+  
+  The final claim that needs to be proved is that a circuit for $U$ can always be found using at
+  most one ancilla. It is already known that for $n>1$, an ancilla is sometimes necessary
+  {\cite{Kliuchnikov-et-al}}. To show that a single ancilla is sufficient, in light of the above
+  decomposition, it is enough to show that the following can be implemented with one ancilla:
+  \begin{enumerate}\alphalabels
+  \item a multiply-controlled $X$-gate;
+  \item a multiply-controlled $H$-gate;
+  \item a multiply-controlled $T$-gate.
+  \end{enumerate}
+    We first recall from {\cite[Fig.~4(a)]{AMMR12}} that a
+    singly-controlled Hadamard gate can be decomposed into Clifford+$T$
+    gates with no ancillas:
+  \[ 
+    \m{\begin{tikzqcircuit}[scale=0.5] 
+      \grid{2}{0,1};
+      \controlled{\tqgate{$H$}}{1,0}{1};
+    \end{tikzqcircuit}}
+  =\!\!\!
+    \m{\begin{tikzqcircuit}[scale=0.5]
+      \grid{11}{0,1};
+      \tqgate{$S$}{1,0};
+      \tqgate{$H$}{2.5,0};
+      \tqgate{$T$}{4,0};
+      \controlled{\notgate}{5.5,0}{1};
+      \widegate{$T\da$}{.55}{7,0};
+      \tqgate{$H$}{8.5,0};
+      \widegate{$S\da$}{.55}{10,0};
+    \end{tikzqcircuit}.}
+  \]
+  We also recall that an $n$-fold controlled $iX$-gate can be represented using $O(n)$ Clifford+$T$
+  gates with no ancillas. Namely, for $n=1$, we have
+  \[
+    \m{\begin{tikzqcircuit}[scale=0.5]
+        \grid{2}{1,2};
+        \controlled{\widegate{$iX$}{.65}}{1,1}{2};
+      \end{tikzqcircuit}}
+      =\!\!\!
+      \m{\begin{tikzqcircuit}[scale=0.5]
+        \grid{3.5}{1,2};
+        \tqgate{$S$}{1,2};
+        \controlled{\notgate}{2.5,1}{2};
+      \end{tikzqcircuit},}
+  \]
+  and for $n\geq 2$, we can use
+  \[
+      \m{\begin{tikzqcircuit}[scale=0.5]
+      \grid{2}{1,2,3,4,5};
+      \draw(0.4,2.7) node[anchor=center]{$\vdots$};
+      \draw(0.4,4.7) node[anchor=center]{$\vdots$};
+      \controlled{\widegate{$iX$}{.65}}{1,1}{2,3,4,5};
+      \draw(1.6,2.7) node[anchor=center]{$\vdots$};
+      \draw(1.6,4.7) node[anchor=center]{$\vdots$};
+    \end{tikzqcircuit}}
+    =\!\!\!
+    \m{\begin{tikzqcircuit}[scale=0.5]
+      \gridx{0.1}{13.5}{1,2,3,4,5};
+      \tqgate{$H$}{1.1,1};
+      \widegate{$T\da$}{.55}{2.5,1};
+      \controlled{\notgate}{3.75,1}{2,3};
+      \tqgate{$T$}{5,1};
+      \controlled{\notgate}{6.25,1}{4,5};
+      \widegate{$T\da$}{.55}{7.5,1};
+      \controlled{\notgate}{8.75,1}{2,3};
+      \tqgate{$T$}{10,1};
+      \controlled{\notgate}{11.25,1}{4,5};
+      \tqgate{$H$}{12.5,1};
+      \draw(3.25,2.7) node[anchor=center]{$\vdots$};
+      \draw(4.25,2.7) node[anchor=center]{$\vdots$};
+      \draw(5.75,4.7) node[anchor=center]{$\vdots$};
+      \draw(6.75,4.7) node[anchor=center]{$\vdots$};
+      \draw(8.25,2.7) node[anchor=center]{$\vdots$};
+      \draw(9.25,2.7) node[anchor=center]{$\vdots$};
+      \draw(10.75,4.7) node[anchor=center]{$\vdots$};
+      \draw(11.75,4.7) node[anchor=center]{$\vdots$};
+    \end{tikzqcircuit},}
+  \]
+  with further decompositions of the multiply-controlled not-gates as in
+  {\cite[Lem.~7.2]{Barenco-etal-1995}} and {\cite[Fig.~4.9]{neilsen2000:QuantumComputationAndInfo}}. 
+  We then obtain the following representations for (a)--(c), using only one ancilla:
+  \[
+  (a)
+    \m{\begin{tikzqcircuit}[scale=0.47]
+      \grid{2}{0.5,2,3};
+      \draw(0.4,2.7) node[anchor=center]{$\vdots$};
+      \controlled{\tqgate{$X$}}{1,0.5}{2,3};
+      \draw(1.6,2.7) node[anchor=center]{$\vdots$};
+    \end{tikzqcircuit}}
+    =\!\!
+    \m{\begin{tikzqcircuit}[scale=0.47]
+      \grid{8.5}{0,2,3};
+      \gridx{1}{7.5}{1};
+      \draw(1,2.7) node[anchor=center]{$\vdots$};
+      \init{$0$}{1,1};
+      \controlled{\widegate{$iX$}{.75}}{2.5,1}{2,3};
+      \controlled{\tqgate{$X$}}{4.25,0}{1};
+      \controlled{\widegate{$-iX$}{.75}}{6,1}{2,3};
+      \term{$0$}{7.5,1};
+      \draw(7.5,2.7) node[anchor=center]{$\vdots$};
+    \end{tikzqcircuit}}
+  \]\[
+  (b)
+    \m{\begin{tikzqcircuit}[scale=0.47]
+      \grid{2}{0.5,2,3};
+      \draw(0.4,2.7) node[anchor=center]{$\vdots$};
+      \controlled{\tqgate{$H$}}{1,0.5}{2,3};
+      \draw(1.6,2.7) node[anchor=center]{$\vdots$};
+    \end{tikzqcircuit}}
+    =\!\!
+    \m{\begin{tikzqcircuit}[scale=0.47]
+      \grid{8.5}{0,2,3};
+      \gridx{1}{7.5}{1};
+      \draw(1,2.7) node[anchor=center]{$\vdots$};
+      \init{$0$}{1,1};
+      \controlled{\widegate{$iX$}{.75}}{2.5,1}{2,3};
+      \controlled{\tqgate{$H$}}{4.25,0}{1};
+      \controlled{\widegate{$-iX$}{.75}}{6,1}{2,3};
+      \term{$0$}{7.5,1};
+      \draw(7.5,2.7) node[anchor=center]{$\vdots$};
+    \end{tikzqcircuit}}
+  \]\[
+  (c)
+    \m{\begin{tikzqcircuit}[scale=0.47]
+      \grid{2}{0.5,2,3};
+      \draw(0.4,2.7) node[anchor=center]{$\vdots$};
+      \controlled{\tqgate{$T$}}{1,0.5}{2,3};
+      \draw(1.6,2.7) node[anchor=center]{$\vdots$};
+    \end{tikzqcircuit}}
+    =\!\!\!
+    \m{\begin{tikzqcircuit}[scale=0.47]
+      \grid{8.5}{1,2,3};
+      \gridx{1}{7.5}{0};
+      \draw(1,2.7) node[anchor=center]{$\vdots$};
+      \init{$0$}{1,0};
+      \controlled{\widegate{$iX$}{.75}}{2.5,0}{1,2,3};
+      \tqgate{$T$}{4.25,0}{1};
+      \controlled{\widegate{$-iX$}{.75}}{6,0}{1,2,3};
+      \term{$0$.}{7.5,0};
+      \draw(7.5,2.7) node[anchor=center]{$\vdots$};
+    \end{tikzqcircuit}}
+  \]
+\end{proof}
+
+\begin{remark}
+  The fact that one ancilla is always sufficient in Theorem~\vref{thm-main} is primarily of
+  theoretical interest. In practice, one may assume that on most quantum computing architectures,
+  ancillas are relatively cheap. Moreover, the use of additional ancillas can significantly reduce
+  the size and depth of the generated circuits (see e.g.~\cite{Selinger-toffoli}).
+\end{remark}
+
+% subsection main_result (end)
+
+\subsection{The no-ancilla case} % (fold)
+\label{sub:the_no_ancilla_case}
+\begin{lemma}\label{lem-det1}
+  Under the hypotheses of Theorem~\vref{thm-main}, assume that $\det U=1$. Then $U$ can be exactly
+  represented by a Clifford+$T$ circuit with no ancillas.
+\end{lemma}
+
+\begin{proof}
+  This requires only minor modifications to the proof of Theorem~\vref{thm-main}. First observe that
+  whenever an operator of the form $HT^m$ was used in the proof of Lemma~\vref{lem-row}, we can
+  instead use $T^{-m}(iH)T^m$ without altering the rest of the argument. In the base case of
+  Lemma~\vref{lem-column}, the operator $X\level{1,\jay}$ can be replaced by $iX\level{1,\jay}$.
+  Also, in the base case of Lemma~\vref{lem-column}, whenever $n\geq 2$, the operator
+  $\omega\level{1}$ can be replaced by $W\level{1,2}$, where
+  \[ 
+    W = \zmatrix{cc}{\omega&0\\0&\omega^{-1}}.
+  \]
+  Therefore, the decomposition of Lemma~\vref{lem-matrix-decomposition} can be performed so as to
+  yield only two-level matrices of types
+  \begin{equation}\label{eqn-det1}
+    iX,\quad T^{-m}(iH)T^m,\quad \mbox{and}\ W,
+  \end{equation}
+  plus at most one one-level matrix of type $\omega^m$. But since all two-level matrices of types
+  (\vref{eqn-det1}), as well as $U$ itself, have determinant 1, it follows that $\omega^m = 1$. We
+  finish the proof by observing that the multiply-controlled operators of types (\vref{eqn-det1})
+  possess ancilla-free Clifford+$T$ representations, with the latter two given by
+  \[
+    \m{\begin{tikzqcircuit}[scale=0.47]
+        \grid{5}{1,2,3};
+        \draw(1,2.7) node[anchor=center]{$\vdots$};
+        \controlled{\widegate{$T^{-m}(iH)T^m$}{2}}{2.5,1}{2,3};
+        \draw(4,2.7) node[anchor=center]{$\vdots$};
+      \end{tikzqcircuit}}
+    =\!\!
+    \m{\begin{tikzqcircuit}[scale=0.47]
+        \grid{14.9}{1,2,3};
+        \draw(1,2.7) node[anchor=center]{$\vdots$};
+        \widegate{$T^m$}{.55}{1,1};
+        \tqgate{$S$}{2.5,1};
+        \tqgate{$H$}{4,1};
+        \tqgate{$T$}{5.5,1};
+        \controlled{\widegate{$iX$}{.75}}{7.25,1}{2,3};
+        \widegate{$T\da$}{.55}{9,1};
+        \tqgate{$H$}{10.5,1};
+        \widegate{$S\da$}{.55}{12,1};
+        \widegate{$T^{-m}$}{.75}{13.75,1};
+        \draw(13.9,2.7) node[anchor=center]{$\vdots$};
+      \end{tikzqcircuit}}
+  \]\[
+  \m{\begin{tikzqcircuit}[scale=0.47]
+      \grid{2}{1,2,3};
+      \draw(0.4,2.7) node[anchor=center]{$\vdots$};
+      \controlled{\widegate{$W$}{.6}}{1,1}{2,3};
+      \draw(1.6,2.7) node[anchor=center]{$\vdots$};
+    \end{tikzqcircuit}}
+  =\!\!
+  \m{\begin{tikzqcircuit}[scale=0.47]
+      \grid{7.5}{1,2,3};
+      \draw(0.4,2.7) node[anchor=center]{$\vdots$};
+      \controlled{\widegate{$iX$}{.75}}{1.25,1}{2,3};
+      \tqgate{$T$}{3,1};
+      \controlled{\widegate{$-iX$}{.75}}{4.75,1}{2,3};
+      \widegate{$T\da$}{.55}{6.5,1};
+      \draw(7.1,2.7) node[anchor=center]{$\vdots$};
+    \end{tikzqcircuit}}
+  \]
+\end{proof}
+
+As a corollary, we obtain a characterization of the $n$-qubit Clifford+$T$ group (with no ancillas)
+for all $n$:
+  
+\begin{corollary}\label{cor-noancilla}
+  Let $U$ be a unitary $2^n\times 2^n$ matrix. Then the following are equivalent:
+\begin{enumerate}\alphalabels
+\item[(a)] $U$ can be exactly represented by a quantum
+  circuit over the Clifford+$T$ gate set on $n$ qubits with no ancillas.
+\item[(b)] The entries of $U$ belong to the ring
+  $\Z[\frac1{\sqrt{2}},i]$, and:
+  \begin{itemize}
+    \item $\det U=1$, if $n\geq 4$;
+    \item $\det U\in\s{-1,1}$, if $n=3$;
+    \item $\det U\in\s{i,-1,-i,1}$, if $n=2$;
+    \item $\det U\in\s{\omega,i,\omega^3,-1,\omega^5,-i,\omega^7,1}$,
+      if $n\leq 1$.
+    \end{itemize}
+  \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+  For (a) $\implies$ (b), it suffices to note that each of the generators of the Clifford+$T$ group,
+  regarded as an operation on $n$ qubits, satisfies the conditions in (b). For (b) $\implies$ (a), let
+  us define for convenience $d_0=d_1=\omega$, $d_2=i$, $d_3=-1$, and $d_n=1$ for $n\geq 4$. First
+  note that for all $n$, the Clifford+$T$ group on $n$ qubits (without ancillas) contains an
+  element $D_n$ whose determinant is $d_n$, namely $D_n=I$ for $n\geq 4$, $D_3=T\otimes I\otimes
+  I$, $D_2=T\otimes I$, $D_1=T$, and $D_0=\omega$. Now consider some $U$ satisfying (b). By
+  assumption, $\det U=d_n^m$ for some $m$. Let $U'=UD_n^{-m}$, then $\det U'=1$. By
+  Lemma~\vref{lem-det1}, $U'$, and therefore $U$, is in the Clifford+$T$ group with no ancillas.
+\end{proof}
+
+\begin{remark}
+  Note that the last condition in Corollary~\vref{cor-noancilla}, namely that $\det U$ is a power of
+  $\omega$ for $n\leq 1$, is of course redundant, as this already follows from $\det
+  U\in\Z[\frac1{\sqrt{2}},i]$ and $|\det U|=1$. We stated the condition for consistency with the
+  case $n\geq 2$.
+\end{remark}
+
+\begin{remark}
+  The situation of Theorem~\vref{thm-main} and Corollary~\vref{cor-noancilla} is analogous to the
+  case of classical reversible circuits. It is well-known that the not-gate, controlled-not gate,
+  and Toffoli gate generate all classical reversible functions on $n\leq 3$ bits. For $n\geq 4$
+  bits, they generate exactly those reversible boolean functions that define an {\em even
+  permutation} of their inputs (or equivalently, those that have determinant 1 when viewed in
+  matrix form) {\cite{Musset97}}; the addition of a single ancilla suffices to recover all boolean
+  functions.
+\end{remark}
+
+% subsection the_no_ancilla_case (end)
+
+\subsection{Complexity} % (fold)
+\label{sub:complexity}
+The proof of Theorem~\vref{thm-main} immediately yields an algorithm, albeit not a very efficient
+one, for synthesizing a Clifford+$T$ circuit with ancillas from a given operator $U$. We estimate
+the size of the generated circuits.
+
+We first estimate the number of (one- and two-level) operations generated by the matrix
+decomposition of Lemma~\vref{lem-matrix-decomposition}. The row operation from Lemma~\vref{lem-row}
+requires only a constant number of operations. Reducing a single $n$-dimensional column from
+denominator exponent $k$ to $k-1$, as in the induction step of Lemma~\vref{lem-column}, requires
+$O(n)$ operations; therefore, the number of operations required to reduce the column completely is
+$O(nk)$.
+
+Now consider applying Lemma~\ref{lem-matrix-decomposition} to an $n\times n$-matrix with least
+denominator exponent $k$. Reducing the first column requires $O(nk)$ operations, but unfortunately,
+it may {\em increase} the least denominator exponent of the rest of the matrix, in the worst case,
+to $3k$. Namely, each row operation of Lemma~\ref{lem-row} potentially increases the denominator
+exponent by $2$, and any given row may be subject to up to $k$ row operations, resulting in a
+worst-case increase of its denominator exponent from $k$ to $3k$ during the reduction of the first
+column. It follows that reducing the second column requires up to $O(3(n-1)k)$ operations, reducing
+the third column requires up to $O(9(n-2)k)$ operations, and so on. Using the identity
+$\sum_{j=0}^{n-1}3^j(n-j) = (3^{n+1}-2n-3)/4$, this results in a total of $O(3^nk)$ one- and
+two-level operations for Lemma~\ref{lem-matrix-decomposition}.
+
+In the context of Theorem~\vref{thm-main}, we are dealing with $n$ qubits, i.e., a $2^n\times
+2^n$-operator, which therefore decomposes into $O(3^{2^n}k)$ two-level operations. Using one
+ancilla, each two-level operation can be decomposed into $O(n)$ Clifford+$T$ gates, resulting in a
+total gate count of $O(3^{2^n}\!nk)$ elementary Clifford+$T$ gates.
+
+% subsection complexity (end)
+
+% section exact_synthesis_of_multi_qubit_operators (end)
+% chapter synthesis_of_quantum_operations (end)

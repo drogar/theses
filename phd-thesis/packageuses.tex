@@ -1,10 +1,12 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{palatino,courier}
+
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+%\usepackage{palatino,courier}
 \usepackage[reqno]{amsmath}
 \usepackage{amsthm}
 \usepackage{amsfonts,amssymb}
+\usepackage{mathrsfs}   % special script style \mathscr{S}
 \usepackage[mathscr]{euscript}
 \usepackage[all]{xy}
 \usepackage{stmaryrd}
@@ -12,26 +14,29 @@
 \usepackage{array}
 \usepackage{fancyvrb}
 \usepackage{proof}
-\usepackage{mchaskell}
+%\usepackage{mchaskell}
 \usepackage{float}
-\usepackage{makeidx}
-\usepackage{url}
+%\usepackage{makeidx}
+%\usepackage{url}
 \usepackage{varioref}
-\usepackage{listings}
+%\usepackage{listings}
 
-\usepackage{mylhs}
+%\usepackage{mylhs}
 \usepackage{wrapfig}
 \usepackage{subfig}
 \usepackage{caption}
 \usepackage{supertabular}
+\usepackage{blkarray}
 
-\usepackage{varioref}
 \usepackage{xspace}
-% \usepackage[colorlinks=true,citecolor=magenta]{hyperref} Causes issues!!!
+\usepackage[colorlinks=true,citecolor=magenta]{hyperref} 
 \usepackage{hyperref}
 %\usepackage{lqpl}
 %\usepackage{prettyref}
-%\usepackage{lucidabr}
+\usepackage[shortlabels]{enumitem}
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows,positioning}
 
 \reversemarginpar
 
@@ -39,4 +44,15 @@
 \def\figurename{Figure}
 \def\tablename{Table}
 
-\CompileMatrices
+% label formats for use with varioref
+
+\labelformat{section}{section~#1}
+\labelformat{chapter}{chapter~#1}
+\labelformat{equation}{equation~(#1)}
+\labelformat{theorem}{theorem~#1}
+\labelformat{lemma}{lemma~#1}
+\labelformat{proposition}{proposition~#1}
+\labelformat{definition}{definition~#1}
+
+% This causes horrid processing error - text garbage appearing instead of 
+% The diagram. DO NOT USE \CompileMatrices

@@ -1,0 +1,406 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+%----------------------------------------------------------------------
+% a hack: \m is similar to \vcenter, but works better.
+% \mp{0.2}{x}: raise the box x so that 20% of it is below the
+% centerline. Unlike \vcenter, don't change the horizontal spacing
+% Originator: Peter Selinger
+
+\newlength{\localh}
+\newlength{\locald}
+\newbox\mybox
+\def\mp#1#2{\setbox\mybox\hbox{#2}\localh\ht\mybox\locald\dp\mybox\addtolength{\localh}{-\locald}\raisebox{-#1\localh}{\box\mybox}}
+\def\m#1{\scalebox{0.8}{\mp{0.5}{#1}}}
+%----------------------------------------------------------------------
+% Ad hoc quantum circuits using TikZ
+
+\newenvironment{tikzqcircuit}{%
+  \begingroup%
+  \def\dot##1{\fill (##1) circle (.15);}%
+  \def\triangle##1{\fill (##1)+(.3,0) --
+    +(-.15,.25) -- +(-.15,-.25) -- cycle;}%
+  \def\triangleadj##1{\fill (##1)+(-.3,0) --
+    +(.15,.25) -- +(.15,-.25) -- cycle;}%
+  \def\notgate##1{\filldraw[fill=white,thick] (##1) circle (.3);
+                  \draw[thick] (##1)+(.3,0) -- +(-.3,0);
+                  \draw[thick] (##1)+(0,.3) -- +(0,-.3);
+                }%
+  \def\controlled{\gencontrolled{\dot}}%
+  \def\gencontrolled##1##2##3##4{\foreach\x in {##4} {
+                    \draw[thick] (##3 |- 0,\x) -- (##3);
+                  }
+                  ##2{##3};
+                  \foreach\x in {##4} {
+                    ##1{##3 |- 0,\x};
+                  }}%
+  \def\tqgate##1##2{\biggate{##1}{##2}{##2}}%
+  \def\biggate##1##2##3{\filldraw[fill=white,thick] (##2)+(-.45,-.4)
+    rectangle ($(##3)+(.45,.4)$); \draw ($.5*(##2)+.5*(##3)$) node
+    {\small ##1};}%
+  \def\widebiggate##1##2##3##4{\filldraw[fill=white,thick] (##2)+(-1*##4,-.4)
+    rectangle ($(##3)+(##4,.4)$); \draw ($.5*(##2)+.5*(##3)$) node
+    {\small ##1};}%
+  \def\widegate##1##2##3{\widebiggate{##1}{##3}{##3}{##2}}
+  \def\gridx##1##2##3{\foreach\x in {##3} {
+        \draw[thick] (##1,\x) -- (##2,\x);
+      }}%
+  \def\grid{\gridx{0}}%
+  \def\cross##1{\draw (##1)+(-.3,-.3) -- +(.3,.3);
+             \draw (##1)+(.3,-.3) -- +(-.3,.3);}%
+  \def\bar##1{\fill (##1)+(-.05,-.4) rectangle ($(##1)+(.05,.4)$);}%
+  \def\init##1##2{\bar{##2}; \leftlabel{##1}{##2};}
+  \def\term##1##2{\bar{##2}; \rightlabel{##1}{##2};}
+  \def\leftlabel##1##2{\draw (##2) node[left] {##1};}%
+  \def\rightlabel##1##2{\draw (##2) node[right] {##1};}%
+  \def\wirelabel##1##2{\draw (##2)+(0,-.15) node[above] {\footnotesize ##1};}%
+  \def\multiwire##1{\draw (##1)+(-.1,-.3) -- +(.1,.3);}%
+  \begin{tikzpicture}}
+  {\end{tikzpicture}\endgroup}
+
+%--------------------------------------------------------------------------------------
+% General formatting macros
+\newcommand{\prepprooflist}{\vspace{12pt} \hspace{-12pt}}
+
+\newcommand{\itembf}[1]{\item{\textbf{#1}}}
+\newcommand{\itemem}[1]{\item{\emph{#1}}}
+\newcommand{\itemtt}[1]{\item{\texttt{#1}}}
+
+\newcommand{\uts}{\hspace{0.1pt}}
+
+%------------------------------------------------------------------------------
+% Term algebras
+
+\newcommand{\unif}[2]{\ensuremath{\mathcal{U}({#1})\hspace{-0.3em}\downarrow\hspace{-0.3em}{#2}}\xspace}
+\newcommand{\uniftus}{\unif{t,u}{\sigma}}
+\newcommand{\ta}{\ensuremath{T_\Sigma}}
+\newcommand{\tavar}{\ensuremath{\ta(X)}}
+
+%------------------------------------------------------------------------------
+% Combinatory algebras
+
+\newcommand{\distinguished}[1]{\ensuremath{\text{\large #1}}\xspace}
+\newcommand{\Kc}{\distinguished{K}}
+\newcommand{\Sc}{\distinguished{S}}
+\newcommand{\Ic}{\distinguished{I}}
+
+\newcommand{\Bc}{\distinguished{B}}
+\newcommand{\Cc}{\distinguished{C}}
+\newcommand{\Wc}{\distinguished{W}}
+
+\newcommand{\Dc}{\distinguished{D}}
+\newcommand{\dc}{\ensuremath{\delta}\xspace}
+\newcommand{\Fc}{\distinguished{F}}
+
+%-----------------------------------------------------------------------------
+% Axiom number and referencing
+\newcommand{\axiom}[2]{\ensuremath{[\text{\emph{\bfseries {#1}.{#2}}}]}\xspace}
+
+\newcommand{\rstaxiom}[1]{\axiom{R}{#1}}
+
+\newcommand{\rgaxiom}[1]{\axiom{RR}{#1}}
+\newcommand{\rone}{\rstaxiom{1}}
+\newcommand{\rtwo}{\rstaxiom{2}}
+\newcommand{\rthree}{\rstaxiom{3}}
+\newcommand{\rfour}{\rstaxiom{4}}
+
+\newcommand{\rrone}{\rgaxiom{1}}
+\newcommand{\rrtwo}{\rgaxiom{2}}
+\newcommand{\rrthree}{\rgaxiom{3}}
+\newcommand{\rrfour}{\rgaxiom{4}}
+
+%------------------------------------------------------------------------------
+% General math notation macros
+\newcommand{\nat}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\N}{\nat}
+\newcommand{\complex}{\ensuremath{\mathbb{C}}\xspace}
+\newcommand{\integers}{\ensuremath{\mathbb{Z}}\xspace}
+\newcommand{\Z}{\integers}
+                  % Complex
+\newcommand{\D}{\ensuremath{\mathbb{D}}\xspace}                   % Dyadic
+\newcommand{\Zs}{\ensuremath{\Z[\sqrt{2}]}\xspace}
+\newcommand{\Zw}{\ensuremath{\Z[\omega]}\xspace}
+\newcommand{\Ds}{\ensuremath{\D[\sqrt{2}]}\xspace}
+\newcommand{\Dw}{\ensuremath{\D[\omega]}\xspace}
+\newcommand{\Zb}{\ensuremath{\Z_2}\xspace}
+\newcommand{\Zbw}{\ensuremath{\Zb[\omega]}\xspace}
+\newcommand{\Zss}{\ensuremath{\Zb[\sqrt{2}]}\xspace}
+
+\newcommand{\inv}[1]{\ensuremath{{#1}^{(-1)}}}
+
+\newcommand{\mbf}{\ensuremath{\mathbf{f}}}
+\newcommand{\mbg}{\ensuremath{\mathbf{g}}}
+\newcommand{\mbh}{\ensuremath{\mathbf{h}}}
+
+\newcommand{\nothing}{\phi}
+\newcommand{\capspl}{\ensuremath{\cap_{\text{K}}}\xspace}
+
+
+
+
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\weight}[1]{\norm{#1}_{\rm weight}}
+\newcommand{\snorm}[1]{\|#1\|}
+\newcommand{\sweight}[1]{\snorm{#1}_{\rm weight}}
+
+\DeclareMathOperator*{\dom}{dom}
+\DeclareMathOperator*{\rng}{range}
+
+%-----------------------------------------------------------------------------
+% Regular expressions, MA algo
+
+
+\newcommand{\cC}{{\mathcal C}}
+\newcommand{\cL}{{\mathcal L}}
+\newcommand{\cK}{{\mathcal K}}
+\newcommand{\emptyseq}{\varepsilon}
+\newcommand{\sem}[1]{[\![#1]\!]}
+\newcommand{\tuple}[1]{(#1)}
+\newcommand{\seqeq}{\equiv}
+
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\sW}{{\mathscr{S}^\omega}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sCp}{\mathscr{C}\,'}
+\newcommand{\sHp}{\mathscr{H}\,'}
+\newcommand{\sH}{\mathscr{H}}
+\newcommand{\sm}{\setminus}  
+\newcommand{\seq}{\subseteq}
+\newcommand{\pp}{{++}}
+
+%------------------------------------------------------------------------------
+% Special math notation
+
+
+
+\let\*\otimes
+\let\+\oplus
+\let\<\langle
+\let\>\rangle
+\let\.\cdot
+
+\newcommand{\blank}{\ensuremath{\text{\textvisiblespace}}}
+\newcommand{\vc}[1]{\ensuremath{\mathbf{#1}}}
+
+%------------------------------------------------------------------------------
+%  Matrices
+
+
+\newcommand{\xmatrix}[4]{{\renewcommand{\arraystretch}{#1}\arraycolsep=#2ex\left(\begin{array}{#3}#4\end{array}\right)}}       % resizable matrix
+\newcommand{\zmatrix}{\xmatrix{.8}{.8}}         % matrix
+
+
+\newcommand{\matindex}[1]{{\scriptsize#1}}% Matrix index
+
+
+\newcommand{\bigI}{\rule[-1.5ex]{0mm}{4ex}~I~}
+% ----------------------------------------------------------------------
+% Various macros to assist with TikZ drawing
+
+\newcommand\umatrix[4]{\ensuremath{\begin{bmatrix}#1&#2\\#3&#4\end{bmatrix}}}
+\newcommand*\leftrightfrom[3]{edge [<-] node[left] {$\scriptstyle #1$} %
+                          node[right] {$\scriptstyle #2$} %
+                          (#3)}
+\newcommand*\leftrightto[3]{edge [->] node[left] {$\scriptstyle #1$} %
+                          node[right] {$\scriptstyle #2$} %
+                          (#3)}
+\newcommand\starportfrom[3]{edge [<-] node[xshift=.5mm, yshift=-.5mm, above left] %
+                    {$\scriptstyle #1$} %
+                    node[xshift=-.5mm, yshift=.5mm, below right] %
+                    {$\scriptstyle #2$}%
+                    (#3)}
+%------------------------------------------------------------------------------
+% Types notation
+
+
+\newcommand{\Qs}{\ensuremath{Q_{()}}\xspace}
+\newcommand{\Bs}{\ensuremath{B_{()}}\xspace}
+
+\newcommand{\type}[1]{\ensuremath{\mathbf{{#1}}}\xspace}
+\newcommand{\bit}{\type{bit}}
+\newcommand{\qubit}{\type{qubit}}
+\newcommand{\qubits}{\qubit{s}\xspace}
+\newcommand{\bits}{\bit{s}\xspace}
+
+%------------------------------------------------------------------------------
+% General computing notation
+
+\newcommand{\BigO}[1]{\ensuremath{\mathscr{O}({#1})}}
+
+%------------------------------------------------------------------------------
+% Quantum computing notation
+\newcommand{\Had}{\text{Hadamard}}
+\newcommand{\nottr}{\text{Not}}
+\newcommand{\cnot}{Controlled{-}\nottr}
+
+\newcommand{\lqpl}{L-QPL}
+
+% Additional gates
+
+\newcommand{\nowiregate}[1]{*{\xy *+<.6em>{#1};p\save+LU;+RU **\dir{-}\restore\save+RU;+RD **\dir{-}\restore\save+RD;+LD **\dir{-}\restore\POS+LD;+LU **\dir{-}\endxy}}
+
+%------------------------------------------------------------------------------------
+% General notation for categories
+\newcommand{\category}[4]{%
+\begin{description}%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
+\end{description}%
+}
+
+\newcommand{\specialcat}[1]{\textsc{#1}\xspace}
+\newcommand{\ltrcatbb}[1]{\ensuremath{\mathbb{#1}}\xspace}
+
+\newcommand{\A}{\ltrcatbb{A}}
+\newcommand{\B}{\ltrcatbb{B}}
+\newcommand{\C}{\ltrcatbb{C}}
+\newcommand{\X}{\ltrcatbb{X}}
+\newcommand{\Y}{\ltrcatbb{Y}}
+
+\newcommand{\Lat}{\ltrcatbb{L}}
+\newcommand{\Mstab}{\ensuremath{\mathcal{M}}\xspace}
+
+\newcommand{\sets}{\specialcat{Sets}}
+\newcommand{\Par}{\specialcat{Par}}
+
+\newcommand{\rel}{\specialcat{Rel}}
+
+\newcommand{\fdh}{\specialcat{FdHilb}}
+
+\newcommand{\spl}[2]{\ensuremath{\text{K}_{#1}(#2)}}
+
+%------------------------------------------------------------------------------
+% Restriction categories
+
+\newcommand{\rcategoryequiv}[5]{%
+\begin{description}%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Equivalence Classes of Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
+\item{\textbf{Restriction: }}{#5}%
+\end{description}%
+%
+}
+
+
+\newcommand{\restr}[1]{\overline{#1}}
+\newcommand{\rst}[1]{\restr{#1}}
+
+
+%--------------------------------------------------------------------------------------
+% Notation for inverse categories
+
+
+\newcommand{\uleft}[1]{\ensuremath{u_{#1}^l}}
+\newcommand{\uright}[1]{\ensuremath{u_{#1}^r}}
+\newcommand{\usl}{\uleft{\*}}
+\newcommand{\usr}{\uright{\*}}
+
+\newcommand{\exchange}[1]{\ensuremath{e\!x_{#1}}}
+\newcommand{\excs}{\exchange{\*}}
+
+\newcommand{\Invc}[1]{\ensuremath{Inv(#1)}\xspace}
+\newcommand{\Invf}{\ensuremath{\mathbf{INV}}\xspace}
+\newcommand{\Inv}[1]{\ensuremath{\mathbf{INV}({#1})}\xspace}
+
+\newcommand{\Xt}{\ensuremath{\widetilde{\X}}\xspace}
+
+
+\newcommand{\hypXt}{\texorpdfstring{\Xt}{Xt}}
+\newcommand{\hypX}{\texorpdfstring{\X}{X}}
+
+\newcommand{\xtdmn}[2]{\ensuremath{{#1}_{|{#2}}}}
+\newcommand{\xequiv}[1]{\ensuremath{\overset{\scriptscriptstyle #1}{\simeq}}}
+
+
+\newcommand{\wtc}{\ensuremath{\widetilde{(\_)}}\xspace}
+\newcommand{\wtf}{\ensuremath{\mathbf{T}}\xspace}
+\newcommand{\wt}[1]{\ensuremath{\mathbf{T}({#1})}\xspace}
+%-------------------------------------------------
+% sub/super scripting and decorating
+
+\newcommand{\dual}[1]{\ensuremath{{#1}^{*}}}
+
+\newcommand{\dgr}[1]{\ensuremath{{#1}^{\dagger}}}
+
+\newcommand{\jay}{\ensuremath{j}\xspace}
+\newcommand{\kay}{\ensuremath{k}\xspace}
+
+\newcommand{\parity}[1]{\overline{#1}\/}
+\newcommand{\residue}[1]{\overline{#1}\/}
+
+\newcommand{\level}[1]{_{[#1]}}
+
+
+\newcommand{\s}[1]{\{#1\}}
+\newcommand{\da}{^{\dagger}}
+
+\newcommand{\inverse}{^{-1}}
+%----------------------------------------------------------------------
+% Alphabetic labels
+{\makeatletter
+\gdef\alphalabels{\def\theenumi{\@alph\c@enumi}\def\labelenumi{(\theenumi)}}}
+
+% ----------------------------------------------------------------------
+% Theorem like environments
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{notethm}[theorem]{Note}
+
+%\theoremstyle{definition}
+\newtheorem*{sltheorem}{Theorem}
+\newtheorem*{sldefinition}{Definition}
+\newtheorem*{slproposition}{Proposition}
+\newtheorem*{slnotation}{Notation}
+\newtheorem*{slexample}{Example}
+\newtheorem*{slexercise}{Exercise}
+\newtheorem*{sllemma}{Lemma}
+
+% reference formats -
+\labelformat{chapter}{chapter~#1}
+\labelformat{section}{section~#1}
+\labelformat{subsection}{sub-section~#1}
+\labelformat{subsubsection}{sub-sub-section~#1}
+\labelformat{equation}{equation~(#1)}
+\labelformat{table}{table~#1}
+\labelformat{figure}{figure~#1}
+
+%-------------------------------------------------------------------------------
+% Code environments for Verbatim package
+
+
+%----------------------------------------------------------------------------------
+% Code environments and definitions for listings
+
+%-----------------------------------------------------------------------------------
+% environments
+
+
+%-----------------------------------------------------------------------------------
+% Extra macros for describing the LQPL language
+
+
+
+%-----------------------------------------------------------------------------------
+% Macros for including code 
+
+%------------------------------------------------------------------------------------
+% Formatting macros
+
+%------------------------------------------------------------------------------------
+%  Notation for describing syntax of language (lqpl primarily)
+
+

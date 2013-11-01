@@ -2,84 +2,71 @@
 \chapter{Transformations of Quantum Programs}\label{chap:transformations_of_quantum_programs}
 
 
-
 \section{Subroutines} % (fold)
 \label{sec:subroutines}
-In the following, we will assume \emph{gate} as above is a given
-and that $W\subset\nat$ is fixed and  finite. We
-will use typing notation to show membership in $W$ --- $w\in W$
-is equivalent to $w::W$.
+In the following, we will assume \emph{gate} as above is a given and that $W\subset\nat$ is fixed
+and finite. We will use typing notation to show membership in $W$ --- $w\in W$ is equivalent to
+$w::W$.
+
 
 
 \subsection{Definition of a Subroutine} % (fold)
 \label{sub:definition_of_a_subroutine}
-The concept of \emph{subroutine} as defined below is intended
-to capture the essence of a describable computation
-in a quantum language. The low level subroutine is considered in
-isolation, meaning that it contains no information regarding
-how it fits into a larger circuit.
+The concept of \emph{subroutine} as defined below is intended to capture the essence of a
+describable computation in a quantum language. The low level subroutine is considered in isolation,
+meaning that it contains no information regarding how it fits into a larger circuit.
 
 \begin{definition}\label{def:bare_subroutine}
-  A \emph{bare subroutine} is defined as a list of gates, written as
-   $[g_0,g_1,\ldots,g_{n}]$. The list of
-  gates must satisfy the following:
+  A \emph{bare subroutine} is defined as a list of gates, written as $[g_0,g_1,\ldots,g_{n}]$. The
+  list of gates must satisfy the following:
   \begin{itemize}
     \item $\rng{g_i} = \dom{g_{i+1}}$ for $i\in\{0,1,\ldots,n-1\}$.
   \end{itemize}
 \end{definition}
 
-A bare subroutine $B$ can then be viewed as a function from $\dom{g_0}$
-to $\rng{g_n}$ by
-applying each gate in order to $\dom{g_0}$.
+A bare subroutine $B$ can then be viewed as a function from $\dom{g_0}$ to $\rng{g_n}$ by applying
+each gate in order to $\dom{g_0}$.
 
 \begin{definition}\label{def:low_level_subroutine}
-  A \emph{low level subroutine} is a bare subroutine with a
-  triple $(C,I,O)$ where each of $C,I,O$ are of type \type{Arity} and
+  A \emph{low level subroutine} is a bare subroutine with a triple $(C,I,O)$ where each of $C,I,O$
+  are of type \type{Arity} and
   \begin{align}
     \dom C \cap \dom I &= \phi\\
     \dom C \cap \dom O &= \phi
   \end{align}
 \end{definition}
 
-In the definition of the low level subroutine, the triple $(C,I,O)$
-describes the inputs and outputs of the subroutine. $C$
-describes the control wires, which are inputs and outputs without
+In the definition of the low level subroutine, the triple $(C,I,O)$ describes the inputs and
+outputs of the subroutine. $C$ describes the control wires, which are inputs and outputs without
 change, $I$ the input wires and $O$ the output wires.
 
-
-The above data together with three additional flags provides
-everything we need to know regarding a subroutine:
+The above data together with three additional flags provides everything we need to know regarding a
+subroutine:
 \begin{definition}\label{def:subroutine}
-  A \emph{subroutine} is a low level subroutine together with a tripartite
-  flag $c$ with values in $\{N,B,Q\}$, and two boolean flags, $r$ and $n$.
+  A \emph{subroutine} is a low level subroutine together with a tripartite flag $c$ with values in
+  $\{N,B,Q\}$, and two boolean flags, $r$ and $n$.
 \end{definition}
-The three flags describe the ways this subroutine may be used. Each of
-these flags
-provide information that the calling quantum program uses to
-determine the ways the subroutine may be called:
+The three flags describe the ways this subroutine may be used. Each of these flags provide
+information that the calling quantum program uses to determine the ways the subroutine may be
+called:
 \begin{itemize}
-  \item \emph{Controllable}: When $c$ is $B$, a calling program may make this
-  subroutine the target of one or more \emph{control wire}s with type \bit.
-  When $c$ is $Q$, the control wires my be of type \bit or \qubit.
-  When $c$ is $N$, no control wires may be used. Note this is separate from
-  the $C$ wires of the subroutine, which may be used for internally
-  controlling portions of the subroutine.
-  \item \emph{Reversible}: A calling program may specify the
-  subroutine run normally or reversed.
-  \item \emph{No-controllable}: In the case where this subroutine is
-  part of a preparation / unpreparation in a (prep, transform, unprep)
-  sequence and that sequence is controlled, then the control wires may
-  be ignored for this subroutine.
+  \item \emph{Controllable}: When $c$ is $B$, a calling program may make this subroutine the target
+    of one or more \emph{control wire}s with type \bit. When $c$ is $Q$, the control wires my be of
+    type \bit or \qubit. When $c$ is $N$, no control wires may be used. Note this is separate from
+    the $C$ wires of the subroutine, which may be used for internally controlling portions of the
+    subroutine.
+  \item \emph{Reversible}: A calling program may specify the subroutine run normally or reversed.
+  \item \emph{No-controllable}: In the case where this subroutine is part of a preparation /
+    unpreparation in a (prep, transform, unprep) sequence and that sequence is controlled, then the
+    control wires may be ignored for this subroutine.
 \end{itemize}
 
-Noting that the domains of $C$ and $I$ and the domains of $C$ and $O$ do
-not overlap, we can also provide an ordering of the inputs and outputs for
-a low level subroutine. This ordering is used for display purposes and
-has no additional semantic content.
+Noting that the domains of $C$ and $I$ and the domains of $C$ and $O$ do not overlap, we can also
+provide an ordering of the inputs and outputs for a low level subroutine. This ordering is used for
+display purposes and has no additional semantic content.
 
 \begin{definition}\label{def:low_level_subroutine_ordering}
-  An \emph{ordering} of a low level subroutine is a pair of bijections,
-  $(i,o)$ such that:
+  An \emph{ordering} of a low level subroutine is a pair of bijections, $(i,o)$ such that:
   \begin{align}
     i: \dom C \cup \dom I \leftrightarrow \{0,1,\ldots,n-1\}\\
     o: \dom C \cup \dom O \leftrightarrow \{0,1,\ldots,m-1\}
@@ -93,45 +80,38 @@ has no additional semantic content.
 \subsection{Subroutine Calls} % (fold)
 \label{sub:subroutine_calls}
 
-In this section, we describe the permissible bindings given two
-sets of wires, where the first set will be considered as control wires and
-the second as either input or output wires.
+In this section, we describe the permissible bindings given two sets of wires, where the first set
+will be considered as control wires and the second as either input or output wires.
 \begin{definition}\label{def:permissible_bindings}
-  Given $C$ and $K$ are \type{Arity}
-  functions over the same set of typed wires $V$,
-  then $f$ is a \emph{permissible binding} to a
-  set of typed wires $W$ with \type{Arity} $T_w$ when:
-  \bi
-  \item $f: \dom C + \dom K \to W$,
-  \item $\forall x, y\in \dom f, f(x)=f(y) \implies x=y \vee x,y\in \dom C$,
-  \item $x\in \dom C \wedge C(x) = \qubit
-  \implies T_w(f(x)) = \bit \vee T_w(f(x)) = \qubit$,
-  \item $x\in \dom C \wedge C(x) = \bit \implies T_w(f(x)) = \bit$,
-  \item $x\in \dom K  \implies T_w(f(x)) = K(x)$.
-  \ei
+  Given $C$ and $K$ are \type{Arity} functions over the same set of typed wires $V$, then $f$ is a
+  \emph{permissible binding} to a set of typed wires $W$ with \type{Arity} $T_w$ when:
+  \begin{itemize}
+    \item $f: \dom C + \dom K \to W$,
+    \item $\forall x, y\in \dom f, f(x)=f(y) \implies x=y \vee x,y\in \dom C$,
+    \item $x\in \dom C \wedge C(x) = \qubit \implies T_w(f(x)) = \bit \vee T_w(f(x)) = \qubit$,
+    \item $x\in \dom C \wedge C(x) = \bit \implies T_w(f(x)) = \bit$,
+    \item $x\in \dom K  \implies T_w(f(x)) = K(x)$.
+  \end{itemize}
 \end{definition}
 
 We denote the permissible bindings to $W$ of $C$ and $K$ by $F(C,K,W)$.
 
 \begin{definition}\label{def:subroutine_call}
-  In a context of typed wires $W_1$,
-  a \emph{subroutine call}, resulting in the typed wires $W_2$,
-  of the subroutine $([gates],C,I,O,r,c,n)$
-  is a tuple $(f,g,h,i,ncf,ctrls)$ consisting of three functions,
-  two boolean flags and a list of control wires.
-  The functions $f,g,h$ must satisfy:
-  \bi
-  \item $f:\dom C \to W_1 \cap W_2$
-  \item $g:\dom I \to W_1$
-  \item $h:\dom O \to W_2$
-  \item $f + g \in F(C,I,W_1)$
-  \item $f + h \in F(C,O,W_2)$.
-  \ei
+  In a context of typed wires $W_1$, a \emph{subroutine call}, resulting in the typed wires $W_2$,
+  of the subroutine $([gates],C,I,O,r,c,n)$ is a tuple $(f,g,h,i,ncf,ctrls)$ consisting of three
+  functions, two boolean flags and a list of control wires. The functions $f,g,h$ must satisfy:
+  \begin{itemize}
+    \item $f:\dom C \to W_1 \cap W_2$
+    \item $g:\dom I \to W_1$
+    \item $h:\dom O \to W_2$
+    \item $f + g \in F(C,I,W_1)$
+    \item $f + h \in F(C,O,W_2)$.
+  \end{itemize}
   The two flags must satisfy:
-  \bi
-  \item $i \implies r$
-  \item $ncf \implies n$.
-  \ei
+  \begin{itemize}
+    \item $i \implies r$
+    \item $ncf \implies n$.
+  \end{itemize}
   The control list must satisfy:
   \begin{itemize}
     \item $\forall w_c \in ctrls, \text{fst}(w_c) \in W_1 \cap W_2$,
@@ -146,31 +126,25 @@ We denote the permissible bindings to $W$ of $C$ and $K$ by $F(C,K,W)$.
 \subsection{High Level Structure} % (fold)
 \label{sub:high_level_structure}
 
-Let $s,t$ be of type of the family \type{QCData}
-and $a$ be of shape $s$, $b$ be of shape $t$.
-Further, let $A = \{qt|qt::a, qt \text{ has shape }s\}$
-and $B = \{qt|qt::b, qt \text{ has shape }t\}$, that is,
-$A$ and $B$ are the sets of quantum terms of shape $s$
-(respectively $t$) and type $a$ (respectively $b$).
+Let $s,t$ be of type of the family \type{QCData} and $a$ be of shape $s$, $b$ be of shape $t$.
+Further, let $A = \{qt|qt::a, qt \text{ has shape }s\}$ and $B = \{qt|qt::b, qt \text{ has shape
+}t\}$, that is, $A$ and $B$ are the sets of quantum terms of shape $s$ (respectively $t$) and type
+$a$ (respectively $b$).
 
 \begin{definition}\label{def:high_level_structure}
-  A \emph{high level structure} for a call to the subroutine
-  $([gates],C,I,O,r,c,n)$ starting in context $W_1$ and
-  ending in context $W_2$ is a
-  pair of maps $(i_s,o_s)$ with $i_s:A \to F(C,I,W_1)$
-  and $o_s:F(C,O,W_2)\to B$.
+  A \emph{high level structure} for a call to the subroutine $([gates],C,I,O,r,c,n)$ starting in
+  context $W_1$ and ending in context $W_2$ is a pair of maps $(i_s,o_s)$ with $i_s:A \to
+  F(C,I,W_1)$ and $o_s:F(C,O,W_2)\to B$.
 \end{definition}
 
 \begin{definition}\label{def:structured_subroutine_call}
-  Given the data for a subroutine call as above in definition
-  \ref{def:subroutine_call}, a \emph{structured subroutine call} is a
-  high level structure as in definition \ref{def:high_level_structure}
-  and a pair of quantum terms $(a,b)$ such that:
+  Given the data for a subroutine call as above in \vref{def:subroutine_call}, a \emph{structured
+  subroutine call} is a high level structure as in \vref{def:high_level_structure} and a pair of
+  quantum terms $(a,b)$ such that:
   \begin{itemize}
     \item $i_s(a) = f+g$ and
     \item $o_s(f+h) = b$.
   \end{itemize}
-
 \end{definition}
 
 % subsection high_level_structure (end)
@@ -180,42 +154,32 @@ $A$ and $B$ are the sets of quantum terms of shape $s$
 \section{Subroutine Calls and Transformers} % (fold)
 \label{sec:subroutine_calls_and_transformers}
 
-We are interested in two transformed calls of subroutines. Iteration and
-folding. We provide the necessary information for creating either a
-transformed call or first transforming the subroutine and then doing a
-standard call as in subsection \ref{sub:subroutine_calls}.
+We are interested in two transformed calls of subroutines. Iteration and folding. We provide the
+necessary information for creating either a transformed call or first transforming the subroutine
+and then doing a standard call as in \vref{sub:subroutine_calls}.
 
 \subsection{Iteration} % (fold)
 \label{sub:iteration}
-Iteration of subroutines means to call the same subroutine
-within a quantum circuit some positive number of times.
-Discussion points:
+Iteration of subroutines means to call the same subroutine within a quantum circuit some positive
+number of times. Discussion points:
 \begin{itemize}
-  \item Can we handle the case of zero iterations? Would this
-  just mean doing a direct mapping of the I to the O
-  in numerical sequence?
-  \item Can we handle the case of negative iterations? This could
-  mean calling the inverse of the subroutine in the case
-  where it is reversible and then iterating.
+  \item Can we handle the case of zero iterations? Would this just mean doing a direct mapping of
+  the I to the O in numerical sequence?
+  \item Can we handle the case of negative iterations? This could mean calling the inverse of the
+  subroutine in the case where it is reversible and then iterating.
   \item Does iteration affect the no-control or other flags?
-  \item The analysis below assumes that ``non-linear safety'' is
-  an important property to preserve during iteration.
-  If we remove that requirement, iteration becomes more flexible,
-  e.g., the bijections $c_b$ and $io_b$ could be
-  replaced with a single bijection $cio_b : C\cup O \leftrightarrow C\cup I$.
-  This would allow a \qubit that was
-  affected by the subroutine on one iteration to be used as the
-  control on the next iteration. (Or is this the simple
-  case that has already been handled?)
+  \item The analysis below assumes that ``non-linear safety'' is an important property to preserve
+  during iteration. If we remove that requirement, iteration becomes more flexible, e.g., the
+  bijections $c_b$ and $io_b$ could be replaced with a single bijection $cio_b : C\cup O
+  \leftrightarrow C\cup I$. This would allow a \qubit that was affected by the subroutine on one
+  iteration to be used as the control on the next iteration. (Or is this the simple case that has
+  already been handled?)
 \end{itemize}
 \begin{definition}\label{def:iterated_subroutine_call}
-  Given a subroutine as in subsection \vref{sub:subroutine_calls},
-  and a subroutine call $(f,g,h,i,ncf,ctrls)$
-  an \emph{iterated call} of the subroutine
-  $S = ([gates],C,I,O,r,c,n)$ consists of all elements of a
-  subroutine call excepting $f$ plus another
-  tuple of five elements $(f_{in},f_{out},c_b,io_b,i_{count})$
-  where:
+  Given a subroutine as in \vref{sub:subroutine_calls}, and a subroutine call $(f,g,h,i,ncf,ctrls)$
+  an \emph{iterated call} of the subroutine $S = ([gates],C,I,O,r,c,n)$ consists of all elements of
+  a subroutine call excepting $f$ plus another tuple of five elements
+  $(f_{in},f_{out},c_b,io_b,i_{count})$ where:
   \begin{itemize}
     \item $f_{in}:\dom C \to W_1\cap W_2$
     \item $f_{out}:\dom C \to W_1\cap W_2$
@@ -231,10 +195,8 @@ Discussion points:
 \end{definition}
 
 \begin{definition}\label{def:structured_iterated_call}
-  Given the data for an iterated call,
-  a \emph{structured iterated call} is a high level structure as in
-  definition \ref{def:high_level_structure} and a pair of quantum
-  terms $(a,b)$ such that:
+  Given the data for an iterated call, a \emph{structured iterated call} is a high level structure
+  as in \vref{def:high_level_structure} and a pair of quantum terms $(a,b)$ such that:
   \begin{itemize}
     \item $i_s(a) = f_{in}+g$ and
     \item $o_s(f_{out}+h) = b$.
@@ -242,12 +204,10 @@ Discussion points:
 
 \end{definition}
 
-From the definition, note the $C$ wires may be permuted as
-desired, but the combination of the $f_{in}^{-1}$ and
-the permutation must leave the wires in a state where $f_{out}$
-is well-defined. See below for an example.
-Note the disposition of the wires due to calling the iterated
-subroutine is given by:
+From the definition, note the $C$ wires may be permuted as desired, but the combination of the
+$f_{in}^{-1}$ and the permutation must leave the wires in a state where $f_{out}$ is well-defined.
+See below for an example. Note the disposition of the wires due to calling the iterated subroutine
+is given by:
 \begin{itemize}
   \item Control mapping: $f_{out} \circ c_b^{i_{count}}\circ f_{in}^{-1}$,
   \item In-out mapping: $h \circ io_b^{i_{count}} \circ g^{-1}$.
@@ -256,33 +216,28 @@ subroutine is given by:
 
 \begin{example}[Single call]
 \end{example}
-  For this example, we will elide the details relating to high level
-  structure, invertability, control wires and the no-control flag.
+  For this example, we will elide the details relating to high level structure, invertability,
+  control wires and the no-control flag.
 
-  Suppose $C=[c_1,c_2,c_3], I=[i_1,i_2]$ and $O=[o_1,o_2]$.
-  For the first part of the example, assume we are calling $S$
-  from a context of $W_1=[w_1,w_2,w_3,w_4]$, resulting in the
-  same context (i.e., $W_1 = W_2$).
-  In this case, the call of $S$ can be given by:
+  Suppose $C=[c_1,c_2,c_3], I=[i_1,i_2]$ and $O=[o_1,o_2]$. For the first part of the example,
+  assume we are calling $S$ from a context of $W_1=[w_1,w_2,w_3,w_4]$, resulting in the same
+  context (i.e., $W_1 = W_2$). In this case, the call of $S$ can be given by:
   \begin{itemize}
     \item $f = \{c_1\mapsto w_1, c_2 \mapsto w_1, c_3 \mapsto w_4\}$,
     \item $g = \{i_1 \mapsto w_2, i_2 \mapsto w_3\}$
     \item $h = \{o_1 \mapsto w_3, o_2 \mapsto w_2\}$
   \end{itemize}
-  Hence we are calling $S$ which will use $w_1$ as its
-  first two control inputs and $w_4$ as the third. The
-  inputs will use $w_2$ and $w_3$, while the output will
-  ``switch'' those to $w_3$ and $w_2$.
+  Hence we are calling $S$ which will use $w_1$ as its first two control inputs and $w_4$ as the
+  third. The inputs will use $w_2$ and $w_3$, while the output will ``switch'' those to $w_3$ and
+  $w_2$.
 
 \begin{example}[Iterated call]
 \end{example}
-Assume $S$ is as above and we are using the call as above.
-To aid in distinguishing input and output wires of the calling circuit,
-we will use $w'$ for naming the output wires, so we may write
-$W_1 = [w_1,w_2,w_3,w_4]$ and $W_2=[w'_1,w'_2,w'_3,w'_4]$, noting that
-$w_i = w'_i$ for $i\in\{1,2,3,4\}$. A call iterated 5 times of
-$S$ is $(g,h,i,ncf,ctrls)$ plus
-the tuple $(f_{in},f_{out},c_b,io_b,5)$ where
+Assume $S$ is as above and we are using the call as above. To aid in distinguishing input and
+output wires of the calling circuit, we will use $w'$ for naming the output wires, so we may write
+$W_1 = [w_1,w_2,w_3,w_4]$ and $W_2=[w'_1,w'_2,w'_3,w'_4]$, noting that $w_i = w'_i$ for
+$i\in\{1,2,3,4\}$. A call iterated 5 times of $S$ is $(g,h,i,ncf,ctrls)$ plus the tuple
+$(f_{in},f_{out},c_b,io_b,5)$ where
 \begin{itemize}
   \item $f_{in} = \{c_1\mapsto w_1, c_2 \mapsto w_1, c_3 \mapsto w_4\}$,
   \item $f_{out} = \{c_1\mapsto w'_4, c_2 \mapsto w'_1, c_3 \mapsto w'_1\}$,
@@ -297,28 +252,22 @@ If we calculate the movement of the wires for this iterated call, we see
     O=(w_3,w_2) \xrightarrow{h} (w'_3(=w_3),w'_3(=w_3))
 \end{align}
 
-
-In this above example, the choice of $f_{in}$ and $f_{out}$
-worked correctly with $c_b$ such that the mappings were
-well defined. Consider however, if $f_{out}$ were defined
-as $\{c_1\mapsto w'_1, c_2 \mapsto w'_1, c_3 \mapsto w'_4\}$.
-We would then be expected to map / combine $w_1$ and $w_4$
+In this above example, the choice of $f_{in}$ and $f_{out}$ worked correctly with $c_b$ such that
+the mappings were well defined. Consider however, if $f_{out}$ were defined as $\{c_1\mapsto w'_1,
+c_2 \mapsto w'_1, c_3 \mapsto w'_4\}$. We would then be expected to map / combine $w_1$ and $w_4$
 into $w'_1$ and duplicate $w_1$ into both $w'_1$ and $w'_4$.
-
 
 % subsection iteration (end)
 
 \subsection{Iteration transformation of a subroutine} % (fold)
 \label{sub:iteration_transformation_of_a_subroutine}
 
-The data required to transform a subroutine is similar to that of an iterated
-subroutine call.
+The data required to transform a subroutine is similar to that of an iterated subroutine call.
 
 \begin{definition}\label{def:iteration_transform}
-  The \emph{iteration transform} of a subroutine is a function $S_i$ with
-  parameters $(n,c_p,io_b)$ which takes the subroutine $(gates,C,I,O,r,c,n)$
-  to the subroutine $(gates',C',I',O',r,c,n)$.
-  The parameters have the following types:
+  The \emph{iteration transform} of a subroutine is a function $\Sigma_i$ with parameters $(n,c_p,io_b)$
+  which takes the subroutine $S=(g,C,I,O,r,c,n)$ to $S'(g',C',I',O',r,c,n)$, an itere. The
+  parameters have the following types:
   \begin{align*}
     n&::\type{Int}, n>0;\\
     c_p&::\type{Perm_C}, \text{Permutations of the elements of }C\\
@@ -326,7 +275,7 @@ subroutine call.
   \end{align*}
 \end{definition}
 
-The function $S_i$ performs the following actions:
+The function $\Sigma_i$ performs the following actions:
 \begin{itemize}
   \item Type checking:
   \begin{itemize}
@@ -335,59 +284,52 @@ The function $S_i$ performs the following actions:
     \item Ensure $io_b$ is a bijection between the $O$ and $I$ wires.
   \end{itemize}
   \item Create $n$ copies of $gates$.
-  \item Connect the $O$ wires or copy $i-1$ to the $I$ wires of copy $i$,
-  using the bijection $io_b$.
-  \item Apply the permutation $c_p$ to the $C$ out wires of copy $i-1$
-  and connect to the input $C$ wires of copy $I$.
-  \item Apply the permutation $c_p^k$ to the $C$ out wires of copy $n$
-  where $c_p^{n-1+k} = Id$. Connect those wires to the $C'$ output.
+  \item Connect the $O$ wires or copy $i-1$ to the $I$ wires of copy $i$, using the bijection
+  $io_b$.
+  \item Apply the permutation $c_p$ to the $C$ out wires of copy $i-1$ and connect to the input $C$
+  wires of copy $I$.
+  \item Apply the permutation $c_p^k$ to the $C$ out wires of copy $n$ where $c_p^{n-1+k} = Id$.
+  Connect those wires to the $C'$ output.
   \item Connect the $C'$ input wires to the $C$ input wires of copy 1.
   \item Connect the $I'$ wires to the $I$ wires of copy 1.
   \item Connect the $O$ wires of copy $n$ to the $O'$ wires.
 \end{itemize}
 
-The intended effect of this transform may be seen in figure
-\ref{fig:transforming_a_subroutine_to_an_iterated_subroutine}
+The intended effect of this transform may be seen in
+\vref{fig:transforming_a_subroutine_to_an_iterated_subroutine}
 \begin{figure}[htbp]
-  \centering
-     \includegraphics[scale=.4]{diagrams/SubroutineIterationTransform.png}
-   \caption{Transforming a subroutine to an iterated subroutine}
-   \label{fig:transforming_a_subroutine_to_an_iterated_subroutine}
+ \centering
+      \includegraphics[scale=.4]{diagrams/SubroutineIterationTransform.png}
+  \caption{Transforming a subroutine to an iterated subroutine}
+  \label{fig:transforming_a_subroutine_to_an_iterated_subroutine}
 \end{figure}
 % subsection iteration_transformation_of_a_subroutine (end)
 
 \subsection{Folding subroutines} % (fold)
 \label{sub:folding_subroutines}
 
-In addition to the concept of iteration the ability to fold
-subroutines over data structures could also be useful. A
-folded call of a subroutine is similar to an iteration, in
-that controls and possibly some of the inputs
-and outputs are iterated. The difference occurs in that we
-expect to take some of the inputs from a data structure and
-return some of the outputs to a data structure. An example of
-this would be folding over a list of \qubit{s} where
-each qubit is taken as a input for each iteration.
+In addition to the concept of iteration the ability to fold subroutines over data structures could
+also be useful. A folded call of a subroutine is similar to an iteration, in that controls and
+possibly some of the inputs and outputs are iterated. The difference occurs in that we expect to
+take some of the inputs from a data structure and return some of the outputs to a data structure.
+An example of this would be folding over a list of \qubit{s} where each qubit is taken as a input
+for each iteration.
 
-First, we will examine the requirements for a non-linear
-safe fold, that is, where no input duplication on the
-control wires is allow
-
-
+First, we will examine the requirements for a non-linear safe fold, that is, where no input
+duplication on the control wires is allow
 
 \begin{definition}\label{def:linear_only_subroutine_fold}
-  Given a subroutine $S=([gate],C,I,O,c,r,n)$, a starting context of
-  typed wires $W_1$ and a data structure on wires $D\subset W_1$, a
-  \emph{linear-only folded call} of $S$ over $D$ resulting in the context
-  of typed wires $W_2$ and the data structure $E\subset W_2$ consists of the
-  tuple $(CI_f,CO_f,  g, h, ciof_b, s_{in}, s_{out})$ where
+  Given a subroutine $S=([gate],C,I,O,c,r,n)$, a starting context of typed wires $W_1$ and a data
+  structure on wires $D\subset W_1$, a \emph{linear-only folded call} of $S$ over $D$ resulting in
+  the context of typed wires $W_2$ and the data structure $E\subset W_2$ consists of the tuple
+  $(CI_f,CO_f, g, h, ciof_b, s_{in}, s_{out})$ where
   \begin{itemize}
     \item $CI_f::\type{Arity}, \dom{CI_f} \subset \dom{C}\cup \dom{I}$,
     \item $CO_f::\type{Arity}, \dom{CO_f} \subset \dom{C}\cup \dom{O}$,
     \item $g:\dom{C}\cup\dom I / \dom{CI_f} \to W_1$ and $g$ is injective,
-    \item $h:\dom{C}\cup\dom O /\dom{CO_f} \to W_2$ and $h$ is injective
-    \item $ciof_b$ is a bijection between $(\dom{C}\cup\dom{O})/\dom{CO_f}$
-      and $(\dom{C}\cup\dom{I})/\dom{CI_f}$,
+    \item $h:\dom{C}\cup\dom O /\dom{CO_f} \to W_2$ and $h$ is injective,
+    \item $ciof_b$ is a bijection between the sets $(\dom{C}\,\cup\,\dom{O})/\dom{CO_f}$
+      and $(\dom{C}\,\cup\,\dom{I})/\dom{CI_f}$,
     \item $s_{in}: \dom{CI_f} \to W_1$ (pulls from $D$),
     \item $s_{out}: \dom{CO_f} \to W_2$ (pushes to $E$),
     \item $g + s_{in} \in F(\nothing,I,W_1)$,
@@ -400,10 +342,9 @@ control wires is allow
 \end{definition}
 
 \begin{definition}\label{def:structured_linear_folded_call}
-  Given the data for an linear-only folded call,
-  a \emph{structured linear-only folded call} is a pair of high level
-  structures $(i_s,o_s)$ and $(i_{fs},o_{fs})$  and a pair of quantum
-  terms $(a,b)$ such that:
+  Given the data for an linear-only folded call, a \emph{structured linear-only folded call} is a
+  pair of high level structures $(i_s,o_s)$ and $(i_{fs},o_{fs})$ and a pair of quantum terms
+  $(a,b)$ such that:
   \begin{itemize}
     \item $i_s(a) = g + s_{in}$,
     \item $o_s(h + s_{out}) = b$,
@@ -415,56 +356,53 @@ control wires is allow
 
 Discussion points:
 \begin{itemize}
-  \item Does the structured call get rid of the last two items regarding
-  leafsize?  Same issue with non-linear safe call.
-  \item For the structured call, it appears to me that there is only
-  one pair of terms $a,b$ with two different (de)structuring morphisms.
+  \item Does the structured call get rid of the last two items regarding leafsize? Same issue with
+  non-linear safe call.
+  \item For the structured call, it appears to me that there is only one pair of terms $a,b$ with
+  two different (de)structuring morphisms.
 \end{itemize}
 
 The action on the wires of the calling program will be given by this relation:
 \[
-s_{out} + h \circ (s_{out} + cio_f + s_{in})^{len(D)}
-\circ (g + s_{in})^{-1}.
+  s_{out} + h \circ (s_{out} + cio_f + s_{in})^{len(D)} \circ (g + s_{in})^{-1}.
 \]
 \begin{example}[Fold over Carry]\label{ex:fold_over_carry}
+
+  For this example, we use the carry portion of the addition algorithm found in
+  \cite{Vedral:1995ga}.
+
+  The carry circuit is shown below:
+  \[
+    \Qcircuit @C=1em @R=.7em {
+      \lstick{anc} & \ctrl{2} & \qw & \qw & \rstick{anc} \qw \\
+      \lstick{a}  & \qw & \ctrl{1} & \ctrl{1} & \rstick{a} \qw \\
+      \lstick{b}  & \ctrl{1} & \targ & \ctrl{1} & \rstick{b} \qw \\
+      \lstick{c}  & \targ & \qw& \targ & \rstick{c} \qw
+    }
+  \]
+
+  The intent of this circuit is to compute the final carry when adding the quregisters $A$ and $B$.
+  The input prepares the $anc$ in state $\ket{0}$ and an auxiliary register $R$, the same size as
+  $A$ and $B$ as $\ket{00\ldots0}$. Assume that $A = [w_1,w_2,w_3], B=[w_4,w_5,w_6], anc=w_7$ and
+  $R=[w_8,w_9,w_{10}]$. $(A,B,R)$, a tuple of three registers forms our $D$ --- the input to the
+  fold. Then, we may perform a folded call of carry as follows:
+  \begin{itemize}
+    \item $\dom{C} = \{anc,a\},\ \dom{I} = \{b,c\} = \dom{O}$;
+    \item $\dom{CI_f} = \{a,b,c\}$ and $\dom{CO_f} = \{anc,a,b\}$;
+    \item $g = \{anc \mapsto w_{6}\}$, $h=\{c\mapsto w_{10}\}$
+    \item $ciof_b = \{c \mapsto anc \}$
+    \item $s_{in} = \{a \mapsto D[0], b \mapsto D[1], c \mapsto D[2]\}$
+    \item $s_{out} = \{anc \mapsto E[2], a \mapsto E[0], b \mapsto E[1]\}$.
+  \end{itemize}
+  From the mapping $s_{out}$, we set $E = (A,B,R')$ where $R'=[w_7,w_8,w_9]$.
 \end{example}
-
-For this example, we use the carry portion of the addition algorithm found
-in \cite{Vedral:1995ga}.
-
-The carry circuit is shown below:
-\[\Qcircuit @C=1em @R=.7em {
-\lstick{anc} & \ctrl{2} & \qw & \qw & \rstick{anc} \qw \\
-\lstick{a}  & \qw & \ctrl{1} & \ctrl{1} & \rstick{a} \qw \\
-\lstick{b}  & \ctrl{1} & \targ & \ctrl{1} & \rstick{b} \qw \\
-\lstick{c}  & \targ & \qw& \targ & \rstick{c} \qw
-}
-\]
-
-The intent of this circuit is to compute the final carry when
-adding the quregisters $A$ and $B$. The input prepares
-the $anc$ in state $\ket{0}$ and an auxiliary register $R$,
-the same size as $A$ and $B$ as $\ket{00\ldots0}$. Assume
-that $A = [w_1,w_2,w_3], B=[w_4,w_5,w_6], anc=w_7$ and
-$R=[w_8,w_9,w_{10}]$. $(A,B,R)$, a tuple of three registers
-forms our $D$ --- the input to the fold. Then,
-we may perform a folded call of carry as follows:
-\begin{itemize}
-  \item $\dom{C} = \{anc,a\},\ \dom{I} = \{b,c\} = \dom{O}$;
-  \item $\dom{CI_f} = \{a,b,c\}$ and $\dom{CO_f} = \{anc,a,b\}$;
-  \item $g = \{anc \mapsto w_{6}\}$, $h=\{c\mapsto w_{10}\}$
-  \item $ciof_b = \{c \mapsto anc \}$
-  \item $s_{in} = \{a \mapsto D[0], b \mapsto D[1], c \mapsto D[2]\}$
-  \item $s_{out} = \{anc \mapsto E[2], a \mapsto E[0], b \mapsto E[1]\}$.
-\end{itemize}
-From the mapping $s_{out}$, we set $E = (A,B,R')$ where $R'=[w_7,w_8,w_9]$.
 
 Discussion points:
 \begin{itemize}
   \item Is there a non-linear safe use case? Carry seemed quite simple,
     but it required linear safe inputs when folded.
   \item Each fold iteration input might be multiple \qubit{s},
-  combined into a single data structure, as in example
+    combined into a single data structure, as in 
     \vref{ex:fold_over_carry}.
   \item The number of inputs and outputs no longer need
     to agree as they did in iteration.  An example would be a subroutine that
@@ -476,15 +414,14 @@ Discussion points:
     at each leaf would need to be known.
   \item The $F(C,K,W)$ permissible functions are not quite right for
     linear-only folds --- we do not want to allow duplication of any of
-    the inputs, so $F(C,K,W)$ becomes $F(\nothing,C+K,W)$.
+    the inputs, so rather than $F(C,K,W)$ we must use $F(\nothing,C+K,W)$.
 \end{itemize}
 
 \begin{definition}\label{def:subroutine_fold}
-  Given a subroutine $S=([gate],C,I,O,c,r,n)$, a starting context of
-  typed wires $W_1$ and a data structure on wires $D\subset W_1$, a
-  \emph{folded call} of $S$ over $D$ resulting in the context of typed wires
-  $W_2$ and the data structure $E\subset W_2$ consists of the tuple
-  $(I_f,O_f, f_{in}, f_{out}, g, h, c_b, iof_b, s_{in}, s_{out} )$ where
+  Given a subroutine $S=([gate],C,I,O,c,r,n)$, a starting context of typed wires $W_1$ and a data
+  structure on wires $D\subset W_1$, a \emph{folded call} of $S$ over $D$ resulting in the context
+  of typed wires $W_2$ and the data structure $E\subset W_2$ consists of the tuple $(I_f,O_f,
+  f_{in}, f_{out}, g, h, c_b, iof_b, s_{in}, s_{out} )$ where
   \begin{itemize}
     \item $I_f::\type{Arity}, \dom{I_f} \subset \dom{I}$,
     \item $O_f::\type{Arity}, \dom{O_f} \subset \dom{O}$,
@@ -493,8 +430,7 @@ Discussion points:
     \item $g:\dom I / \dom{I_f} \to W_1$
     \item $h:\dom O /\dom{O_f} \to W_2$
     \item $c_b$ is a bijection (permutation) of $C$,
-    \item $iof_b$ is a bijection between $\dom{O}/\dom{O_f}$
-      and $\dom{I}/\dom{I_f}$,
+    \item $iof_b$ is a bijection between $\dom{O}/\dom{O_f}$ and $\dom{I}/\dom{I_f}$,
     \item $s_{in}: \dom{I_f} \to W_1$ (pulls from $D$)
     \item $s_{out}: \dom{O_f} \to W_2$ (pushes to $E$)
     \item $f_{in}+ g+ s_{in} \in F(C,I,W_1)$,
@@ -508,17 +444,14 @@ Discussion points:
 \end{definition}
 
 \begin{definition}\label{def:structured_folded_call}
-  Given the data for an folded call,
-  a \emph{structured folded call} is a pair of high level structures
-  $(i_s,o_s)$ and $(i_{fs},o_{fs})$  and a pair of quantum
-  terms $(a,b)$ such that:
+  Given the data for an folded call, a \emph{structured folded call} is a pair of high level
+  structures $(i_s,o_s)$ and $(i_{fs},o_{fs})$ and a pair of quantum terms $(a,b)$ such that:
   \begin{itemize}
     \item $i_s(a) = f_{in}+g + s_{in}$,
     \item $o_s(f_{out} + h + s_{out}) = b$,
     \item $i_{fs}(a) = s_{in}$, and
     \item $o_{fs}(s_{out}) = b$.
   \end{itemize}
-
 \end{definition}
 
 % subsection folding_subroutines (end)
@@ -528,22 +461,21 @@ Discussion points:
 
 In order to transform a given subroutine, we require the following data:
 \begin{itemize}
-  \item A bijection from some subset of the control and output wires to some
-  subset of the control and input wires;
+  \item A bijection from some subset of the control and output wires to some subset of the control
+    and input wires;
   \item a count of the number of iterations.
 \end{itemize}
 
-This allows us to derive a new $C,I,O$ for the fold subroutine. We proceed
-with the formal definition.
+This allows us to derive a new $C,I,O$ for the fold subroutine. We proceed with the formal
+definition.
 \begin{definition}\label{def:fold_transform_of_a_subroutine}
-  The \emph{fold transform} of a subroutine is a function $S_f$ with
-  parameters $(n,b_{cio})$ which takes the subroutine $(gates,C,I,O,r,c,n)$
-  to the subroutine $(gates',C',I',O',r,c,n)$.
-  The parameters have the following types:
+  The \emph{fold transform} of a subroutine is a function $S_f$ with parameters $(n,b_{cio})$ which
+  takes the subroutine $(g,C,I,O,r,c,n)$ to the subroutine $(g',C',I',O',r,c,n)$. The
+  parameters have the following types:
   \begin{align*}
     n&::\type{Int}, n>0;\\
     b_{cio}&::\type{bijection(CI \leftrightarrow CO)} \\
-      &\text{where }CI\subseteq C\cup I\text{ and }\subseteq C\cup O.
+    &\text{where }CI\subseteq C\cup I\text{ and }\subseteq C\cup O.
   \end{align*}
 \end{definition}
 
@@ -552,31 +484,28 @@ Note that $b_{cio}$ may be defined as a set of ordered pairs
   \{(f,t)|f\in C\cup I, t \in C\cup O,\text{ and } f,t \text{ appear at most once}\}.
   \label{eq:defintion_of_bcio}
 \end{equation}
-The data we need to create for the end result are the set of control wires,
-the input and output wires and the new gates sequence. We proceed with
-presenting the algorithm for the control wires.
+The data we need to create for the end result are the set of control wires, the input and output
+wires and the new gates sequence. We proceed with presenting the algorithm for the control wires.
 
-When considering which inputs (and hence outputs) are control wires in the
-transformed subroutine, we must follow the path of a control input. A control
-input to the base subroutine will remain a control input to the transformed
-subroutine only if its full folded path contains only control wires before
-exiting. Depending upon the structure of $b_{cio}$ it is possible all, none
-or some finite subset of specific control wires become controls for the
-transformed routine.
+When considering which inputs (and hence outputs) are control wires in the transformed subroutine,
+we must follow the path of a control input. A control input to the base subroutine will remain a
+control input to the transformed subroutine only if its full folded path contains only control
+wires before exiting. Depending upon the structure of $b_{cio}$ it is possible all, none or some
+finite subset of specific control wires become controls for the transformed routine.
 
-To determine if a wire is a control, we will calculate a characteristic of the
-wire and show that it requires at most $k$ iterations to calculate, where
-$k$ is the number of control wires of the original subroutine.
+To determine if a wire is a control, we will calculate a characteristic of the wire and show that
+it requires at most $k$ iterations to calculate, where $k$ is the number of control wires of the
+original subroutine.
 
 First, define:
 \begin{align*}
   \Omega &:: C \to C \cup \{*,@\}\\
   \Omega(c) &=
-    \begin{cases}
-      c'&\text{if }b_{cio}(c) = c'\text{ and }c'\in C,\\
-      *&\text{if $c$ is not the first element of any pair in }b_{cio},\\
-      @&\text{if }b_{cio}(c) = j\text{ and }j\in I.
-    \end{cases}
+  \begin{cases}
+    c'&\text{if }b_{cio}(c) = c'\text{ and }c'\in C,\\
+    *&\text{if $c$ is not the first element of any pair in }b_{cio},\\
+    @&\text{if }b_{cio}(c) = j\text{ and }j\in I.
+  \end{cases}
 \end{align*}
 Then, noting that $k = |C|$, define:
 \begin{align*}
@@ -592,8 +521,8 @@ Then, noting that $k = |C|$, define:
 
 Dually, we may define functions  $\Theta(c)$ and $\Delta(c)$:
 \begin{align*}
-\Theta &:: C \to C \cup \{*,@\}\\
-\Theta(c) &=
+  \Theta &:: C \to C \cup \{*,@\}\\
+  \Theta(c) &=
   \begin{cases}
     c'&\text{if }b_{cio}(c') = c\text{ and }c'\in C,\\
     *&\text{if $c$ is not the second element of any pair in }b_{cio},\\
@@ -609,34 +538,29 @@ Dually, we may define functions  $\Theta(c)$ and $\Delta(c)$:
   \end{cases}
 \end{align*}
 
-Note that in the case of cycles among control wires, the cycle \emph{must} be
-of size $k$ or less. As such, at most $k$ iterations of $\Gamma$ are required
-before confirming a value for $\Gamma(c)$. The same argument applies to
-computing $\Theta$.
+Note that in the case of cycles among control wires, the cycle \emph{must} be of size $k$ or less.
+As such, at most $k$ iterations of $\Gamma$ are required before confirming a value for $\Gamma(c)$.
+The same argument applies to computing $\Theta$.
 
-Assuming that $C$ is ordered, the data for $b_{cio}$ may be stored such that
-computing $b_{cio}(c)$ and therefore $\Omega(c)$ is of $\BigO{\log k}$.
-Therefore, $\Gamma$ is of complexity $\BigO{k\log k}$ and computing
-$\Gamma$ for all of $C$ will then be of $\BigO{k^2 \log k}$. Computing
-$\Delta$ will have the same complexity.
+Assuming that $C$ is ordered, the data for $b_{cio}$ may be stored such that computing $b_{cio}(c)$
+and therefore $\Omega(c)$ is of $\BigO{\log k}$. Therefore, $\Gamma$ is of complexity $\BigO{k\log
+k}$ and computing $\Gamma$ for all of $C$ will then be of $\BigO{k^2 \log k}$. Computing $\Delta$
+will have the same complexity.
 
-We may now describe the  algorithm for determining control wires, $C'$
-input wires, $I'$ and output wires, $O'$ of the transformed subroutine.
-In the algorithm, $n$ is the number of iterations, $k$ is the cardinality
-of $C$. Additionally, we compute a \emph{rank} of each $c$ in $C'$. The
+We may now describe the algorithm for determining control wires, $C'$ input wires, $I'$ and output
+wires, $O'$ of the transformed subroutine. In the algorithm, $n$ is the number of iterations, $k$
+is the cardinality of $C$. Additionally, we compute a \emph{rank} of each $c$ in $C'$. The
 \emph{rank} of $c$ is the number of iterations that $c$ will go through.
 \begin{enumerate}
   \item Add all members of $I$ to $I'$, subscripting with $1$.
-  \item For all $i\in I$ where $i \nin \rng b_{cio}$, add
-    $i_2,i_3,\ldots,i_n$ to $I'$.
+  \item For all $i\in I$ where $i \not\in \rng b_{cio}$, add $i_2,i_3,\ldots,i_n$ to $I'$.
   \item Add all members of $O$ to $O'$, subscripting with $n$.
-  \item For all $o\in O$ where $o \nin \dom b_{cio}$, add
-    $o_1,o_2,\ldots,o_{n-1}$ to $O'$.
+  \item For all $o\in O$ where $o \not\in \dom b_{cio}$, add $o_1,o_2,\ldots,o_{n-1}$ to $O'$.
   \item Partition $C$ into four subsets:
   \begin{align*}
-    C_*    &= \{c|c\nin \dom b_{cio}\text{ and }c\nin \rng b_{cio}\},\\
-    C_d    &= \{c|c\in \dom b_{cio}\text{ and }c\nin \rng b_{cio}\},\\
-    C_r    &= \{c|c\nin \dom b_{cio}\text{ and }c\in \rng b_{cio}\},\\
+    C_*    &= \{c|c\not\in \dom b_{cio}\text{ and }c\not\in \rng b_{cio}\},\\
+    C_d    &= \{c|c\in \dom b_{cio}\text{ and }c\not\in \rng b_{cio}\},\\
+    C_r    &= \{c|c\not\in \dom b_{cio}\text{ and }c\in \rng b_{cio}\},\\
     C_{dr} &= \{c|c\in \dom b_{cio}\text{ and }c\in \rng b_{cio}\}.
   \end{align*}
   \item For each $c\in C_*$, add $c_1,c_2,\ldots,c_n$ to $C'$. Set the
@@ -691,24 +615,23 @@ of $C$. Additionally, we compute a \emph{rank} of each $c$ in $C'$. The
 \label{sub:examples_of_folding}
 
 \begin{example}\label{exmpl:fold_example_with_three_mixed_in_out}
-  Consider $S=(\_,\{a,b\},\{c\},\{d\},\_,\_,\_)$ and $b_{cio}=\{(a,c),(b,a)\}$
-  and an iteration count of $3$. See figure
-  \ref{fig:Fold_with_extra_in_out}.
+  Consider $S=(\_,\{a,b\},\{c\},\{d\},\_,\_,\_)$ and $b_{cio}=\{(a,c),(b,a)\}$ and an iteration
+  count of $3$. See \vref{fig:Fold_with_extra_in_out}.
 \end{example}
 \begin{figure}[htbp]
   \centering
     \[
-\Qcircuit{
- & \dqw& \dqw &\dqw &\dqw &\dqw\ar@{.} [dddr]&\\
- & \dqw& \dqw\ar@{.}[ddr]\\
- & \multigate{3}{S_1}_{a_1} & \qw  \ar@{.}[dddr] &  & \multigate{3}{S_2}_{a_2}&\qw\ar@{.}[dddr]&  & \multigate{3}{S_3}_{a_3}&\qw\\
- & \ghost{S_1}_{b_1} & \qw \ar@{.}[ur]& &\ghost{S_2}_{b_2}&\qw\ar@{.}[ur]& &\ghost{S_3}_{b_3}&\qw\\
- &  & & & & & & & & & &\\
- & \ghost{S_1}_{c_1}& \qw_{d_1} \ar@{.}[ddr]& &\ghost{S_2}_{c_2}&\qw_{d_2}\ar@{.}[dr]& &\ghost{S_3}_{c_3}&\qw_{d_3}\\
- &            &                & &            &              & &\dqw&\dqw\\
- &            &                & & \dqw      &\dqw           &\dqw&\dqw&\dqw
-}
-\]
+      \Qcircuit{
+       & \dqw& \dqw &\dqw &\dqw &\dqw\ar@{.} [dddr]&\\
+       & \dqw& \dqw\ar@{.}[ddr]\\
+       & \multigate{3}{S_1}_{a_1} & \qw  \ar@{.}[dddr] &  & \multigate{3}{S_2}_{a_2}&\qw\ar@{.}[dddr]&  & \multigate{3}{S_3}_{a_3}&\qw\\
+       & \ghost{S_1}_{b_1} & \qw \ar@{.}[ur]& &\ghost{S_2}_{b_2}&\qw\ar@{.}[ur]& &\ghost{S_3}_{b_3}&\qw\\
+       &  & & & & & & & & & &\\
+       & \ghost{S_1}_{c_1}& \qw_{d_1} \ar@{.}[ddr]& &\ghost{S_2}_{c_2}&\qw_{d_2}\ar@{.}[dr]& &\ghost{S_3}_{c_3}&\qw_{d_3}\\
+       &            &                & &            &              & &\dqw&\dqw\\
+       &            &                & & \dqw      &\dqw           &\dqw&\dqw&\dqw
+      }
+    \]
   \caption{Fold with extra in/out}
   \label{fig:Fold_with_extra_in_out}
 \end{figure}
@@ -748,22 +671,22 @@ Hence our final result is:
 \end{align*}
 
 \begin{example}\label{exmpl:fold_example_with_partial_bcio}
-  Consider $S=(\_,\{a,b\},\{c\},\{d\},\_,\_,\_)$ as in Example
-  \ref{exmpl:fold_example_with_three_mixed_in_out} and
-  $b_{cio}=\{(a,c),(b,a),(d,b)\}$ and an iteration count of $3$. See figure
-  \ref{fig:Fold_with_three_iterations}.
+  Consider $S=(\_,\{a,b\},\{c\},\{d\},\_,\_,\_)$ as in 
+  \vref{exmpl:fold_example_with_three_mixed_in_out} and
+  $b_{cio}=\{(a,c),(b,a),(d,b)\}$ and an iteration count of $3$. See 
+  \vref{fig:Fold_with_three_iterations}.
 \end{example}
 \begin{figure}[htbp]
   \centering
-    \[
-\Qcircuit{
- & \multigate{3}{S_1}_{a_1} & \qw  \ar@{.}[dddr] &  & \multigate{3}{S_2}_{a_2}&\qw\ar@{.}[dddr]&  & \multigate{3}{S_3}_{a_3}&\qw\\
- & \ghost{S_1}_{b_1} & \qw \ar@{.}[ur]& &\ghost{S_2}_{b_2}&\qw\ar@{.}[ur]& &\ghost{S_3}_{b_3}&\qw\\
- &  & & & & & & & & & &\\
- & \ghost{S_1}_{c_1}& \qw_{d_1} \ar@{.}[uur]& &\ghost{S_2}_{c_2}&\qw_{d_2}\ar@{.}[uur]& &\ghost{S_3}_{c_3}&\qw_{d_3}\\
-}
-\]
-\caption{Fold with three iterations}
+  \[
+    \Qcircuit{
+     & \multigate{3}{S_1}_{a_1} & \qw  \ar@{.}[dddr] &  & \multigate{3}{S_2}_{a_2}&\qw\ar@{.}[dddr]&  & \multigate{3}{S_3}_{a_3}&\qw\\
+     & \ghost{S_1}_{b_1} & \qw \ar@{.}[ur]& &\ghost{S_2}_{b_2}&\qw\ar@{.}[ur]& &\ghost{S_3}_{b_3}&\qw\\
+     &  & & & & & & & & & &\\
+     & \ghost{S_1}_{c_1}& \qw_{d_1} \ar@{.}[uur]& &\ghost{S_2}_{c_2}&\qw_{d_2}\ar@{.}[uur]& &\ghost{S_3}_{c_3}&\qw_{d_3}\\
+    }
+  \]
+  \caption{Fold with three iterations}
   \label{fig:Fold_with_three_iterations}
 \end{figure}
 
@@ -797,28 +720,28 @@ Hence our final result is:
 
 \begin{example}\label{exmpl:fold_transform_example_of_carry}
   Consider $C=(\_,\{r,a\},\{b,c\},\{d,e\},\_,\_,\_)$,
-  $b_{cio}=\{(e,r)\}$ and an iteration count of $4$. See figure
-  \ref{fig:fold_carry_transformed}.
+  $b_{cio}=\{(e,r)\}$ and an iteration count of $4$. See 
+  \vref{fig:fold_carry_transformed}.
 \end{example}
 \begin{figure}[htbp]
   \centering
-    \[
-\xymatrix @R=7pt @*=<0em>{
- & \multigate{3}{C}_{r_1} & \qw& \qw & \qw & \qw & \qw & \qw & \qw\\
- & \ghost{C}_{a_1} & \qw       & \qw & \qw & \qw & \qw & \qw & \qw\\
- & \ghost{C}_{b_1} & \qw_{d_1} & \qw & \qw & \qw & \qw & \qw & \qw\\
- & \ghost{C}_{c_1} & \qw_{e_1} & \multigate{3}{C}_{r_2} & \qw & \qw & \qw & \qw  & \qw\\
- & \qw_{a_2}       & \qw       & \ghost{C} & \qw        & \qw & \qw & \qw & \qw\\
- & \qw_{b_2}       & \qw       & \ghost{C} & \qw_{d_2}  & \qw & \qw & \qw & \qw \\
- & \qw_{c_2}       & \qw       & \ghost{C} & \qw_{e_2}  & \multigate{3}{C}_{r_3} &\qw& \qw & \qw\\
- & \qw_{a_3}       & \qw       & \qw       & \qw        & \ghost{C} &\qw      & \qw & \qw \\
- & \qw_{b_3}       & \qw       & \qw       & \qw        & \ghost{C} &\qw_{d_3}& \qw & \qw\\
- & \qw_{c_3}       & \qw       & \qw       & \qw        & \ghost{C} &\qw_{e_3}& \multigate{3}{C}_{r_4} &\qw\\
- & \qw_{a_4}       & \qw       & \qw       & \qw        & \qw       & \qw     & \ghost{C} &\qw\\
- & \qw_{b_4}       & \qw       & \qw       & \qw        & \qw       & \qw     & \ghost{C} &\qw_{d_4}\\
- & \qw_{c_4}       & \qw       & \qw       & \qw        & \qw       & \qw     & \ghost{C} &\qw_{e_4}\\
-}
-\]
+  \[
+    \xymatrix @R=7pt @*=<0em>{
+     & \multigate{3}{C}_{r_1} & \qw& \qw & \qw & \qw & \qw & \qw & \qw\\
+     & \ghost{C}_{a_1} & \qw       & \qw & \qw & \qw & \qw & \qw & \qw\\
+     & \ghost{C}_{b_1} & \qw_{d_1} & \qw & \qw & \qw & \qw & \qw & \qw\\
+     & \ghost{C}_{c_1} & \qw_{e_1} & \multigate{3}{C}_{r_2} & \qw & \qw & \qw & \qw  & \qw\\
+     & \qw_{a_2}       & \qw       & \ghost{C} & \qw        & \qw & \qw & \qw & \qw\\
+     & \qw_{b_2}       & \qw       & \ghost{C} & \qw_{d_2}  & \qw & \qw & \qw & \qw \\
+     & \qw_{c_2}       & \qw       & \ghost{C} & \qw_{e_2}  & \multigate{3}{C}_{r_3} &\qw& \qw & \qw\\
+     & \qw_{a_3}       & \qw       & \qw       & \qw        & \ghost{C} &\qw      & \qw & \qw \\
+     & \qw_{b_3}       & \qw       & \qw       & \qw        & \ghost{C} &\qw_{d_3}& \qw & \qw\\
+     & \qw_{c_3}       & \qw       & \qw       & \qw        & \ghost{C} &\qw_{e_3}& \multigate{3}{C}_{r_4} &\qw\\
+     & \qw_{a_4}       & \qw       & \qw       & \qw        & \qw       & \qw     & \ghost{C} &\qw\\
+     & \qw_{b_4}       & \qw       & \qw       & \qw        & \qw       & \qw     & \ghost{C} &\qw_{d_4}\\
+     & \qw_{c_4}       & \qw       & \qw       & \qw        & \qw       & \qw     & \ghost{C} &\qw_{e_4}\\
+    }
+  \]
   \caption{Fold of Carry}
   \label{fig:fold_carry_transformed}
 \end{figure}
@@ -834,18 +757,16 @@ From the data, we have:
 Now, following the steps of the algorithm,
 \begin{enumerate}
   \item $I' \mapsto \{b_1,c_1\}$.
-  \item No element of $I$ appears in $b_{cio}$, therefore we now have
+  \item No element of $I$ is in $b_{cio}$, therefore we have
     $I' \mapsto \{b_1,c_1,b_2,c_2,b_3,c_3,b_4,c_4\}$
   \item $O' \mapsto \{d_4,e_4\}$.
   \item Only $e$ is in the range of $b_{cio}$, therefore we add
-  $d_1,d_2,d_3$ to  $O'$, giving us $\{d_1,d_2,d_3,d_4,e_4\}$.
+    $d_1,d_2,d_3$ to  $O'$, giving us $\{d_1,d_2,d_3,d_4,e_4\}$.
   \item $C_*=\{a\},C_d=\nothing, C_r = \{r\},\ C_{dr}=\nothing$.
-  \item Considering $C_*$, we add $\{a_1,a_2,a_3,a_4\}$ to $C'$, each with
-    rank 0.
+  \item Considering $C_*$, we add $\{a_1,a_2,a_3,a_4\}$ to $C'$, each with rank 0.
   \item Next considering $C_r$, as $\Delta(r)=0$, we add $r_1$ to $C'$ with
     rank 0 and then add $r_2,r_3,r_4$ to $O'$.
-  \item As each element of $C'$ is of rank 0, there is no changes
-    to the names.
+  \item As each element of $C'$ is of rank 0, there is no changes to the names.
 \end{enumerate}
 
 Hence our final result is:
@@ -861,15 +782,13 @@ Hence our final result is:
 % section diagram_of_folded_carry (end)
 \section{Alternate Algorithm for Fold Transformation} % (fold)
 \label{sec:alternate_algorithm_for_fold_transformation}
-In  this section, we present an alternate algorithm for calculating the
-type and names of control, input and output wires for a folded
-subroutine.  The starting point is Definition
-\ref{def:fold_transform_of_a_subroutine}
-and the ordered pairs of $b_{cio}$: A set of ordered pairs
-$\{(f,t)|f\in C\cup I, t \in C\cup O\}$.
+In this section, we present an alternate algorithm for calculating the type and names of control,
+input and output wires for a folded subroutine. The starting point is
+\vref{def:fold_transform_of_a_subroutine} and the ordered pairs of $b_{cio}$: A set of ordered
+pairs $\{(f,t)|f\in C\cup I, t \in C\cup O\}$.
 
-To implement the algorithm of calculating the folded subroutines $C,I$ and
-$O$, we need the following:
+To implement the algorithm of calculating the folded subroutines $C,I$ and $O$, we need the
+following:
 \begin{itemize}
   \item $I\cap O = \nothing$, which may be accomplished by renaming if needed.
   \item We create the sets $C_j,I_j,O_j$ for $j=1\ldots n$ where the members
@@ -877,9 +796,8 @@ $O$, we need the following:
     $X$ is one of $C,I,O$.
 \end{itemize}
 
-The algorithm proceeds by creating a set of ``type'' constraints for each of
-the elements of the new sets, based upon $b_{cio}$ and membership in a $C,I$
-or $O$ set.
+The algorithm proceeds by creating a set of ``type'' constraints for each of the elements of the
+new sets, based upon $b_{cio}$ and membership in a $C,I$ or $O$ set.
 
 The algorithm steps are:
 \begin{enumerate}
@@ -931,21 +849,20 @@ The algorithm steps are:
     where $X$ is any of $C,I,O$, the names of each entry will be the companion
     name with the ``type''.
 \end{enumerate}
-\note{The algorithm above works correctly, but likely has too high of a
-complexity, depending on the number of iterations. Need to revise in the
-next version to see if we can make the complexity proportional to the number
-of wires in/out.}
+% TODO Revise algorithm for folding
+%The algorithm above works correctly, but likely has too high of a complexity, depending on
+%the number of iterations. Need to revise in the next version to see if we can make the complexity
+%proportional to the number of wires in/out.}
+
 \subsection{Examples of folding with Alternate Algorithm} % (fold)
 \label{sub:examples_of_folding_with_alternate_algorithm}
 \begin{example}\label{exmpl:alternate_fold_example_with_three_mixed_in_out}
-  We repeat Example \ref{exmpl:fold_example_with_three_mixed_in_out}, that is,
+  We repeat \vref{exmpl:fold_example_with_three_mixed_in_out}, that is,
   $S=(\_,\{a,b\},\{c\},\{d\},\_,\_,\_)$ and $b_{cio}=\{(a,c),(b,a),(d,b)\}$
-  and an iteration count of $3$. See figure
-  \ref{fig:Fold_with_three_iterations}.
+  and an iteration count of $3$. See \vref{fig:Fold_with_three_iterations}.
 \end{example}
-There are two control wires $a,b$, an input wire $d$ and one output
-wire $d$. We  will do three iterations. Our set $\mathcal{C}$ of pairs
-becomes:
+There are two control wires $a,b$, an input wire $d$ and one output wire $d$. We will do three
+iterations. Our set $\mathcal{C}$ of pairs becomes:
 \begin{align*}
   \{ & (\nothing,a),\ (\nothing,b),\ (\nothing,c),\\
   & (b,a_1),\ (d,b_1),\ (a,c_1),\\

@@ -15,110 +15,96 @@ terms used throughout this thesis.
 The first definition needed is that of a \emph{vector space}.
 
 \begin{definition}[Vector Space]
-Given a field $F$, whose elements will be referred to as scalars,
- a \emph{vector space} over $F$ is a non-empty set $V$ with
-two operations, \emph{vector addition} and \emph{scalar multiplication}.
-\emph{Vector addition} is defined
-as ${+}:V\times V \to V$ and denoted as $\vc{v}+\vc{w}$
- where
-$\vc{v},\vc{w}\in V$. The set $V$ must be an abelian group under $+$.
-\emph{Scalar multiplication} is defined as ${}:F\times V \to V$ and denoted as
-$c\vc{v}$ where $c\in F, \vc{v} \in V$. Scalar multiplication
-distributes over both vector addition and scalar addition and is
- associative. $F$'s multiplicative identity is
-an identity for scalar multiplication.
+  Given a field $F$, whose elements will be referred to as scalars, a \emph{vector space} over $F$
+  is a non-empty set $V$ with two operations, \emph{vector addition} and \emph{scalar
+  multiplication}. \emph{Vector addition} is defined as ${+}:V\times V \to V$ and denoted as
+  $\vc{v}+\vc{w}$ where $\vc{v},\vc{w}\in V$. The set $V$ must be an abelian group under $+$.
+  \emph{Scalar multiplication} is defined as ${}:F\times V \to V$ and denoted as $c\vc{v}$ where
+  $c\in F, \vc{v} \in V$. Scalar multiplication distributes over both vector addition and scalar
+  addition and is associative. $F$'s multiplicative identity is an identity for scalar
+  multiplication.
+
 \end{definition}
 The specific algebraic requirements are:
 \begin{enumerate}
-\item{}$\forall \vc{u},\vc{v},\vc{w} \in V,\ (\vc{u} +\vc{v}) +\vc{w} =
- \vc{u}+ (\vc{v}+\vc{w})$;
-\item{}$\forall \vc{u},\vc{v} \in V,\ \vc{u} +\vc{v} =
- \vc{v}+ \vc{u}$;
-\item{}$\exists  \vc{0} \in V \mathrm{\ such\ that\ } \forall \vc{v} \in V,
- \vc{0} +\vc{v} =  \vc{v}$;
-\item{}$\forall \vc{u} \in V, \exists \vc{v} \in V \mathrm{\ such\ that\ }
- \vc{u}+ \vc{v} = \vc{0}$;
-\item{}$\forall \vc{u},\vc{v} \in V, c\in F,\
- c(\vc{u}+ \vc{v}) = c\vc{u} + c\vc{v}$;
-\item{}$\forall \vc{u} \in V, c,d\in F,\
- (c+d)\vc{u} = c\vc{u} + d\vc{u}$;
-\item{}$\forall \vc{u} \in V, c,d\in F,\
- (c d)\vc{u} = c(d\vc{u})$;
-\item{}$\forall \vc{u} \in V,\
- 1\vc{u} = \vc{u}$.
+  \item{}$\forall \vc{u},\vc{v},\vc{w} \in V,\ (\vc{u} +\vc{v}) +\vc{w} =
+    \vc{u}+ (\vc{v}+\vc{w})$;
+  \item{}$\forall \vc{u},\vc{v} \in V,\ \vc{u} +\vc{v} =
+    \vc{v}+ \vc{u}$;
+  \item{}$\exists  \vc{0} \in V \mathrm{\ such\ that\ } \forall \vc{v} \in V,
+    \vc{0} +\vc{v} =  \vc{v}$;
+  \item{}$\forall \vc{u} \in V, \exists \vc{v} \in V \mathrm{\ such\ that\ }
+    \vc{u}+ \vc{v} = \vc{0}$;
+  \item{}$\forall \vc{u},\vc{v} \in V, c\in F,\
+    c(\vc{u}+ \vc{v}) = c\vc{u} + c\vc{v}$;
+  \item{}$\forall \vc{u} \in V, c,d\in F,\
+    (c+d)\vc{u} = c\vc{u} + d\vc{u}$;
+  \item{}$\forall \vc{u} \in V, c,d\in F,\
+    (c d)\vc{u} = c(d\vc{u})$;
+  \item{}$\forall \vc{u} \in V,\
+    1\vc{u} = \vc{u}$.
 \end{enumerate}
 
-Examples of vector spaces over $F$ are: $F^{n\times m}$ -- the set
-of $n\times m$ matrices over $F$; and $F^n$ --  the $n{-}$fold
-Cartesian product of $F$.
-$F^{n\times 1}$, the set of $n\times 1$ matrices
-over $F$ is also called the space of column vectors, while
-$F^{1\times n}$, the set of
-row vectors.   Often,
-$F^n$ is identified with $F^{n\times 1}$.
+Examples of vector spaces over $F$ are: $F^{n\times m}$ -- the set of $n\times m$ matrices over
+$F$; and $F^n$ -- the $n{-}$fold Cartesian product of $F$. $F^{n\times 1}$, the set of $n\times 1$
+matrices over $F$ is also called the space of column vectors, while $F^{1\times n}$, the set of row
+vectors. Often, $F^n$ is identified with $F^{n\times 1}$.
+
 
 This thesis  shall identify $F^n$ with the column vector space over $F$.
 
 \begin{definition}[Linearly independent]
-A subset of vectors $\{\vc{v}_i\}$ of the vector space $V$ is said to be
-\emph{linearly independent} when no finite linear combination of them,
-$\sum a_j\vc{v}_j$ equals \vc{0} unless all the $a_j$ are zero.
+  A subset of vectors $\{\vc{v}_i\}$ of the vector space $V$ is said to be \emph{linearly
+  independent} when no finite linear combination of them, $\sum a_j\vc{v}_j$ equals \vc{0} unless
+  all the $a_j$ are zero.
+
 \end{definition}
 
 \begin{definition}[Basis]
-A \emph{basis} of a vector space $V$ is a linearly independent subset of
-$V$ that generates $V$. That is, any vector $u \in V$ is a linear combination
-of the basis vectors.
+  A \emph{basis} of a vector space $V$ is a linearly independent subset of $V$ that generates $V$.
+  That is, any vector $u \in V$ is a linear combination of the basis vectors.
 \end{definition}
 % subsection basic_definitions (end)
 \subsection{Matrices} % (fold)
 \label{sub:matrices}
 
 
-As mentioned above, the set of
- $n\times m$ matrices over a field is a vector space.
-Additionally, matrices compose and the tensor product of matrices is defined.
+As mentioned above, the set of $n\times m$ matrices over a field is a vector space. Additionally,
+matrices compose and the tensor product of matrices is defined.
 
-Matrix composition is defined as usual.
-That is,
-for $A = [a_{ij}] \in F^{m\times n}, B = [b_{jk}]\in F^{n \times p}$:
-\[A \, B = \left[\left(\sum_{j}a_{ij}b_{jk}\right)_{ik}\right]
-\in F^{m \times p}.\]
+Matrix composition is defined as usual. That is, for $A = [a_{ij}] \in F^{m\times n}, B =
+[b_{jk}]\in F^{n \times p}$: 
+  \[
+    A \, B = \left[\left(\sum_{j}a_{ij}b_{jk}\right)_{ik}\right] \in F^{m \times p}.
+  \]
+
 
 
 \begin{definition}[Diagonal matrix]
-A \emph{diagonal matrix} is a matrix where the only non-zero
-entries are those where the column index equals the row index.
+  A \emph{diagonal matrix} is a matrix where the only non-zero entries are those where the column
+  index equals the row index.
 \end{definition}
 
-The diagonal matrix  $n\times n$ with only $1$'s on the diagonal
-is the identity for matrix
+The diagonal matrix $n\times n$ with only $1$'s on the diagonal is the identity for matrix
 multiplication, and is designated by $I_n$.
 
 \begin{definition}[Transpose]
-The \emph{transpose} of an $n\times m$ matrix $A=[a_{ij}]$ is
-an $m\times n$ matrix $A^{t}$ with the $i,j$ entry being $a_{ji}$.
+  The \emph{transpose} of an $n\times m$ matrix $A=[a_{ij}]$ is an $m\times n$ matrix $A^{t}$ with
+  the $i,j$ entry being $a_{ji}$.
 \end{definition}
 
-When the base field of a matrix is \complex, the complex numbers,
-the \emph{conjugate transpose} (also called the \emph{adjoint})
-of  an $n\times m$ matrix $A=[a_{ij}]$ is defined
-as the $m\times n$ matrix
-$A^{*}$ with
-the $i,j$ entry being $\overline{a}_{ji}$,
-where  $\overline{a}$ is the complex conjugate of $a\in\complex$.
+When the base field of a matrix is \complex, the complex numbers, the \emph{conjugate transpose}
+(also called the \emph{adjoint}) of an $n\times m$ matrix $A=[a_{ij}]$ is defined as the $m\times
+n$ matrix $A^{*}$ with the $i,j$ entry being $\overline{a}_{ji}$, where $\overline{a}$ is the
+complex conjugate of $a\in\complex$.
 
-When working with column vectors over \complex, note that
-$\vc{u} \in \complex^n \implies \vc{u}^{*} \in
-\complex^{1\times n}$ and that
- $\vc{u}^{*}\times \vc{u} \in \complex^{1\times 1}$.
-This thesis will use the usual identification of
-\complex{} with $\complex^{1\times1}$. A column
-vector \vc{u} is called a \emph{unit vector}
-when $\vc{u}^{*}\times \vc{u} = 1$.
+When working with column vectors over \complex, note that $\vc{u} \in \complex^n \implies
+\vc{u}^{*} \in \complex^{1\times n}$ and that $\vc{u}^{*}\times \vc{u} \in \complex^{1\times 1}$.
+This thesis will use the usual identification of \complex{} with $\complex^{1\times1}$. A column
+vector \vc{u} is called a \emph{unit vector} when $\vc{u}^{*}\times \vc{u} = 1$.
 
 \begin{definition}[Trace]
-The \emph{trace}, $Tr(A)$ of a square matrix $A=[a_{ij}]$ is $\sum a_{ii}$.
+  The \emph{trace}, $Tr(A)$ of a square matrix $A=[a_{ij}]$ is $\sum a_{ii}$.
 \end{definition}
 
 \subsubsection{Tensor Product} % (fold)
@@ -126,48 +112,49 @@ The \emph{trace}, $Tr(A)$ of a square matrix $A=[a_{ij}]$ is $\sum a_{ii}$.
 
 
 The tensor product of two matrices is the usual Kronecker product:
-\[U\otimes V =
-\begin{bmatrix}
-u_{11}V&u_{12}V & \cdots &u_{1m}V\\
-u_{21}V&u_{22}V & \cdots &u_{2m}V \\
-\vdots&\vdots&\ddots\\
-u_{n1}V&u_{n2}V & \cdots &u_{nm}V
-\end{bmatrix}
-=
-\begin{bmatrix}
-u_{11}v_{11}&\cdots&u_{12}v_{11} & \cdots& u_{1m}v_{1q} \\
-u_{11}v_{21}&\cdots&u_{12}v_{21} & \cdots& u_{1m}v_{2q} \\
-\vdots&\vdots&\vdots&\ddots \\
-u_{n1}v_{p1}&\cdots&u_{n2}v_{p1} & \cdots& u_{nm}v_{pq} \\
-\end{bmatrix}
-\]
+  \[
+    U\otimes V =
+    \begin{bmatrix}
+      u_{11}V&u_{12}V & \cdots &u_{1m}V\\
+      u_{21}V&u_{22}V & \cdots &u_{2m}V \\
+      \vdots&\vdots&\ddots\\
+      u_{n1}V&u_{n2}V & \cdots &u_{nm}V
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      u_{11}v_{11}&\cdots&u_{12}v_{11} & \cdots& u_{1m}v_{1q} \\
+      u_{11}v_{21}&\cdots&u_{12}v_{21} & \cdots& u_{1m}v_{2q} \\
+      \vdots&\vdots&\vdots&\ddots \\
+      u_{n1}v_{p1}&\cdots&u_{n2}v_{p1} & \cdots& u_{nm}v_{pq} \\
+    \end{bmatrix}
+  \]
 % subsubsection tensor_product (end)
 
 \subsubsection{Special matrices} % (fold)
 \label{ssub:special_matrices}
 
-When working with quantum values certain types of matrices over the
-complex numbers are of special interest.
-These are:
+When working with quantum values certain types of matrices over the complex numbers are of special
+interest. These are:
 \begin{description}
-\item[Unitary Matrix]: Any $n \times n$
-matrix $A$ with $A A^{*} = I\ (= A^{*} A)$.
-\item[Hermitian Matrix]: Any  $n \times n$ matrix $A$ with $A=A^{*}$.
-\item[Positive Matrix]: Any Hermitian matrix $A$ in
-$\complex^{n\times n}$
-where $\vc{u}^{*} A \vc{u} \ge 0$ for all vectors
-$\vc{u}\in \complex^n$. Note
-that for any Hermitian matrix $A$ and vector $u$,
-$\vc{u}^{*} A \vc{u}$ is real.
-\item[Completely Positive Matrix]: Any positive matrix $A$ in
-$\complex^{n\times n}$
-where $I_m \otimes A$ is positive.
+  \item[Unitary Matrix]: Any $n \times n$  matrix $A$ with $A A^{*} = I\ (= A^{*} A)$.
+  \item[Hermitian Matrix]: Any  $n \times n$ matrix $A$ with $A=A^{*}$.
+  \item[Positive Matrix]: Any Hermitian matrix $A$ in  $\complex^{n\times n}$
+    where $\vc{u}^{*} A \vc{u} \ge 0$ for all vectors  $\vc{u}\in \complex^n$. Note
+    that for any Hermitian matrix $A$ and vector $u$,  $\vc{u}^{*} A \vc{u}$ is real.
+  \item[Completely Positive Matrix]: Any positive matrix $A$ in  $\complex^{n\times n}$
+    where $I_m \otimes A$ is positive.
 \end{description}
 The matrix
-\[{\begin{singlespace}\begin{bmatrix}0&-i\\
-i&0\end{bmatrix}\end{singlespace}}\]
-is an example of a matrix that is \emph{unitary}, \emph{Hermitian},
-\emph{positive} and \emph{completely positive}.
+  \[
+    {\begin{singlespace}
+      \begin{bmatrix}
+        0&-i\\
+        i&0
+      \end{bmatrix}
+    \end{singlespace}}
+  \]
+is an example of a matrix that is \emph{unitary}, \emph{Hermitian}, \emph{positive} and
+\emph{completely positive}.
 
 
 % subsubsection special_matrices (end)
@@ -175,19 +162,15 @@ is an example of a matrix that is \emph{unitary}, \emph{Hermitian},
 \subsubsection{Superoperators} % (fold)
 \label{ssub:superoperators}
 
-
-A \emph{Superoperator} $S$ is a matrix over \complex{}
-with the following restrictions:
+A \emph{Superoperator} $S$ is a matrix over \complex{} with the following restrictions:
 \begin{enumerate}
-\item{} $S$ is \emph{completely positive}. This implies that
-$S$ is positive as well.
-\item{} For all positive matrices $A$, $Tr(S\,A) \leq Tr(A)$.
+  \item{} $S$ is \emph{completely positive}. This implies that $S$ is positive as well.
+  \item{} For all positive matrices $A$, $Tr(S\,A) \leq Tr(A)$.
 \end{enumerate}
 % subsubsection superoperators (end)
 % subsection matrices (end)
 
 % section linear_algebra (end)
-
 
 
 \section{Basic quantum computation} % (fold)
@@ -196,244 +179,191 @@ $S$ is positive as well.
 \subsection{Quantum bits} % (fold)
 \label{sub:quantum_bits}
 
-Quantum computation deals with operations on \qubit{}s. A \qubit{} is typically
-represented in the literature on quantum computation as a complex
-linear combination of \ket{0} and \ket{1}, respectively
-identified with (1,0) and (0,1) in $\C^2$. Because of the
-identification of the basis vectors, any \qubit{} can be identified
-with a non-zero vector in $\C^2$.
-In standard quantum computation, the important piece of
- information in a \qubit{} is its direction rather than
+Quantum computation deals with operations on \qubit{}s. A \qubit{} is typically represented in the
+literature on quantum computation as a complex linear combination of \ket{0} and \ket{1},
+respectively identified with (1,0) and (0,1) in $\C^2$. Because of the identification of the basis
+vectors, any \qubit{} can be identified with a non-zero vector in $\C^2$. In standard quantum
+computation, the important piece of information in a \qubit{} is its direction rather than
 amplitude. In other words, given $q=\alpha\ket{0}+\beta\ket{1}$ and
-$q'=\alpha'\ket{0}+\beta'\ket{1}$
-where $\alpha = \gamma\alpha'$ and
-$\beta = \gamma\beta'$, then $q$ and $q'$ represent the same
-quantum state.
+$q'=\alpha'\ket{0}+\beta'\ket{1}$ where $\alpha = \gamma\alpha'$ and $\beta = \gamma\beta'$, then
+$q$ and $q'$ represent the same quantum state.
 
+A \qubit{} that has either $\alpha$ or $\beta$ zero is said to be in a \emph{classical state}. Any
+other combination of values is said to be a \emph{superposition}.
 
-
-A \qubit{} that has either $\alpha$ or $\beta$ zero is said to be in
-a \emph{classical state}. Any other combination of values is said to be a
-\emph{superposition}.
-
-\Vref{sec:quantum_circuits} will introduce quantum circuits
-which act on \qubits{}. This section will have some forward
-references to circuits to illustrate points introduced here.
+\Vref{sec:quantum_circuits} will introduce quantum circuits which act on \qubits{}. This section
+will have some forward references to circuits to illustrate points introduced here.
 
 % subsection quantum_bits (end)
 
 \subsection{Quantum entanglement} % (fold)
 \label{sub:quantum_entanglement}
 
-Consider what happens when working with a pair of \qubit{}s, $p$ and $q$.
-This can be considered as the a vector in $\C^4$ and written as
+Consider what happens when working with a pair of \qubit{}s, $p$ and $q$. This can be considered as
+the a vector in $\C^4$ and written as
 \begin{equation}
-\alpha_{00}\ket{00}+\alpha_{01}\ket{01}+\alpha_{10}\ket{10}+
-\alpha_{11}\ket{11}.\label{eq:appTwoqubits}
+  \alpha_{00}\ket{00}+\alpha_{01}\ket{01}+\alpha_{10}\ket{10}+
+  \alpha_{11}\ket{11}.\label{eq:appTwoqubits}
 \end{equation}
-In the case where $p$ and $q$
-are two independent \qubit{}s, with $p=\alpha\ket{0}+\beta\ket{1}$
+In the case where $p$ and $q$ are two independent \qubit{}s, with $p=\alpha\ket{0}+\beta\ket{1}$
 and $q=\gamma\ket{0}+\delta\ket{1}$,
 \begin{equation}
-p \otimes q = \alpha\gamma\ket{00}+\alpha\delta\ket{01}+\beta\gamma\ket{10}+
-\beta\delta\ket{11}
+  p \otimes q = \alpha\gamma\ket{00}+\alpha\delta\ket{01}+\beta\gamma\ket{10}+\beta\delta\ket{11}
 \end{equation}
-where $p \otimes q$  is the standard tensor product of
-$p$ and $q$ regarded as vectors. There are states of two \qubits{}
-that cannot be written as a tensor product. As an example, the state
+where $p \otimes q$ is the standard tensor product of $p$ and $q$ regarded as vectors. There are
+states of two \qubits{} that cannot be written as a tensor product. As an example, the state
 \begin{equation}
-\frac{1}{\sqrt{2}}\ket{00} +
-\frac{1}{\sqrt{2}}\ket{11}\label{eq:appEntangledqubits}
+  \frac{1}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{11}\label{eq:appEntangledqubits}
 \end{equation}
-is not  a tensor product of two distinct \qubit{}s.
-In this case the two \qubit{}s are said to be \emph{entangled}.
+is not a tensor product of two distinct \qubit{}s. In this case the two \qubit{}s are said to be
+\emph{entangled}.
 
 % subsection quantum_entanglement (end)
 
 \subsection{Quantum gates} % (fold)
 \label{sub:quantum_gates}
 
-\emph{Quantum gates} operate on \qubit{}s. These
-gates are conceptually similar to logic gates in the classical world.
- In the
-classical world the only non-trivial single
-\bit{} gate is the Not gate which
-sends $0$ to $1$ and $1$ to $0$. However, there are
-infinitely many non-trivial quantum
-gates.
+\emph{Quantum gates} operate on \qubit{}s. These gates are conceptually similar to logic gates in
+the classical world. In the classical world the only non-trivial single \bit{} gate is the Not gate
+which sends $0$ to $1$ and $1$ to $0$. However, there are infinitely many non-trivial quantum gates.
 
-An $n{-}\qubit{}$ quantum gate is represented by
-a $2^n \times 2^n$ matrix. A
-necessary and sufficient condition for such a matrix to be
-a quantum gate is that it is \emph{unitary}.
+An $n{-}\qubit{}$ quantum gate is represented by a $2^n \times 2^n$ matrix. A necessary and
+sufficient condition for such a matrix to be a quantum gate is that it is \emph{unitary}.
 
-The entanglement of two \qubits{}, $p$ and $q$, is accomplished by applying a
-\Had{} transformation to $p$ followed by
-a \nottr{} applied to $q$ controlled by $p$.
-The circuit in
-\vref{qc:appEntangle} shows how to entangle two \qubit{}s that start with
-an initial state of $\ket{00}$. See %todo {reference for lqpl teleportation}
-%\vref{fig:stackTeleportation}
-for how this can be done in \lqpl.
+The entanglement of two \qubits{}, $p$ and $q$, is accomplished by applying a \Had{} transformation
+to $p$ followed by a \nottr{} applied to $q$ controlled by $p$. The circuit in
+\vref{qc:appEntangle} shows how to entangle two \qubit{}s that start with an initial state of
+$\ket{00}$. See %todo {reference for lqpl teleportation} %\vref{fig:stackTeleportation} for how
+this can be done in \lqpl.
 
-A list of some common gates, together with their usual
-quantum circuit representation is given in the next section in
- \vref{tab:qgatesAndRep}.
-
-
+A list of some common gates, together with their usual quantum circuit representation is given in
+the next section in \vref{tab:qgatesAndRep}.
 % subsection quantum_gates (end)
 
 \subsection{Measurement} % (fold)
 \label{sub:measuerment}
 
+The other allowed operation on a \qubit{} or group of \qubit{}s is measurement. When a \qubit{} is
+measured it assumes only one of two possible values, either \ket{0} or \ket{1}. Given
+\begin{equation} q=\alpha\ket{0}+\beta\ket{1}\label{eq:appSinglequbit} \end{equation} where
+$|\alpha|^2+|\beta|^2 = 1$, then measuring $q$ will result in \ket{0} with probability $|\alpha|^2$
+and \ket{1} with probability $|\beta|^2$. Once a \qubit{} is measured, re-measuring will always
+produce the same value.
 
-The  other allowed
-operation on a \qubit{} or group of \qubit{}s is
-measurement. When a  \qubit{} is measured it
-assumes only one of two possible values, either \ket{0} or \ket{1}. Given
+In multi-\qubit{} systems the order of measurement does not matter. If $p$ and $q$ are as in
+\vref{eq:appTwoqubits}, let us suppose measuring $p$ gives \ket{0}. The measure will result in that
+value with probability $|\alpha_{00}|^2 + |\alpha_{01}|^2$, after which the system collapses to the
+state:
 \begin{equation}
-q=\alpha\ket{0}+\beta\ket{1}\label{eq:appSinglequbit}
-\end{equation}
-where $|\alpha|^2+|\beta|^2 = 1$, then measuring $q$ will result in
-\ket{0} with probability $|\alpha|^2$ and \ket{1} with
-probability $|\beta|^2$.
-Once a \qubit{} is measured, re-measuring will always produce the same
-value.
-
-In multi-\qubit{} systems the order of measurement does not matter.
-If $p$ and $q$ are as in \vref{eq:appTwoqubits}, let us suppose measuring $p$
-gives  \ket{0}. The measure will result in  that value with probability
-$|\alpha_{00}|^2 + |\alpha_{01}|^2$, after which the system
-collapses to the state:
-\begin{equation}
-\alpha_{00}\ket{00} + \alpha_{01}\ket{01}\label{eq:appCollapsedFirstBit}
+  \alpha_{00}\ket{00} + \alpha_{01}\ket{01}\label{eq:appCollapsedFirstBit}
 \end{equation}
 
-Measuring the second \qubit{}, $q$, will give \ket{0} with
-probability $|\alpha_{00}|^2$ or \ket{1}
+Measuring the second \qubit{}, $q$, will give \ket{0} with probability $|\alpha_{00}|^2$ or \ket{1}
 with probability $|\alpha_{01}|^2$.
 
-Conversely, if  $q$ was measured first and gave us \ket{0}
-(with a probability of $|\alpha_{00}|^2 + |\alpha_{10}|^2$)
-and then $p$ was measured, $p$ will give us \ket{0} with probability
+Conversely, if $q$ was measured first and gave us \ket{0} (with a probability of $|\alpha_{00}|^2 +
+|\alpha_{10}|^2$) and then $p$ was measured, $p$ will give us \ket{0} with probability
 $|\alpha_{00}|^2$ or \ket{1} with probability $|\alpha_{10}|^2$.
 
-Thus, when measuring both $p$ and $q$, the probability of getting \ket{0}
-from both measures is $|\alpha_{00}|^2$, regardless of which \qubit{}
-is measured first.
+Thus, when measuring both $p$ and $q$, the probability of getting \ket{0} from both measures is
+$|\alpha_{00}|^2$, regardless of which \qubit{} is measured first.
 
-Considering states such as in \ref{eq:appEntangledqubits},
-measuring either \qubit{} would actually force the other \qubit{} to the
-same value. This type of entanglement is used in
-many quantum algorithms such as
-quantum teleportation.
-
+Considering states such as in \vref{eq:appEntangledqubits}, measuring either \qubit{} would actually
+force the other \qubit{} to the same value. This type of entanglement is used in many quantum
+algorithms such as quantum teleportation.
 % subsection measurement (end)
 
 \subsection{Mixed states} % (fold)
 \label{sub:mixed_states}
 
-
-The notion of \emph{mixed states} refers to an outside observer's knowledge of
-the state of a quantum system. Consider a $1$ \qubit{} system
+The notion of \emph{mixed states} refers to an outside observer's knowledge of the state of a
+quantum system. Consider a $1$ \qubit{} system
 \begin{equation}
-\nu = \alpha\ket{0} + \beta\ket{1}.\label{eq:appOnequbitSystem}
+  \nu = \alpha\ket{0} + \beta\ket{1}.\label{eq:appOnequbitSystem}
 \end{equation}
 
-If $\nu$ is measured but the results of the measurement are not examined,
- the state of the system is either \ket{0} or
-\ket{1} and is no longer in a superposition. This type of state
-is written as:
+If $\nu$ is measured but the results of the measurement are not examined, the state of the system
+is either \ket{0} or \ket{1} and is no longer in a superposition. This type of state is written as:
 \begin{equation}
-\nu = |\alpha|^2\{\ket{0}\} + |\beta|^2\{\ket{1}\}.\label{eq:appMixedState}
+  \nu = |\alpha|^2\{\ket{0}\} + |\beta|^2\{\ket{1}\}.\label{eq:appMixedState}
 \end{equation}
 
-An external (to the state) observer knows that the state
-of $\nu$ is as expressed in
-\vref{eq:appMixedState}. Since the results of the measurement
-were not examined, the exact state ($0$ or $1$) is unknown.
-Instead, a probability is assigned  as expressed in the equation.
-Thus, if the \qubit{} $\nu$ is measured and the results are not
-examined, $\nu$ can be treated as a probabilistic \bit{} rather
-than a  \qubit.
+An external (to the state) observer knows that the state of $\nu$ is as expressed in
+\vref{eq:appMixedState}. Since the results of the measurement were not examined, the exact state
+($0$ or $1$) is unknown. Instead, a probability is assigned as expressed in the equation. Thus, if
+the \qubit{} $\nu$ is measured and the results are not examined, $\nu$ can be treated as a
+probabilistic \bit{} rather than a \qubit.
 
 % subsection mixed_states (end)
 
 \subsection{Density matrix notation} % (fold)
 \label{sub:density_matrix_notation}
 
-The state of any quantum system of \qubit{}s may be
-represented via a \emph{density matrix}. In this
-notation, given a \qubit{} $\nu$,  the coefficients
-of \ket{0} and \ket{1} form a column vector $u$. Then the
-density matrix corresponding to $\nu$ is $uu^{*}$. If
- $\nu=\alpha\ket{0} + \beta\ket{1}$,
+The state of any quantum system of \qubit{}s may be represented via a \emph{density matrix}. In
+this notation, given a \qubit{} $\nu$, the coefficients of \ket{0} and \ket{1} form a column vector
+$u$. Then the density matrix corresponding to $\nu$ is $uu^{*}$. If $\nu=\alpha\ket{0} +
+\beta\ket{1}$,
 \begin{equation}
-\begin{singlespace}
-\nu = \begin{pmatrix}
-\alpha \\
-\beta
-\end{pmatrix}
-\begin{pmatrix}
-\overline{\alpha} & \overline{\beta}
-\end{pmatrix}
-=
-\begin{pmatrix}
-\alpha\overline{\alpha} & \alpha\overline{\beta}\\
-\beta\overline{\alpha} & \beta\overline{\beta}
-\end{pmatrix}.
-\end{singlespace}
+  \begin{singlespace}
+    \nu = 
+    \begin{pmatrix}
+      \alpha \\
+      \beta
+    \end{pmatrix}
+    \begin{pmatrix}
+      \overline{\alpha} & \overline{\beta}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      \alpha\overline{\alpha} & \alpha\overline{\beta}\\
+      \beta\overline{\alpha} & \beta\overline{\beta}
+    \end{pmatrix}.
+  \end{singlespace}
 \end{equation}
 
-When working with mixed states  the density matrix of each
-component of the mixed state is added. For example, the mixed state shown in
-\vref{eq:appMixedState} would be represented by the
-density matrix
+When working with mixed states the density matrix of each component of the mixed state is added.
+For example, the mixed state shown in \vref{eq:appMixedState} would be represented by the density
+matrix
 
 \begin{equation}
-\begin{singlespace}
-|\alpha|^2\begin{pmatrix}
-1&0 \\
-0&0
-\end{pmatrix}
-+
-|\beta|^2\begin{pmatrix}
-0&0 \\
-0&1
-\end{pmatrix}
-=
-\begin{pmatrix}
-|\alpha|^2&0 \\
-0&|\beta|^2
-\end{pmatrix}.\label{eq:appDensityOfMixedState}
-\end{singlespace}
+  \begin{singlespace}
+    |\alpha|^2
+    \begin{pmatrix}
+      1&0 \\
+      0&0
+    \end{pmatrix}
+    +
+    |\beta|^2
+    \begin{pmatrix}
+    0&0 \\
+    0&1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      |\alpha|^2&0 \\
+      0&|\beta|^2
+    \end{pmatrix}.\label{eq:appDensityOfMixedState}
+  \end{singlespace}
 \end{equation}
 
-Note that since the density matrix of mixed states is a linear combination of
-other density matrices, it is possible to have two different mixed states
-represented by the same density matrix.
+Note that since the density matrix of mixed states is a linear combination of other density
+matrices, it is possible to have two different mixed states represented by the same density matrix.
 
- The advantage of this notation is
-that it becomes much more compact for mixed state systems. Additionally,
-scaling issues are handled by insisting the density matrix has a trace = 1.
-During a general quantum computation, as we shall see,
-the trace can actually fall below 1 indicating
-that the computation is not everywhere total.
+The advantage of this notation is that it becomes much more compact for mixed state systems.
+Additionally, scaling issues are handled by insisting the density matrix has a trace = 1. During a
+general quantum computation, as we shall see, the trace can actually fall below 1 indicating that
+the computation is not everywhere total.
 
 % subsection density_matrix_notation (end)
 
 \subsection{Gates and density matrices} % (fold)
 \label{sub:gates_and_density_matrices}
 
-
-When considering  a \qubit{} $q$ as a column vector and
-a unitary  transform $T$ as a matrix, the  result of applying the transform
-$T$ to $q$ is the new vector $T q$. The
- density matrix of the original \qubit{} is given by $q\, q^{*}$, while
-the density matrix of the transformed \qubit{} is
-$(T q) ( T q)^{*}$, which equals $ T (q q^{*}) T^{*}$. Thus, when
-a \qubit{} $q$ is represented by a density matrix $A$, the
-formula for applying the transform $T$ to $q$ is $T A T^{*}$.
+When considering a \qubit{} $q$ as a column vector and a unitary transform $T$ as a matrix, the
+result of applying the transform $T$ to $q$ is the new vector $T q$. The density matrix of the
+original \qubit{} is given by $q\, q^{*}$, while the density matrix of the transformed \qubit{} is
+$(T q) ( T q)^{*}$, which equals $ T (q q^{*}) T^{*}$. Thus, when a \qubit{} $q$ is represented by
+a density matrix $A$, the formula for applying the transform $T$ to $q$ is $T A T^{*}$.
 % subsection gates_and_density_matrices (end)
 
 
@@ -450,156 +380,154 @@ formula for applying the transform $T$ to $q$ is $T A T^{*}$.
 \label{sub:contents_of_quantum_circuits}
 
 
-Currently a majority of quantum algorithms are defined and documented
-using \emph{quantum circuits}. These are wire-type diagrams with a series of
-\qubit{}s input on the left of the diagram and output on the right. Various
-graphical elements are used to describe quantum gates, measurement, control
-and classical \bits.
+Currently a majority of quantum algorithms are defined and documented using \emph{quantum
+circuits}. These are wire-type diagrams with a series of \qubit{}s input on the left of the diagram
+and output on the right. Various graphical elements are used to describe quantum gates,
+measurement, control and classical \bits.
 
 \subsubsection{Gates and \qubit{}s} % (fold)
 \label{ssub:gates_and_qubits}
 
-
-The simplest circuit  is  a single wire with no
-action:
+The simplest circuit is a single wire with no action:
 \[
-\Qcircuit @C=1em @R=.7em {
-  & \qw& \qw_x&\qw\\
-}
+  \Qcircuit @C=1em @R=.7em {
+    & \qw& \qw_x&\qw\\
+  }
 \]
-The next  simplest circuit is one \qubit{} and
-one gate. The \qubit{} is represented by a single wire, while the
-gate is represented by a box with its name, $G$,
-inside it. This is shown in the circuit in \vref{qc:simpleqcircuit}.
-In general, the name of the wire which is input to the gate $G$ may be
-different from the name of $G$'s output wire.
-Circuit diagrams may also contain constant components as input
-to gates as in
-the circuit in \vref{qc:cnotcircuit}.
+The next simplest circuit is one \qubit{} and one gate. The \qubit{} is represented by a single
+wire, while the gate is represented by a box with its name, $G$, inside it. This is shown in the
+circuit in \vref{qc:simpleqcircuit}. In general, the name of the wire which is input to the gate
+$G$ may be different from the name of $G$'s output wire. Circuit diagrams may also contain constant
+components as input to gates as in the circuit in \vref{qc:cnotcircuit}.
 
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuit @C=1em @R=.7em {
-  &\qw_x& \gate{G}  & \qw& \qw_y\\
-}}
-\caption{Simple single gate circuit}\label{qc:simpleqcircuit}
+  \centerline{%
+    \Qcircuit @C=1em @R=.7em {
+      &\qw_x& \gate{G}  & \qw& \qw_y\\
+    }
+  }
+  \caption{Simple single gate circuit}\label{qc:simpleqcircuit}
 \end{figure}
 
 
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuit @C=1em @R=.7em {
- &\qw_x & \gate{H} &\qw_{\quad x'} & \ctrl{1} & \qw_{\ x'}\\
- &\qw_y  & \qw & \qw & \targ & \qw_{\ y'}\\
-}}
-\caption{Entangling two \qubit{}s.}
-\label{qc:appEntangle}
+  \centerline{%
+    \Qcircuit @C=1em @R=.7em {
+      &\qw_x & \gate{H} &\qw_{\quad x'} & \ctrl{1} & \qw_{\ x'}\\
+      &\qw_y  & \qw & \qw & \targ & \qw_{\ y'}\\
+    }
+  }
+  \caption{Entangling two \qubit{}s.}
+  \label{qc:appEntangle}
 \end{figure}
 
 
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuit @C=1em @R=.7em {
-\lstick{\ket{1}} & \targ & \rstick{\ket{0}} \qw \\
-\lstick{\ket{1}}  & \ctrl{-1} & \rstick{\ket{1}} \qw \\
-}}
-\caption{Controlled-\nottr{} of $\ket{1}$ and $\ket{1}$}
-\label{qc:cnotcircuit}
+  \centerline{%
+    \Qcircuit @C=1em @R=.7em {
+      \lstick{\ket{1}} & \targ & \rstick{\ket{0}} \qw \\
+      \lstick{\ket{1}}  & \ctrl{-1} & \rstick{\ket{1}} \qw \\
+    }
+  }
+  \caption{\cnot{} of $\ket{1}$ and $\ket{1}$}
+  \label{qc:cnotcircuit}
 \end{figure}
 
-Future diagrams will drop the wire labels except when
-they are important to the concept under discussion.
+Future diagrams will drop the wire labels except when they are important to the concept under
+discussion.
 
-Controlled gates, where the gate action depends upon another \qubit,
- are shown by attaching a wire between the wire of  the control \qubit{} and
-the controlled gate.
-The circuit in \vref{qc:appEntangle} shows two \qubit{}s, where a
-\Had{} is applied to the top \qubit{}, followed by
- a \Cnot{} applied to the second \qubit{}.
-In circuits, the control \qubit{} is on  the vertical wire with the
-solid dot. This is then connected via a horizontal wire to the
-gate being controlled.
+Controlled gates, where the gate action depends upon another \qubit, are shown by attaching a wire
+between the wire of the control \qubit{} and the controlled gate. The circuit in
+\vref{qc:appEntangle} shows two \qubit{}s, where a \Had{} is applied to the top \qubit{}, followed
+by a \cnot{} applied to the second \qubit{}. In circuits, the control \qubit{} is on the vertical
+wire with the solid dot. This is then connected via a horizontal wire to the gate being controlled.
 
-A list of common gates, their circuits and corresponding matrices is given
-in \vref{tab:qgatesAndRep}.
+A list of common gates, their circuits and corresponding matrices is given in
+\vref{tab:qgatesAndRep}.
 
 \begin{table}
-\centerline{
-\begin{tabular}{|l|c|l|}
-\hline
-\text{\textbf{Gate}}&\text{\textbf{Circuit}}&\text{\textbf{Matrix}}\\
-\hline
-& & \\
-Not ($X$) &
-$\Qcircuit @C=1em @R=.7em {
- & \targ & \qw
-}$ & $
-\begin{bmatrix}
-0&1\\
-1&0
-\end{bmatrix}$ \\ & & \\\hline
- & &  \\
-$Z$ &
-$\Qcircuit @C=1em @R=.7em {
- & \gate{Z} & \qw
-}$ & $
-\begin{bmatrix}
-1&0\\
-0&-1
-\end{bmatrix}$ \\ & & \\\hline
- & &  \\
-Hadamard &
-$\Qcircuit @C=1em @R=.7em {
- & \gate{H} & \qw
-}$ & $
-\frac{1}{\sqrt{2}}\begin{bmatrix}
-1&1\\
-1&-1
-\end{bmatrix}$ \\ & & \\\hline
-& & \\
-Swap &
-$\Qcircuit @C=1em @R=.7em {
- & \qswap & \qw \\
- & \qswap \qwx & \qw
-}$ & $
-\begin{bmatrix}
-1&0&0&0\\
-0&0&1&0\\
-0&1&0&0\\
-0&0&0&1
-\end{bmatrix}$ \\ & & \\\hline
-& & \\
-Controlled-Not &
-$\Qcircuit @C=1em @R=.7em {
- & \ctrl{1} & \qw \\
- & \targ & \qw
-}$ & $
-\begin{bmatrix}
-1&0&0&0\\
-0&1&0&0\\
-0&0&0&1\\
-0&0&1&0
-\end{bmatrix}$ \\ & & \\\hline
- & &  \\
-Toffoli &
-$\Qcircuit @C=1em @R=.7em {
- & \ctrl{1} & \qw \\
- & \ctrl{1} & \qw \\
- & \targ & \qw
-}$ & $
-\begin{bmatrix}
-1&0&0&0&0&0&0&0\\
-0&1&0&0&0&0&0&0\\
-0&0&1&0&0&0&0&0\\
-0&0&0&1&0&0&0&0\\
-0&0&0&0&1&0&0&0\\
-0&0&0&0&0&1&0&0\\
-0&0&0&0&0&0&0&1\\
-0&0&0&0&0&0&1&0
-\end{bmatrix}$ \\ & & \\\hline
-\end{tabular}
-} % end centerline
-\caption{Gates, circuit notation and matrices}\label{tab:qgatesAndRep}
+  \centerline{
+    \begin{tabular}{|l|c|l|}
+      \hline
+      \text{\textbf{Gate}}&\text{\textbf{Circuit}}&\text{\textbf{Matrix}}\\
+      \hline
+      & & \\
+      Not ($X$) &
+      $\Qcircuit @C=1em @R=.7em {
+      & \targ & \qw
+      }$ & $
+      \begin{bmatrix}
+        0&1\\
+        1&0
+      \end{bmatrix}$ \\ 
+      & & \\\hline
+      & &  \\
+      $Z$ &
+      $\Qcircuit @C=1em @R=.7em {
+        & \gate{Z} & \qw
+      }$ & $
+      \begin{bmatrix}
+        1&0\\
+        0&-1
+      \end{bmatrix}$ \\ 
+      & & \\\hline
+      & &  \\
+      Hadamard &
+      $\Qcircuit @C=1em @R=.7em {
+        & \gate{H} & \qw
+      }$ & $
+      \frac{1}{\sqrt{2}}
+      \begin{bmatrix}
+        1&1\\
+        1&-1
+      \end{bmatrix}$ \\ & & \\\hline
+      & & \\
+      Swap &
+      $\Qcircuit @C=1em @R=.7em {
+        & \qswap & \qw \\
+        & \qswap \qwx & \qw
+      }$ & $
+      \begin{bmatrix}
+        1&0&0&0\\
+        0&0&1&0\\
+        0&1&0&0\\
+        0&0&0&1
+      \end{bmatrix}$ \\ 
+      & & \\\hline
+      & & \\
+      Controlled-Not &
+      $\Qcircuit @C=1em @R=.7em {
+        & \ctrl{1} & \qw \\
+        & \targ & \qw
+      }$ & $
+      \begin{bmatrix}
+        1&0&0&0\\
+        0&1&0&0\\
+        0&0&0&1\\
+        0&0&1&0
+      \end{bmatrix}$ \\ 
+      & & \\\hline
+      & &  \\
+      Toffoli &
+      $\Qcircuit @C=1em @R=.7em {
+        & \ctrl{1} & \qw \\
+        & \ctrl{1} & \qw \\
+        & \targ & \qw
+      }$ & $
+      \begin{bmatrix}
+        1&0&0&0&0&0&0&0\\
+        0&1&0&0&0&0&0&0\\
+        0&0&1&0&0&0&0&0\\
+        0&0&0&1&0&0&0&0\\
+        0&0&0&0&1&0&0&0\\
+        0&0&0&0&0&1&0&0\\
+        0&0&0&0&0&0&0&1\\
+        0&0&0&0&0&0&1&0
+      \end{bmatrix}$ \\ 
+      & & \\\hline
+    \end{tabular}
+  } % end centerline
+  \caption{Gates, circuit notation and matrices}\label{tab:qgatesAndRep}
 \end{table}
 
 % subsubsection gates_and_qubits (end)
@@ -607,17 +535,12 @@ $\Qcircuit @C=1em @R=.7em {
 \subsubsection{Measurement} % (fold)
 \label{ssub:measurement}
 
+Measurement is used to transform the quantum data to classical data so that it may be then used in
+classical computing (e.g. for output). The act of measurement is placed at the last part of the
+quantum algorithm in many circuit diagrams and is sometimes just implicitly considered to be there.
 
-Measurement is used to transform the quantum data to classical data so that it
-may be then used in classical computing (e.g. for output). The act of
-measurement
-is placed at  the last part of the quantum algorithm in many
-circuit diagrams and is sometimes just implicitly considered to be there.
-
-While there are multiple notations used for
-measurement in quantum circuit diagrams, this thesis will
-standardize on the \emph{D-box} style of
-measurement as shown in \ref{qc:dboxmeasure}.
+While there are multiple notations used for measurement in quantum circuit diagrams, this thesis
+will standardize on the \emph{D-box} style of measurement as shown in \vref{qc:dboxmeasure}.
 
 %\begin{figure}[htbp]
 %\centerline{%
@@ -632,30 +555,31 @@ measurement as shown in \ref{qc:dboxmeasure}.
 %\end{figure}
 
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuit @C=1em @R=.7em {
- & \gate{W} & \qw & \measureD{\chi}& \cw & &\rstick{\text{D-box}}
-}}
-\caption{Measure notation in quantum circuits}
-\label{qc:dboxmeasure}
+  \centerline{%
+    \Qcircuit @C=1em @R=.7em {
+      & \gate{W} & \qw & \measureD{\chi}& \cw & &\rstick{\text{D-box}}
+    }
+  }
+  \caption{Measure notation in quantum circuits}
+  \label{qc:dboxmeasure}
 \end{figure}
 
-A measurement may have a double line leaving it, signifying a  \bit, or
-nothing, signifying a destructive measurement.
+A measurement may have a double line leaving it, signifying a \bit, or nothing, signifying a
+destructive measurement.
 
-Operations affecting multiple \qubit{}s at the same time are shown
-by extending the gate or measure box to encompass all desired wires.
-In the circuit in \vref{qc:multibox},  the gate $U$
-applies to all of the first three \qubits{} and
- the measurement applies to the first two \qubits{}.
+Operations affecting multiple \qubit{}s at the same time are shown by extending the gate or measure
+box to encompass all desired wires. In the circuit in \vref{qc:multibox}, the gate $U$ applies to
+all of the first three \qubits{} and the measurement applies to the first two \qubits{}.
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuit @C=1em @R=.7em {
- & \multigate{2}{U} & \multimeasureD{1}{\mbox{bits}} & \cw \\
-& \ghost{U} &  \ghost{\mbox{bits}} &\cw \\
-& \ghost{U} & \qw &\qw }}
-\caption{Examples of multi-\qubit{} gates and measures}
-\label{qc:multibox}
+  \centerline{%
+    \Qcircuit @C=1em @R=.7em {
+      & \multigate{2}{U} & \multimeasureD{1}{\mbox{bits}} & \cw \\
+      & \ghost{U} &  \ghost{\mbox{bits}} &\cw \\
+      & \ghost{U} & \qw &\qw 
+    }
+  }
+  \caption{Examples of multi-\qubit{} gates and measures}
+  \label{qc:multibox}
 \end{figure}
 
 % subsubsection measurement (end)
@@ -664,36 +588,30 @@ applies to all of the first three \qubits{} and
 \label{ssub:_0_control_and_control_by_bits}
 
 
-The examples above have only shown  control based upon
-a \qubit{} being \ket{1}. Circuits also allow control on a
-\qubit{} being \ket{0} and upon classical values. The circuit
-%todo vref the below later
-in \ref{qc:zctrlAndClassicalControl} with four \qubit{}s $(r_1, r_2, p$ and
-$q)$ illustrates all these forms of control.
+The examples above have only shown control based upon a \qubit{} being \ket{1}. Circuits also allow
+control on a \qubit{} being \ket{0} and upon classical values. These forms of control are illustrated
+by the circuit 
+in \vref{qc:zctrlAndClassicalControl} with four \qubit{}s $(r_1, r_2, p$ and $q)$.
 
-At $g_1$, a  \Had{} is  $1-$controlled by $r_2$ and
-  is applied to each of $r_1$ and $p$. This is followed in
-column $g_2$ with the \nottr{} transform applied to $r_2$
-being $0-$controlled by $r_1$ . In the same column,
-a  $Z$ gate is $0-$controlled by $q$ and applied to $p$.
-$p$ and $q$ are then measured in column $g_3$
-and their corresponding classical values are
-used for control in $g_4$.
-In $g_4$, the $U_R$ gate is applied to both $r_1$ and $r_2$,
-but only when the
-measure result of $p$ is $0$ and the measure result of $q$ is $1$.
+At $g_1$, a \Had{} is $1-$controlled by $r_2$ and is applied to each of $r_1$ and $p$. This is
+followed in column $g_2$ with the \nottr{} transform applied to $r_2$ being $0-$controlled by $r_1$
+. In the same column, a $Z$ gate is $0-$controlled by $q$ and applied to $p$. $p$ and $q$ are then
+measured in column $g_3$ and their corresponding classical values are used for control in $g_4$. In
+$g_4$, the $U_R$ gate is applied to both $r_1$ and $r_2$, but only when the measure result of $p$
+is $0$ and the measure result of $q$ is $1$.
 
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuit @C=1em @R=.7em {
-&\qw_{r_1} & \gate{H} &\ctrlo{1} & \qw & \qw & \multigate{1}{U_R} & \qw \\
-&\qw_{r_2} & \ctrl{-1} \qwx[1] &\targ & \qw  & \qw & \ghost{U_R} & \qw \\
-&\qw_{p} & \gate{H} & \gate{Z} &\qw & \multimeasureD{1}{M_{p,q}} & \controlo \cw \cwx \\
-&\qw_{q} & \qw & \ctrlo{-1} &\qw & \ghost{M_{p,q}} & \control \cwx \cw\\
-&&\lstick{g_1}&\lstick{g_2}&&\lstick{g_3}&\lstick{g_4}
-}}
-\caption{Other forms of control for gates}
-\label{qc:zctrlAndClassicalControl}
+  \centerline{%
+    \Qcircuit @C=1em @R=.7em {
+      &\qw_{r_1} & \gate{H} &\ctrlo{1} & \qw & \qw & \multigate{1}{U_R} & \qw \\
+      &\qw_{r_2} & \ctrl{-1} \qwx[1] &\targ & \qw  & \qw & \ghost{U_R} & \qw \\
+      &\qw_{p} & \gate{H} & \gate{Z} &\qw & \multimeasureD{1}{M_{p,q}} & \controlo \cw \cwx \\
+      &\qw_{q} & \qw & \ctrlo{-1} &\qw & \ghost{M_{p,q}} & \control \cwx \cw\\
+      &&\lstick{g_1}&\lstick{g_2}&&\lstick{g_3}&\lstick{g_4}
+    }
+  }
+  \caption{Other forms of control for gates}
+  \label{qc:zctrlAndClassicalControl}
 \end{figure}
 
 
@@ -703,24 +621,21 @@ measure result of $p$ is $0$ and the measure result of $q$ is $1$.
 \label{ssub:multi_qubit_lines}
 
 
-It is common to represent multiple \qubit{}s  on one line.
-A gate
- applied to a multi-\qubit{} line must be a tensor product of gates of the
-correct dimensions. The circuit
-in \vref{qc:manyqubitsOneLine} shows $n$ \qubit{}s on one line with the
-\Had{} gate (tensored with itself $n$ times) applied to all of them.
-That is  followed by a unary gate $U_R$ tensored with $I^{\otimes (n-2)}$
-and tensored with itself again. This will have the effect of applying
-an $U_R$ gate to the first and last \qubits{} on the line.
+It is common to represent multiple \qubit{}s on one line. A gate applied to a multi-\qubit{} line
+must be a tensor product of gates of the correct dimensions. The circuit in
+\vref{qc:manyqubitsOneLine} shows $n$ \qubit{}s on one line with the \Had{} gate (tensored with
+itself $n$ times) applied to all of them. That is followed by a unary gate $U_R$ tensored with
+$I^{\otimes (n-2)}$ and tensored with itself again. This will have the effect of applying an $U_R$
+gate to the first and last \qubits{} on the line.
 
 \begin{figure}[htbp]
-\centerline{
-\Qcircuit @C=1em @R=.7em {
- & {/^{{}^n}} \qw  & \gate{H^{\otimes n}} & \gate{U_R\otimes I^{\otimes (n-2)} \otimes U_R} & \qw
-}
-}
-\caption{$n$ \qubit{}s on one line}
-\label{qc:manyqubitsOneLine}
+  \centerline{
+    \Qcircuit @C=1em @R=.7em {
+    & {/^{{}^n}} \qw  & \gate{H^{\otimes n}} & \gate{U_R\otimes I^{\otimes (n-2)} \otimes U_R} & \qw
+    }
+  }
+  \caption{$n$ \qubit{}s on one line}
+  \label{qc:manyqubitsOneLine}
 \end{figure}
 
 % subsubsection multi_qubit_lines (end)
@@ -728,60 +643,57 @@ an $U_R$ gate to the first and last \qubits{} on the line.
 \subsubsection{Other common circuit symbols} % (fold)
 \label{ssub:other_common_circuit_symbols}
 
-
-
-Two other symbols that are regularly used are the swap and controlled-\Z, shown
-in the circuit in \vref{qc:swapAndCtrlZ}. Note that swap is just shorthand for
-a series of three controlled-\nottr{} gates with the control \qubit{} changing.
-This can also be seen directly by multiplying the matrices for the
-controlled-\nottr{} gates  as shown in \vref{eq:cnotcnotcnot}.
+Two other symbols that are regularly used are the swap and controlled-\Z, shown in the circuit in
+\vref{qc:swapAndCtrlZ}. Note that swap is just shorthand for a series of three controlled-\nottr{}
+gates with the control \qubit{} changing. This can also be seen directly by multiplying the
+matrices for the controlled-\nottr{} gates as shown in \vref{eq:cnotcnotcnot}.
 
 \begin{figure}[htbp]
-\centerline{
-\begin{tabular}{c}
-\Qcircuit @C=1em @R=.7em {
- & \qswap & \qw &  \raisebox{-3.5ex}{=} & & \ctrl{1} & \targ &\ctrl{1}  &\qw \\
- & \qswap \qwx &\qw &  & & \targ &\ctrl{-1} & \targ &\qw \\
-} \\
-  \\
-\Qcircuit @C=1em @R=.7em {
- & \ctrl{1} &\qw  & \raisebox{-3.5ex}{=} & & \Box \qw &\qw \\
- & \gate{Z} & \qw & & & \Box \qw \qwx & \qw
-}
-\end{tabular}
-}
-\caption{Swap and controlled-Z}
-\label{qc:swapAndCtrlZ}
+  \centerline{
+    \begin{tabular}{c}
+      \Qcircuit @C=1em @R=.7em {
+        & \qswap & \qw &  \raisebox{-3.5ex}{=} & & \ctrl{1} & \targ &\ctrl{1}  &\qw \\
+        & \qswap \qwx &\qw &  & & \targ &\ctrl{-1} & \targ &\qw \\
+      } \\
+      \\
+      \Qcircuit @C=1em @R=.7em {
+        & \ctrl{1} &\qw  & \raisebox{-3.5ex}{=} & & \Box \qw &\qw \\
+        & \gate{Z} & \qw & & & \Box \qw \qwx & \qw
+      }
+    \end{tabular}
+  }
+  \caption{Swap and controlled-Z}
+  \label{qc:swapAndCtrlZ}
 \end{figure}
 
-{\begin{equation}
-\begin{singlespace}
-\begin{bmatrix}
-1&0&0&0\\
-0&0&1&0\\
-0&1&0&0\\
-0&0&0&1
-\end{bmatrix} =
-\begin{bmatrix}
-1&0&0&0\\
-0&1&0&0\\
-0&0&0&1\\
-0&0&1&0
-\end{bmatrix}
-\begin{bmatrix}
-1&0&0&0\\
-0&0&0&1\\
-0&0&1&0\\
-0&1&0&0
-\end{bmatrix}
-\begin{bmatrix}
-1&0&0&0\\
-0&1&0&0\\
-0&0&0&1\\
-0&0&1&0
-\end{bmatrix}.\label{eq:cnotcnotcnot}
-\end{singlespace}
-\end{equation}}
+\begin{equation}
+  \begin{singlespace}
+    \begin{bmatrix}
+      1&0&0&0\\
+      0&0&1&0\\
+      0&1&0&0\\
+      0&0&0&1
+    \end{bmatrix} =
+    \begin{bmatrix}
+      1&0&0&0\\
+      0&1&0&0\\
+      0&0&0&1\\
+      0&0&1&0
+    \end{bmatrix}
+    \begin{bmatrix}
+      1&0&0&0\\
+      0&0&0&1\\
+      0&0&1&0\\
+      0&1&0&0
+    \end{bmatrix}
+    \begin{bmatrix}
+      1&0&0&0\\
+      0&1&0&0\\
+      0&0&0&1\\
+      0&0&1&0
+    \end{bmatrix}.\label{eq:cnotcnotcnot}
+  \end{singlespace}
+\end{equation}
 % subsubsection other_common_circuit_symbols (end)
 
 % subsection contents_of_quantum_circuits (end)
@@ -790,285 +702,242 @@ controlled-\nottr{} gates  as shown in \vref{eq:cnotcnotcnot}.
 \label{sub:syntax_of_quantum_circuits}
 
 
-Quantum circuits were originally introduced by David
-Deutsch in \cite{deutsch89:qciruits}.
-He extended the idea of standard classical based gate diagrams to
-encompass the quantum cases. In his paper, he introduced the concepts
-of quantum gates, sources of \bit{}s, sinks and universal gates. One
-interesting point of the original definition is that it \emph{does} allow
-loops. Currently, the general practice is not to allow loops of \qubit{}s.
-The commonly used elements of a circuit are summarized in \vref{tab:qcdSyntax}.
+Quantum circuits were originally introduced by David Deutsch in \cite{deutsch89:qciruits}. He
+extended the idea of standard classical based gate diagrams to encompass the quantum cases. In his
+paper, he introduced the concepts of quantum gates, sources of \bit{}s, sinks and universal gates.
+One interesting point of the original definition is that it \emph{does} allow loops. Currently, the
+general practice is not to allow loops of \qubit{}s. The commonly used elements of a circuit are
+summarized in \vref{tab:qcdSyntax}.
 
 \begin{table}
-\setlength\extrarowheight{4pt}
-\begin{tabular}{|>{\raggedright\hspace{0pt}}p{.9in}|p{3in}|>{$}c<{$}|}
-\hline
-\textbf{Desired element} & \textbf{Element in a quantum circuit diagram.} & \mbox{\textbf{Example}}\\
-\hline \hline
-\qubit{} & A single horizontal line. &
-\Qcircuit @C=1em @R=.7em {
- & \qw
-} \\\hline
-Classical \bit{} & A double horizontal line.
-&\Qcircuit @C=1em @R=.7em {
- & \cw
-} \\\hline
-Single-\qubit{} gates & A box with the gate name ($G$) inside it, one wire
-attached on its left and one wire attached on the right. &
-\Qcircuit @C=1em @R=.7em {
- & \gate{G} & \qw
-}  \\[4pt]\hline
-Multi-\qubit{} gates & A box with the gate name ($R$) inside it,
-$n$ wires on the left side and the same number of wires on the right. &
-\Qcircuit @C=1em @R=.7em {
- & \multigate{1}{R} & \qw \\
- & \ghost{R} & \qw
-}  \\[4pt]\hline
-Controlled \qubit{} gates & A box with the gate name  ($H$, $W$) inside, with
-a solid (1-control) or open (0-control) dot on the control wire
-with a vertical wire between the dot and the second gate.
-&\Qcircuit @C=1em @R=.7em {
- & \ctrl{1} & \gate{W} & \qw \\
- & \gate{H} & \ctrlo{-1} &\qw
-}  \\[4pt]\hline
-Controlled-Not gates & A \emph{target} $\oplus$, with
-a solid (1-control) or open (0-control) dot on the control wire
-with a vertical wire between the dot and the gate.
-&\Qcircuit @C=1em @R=.7em {
- & \ctrl{1} & \qw \\
- & \targ &\qw
-}  \\[4pt]\hline
-Measurement & A \emph{D-box} shaped node with optional names or comments
-inside. One to $n$ single wires are attached on the left
-(\qubit{}s coming in) and $0$ to $n$ classical \bit{} wires
-on the left. Classical \bits{} may be dropped as desired.
-&\Qcircuit @C=1em @R=.7em {
- & \ctrl{1} & \multimeasureD{1}{q,r} & \cw \\
- & \gate{H} & \ghost{q,r}
-}  \\[4pt]\hline
-Classical control & Control bullets attached to
-horizontal classical wires, with vertical classical wires attached to
-the controlled gate.
-&\Qcircuit @C=1em @R=.7em {
- &  \measureD{r} & \control \cw \cwx[1] \\
- & \qw & \gate{X} & \qw
-}  \\[4pt]\hline
-Multiple \qubit{}s & Annotate the line with  the number of \qubit{}s
-and use tensors on gates.
-&\Qcircuit @C=1em @R=.7em {
- & {/^{{}^n}} \qw  & \gate{H^{\otimes n}} & \qw
-}  \\[4pt]\hline
-\end{tabular}
-\caption{Syntactic elements of quantum circuit diagrams}\label{tab:qcdSyntax}
+  \setlength\extrarowheight{4pt}
+  \begin{tabular}{|>{\raggedright\hspace{0pt}}p{.9in}|p{3in}|>{$}c<{$}|}
+    \hline
+    \textbf{Desired element} & \textbf{Element in a quantum circuit diagram.} & 
+    \mbox{\textbf{Example}}\\
+    \hline \hline
+    \qubit{} & A single horizontal line. &
+    \Qcircuit @C=1em @R=.7em {
+      & \qw
+    } \\\hline
+    Classical \bit{} & A double horizontal line.
+    &\Qcircuit @C=1em @R=.7em {
+      & \cw
+    } \\\hline
+    Single-\qubit{} gates & A box with the gate name ($G$) inside it, one wire attached on its left
+    and one wire attached on the right. &
+    \Qcircuit @C=1em @R=.7em {
+      & \gate{G} & \qw
+    }  \\[4pt]\hline
+    Multi-\qubit{} gates & A box with the gate name ($R$) inside it, $n$ wires on the left side and
+    the same number of wires on the right. &
+    \Qcircuit @C=1em @R=.7em {
+      & \multigate{1}{R} & \qw \\
+      & \ghost{R} & \qw
+    }  \\[4pt]\hline
+    Controlled \qubit{} gates & A box with the gate name ($H$, $W$) inside, with a solid
+    (1-control) or open (0-control) dot on the control wire with a vertical wire between the dot
+    and the second gate.
+    &\Qcircuit @C=1em @R=.7em {
+      & \ctrl{1} & \gate{W} & \qw \\
+      & \gate{H} & \ctrlo{-1} &\qw
+    }  \\[4pt]\hline
+    Controlled-Not gates & A \emph{target} $\oplus$, with a solid (1-control) or open (0-control)
+    dot on the control wire with a vertical wire between the dot and the gate.
+    &\Qcircuit @C=1em @R=.7em {
+      & \ctrl{1} & \qw \\
+      & \targ &\qw
+    }  \\[4pt]\hline
+    Measurement & A \emph{D} shaped node with optional names or comments inside. One to $n$
+    single wires are attached on the left (\qubit{}s coming in) and $0$ to $m$ classical \bit{}
+    wires on the right where $m\le n$. Classical \bits{} may be dropped as desired.
+    &\Qcircuit @C=1em @R=.7em {
+      & \ctrl{1} & \multimeasureD{1}{q,r} & \cw \\
+      & \gate{H} & \ghost{q,r}
+    }  \\[4pt]\hline
+    Classical control & Control bullets are attached to horizontal classical wires, with vertical
+    classical wires attached to the controlled gate.
+    &\Qcircuit @C=1em @R=.7em {
+      &  \measureD{r} & \control \cw \cwx[1] \\
+      & \qw & \gate{X} & \qw
+    }  \\[4pt]\hline
+    Multiple \qubit{}s & Annotate the line with the number of \qubit{}s and use tensors on gates.
+    &\Qcircuit @C=1em @R=.7em {
+      & {/^{{}^n}} \qw  & \gate{H^{\otimes n}} & \qw
+    }  \\[4pt]\hline
+  \end{tabular}
+  \caption{Syntactic elements of quantum circuit diagrams}\label{tab:qcdSyntax}
 \end{table}
 
-A valid quantum circuit must follow certain restrictions. As physics requires
-\qubits{} must not be duplicated, circuits must enforce this rule.
- Therefore, three restrictions in circuits are the \emph{no fan-out},
-\emph{no fan-in} and \emph{no loops} rules. These conditions are  a
-way to express the \emph{linearity} of quantum algorithms. Variables (wires)
-may not be duplicated, may not be destroyed without a specific
-operation and may not be amalgamated.
-
+A valid quantum circuit must follow certain restrictions. As physics requires \qubits{} must not be
+duplicated, circuits must enforce this rule. Therefore, three restrictions in circuits are the
+\emph{no fan-out}, \emph{no fan-in} and \emph{no loops} rules. These conditions are a way to
+express the \emph{linearity} of quantum algorithms. Variables (wires) may not be duplicated, may
+not be destroyed without a specific operation and may not be amalgamated.
 % subsection syntax_of_quantum_circuits (end)
 
 \subsection{Examples of quantum circuits} % (fold)
 \label{sub:examples_of_quantum_circuits}
 
 
-This section will present three quantum algorithms
-and the associated circuits.
-Each of these circuits presented may be found  in \cite{neilsen2000:QuantumComputationAndInfo}.
+This section will present three quantum algorithms and the associated circuits. Each of these
+circuits presented may be found in \cite{neilsen2000:QuantumComputationAndInfo}.
 
-First, \emph{quantum teleportation}, an algorithm which sends a quantum bit
- across a distance via the exchange of two classical bits. This is
-followed by the \emph{Deutsch-Jozsa algorithm},
-which provides information about the
-global nature of a function with less work than a classical deterministic
-algorithm can. The third example is  circuits for the
-\emph{quantum Fourier transformation} and its inverse.
+First, \emph{quantum teleportation}, an algorithm which sends a quantum bit across a distance via
+the exchange of two classical bits. This is followed by the \emph{Deutsch-Jozsa algorithm}, which
+provides information about the global nature of a function with less work than a classical
+deterministic algorithm can. The third example is circuits for the \emph{quantum Fourier
+transformation} and its inverse.
 
 \subsubsection{Quantum teleportation} % (fold)
 \label{ssub:quantum_teleportation}
 
+The standard presentation of this algorithm involves two participants $A$ and $B$. (Henceforth
+known as Alice and Bob). Alice and Bob first initialize two \qubit{}s to \ket{00}, then place them
+into what is known as an \emph{EPR} (for Einstein, Podolsky and Rosen) state. This is accomplished
+by first applying the \Had{} gate to Alice's \qubit{}, followed by a \cnot{} to the pair of
+\qubits{} controlled by Alice's \qubit{}.
 
-The standard presentation of this algorithm involves two
-participants $A$ and $B$.
-(Henceforth known as Alice and Bob). Alice and Bob first
-initialize two \qubit{}s
-to \ket{00}, then place them into what is known
- as an \emph{EPR} (for Einstein,
-Podolsky and Rosen) state. This is accomplished by first applying the \Had{}
-gate to Alice's \qubit{}, followed by a \Cnot{} to the pair of \qubits{}
- controlled
-by Alice's \qubit{}.
+Then, Bob travels somewhere distant from Alice, taking his \qubit{} with him\footnote{Notice that
+all other physical constraints are ignored in this algorithm. There is no concern about how one
+separates the \qubit{}s, transports the \qubit{} or potential decoherence of the \qubit{}s.}.
 
-Then, Bob travels somewhere distant from Alice, taking his \qubit{} with
-him\footnote{Notice that all other physical constraints are ignored in this
-algorithm. There is no concern about how one separates the \qubit{}s, transports
-the \qubit{} or potential decoherence of the \qubit{}s.}.
+At this point, Alice receives a \qubit{}, $\nu$, in an unknown state and has to pass $\nu$ on to
+Bob. She then uses $\nu$ as the control and applies a {\cnot{}} transform to this new pair. Alice
+then applies a \Had{} transform applied to $\nu$.
 
-At this point,  Alice receives a
- \qubit{}, $\nu$,  in an unknown state and has to  pass $\nu$
- on to Bob. She then uses $\nu$ as  the control and applies a
-{\Cnot{}} transform to this new pair. Alice then applies a \Had{}
-transform applied to $\nu$.
+Alice now measures the two \qubit{}s and sends the resulting two \bits{} of classical information
+to Bob.
 
-Alice now measures the two \qubit{}s and sends the resulting
-two \bits{} of classical information to Bob.
-
-Bob then examines the two \bits{} that he receives from Alice.
-If the \bit{} resulting from measuring Alice's original bit is $1$,
-he applies the \nottr{} (also referred to as $X$) gate
-($\begin{singlespace}=\begin{bmatrix}0&1\\1&0\end{bmatrix}\end{singlespace}$) to his \qubit{}.
-If  the measurement result of $\nu$ is one,
-he applies the $Z$ gate
-($\begin{singlespace}=\begin{bmatrix}1&0\\0&-1\end{bmatrix}\end{singlespace}$).
-Bob's \qubit{} is now in the same state as the \qubit{} Alice wanted to send.
-The circuit for this is shown in \vref{qc:quantumTeleportation}.
+Bob then examines the two \bits{} that he receives from Alice. If the \bit{} resulting from
+measuring Alice's original bit is $1$, he applies the \nottr{} (also referred to as $X$) gate
+($\begin{singlespace}=\begin{bmatrix}0&1\\1&0\end{bmatrix}\end{singlespace}$) to his \qubit{}. If
+the measurement result of $\nu$ is one, he applies the $Z$ gate
+($\begin{singlespace}=\begin{bmatrix}1&0\\0&-1\end{bmatrix}\end{singlespace}$). Bob's \qubit{} is
+now in the same state as the \qubit{} Alice wanted to send. The circuit for this is shown in
+\vref{qc:quantumTeleportation}.
 
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuit @C=1em @R=.7em {
-\lstick{\ket{\nu}} & \ctrl{1} & \gate{H} & \measureD{M_1} & \cw &  \control \cw  \cwx[2] \\
-\lstick{\mbox{A}}  & \targ & \qw & \measureD{M_2} & \control \cw  \cwx[1] \\
-\lstick{\mbox{B}} & \qw &\qw & \qw & \gate{X} & \gate{Z} & \qw & \rstick{\ket{\nu}}\\
-& \rstick{\ket{s_1}}& \rstick{\ket{s_2}} & & \lstick{\ket{s_3}} & &
-\lstick{\ket{s_4}} }}
-\caption{Quantum teleportation}
-\label{qc:quantumTeleportation}
+  \centerline{%
+    \Qcircuit @C=1em @R=.7em {
+      \lstick{\ket{\nu}} & \ctrl{1} & \gate{H} & \measureD{M_1} & \cw &  \control \cw  \cwx[2] \\
+      \lstick{\mbox{A}}  & \targ & \qw & \measureD{M_2} & \control \cw  \cwx[1] \\
+      \lstick{\mbox{B}} & \qw &\qw & \qw & \gate{X} & \gate{Z} & \qw & \rstick{\ket{\nu}}\\
+      & \rstick{\ket{s_1}}& \rstick{\ket{s_2}} & & \lstick{\ket{s_3}} & &
+      \lstick{\ket{s_4}} 
+    }
+  }
+  \caption{Quantum teleportation}
+  \label{qc:quantumTeleportation}
 \end{figure}
-For comparison , see % todo \vref{fig:stackTeleportation}
- showing how this would be implemented
-in \lqpl{}.
+For comparison , see % todo lqpl program for \vref{fig:stackTeleportation} 
+showing how this would be implemented in
+\lqpl{}.
 
 % subsubsection quantum_teleportation (end)
 
 \subsubsection{Deutsch-Jozsa algorithm} % (fold)
 \label{ssub:deutsch_jozsa_algorithm}
 
+The Deutsch-Jozsa algorithm describes a way of determining whether a function $f$\footnote{The
+obvious pre-condition for the Deutsch-Jozsa algorithm is that the function $f$ is \emph{either}
+balanced or constant and not some general function. The results are not well-defined if $f$ does
+not fit into one of the two possible categories.} is \emph{constant} (i.e. always $0$ or $1$) or
+\emph{balanced} (i.e. produces an equal number of $0$ or $1$ results) based on applying it to one
+quantum bit. The function takes $n$ \bit{}s as input and produces a single \bit.
 
-The Deutsch-Jozsa algorithm describes a way of determining whether
-a function $f$\footnote{The obvious pre-condition for the
-Deutsch-Jozsa algorithm is that the function $f$ is \emph{either}
-balanced or constant and not some general function. The results
-are not well-defined if $f$ does not fit into one of the two
-possible categories.} is \emph{constant} (i.e. always $0$ or $1$) or
-\emph{balanced} (i.e. produces an equal number of $0$ or $1$ results)
- based on applying it to one quantum bit. The function
-takes $n$ \bit{}s as input and produces a single \bit.
+$f$ is assumed to be an expensive function, therefore, a desired effect is to evaluate $f$ as few
+times as possible before determining if $f$ is balanced or constant. The worst case scenario when
+evaluating $f$ classically is that determining the result requires $2^{n-1} + 1$ invocations of the
+function. The best possible case is $2$ invocations, which occurs when $f$ is balanced and the
+first two inputs chosen produce different results.
 
+The quantum circuit requires only one application of the function to $n+1$ \qubits{} which have
+been suitably prepared to make the decision.
 
- $f$ is assumed to be an expensive function, therefore, a desired effect is to
-evaluate $f$ as few times as possible before determining if
-$f$ is balanced or constant.
-The worst case scenario when evaluating $f$ classically is that determining
-the result
-requires $2^{n-1} + 1$ invocations of the function.
-The best possible case is $2$ invocations, which occurs
-when $f$ is balanced and
-the first two inputs chosen  produce  different results.
-
-The quantum circuit requires only one application of the function
-to $n+1$ \qubits{} which have been  suitably prepared to make the decision.
-
-The algorithm relies on being able to construct an $n+1$ order unitary
-operator based upon $f$. In general, a unitary operator like this
-may be constructed by mapping the
-state $\ket{a,b}$ to $\ket{a,b\oplus f(a)}$
-where $\oplus$ is the exclusive-or operator and $a$ is $n$ \bit{} values.
-If we name this operator
-$U_f$,  the circuit in \vref{qc:djAlgorithm} will solve the problem
-with  just one application. See the appendix, %todo {vref{appsubsec:djalgorithm}}
+The algorithm relies on being able to construct an $n+1$ order unitary operator based upon $f$. In
+general, a unitary operator like this may be constructed by mapping the state $\ket{a,b}$ to
+$\ket{a,b\oplus f(a)}$ where $\oplus$ is the exclusive-or operator and $a$ is $n$ \bit{} values. If
+we name this operator $U_f$, the circuit in \vref{qc:djAlgorithm} will solve the problem with just
+one application. See the appendix, %todo lqpl program {vref{appsubsec:djalgorithm}} 
 for how this would be done in \lqpl.
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuit @C=1em @R=.7em {
-\lstick{\ket{0}} & {/^{{}^n}} \qw & \gate{H^{\otimes n}} & \multigate{1}{U_f} & \gate{H^{\otimes n}}& \qw &\multimeasureD{1}{DJ} \\
-\lstick{\ket{1}} & \qw  & \gate{H} & \ghost{U_f} & \qw & \qw&\ghost{DJ}
-}
-}
-\caption{Circuit for the Deutsch-Jozsa algorithm}
-\label{qc:djAlgorithm}
+  \centerline{%
+    \Qcircuit @C=1em @R=.7em {
+      \lstick{\ket{0}} & {/^{{}^n}} \qw & \gate{H^{\otimes n}} & \multigate{1}{U_f} & \gate{H^{\otimes n}}& \qw &\multimeasureD{1}{DJ} \\
+      \lstick{\ket{1}} & \qw  & \gate{H} & \ghost{U_f} & \qw & \qw&\ghost{DJ}
+    }
+  }
+  \caption{Circuit for the Deutsch-Jozsa algorithm}
+  \label{qc:djAlgorithm}
 \end{figure}
 
-The idea of quantum parallelism is what makes  this
- and many other quantum algorithms work.
- The initial state of the system is set to
-$\ket{0^{\otimes n} \otimes 1}$ after which  the
-\Had{} gate is applied
-to all of the \qubit{s}. This places the input \qubit{}s into
-a superposition of all possible input values and the answer \qubit{} is
-a superposition of 0 and 1. At this point, the unitary transformation $U_f$
- is applied to the \qubit{}s. Then the \Had{} transform is
-applied again to the input \qubit{}s.
+The idea of quantum parallelism is what makes this and many other quantum algorithms work. The
+initial state of the system is set to $\ket{0^{\otimes n} \otimes 1}$ after which the \Had{} gate
+is applied to all of the \qubit{s}. This places the input \qubit{}s into a superposition of all
+possible input values and the answer \qubit{} is a superposition of 0 and 1. At this point, the
+unitary transformation $U_f$ is applied to the \qubit{}s. Then the \Had{} transform is applied
+again to the input \qubit{}s.
 
-To complete the algorithm, measure \emph{all} the \qubit{}s. It can be
-shown that if $f$ is constant, the input \qubit{}s will all measure
-to 0, while if it is balanced, at least one of those \qubit{}s will be
-1.
+To complete the algorithm, measure \emph{all} the \qubit{}s. It can be shown that if $f$ is
+constant, the input \qubit{}s will all measure to 0, while if it is balanced, at least one of those
+\qubit{}s will be 1.
 
 % subsubsection deutsch_jozsa_algorithm (end)
 
 \subsubsection{Quantum Fourier transform} % (fold)
 \label{ssub:quantum_fourier_transform}
 
+The circuits for the quantum Fourier transformation and its inverse are in \vref{qc:qft} and
+\vref{qc:inverseqft} respectively. These transforms are used extensively in many quantum algorithms,
+including Shor's factoring algorithm.
 
-The  circuits for the quantum Fourier
-transformation and its inverse are in  \ref{qc:qft} and
- \ref{qc:inverseqft} respectively.
- These transforms are used extensively in many quantum
-algorithms, including Shor's factoring algorithm.
+%\include{omits/classicalFFT.tex}
 
-%\include{omits/classicalFFT.tex
-The quantum Fourier transform is definable  on an arbitrary number of \qubits.
-This is typically presented by eliding the $3^{\text{rd}}$ to the
-$n-3^{\text{rd}}$ lines and interior processing. The \lqpl{} code for
-the quantum Fourier transform  is in the appendix, %todo {vref{fig:qft}}.
- In this circuit, the parametrized transform $R_n$ is
-the rotation transform, given by:
+The quantum Fourier transform is definable on an arbitrary number of \qubits. This is typically
+presented by eliding the $3^{\text{rd}}$ to the $n-3^{\text{rd}}$ lines and interior processing.
+The \lqpl{} code for the quantum Fourier transform is in the appendix, 
+%todo lqpl for quantum fourier transform {vref{fig:qft}}. 
+In this circuit, the parametrized transform $R_n$ is the rotation transform, given by:
 \[
-R_n={
-\begin{singlespace}
-  \begin{bmatrix}1&0\\
-        0&e^{\frac{2\pi i}{2^n}}
-  \end{bmatrix}
-\end{singlespace}
-}
+  R_n=
+  \begin{singlespace}
+    \begin{bmatrix}1&0\\
+      0&e^{\frac{2\pi i}{2^n}}
+    \end{bmatrix}
+  \end{singlespace}
 \]
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuit @C=1em @R=.7em {
- &\qw & \gate{H} & \gate{R_2} & \cdots& &\gate{R_{n-1}}&\gate{R_{n}}&\qw&\qw&\qw&\qw&\qw&\cdots& &\qw&\qw&\qw\\
- &\qw & \qw & \ctrl{-1} & \cdots& &\qw&\qw&\gate{H} & \cdots& &\gate{R_{n-2}}&\gate{R_{n-1}}&\cdots& &\qw&\qw&\qw\\
- &\vdots &  & \vdots & & & & & &\vdots & & & & & & & &\\
- &\qw & \qw & \qw & \qw&\qw&\ctrl{-3}&\qw&\qw & \cdots& &\ctrl{-2}&\qw&\cdots& &\gate{H}&\gate{R_2}&\qw\\
- &\qw & \qw & \qw & \qw&\qw&\qw&\ctrl{-4}&\qw & \cdots& &\qw&\ctrl{-3}&\cdots& &\qw&\ctrl{-1}&\gate{H}
-}
-}
-\caption{Circuit for the quantum Fourier transform}
-\label{qc:qft}
+  \centerline{%
+    \Qcircuit @C=1em @R=.7em {
+      &\qw & \gate{H} & \gate{R_2} & \cdots& &\gate{R_{n-1}}&\gate{R_{n}}&\qw&\qw&\qw&\qw&\qw&\cdots& &\qw&\qw&\qw\\
+      &\qw & \qw & \ctrl{-1} & \cdots& &\qw&\qw&\gate{H} & \cdots& &\gate{R_{n-2}}&\gate{R_{n-1}}&\cdots& &\qw&\qw&\qw\\
+      &\vdots &  & \vdots & & & & & &\vdots & & & & & & & &\\
+      &\qw & \qw & \qw & \qw&\qw&\ctrl{-3}&\qw&\qw & \cdots& &\ctrl{-2}&\qw&\cdots& &\gate{H}&\gate{R_2}&\qw\\
+      &\qw & \qw & \qw & \qw&\qw&\qw&\ctrl{-4}&\qw & \cdots& &\qw&\ctrl{-3}&\cdots& &\qw&\ctrl{-1}&\gate{H}
+    }
+  }
+  \caption{Circuit for the quantum Fourier transform}
+  \label{qc:qft}
 \end{figure}
 
 
-The inverse of a circuit is determined by traversing the circuit
-from right to left. This process changes the original quantum Fourier
-circuit to its inverse as  shown in
-\vref{qc:inverseqft}. The \lqpl{} code for the
-inverse quantum Fourier transform is in the
-appendix, %todo {vrefrange{fig:inverseqft}{fig:inverserotate}}.
+The inverse of a circuit is determined by traversing the circuit from right to left. This process
+changes the original quantum Fourier circuit to its inverse as shown in \vref{qc:inverseqft}. The
+\lqpl{} code for the inverse quantum Fourier transform is in the appendix, 
+%todo lqpl code for {vrefrange{fig:inverseqft}{fig:inverserotate}}.
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuit @C=1em @R=.7em {
- &\qw & \qw & \qw & \cdots& &\qw&\qw&\qw&\qw&\qw&\gate{R_{n}^{-1}}&\gate{R_{n-1}^{-1}}&\cdots& &\gate{R_2^{-1}}&\gate{H}&\qw\\
- &\qw & \qw & \qw& \cdots & &\gate{R_{n-1}^{-1}}&\gate{R_{n-2}^{-1}}&\cdots& &\gate{H}&\qw&\qw& \cdots& &\ctrl{-1}&\qw&\qw\\
- &\vdots & & & \vdots & & & &\vdots& & & & & &  & &\\
- &\qw &\gate{R_2^{-1}}&\gate{H} & \cdots & & \qw & \ctrl{-2} & \cdots& &\qw&\qw&\ctrl{-3}&\qw  &\qw&\qw&\qw  &\qw\\
- &\gate{H}&\ctrl{-1}&\qw & \cdots & &\ctrl{-3} & \qw & \cdots& &\qw&\ctrl{-4}&\qw&\qw  &\qw&\qw&\qw  &\qw
-}
-}
-\caption{Circuit for the inverse quantum Fourier transform}
-\label{qc:inverseqft}
+  \centerline{%
+    \Qcircuit @C=1em @R=.7em {
+      &\qw & \qw & \qw & \cdots& &\qw&\qw&\qw&\qw&\qw&\gate{R_{n}^{-1}}&\gate{R_{n-1}^{-1}}&\cdots& &\gate{R_2^{-1}}&\gate{H}&\qw\\
+      &\qw & \qw & \qw& \cdots & &\gate{R_{n-1}^{-1}}&\gate{R_{n-2}^{-1}}&\cdots& &\gate{H}&\qw&\qw& \cdots& &\ctrl{-1}&\qw&\qw\\
+      &\vdots & & & \vdots & & & &\vdots& & & & & &  & &\\
+      &\qw &\gate{R_2^{-1}}&\gate{H} & \cdots & & \qw & \ctrl{-2} & \cdots& &\qw&\qw&\ctrl{-3}&\qw  &\qw&\qw&\qw  &\qw\\
+      &\gate{H}&\ctrl{-1}&\qw & \cdots & &\ctrl{-3} & \qw & \cdots& &\qw&\ctrl{-4}&\qw&\qw  &\qw&\qw&\qw  &\qw
+    }
+  }
+  \caption{Circuit for the inverse quantum Fourier transform}
+  \label{qc:inverseqft}
 \end{figure}
 
 % subsubsection quantum_fourier_transform (end)
@@ -1081,55 +950,50 @@ appendix, %todo {vrefrange{fig:inverseqft}{fig:inverserotate}}.
 
 \section{Extensions to quantum circuits} % (fold)
 \label{sec:extensions_to_quantum_circuits}
-To facilitate the transition to the programming language \lqpl,
-this section  introduces three extensions to quantum circuits. The
-extensions are  \emph{renaming}, \emph{wire bending and  crossing},
-and \emph{scoped control}.
- Each extension adds expressive power
-to quantum circuits but does not change the semantic power. For
-each of the extensions, examples of how to re-write the extension in
-standard quantum circuit terminology will be provided.
+To facilitate the transition to the programming language \lqpl, this section introduces three
+extensions to quantum circuits. The extensions are \emph{renaming}, \emph{wire bending and
+crossing}, and \emph{scoped control}. Each extension adds expressive power to quantum circuits but
+does not change the semantic power. For each of the extensions, examples of how to re-write the
+extension in standard quantum circuit terminology will be provided.
 
 \subsection{Renaming} % (fold)
 \label{sub:renaming}
 
 
-Quantum circuits currently allow renaming to be an implicit part of any
-gate. The circuit in \vref{qc:renaming} gives
- an operation to explicitly do this and its rewriting in standard
-circuit notation.
+Quantum circuits currently allow renaming to be an implicit part of any gate. The circuit in
+\vref{qc:renaming} gives an operation to explicitly do this and its rewriting in standard circuit
+notation.
 
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuit @C=1em @R=.7em {
-  &\qw_y& \gate{x:=y}  & \qw& \qw_x &\equiv &  &\qw_y& \gate{I} & \qw& \qw_x
-}}
-\caption{Renaming of a \protect{\qubit} and its equivalent diagram}\label{qc:renaming}
+  \centerline{%
+    \Qcircuit @C=1em @R=.7em {
+      &\qw_y& \gate{x:=y}  & \qw& \qw_x &\equiv &  &\qw_y& \gate{I} & \qw& \qw_x
+    }
+  }
+  \caption{Renaming of a \protect{\qubit} and its equivalent diagram}\label{qc:renaming}
 \end{figure}
 % subsection renaming (end)
 
 \subsection{Wire crossing} % (fold)
 \label{sub:wire_crossing}
 
-
-Crossing and bending of wires in a circuit diagram is added to allow
-a simpler presentation of algorithms. The circuit in
-\vref{qc:benditbaby} illustrates the concept of re-organizing and
+Crossing and bending of wires in a circuit diagram is added to allow a simpler presentation of
+algorithms. The circuit in \vref{qc:benditbaby} illustrates the concept of re-organizing and
 bending of wires.
 
 \begin{figure}[htbp]
-\[
-\begin{array}{c}
-\Qcircuit @C=1em @R=.7em {
-  &\qw& \multigate{1}{U_1}&\qw \ar @{-} [ddr]\\
-  &\qw& \ghost{U_1}  & \qw & \qw & \qw & \qw & \qw & \qw \\
-  &   &              &                & &\qw & \multigate{1}{U_3} &\qw \\
-  &\qw& \multigate{1}{U_2}  & \qw \ar @{-} [dr] & &  \qw &\ghost{U_3} & \qw \\
-  &\qw& \ghost{U_2}&\qw \ar @{-}  [ur]&&\qw &\qw &\qw
-}
-\end{array}
-\]
-\caption{Bending}\label{qc:benditbaby}
+  \[
+    \begin{array}{c}
+      \Qcircuit @C=1em @R=.7em {
+        &\qw& \multigate{1}{U_1}&\qw \ar @{-} [ddr]\\
+        &\qw& \ghost{U_1}  & \qw & \qw & \qw & \qw & \qw & \qw \\
+        &   &              &                & &\qw & \multigate{1}{U_3} &\qw \\
+        &\qw& \multigate{1}{U_2}  & \qw \ar @{-} [dr] & &  \qw &\ghost{U_3} & \qw \\
+        &\qw& \ghost{U_2}&\qw \ar @{-}  [ur]&&\qw &\qw &\qw
+      }
+    \end{array}
+  \]
+  \caption{Bending}\label{qc:benditbaby}
 \end{figure}
 
 % subsection wire_crossing (end)
@@ -1137,92 +1001,85 @@ bending of wires.
 \subsection{Scoped control} % (fold)
 \label{sub:scoped_control}
 
-
-This extension allows us to group different operations in a circuit and
-show that all of them are controlled by a particular \qubit. This is
-the same as attaching separate control wires to each of the gates in the
-grouped operations. Measurements are not affected by control.
-\Vref{qc:scopedcontrol} shows a scoped control box on the left which
-includes a measure. The right hand side of the same figure
-shows the circuit translated back to
-standard circuit notation, with the measure not being affected by
-the control.
+This extension allows us to group different operations in a circuit and show that all of them are
+controlled by a particular \qubit. This is the same as attaching separate control wires to each of
+the gates in the grouped operations. Measurements are not affected by control.
+\Vref{qc:scopedcontrol} shows a scoped control box on the left which includes a measure. The right
+hand side of the same figure shows the circuit translated back to standard circuit notation, with
+the measure not being affected by the control.
 
 \begin{figure}[htbp]
-\[
-\begin{array}{ccc}
-\Qcircuit @C=1em @R=.7em {
-  &\qw& \gate{H}\gategroup{1}{2}{4}{4}{1.25em}{-}  & \gate{Z}& \qw&\qw\\
-  &\qw& \qswap  & \qw& \qw&\qw\\
-  &\qw& \qswap \qwx  & \qw& \qw&\qw\\
-  &\qw& \qw  & \measureD{M}& \cw&\cw\\
-  &  &    &      &     &  \\
-  &\qw&  \control \ar @{-} [-1,0]+<0ex,.1ex> \qw& \qw&\qw&\qw
-}
-& \qquad \raisebox{-3em}{$\equiv$} \qquad \qquad &
-\Qcircuit @C=1em @R=.7em {
-  & \gate{H} &\qw& \gate{Z}& \qw&\qw\\
-  &\qw& \qswap  & \qw& \qw&\qw\\
-  &\qw& \qswap \qwx  & \qw& \qw&\qw\\
-  &\qw& \qw  & \qw&\measureD{M}& \cw\\
-  &  &    &      &     &  \\
-  &\ctrl{-5}&\ctrl{-3}&  \ctrl{-5}&\qw&\qw
-}
-\end{array}
-\]
-\caption{Scope of control}\label{qc:scopedcontrol}
+  \[
+    \begin{array}{ccc}
+      \Qcircuit @C=1em @R=.7em {
+        &\qw& \gate{H}\gategroup{1}{2}{4}{4}{1.25em}{-}  & \gate{Z}& \qw&\qw\\
+        &\qw& \qswap  & \qw& \qw&\qw\\
+        &\qw& \qswap \qwx  & \qw& \qw&\qw\\
+        &\qw& \qw  & \measureD{M}& \cw&\cw\\
+        &  &    &      &     &  \\
+        &\qw&  \control \ar @{-} [-1,0]+<0ex,.1ex> \qw& \qw&\qw&\qw
+      }
+      & \qquad \raisebox{-3em}{$\equiv$} \qquad \qquad &
+      \Qcircuit @C=1em @R=.7em {
+        & \gate{H} &\qw& \gate{Z}& \qw&\qw\\
+        &\qw& \qswap  & \qw& \qw&\qw\\
+        &\qw& \qswap \qwx  & \qw& \qw&\qw\\
+        &\qw& \qw  & \qw&\measureD{M}& \cw\\
+        &  &    &      &     &  \\
+        &\ctrl{-5}&\ctrl{-3}&  \ctrl{-5}&\qw&\qw
+      }
+    \end{array}
+  \]
+  \caption{Scope of control}\label{qc:scopedcontrol}
 \end{figure}
 
 Scoping boxes correspond to procedures and blocks in \lqpl.
 
-Naturally, both scoping and bending may be combined as in
-\ref{qc:allexts}.
+Naturally, both scoping and bending may be combined as in \vref{qc:allexts}.
 
 
 \begin{figure}[htbp]
-\[
-\begin{array}{c}
-\Qcircuit @C=1em @R=.7em {
-  &\qw& \multigate{1}{U_1}&\qw&\qw&\qw&\multigate{1}{U_3}\gategroup{1}{7}{3}{8}{.8em}{-}  & \gate{Z}& \qw&\qw&\qw\\
-  &\qw& \ghost{U_1}  & \multigate{1}{U_2}&\qw \ar @{-}  [dddr]&&\ghost{U_3} &\measureD{M} &\controlo \cw \cwx[1] &\control \cw \cwx[1] &\cw\\
-  &\qw& \qw  & \ghost{U_2}&\qw \ar @{-}  [ur]&& & &\nowiregate{U_4} &\gate{U_5} &\qw \\
-  &  &    &      &  & & & &   &  \\
-  & & & & & & \control \ar @{-} [-2,0]-<0ex,.9ex> \qw &\qw \ar @{-} @/_/ [uur] &
-}
-\end{array}
-\]
-\caption{Extensions sample}\label{qc:allexts}
+  \[
+    \begin{array}{c}
+      \Qcircuit @C=1em @R=.7em {
+        &\qw& \multigate{1}{U_1}&\qw&\qw&\qw&\multigate{1}{U_3}\gategroup{1}{7}{3}{8}{.8em}{-}  & \gate{Z}& \qw&\qw&\qw\\
+        &\qw& \ghost{U_1}  & \multigate{1}{U_2}&\qw \ar @{-}  [dddr]&&\ghost{U_3} &\measureD{M} &\controlo \cw \cwx[1] &\control \cw \cwx[1] &\cw\\
+        &\qw& \qw  & \ghost{U_2}&\qw \ar @{-}  [ur]&& & &\nowiregate{U_4} &\gate{U_5} &\qw \\
+        &  &    &      &  & & & &   &  \\
+        & & & & & & \control \ar @{-} [-2,0]-<0ex,.9ex> \qw &\qw \ar @{-} @/_/ [uur] &
+      }
+    \end{array}
+  \]
+  \caption{Extensions sample}\label{qc:allexts}
 \end{figure}
 
-However, note that exchanging wires is not the same as
-swap. Exchanging a pair of wires is not affected by
- control, but a swap is affected by control,
- as shown in \vref{qc:bendisnotswap}.
+However, note that exchanging wires is not the same as swap. Exchanging a pair of wires is not
+affected by control, but a swap is affected by control, as shown in \vref{qc:bendisnotswap}.
 %TODO - consider rewriting qcircuits in tikz
 \begin{figure}[htbp]
-\[
-  \Qcircuitnocompile @C=1em @R=1.5em {
-    &\qw&\qswap  &\qw \\
-    &\qw&\qswap \qwx &\qw\\
-    &\qw& \control \qwx \qw & \qw
-  }
-  \quad \raisebox{-1.9em}{$\equiv$} \quad
-  \Qcircuitnocompile @C=1em @R=1.5em {
-    &\qw&\qswap \ghost{U} {\POS"1,2"."2,2"."1,3"."2,3"!C*+<2ex>\frm{-}} 
+  \[
+    \Qcircuitnocompile @C=1em @R=1.5em {
+      &\qw&\qswap  &\qw \\
+      &\qw&\qswap \qwx &\qw\\
+      &\qw& \control \qwx \qw & \qw
+    }
+    \quad \raisebox{-1.9em}{$\equiv$} \quad
+    \Qcircuitnocompile @C=1em @R=1.5em {
+      &\qw&\qswap \ghost{U} {\POS"1,2"."2,2"."1,3"."2,3"!C*+<2ex>\frm{-}} 
       &\qw &\raisebox{-4em}{$\neq$}& 
       &\qw \ar @{-} [dr] & {\hphantom{ }} \gategroup{1}{7}{2}{8}{2ex}{-} &\qw\\
-    &\qw&\qswap \qwx &\qw & &&\qw \ar @{-}[ur] &&\qw\\
-    &\qw& \control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw & &
+      &\qw&\qswap \qwx &\qw & &&\qw \ar @{-}[ur] &&\qw\\
+      &\qw& \control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw & &
       &\qw&\control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw
-  }
-  \quad \raisebox{-1.9em}{$\equiv$} \quad
-  \Qcircuitnocompile @C=1em @R=1.5em {
-    &\qw \ar @{-} [dr] &  &\qw\\
-    &\qw \ar @{-}[ur] &&\qw\\
-    &\qw&\qw &\qw
-  }
-\]
-\caption{Swap in control vs. exchange in control}\label{qc:bendisnotswap}
+    }
+    \quad \raisebox{-1.9em}{$\equiv$} \quad
+    \Qcircuitnocompile @C=1em @R=1.5em {
+      &\qw \ar @{-} [dr] &  &\qw\\
+      &\qw \ar @{-}[ur] &&\qw\\
+      &\qw&\qw &\qw
+    }
+  \]
+  \caption{Swap in control vs. exchange in control}\label{qc:bendisnotswap}
 \end{figure}
 
 % subsection scoped_control (end)
@@ -1230,95 +1087,95 @@ swap. Exchanging a pair of wires is not affected by
 \subsection{Circuit identities} % (fold)
 \label{sub:circuit_identities}
 
-
-
-Circuits allow the writing of  the
-same algorithm in multiple ways. This sub-section will list some
+Circuits allow the writing of the same algorithm in multiple ways. This sub-section will list some
 of the circuit identities that hold with the extended notation.
 
-First, note that although a measure may appear inside a
-control box, it is not affected by the control, as in
-\vref{qc:measurenotaffectedbycontrol}. Conversely, a
-measurement commutes with control of a circuit as in
-\vref{qc:measurenotaffectedbycontrol}.
+First, note that although a measure may appear inside a control box, it is not affected by the
+control, as in \vref{qc:measurenotaffectedbycontrol}. Conversely, a measurement commutes with
+control of a circuit as in \vref{qc:measurenotaffectedbycontrol}.
 
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuitnocompile @C=1em @R=1.5em {
-&\qw&\measureD{M}\gategroup{1}{2}{1}{3}{2ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\measureD{M}& \qw\\
-&\qw& \control \ar @{-} [-1,0]-<0ex,2.35ex> \qw &\qw & &&\qw&\qw&\qw
-}}
-\caption{Measure is not affected by control}\label{qc:measurenotaffectedbycontrol}
+  \centerline{%
+    \Qcircuitnocompile @C=1em @R=1.5em {
+      &\qw&\measureD{M}\gategroup{1}{2}{1}{3}{2ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\measureD{M}& \qw\\
+      &\qw& \control \ar @{-} [-1,0]-<0ex,2.35ex> \qw &\qw & &&\qw&\qw&\qw
+    }
+  }
+  \caption{Measure is not affected by control}\label{qc:measurenotaffectedbycontrol}
 \end{figure}
 
 
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuitnocompile @C=1em @R=1.5em {
-&\qw & \measureD{M} & \control \cwx[1] \cw &\cw & & \raisebox{-4em}{$\equiv$}& &\qw &\ctrl{1}  & \measureD{M}& \cw\\
-&\qw& \qw & \gate{C_1} & \qw & & & & \qw & \gate{C_1} &\qw &\qw
-}}
-\caption{Control  is not affected by measure}\label{qc:controlnotaffectedbymeasure}
+  \centerline{%
+    \Qcircuitnocompile @C=1em @R=1.5em {
+      &\qw & \measureD{M} & \control \cwx[1] \cw &\cw & & \raisebox{-4em}{$\equiv$}& &\qw &\ctrl{1}  & \measureD{M}& \cw\\
+      &\qw& \qw & \gate{C_1} & \qw & & & & \qw & \gate{C_1} &\qw &\qw
+    }
+  }
+  \caption{Control  is not affected by measure}\label{qc:controlnotaffectedbymeasure}
 \end{figure}
 
-One of the notations introduced earlier was that of \emph{0-control}.
-This type of control is the same as applying a $Not$ transform before
-and after a \emph{1-control}, as shown in \vref{qc:zctrlisonecontrol}.
+One of the notations introduced earlier was that of \emph{0-control}. This type of control is the
+same as applying a $Not$ transform before and after a \emph{1-control}, as shown in
+\vref{qc:zctrlisonecontrol}.
 
 
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuitnocompile @C=1em @R=1.5em {
-&\qw & \gate{U} & \qw & & \raisebox{-4em}{$\equiv$}& &\qw &\qw & \gate{U} &\qw & \qw \\
-&\qw& \ctrlo{-1} & \qw & & & & \qw & \targ & \ctrl{-1} &\targ  &\qw
-}}
-\caption{Zero control is syntactic sugar}\label{qc:zctrlisonecontrol}
+  \centerline{%
+    \Qcircuitnocompile @C=1em @R=1.5em {
+      &\qw & \gate{U} & \qw & & \raisebox{-4em}{$\equiv$}& &\qw &\qw & \gate{U} &\qw & \qw \\
+      &\qw& \ctrlo{-1} & \qw & & & & \qw & \targ & \ctrl{-1} &\targ  &\qw
+    }
+  }
+  \caption{Zero control is syntactic sugar}\label{qc:zctrlisonecontrol}
 \end{figure}
 
 
-\Vref{qc:scopedctrleqparallelcontrol} shows
-that scoped control of multiple transforms is the same as
-controlling those transforms individually.
+\Vref{qc:scopedctrleqparallelcontrol} shows that scoped control of multiple transforms is the same
+as controlling those transforms individually.
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuitnocompile @C=1em @R=1.5em {
-&\qw&\gate{U_1}\gategroup{1}{2}{2}{3}{1ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\gate{U_1}&\qw&\qw\\
-&\qw&\gate{U_2}&\qw & &&\qw&\qw&\gate{U_2}&\qw\\
-&\qw& \control \ar @{-} [-1,0]-<0ex,2.1ex> \qw &\qw & &&\qw&\ctrl{-2}&\ctrl{-1}&\qw
-}}
-\caption{Scoped control is parallel control}\label{qc:scopedctrleqparallelcontrol}
+  \centerline{%
+    \Qcircuitnocompile @C=1em @R=1.5em {
+      &\qw&\gate{U_1}\gategroup{1}{2}{2}{3}{1ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\gate{U_1}&\qw&\qw\\
+      &\qw&\gate{U_2}&\qw & &&\qw&\qw&\gate{U_2}&\qw\\
+      &\qw& \control \ar @{-} [-1,0]-<0ex,2.1ex> \qw &\qw & &&\qw&\ctrl{-2}&\ctrl{-1}&\qw
+    }
+  }
+  \caption{Scoped control is parallel control}\label{qc:scopedctrleqparallelcontrol}
 \end{figure}
-\Ref{qc:scopedctrleqserialcontrol} similarly shows
-that scoped control of multiple transforms of the same \qubit{} is
-the same as controlling those transforms serially.
+\Vref{qc:scopedctrleqserialcontrol} similarly shows that scoped control of multiple transforms of
+the same \qubit{} is the same as controlling those transforms serially.
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuitnocompile @C=1em @R=1.5em {
-&\qw&\gate{U_1}\gategroup{1}{2}{1}{4}{1ex}{-} &\gate{U_2}&\qw &\raisebox{-2em}{$\equiv$}& &\qw&\gate{U_1}&\gate{U_2}&\qw\\
-&\qw& \control \ar @{-} [-1,0]-<0ex,2.1ex> \qw &\qw &\qw &&&\qw&\ctrl{-1}&\ctrl{-1}&\qw
-}}
-\caption{Scoped control is serial control}\label{qc:scopedctrleqserialcontrol}
+  \centerline{%
+    \Qcircuitnocompile @C=1em @R=1.5em {
+    &\qw&\gate{U_1}\gategroup{1}{2}{1}{4}{1ex}{-} &\gate{U_2}&\qw &\raisebox{-2em}{$\equiv$}& &\qw&\gate{U_1}&\gate{U_2}&\qw\\
+    &\qw& \control \ar @{-} [-1,0]-<0ex,2.1ex> \qw &\qw &\qw &&&\qw&\ctrl{-1}&\ctrl{-1}&\qw
+    }
+  }
+  \caption{Scoped control is serial control}\label{qc:scopedctrleqserialcontrol}
 \end{figure}
 
 Multiple control commutes with scoping as shown in
 \vrefrange{qc:scopecommutecontrolone}{qc:scopecommutecontroltwo}.
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuitnocompile @C=1em @R=1.5em {
-&\qw&\gate{U_1}\gategroup{1}{2}{2}{3}{2ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\gate{U_1}&\qw\\
-&\qw&\ctrl{-1}&\qw & &&\qw&\ctrl{-1}&\qw\\
-&\qw& \control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw & &&\qw&\ctrl{-1}&\qw
-}}
-\caption{Multiple control}\label{qc:scopecommutecontrolone}
+  \centerline{%
+    \Qcircuitnocompile @C=1em @R=1.5em {
+      &\qw&\gate{U_1}\gategroup{1}{2}{2}{3}{2ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\gate{U_1}&\qw\\
+      &\qw&\ctrl{-1}&\qw & &&\qw&\ctrl{-1}&\qw\\
+      &\qw& \control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw & &&\qw&\ctrl{-1}&\qw
+    }
+  }
+  \caption{Multiple control}\label{qc:scopecommutecontrolone}
 \end{figure}
 \begin{figure}[htbp]
-\centerline{%
-\Qcircuitnocompile @C=1em @R=1.5em {
-&\qw&\ctrl{1}\gategroup{1}{2}{2}{3}{2ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\control \ar @{-} [1,0]+<0ex,2.5ex> \qw&\qw\\
-&\qw&\gate{U_1}&\qw & &&\qw&\gate{U_1}\gategroup{2}{7}{3}{8}{2ex}{-} &\qw\\
-&\qw& \control \ar @{-} [-1,0]-<0ex,2.6ex> \qw &\qw & &&\qw&\ctrl{-1}&\qw
-}}
-\caption{Control scopes commute}\label{qc:scopecommutecontroltwo}
+  \centerline{%
+    \Qcircuitnocompile @C=1em @R=1.5em {
+      &\qw&\ctrl{1}\gategroup{1}{2}{2}{3}{2ex}{-} &\qw &\raisebox{-4em}{$\equiv$}& &\qw&\control \ar @{-} [1,0]+<0ex,2.5ex> \qw&\qw\\
+      &\qw&\gate{U_1}&\qw & &&\qw&\gate{U_1}\gategroup{2}{7}{3}{8}{2ex}{-} &\qw\\
+      &\qw& \control \ar @{-} [-1,0]-<0ex,2.6ex> \qw &\qw & &&\qw&\ctrl{-1}&\qw
+    }
+  }
+  \caption{Control scopes commute}\label{qc:scopecommutecontroltwo}
 \end{figure}
 % subsection circuit_identities (end)
 
@@ -1331,9 +1188,8 @@ Multiple control commutes with scoping as shown in
 \section{An alternate description of quantum circuits} % (fold)
 \label{sec:an_alternate_description_of_quantum_circuits}
 
-In order to explore transforms of quantum circuits, it is helpful to have a
-algebraic description which will allow manipulation of the circuits. The goals of
-the algebraic description are:
+In order to explore transforms of quantum circuits, it is helpful to have a algebraic description
+which will allow manipulation of the circuits. The goals of the algebraic description are:
 \begin{itemize}
   \item Represent \qubits and \bits;
   \item represent gates;
@@ -1345,76 +1201,65 @@ Note that measurement is not included in this representation.
 
 \subsection{Base types} % (fold)
 \label{sub:base_types}
-The base types \bit and \qubit are needed for any circuit. These will be
-taken as elemental and correspond to the
-classical notions of ``bit'' (i.e., $0$ or $1$) and ``qubit''
-(i.e., $\alpha\ket{0} + \beta\ket{1}$).
+The base types \bit and \qubit are needed for any circuit. These will be taken as elemental and
+correspond to the classical notions of ``bit'' (i.e., $0$ or $1$) and ``qubit'' (i.e.,
+$\alpha\ket{0} + \beta\ket{1}$).
 % subsection basic_types (end)
 \begin{definition}\label{def:endpoint}
   The type \type{endpoint} is either \bit or \qubit.
 \end{definition}
 
-\begin{definition}\label{def:arity}
-  The type \type{Arity} is a partial map from $W\subset\nat$ to \type{Endpoint}.
+\begin{definition}\label{def:qarity}
+  The type \type{Q-Arity} is a partial map from $W\subset\nat$ to \type{Endpoint}.
 \end{definition}
 
 \begin{definition}\label{def:wire}
-  A \emph{wire} is an element of $W\subset\nat$. A \emph{typed wire} is a wire
-  together with a specified \type{Arity}.
+  A \emph{wire} is an element of $W\subset\nat$. A \emph{typed wire} is a wire together with a
+  specified \type{Q-Arity}.
 \end{definition}
 
 \begin{definition}\label{def:control}
-  A \emph{control wire} is a pair $(w,b)$ where $w$ is a
-  typed wire and $b::\type{Bool}$.
+  A \emph{control wire} is a pair $(w,b)$ where $w$ is a typed wire and $b::\type{Bool}$.
 \end{definition}
 
 A quantum program uses \emph{typed wire}s as its data.
 
 \begin{definition}\label{def:gate}
-  A \emph{gate} is a function from $W_1$, a set of typed wires, to $W_2$,
-  another
-  set of typed wires. The gate function must be a superoperator
-  as defined in \cite{selinger04:qpl}.
+  A \emph{gate} is a function from $W_1$, a set of typed wires, to $W_2$, another set of typed
+  wires. The gate function must be a superoperator as defined in \cite{selinger04:qpl}.
 \end{definition}
 
 \subsection{Types and Shapes} % (fold)
 \label{sub:types_and_shapes}
-Although circuits, gates and low level subroutines are defined at
-the level of wires, programmatically, we would like
-to refer to groupings of wires. For example, a list of \qubit
-or a register (tuple) of \qubit. These groupings may have a
-required leaf type (e.g., \qubit or \bit) or it may be
-considered polymorphic. Additionally, the leaf type may be mixed
-or homogenous.
+Although circuits, gates and low level subroutines are defined at the level of wires,
+programmatically, we would like to refer to groupings of wires. For example, a list of \qubit or a
+register (tuple) of \qubit. These groupings may have a required leaf type (e.g., \qubit or \bit) or
+it may be considered polymorphic. Additionally, the leaf type may be mixed or homogenous.
 
 %todo {Read and work on definitions of shapes and QCData}
 
 \begin{definition}\label{def:singletons}
-  The singleton type \type{B} is defined as having the instance \Bs and the
-  singleton type \type{Q} is defined as having the singleton instance \Qs.
+  The singleton type \type{B} is defined as having the instance \Bs and the singleton type \type{Q}
+  is defined as having the singleton instance \Qs.
 \end{definition}
 
 \begin{definition}\label{def:qcdata}
-  The type family \type{QCData} consists of algebraic data types
-  built up from \bit or \qubit.
+  The type family \type{QCData} consists of algebraic data types built up from \bit or \qubit.
 \end{definition}
 
 Examples of \type{QCData} include $(\bit,\qubit,[\qubit])$ and $\bit$.
 
 \begin{definition}\label{def:shape}
-  Given an instance $I$ of a type \type{T} in \type{QCData},
-  the \emph{shape} of $I$ is the instance $I_s$ obtained from
-  $I$ by replacing all terms of type \bit by  \Bs and all terms
-  of type \qubit by \Qs.
+  Given an instance $I$ of a type \type{T} in \type{QCData}, the \emph{shape} of $I$ is the
+  instance $I_s$ obtained from $I$ by replacing all terms of type \bit by \Bs and all terms of type
+  \qubit by \Qs.
 \end{definition}
 
-For example, a 2 element list of \qubits has shape $[\Qs,\Qs]$
-while a pair of a \qubit and \bit has shape $(\Qs,\Bs)$
+For example, a 2 element list of \qubits has shape $[\Qs,\Qs]$ while a pair of a \qubit and \bit
+has shape $(\Qs,\Bs)$
 
 
-The concepts of shape and the type \type{QCData} allow us to group
-the wires of a quantum circuit into higher
-order types.
-
+The concepts of shape and the type \type{QCData} allow us to group the wires of a quantum circuit
+into higher order types.
 % subsection types_and_shapes (end)
 % section an_alternate_description_of_quantum_circuits (end)
