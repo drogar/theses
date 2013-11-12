@@ -92,11 +92,20 @@
 
 %-----------------------------------------------------------------------------
 % Axiom number and referencing
-\newcommand{\axiom}[2]{\ensuremath{[\text{\emph{\bfseries {#1}.{#2}}}]}\xspace}
+\newcommand{\axiom}[2]{\ensuremath{[\text{\bfseries {#1}.{#2}}]}\xspace}
+
+\newcommand{\cataxiom}[1]{\axiom{C}{#1}}
 
 \newcommand{\rstaxiom}[1]{\axiom{R}{#1}}
 
 \newcommand{\rgaxiom}[1]{\axiom{RR}{#1}}
+
+\newcommand{\catone}{\cataxiom{1}}
+\newcommand{\cattwo}{\cataxiom{2}}
+\newcommand{\catthree}{\cataxiom{3}}
+\newcommand{\catfour}{\cataxiom{4}}
+\newcommand{\catfive}{\cataxiom{5}}
+
 \newcommand{\rone}{\rstaxiom{1}}
 \newcommand{\rtwo}{\rstaxiom{2}}
 \newcommand{\rthree}{\rstaxiom{3}}
@@ -248,6 +257,7 @@
 \end{description}%
 }
 
+\newcommand{\natto}{\Rightarrow}
 \newcommand{\specialcat}[1]{\textsc{#1}\xspace}
 \newcommand{\ltrcatbb}[1]{\ensuremath{\mathbb{#1}}\xspace}
 
@@ -261,6 +271,7 @@
 \newcommand{\Mstab}{\ensuremath{\mathcal{M}}\xspace}
 
 \newcommand{\sets}{\specialcat{Sets}}
+\newcommand{\cat}{\specialcat{Cat}}
 \newcommand{\Par}{\specialcat{Par}}
 
 \newcommand{\rel}{\specialcat{Rel}}
