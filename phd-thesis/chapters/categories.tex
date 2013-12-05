@@ -19,7 +19,7 @@ section.
     \item[\cattwo] $f C(f)$ is defined and equals $f$,
     \item[\catthree] $f g$ is defined iff $C(f) = D(g)$ and $D(f g) = D(f)$ and $C(f g) = C(g)$,
     \item[\catfour] $(f g) h = f (g h)$ whenever either side is defined,
-    \item[\catfive] $D(C(x)) = C(X)$, $C(D(x)) = D(x)$ and $C,D$ are both idempotent.
+    \item[\catfive] $D(C(x)) = C(x)$, $C(D(x)) = D(x)$ and $C,D$ are both idempotent.
   \end{itemize}
 \end{definition}
 
@@ -63,6 +63,22 @@ A more familiar defintion, often used in introducing categories, is given next.
   codomain of $g.$
 \end{proof}
 
+As we have shown the two defintions are equivalent, it will be convenient to reference either 
+definition and manner of referring to a category thoughout this thesis. Essentially, we will use
+whichever definition seems the most appropriate to use at any point.
+
+We may also consider the notion of containment between categories.
+
+\begin{definition}\label{def:subcategories}
+  Given the categories $\C$ and $\D$, we may say the following:
+  \begin{enumerate}[{(}i{)}]
+    \item \C is a \emph{sub-category} of \D when each object of \C is an object of \D and when each map
+    of \C is a map of \D.
+    \item \C is a \emph{full sub-category} of \D when it is a sub-category and given $A, B$ objects
+      in $\C$ and $f:A \to B$ in \D, then $f$ is a map in $\C$.
+  \end{enumerate}
+\end{definition}
+
 \subsection{Enrichement of categories} % (fold)
 \label{sub:enrichement_of_categories}
 \begin{definition}\label{def:hom-collection}
@@ -77,13 +93,15 @@ enriched in partial orders, enriched in groups, etc..
 
 Specific types of enrichment may force a specific structure on a category. For example, if $\X$ is
 enriched in sets of cardinality of 0 or 1, then $\X$ must be a preorder. 
+
+
+% subsection enrichement_of_categories (end)
 \subsection{Examples of categories} % (fold)
 \label{sub:examples_of_categories}
 In this section, we will offer a few examples of categories. As Definition~\ref{def:category_alt} 
 tends to be a more succinct way to present the data of a category, this section will given the
 examples in terms of objects and maps rather than the ``object-free'' definition.
 
-% subsubsection categories_based_on_sets (end)
 
 \subsubsection{Categories based on \protect{\sets}} % (fold)
 \label{ssub:categories_based_on_sets}
@@ -101,6 +119,7 @@ Note that \rel is enriched in posets, via set inclusion. \Par can be viewed as a
 \rel, with the same objects, but only allowing maps which are functions, i.e., if $(x,y), (x,y')
 \in R$, then $y = y'$. \Par is also enriched in posets, via the same inclusion ordering as in \rel.
 
+% subsubsection categories_based_on_sets (end)
 \subsubsection{Matrix categories} % (fold)
 \label{ssub:matrix_categories}
 Given a rig $R$ (i.e., a ring minus negatives, e.g., the positive rationals), one may form the category
@@ -109,11 +128,156 @@ Given a rig $R$ (i.e., a ring minus negatives, e.g., the positive rationals), on
 $I_n$}{Matrix multiplication}
 % subsubsection matrix_categories (end)
 
-\subsubsection{Functors and natural transformations} % (fold)
+\subsubsection{Dual categories} % (fold)
+\label{ssub:dual_categories}
+
+Given a category $\C$, we may form the \emph{dual} of $C$, written $C^{op}$ as the following 
+category:
+\category{The objects of $\C$}{$f^{op}:B\to A$ in $\C^{op}$ when $f:A\to B$ in $\C$.}{
+The identity maps of $\C$}{If $f g = h$ in $\C$, $g^{op} f^{op} = h^{op}$}
+
+% subsubsection dual_categories (end)
+% subsection examples_of_categories (end)
+\subsection{Properties of maps} % (fold)
+\label{sub:properties_of_maps}
+Many interesting properties of maps are generalizations of notions that have been found useful in
+considering sets and functions. We present a few of these in a tabular format, together with their
+categorical definition. Throughout the table, $e,f,g$ are maps in a category $C$ with 
+$e:A \to A$ and $f,g:A \to B$.
+
+\begin{tabular}{|p{1in}p{1in}p{3.75in}|}
+\hline
+{\bf Sets} & {\bf Categorical Property} & {\bf Definition}\\
+\hline
+\hline
+Injective & Monic & $f$ is monic whenver $h f = k f$ means that $h = k$.\\
+\hline
+Surjective & Epic & The dual notion to monic, $g$ is epic whenever $g h = g k$ means that $h = k$.
+A map that is both monic and epic is called \emph{bijic}.\\
+\hline
+Left~Inverse & Section & $f$ is a section when there is a map $f^*$ such that $f f^* = 1_A$. $f$ 
+is also referred to as the \emph{left inverse} of $f^*$.\\
+\hline
+Right Inverse & Retraction & $f$ is a retraction when there is a map $f_*$ such that $f_* f = 1_B$.
+$f$ is also referred to as the \emph{right inverse} of $f_*$. A map that is both a section and a
+retraction is called an \emph{isomorphism}.\\
+\hline
+Idempotent & Idempotent & An endomap $e$ is idempotent whenever $e e = e$.\\
+\hline
+\end{tabular}
+
+We state without proof a number of properties of maps.
+
+\begin{lemma}\label{lem:categorical_properties_of_maps}
+  In a category \C,
+  \begin{enumerate}[{(}i{)}]
+    \item If $f,g$ are monic, then $f g$ is monic.
+    \item If $f g$ is monic, then $f$ is monic.
+    \item $f$ being a section means it is monic.
+    \item $f, g$ sections implies that $f g$ is a section.
+    \item $f g$ a section means $f$ is a section.
+  \end{enumerate}
+\end{lemma}
+
+
+\begin{lemma}\label{lem:categorical_inverses_are_unique}
+  If $f:A \to B$ is both a section and a retraction, then $f^* = f_*$.  
+\end{lemma}
+
+\begin{lemma}\label{lem:categorical_iso_is_epic_section}
+  $f$ is an isomorphisim if and only if it is an epic section.  
+\end{lemma}
+
+Note there are corresponding properties for epics and retractions, obtained by dualizing the 
+statements of Lemma~\ref{lem:categorical_properties_of_maps} and 
+Lemma~\ref{lem:categorical_iso_is_epic_section}.
+
+Suppose $f:A \to B$ is a retraction with left inverse $f_*:B \to A$. Note that $f f_*$ is idempotent
+as $f f_* f f_* = f 1_B f_* = f f_*$. If we are given an idempotent $e$, we say $e$ is \emph{split}
+if there is a retraction $f$ with $e = f f_*$. 
+
+In general, not all idempotents in a category will split. The following construction allows us to
+create a category based on the original one in which all idempotents do split.
+
+\begin{definition}\label{def:split_category}
+  Given a category $\C$ we define \emph{Split($\C$)} as the following category:
+  \category{$(A,e)$, where $A$ is an object of \C, $e:A\to A$ and $e\in E$.}
+    {$f_{d,e}:(A,d)\to(B,e)$ is given by $f:A\to B$ in \C, where $f = d\uts f e$.}
+    {The map $e_{e,e}$ for $(A,e)$.}
+    {Inherited from \C.}
+\end{definition} 
+
+\begin{lemma}\label{lem:split_category_splits_and_has_category}
+  Given a category $\C$, then it is a full sub-category of Split($\C$) and all idempotents split
+  in Split($\C$).
+\end{lemma}
+\begin{proof}
+  We identify each object $A$ in $\C$ with the object $(A,1)$ in Split($\C$). The only maps between
+  $(A,1)$ and $(B,1)$ in Split($\C$) are the maps between $A$ and $B$ in $\C$, hence we have a 
+  full sub-category.
+  
+  Suppose we have the map $d_{e,e}: (A,e) \to (A,e)$ with $d d = d$, i.e., it is idempotent in $C$
+  and Split($\C$). In Split($\C$), we have the map $d_{e,d}:(A,e) \to (A,d)$ and $d_{d,e}:(A,d) \to
+  (A,e)$ where $d_{d,e} d_{e,d} = d_{d,d} = 1_{(A,d)}$ and $d_{e,d} d_{d,e} = d_{e,e}$, hence
+  it is a splitting of the map  $d_{e,e}$.
+\end{proof}
+% subsection properties_of_maps (end)
+
+\subsection{Limits and colimits in categories} % (fold)
+\label{sub:limits_and_colimits_in_categories}
+
+We shall discuss only a few basic limits/colimits in categories. First we discuss initial
+and terminal objects.
+
+\begin{definition}\label{def:initial_object}
+  An \emph{initial object} in a category $\C$ is an object which has exactly one map to each other
+  object in the category. The dual notion is \emph{terminal object} which has exactly one map from
+  each other object in the category.
+\end{definition}
+
+
+\begin{lemma}\label{lem:initial_objects_are_unique}
+  Suppose $I,J$ are initial objects in $\C$. Then there is an unique isomorphism $i:I \to J$.
+\end{lemma}
+\begin{proof}
+  First, note that by definition there is only one map from $I$ to $I$ --- which must be the 
+  identity map. As $I$ is initial there is a map $i: I \to J$. As $J$ is intial there is a map
+  $j:J \to I$. But this means $ij : I \to I = 1$ and $j i : J \to J = 1$ and hence $i$ is the 
+  unique isomorphism from $I$ to $J$. 
+\end{proof}
+
+Dually, we have the corresponding result of Lemma~\ref{lem:initial_objects_are_unique} for terminal
+objects --- they are also unique up to a unique isomorphism.
+
+In categories, we normally designate the intial object by $0$ and the terminal object by $1$.
+
+We now turn to products and co-products. 
+
+\begin{definition}\label{def:categorical_product}
+  Let $A,B$ be objects of the category $\C$. Then the object $A \times B$ is a \emph{product} of
+  $A$ and $B$ when:
+  \begin{itemize}
+    \item There exist maps $\pi_0, \pi_1$ with $\pi_0:A\times B \to A$, $\pi_1:A\times B \to B$;
+    \item Given an object $C$ with maps $f:C\to A$ and $g:C \to B$ there exists an unique map 
+    $\<f,g\>$ such that the following diagram commutes:
+    \[
+      \xymatrix@C+15pt@R+25pt{
+        &&&A\\
+        C\ar[urrr]^{f} \ar[drrr]_{g}\ar@{.>}[rr]^{\<f,g\>} & &A\times B \ar[ur]_{\pi_0}\ar[dr]^{\pi_1}\\
+        &&&B
+      }
+    \]
+  \end{itemize}
+  
+\end{definition}
+% subsection limits_and_colimits_in_categories (end)
+
+\subsection{Functors and natural transformations} % (fold)
 \label{ssub:functors_and_natural_transformations}
 
 \begin{definition}\label{def:functor}
-  A map $F:\X \to \Y$ between categories is called a \emph{functor}, provided it satisfies the following:
+  A map $F:\X \to \Y$ between categories (as in Definition~\ref{def:category} is called a 
+  \emph{functor}, provided it satisfies the following:
   \begin{itemize}
     \item[\axiom{F}{1}] $F(D(f)) = D(F(f))$ and $F(C(f)) = C(F(f))$;
     \item[\axiom{F}{2}] $F(f g) = F(f)F(g)$;
@@ -128,6 +292,56 @@ $I_n$}{Matrix multiplication}
   $FG(x) = F(G(x))$ which is clearly associative.}
 \end{proof}
 
+We will often restrict ourselves to specific classes of functors which either \emph{preserve} or
+\emph{reflect} certain characteristics of the domain category or codomain category. To be more 
+precise, we provide some definitions.
+
+\begin{definition}\label{def:diagram_in_a_category}
+  A \emph{diagram} in a category is a collection of objects and maps between those objects
+  which satisfy categorical composition rules. More precisely: Given a category $\S$, a diagram
+  in a category $\C$ of \emph{shape} $\S$ is a functor $D:\S \to \C$.
+\end{definition}
+
+In practice, diagrams are pictorially represented by drawing the objects and the maps between them.
+
+\begin{definition}\label{def:property_of_a_diagram}
+  A \emph{property} of a diagram $D$, written $P(D)$ is a logical relation expressed using the 
+  objects and maps of the diagram $D$.
+\end{definition}
+
+\begin{example}
+  $P(f:A \to B) = \exists h : B \to A. h f = 1_A$ expresses that $f$ is a retraction.
+\end{example}
+
+\begin{definition}\label{def:functor_preserving_a_property}
+  A functor $F$ \emph{preserves} the property $P$ over maps $f_i$ and objects $A_j$ when 
+  $P(f_1,\ldots,f_n, A_1,\ldots,A_m)$ implies $P(F(f_1),\ldots,F(f_n), F(A_1),\ldots,F(A_m))$.
+\end{definition}
+
+\begin{definition}\label{def:functor_reflects_a_property}
+  A functor $F$ \emph{reflects} the property $P$ over maps $f_i$ and objects $A_j$ when 
+  $P(F(f_1),\ldots,F(f_n), F(A_1),\ldots,F(A_m))$ implies $P(f_1,\ldots,f_n, A_1,\ldots,A_m)$.
+\end{definition}
+
+For example, all functors preserve the properties of being an idempotent or a retration or section, 
+but in general, not the property of being monic.
+
+A functor $F:\C \to \D$ induces a map between hom-objects in $\C$ and hom-objects in $\D$. For
+each object $A,B$ in $\C$ we have the map:
+\[
+  F_{AB} : \C(A,B) \to \D(F(A),F(B)).
+\]
+
+\begin{definition}\label{def:full_functor_faithful_functor}
+  Given a functor $F:\C to \D$, we say:
+  \begin{itemize}
+    \item $F$ is \emph{faithul} when for all $A,B$, $F_{AB}$ is an injective function;
+    \item $F$ is \emph{full} when  for all $A,B$, $F_{AB}$ is an surjective function.
+  \end{itemize}
+\end{definition}
+
+
+
 \begin{definition}\label{def:natural_transformation}
   Given functors $F,G:\X \to \Y$, a \emph{natural transformation} $\alpha:F \natto G$ is a collection
   of maps in $\Y$, $\alpha_X : F(X) \to G(X)$, indexed by the objects of $\X$ such that for all
@@ -138,10 +352,8 @@ $I_n$}{Matrix multiplication}
     }
   \]
 \end{definition}
-% subsubsection functors_and_natural_transformations (end)
+% subsection functors_and_natural_transformations (end)
 
-% subsection examples_of_categories (end)
-% subsection enrichement_of_categories (end)
 
 % section categories (end)
 \section{Restriction categories} % (fold)
