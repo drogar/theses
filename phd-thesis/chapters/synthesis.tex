@@ -1,6 +1,6 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\chapter{Synthesis of quantum operations} % (fold)
-\label{cha:synthesis_of_quantum_operations}
+\chapter{$D[\omega]$ based $\dagger$ categories} % (fold)
+\label{cha:d_omega_based_dagger_categories}
 
 \section{Introduction to synthesis} % (fold)
 \label{sec:introduction_to_synthesis}
@@ -119,7 +119,7 @@ $u = (u_\jay)_\jay$, we define
   $\Zw$. Indeed, consider the {\em parity function} $\parity{()}:\Z\to\Zb$, which is the unique
   ring homomorphism. It satisfies $\parity{a}=0$ if $a$ is even and $\parity{a}=1$ if $a$ is odd.
   The parity map induces a surjective ring homomorphism $\rho:\Zw\to\Zbw$, defined by
-  \[ 
+  \[
     \rho(a\omega^3+b\omega^2+c\omega+d) =
     \parity{a}\omega^3+\parity{b}\omega^2+\parity{c}\omega+\parity{d}.
   \]
@@ -172,7 +172,7 @@ operations on residues, namely multiplication by $\sqrt{2}$ and the squared norm
 \begin{definition}[$k$-Residue]
   Let $t\in\Dw$ and let $k$ be a (not necessarily least) denominator exponent for $t$. The {\em
   $k$-residue of $t$}, in symbols $\rho_k(t)$, is defined to be
-  \[ 
+  \[
     \rho_k(t) = \rho(\sqrt{2}^k t).
   \]
 \end{definition}
@@ -248,26 +248,26 @@ operations on residues, namely multiplication by $\sqrt{2}$ and the squared norm
 \begin{example}\label{exa-k-residue}
   Consider the matrix
   \[ \small U \,{=}\, \frac{\small 1}{\small \sqrt{2}^3}\!\footnotesize\zmatrix{cccc}{
-    -\omega^3+\omega -1          
-			& \omega^2+\omega+1 
-				& \omega^2 
+    -\omega^3+\omega -1
+			& \omega^2+\omega+1
+				& \omega^2
 					& -\omega\\
-    \omega^2+\omega 
-			& -\omega^3+\omega^2 
+    \omega^2+\omega
+			& -\omega^3+\omega^2
 				& -\omega^2-1
 					& \omega^3+\omega \\
     \omega^3+\omega^2
 			& -\omega^3-1
-				& 2\omega^2 
+				& 2\omega^2
 					&0 \\
     -1
 			& \omega
-				& 1 
+				& 1
 					& -\omega^3+2\omega
     }.
   \]
   It has least denominator exponent $3$. Its $3$-, $4$-, and $5$-residues are:
-  \[ 
+  \[
     \begin{split}
     &
     \rho_3(U) = \zmatrix{cccc}{
@@ -651,20 +651,20 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
   for $a_\jay,\ldots,f_\jay\in\Z$.
   Then for all $\jay,\ell\in\s{1,2,3}$,
   \begin{equation}\label{eqn-abba}
-    a_\jay b_\ell+b_\jay a_\ell+                             
+    a_\jay b_\ell+b_\jay a_\ell+
             c_\jay d_\ell+d_\jay c_\ell+e_\jay f_\ell+f_\jay e_\ell = 0
   \end{equation}
   and
   \begin{equation}\label{eqn-aacc}
     a_\jay a_\ell+c_\jay c_\ell+e_\jay e_\ell+
-    2(b_\jay b_\ell+d_\jay d_\ell+f_\jay f_\ell) 
-    = 2^k\<v_\jay,v_\ell\>. 
+    2(b_\jay b_\ell+d_\jay d_\ell+f_\jay f_\ell)
+    = 2^k\<v_\jay,v_\ell\>.
   \end{equation}
   In particular, we have, for all $\jay\in\s{1,2,3}$,
   \begin{equation}\label{eqn-abcd}
-    a_\jay b_\jay+                             
+    a_\jay b_\jay+
     c_\jay d_\jay+e_\jay f_\jay = 0
-  \end{equation}    
+  \end{equation}
   and
   \begin{equation}\label{eqn-a2c2}
     a_\jay^2 + c_\jay^2 + e_\jay^2 + 2(b_\jay^2 + d_\jay^2 + f_\jay^2) = 2^k.
@@ -733,7 +733,7 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
   have parity $1$. Therefore, each row or column of $p_k(U)$ has an even number of $1$'s. Moreover,
   since $k$ is the least denominator exponent of $U$, $p_k(U)$ has at least one non-zero entry.
   Modulo a permutation of columns, this leaves exactly four possibilities for $p_k(U)$:
-  \[ 
+  \[
     (a)~ \zmatrix{ccc}{1&1&0 \\ 1&1&0 \\ 0&0&0},\quad
     (b)~ \zmatrix{ccc}{0&0&0 \\ 1&1&0 \\ 1&1&0},\quad
     (c)~ \zmatrix{ccc}{1&1&0 \\ 0&0&0 \\ 1&1&0},\quad
@@ -789,7 +789,7 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
       all integers. Hence, $k-1$ is a denominator exponent of
       $\hat{T}^{-1}v$. Moreover, since $a'+c'=c$ is odd, one of $a'$
       and $c'$ is odd, proving that $k-1$ is the least denominator
-      exponent of $\hat{T}^{-1}v$. 
+      exponent of $\hat{T}^{-1}v$.
 
       Now consider the third column $w$ of $U$, where $p_k(w) =
       (0,0,0)^T$. Then $k-1$ is a denominator exponent of $w$, so that
@@ -806,7 +806,7 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
       But $\hat{T}^{-1}U$ is orthogonal, so by {\vref{eqn-a2c2}},
       applied to each row of $\hat{T}^{-1}U$, we conclude that
       $x=y=z=0$. It follows that the least denominator exponent of
-      $\hat{T}^{-1}U$ is $k-1$. 
+      $\hat{T}^{-1}U$ is $k-1$.
     \item \label{lemparitycase:applyh}$p_k(U) \sim_{\sC} M_H$.
       In this case, $p_k(\hat{H}^{-1}U) \sim_{\sC} p(\hat{H}^{-1}M_H) = M_T$.
       We then continue as in case \vref{lemparitycase:applyt}.
@@ -837,7 +837,7 @@ following result:
   Lemma~\ref{lem:parity_u_gives_a_row_in_the_algorithm}, we can write
   $U=\hat NU'$, where $N\in\s{T,HT,SHT}$ and $U'$ has least
   denominator exponent $k-1$. By induction hypothesis, $U'$ is a
-  Clifford+$T$ operator, and therefore so is $U$.   
+  Clifford+$T$ operator, and therefore so is $U$.
 \end{proof}
 
 \begin{remark}
@@ -880,8 +880,8 @@ Consider the Clifford operator
 It has the following properties:
 \[
   E^3 = I,
-  \quad EXE\inverse = Y, 
-  \quad EYE\inverse = Z, 
+  \quad EXE\inverse = Y,
+  \quad EYE\inverse = Z,
   \quad EZE\inverse = X.
 \]
 The operator $E$ serves as a convenient operator for switching between the $X$-, $Y$-, and
@@ -1026,10 +1026,10 @@ operator, as do $YS.TH.TH$ and $TH.TH.X\omega$.
 \end{example}
 
 \begin{figure}
-  \begin{tikzpicture}[node distance=1cm and 1.6cm]
+  \begin{tikzpicture}[node distance=1cm and 1.2cm]
     \node (filler) {};
 
-    \node (r1c1) [right=of filler]
+    \node (r1c1) [below=of filler]
           {\umatrix{0001}{0000}{0000}{0001}};
 
     \node [xshift=-4mm,yshift=-1.5mm] at (r1c1.west) {Start:};
@@ -1284,7 +1284,7 @@ one obtains a universal gate set by adding the non-Clifford operator $T$
   \begin{array}{c}
   \displaystyle
   \omega = e^{i\pi/4},\quad
-  H = \frac{1}{\sqrt{2}}\zmatrix{cc}{1&1\\1&-1},\quad 
+  H = \frac{1}{\sqrt{2}}\zmatrix{cc}{1&1\\1&-1},\quad
   S = \zmatrix{cc}{1&0\\0&i},\\\\[-1.5ex]
   \displaystyle
   {\it CNOT} = \zmatrix{cccc}{1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0},\quad
@@ -1408,7 +1408,7 @@ and we say that $a\level{\jay}$  is a one-level matrix {\em of type $a$}.
   The proof is by induction on $k$, the least denominator exponent of $u$. Let
   $u=(u_1,\ldots,u_n)^T$.
   \begin{itemize}
-  \item Base case. Suppose $k=0$. Then $u\in\Zw^n$. Since by assumption $\norm{u}^2=1$, it follows 
+  \item Base case. Suppose $k=0$. Then $u\in\Zw^n$. Since by assumption $\norm{u}^2=1$, it follows
     by Lemma~\vref{lem-ring-norm} that $\weight{u}^2=1$. Since $u_1,\ldots,u_n$ are elements of
     $\Zw$, their weights are non-negative integers. It follows that there is precisely one $\jay$
     with $\weight{u_\jay}=1$, and $\weight{u_\ell}=0$ for all $\ell\neq \jay$. Let
@@ -1452,7 +1452,7 @@ and we say that $a\level{\jay}$  is a one-level matrix {\em of type $a$}.
   Specifically, first use the column lemma to find suitable one- and two-level row operations
   $V_1,\ldots,V_{h_1}$ such that the leftmost column of $V_{h_1}\cdots V_1 U$ is $e_1$. Because
   $V_{h_1}\cdots V_1 U$ is unitary, it is of the form
-  \[ 
+  \[
     \zmatrix{c|c}{1&0\\\hline \rule{0mm}{2.1ex}0&U'}.
   \]
   Now recursively find row operations to reduce $U'$ to the identity matrix.
@@ -1489,13 +1489,13 @@ and we say that $a\level{\jay}$  is a one-level matrix {\em of type $a$}.
   T_{[1,4]}$. We now have
 	\[
     \begin{array}{@{}c@{}}
-      \displaystyle 
+      \displaystyle
       H_{[1,4]} T_{[1,4]} H_{[1,4]} T_{[1,4]}^2 H_{[2,3]} T_{[2,3]}^3 u=
   	  v=\frac{1}{\footnotesize\sqrt{2}^2}\small\zmatrix{c}{
       0 \\
   		0 \\
       \omega^2{+}\omega  \\
-      -\omega {+}1 
+      -\omega {+}1
       }, \\\\[-1.5ex]
       \rho_2(v) = \zmatrix{c}{
       0000\\
@@ -1533,9 +1533,9 @@ and we say that $a\level{\jay}$  is a one-level matrix {\em of type $a$}.
   H_{[2,4]} T_{[2,4]}$, $W_3 = \omega_{[3]}^4 H_{[3,4]} T_{[3,4]}^3 H_{[3,4]}$, and
   $W_4=\omega_{[4]}^5$. We then have $U = W_1\da\, W_2\da\, W_3\da\, W_4\da$, or explicitly:
   \[
-    \begin{split} 
+    \begin{split}
       U ={}&  T_{[2,3]}^5 H_{[2,3]} T_{[1,4]}^6 H_{[1,4]} T_{[1,4]}^7 H_{[1,4]}\\&
-    					T_{[3,4]}^7 H_{[3,4]} 
+    					T_{[3,4]}^7 H_{[3,4]}
     					T_{[3,4]}^5 H_{[3,4]}
                                             X_{[1,4]} \omega_{[1]}\\&
       T_{[2,4]}^7 H_{[2,4]} T_{[2,4]}^5 H_{[2,4]} \omega_{[2]}^2
@@ -1576,7 +1576,7 @@ Moreover, in (a), a single ancilla is always sufficient.
   well-known exact representations in Clifford+$T$ with ancillas, see e.g. {\cite[Fig.~4(a) and
   Fig.~9]{AMMR12}} (and noting that a controlled-$\omega$ gate is the same as a $T$-gate). This
   finishes the proof of (b) $\implies$ (a).
-  
+
   The final claim that needs to be proved is that a circuit for $U$ can always be found using at
   most one ancilla. It is already known that for $n>1$, an ancilla is sometimes necessary
   {\cite{Kliuchnikov-et-al}}. To show that a single ancilla is sufficient, in light of the above
@@ -1589,8 +1589,8 @@ Moreover, in (a), a single ancilla is always sufficient.
     We first recall from {\cite[Fig.~4(a)]{AMMR12}} that a
     singly-controlled Hadamard gate can be decomposed into Clifford+$T$
     gates with no ancillas:
-  \[ 
-    \m{\begin{tikzqcircuit}[scale=0.5] 
+  \[
+    \m{\begin{tikzqcircuit}[scale=0.5]
       \grid{2}{0,1};
       \controlled{\tqgate{$H$}}{1,0}{1};
     \end{tikzqcircuit}}
@@ -1654,7 +1654,7 @@ Moreover, in (a), a single ancilla is always sufficient.
     \end{tikzqcircuit},}
   \]
   with further decompositions of the multiply-controlled not-gates as in
-  {\cite[Lem.~7.2]{Barenco-etal-1995}} and {\cite[Fig.~4.9]{neilsen2000:QuantumComputationAndInfo}}. 
+  {\cite[Lem.~7.2]{Barenco-etal-1995}} and {\cite[Fig.~4.9]{neilsen2000:QuantumComputationAndInfo}}.
   We then obtain the following representations for (a)--(c), using only one ancilla:
   \[
   (a)
@@ -1737,12 +1737,12 @@ Moreover, in (a), a single ancilla is always sufficient.
 
 \begin{proof}
   This requires only minor modifications to the proof of Theorem~\vref{thm-main}. First observe that
-  whenever an operator of the form $HT^m$ was used in the proof of Lemma~\vref{lem-row}, we can
+  when an operator of the form $HT^m$ was used in the proof of Lemma~\vref{lem-row}, we can
   instead use $T^{-m}(iH)T^m$ without altering the rest of the argument. In the base case of
   Lemma~\vref{lem-column}, the operator $X\level{1,\jay}$ can be replaced by $iX\level{1,\jay}$.
   Also, in the base case of Lemma~\vref{lem-column}, whenever $n\geq 2$, the operator
   $\omega\level{1}$ can be replaced by $W\level{1,2}$, where
-  \[ 
+  \[
     W = \zmatrix{cc}{\omega&0\\0&\omega^{-1}}.
   \]
   Therefore, the decomposition of Lemma~\vref{lem-matrix-decomposition} can be performed so as to
@@ -1798,7 +1798,7 @@ Moreover, in (a), a single ancilla is always sufficient.
 
 As a corollary, we obtain a characterization of the $n$-qubit Clifford+$T$ group (with no ancillas)
 for all $n$:
-  
+
 \begin{corollary}\label{cor-noancilla}
   Let $U$ be a unitary $2^n\times 2^n$ matrix. Then the following are equivalent:
 \begin{enumerate}\alphalabels

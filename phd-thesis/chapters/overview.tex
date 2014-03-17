@@ -1,7 +1,11 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
 \chapter*{Overview of thesis chapters}
 
-\section*{Category Theory}
+\section*{Introduction}
+
+This chapter will give a brief introduction to and explanation of both reversible and quantum
+computing. Comparisons to each other and how they may be related will be discussed here, along
+with a brief introduction to their semantics as computational models.
 
 This chapter will include a basic introduction to category theory. Specific areas introduced will
 included definitions of categories, natural transformations and functors. It will introduce limits
@@ -12,39 +16,66 @@ This chapter will also include an introduction to restriction categories.
 \section*{Reversible Computing}
 
 This will introduce the subject of reversible computing, explaining the equivalence to standard
-computing at the level of Turing machines and automata. (Based on work by Bennet and Abramsky
-respectively). It will also provide an example of a reversible language.
+computing at the level of Turing machines. (Based on work by Bennet). It will also provide an
+example of a reversible language.
+
+The semantics of reversible computing will be examined briefly.
+
+\section*{Abstract Computability}
+
+This chapter will start with an introduction to restriction categories and how Cartesian restriction
+categories can be used to model standard computing. We will introduce Turing categories and show how
+this can be used to create a Partial Combinatory Algebra.
 
 \section*{Inverse categories}
+
+Inverse categories are a special type of restriction categories, in which each map has a partial
+inverse. They correspond to restriction categories in the same way Groupoids correspond to
+categories.
 
 Inverse categories will be explored, along with some basic results regarding products and splits of
 categories. The inverse product will be introduced, along with the concept of a discrete inverse
 category and the relationship to Cartesian restriction categories.
 
-The inverse co-product and inverse categories with inverse co-products will also be addressed in
-this chapter.
+The next step is to explore the inverse sum, disjointness and the disjoint join of maps in an
+inverse category, allowing us to work with objects which behave like co-products in the inverse
+category. The interaction of the inverse sum and inverse product will be explained.
 
-This is based on a paper which is in preparation (joint work with R. Cockett).
+The chapter will conclude with remarks on Inverse Turing Categories.
+
+This is based on two papers which are in preparation (joint work with R. Cockett).
 
 \section*{Quantum Computation}
-The basics of quantum computation and circuits will be introduced.
+The initial part of this chapter will introduce quantum circuits, following which, we will explore
+the semantics of quantum computing as described using $\dagger$-categories. This will include
+examples of ``Toy'' quantum semantics.
+
+\section*{Frobenius Algebras}
+
+In this chapter, we highlight the connection between the model of reversible computing (inverse
+categories) introduced in this thesis, and that of quantum computing. Frobenius Algebras provide a
+way of describing the basis used in quantum computation for a specific model of quantum semantics.
 
 \section*{Transformations of Quantum Programs}
+
+PROBABLY REMOVE!!!!
+
 The current understanding of how to treat iteration and folding in Quantum circuits and algorithms
 is somewhat lacking. This chapter will present unpublished work (done under the supervision of P.
 Selinger) exploring this area. It will include a treatment of necessary conditions for a quantum
 routine, its inputs and outputs, which would allow transforming the routine into either an iterated
 or folded routine. Algorithms to compute this transform are also provided.
 
-\section*{Synthesis of Quantum transformations}
-This chapter will discuss the issue of gate synthesis, where an arbitrary quantum transform is to
-be expressed in terms of a set of base gates. The histories of both approximate and exact synthesis
-will be reviewed.
+\section*{$D[\omega]$ based $\dagger$ categories}
+
+We will show a specific example of a toy quantum semantics, that of the Clifford Group +$T$ over
+multiple qubits. Additionally, we will discuss the issue of gate synthesis, where an arbitrary
+quantum transform is to be expressed in terms of a set of base gates. The histories of both
+approximate and exact synthesis will be reviewed.
 
 Then, the chapter will present an algorithm for exact synthesis of single-qubit transforms over the
 Clifford group, together with a normal form and characterization of these. This is based on a paper
-that is an extension of work done by Matsumoto and Amano and is in preparation (joint work with P.
-Selinger.)
+that is an extension of work done by Matsumoto and Amano (joint work with P. Selinger.)
 
 Finally, we will present an algorithm for exact synthesis over the Clifford group of multi-qubit
 transforms and characterize those transforms that may be exactly synthesized. This based on a paper
