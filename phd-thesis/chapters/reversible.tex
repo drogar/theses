@@ -2,26 +2,22 @@
 
 \chapter{Reversible computation}\label{chap:reversible_computation}
 
-Bennet, in \cite{bennett:1973reverse}, showed that it was possible to
-emulate a standard Turing machine via a reversible Turing machine and
-vice-versa. This showed the equivalence of  standard and reversible
-Turing machines. We reproduce the essence of this proof below.
+Bennet, in \cite{bennett:1973reverse}, showed that it was possible to emulate a standard Turing
+machine via a reversible Turing machine and vice-versa. This showed the equivalence of standard and
+reversible Turing machines. We reproduce the essence of this proof below.
 
 \section{Reversible Turing machines} % (fold)
 \label{sec:reversible_turing_machines}
 
-Turing machines consist of a tape, a read-write head positioned over
-the tape, a machine state and a set of instructions. The set of instructions
-may be given as a set of transitions determining the movement of the
-read-write head, what it writes and the resulting state of the machine.
+Turing machines consist of a tape, a read-write head positioned over the tape, a machine state and
+a set of instructions. The set of instructions may be given as a set of transitions determining the
+movement of the read-write head, what it writes and the resulting state of the machine.
 
 \begin{definition}\label{def:standard_tape}
-  Given an alphabet $A$ which does not contain a space, a tape is in \emph{standard
-  format} when:
+  Given an alphabet $A$ which does not contain a space, a tape is in \emph{standard format} when:
   \begin{enumerate}
     \item[\axiom{T}{1}] The tape head is positioned directly over a blank space;
-    \item[\axiom{T}{2}] The spaces to the left (the $+1$ direction) contain only
-    elements of $A$.
+    \item[\axiom{T}{2}] The spaces to the left (the $+1$ direction) contain only elements of $A$.
     \item[\axiom{T}{3}] All other spaces of the tape are blank.
   \end{enumerate}
 \end{definition}
@@ -39,15 +35,15 @@ read-write head, what it writes and the resulting state of the machine.
   A \emph{standard turing quintuple set} $Q$ consists of a set of turing quintuples
   such that:
   \begin{enumerate}[{(}i{)}]
-    \item If $q_1 = (s_1,\alpha_1,\alpha'_1,\delta_1,s'_1)$ and
-      $q_2 = (s_2,\alpha_2,\alpha'_2,\delta_2,s'_2)$ are in $Q$, then either
-      $s_1 \ne s_2$ or $\alpha_1\ne \alpha_2$ or both are not equal.
+    \item If $q_1 = (s_1,\alpha_1,\alpha'_1,\delta_1,s'_1)$ and $q_2 =
+      (s_2,\alpha_2,\alpha'_2,\delta_2,s'_2)$ are in $Q$, then either $s_1 \ne s_2$ or $\alpha_1\ne
+      \alpha_2$ or both are not equal.
     \item There are two special  quintuples contained in $Q$:
       \begin{enumerate}
         \item $(s_1,\blank,\blank,+1,s_2)$\footnote{Here, $\blank$ is used to signify a blank.},
           the \emph{start quintuple};
-        \item $(s_{t-1}, \blank, \blank, 0, s_{t})$, the \emph{end quintuple} where
-        $t$ is the number of states and is the final state of the machine.
+        \item $(s_{t-1}, \blank, \blank, 0, s_{t})$, the \emph{end quintuple} where $t$ is the
+          number of states and is the final state of the machine.
       \end{enumerate}
   \end{enumerate}
 \end{definition}
@@ -62,19 +58,17 @@ read-write head, what it writes and the resulting state of the machine.
   \end{itemize}
 \end{definition}
 
-The turing quintuples may also be regarded as giving the data for a partial
-function in \sets: $\tau:S\times A \to A\times\{-1,0,1\}\times S$.
+The turing quintuples may also be regarded as giving the data for a partial function in \sets:
+$\tau:S\times A \to A\times\{-1,0,1\}\times S$.
 \begin{remark}
-  A multi-tape Turing machine with $n$ tapes and read-write heads
-  can be described by modifying
-  definition \vref{def:turing_machine} such that $\alpha$ is an $n$-tuple
-  of the set of glyphs for the Turing machine and $\delta$ is an
-  $n$-tuple of movement directions.
+  A multi-tape Turing machine with $n$ tapes and read-write heads can be described by modifying
+  definition \vref{def:turing_machine} such that $\alpha$ is an $n$-tuple of the set of glyphs for
+  the Turing machine and $\delta$ is an $n$-tuple of movement directions.
 \end{remark}
 
 \begin{example}\label{exa:simple_turing_program}
-  Suppose $S=\{start,run,reset,done\}$, $A=\{0,1,\blank\}$ and the Turing machine
-  program is given by the quintuples
+  Suppose $S=\{start,run,reset,done\}$, $A=\{0,1,\blank\}$ and the Turing machine program is given
+  by the quintuples
   \begin{align*}
     &(start,\blank,\blank,+1,run),\\
     &(run,0,1,+1,run), (run,1,0,+1,run),\\
@@ -82,24 +76,23 @@ function in \sets: $\tau:S\times A \to A\times\{-1,0,1\}\times S$.
     &(reset,0,0,-1,reset),(reset,1,1,-1,reset),\\
     &(reset,\blank,\blank,0,done).
   \end{align*}
-  This program will perform a ``bit-flip'' of all $0$s and $1$s on the tape
-  until it reads a space, reposition the read head to the standard format
-  and then it will halt.
+  This program will perform a ``bit-flip'' of all $0$s and $1$s on the tape until it reads a space,
+  reposition the read head to the standard format and then it will halt.
 \end{example}
 
-As we see in example \vref{exa:simple_turing_program}, it is \emph{possible}
-that a Turing machine program is reversible. If we had chosen the second
-quintuple to be $(run,0,0,+1,run)$ instead, the program would not have been
-reversible.
+As we see in example \vref{exa:simple_turing_program}, it is \emph{possible} that a Turing machine
+program is reversible. If we had chosen the second quintuple to be $(run,0,0,+1,run)$ instead, the
+program would not have been reversible.
 
-The essential property that a Turing machine program needs to be reversible
-is that the function $\tau$ defined from the quintuples is injective. In order
-to simplify the discovery the function being injective, we reformulate the
-turing quintuples as quadruples.
+The essential property that a Turing machine program needs to be reversible is that the function
+$\tau$ defined from the quintuples is injective. In order to simplify the discovery the function
+being injective, we reformulate the turing quintuples as quadruples.
 
 \begin{definition}\label{def:turing_quadruple}
   A \emph{turing quadruple} is given by a quadruple
-  \[(s,[b_1,b_2,\ldots,b_n],[b'_1,b'_2,\ldots,b'_n],s')\]
+  \[
+    (s,[b_1,b_2,\ldots,b_n],[b'_1,b'_2,\ldots,b'_n],s')
+  \]
   such that:
   \begin{itemize}[{(}i{)}]
     \item $s,s'\in S$, some set of states;
@@ -107,84 +100,76 @@ turing quintuples as quadruples.
     \item $b'_\jay\in A  + \{-1,0,1\}$ ;
     \item $b'_\jay \in \{-1,0,1\}$ if and only if $b_\jay = \phi$.
   \end{itemize}
-  In this definition, $b_\jay = \phi$ means that the value of tape
-  \jay is ignored.
+  In this definition, $b_\jay = \phi$ means that the value of tape \jay is ignored.
 \end{definition}
 
-A turing quadruple explicitly splits the read/write action of the
-Turing machine away from the movement. In a particular step for
-tape $k$, the
-turing machine will either read and write an item or it will not
-read and then move.
+A turing quadruple explicitly splits the read/write action of the Turing machine away from the
+movement. In a particular step for tape $k$, the turing machine will either read and write an item
+or it will move.
 
 \begin{remark}\label{rem:quintuple_to_quadruple}
-  Any turing quintuple may be split into two
-  turing quadruples by the addition of a new state $a''$ in $A$, where the
-  first quadruple will consist of all the read-write operations and
-  leave the Turing machine in state $a''$. The second quadruple will start
-  in state $a''$ and all the $b_\jay$ will be $\phi$, with $b'_\jay$ being
-  movements on each of the $n$ tapes.
+  Any turing quintuple $q$ of $n$ tapes may be split into two turing quadruples, $q_r$ and $q_m$ by
+  the addition of a new state $a''$ in $A$. The quadruple $q_r$ will consist of all the read-write
+  operations and leave the Turing machine in state $a''$. The quadruple $q_m$ will start in state
+  $a''$ with all the $b_\jay$ set to $\phi$ and $b'_\jay$ being movement on each of the $n$ tapes.
 \end{remark}
 
 \begin{definition}\label{def:reversible_turing_quadruple}
-  A set of turing quadruples $Q$ is called \emph{reversible set of turing
-  quadruples} when given $q_1,q_2\in Q$, with $q_1=(a,[b_\jay], [b'_\jay], a')$ and
-  $q_2=(c,[d_\jay], [d'_\jay], c')$:
+  A set of turing quadruples $Q$ is called \emph{reversible set of turing quadruples} when given
+  $q_1,q_2\in Q$, with $q_1=(a,[b_\jay], [b'_\jay], a')$ and $q_2=(c,[d_\jay], [d'_\jay], c')$:
 \begin{itemize}
-  \item[\axiom{RTM}{1}]  if $a=c$, then there is a \kay where $b_\kay, d_\kay \in A$ and
-    $b_\kay \ne d_\kay$;
+  \item[\axiom{RTM}{1}] if $a=c$, then there is a \kay where $b_\kay, d_\kay \in A$ and $b_\kay \ne
+    d_\kay$;
   \item[\axiom{RTM}{2}] if $a' = c'$, then there is a \jay with $b'_\jay, d'_\jay \in A$ and
     $b'_\jay \ne d'_\jay$.
 \end{itemize}
 \end{definition}
 
-Similarly to turing quintuples, turing quadruples may be taken as the
-data for a function in \sets:
-\[\rho:S\times(A  \cup \{\phi\}) \to (A  + \{-1,0,1\}) \times S.\]
-We can see by inspection that $\rho$ is a reversible partial function when
-the set of turing quadruples that give $\rho$ is a reversible set of turing
-quadruples.
+Similarly to turing quintuples, turing quadruples may be taken as the data for a function in \sets:
+\[
+  \rho:S\times(A  \cup \{\phi\}) \to (A  + \{-1,0,1\}) \times S.
+\]
+We can see by inspection that $\rho$ is a reversible partial function when the set of turing
+quadruples that give $\rho$ is a reversible set of turing quadruples.
 
 \begin{definition}\label{def:reversible_turing_machine}
-  A \emph{reversible Turing machine} is one that is described by a
-  set of reversible turing quadruples.
+  A \emph{reversible Turing machine} is one that is described by a set of reversible turing
+  quadruples.
 \end{definition}
 
-We will show that a reversible Turing machine with three tapes can emulate
-a Turing machine.
+We will show that a reversible Turing machine with three tapes can emulate a Turing machine.
 
 \begin{theorem}[Bennet\cite{bennett:1973reverse}]\label{thm:reversible_turing_machine_emulates_standard}
-  Given a standard Turing Machine $M$, it may be emulated by a three tape reversible
-  Turing machine $R$. In this case, emulated means:
+  Given a standard Turing Machine $M$, it may be emulated by a three tape reversible Turing machine
+  $R$. In this case, emulated means:
   \begin{itemize}[{(}i{)}]
-    \item $M$ halts on standard input $I$ if and only if $R$ halts on standard input $(I,\blank,\blank)$.
-    \item $M$ halts on standard input $I$ producint standard output $O$,
-      if and only if $R$ halts on input ($I,\blank,\blank$) producing standard output $(I,\blank,O)$.
+    \item $M$ halts on standard input $I$ if and only if $R$ halts on standard input
+      $(I,\blank,\blank)$.
+    \item $M$ halts on standard input $I$ producint standard output $O$, if and only if $R$ halts
+      on input ($I,\blank,\blank$) producing standard output $(I,\blank,O)$.
   \end{itemize}
 \end{theorem}
 \begin{proof}
   (Sketch only).
 
-  The crux of the proof is to convert the quintuples of $M$ to the quadruples of
-  $R$ as noted in remark \vref{rem:quintuple_to_quadruple}. Explicitly for a single
-  tape machine, we have
+  The crux of the proof is to convert the quintuples of $M$ to the quadruples of $R$ as noted in
+  remark \vref{rem:quintuple_to_quadruple}. Explicitly for a single tape machine, we have
   \begin{align}
     (s,a,a,\delta,s') \mapsto \left((s,a,a',s''),
           (s'',\phi,\delta,s')\right).\label{eq:quint_to_quad}
   \end{align}
   
-  In \vref{eq:quint_to_quad}, $s''$ is a new state for the machine $M$, 
-  not in the current set of states.
+  In \vref{eq:quint_to_quad}, $s''$ is a new state for the machine $M$, not in the current set of
+  states.
 
-  Assign an order to the $n$ quintuples of $M$, where the start
-  quintuple is the first in the order and the end quintuple comes last. Convert these to
-  quadruples as in \vref{eq:quint_to_quad}. 
+  Assign an order to the $n$ quintuples of $M$, where the start quintuple is the first in the order
+  and the end quintuple comes last. Convert these to quadruples as in \vref{eq:quint_to_quad}.
   
-  We then proceed to create three groups of quadruples for $R$.
-  We call these \emph{emulation, copy,} and \emph{restore}.
+  We then proceed to create three groups of quadruples for $R$. We call these \emph{emulation,
+  copy,} and \emph{restore}.
 
-  To create the emulation phase quadruples, we examine the pairs of quadruples of $M$
-  in the sorted order and produce a pair of quadruples for $R$.
+  To create the emulation phase quadruples, we examine the pairs of quadruples of $M$ in the sorted
+  order and produce a pair of quadruples for $R$.
   \begin{align*}
     \text{Pair 1}\quad (s_1,\blank,\blank,s_1'') & \mapsto (s_1,[\blank,\phi,\blank],[\blank,+1,\blank],e_1)\\
     (s_1'',\phi,\delta,s_2) & \mapsto
@@ -199,10 +184,10 @@ a Turing machine.
      (s_\ell'',\phi,0,s_f) & \mapsto
           (e_n,[\phi,\blank,\phi],[0,n,0],s_f).
   \end{align*}
-  By inspection, one can see that even if the quadruples of $M$ were not a reversible set, the
-  set created for $R$ is a reversible set, due to the writing of the quadruple index on tape 2.
-  Upon completion of the emulation phase, tape 1 will be the same as $M$ would have produced on
-  its single tape, tape 2 will be $[1,2,\dots,n]$ and tape 3 will be blanks.
+  By inspection, one can see that even if the quadruples of $M$ were not a reversible set, the set
+  created for $R$ is a reversible set, due to the writing of the quadruple index on tape 2. Upon
+  completion of the emulation phase, tape 1 will be the same as $M$ would have produced on its
+  single tape, tape 2 will be $[1,2,\dots,n]$ and tape 3 will be blanks.
   
   For the copy phase, we create the following quadruples:
   \begin{align*}
@@ -214,16 +199,16 @@ a Turing machine.
     (c'_2,[x,n,x],&[x,n,x],c_2 )\quad \text{when }x \ne \blank\\
     (c'_2,[\blank,n,_],&[\blank,n,\blank],r_\ell).
   \end{align*}
-  In these quadruples, the states $\{c_1,c'_1,c_2,c'_2\}$ should be chosen to be
-  distinct from the states in the emulation phase. As an example, set them as follows:
+  In these quadruples, the states $\{c_1,c'_1,c_2,c'_2\}$ should be chosen to be distinct from the
+  states in the emulation phase. As an example, set them as follows:
   \[
     c_1 = (\{c\},s_1)\quad c'_1 = (\{c'\},s_1)\quad c_2 = (\{c\},s_f)\quad c'_1 = (\{c'\},s_f).
   \]
-  At the completion of this phase, tapes 1 and 2 will be unchanged and tape 3 will be a copy
-  of tape 1. 
+  At the completion of this phase, tapes 1 and 2 will be unchanged and tape 3 will be a copy of
+  tape 1.
 
-  Finally we perform the restore phase where the history will be erased and tape 1 reset to
-  the input. The quadruples that will accomplish this are:
+  Finally we perform the restore phase where the history will be erased and tape 1 reset to the
+  input. The quadruples that will accomplish this are:
   \begin{align*}
       \text{Pair }n \quad (r_n,[\phi,n,\phi],&[0,\blank,0],r'_n)\\
       (r'_n,[\blank,\phi,\blank],&[\blank,-1,\blank],r_{n-1})\\
@@ -249,29 +234,28 @@ a Turing machine.
 
 \section{Reversible automota and linear combinatory algebras} % (fold)
 \label{sec:reversible_automota_and_linear_combinatory_algebras}
-While reversible Turing machines, as described in \vref{sec:reversible_turing_machines},
-show that reversible computing is as powerful as standard computing, they do not 
-give us a sense of what may be considered to be happening at a higher level. 
+While reversible Turing machines, as described in \vref{sec:reversible_turing_machines}, show that
+reversible computing is as powerful as standard computing, they do not give us a sense of what may
+be considered to be happening at a higher level.
 
-To accomplish that task we examine the results of the paper 
-``A Structural Approach to Reversible Computation''\cite{abramsky05:reversible}. In this paper,
-Abramsky gives a description of a reversible automaton together with a linear combinatory 
-algebra. We will begin by revisiting some definitions and constructions necessary for 
-discussing automota. The next subsection will introduce combinatory algebras, after which we will
-describe the reversible automata of \cite{abramsky05:reversible} and add a short proof that 
-it can emulate a reversible turing machine.
+To accomplish that task we examine the results of the paper ``A Structural Approach to Reversible
+Computation''\cite{abramsky05:reversible}. In this paper, Abramsky gives a description of a
+reversible automaton together with a linear combinatory algebra. We will begin by revisiting some
+definitions and constructions necessary for discussing automota. The next subsection will introduce
+combinatory algebras, after which we will describe the reversible automata of
+\cite{abramsky05:reversible} and add a short proof that it can emulate a reversible turing machine.
 
 \subsection{Automota} % (fold)
 \label{sub:automota}
-We will describe the automota as a term-rewriting system. This requires, of course, giving a 
-few basic definitions. See, e.g., \cite{termrewriting2003}.
+We will describe the automota as a term-rewriting system. This requires, of course, giving a few
+basic definitions. See, e.g., \cite{termrewriting2003}.
 \begin{definition}\label{def:arity}
-  An \emph{arity} is a function from a function to the natural numbers. The arity of
-  $F$ is the number of inputs (arguments) required by $F$.
+  An \emph{arity} is a function from a function to the natural numbers. The arity of $F$ is the
+  number of inputs (arguments) required by $F$.
 \end{definition} 
 \begin{definition}\label{def:signature}
-  A \emph{signature} $\Sigma$ is a set of \emph{function symbols} $F,G,\ldots$, each of which
-  has an arity.  
+  A \emph{signature} $\Sigma$ is a set of \emph{function symbols} $F,G,\ldots$, each of which has
+  an arity.
 \end{definition}
 
 \begin{remark}
@@ -284,12 +268,12 @@ few basic definitions. See, e.g., \cite{termrewriting2003}.
 \end{remark}
 
 \begin{definition}\label{def:term_alphabet}
-  A \emph{term alphabet} is a set $A$ containing a signature $\Sigma$ and a countably infinite 
-  set $X$, the variables. Furthermore, $\Sigma \cap X = \phi$.
+  A \emph{term alphabet} is a set $A$ containing a signature $\Sigma$ and a countably infinite set
+  $X$, the variables. Furthermore, $\Sigma \cap X = \phi$.
 \end{definition}
 
 \begin{definition}\label{def:term_algebra}
-  A \emph{term algebra} of the term alphabet  $\Sigma \cup X$ is denoted by $T_\Sigma(X)$ and 
+  A \emph{term algebra} of the term alphabet $\Sigma \cup X$ is denoted by $T_\Sigma(X)$ and
   defined as follows:
   \begin{itemize}
     \item $x\in V \implies x \in T_\Sigma$ and
@@ -300,13 +284,13 @@ few basic definitions. See, e.g., \cite{termrewriting2003}.
 \end{definition}
 
 \begin{definition}\label{def:ground_terms}
-  The \emph{ground terms} of a term algebra are those terms that do not contain any variable.
-  The set of these terms is designated as $T_\Sigma.$
+  The \emph{ground terms} of a term algebra are those terms that do not contain any variable. The
+  set of these terms is designated as $T_\Sigma.$
 \end{definition}
 
 \begin{remark}
-  Note the ground terms consist of the constants and recursively applying the function
-  symbols of $\Sigma$ to them.
+  Note the ground terms consist of the constants and recursively applying the function symbols of
+  $\Sigma$ to them.
 \end{remark}
 
 As we are considering rewrite systems, we will need to consider aspects of substitution and 
@@ -318,15 +302,15 @@ unification.
 \end{definition}
 
 Note that given the above definition a substitution $\sigma$ is completely determined by its action
-on variables. If $\sigma:X\to X$ and is injective, we call $\sigma$ a renaming. Moreover, if 
+on variables. If $\sigma:X\to X$ and is injective, we call $\sigma$ a renaming. Moreover, if
 $\sigma$ restricted to the variables in a term $t$ is an injective map of $X$ on those variables,
 we call $sigma$ a renaming of $t$.
 
 Substitution allows us to define a partial order on $\tavar$, as follows:
 \begin{definition}\label{def:subsumption_order}
-  In $\tavar$, let $\sigma(t) = s$. Then we say $s$ is an \emph{instance} of $t$, written 
-  $s\preceq t$. Moreover, if $\sigma$ is not just a renaming for $t$, then we write $s\prec t$. If
-  $\sigma$ is a renaming of $t$, we write $s\simeq t$.
+  In $\tavar$, let $\sigma(t) = s$. Then we say $s$ is an \emph{instance} of $t$, written $s\preceq
+  t$. Moreover, if $\sigma$ is not just a renaming for $t$, then we write $s\prec t$. If $\sigma$
+  is a renaming of $t$, we write $s\simeq t$.
 \end{definition}
 
 \begin{lemma}\label{lem:subsumption_is_a_partial_order}
@@ -338,9 +322,9 @@ Substitution allows us to define a partial order on $\tavar$, as follows:
 \end{proof}
 
 \begin{lemma}\label{lem:most_general_instance}
-  Given terms $r,t$ such that there is at least one $s$ with $s\preceq r$ and $s\preceq t$, 
-  then there exists a $g$ such that $g\preceq r$ and $g\preceq t$ and for any 
-  $s'$ with $s'\preceq r$ and $s'\preceq t$ we will have $s' \preceq g$.
+  Given terms $r,t$ such that there is at least one $s$ with $s\preceq r$ and $s\preceq t$, then
+  there exists a $g$ such that $g\preceq r$ and $g\preceq t$ and for any $s'$ with $s'\preceq r$
+  and $s'\preceq t$ we will have $s' \preceq g$.
 \end{lemma}
 \begin{proof}
   % TODO Prove most general instance of terms with common instance
@@ -355,19 +339,19 @@ Substitution allows us to define a partial order on $\tavar$, as follows:
 
 The subsumption ordering can be used to derive a similar ordering on substitutions:
 \begin{definition}\label{def:substituion_ordering}
-  $\sigma \preceq \tau$ if and only if there is a $\rho$ with $\sigma = \tau \rho$, where
-  $\tau \rho$ is the diagrammatic order composition of the two substitutions.
+  $\sigma \preceq \tau$ if and only if there is a $\rho$ with $\sigma = \tau \rho$, where $\tau
+  \rho$ is the diagrammatic order composition of the two substitutions.
 \end{definition}
 
 \begin{definition}\label{def:unifier}
-  For terms $s,t$, if $\sigma(t) = \sigma(s)$, then the substitution $\sigma$ is called a 
+  For terms $s,t$, if $\sigma(t) = \sigma(s)$, then the substitution $\sigma$ is called a
   \emph{unifier} for the terms $s,t$.
 \end{definition}
 
 \begin{lemma}\label{lem:most_general_unifier}
-  If $s,t$ are terms with a unifier $\sigma$, there exists a substitution $\tau$ that 
-  unifies $s,t$ such that $\tau \preceq \rho$ whenever $\rho$ unifies $s,t$. $\rho$ is called 
-  the \emph{most general unifier} of $s$ and $t$.
+  If $s,t$ are terms with a unifier $\sigma$, there exists a substitution $\tau$ that unifies $s,t$
+  such that $\tau \preceq \rho$ whenever $\rho$ unifies $s,t$. $\rho$ is called the \emph{most
+  general unifier} of $s$ and $t$.
 \end{lemma}
 \begin{proof}
   % TODO Prove most general unifier exists
@@ -375,8 +359,8 @@ The subsumption ordering can be used to derive a similar ordering on substitutio
 \end{proof}
 
 \begin{notation}
-  Following \cite{abramsky05:reversible}, we write \uniftus if $\sigma$ is the 
-  most general unifier of terms $t,u$. 
+  Following \cite{abramsky05:reversible}, we write \uniftus if $\sigma$ is the most general unifier
+  of terms $t,u$.
 \end{notation}
 % subsection automota (end)
 
@@ -385,13 +369,13 @@ The subsumption ordering can be used to derive a similar ordering on substitutio
 
 \begin{definition}\label{def:combinatory_algebra}
   A \emph{combinatory algebra} is an algebra with one binary operation, $\cdot$ written in infix
-  notation. The operation is not assumed to be associative. Multi-element expressions such as 
-  $a \. b \. c$ are to be taken as associating to the left, that is,
+  notation. The operation is not assumed to be associative. Multi-element expressions such as $a \.
+  b \. c$ are to be taken as associating to the left, that is,
   \[
     a \. b \. c = (a \.b)\.c.
   \]
-  The combinatory algebra may possess distinguished elements that are subject to 
-  specific rewrite rules.
+  The combinatory algebra may possess distinguished elements that are subject to specific rewrite
+  rules.
 \end{definition}
 
 \begin{definition}\label{def:combinatory_logic}
@@ -411,15 +395,15 @@ simply that it has the two distinguished elements.
 Combinatory logic was shown to be equivalent to the $\lambda$ calculus by 
 % TODO Get reference for who showed CL = lambda, and who did it.
 
-For example, we may define the identity combinator \Ic as $\Ic = \Sc \. \Kc \. \Kc$. 
-Further combinators may be defined, such as the \Bc combinator, defined by
-$\Bc \. a \. b \. c = a \. (b\. c)$. The \Sc and \Kc combinators are complete, in that other
-combinators such as \Bc may be defined from them. E.g., $\Bc = \Sc\.(\Kc\.\Sc)\.\Kc$. 
-In fact, we may define an alternate combinatory algebra that is equivalent to Combinatory Logic.
+For example, we may define the identity combinator \Ic as $\Ic = \Sc \. \Kc \. \Kc$. Further
+combinators may be defined, such as the \Bc combinator, defined by $\Bc \. a \. b \. c = a \. (b\.
+c)$. The \Sc and \Kc combinators are complete, in that other combinators such as \Bc may be defined
+from them. E.g., $\Bc = \Sc\.(\Kc\.\Sc)\.\Kc$. In fact, we may define an alternate combinatory
+algebra that is equivalent to Combinatory Logic.
 
 \begin{definition}\label{def:bckw_algebra}
-  A \emph{BCKW-Combinatory algebra} is a Combinatory Algebra with four distinguish elements, 
-  \Bc, \Cc, \Kc, and \Wc subject to the following equations:
+  A \emph{BCKW-Combinatory algebra} is a Combinatory Algebra with four distinguish elements, \Bc,
+  \Cc, \Kc, and \Wc subject to the following equations:
   \begin{singlespace}
     \begin{align*}
       &\Bc \. a\.b\.c   &&=a\.(b\.c)&\qquad\qquad\qquad\qquad\qquad\qquad\\
@@ -485,14 +469,14 @@ then we can terms which correspond to the Church numbers of lambda calculus:
 
 \begin{definition}\label{def:functions_representable_in_combinatory_logic}
   A partial function $f:\nat \to \nat$ is \emph{representable} in combinatory logic if there is a
-  term $M_f$ such that $M_f\.\bar{n} = \bar{m}$ whenever $f(n) = m$ and $M_f\.\bar{n} $ does
-  not have a normal form if $f(n)\uparrow$.
+  term $M_f$ such that $M_f\.\bar{n} = \bar{m}$ whenever $f(n) = m$ and $M_f\.\bar{n} $ does not
+  have a normal form if $f(n)\uparrow$.
 \end{definition}
 
 When we say that combinatory logic with \Sc and \Kc is complete, we mean the following theorem:
 \begin{theorem}\label{thm:combinatory_logic_is_complete}
-  The partial functions that are representable in combinatory logic are exactly the partial 
-  recursive functions.  
+  The partial functions that are representable in combinatory logic are exactly the partial
+  recursive functions.
 \end{theorem}
 
 % subsection combinatory_algebra (end)
@@ -501,7 +485,7 @@ When we say that combinatory logic with \Sc and \Kc is complete, we mean the fol
 \label{sub:linear_combinatory_algebra}
 
 \begin{definition}\label{def:linear_combinatory_algebra}
-  A \emph{Linear Combinatory Algebra} $(A,\.,!)$ is an algebra $A$ with an applicative binary 
+  A \emph{Linear Combinatory Algebra} $(A,\.,!)$ is an algebra $A$ with an applicative binary
   operation $\.$, an unary operator $!:A\to A$ and eight distinquished elements: \Bc, \Cc, \Ic,
   \Kc, \Dc, \dc, \Fc and \Wc in $A$ which satisfy the following rules:
   \begin{singlespace}
