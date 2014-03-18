@@ -31,7 +31,7 @@ Thus simply using restriction products provides a notion which is too narrow.
   \[
     \xymatrix {
       A  \ar@<1ex>[r]^{f} \ar@<-1ex>[r]_{g} &B
-    } 
+    }
     \implies f \smile g.
   \]
 \end{lemma}
@@ -145,21 +145,21 @@ The diagonal map $\Delta_A:A \to A\*A$ must be total and must satisfy the follow
 \]
 
 Thus, $\Delta$ is a co-commutative, coassociative map which together with $\inv{\Delta}$ forms a
-Frobenius algebra. 
+Frobenius algebra.
 \begin{remark}
   Note also, co-commutativity implies that $c_{\*}\inv{\Delta} = \inv{\Delta}$.
   One can see this as:
   \begin{align*}
-    \Delta(c_{\*}\inv{\Delta}) 
+    \Delta(c_{\*}\inv{\Delta})
       &= (\Delta c_{\*})\inv{\Delta} = \Delta\inv{\Delta} = \rst{\Delta} \text{ and}\\
-    (c_{\*}\inv{\Delta})\Delta 
+    (c_{\*}\inv{\Delta})\Delta
       & = (c_{\*}\inv{\Delta})(\Delta c_{\*}) = \rst{c_{\*}\inv{\Delta}}.
   \end{align*}
   But this means that both $\inv{\Delta}$ and $c_{\*}\inv{\Delta}$ are partial inverses for $\Delta$
   and are therefore equal.
-  
-  Similarly, one can show that $(\inv{\Delta}\* 1)\inv{\Delta} = 
-  a_{\*}(\inv{\Delta}\* 1)\inv{\Delta}$. 
+
+  Similarly, one can show that $(\inv{\Delta}\* 1)\inv{\Delta} =
+  a_{\*}(\inv{\Delta}\* 1)\inv{\Delta}$.
 \end{remark}
 \subsubsection{Diagrammatic language} % (fold)
 \label{ssub:diagrammatic_language}
@@ -169,7 +169,7 @@ Frobenius algebra.
   \draw (2,0) -- (1.25,-1.2) -- (2.75,-1.2) -- cycle;
   \draw (1.5,-1.2) -- (1.5,-2.5);
   \draw (2.5,-1.2) -- (2.5,-2.5);
- 
+
   \node at (3.3,-1.3) {$=$};
 
   \draw (5,1) -- (5,0);
@@ -194,7 +194,7 @@ Label the four objects of $\D$ as $a,b,c$ and $d$. Then, define two different in
 tensors by:
 \begin{quote}
   \qquad\qquad
-  \begin{tabular}{|l||c|c|c|c|} 
+  \begin{tabular}{|l||c|c|c|c|}
     \hline
     $\*$&a&b&c&d\\ \hline \hline
     a&a&a&a&a\\ \hline
@@ -203,7 +203,7 @@ tensors by:
     d&a&b&c&d \\ \hline
   \end{tabular}
   \hfil
-  \begin{tabular}{|l||c|c|c|c|} 
+  \begin{tabular}{|l||c|c|c|c|}
     \hline
     $\*$&a&b&c&d\\ \hline \hline
     a&a&a&a&a\\ \hline
@@ -234,7 +234,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
   $e=\rst{e}$ is a restriction idempotent and $f,g,h$ are arrows in \X, the following are true:
   \begin{enumerate}[{(}i{)}]
     \item{}$e=\Delta (e\* 1) \inv{\Delta}$.\label{le:eisde1}
-    \item{}$e\Delta (f \* g) = \Delta (e f \* g) $ (and $= \Delta (f \* e g) $ and 
+    \item{}$e\Delta (f \* g) = \Delta (e f \* g) $ (and $= \Delta (f \* e g) $ and
       $ = \Delta (e f \* e g)$.)\label{le:deltaefg}
     \item{}$ (f \* g e) \inv{\Delta} =(f \* g) \inv{\Delta} e $ (and $= (f e\* g) \inv{\Delta}$ and
       $ = (f e\* g e)\inv{\Delta}$.)\label{le:efginvdelta}
@@ -249,7 +249,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item[\vref{le:eisde1}]This is shown by proving both sides
+    \item[\ref{le:eisde1}]This is shown by proving both sides
       equal $\Delta (e\* 1) \inv{\Delta} \Delta (e\* 1) \inv{\Delta}$.
       \begin{align*}
         \Delta (e\* 1) &\inv{\Delta} \Delta (e\* 1) \inv{\Delta}
@@ -275,9 +275,9 @@ when describing a functor that lifts the inverse category to a Cartesian restric
         &=\Delta (e \* 1) \inv{\Delta} &\Delta\text{ total}\
       \end{align*}
       which gives $e = \Delta (e \* 1) \inv{\Delta}$.
-    \item[\vref{le:deltaefg}]This equality starts by using the previous equality:
+    \item[\ref{le:deltaefg}]This equality starts by using the previous equality:
       \begin{align*}
-        e\Delta &(f \* g) = \Delta (e\* 1) \inv{\Delta} \Delta(f \* g) 
+        e\Delta &(f \* g) = \Delta (e\* 1) \inv{\Delta} \Delta(f \* g)
           &\text{by part \ref{le:eisde1}}\\
         &=\Delta(e  \* 1) \rst{\inv{\Delta}}(f\*g)&\\
         &=\Delta\rst{\inv{\Delta}}(e \*1)(f\*g)
@@ -286,7 +286,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
       \end{align*}
       The second and third equalities follow by cocommutativity, naturality of $\Delta$ and $e$
       being a restriction idempotent.
-    \item[\vref{le:efginvdelta}] As in (\vref{le:deltaefg}), details are only given for the 
+    \item[\ref{le:efginvdelta}] As in (\vref{le:deltaefg}), details are only given for the
       first equality.
       \begin{align*}
         (f \* g)&\inv{\Delta} e \\
@@ -297,7 +297,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
       \end{align*}
       The other equalities follow from co-commutativity, naturality of $\Delta$ and $e$ being
       a restriction idempotent.
-    \item[\vref{le:restfg}]Here, we start by using the fact all maps have a partial inverse:
+    \item[\ref{le:restfg}]Here, we start by using the fact all maps have a partial inverse:
       \begin{align*}
         ~&\restr{\Delta (f \* g) \inv{\Delta} } \\
         &=\Delta (f \* g) \inv{\Delta} \Delta (\inv{f} \* \inv{g}) \inv{\Delta} \\
@@ -324,7 +324,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
       naturality of the commutativity isomorphism and finishing with the co-commutativity of
       $\inv{\Delta}$. In future proofs, these steps will be combined to a single line and referred to
       as commutativity.
-    \item[\vref{le:hge}]Beginning with the assumption,
+    \item[\ref{le:hge}]Beginning with the assumption,
       \begin{align*}
         (\Delta (h \* g) &\inv{\Delta})h  = \rst{\Delta (h \* g) \inv{\Delta}}h&\\
         &=\Delta(1 \* g \inv{h}) \inv{\Delta}h&\text{This lemma(\ref{le:restfg})}\\
@@ -341,7 +341,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
         &=\Delta(h\*g)\inv{\Delta}&\text{property of inverse}.
       \end{align*}
 
-    \item[\vref{le:dfgisfg}]As $\Delta$ is total and natural, we start with:
+    \item[\ref{le:dfgisfg}]As $\Delta$ is total and natural, we start with:
       \begin{align*}
         f&=\Delta(f\*f)\inv{\Delta}  & \\
         &= \Delta(f\*1)(1\*f)\inv{\Delta} &  \\
@@ -352,7 +352,7 @@ when describing a functor that lifts the inverse category to a Cartesian restric
         &= g\Delta\inv{\Delta} & \Delta \text{ natural}\\
         &= g&\Delta\text{ total}.
       \end{align*}
-    \item[\vref{le:fgisfg}] Immediate from part \vref{le:dfgisfg}.
+    \item[\ref{le:fgisfg}] Immediate from part \vref{le:dfgisfg}.
   \end{enumerate}
 \end{proof}
 
@@ -453,7 +453,7 @@ inverse category.
   \[
     \Delta_{\X} (1 \times \Delta_{\X}) =
       \Delta_{\X}(\Delta_{\X} \times 1) (\<\pi_0 \pi_0,\<\pi_0 \pi_1,\pi_1\>\>).
-  \] 
+  \]
   Again each is equal based on the properties of the restriction product.
 
   The Frobenius requirement is two-fold:
@@ -480,7 +480,7 @@ inverse category.
   Using this we see that the left hand side of equation \vref{eq:frobenius_righths_expressed_in_x}
   computes as follows:
   \begin{align*}
-    \inv{\Delta_{\X}} \Delta_{\X} 
+    \inv{\Delta_{\X}} \Delta_{\X}
       & = \<\inv{\Delta_{\X}} \Delta_{\X}(1\times !), \inv{\Delta_{\X}} \Delta_{\X} (! \times 1)\>\\
     &= \<\inv{\Delta_{\X}}, \inv{\Delta_{\X}} \>
   \end{align*}
@@ -493,7 +493,7 @@ inverse category.
     &= \<(\Delta_{\X} \times 1) (1\times\inv{\Delta_{\X}}) (1 \times \Delta_{\X})(1\times !\times !), \inv{\Delta_{\X}}\> \\
     &= \<(\Delta_{\X} \times 1) (1\times\rst{\inv{\Delta_{\X}}}) (1\times !\times !), \inv{\Delta_{\X}}\> \\
     &= \<(\Delta_{\X} \times 1) \rst{1\times\inv{\Delta_{\X}}} (1\times !\times !), \inv{\Delta_{\X}}\> \\
-    &= \<\rst{(\Delta_{\X} \times 1) (1\times\inv{\Delta_{\X}})} 
+    &= \<\rst{(\Delta_{\X} \times 1) (1\times\inv{\Delta_{\X}})}
       (\Delta_{\X} \times 1)(1\times !\times !), \inv{\Delta_{\X}}\> \\ %rfour
     &= \<\rst{(\Delta_{\X} \times 1) (1\times\inv{\Delta_{\X}})} (1\times !), \inv{\Delta_{\X}}\> \\
       &= \<\rst{(\Delta_{\X} \times 1) (1\times\inv{\Delta_{\X}})(! \times 1)} (1\times !),
@@ -522,10 +522,10 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
 
 \begin{definition}\label{def:xt}
 
-  When \X is an inverse category, define \Xt\ as: 
+  When \X is an inverse category, define \Xt\ as:
   \category{objects as in \X}
   {
-    equivalence classes of maps (the equivalence class is defined below in Definition 
+    equivalence classes of maps (the equivalence class is defined below in Definition
     \vref{defn:xequivalence}) with the following structure in \X: %
     \[
       \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
@@ -588,15 +588,21 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
   \begin{description}
     \itembf{Reflexivity: } Choose $h$ as the identity map.
     \itembf{Symmetry: } Suppose $f\xequiv{h}g$. Then, $\restr{f} = \restr{g}$ and $f k = g$ where
-      $k = (\Delta\* 1) \, a_{\*}\, (1\*h)\, \inv{a_{\*}}\,(\inv{\Delta}\* 1)$. Applying $\inv{k}$,
-      which is $(\Delta\* 1) \, a_{\*}\, (1\*\inv{h})\, \inv{a_{\*}}\,(\inv{\Delta}\* 1)$,
+      \[
+        k = (\Delta\* 1) \, a_{\*}\, (1\*h)\, \inv{a_{\*}}\,(\inv{\Delta}\* 1).
+      \] Applying $\inv{k}$,
+      which is
+      \[
+        (\Delta\* 1) \, a_{\*}\, (1\*\inv{h})\, \inv{a_{\*}}\,(\inv{\Delta}\* 1),
+      \]
+      we have
       \[
         g \inv{k} = f k \inv{k} = f \restr{k} = \restr{f k} f
         = \restr{g} f = \restr{f} f = f.
       \]
 
       Thus, $g\xequiv{\inv{h}} f$.
-    
+
     \itembf{Transitivity: } Suppose $f\xequiv{h} f'$ and $f' \xequiv{k} f''$. Then, consider the
       compositions of the mediating portions of the equivalences:
       \[
@@ -605,13 +611,13 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
       \]
       By pasting the diagrams which give the above equivalences, we see that $f \ell = f''$.
       However, it is not in the form of a mediating map as presented.
-      
+
       The claim is that $\ell$ is the actual mediating map for $f$ and $f''$. That is, that we have
       $f(\Delta \* 1)a_{\*}(1 \* \ell)\inv{a_{\*}}(\inv{\Delta}\*1) = f''$. In the interest of some
       brevity, this is shown below with the associativity maps elided from the equations.
-      
+
       We need to show that $(\Delta \* 1)(1 \* \ell)(\inv{\Delta}\*1) = \ell$.
-      \begin{align*} 
+      \begin{align*}
         (\Delta \* 1)&(1 \* \ell)(\inv{\Delta}\*1) \\
         &=
           (\Delta \* 1)(1\*\Delta \* 1)  (1\*1 \* h ) (1\*\inv{\Delta}\* 1))\\
@@ -729,8 +735,8 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
     }
   \]
   From this, we can conclude
-  \[ 
-    (f(g\*1)a_{\*}) (h\*1)a_{\*} \xequiv{1\*\inv{a_{\*}}} f (((g(h\*1)a_{\*})\*1) a_{\*}) 
+  \[
+    (f(g\*1)a_{\*}) (h\*1)a_{\*} \xequiv{1\*\inv{a_{\*}}} f (((g(h\*1)a_{\*})\*1) a_{\*})
   \]
   which gives us that composition in \Xt is associative.
 
@@ -795,7 +801,7 @@ Define the restriction in \Xt\ as follows:
     \item[\rone] ($\restr{f} f = f$) Calculating the restriction of the left hand side in
       \X, we have:
       \begin{align*}
-        \restr{\rst{f}\inv{\usr} (f\*1) a_{\*}} & = \restr{\rst{f}\inv{\usr} (f\*1)}  
+        \restr{\rst{f}\inv{\usr} (f\*1) a_{\*}} & = \restr{\rst{f}\inv{\usr} (f\*1)}
           & a_{\*}   \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
         & = \restr{\rst{f}f \inv{\usr}}  & \inv{\usr} \text{ natural}\\
         & = \restr{f \inv{\usr}}  & \text{ \rone in }\X\\
@@ -832,7 +838,7 @@ Define the restriction in \Xt\ as follows:
 
       The below diagram commutes by the naturality of $\usr$ and the tensor coherence,
       \[
-        \xymatrix @C=55pt @R=55pt{
+        \xymatrix @C=48pt @R=55pt{
           A \ar[r]^{\restr{g} \inv{\usr}}
             \ar[dr]_{\restr{f}\restr{g}}^{\restr{g}\restr{f}}
             \ar[d]_{\restr{f}\inv{\usr}}
@@ -856,22 +862,22 @@ Define the restriction in \Xt\ as follows:
       hand side in \X:
       \begin{align*}
         \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr}}
-        & = \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}}} & \inv{\usr} 
+        & = \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}}} & \inv{\usr}
           \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
-        & = \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} & 
+        & = \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} &
           \text{Lemma \ref{lem:identities_involving_restriction}}\\
         & = \restr{\restr{f} g \inv{\usr} a_{\*}} & \inv{\usr} \text{ natural}\\
-        & = \restr{\restr{f} g } & \inv{\usr}, a_{\*} 
+        & = \restr{\restr{f} g } & \inv{\usr}, a_{\*}
           \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
         & = \restr{f} \rst{g} & \text{\rthree in }\X.
       \end{align*}
       The restriction of the right hand side computes in \X as:
       \begin{align*}
         \rst{(\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) a_{\*}}
-        & = \rst{(\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) } &  a_{\*} 
+        & = \rst{(\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) } &  a_{\*}
           \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
         & = \rst{\restr{f}  \rst{g} \inv{\usr}\inv{\usr} } &  \inv{\usr} \text{ natural}\\
-        & = \rst{\restr{f}  \rst{g} } &\inv{\usr}\inv{\usr} 
+        & = \rst{\restr{f}  \rst{g} } &\inv{\usr}\inv{\usr}
           \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
         & = \restr{f} \rst{g} & \text{Lemma \ref{lem:identities_involving_restriction}}.
       \end{align*}
@@ -880,7 +886,7 @@ Define the restriction in \Xt\ as follows:
       \begin{align*}
         \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr}
         & = \rst{f} \inv{\usr} \rst{g\* 1} & \text{\rthree, \rfour, }a_{\*} \text{ iso} \\
-        & = \rst{f} \rst{g} \inv{\usr} & \* 
+        & = \rst{f} \rst{g} \inv{\usr} & \*
           \text{a restriction bi-functor, }\inv{\usr}\text{ natural.}
       \end{align*}
 
@@ -888,7 +894,7 @@ Define the restriction in \Xt\ as follows:
       the left hand side with the bottom curved arrow. Note that we are using that
       $\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} = \restr{f}\rst{g}$ as shown above.
       \[
-        \xymatrix @C=38pt @R=20pt{
+        \xymatrix @C=33pt @R=20pt{
           A \ar@/^45pt/[rrrrr]^{\restr{f} \inv{\usr}(\restr{g} \inv{\usr} \* 1)a_{\*}}
             \ar@/_65pt/[dddddrrrrr]_{\restr{f}\, \restr{g}\inv{\usr}}
             \ar[r]^(.7){\restr{f}}
@@ -897,7 +903,7 @@ Define the restriction in \Xt\ as follows:
             \ar@{=}[d]
             &A \* 1 \ar[r]^{\restr{g}\*1}
             \ar[dd]_{\usr}
-            &A \* 1 \ar[r]^{\inv{\usr}\* 1}
+            &A \* 1 \ar[r]^(.41){\inv{\usr}\* 1}
             \ar[ddd]_{\usr}
             &(A \* 1) \* 1 \ar[r]^{a_{\*}}
             \ar[dddd]_{\usr}
@@ -918,22 +924,22 @@ Define the restriction in \Xt\ as follows:
     \item[\textbf{R.4}] $f \restr{g} = \restr{f g} f$ The restriction of the left hand side is:
       \begin{align*}
         \rst{f (\restr{g} \inv{\usr}\* 1) a_{\*}}
-          & = \rst{f (\restr{g} \inv{\usr}\* 1)} & a_{\*} 
+          & = \rst{f (\restr{g} \inv{\usr}\* 1)} & a_{\*}
           \text{ iso, Lemma \ref{lem:identities_involving_restriction}} \\
         & = \rst{f \rst{g} \inv{\usr}} \* \rst{f} & \* \text{ restriction functor}\\
-        & = \rst{f \rst{g}} \* \rst{f} & \inv{\usr} 
+        & = \rst{f \rst{g}} \* \rst{f} & \inv{\usr}
           \text{ iso, Lemma \ref{lem:identities_involving_restriction}} \\
         & = \rst{f (\rst{g} \* 1)}
       \end{align*}
       and the restriction of the right hand side is:
       \begin{align*}
         \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) a_{\*}}
-          & = \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) } & a_{\*} 
+          & = \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) } & a_{\*}
           \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
         & = \rst{\rst{f (g \* 1)} f \inv{\usr}  } & \inv{\usr} \text{ natural}\\
         & = \rst{f \rst{(g \* 1)}  \inv{\usr}  } & \text{ \rfour for }\X\\
         & = \rst{f (\rst{g} \* 1)  \inv{\usr}  } & \* \text{ is a restriction functor}\\
-        & = \rst{f (\rst{g} \* 1)    } & \inv{\usr} 
+        & = \rst{f (\rst{g} \* 1)    } & \inv{\usr}
           \text{ iso, Lemma \ref{lem:identities_involving_restriction}}
       \end{align*}
 
@@ -1302,7 +1308,7 @@ the straight line lattice, or the diamond semilattice. Below are the details of 
 
 Recall $\D$ has four elements $a,b,c$ and $d$, and there are two possible inverse product tensors:
 \begin{quote}\qquad\qquad
-  \begin{tabular}{|l||c|c|c|c|} 
+  \begin{tabular}{|l||c|c|c|c|}
     \hline
     $\*$&a&b&c&d\\ \hline \hline
     a&a&a&a&a\\ \hline
@@ -1343,17 +1349,17 @@ $\widetilde{\D}$ are the identity functions and that for all maps $f$, $\<f,1\> 
 
 With the second tensor table, we have:
 \begin{align*}
-  a \xrightarrow{(id,a) \ (\equiv (id, b) \equiv (id,c) \equiv (id,d))} a, \qquad 
+  a \xrightarrow{(id,a) \ (\equiv (id, b) \equiv (id,c) \equiv (id,d))} a, \qquad
     a \xrightarrow{(id,a)} b, \qquad a \xrightarrow{(id, a)} c , \qquad a \xrightarrow{(id, a)} d \\
   b \xrightarrow{(id,b) \ (\equiv (id, d))} b ,  \qquad b \xrightarrow{(id,b)} d\\
   c \xrightarrow{(id, c) \ (\equiv (id, d))} c,   \qquad c \xrightarrow{(id,c)} d\\
   d \xrightarrow{(id,d)} d
 \end{align*}
-resulting in the ``diamond'' lattice, 
+resulting in the ``diamond'' lattice,
 $
   \xymatrix @R=3pt @C=8pt {
-    & b \ar[dr]\\ 
-    a \ar[ur] \ar[dr] & &d\\ 
+    & b \ar[dr]\\
+    a \ar[ur] \ar[dr] & &d\\
     & c \ar[ur]
   }
 $. Once again, the tensor in \D is the meet.
@@ -1379,197 +1385,6 @@ $. Once again, the tensor in \D is the meet.
 \end{example}
 % subsection examples_of_the_wtf_construction (end)
 
-\subsection{Quantum computation} % (fold)
-\label{sub:quantum_computation}
 
-Quantum computation proceeds via the application of reversible transformations --- Unitary
-transformations.
-
-The semantics of quantum computation can be defined as a $\dagger$-compact closed category as
-introduced in \cite{abramsky02:traces,abramsky05:abstracttraces} and completely positive maps as
-discussed in \cite{selinger05:dagger}.
-
-\begin{definition}[Dagger Category]
-  A \emph{Dagger Category}\cite{selinger05:dagger} is a category \C together with an operation
-  $\dagger$ that is an involutive, identity on objects, contra-variant endofunctor on \C.
-\end{definition}
-Recalling first that a \emph{symmetric monoidal category} is a category \B with a bi-functor $\*$,
-an object $I$ and natural isomorphisms:
-\begin{align*}
-  a_{A,B,C}&: (A\*B)\*C \to A\* (B\*C)\\
-  c_{A,B} &:A\*B \to B\*A\\
-  ul_A &:A \to I \* A
-\end{align*}
-with standard coherence conditions, as in \cite{maclan97:categorieswrkmath}. Note that we
-also have a map $ur_A: A \to A\*I$ given by $ur_A = ul_A c_{I,A}$ Furthermore, a \emph{compact
-closed category} \C is a symmetric monoidal category where each object $A$ has a dual $A^{*}$
-together with the maps:
-\begin{align*}
-  \eta_A:I \to \dual{A} \* A\\
-  \epsilon_A : A\*\dual{A} \to I
-\end{align*}
-such that
-\[
-  \xymatrix@C+8pt@R-10pt{
-    A \ar[r]^{ur_A} \ar@{=}[dddrr]
-      & A\* I \ar[r]^(.4){A\*\eta_A}
-      & A\* (\dual{A}\*A) \ar[d]^{a^{-1}}\\
-    & & (A\*\dual{A})\*A \ar[d]^{\epsilon\*A}\\
-    & & I\* A \ar[d]^{ul^{-1}}\\
-    & & A
-  }
-  \quad\text{ and  }\quad
-  \xymatrix@C+8pt@R-10pt{
-    \dual{A} \ar[r]^{ul_{\dual{A}}} \ar@{=}[dddrr]
-      & I\*\dual{A} \ar[r]^(.4){\eta_{\dual{A}\*\dual{A}}}
-      & (\dual{A}\*A)\*\dual{A} \ar[d]^{a}\\
-    & & \dual{A}\*(A\*\dual{A}) \ar[d]^{\dual{A}\*\epsilon}\\
-    & & \dual{A}\*I \ar[d]^{ur^{-1}}\\
-    & & A
-  }
-\]
-
-From the above, we can define a \emph{Dagger symmetric monoidal category} and a \emph{Dagger
-compact closed category}. The latter is referred to as a \emph{strongly compact closed category} in
-\cite{abramsky02:traces}, where they were initially introduced. In each case, the $\dagger$ functor
-is added in a way that retains coherence with the bi-functor $\*$ and with the dualizing operator.
-The coherence implies that the $\dgr{i} = i^{-1}$ for the SMC isomorphisms, that $\dgr{(f\*g)} =
-\dgr{f}\*\dgr{g}$ for all maps $f,g$ in the symmetric monoidal category and that
-\[
-  \xymatrix{
-    I \ar[dr]_{\eta_A} \ar[r]^{\dgr{\epsilon_A}} & A\* \dual{A} \ar[d]^{c} \\
-    &\dual{A}\*A 
-  }
-\]
-commutes for all objects $A$ in the compact closed category.
-
-
-\begin{example}[\rel] 
-  \rel is a dagger compact closed category with the dual of an object $A$ is $A$, $\*$ is the
-  cartesian product and for $R:A\to B$, we have $\dual{R} = \dgr{R} = \{(y,x) | (x,y) \in R\}$.
-\end{example}
-\begin{example}[\fdh] 
-  The category of finite dimensional Hilbert spaces, \fdh is a dagger compact closed category with
-  the dual of an object $H$ is the normal Hilbert space dual $H^{*}$, the space of continuous
-  linear functions from $H$ to the base field. $\*$ is the normal Hilbert space tensor and and for
-  $f:A\to B$, we have $\dgr{f}$ is the unique map such that $\langle f x | y \rangle = \langle y |
-  \dgr{f}x \rangle$ for all $x\in A$, $y \in B$.
-\end{example}
-
-Additionally, if one has a dagger compact closed category with biproducts where the biproducts and
-dagger interact such that $\dgr{p_i} = q_i$, this is called a \emph{biproduct dagger compact closed
-category}.
-
-In \cite{selinger05:dagger}, the author continues from this point: Starting with a biproduct dagger
-compact closed category $\C$, he creates a new category, $\text{CPM}(\C)$ which has the same
-objects as $\C$, but morphisms $f:A \to B$ in $\text{CPM}(\C)$ are given by maps $f:\dual{A} \* A
-\to \dual{B} \* B$ in $\C$ which are \emph{completely positive}. Note that \rel and \fdh are
-biproduct dagger compact closed categories.
-
-From this, the category $\text{CPM}(\C)^{\+}$, the free biproduct completion of $\text{CPM}(\C)$ is
-formed, which is suitable for describing quantum computation semantics. For example, given \fdh as
-our starting point, the tensor unit $I$ is the field of complex numbers. The type of
-$\mathbf{qubit}$ (in \fdh and by lifting, in $\text{CPM}(\fdh)^{\+}$) is given as $I\+I$. At this
-stage, the necessity of the CPM construction to model physical reality can be seen in the following
-as in \fdh, the morphisms initialization of a qubit: $init:I\+I \to \mathbf{qubit}$ and destructive
-measure: $meas: \mathbf{qubit} \to I\+I$ are inverses. However, in $\text{CPM}(\fdh)^{\+}$, these
-same maps are given as
-\[
-  \dual{\mathbf{qubit}} \* \mathbf{qubit} \xrightarrow{meas} I\+
-    I \xrightarrow{init}\dual{\mathbf{qubit}} \* \mathbf{qubit} 
-\]
-by the formulae:
-\[
-  meas
-  \begin{pmatrix}
-    a & b \\ 
-    c & d
-  \end{pmatrix}
-  = (a,d), \qquad init(a,d) =
-  \begin{pmatrix}
-    a &0 \\ 
-    0 & d
-  \end{pmatrix}.
-\]
-Therefore, the maps are not inverses and reflect the physical reality.
-
-
-\begin{example}[Commutative Frobenius algebras]\label{example:commfrob}
-  Let \X be a symmetric monoidal category and form CFrob(\X) as follows: \paragraph{Objects:}
-  Commutative Frobenius algebras\cite{kock04}: A quintuple $(X,\nabla,\eta,\Delta,\epsilon)$ where
-  X is a $k$-algebra for some field $k$, and $\nabla :A\*A \to A$, $\eta:k\to A$, $\Delta : A \to
-  A\*A$, $\epsilon : A \to k$ are natural maps in the algebra. Additionally, these satisfy
-  \[
-    \xymatrix @C=40pt @R=25pt{
-      A \* A \ar[dd]_{1\*\Delta} \ar[dr]^{\nabla}
-        \ar[rr]^{\Delta \* 1} & &
-        A \* (A \* A) \ar[dd]^{1 \* \nabla}\\
-      & A \ar[dr]^{\Delta} & \\
-      (A \* A) \* A \ar[rr]_{\nabla \* 1} & &
-        A \* A
-    }
-  \]
-  together with the additional property that $\Delta \nabla = 1$.
-
-  \paragraph{Maps:} Multiplication ($\nabla$) and co-multiplication ($\Delta$) preserving
-  homomorphisms which do not necessarily preserve the unit.
-\end{example}
-
-\begin{theorem}
-  When \X is a symmetric monoidal category, CFrob(\X) is a discrete inverse category.
-\end{theorem}
-\begin{proof}
-  For $f:X \to Y$, define $\inv{f}$ as
-  \[
-    Y \xrightarrow{1\*\eta} Y\*X \xrightarrow{1\*\Delta}
-      Y\*X\*X \xrightarrow{1\*f\*1} Y\*Y\*X \xrightarrow{\nabla\*1}
-      Y\*X \xrightarrow{\epsilon\*1}X
-  \]
-  Using a result from \cite{cockett2002:restcategories1}, we need only show:
-  \begin{align*}
-    \inv{(\inv{f})} &= f\\
-    f\inv{f}f &= f\\
-    f\inv{f}g\inv{g} &=g\inv{g} f\inv{f}
-  \end{align*}
-  We also use the following two identities from \cite{kock04}:
-  \begin{align}
-    (1\*\eta)\nabla &= id\\
-    \Delta(1\*\epsilon) &= id.
-  \end{align}
-
-  \begin{align*}
-    \inv{\inv{f}} &=(1\*\eta)(1\*\Delta)(1\*(\inv{f})\*1)(\nabla\*1)(\epsilon\*1) \\
-    &=(1\*\eta)(1\*\Delta)(1\*((1\*\eta)(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1))\*1)
-      (\nabla\*1)(\epsilon\*1) \\
-    &=(1\*\eta)(1\*\Delta)(1\*1\*\eta)(1\*1\*f\*1\*1)(1\*\nabla\*1\*1)\\
-    &\qquad\qquad(1\*\epsilon\*1\*1) (\nabla\*1)(\epsilon\*1)\\
-    &=(\eta\*1)(\Delta\*1)(1\*\nabla)(f\*1)(((\eta)(\Delta\*1)(1\*\nabla)(1\*\epsilon))\*1)
-      ((1\*\epsilon)\\
-    &=(1\*\eta)\nabla \Delta(1\*\epsilon)f(\eta\*1)\nabla\Delta(1\*\epsilon)\\
-    &=id_{x}id_{x}\  f \ id_{y} id_{y}\\
-    &=f
-  \end{align*}
-  \begin{align*}
-    f\inv{f}f &= f(1\*\eta)(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1)f\\
-    &=(1\*\eta)(1\*\Delta)(f\*f\*1)(\nabla\*1)(1\*f)(\epsilon\*1)\\
-    &=(1\*\eta)(1\*\Delta)(\nabla\*1)(f\*f)(\epsilon\*1)\\
-    &=(1\*\eta)\nabla\Delta(f\*f)(\epsilon\*1)\\
-    &=\Delta(f\*f)(\epsilon\*1)\\
-    &=f\Delta(\epsilon\*1)\\
-    &=f
-  \end{align*}
-  Finally, to show $f\inv{f}$ and $g\inv{g} $ commute:
-  \begin{align*}
-    f(1\*\eta)&(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1)g(1\*\eta)(1\*\Delta)(1\*g\*1)
-      (\nabla\*1)(\epsilon\*1)\\
-    &=(1\*\eta)(1\*\Delta)(\nabla\*1)(f\*1)(\epsilon\*1)(1\*\eta)(1\*\Delta)(\nabla\*1)(g\*1)
-      (\epsilon\*1)\\
-    &=(1\*\eta)\nabla\Delta(f\*1)(\epsilon\*1)(1\*\eta)\nabla\Delta(g\*1)(\epsilon\*1)\\
-    &=\Delta(f\*1)(\epsilon\*1)\Delta(g\*1)(\epsilon\*1)\\
-    &=\Delta(1\*\Delta)(f\*g\*1)(\epsilon\*\epsilon\*1)\\
-    &=\Delta(1\*\Delta)(g\*f\*1)(\epsilon\*\epsilon\*1)\qquad\qquad\qquad\text{co-commutativity}\\
-    &=g\inv{g}f\inv{f}
-  \end{align*}
-
-\end{proof}
+\input{chapters/section/inverse-reversible}
 % chapter inverse_categories (end)

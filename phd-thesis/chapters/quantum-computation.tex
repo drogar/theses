@@ -73,7 +73,7 @@ As mentioned above, the set of $n\times m$ matrices over a field is a vector spa
 matrices compose and the tensor product of matrices is defined.
 
 Matrix composition is defined as usual. That is, for $A = [a_{ij}] \in F^{m\times n}, B =
-[b_{jk}]\in F^{n \times p}$: 
+[b_{jk}]\in F^{n \times p}$:
   \[
     A \, B = \left[\left(\sum_{j}a_{ij}b_{jk}\right)_{ik}\right] \in F^{m \times p}.
   \]
@@ -305,7 +305,7 @@ $u$. Then the density matrix corresponding to $\nu$ is $uu^{*}$. If $\nu=\alpha\
 \beta\ket{1}$,
 \begin{equation}
   \begin{singlespace}
-    \nu = 
+    \nu =
     \begin{pmatrix}
       \alpha \\
       \beta
@@ -459,7 +459,7 @@ A list of common gates, their circuits and corresponding matrices is given in
       \begin{bmatrix}
         0&1\\
         1&0
-      \end{bmatrix}$ \\ 
+      \end{bmatrix}$ \\
       & & \\\hline
       & &  \\
       $Z$ &
@@ -469,7 +469,7 @@ A list of common gates, their circuits and corresponding matrices is given in
       \begin{bmatrix}
         1&0\\
         0&-1
-      \end{bmatrix}$ \\ 
+      \end{bmatrix}$ \\
       & & \\\hline
       & &  \\
       Hadamard &
@@ -492,7 +492,7 @@ A list of common gates, their circuits and corresponding matrices is given in
         0&0&1&0\\
         0&1&0&0\\
         0&0&0&1
-      \end{bmatrix}$ \\ 
+      \end{bmatrix}$ \\
       & & \\\hline
       & & \\
       Controlled-Not &
@@ -505,7 +505,7 @@ A list of common gates, their circuits and corresponding matrices is given in
         0&1&0&0\\
         0&0&0&1\\
         0&0&1&0
-      \end{bmatrix}$ \\ 
+      \end{bmatrix}$ \\
       & & \\\hline
       & &  \\
       Toffoli &
@@ -523,7 +523,7 @@ A list of common gates, their circuits and corresponding matrices is given in
         0&0&0&0&0&1&0&0\\
         0&0&0&0&0&0&0&1\\
         0&0&0&0&0&0&1&0
-      \end{bmatrix}$ \\ 
+      \end{bmatrix}$ \\
       & & \\\hline
     \end{tabular}
   } % end centerline
@@ -575,7 +575,7 @@ all of the first three \qubits{} and the measurement applies to the first two \q
     \Qcircuit @C=1em @R=.7em {
       & \multigate{2}{U} & \multimeasureD{1}{\mbox{bits}} & \cw \\
       & \ghost{U} &  \ghost{\mbox{bits}} &\cw \\
-      & \ghost{U} & \qw &\qw 
+      & \ghost{U} & \qw &\qw
     }
   }
   \caption{Examples of multi-\qubit{} gates and measures}
@@ -590,7 +590,7 @@ all of the first three \qubits{} and the measurement applies to the first two \q
 
 The examples above have only shown control based upon a \qubit{} being \ket{1}. Circuits also allow
 control on a \qubit{} being \ket{0} and upon classical values. These forms of control are illustrated
-by the circuit 
+by the circuit
 in \vref{qc:zctrlAndClassicalControl} with four \qubit{}s $(r_1, r_2, p$ and $q)$.
 
 At $g_1$, a \Had{} is $1-$controlled by $r_2$ and is applied to each of $r_1$ and $p$. This is
@@ -713,7 +713,7 @@ summarized in \vref{tab:qcdSyntax}.
   \setlength\extrarowheight{4pt}
   \begin{tabular}{|>{\raggedright\hspace{0pt}}p{.9in}|p{3in}|>{$}c<{$}|}
     \hline
-    \textbf{Desired element} & \textbf{Element in a quantum circuit diagram.} & 
+    \textbf{Desired element} & \textbf{Element in a quantum circuit diagram.} &
     \mbox{\textbf{Example}}\\
     \hline \hline
     \qubit{} & A single horizontal line. &
@@ -824,13 +824,13 @@ now in the same state as the \qubit{} Alice wanted to send. The circuit for this
       \lstick{\mbox{A}}  & \targ & \qw & \measureD{M_2} & \control \cw  \cwx[1] \\
       \lstick{\mbox{B}} & \qw &\qw & \qw & \gate{X} & \gate{Z} & \qw & \rstick{\ket{\nu}}\\
       & \rstick{\ket{s_1}}& \rstick{\ket{s_2}} & & \lstick{\ket{s_3}} & &
-      \lstick{\ket{s_4}} 
+      \lstick{\ket{s_4}}
     }
   }
   \caption{Quantum teleportation}
   \label{qc:quantumTeleportation}
 \end{figure}
-For comparison , see % todo lqpl program for \vref{fig:stackTeleportation} 
+For comparison , see % todo lqpl program for \vref{fig:stackTeleportation}
 showing how this would be implemented in
 \lqpl{}.
 
@@ -859,7 +859,7 @@ The algorithm relies on being able to construct an $n+1$ order unitary operator 
 general, a unitary operator like this may be constructed by mapping the state $\ket{a,b}$ to
 $\ket{a,b\oplus f(a)}$ where $\oplus$ is the exclusive-or operator and $a$ is $n$ \bit{} values. If
 we name this operator $U_f$, the circuit in \vref{qc:djAlgorithm} will solve the problem with just
-one application. See the appendix, %todo lqpl program {vref{appsubsec:djalgorithm}} 
+one application. See the appendix, %todo lqpl program {vref{appsubsec:djalgorithm}}
 for how this would be done in \lqpl.
 \begin{figure}[htbp]
   \centerline{%
@@ -896,8 +896,8 @@ including Shor's factoring algorithm.
 
 The quantum Fourier transform is definable on an arbitrary number of \qubits. This is typically
 presented by eliding the $3^{\text{rd}}$ to the $n-3^{\text{rd}}$ lines and interior processing.
-The \lqpl{} code for the quantum Fourier transform is in the appendix, 
-%todo lqpl for quantum fourier transform {vref{fig:qft}}. 
+The \lqpl{} code for the quantum Fourier transform is in the appendix,
+%todo lqpl for quantum fourier transform {vref{fig:qft}}.
 In this circuit, the parametrized transform $R_n$ is the rotation transform, given by:
 \[
   R_n=
@@ -924,7 +924,7 @@ In this circuit, the parametrized transform $R_n$ is the rotation transform, giv
 
 The inverse of a circuit is determined by traversing the circuit from right to left. This process
 changes the original quantum Fourier circuit to its inverse as shown in \vref{qc:inverseqft}. The
-\lqpl{} code for the inverse quantum Fourier transform is in the appendix, 
+\lqpl{} code for the inverse quantum Fourier transform is in the appendix,
 %todo lqpl code for {vrefrange{fig:inverseqft}{fig:inverserotate}}.
 \begin{figure}[htbp]
   \centerline{%
@@ -1065,8 +1065,8 @@ affected by control, but a swap is affected by control, as shown in \vref{qc:ben
     }
     \quad \raisebox{-1.9em}{$\equiv$} \quad
     \Qcircuitnocompile @C=1em @R=1.5em {
-      &\qw&\qswap \ghost{U} {\POS"1,2"."2,2"."1,3"."2,3"!C*+<2ex>\frm{-}} 
-      &\qw &\raisebox{-4em}{$\neq$}& 
+      &\qw&\qswap \ghost{U} {\POS"1,2"."2,2"."1,3"."2,3"!C*+<2ex>\frm{-}}
+      &\qw &\raisebox{-4em}{$\neq$}&
       &\qw \ar @{-} [dr] & {\hphantom{ }} \gategroup{1}{7}{2}{8}{2ex}{-} &\qw\\
       &\qw&\qswap \qwx &\qw & &&\qw \ar @{-}[ur] &&\qw\\
       &\qw& \control \ar @{-} [-1,0]-<0ex,1.1ex> \qw &\qw & &
@@ -1263,3 +1263,198 @@ The concepts of shape and the type \type{QCData} allow us to group the wires of 
 into higher order types.
 % subsection types_and_shapes (end)
 % section an_alternate_description_of_quantum_circuits (end)
+
+\section{Quantum computation} % (fold)
+\label{sec:quantum_computation}
+
+Quantum computation proceeds via the application of reversible transformations --- Unitary
+transformations.
+
+The semantics of quantum computation can be defined as a $\dagger$-compact closed category as
+introduced in \cite{abramsky02:traces,abramsky05:abstracttraces} and completely positive maps as
+discussed in \cite{selinger05:dagger}.
+
+\begin{definition}[Dagger Category]
+  A \emph{Dagger Category}\cite{selinger05:dagger} is a category \C together with an operation
+  $\dagger$ that is an involutive, identity on objects, contra-variant endofunctor on \C.
+\end{definition}
+Recalling first that a \emph{symmetric monoidal category} is a category \B with a bi-functor $\*$,
+an object $I$ and natural isomorphisms:
+\begin{align*}
+  a_{A,B,C}&: (A\*B)\*C \to A\* (B\*C)\\
+  c_{A,B} &:A\*B \to B\*A\\
+  ul_A &:A \to I \* A
+\end{align*}
+with standard coherence conditions, as in \cite{maclan97:categorieswrkmath}. Note that we
+also have a map $ur_A: A \to A\*I$ given by $ur_A = ul_A c_{I,A}$ Furthermore, a \emph{compact
+closed category} \C is a symmetric monoidal category where each object $A$ has a dual $A^{*}$
+together with the maps:
+\begin{align*}
+  \eta_A:I \to \dual{A} \* A\\
+  \epsilon_A : A\*\dual{A} \to I
+\end{align*}
+such that
+\[
+  \xymatrix@C+8pt@R-10pt{
+    A \ar[r]^{ur_A} \ar@{=}[dddrr]
+      & A\* I \ar[r]^(.4){A\*\eta_A}
+      & A\* (\dual{A}\*A) \ar[d]^{a^{-1}}\\
+    & & (A\*\dual{A})\*A \ar[d]^{\epsilon\*A}\\
+    & & I\* A \ar[d]^{ul^{-1}}\\
+    & & A
+  }
+  \quad\text{ and  }\quad
+  \xymatrix@C+8pt@R-10pt{
+    \dual{A} \ar[r]^{ul_{\dual{A}}} \ar@{=}[dddrr]
+      & I\*\dual{A} \ar[r]^(.4){\eta_{\dual{A}\*\dual{A}}}
+      & (\dual{A}\*A)\*\dual{A} \ar[d]^{a}\\
+    & & \dual{A}\*(A\*\dual{A}) \ar[d]^{\dual{A}\*\epsilon}\\
+    & & \dual{A}\*I \ar[d]^{ur^{-1}}\\
+    & & A
+  }
+\]
+
+From the above, we can define a \emph{Dagger symmetric monoidal category} and a \emph{Dagger
+compact closed category}. The latter is referred to as a \emph{strongly compact closed category} in
+\cite{abramsky02:traces}, where they were initially introduced. In each case, the $\dagger$ functor
+is added in a way that retains coherence with the bi-functor $\*$ and with the dualizing operator.
+The coherence implies that the $\dgr{i} = i^{-1}$ for the SMC isomorphisms, that $\dgr{(f\*g)} =
+\dgr{f}\*\dgr{g}$ for all maps $f,g$ in the symmetric monoidal category and that
+\[
+  \xymatrix{
+    I \ar[dr]_{\eta_A} \ar[r]^{\dgr{\epsilon_A}} & A\* \dual{A} \ar[d]^{c} \\
+    &\dual{A}\*A
+  }
+\]
+commutes for all objects $A$ in the compact closed category.
+
+
+\begin{example}[\rel]
+  \rel is a dagger compact closed category with the dual of an object $A$ is $A$, $\*$ is the
+  cartesian product and for $R:A\to B$, we have $\dual{R} = \dgr{R} = \{(y,x) | (x,y) \in R\}$.
+\end{example}
+\begin{example}[\fdh]
+  The category of finite dimensional Hilbert spaces, \fdh is a dagger compact closed category with
+  the dual of an object $H$ is the normal Hilbert space dual $H^{*}$, the space of continuous
+  linear functions from $H$ to the base field. $\*$ is the normal Hilbert space tensor and and for
+  $f:A\to B$, we have $\dgr{f}$ is the unique map such that $\langle f x | y \rangle = \langle y |
+  \dgr{f}x \rangle$ for all $x\in A$, $y \in B$.
+\end{example}
+
+Additionally, if one has a dagger compact closed category with biproducts where the biproducts and
+dagger interact such that $\dgr{p_i} = q_i$, this is called a \emph{biproduct dagger compact closed
+category}.
+
+In \cite{selinger05:dagger}, the author continues from this point: Starting with a biproduct dagger
+compact closed category $\C$, he creates a new category, $\text{CPM}(\C)$ which has the same
+objects as $\C$, but morphisms $f:A \to B$ in $\text{CPM}(\C)$ are given by maps $f:\dual{A} \* A
+\to \dual{B} \* B$ in $\C$ which are \emph{completely positive}. Note that \rel and \fdh are
+biproduct dagger compact closed categories.
+
+From this, the category $\text{CPM}(\C)^{\+}$, the free biproduct completion of $\text{CPM}(\C)$ is
+formed, which is suitable for describing quantum computation semantics. For example, given \fdh as
+our starting point, the tensor unit $I$ is the field of complex numbers. The type of
+$\mathbf{qubit}$ (in \fdh and by lifting, in $\text{CPM}(\fdh)^{\+}$) is given as $I\+I$. At this
+stage, the necessity of the CPM construction to model physical reality can be seen in the following
+as in \fdh, the morphisms initialization of a qubit: $init:I\+I \to \mathbf{qubit}$ and destructive
+measure: $meas: \mathbf{qubit} \to I\+I$ are inverses. However, in $\text{CPM}(\fdh)^{\+}$, these
+same maps are given as
+\[
+  \dual{\mathbf{qubit}} \* \mathbf{qubit} \xrightarrow{meas} I\+
+    I \xrightarrow{init}\dual{\mathbf{qubit}} \* \mathbf{qubit}
+\]
+by the formulae:
+\[
+  meas
+  \begin{pmatrix}
+    a & b \\
+    c & d
+  \end{pmatrix}
+  = (a,d), \qquad init(a,d) =
+  \begin{pmatrix}
+    a &0 \\
+    0 & d
+  \end{pmatrix}.
+\]
+Therefore, the maps are not inverses and reflect the physical reality.
+
+
+\begin{example}[Commutative Frobenius algebras]\label{example:commfrob}
+  Let \X be a symmetric monoidal category and form CFrob(\X) as follows: \paragraph{Objects:}
+  Commutative Frobenius algebras\cite{kock04}: A quintuple $(X,\nabla,\eta,\Delta,\epsilon)$ where
+  X is a $k$-algebra for some field $k$, and $\nabla :A\*A \to A$, $\eta:k\to A$, $\Delta : A \to
+  A\*A$, $\epsilon : A \to k$ are natural maps in the algebra. Additionally, these satisfy
+  \[
+    \xymatrix @C=40pt @R=25pt{
+      A \* A \ar[dd]_{1\*\Delta} \ar[dr]^{\nabla}
+        \ar[rr]^{\Delta \* 1} & &
+        A \* (A \* A) \ar[dd]^{1 \* \nabla}\\
+      & A \ar[dr]^{\Delta} & \\
+      (A \* A) \* A \ar[rr]_{\nabla \* 1} & &
+        A \* A
+    }
+  \]
+  together with the additional property that $\Delta \nabla = 1$.
+
+  \paragraph{Maps:} Multiplication ($\nabla$) and co-multiplication ($\Delta$) preserving
+  homomorphisms which do not necessarily preserve the unit.
+\end{example}
+
+\begin{theorem}
+  When \X is a symmetric monoidal category, CFrob(\X) is a discrete inverse category.
+\end{theorem}
+\begin{proof}
+  For $f:X \to Y$, define $\inv{f}$ as
+  \[
+    Y \xrightarrow{1\*\eta} Y\*X \xrightarrow{1\*\Delta}
+      Y\*X\*X \xrightarrow{1\*f\*1} Y\*Y\*X \xrightarrow{\nabla\*1}
+      Y\*X \xrightarrow{\epsilon\*1}X
+  \]
+  Using a result from \cite{cockett2002:restcategories1}, we need only show:
+  \begin{align*}
+    \inv{(\inv{f})} &= f\\
+    f\inv{f}f &= f\\
+    f\inv{f}g\inv{g} &=g\inv{g} f\inv{f}
+  \end{align*}
+  We also use the following two identities from \cite{kock04}:
+  \begin{align}
+    (1\*\eta)\nabla &= id\\
+    \Delta(1\*\epsilon) &= id.
+  \end{align}
+
+  \begin{align*}
+    \inv{\inv{f}} &=(1\*\eta)(1\*\Delta)(1\*(\inv{f})\*1)(\nabla\*1)(\epsilon\*1) \\
+    &=(1\*\eta)(1\*\Delta)(1\*((1\*\eta)(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1))\*1)\\
+    &\qquad\qquad(\nabla\*1)(\epsilon\*1) \\
+    &=(1\*\eta)(1\*\Delta)(1\*1\*\eta)(1\*1\*f\*1\*1)(1\*\nabla\*1\*1)\\
+    &\qquad\qquad(1\*\epsilon\*1\*1) (\nabla\*1)(\epsilon\*1)\\
+    &=(\eta\*1)(\Delta\*1)(1\*\nabla)(f\*1)(((\eta)(\Delta\*1)(1\*\nabla)(1\*\epsilon))\*1)
+      ((1\*\epsilon)\\
+    &=(1\*\eta)\nabla \Delta(1\*\epsilon)f(\eta\*1)\nabla\Delta(1\*\epsilon)\\
+    &=id_{x}id_{x}\  f \ id_{y} id_{y}\\
+    &=f
+  \end{align*}
+  \begin{align*}
+    f\inv{f}f &= f(1\*\eta)(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1)f\\
+    &=(1\*\eta)(1\*\Delta)(f\*f\*1)(\nabla\*1)(1\*f)(\epsilon\*1)\\
+    &=(1\*\eta)(1\*\Delta)(\nabla\*1)(f\*f)(\epsilon\*1)\\
+    &=(1\*\eta)\nabla\Delta(f\*f)(\epsilon\*1)\\
+    &=\Delta(f\*f)(\epsilon\*1)\\
+    &=f\Delta(\epsilon\*1)\\
+    &=f
+  \end{align*}
+  Finally, to show $f\inv{f}$ and $g\inv{g} $ commute:
+  \begin{align*}
+    f(1\*\eta)&(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1)g(1\*\eta)(1\*\Delta)(1\*g\*1)
+      (\nabla\*1)(\epsilon\*1)\\
+    &=(1\*\eta)(1\*\Delta)(\nabla\*1)(f\*1)(\epsilon\*1)(1\*\eta)(1\*\Delta)(\nabla\*1)(g\*1)
+      (\epsilon\*1)\\
+    &=(1\*\eta)\nabla\Delta(f\*1)(\epsilon\*1)(1\*\eta)\nabla\Delta(g\*1)(\epsilon\*1)\\
+    &=\Delta(f\*1)(\epsilon\*1)\Delta(g\*1)(\epsilon\*1)\\
+    &=\Delta(1\*\Delta)(f\*g\*1)(\epsilon\*\epsilon\*1)\\
+    &=\Delta(1\*\Delta)(g\*f\*1)(\epsilon\*\epsilon\*1)\qquad\qquad\qquad\text{co-commutativity}\\
+    &=g\inv{g}f\inv{f}
+  \end{align*}
+
+\end{proof}
+% section quantum_computation (end)

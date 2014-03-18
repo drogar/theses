@@ -1,13 +1,13 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
 
-\chapter{Reversible computation}\label{chap:reversible_computation}
+\section{Reversible computation}\label{sec:reversible_computation}
 
 Bennet, in \cite{bennett:1973reverse}, showed that it was possible to emulate a standard Turing
 machine via a reversible Turing machine and vice-versa. This showed the equivalence of standard and
 reversible Turing machines. We reproduce the essence of this proof below.
 
-\section{Reversible Turing machines} % (fold)
-\label{sec:reversible_turing_machines}
+\subsection{Reversible Turing machines} % (fold)
+\label{sub:reversible_turing_machines}
 
 Turing machines consist of a tape, a read-write head positioned over the tape, a machine state and
 a set of instructions. The set of instructions may be given as a set of transitions determining the
@@ -158,13 +158,13 @@ We will show that a reversible Turing machine with three tapes can emulate a Tur
     (s,a,a,\delta,s') \mapsto \left((s,a,a',s''),
           (s'',\phi,\delta,s')\right).\label{eq:quint_to_quad}
   \end{align}
-  
+
   In \vref{eq:quint_to_quad}, $s''$ is a new state for the machine $M$, not in the current set of
   states.
 
   Assign an order to the $n$ quintuples of $M$, where the start quintuple is the first in the order
   and the end quintuple comes last. Convert these to quadruples as in \vref{eq:quint_to_quad}.
-  
+
   We then proceed to create three groups of quadruples for $R$. We call these \emph{emulation,
   copy,} and \emph{restore}.
 
@@ -175,7 +175,7 @@ We will show that a reversible Turing machine with three tapes can emulate a Tur
     (s_1'',\phi,\delta,s_2) & \mapsto
           (e_1,[\phi,\blank,\phi],[\delta,1,0],s_2)\\
           & \vdots \\
-    \text{Pair \jay}\quad  (s_\kay,a_\jay,a'_\jay,s''_\kay) & 
+    \text{Pair \jay}\quad  (s_\kay,a_\jay,a'_\jay,s''_\kay) &
           \mapsto (s_\kay,[a_\jay,\phi,\blank],[a'_\jay,+1,\blank],e_\jay)\\
      (s_\kay'',\phi,\delta,s_i) & \mapsto
           (e_\jay,[\phi,\blank,\phi],[\delta_\jay,\jay,0],s_i)\\
@@ -188,7 +188,7 @@ We will show that a reversible Turing machine with three tapes can emulate a Tur
   created for $R$ is a reversible set, due to the writing of the quadruple index on tape 2. Upon
   completion of the emulation phase, tape 1 will be the same as $M$ would have produced on its
   single tape, tape 2 will be $[1,2,\dots,n]$ and tape 3 will be blanks.
-  
+
   For the copy phase, we create the following quadruples:
   \begin{align*}
     (s_f,[\blank,n,\blank],&[\blank,n,\blank],c_1 )\\
@@ -230,29 +230,29 @@ We will show that a reversible Turing machine with three tapes can emulate a Tur
 \end{proof}
 
 
-% section reversible_turing_machines (end)
+% subsection reversible_turing_machines (end)
 
-\section{Reversible automota and linear combinatory algebras} % (fold)
-\label{sec:reversible_automota_and_linear_combinatory_algebras}
-While reversible Turing machines, as described in \vref{sec:reversible_turing_machines}, show that
+\subsection{Reversible automata and linear combinatory algebras} % (fold)
+\label{sub:reversible_automata_and_linear_combinatory_algebras}
+While reversible Turing machines, as described in \vref{sub:reversible_turing_machines}, show that
 reversible computing is as powerful as standard computing, they do not give us a sense of what may
 be considered to be happening at a higher level.
 
 To accomplish that task we examine the results of the paper ``A Structural Approach to Reversible
 Computation''\cite{abramsky05:reversible}. In this paper, Abramsky gives a description of a
 reversible automaton together with a linear combinatory algebra. We will begin by revisiting some
-definitions and constructions necessary for discussing automota. The next subsection will introduce
+definitions and constructions necessary for discussing automata. The next subsection will introduce
 combinatory algebras, after which we will describe the reversible automata of
 \cite{abramsky05:reversible} and add a short proof that it can emulate a reversible turing machine.
 
-\subsection{Automota} % (fold)
-\label{sub:automota}
-We will describe the automota as a term-rewriting system. This requires, of course, giving a few
+\subsubsection{Automata} % (fold)
+\label{ssub:automata}
+We will describe the automata as a term-rewriting system. This requires, of course, giving a few
 basic definitions. See, e.g., \cite{termrewriting2003}.
 \begin{definition}\label{def:arity}
   An \emph{arity} is a function from a function to the natural numbers. The arity of $F$ is the
   number of inputs (arguments) required by $F$.
-\end{definition} 
+\end{definition}
 \begin{definition}\label{def:signature}
   A \emph{signature} $\Sigma$ is a set of \emph{function symbols} $F,G,\ldots$, each of which has
   an arity.
@@ -278,7 +278,7 @@ basic definitions. See, e.g., \cite{termrewriting2003}.
   \begin{itemize}
     \item $x\in V \implies x \in T_\Sigma$ and
     \item For any $F\in\Sigma$, with $arity(F) = n$, and $\{t_1,\ldots,t_n\} \subseteq T_\Sigma$,
-    then $F(t_1,\ldots,t_n)\in T_\Sigma$. In the case where $arity(F) = 0$, we write 
+    then $F(t_1,\ldots,t_n)\in T_\Sigma$. In the case where $arity(F) = 0$, we write
     $F \in T_\Sigma$.
   \end{itemize}
 \end{definition}
@@ -293,7 +293,7 @@ basic definitions. See, e.g., \cite{termrewriting2003}.
   $\Sigma$ to them.
 \end{remark}
 
-As we are considering rewrite systems, we will need to consider aspects of substitution and 
+As we are considering rewrite systems, we will need to consider aspects of substitution and
 unification.
 
 \begin{definition}\label{def:substitution}
@@ -362,10 +362,10 @@ The subsumption ordering can be used to derive a similar ordering on substitutio
   Following \cite{abramsky05:reversible}, we write \uniftus if $\sigma$ is the most general unifier
   of terms $t,u$.
 \end{notation}
-% subsection automota (end)
+% subsubsection automata (end)
 
-\subsection{Combinatory Algebra} % (fold)
-\label{sub:combinatory_algebra}
+\subsubsection{Combinatory Algebra} % (fold)
+\label{ssub:combinatory_algebra}
 
 \begin{definition}\label{def:combinatory_algebra}
   A \emph{combinatory algebra} is an algebra with one binary operation, $\cdot$ written in infix
@@ -390,9 +390,9 @@ The subsumption ordering can be used to derive a similar ordering on substitutio
 \end{definition}
 
 Note that combinatory logic does not require a specific set that must be used for the algebra,
-simply that it has the two distinguished elements. 
+simply that it has the two distinguished elements.
 
-Combinatory logic was shown to be equivalent to the $\lambda$ calculus by 
+Combinatory logic was shown to be equivalent to the $\lambda$ calculus by
 % TODO Get reference for who showed CL = lambda, and who did it.
 
 For example, we may define the identity combinator \Ic as $\Ic = \Sc \. \Kc \. \Kc$. Further
@@ -417,26 +417,26 @@ algebra that is equivalent to Combinatory Logic.
 In fact, a BCKW-Combinatory algebra is equivalent to a Combinatory logic.
 
 \begin{lemma}\label{lem:bckw_combinatory_is_sk_combinatory}
-  The distinguished elements of a BCKW-Combinatory algebra may be represented by \Sc and \Kc. 
+  The distinguished elements of a BCKW-Combinatory algebra may be represented by \Sc and \Kc.
   Conversly, the \Sc and \Kc of a Combinatory logic may be created from \Bc,\Cc,\Kc and \Wc.
 \end{lemma}
 \begin{proof}
   For the first statement, we have:
   \begin{singlespace}
     \begin{align*}
-      &\Bc &&= \Sc\. (\Kc\.\Sc)\.\Kc\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\\
+      &\Bc &&= \Sc\. (\Kc\.\Sc)\.\Kc\qquad\qquad\qquad\qquad\qquad\qquad\\
       &\Cc &&= \Sc\.(\Sc\.(\Kc\.(\Sc\.(\Kc\.\Sc)\.\Kc))\.\Sc)\.(\Kc\.\Kc)\\
       &\Kc &&= \Kc\\
       &\Wc &&= \Sc\.\Sc\.(\Sc\.\Kc).\\
       \\
-      \text{Going the other direction, we have:}\\
+      \quad\text{Going the other direction, we have:}\\
       &\Ic &&= \Wc\.\Kc\\
       &\Kc &&= \Kc\\
       &\Sc &&= \Bc\.(\Bc\.(\Bc\.\Wc)\.\Cc)\.(\Bc\.\Bc) \text{ and}\\
       &    &&= \Bc\.(\Bc\.\Wc)\.(\Bc\.\Bc\.\Cc).
     \end{align*}
   \end{singlespace}
-  
+
   We show the computations of \Bc and \Sc in detail.
   \begin{singlespace}
     \begin{align*}
@@ -479,10 +479,10 @@ When we say that combinatory logic with \Sc and \Kc is complete, we mean the fol
   recursive functions.
 \end{theorem}
 
-% subsection combinatory_algebra (end)
+% subsubsection combinatory_algebra (end)
 
-\subsection{Linear Combinatory Algebra} % (fold)
-\label{sub:linear_combinatory_algebra}
+\subsubsection{Linear Combinatory Algebra} % (fold)
+\label{ssub:linear_combinatory_algebra}
 
 \begin{definition}\label{def:linear_combinatory_algebra}
   A \emph{Linear Combinatory Algebra} $(A,\.,!)$ is an algebra $A$ with an applicative binary
@@ -533,12 +533,12 @@ that $a\bullet b \equiv a\.{!}b$. Then, define the following:
        &= a\\
     \end{align*}
   \end{singlespace}
-  
+
 \end{proof}
 
-% subsection linear_combinatory_algebra (end)
+% subsubsection linear_combinatory_algebra (end)
 
-% section reversible_automota_and_linear_combinatory_algebras (end)
+% subsection reversible_automata_and_linear_combinatory_algebras (end)
 
 
 

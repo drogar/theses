@@ -14,9 +14,9 @@ approximate synthesis} {\cite{Kliuchnikov-et-al}}.
 \section{Algebraic background} % (fold)
 \label{sec:algebraic_background}
 
-We first introduce some notation and terminology, following {\cite{Kliuchnikov-et-al}} where
-possible. Recall that $\N$ is the set of natural numbers including 0, and $\Z$ is the ring of
-\linebreak integers. We write $\Zb=\Z/2\Z$ for the ring of integers modulo 2. Let $\D$ be the ring
+We first introduce some notation and terminology, primarily following {\cite{Kliuchnikov-et-al}}.
+Recall that $\N$ is the set of natural numbers including 0, and $\Z$ is the ring of
+integers. We write $\Zb=\Z/2\Z$ for the ring of integers modulo 2. Let $\D$ be the ring
 of {\em dyadic fractions}, defined as $\D = \Z[\frac12] = \s{\frac{a}{2^n}\mid a\in\Z, n\in\N}$.
 
 Let $\omega = e^{i\pi/4} = (1+i)/\sqrt{2}$. Note that $\omega$ is an 8th root of unity satisfying
@@ -312,7 +312,7 @@ so when we say one operator ``follows'' another, we mean that it appears to its 
 
 The most important properties of the Matsumoto-Amano decomposition are:
 \begin{itemize}
-  \item Existence: every single-qubit Clifford+$T$ operator can be written in Matsumoto-Amano
+  \item Existence: all single-qubit Clifford+$T$ operators can be written in Matsumoto-Amano
     normal form (moreover, there is an efficient algorithm for converting the operator to normal
     form);
 
@@ -673,16 +673,17 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
 
 \begin{proof}
   Computing the inner product, we have
-  \begin{equation}  \label{eqn-dotprod_of_vl_and_vj}
-    \<v_\jay,v_\ell\> =
+  \begin{multline}  \label{eqn-dotprod_of_vl_and_vj}
+    \<v_\jay,v_\ell\> =\\
     \frac{1}{2^k}
     \left(
       a_\jay a_\ell+c_\jay c_\ell+e_\jay e_\ell+
-      2(b_\jay b_\ell+d_\jay d_\ell+f_\jay f_\ell)
+      2(b_\jay b_\ell+d_\jay d_\ell+f_\jay f_\ell) \right. \\
+      \left.
       +\sqrt{2}(a_\jay b_\ell+b_\jay a_\ell+
       c_\jay d_\ell+d_\jay c_\ell+e_\jay f_\ell+f_\jay e_\ell)
     \right).
-  \end{equation}
+  \end{multline}
   Since $U\da U=I$, we have $\<v_\jay,v_\jay\>=1$, and $\<v_\jay,v_\ell\> = 0$ when $\ell \ne
   \jay$. Therefore, the coefficient of $\sqrt{2}$ in equation \vref{eqn-dotprod_of_vl_and_vj} must
   be zero, proving \vref{eqn-abba} and \vref{eqn-aacc}. Equations {\vref{eqn-abcd}} and
@@ -764,7 +765,7 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
       $\bar a \bar b+ \bar c \bar d = 0$. Since $\bar a = \bar c = 1$,
       we can conclude $\bar b+\bar d = 0$.
       Applying $\hat{T}^{-1}$ to $v$, we compute:
-      \[
+      \begin{multline*}
         \hat{T}^{-1}v = \frac{1}{\sqrt{2}^{k+1}}
         \begin{bmatrix}
           c+a &+& (d+b)\sqrt{2} \\
@@ -776,14 +777,14 @@ the Matsumoto-Amano normal form of any Clifford+$T$ operator, given as a matrix.
           \frac{c+a}{2} &+& \frac{d+b}{\sqrt{2}} \\
           \frac{c-a}{2} &+& \frac{d-b}{\sqrt{2}} \\
           \frac{e}{\sqrt{2}} &+& f
-        \end{bmatrix}
+        \end{bmatrix}\\
         = \frac{1}{\sqrt{2}^{k-1}}
         \begin{bmatrix}
           a' &+& b'{\sqrt{2}} \\
           c' &+& d'{\sqrt{2}} \\
           f &+ & e'{\sqrt{2}}
         \end{bmatrix}
-      \]
+      \end{multline*}
       where $a' = \frac{c+a}{2}, b' = \frac{d+b}{2}, c' =
       \frac{c-a}{2}, d' = \frac{d-b}{2}$ and $e' = \frac{e}{2}$ are
       all integers. Hence, $k-1$ is a denominator exponent of
@@ -959,7 +960,7 @@ primitive logical operations.
 
 \subsubsection{Bocharov-Svore normal form} % (fold)
 \label{ssub:bocharov_svore_normal_form}
-Bocharov and Svore {\cite[Prop.1]{BS}} consider the following normal form for single-qubit
+Bocharov and Svore {\cite[Proposition 1]{BS}} consider the following normal form for single-qubit
 Clifford+$T$ circuits:
 \begin{equation}\label{eqn-bs1}
   (H\mid\emptyseq)\,(TH\mid SHTH)^*\,{\cC}.
@@ -1026,7 +1027,7 @@ operator, as do $YS.TH.TH$ and $TH.TH.X\omega$.
 \end{example}
 
 \begin{figure}
-  \begin{tikzpicture}[node distance=1cm and 1.2cm]
+  \begin{tikzpicture}[node distance=1cm and 1.15cm]
     \node (filler) {};
 
     \node (r1c1) [below=of filler]

@@ -3,68 +3,57 @@
 
 \section*{Introduction}
 
-This chapter will give a brief introduction to and explanation of both reversible and quantum
-computing. Comparisons to each other and how they may be related will be discussed here, along
-with a brief introduction to their semantics as computational models.
+This chapter will give a brief introduction to and an explanation of both reversible and quantum
+computing. How they are be related will be discussed, along with a brief introduction to their
+categorical semantics. We will discuss the equivalence of reversible Turing machines and
+standard Turing machines.
+
+
+
+\section*{Abstract Computability}
 
 This chapter will include a basic introduction to category theory. Specific areas introduced will
 included definitions of categories, natural transformations and functors. It will introduce limits
 and co-limits, focussing on products and co-products.
 
-This chapter will also include an introduction to restriction categories.
-
-\section*{Reversible Computing}
-
-This will introduce the subject of reversible computing, explaining the equivalence to standard
-computing at the level of Turing machines. (Based on work by Bennet). It will also provide an
-example of a reversible language.
-
-The semantics of reversible computing will be examined briefly.
-
-\section*{Abstract Computability}
-
 This chapter will start with an introduction to restriction categories and how Cartesian restriction
 categories can be used to model standard computing. We will introduce Turing categories and show how
 this can be used to create a Partial Combinatory Algebra.
 
-\section*{Inverse categories}
+\section*{Inverse categories and Reversible computing}
 
-Inverse categories are a special type of restriction categories, in which each map has a partial
-inverse. They correspond to restriction categories in the same way Groupoids correspond to
-categories.
+An inverse category is a specific type of restriction category, in which each map has a partial
+inverse. An inverse category corresponds to a restriction category in the same way a groupoid
+corresponds to a category.
 
-Inverse categories will be explored, along with some basic results regarding products and splits of
-categories. The inverse product will be introduced, along with the concept of a discrete inverse
-category and the relationship to Cartesian restriction categories.
+Inverse categories will be explored, along with some basic results regarding products and idempotent
+splitting. The inverse product will be introduced, along with the concept of a discrete inverse
+category and the relationship between a discrete inverse category and a Cartesian restriction
+category.
 
-The next step is to explore the inverse sum, disjointness and the disjoint join of maps in an
-inverse category, allowing us to work with objects which behave like co-products in the inverse
-category. The interaction of the inverse sum and inverse product will be explained.
+Next, we explore the inverse sum, disjointness and the disjoint join of maps in an inverse
+category, allowing us to work with objects which behave like co-products in the inverse category.
+The interaction of the inverse sum and inverse product will be explained.
 
-The chapter will conclude with remarks on Inverse Turing Categories.
+The chapter will define inverse Turing Categories.
 
-This is based on two papers which are in preparation (joint work with R. Cockett).
+The foregoing is based on two papers which are in preparation (joint work with R. Cockett).
+
+To conclude the chapter, we will provide a detailed proof of the equivalence of reversible Turing
+machines and standard Turing machines and connect this to inverse categories.
 
 \section*{Quantum Computation}
 The initial part of this chapter will introduce quantum circuits, following which, we will explore
 the semantics of quantum computing as described using $\dagger$-categories. This will include
-examples of ``Toy'' quantum semantics.
+examples of ``Toy'' quantum semantics, specifically that of matrices over $D[\omega]$ (where
+$D = \integers[\frac{1}{2}]$).
 
-\section*{Frobenius Algebras}
+\section*{Frobenius Algebras in $\dagger$-Categories}
 
 In this chapter, we highlight the connection between the model of reversible computing (inverse
 categories) introduced in this thesis, and that of quantum computing. Frobenius Algebras provide a
 way of describing the basis used in quantum computation for a specific model of quantum semantics.
 
-\section*{Transformations of Quantum Programs}
-
-PROBABLY REMOVE!!!!
-
-The current understanding of how to treat iteration and folding in Quantum circuits and algorithms
-is somewhat lacking. This chapter will present unpublished work (done under the supervision of P.
-Selinger) exploring this area. It will include a treatment of necessary conditions for a quantum
-routine, its inputs and outputs, which would allow transforming the routine into either an iterated
-or folded routine. Algorithms to compute this transform are also provided.
 
 \section*{$D[\omega]$ based $\dagger$ categories}
 

@@ -106,10 +106,10 @@ examples in terms of objects and maps rather than the ``object-free'' definition
 \subsubsection{Categories based on \protect{\sets}} % (fold)
 \label{ssub:categories_based_on_sets}
 There are three primary categories of interest to us where the objects are the collection of sets.
-The first is \sets, where the maps are given by all set functions. The second is \Par, where the maps
-are all partial maps. In each case, the standard definition of functions suffices to ensure indenties,
-compositions and associativity are all satisfied. Domain and codomain are given by the domain and range
-respectively.
+The first is \sets, where the maps are given by all set functions. The second is \Par, where the
+maps are all partial maps. In each case, the standard definition of functions suffices to ensure
+indenties, compositions and associativity are all satisfied. Domain and codomain are given by the
+domain and range respectively.
 
 A third example, often of interest in quantum programming language semantics is \rel:
 \category{Sets}{Relations: $R:X \to Y$}{$1_X = \{(x,x) | x \in X\}$}{$RS = \{(x,z) |
@@ -122,8 +122,8 @@ Note that \rel is enriched in posets, via set inclusion. \Par can be viewed as a
 % subsubsection categories_based_on_sets (end)
 \subsubsection{Matrix categories} % (fold)
 \label{ssub:matrix_categories}
-Given a rig $R$ (i.e., a ring minus negatives, e.g., the positive rationals), one may form the category
-\specialcat{Mat}($R$).
+Given a rig $R$ (i.e., a ring minus negatives, e.g., the positive rationals), one may form the
+category \specialcat{Mat}($R$).
 \category{\nat}{$[r_{ij}]: n \to m$ where $[r_{ij}]$ is an $n \times m$ matrix over $R$}{
 $I_n$}{Matrix multiplication}
 % subsubsection matrix_categories (end)
@@ -144,8 +144,9 @@ Many interesting properties of maps are generalizations of notions that have bee
 considering sets and functions. We present a few of these in a tabular format, together with their
 categorical definition. Throughout the table, $e,f,g$ are maps in a category $C$ with
 $e:A \to A$ and $f,g:A \to B$.
+\\[14pt]
 
-\begin{tabular}{|p{1in}p{1in}p{3.75in}|}
+\begin{tabular}{|p{1in}p{1in}p{3.73in}|}
 \hline
 {\bf Sets} & {\bf Categorical Property} & {\bf Definition}\\
 \hline
@@ -164,7 +165,7 @@ retraction is called an \emph{isomorphism}.\\
 \hline
 Idempotent & Idempotent & An endomap $e$ is idempotent whenever $e e = e$.\\
 \hline
-\end{tabular}
+\end{tabular}\\[14pt]
 
 We state without proof a number of properties of maps.
 
