@@ -700,13 +700,13 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
   \begin{align*}
     \restr{f(g\*1)a_{\*} (h\*1)a_{\*}}
       & = \restr{f(g\*1)a_{\*} (h\*1)\restr{a_{\*}}}
-    & \text{Lemma \ref{lem:identities_involving_restriction}} \\
+    & \text{Lemma \ref{lem:restrictionvarious}} \\
     & = \restr{f(g\*1)a_{\*} (h\*1)} & \restr{a_{\*}}=1 \\
     & = \restr{f(g\*1) ((h\*1)\*1) a_{\*} } & a_{\*}\text{ natural} \\
     & = \restr{f(g\*1) ((h\*1)\*1) }
-      & a_{\*}   \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
+      & a_{\*}   \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
     & = \restr{f(g\*1) ((h\*1)\*1) (a_{\*}\*1)}
-      & a_{\*}\*1 \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
+      & a_{\*}\*1 \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
     & = \restr{f((g (h\*1)a )\*1)} & \text{ see above}\\
     & = \restr{f((g (h\*1)a )\*1)a_{\*}} & a_{\*}   \text{ iso}
   \end{align*}
@@ -747,7 +747,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
   for all maps $A\xrightarrow{(f,C)}B$ in \Xt.
 
   First, we see $\restr{f (\inv{\usr}\*1) a_{\*}} = \restr{f}$ by Lemma
-  \vref{lem:identities_involving_restriction}. Then, calculating in \X, we have a mediating map of
+  \vref{lem:restrictionvarious}. Then, calculating in \X, we have a mediating map of
   $1 \* \usl$ as shown below.
   \[
     \xymatrix @C=50pt @R=45pt{
@@ -763,7 +763,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
   \]
 
   Next, $\restr{\inv{\usr} (f \*1)  a_{\*}} = \restr{f}$ by the naturality of $\inv{\usr}$ and
-  Lemma \vref{lem:identities_involving_restriction}. The diagram below
+  Lemma \vref{lem:restrictionvarious}. The diagram below
   \[
     \xymatrix @C=50pt @R=45pt{
       A \ar@{=}[dd] \ar[r]^{\inv{\usr}} \ar[dr]_{f}
@@ -802,10 +802,10 @@ Define the restriction in \Xt\ as follows:
       \X, we have:
       \begin{align*}
         \restr{\rst{f}\inv{\usr} (f\*1) a_{\*}} & = \restr{\rst{f}\inv{\usr} (f\*1)}
-          & a_{\*}   \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
+          & a_{\*}   \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{\rst{f}f \inv{\usr}}  & \inv{\usr} \text{ natural}\\
         & = \restr{f \inv{\usr}}  & \text{ \rone in }\X\\
-        & = \restr{f } & \inv{\usr}   \text{ iso, Lemma \ref{lem:identities_involving_restriction}}.
+        & = \restr{f } & \inv{\usr}   \text{ iso, Lemma \ref{lem:restrictionvarious}}.
       \end{align*}
 
       Then, the following diagram
@@ -863,23 +863,23 @@ Define the restriction in \Xt\ as follows:
       \begin{align*}
         \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr}}
         & = \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}}} & \inv{\usr}
-          \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
+          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} &
-          \text{Lemma \ref{lem:identities_involving_restriction}}\\
+          \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{\restr{f} g \inv{\usr} a_{\*}} & \inv{\usr} \text{ natural}\\
         & = \restr{\restr{f} g } & \inv{\usr}, a_{\*}
-          \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
+          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{f} \rst{g} & \text{\rthree in }\X.
       \end{align*}
       The restriction of the right hand side computes in \X as:
       \begin{align*}
         \rst{(\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) a_{\*}}
         & = \rst{(\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) } &  a_{\*}
-          \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
+          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
         & = \rst{\restr{f}  \rst{g} \inv{\usr}\inv{\usr} } &  \inv{\usr} \text{ natural}\\
         & = \rst{\restr{f}  \rst{g} } &\inv{\usr}\inv{\usr}
-          \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
-        & = \restr{f} \rst{g} & \text{Lemma \ref{lem:identities_involving_restriction}}.
+          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+        & = \restr{f} \rst{g} & \text{Lemma \ref{lem:restrictionvarious}}.
       \end{align*}
 
       Additionally, we see $\rst{\rst{f} g}$ in \Xt is expressed in \X as:
@@ -925,22 +925,22 @@ Define the restriction in \Xt\ as follows:
       \begin{align*}
         \rst{f (\restr{g} \inv{\usr}\* 1) a_{\*}}
           & = \rst{f (\restr{g} \inv{\usr}\* 1)} & a_{\*}
-          \text{ iso, Lemma \ref{lem:identities_involving_restriction}} \\
+          \text{ iso, Lemma \ref{lem:restrictionvarious}} \\
         & = \rst{f \rst{g} \inv{\usr}} \* \rst{f} & \* \text{ restriction functor}\\
         & = \rst{f \rst{g}} \* \rst{f} & \inv{\usr}
-          \text{ iso, Lemma \ref{lem:identities_involving_restriction}} \\
+          \text{ iso, Lemma \ref{lem:restrictionvarious}} \\
         & = \rst{f (\rst{g} \* 1)}
       \end{align*}
       and the restriction of the right hand side is:
       \begin{align*}
         \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) a_{\*}}
           & = \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) } & a_{\*}
-          \text{ iso, Lemma \ref{lem:identities_involving_restriction}}\\
+          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
         & = \rst{\rst{f (g \* 1)} f \inv{\usr}  } & \inv{\usr} \text{ natural}\\
         & = \rst{f \rst{(g \* 1)}  \inv{\usr}  } & \text{ \rfour for }\X\\
         & = \rst{f (\rst{g} \* 1)  \inv{\usr}  } & \* \text{ is a restriction functor}\\
         & = \rst{f (\rst{g} \* 1)    } & \inv{\usr}
-          \text{ iso, Lemma \ref{lem:identities_involving_restriction}}
+          \text{ iso, Lemma \ref{lem:restrictionvarious}}
       \end{align*}
 
       Computing the right hand side in \X,
@@ -1027,11 +1027,11 @@ where associativity is assumed as needed. Note that with the associativity maps,
     \rst{\<f,g\>}
       &=\rst{\Delta(f\*g)(1\*c_{\*}\*1)}\inv{\usr}&\text{in }\X, \text{ definition of restriction}\\
     &=\rst{\Delta(f\*g)}\inv{\usr} &c_{\*}\text{ is iso}\\
-    &=\rst{\Delta\rst{(f\*g)}}\inv{\usr} &\text{from Lemma \ref{lem:identities_involving_restriction}}\\
+    &=\rst{\Delta\rst{(f\*g)}}\inv{\usr} &\text{from Lemma \ref{lem:restrictionvarious}}\\
     &=\rst{\Delta(\rst{f}\*\rst{g})}\inv{\usr} &\*\text{ is a restriction functor}\\
     &=\rst{\rst{f}\,\rst{g}\,\Delta(1\*1)}\inv{\usr} &\text{Lemma  \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}(\ref{le:deltaefg}) twice}\\
-    &=\rst{\rst{f}\,\rst{g}}\inv{\usr} &\text{Lemma  \ref{lem:identities_involving_restriction}}\\
-    &=\rst{f}\,\rst{g}\inv{\usr}  &\text{Lemma  \ref{lem:identities_involving_restriction}.}\\
+    &=\rst{\rst{f}\,\rst{g}}\inv{\usr} &\text{Lemma  \ref{lem:restrictionvarious}}\\
+    &=\rst{f}\,\rst{g}\inv{\usr}  &\text{Lemma  \ref{lem:restrictionvarious}.}\\
   \end{align*}
 
   Then, the right hand side reduces as:
@@ -1041,7 +1041,7 @@ where associativity is assumed as needed. Note that with the associativity maps,
     &= \rst{f} \rst{g}\inv{\usr}\inv{\usr} a_{\*} &  \inv{\usr}\text{ natural.}
   \end{align*}
   The restriction of the left hand side and the right hand side, in \X, is $\rst{\rst{f} \rst{g}}$.
-  This is done by applying Lemma \vref{lem:identities_involving_restriction} once on the left and
+  This is done by applying Lemma \vref{lem:restrictionvarious} once on the left and
   thrice on the right.
 
   Thus, this shows $\rst{\<f,g\>}=\rst{f} \rst{g}$ in \Xt where the mediating map in \X is
@@ -1050,7 +1050,7 @@ where associativity is assumed as needed. Note that with the associativity maps,
   Next, to show $\<f,g\> \pi_0 \le f$ (and $\<f,g\> \pi_1 \le g$), it is required to show
   $\rst{\<f,g\>\pi_{0}} f = \<f,g\> \pi_{0}$. Calculating the left side, we see:
   \begin{align*}
-    \rst{\<f,g\>\pi_{0}} f &=\rst{\<f,g\>\rst{\pi_{0}}} f &\text{Lemma \ref{lem:identities_involving_restriction}}\\
+    \rst{\<f,g\>\pi_{0}} f &=\rst{\<f,g\>\rst{\pi_{0}}} f &\text{Lemma \ref{lem:restrictionvarious}}\\
     &=\rst{\<f,g\>} f &\pi_{0}\text{ is total}\\
     &=\rst{f}\,\rst{g}\, f&\text{ by above}\\
     &=\rst{g} \rst{f} f & \rtwo\\
@@ -1065,7 +1065,7 @@ where associativity is assumed as needed. Note that with the associativity maps,
   $\rst{f} \rst{g}$ immediately by \rthree and \rtwo. For the right hand side, calculate in \X:
   \begin{align*}
     \rst{\Delta(f\*g)(1\*c_{\*}\*1)}
-      & = \rst{\Delta(f\*g)} & \text{Lemma  \ref{lem:identities_involving_restriction}}\\
+      & = \rst{\Delta(f\*g)} & \text{Lemma  \ref{lem:restrictionvarious}}\\
     & = \Delta(f\*g)(\inv{f} \* \inv{g})\inv{\Delta} & \X \text{ is an inverse category}\\
     & = \Delta(\rst{f} \* \rst{g})\inv{\Delta} & \\
     & = \rst{f} \rst{g} \Delta\inv{\Delta} & \text{Lemma \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}(\ref{le:deltaefg}) twice}\\
@@ -1387,4 +1387,6 @@ $. Once again, the tensor in \D is the meet.
 
 
 \input{chapters/section/inverse-reversible}
+
+\input{chapters/section/inverse-sum-categories}
 % chapter inverse_categories (end)

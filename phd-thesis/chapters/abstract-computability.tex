@@ -363,7 +363,7 @@ each object $A,B$ in $\C$ we have the map:
 
 Restriction categories were introduced in
  \cite{cockett2002:restcategories1} as a convenient axiomatization of partial maps.
-\begin{definition}
+\begin{definition}\label{def:restriction_category}
   A \emph{restriction category} is a category \X\ together with a \emph{restriction operator} on
   maps:
   \[
@@ -394,13 +394,13 @@ Any map such that $r=\restr{r}$ is an idempotent, as $\rst{r}\rst{r} = \rst{\rst
 and is called a \emph{restriction idempotent}. All maps $\restr{f}$ are restriction idempotents as
 $\rst{f}=\rst{\rst{f}}$. Below, we record some basic facts for restriction categories
 shown in \cite{cockett2002:restcategories1} pp 4-5:
-\begin{lemma}\label{lem:identities_involving_restriction}
+\begin{lemma}\label{lem:restrictionvarious}
   In a restriction category \X,
   \begin{multicols}{2}
     \begin{enumerate}[{(}i{)}]
       \item{}$\rst{f}$ is idempotent;
-      \item{} $\rst{f g} = \rst{f g} \, \rst{f}$;\label{lemsub:restriction_identities_two}
-      \item{} $\rst{f g} = \rst{f \rst{g}}$ ;
+      \item{} $\rst{f g} = \rst{f g} \, \rst{f}$;\label{lemitem:rv_2}
+      \item{} $\rst{f g} = \rst{f \rst{g}}$ ;\label{lemitem:rv_3}
       \item{} $\rst{\rst{f}} = \rst{f}$;
       \item{} $\rst{f}\,\rst{g} = \rst{\rst{f}\,\rst{g}}$;
       \item{} $f$ monic implies $\rst{f} = 1$;
@@ -562,6 +562,95 @@ The following are basic results on meets:
   \end{enumerate}
 \end{proof}
 % subsection enrichment_and_meets (end)
+
+\subsection{Range categories} % (fold)
+\label{sub:range_categories}
+Corresponding to Definition~\ref{def:restriction_category}, which axiomatizes the concept of a
+domain of definition, we now introduce range categories which serve to axiomatize the concept of
+the range of a function.
+
+\begin{definition}\label{def:range_category}
+  A restriction category \X is a \emph{range category} when it has an operator on all maps
+  \[
+    \infer{\rg{f}:B\to B}{f:A\to B}
+  \]
+  where the operator satisfies the following:
+  \begin{align*}
+    &\rrone\ \restr{\rg{f}} = \rg{f} & &
+     \rrtwo\ f \rg{f} = f\\
+    &\rrthree\ \wrg{f\rst{g}} = \rg{f} \rst{g} & &
+     \rrfour\  \wrg{\rg{f}g} = \wrg{f g}
+  \end{align*}
+  whenever the compositions are defined.
+
+\end{definition}
+
+\begin{lemma}\label{lem:basic_range_category_properties}
+  In a range category \X, the following hold:
+  \begin{multicols}{2}
+    \begin{enumerate}[{(}i{)}]
+      \item $\rg{g}\rg{f} = \rg{f}\rg{g}$;
+      \item $\rst{f}\rg{g} = \rg{g}\rst{f}$;
+      \item $\wrg{f\rg{g}} = \rg{f}\rg{g}$;
+      \item $\rg{f} = 1$ when $f$ is epic, hence $\rg{1} = 1$;
+      \item $\rg{f}\rg{f} = \rg{f}$;
+      \item $\rg{\rg{f}} = \rg{f}$;
+      \item $\rg{\rst{f}} = \rst{f}$;
+      \item $\rg{g}\wrg{f g} = \wrg{f g}$;
+      \item $\wrg{\rg{f}\rg{g}} = \rg{f}\rg{g}$.
+    \end{enumerate}
+  \end{multicols}
+\end{lemma}
+\begin{proof}
+  See, e.g., \cite{guox:thesis}.
+\end{proof}
+
+\begin{lemma}\label{lem:ordering_of_restriction_and_range}
+  In a range category:
+  \begin{multicols}{2}
+    \begin{enumerate}[{(}i{)}]
+      \item $\rst{f g} \le \rst{f}$; \label{lemitem:ordering_1}
+      \item  $\wrg{h f} \le \rg{f}$; \label{lemitem:ordering_2}
+      \item $f' \le f$ implies $\rst{f'} \le \rst{f}$; \label{lemitem:ordering_3}
+      \item $f' \le f$ implies $\rg{f'} \le \rg{f}$. \label{lemitem:ordering_4}
+    \end{enumerate}
+  \end{multicols}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item This is immediate from Lemma \refitem{lem:restrictionvarious}{lemitem:rv_2}.
+    \item Noting that $\rst{\wrg{hf}} \rg{f} = \wrg{hf} \rg{f}  = \wrg{hf \rg{f}} = \wrg{h f}$,
+      we see $\wrg{h f} \le \rg{f}$.
+    \item  $\rst{f'}\,\rst{f} = \rst{\rst{f'} f} = \rst{f'}$, therefore $\rst{f'} \le \rst{f}$.
+    \item Calculating $\rst{\rg{f'}} \rg{f} = \rg{f'} \rg{f} = \wrg{\rst{f'} f} \rg{f} =
+      \wrg{\rst{f'} f \rg{f}} = \wrg{\rst{f'} f} = \rg{f'}$, we see $\rg{f'} \le \rg{f}$.
+  \end{enumerate}
+\end{proof}
+\begin{remark}
+  Note that unlike restrictions, a range is a \emph{property} of a restriction category. To see
+  this, assume we have two ranges $\wrg{(\_)}$ and $\widetilde{(\_)}$. Then,
+  \[\rg{f}=\wrg{f \tilde{f}}=\rg{f} \tilde{f}=\tilde{f} \rg{f}=\widetilde{f \rg{f}}=\tilde{f}.\]
+\end{remark}
+\begin{lemma}\label{lem:inverse_categories_are_range_categories}
+  An inverse category \X is a range category, where $\rg{f} = \inv{f}f = \rst{\inv{f}}$.
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \setlist[enumerate,1]{leftmargin=1.5cm}
+  \begin{enumerate}
+    \item[\rrone] $\restr{\rg{f}} = \rst{\rst{\inv{f}}} = \rst{\inv{f}} = \rg{f}$;
+    \item[\rrtwo] $f \rg{f} = f \rst{\inv{f}} = f \inv{f} f = \rst{f} f = f$;
+    \item[\rrthree] $\wrg{f\rst{g}} = \rst{\inv{(f\rst{g})}} = \rst{\inv{\rst{g}} \inv{f}} =
+      \rst{\rst{g} \inv{f}} =
+      \rst{g} \rst{\inv{f}} = \rst{\inv{f}} \rst{g} =\rg{f} \rst{g}$;
+    \item[\rrfour]  $\wrg{\rg{f}g} = \rst{\inv{(\rst{\inv{f}} g)}} =
+      \rst{\inv{g}\inv{\rst{\inv{f}}}} = \rst{\inv{g} \rst{\inv{f}}} =
+      \rst{\inv{g} \inv{f}} = \rst{\inv{(f g)}} = \wrg{f g}$
+  \end{enumerate}
+\end{proof}
+% subsection range_categories (end)
+
 \subsection{Partial monics, sections and isomorphisms} % (fold)
 \label{sub:restricted_monics_sections_and_partial_isomorphisms}
 
@@ -600,8 +689,8 @@ some their basic properties.
       \begin{align*}
         h \restr{f g} f &= k \restr{f g} f &\rfour\\
         h \restr{f g}\,\restr{f} &= k \restr{f g}\, \restr{f} & f\text{partial monic}\\
-        h \restr{fg}&= k \restr{fg} & \text{Lemma \ref{lem:identities_involving_restriction},
-          \ref{lemsub:restriction_identities_two}}
+        h \restr{fg}&= k \restr{fg} & \text{Lemma \ref{lem:restrictionvarious},
+          \ref{lemitem:rv_2}}
       \end{align*}
     \item Suppose $g f = k f$. Then, $g\restr{f} = g f h = k f h = k \restr{f}$.
     \item We have $f h = \restr{f}$ and $g h' = \restr{g}$. Therefore,

@@ -66,6 +66,8 @@
 
 \newcommand{\uts}{\hspace{0.1pt}}
 
+\newcommand{\refitem}[2]{\ref{#1}[\ref{#2}]}
+
 %------------------------------------------------------------------------------
 % Term algebras
 
@@ -153,6 +155,9 @@
 \DeclareMathOperator*{\dom}{dom}
 \DeclareMathOperator*{\rng}{range}
 
+
+\newcommand{\intersect}{\ensuremath{\bigcap}}
+
 %-----------------------------------------------------------------------------
 % Regular expressions, MA algo
 
@@ -171,7 +176,7 @@
 \newcommand{\sCp}{\mathscr{C}\,'}
 \newcommand{\sHp}{\mathscr{H}\,'}
 \newcommand{\sH}{\mathscr{H}}
-\newcommand{\sm}{\setminus}  
+\newcommand{\sm}{\setminus}
 \newcommand{\seq}{\subseteq}
 \newcommand{\pp}{{++}}
 
@@ -269,6 +274,7 @@
 
 \newcommand{\Lat}{\ltrcatbb{L}}
 \newcommand{\Mstab}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\inj}{\specialcat{Inj}}
 
 \newcommand{\sets}{\specialcat{Sets}}
 \newcommand{\cat}{\specialcat{Cat}}
@@ -295,9 +301,22 @@
 }
 
 
+\newcommand{\rcategory}[5]{%
+\begin{description}%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
+\item{\textbf{Restriction: }}{#5}%
+\end{description}%
+%
+}
+
 \newcommand{\restr}[1]{\overline{#1}}
 \newcommand{\rst}[1]{\restr{#1}}
 
+\newcommand{\rg}[1]{\hat{#1}}
+\newcommand{\wrg}[1]{\widehat{#1}}
 
 %--------------------------------------------------------------------------------------
 % Notation for inverse categories
@@ -328,6 +347,66 @@
 \newcommand{\wtc}{\ensuremath{\widetilde{(\_)}}\xspace}
 \newcommand{\wtf}{\ensuremath{\mathbf{T}}\xspace}
 \newcommand{\wt}[1]{\ensuremath{\mathbf{T}({#1})}\xspace}
+
+%---------------------------------------------------------------------
+% Notation for inverse sum categories
+
+
+\newcommand{\cp}[1]{\amalg_{#1}}
+\newcommand{\cpa}{\cp{0}}
+\newcommand{\cpb}{\cp{1}}
+
+
+\newcommand{\perpvv}[2]{{}_{{}_{#1}}{\perp_{{}_{#2}}}}
+\newcommand{\perpab}{\perpvv{A}{B}}
+\newcommand{\perpba}{\perpvv{B}{A}}
+\newcommand{\perpcb}{\perpvv{C}{B}}
+\newcommand{\tperp}{\perpvv{}{\oplus}}
+\newcommand{\join}{\sqcup}
+\newcommand{\djoin}{\sqcup}
+\newcommand{\altjoin}{\,\square\,}
+%\newcommand{\djoin}{{\,{{\sqcup}\hspace{-0.474em}{\mid}}\,\,}}
+\newcommand{\disjoint}{\perp}
+\newcommand{\invdisjoint}{\disjoint^0}
+\newcommand{\invjoin}{\join^0}
+\newcommand{\tjoin}{\join_{{_{\oplus}}}}
+
+\DeclareMathOperator{\tjleft}{\triangledown}
+\DeclareMathOperator{\tjright}{\vartriangle}
+\DeclareMathOperator{\gtjleft}{\overline{\triangledown}}
+\DeclareMathOperator{\gtjright}{\underline{\vartriangle}}
+
+\newcommand{\ocdperp}{\,\underline{\perp}\,}
+\newcommand{\eocdperp}{\,\underline{\underline{\perp}}\,}
+\newcommand{\ocdperpsub}[1]{\,\underline{\perp}_{{}_{#1}}\,}
+\newcommand{\cdperp}{\perp}
+\newcommand{\invsum}[2]{{{#1}+{#2}}} %\bowtie_{{}_{{#1},{#2}}}}
+\newcommand{\invinvsum}[2]{{{#1}\hat{+}{#2}}}
+
+
+\newcommand{\open}[1]{\ensuremath{\mathcal{O}({#1})}}
+
+\newcommand{\upl}{\uleft{\+}}
+\newcommand{\upr}{\uright{\+}}
+
+\newcommand{\com}[1]{\ensuremath{c_{#1}}}
+\newcommand{\comp}{\com{\+}}
+\newcommand{\assoc}[1]{\ensuremath{a_{#1}}}
+\newcommand{\assocp}{\assoc{\+}}
+
+
+\newcommand{\ea}{e_0}
+\newcommand{\eb}{e_1}
+\newcommand{\xa}{x_0}
+\newcommand{\xb}{x_1}
+
+\DeclareMathOperator{\rstp}{\rst{+}}
+\DeclareMathOperator{\rgp}{\rg{+}}
+
+\DeclareMathOperator{\mat}{Mat}
+\DeclareMathOperator{\imat}{iMat}
+\DeclareMathOperator{\ob}{Ob}
+
 %-------------------------------------------------
 % sub/super scripting and decorating
 
@@ -406,7 +485,7 @@
 
 
 %-----------------------------------------------------------------------------------
-% Macros for including code 
+% Macros for including code
 
 %------------------------------------------------------------------------------------
 % Formatting macros
