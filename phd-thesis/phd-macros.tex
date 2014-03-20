@@ -10,6 +10,41 @@
 \newbox\mybox
 \def\mp#1#2{\setbox\mybox\hbox{#2}\localh\ht\mybox\locald\dp\mybox\addtolength{\localh}{-\locald}\raisebox{-#1\localh}{\box\mybox}}
 \def\m#1{\scalebox{0.8}{\mp{0.5}{#1}}}
+
+%----------------------------------------------------------------------
+%  Boxes for flowcharts
+
+\def\branchbox#1#2#3#4{ % draw diamond around current object and set "a0"
+                        % "a1" and "au" positions
+    \save
+    []!U+/u#3/*{}="u"="#1u";
+    []!R+/r#4/*{}="r";
+    []!D+/d#3/*{}="d";
+    []!L+/l#4/*{}="l";
+    "d";"l"**{}?(#2)="#10";  % see note 3h for usage of ? and **
+    "d";"r"**{}?(#2)="#11";
+    \ar@{-}"u";"r"
+    \ar@{-}"d";"r"
+    \ar@{-}"u";"l"
+    \ar@{-}"d";"l"
+    \restore
+}
+
+
+\def\procbox#1#2{  % draw a box shaped like a procedure call around
+                   % the object #1. #2=name of procedure
+                   % usage:   \procbox{[ll].[].[ul]}{Proc1}
+  \save#1="box";
+  "box"!C*+<2ex,0ex>[F]\frm{}*{{\bf #2}};
+  "box"!LU*[.]{}="lu";
+  "box"!LD*[.]{}="ld";
+  "box"!RU*[.]{}="ru";
+  "box"!RD*[.]{}="rd";
+  \ar@{-}"lu";"ld"
+  \ar@{-}"ru";"rd"
+  \restore
+}
+
 %----------------------------------------------------------------------
 % Ad hoc quantum circuits using TikZ
 
@@ -206,6 +241,13 @@
 
 
 \newcommand{\bigI}{\rule[-1.5ex]{0mm}{4ex}~I~}
+
+
+
+\newcommand{\qsmatgen}[5]{\ensuremath{#5 \begin{array} ( {c|c} ) #5 #1 & #5 #2 \\ \hline #5 #3& #5 #4\end{array}}}
+
+\newcommand{\qsmatss}[4]{\qsmatgen{#1}{#2}{#3}{#4}{\scriptstyle}}
+\newcommand{\qsmat}[4]{\qsmatgen{#1}{#2}{#3}{#4}{}}
 % ----------------------------------------------------------------------
 % Various macros to assist with TikZ drawing
 
@@ -234,6 +276,10 @@
 \newcommand{\qubits}{\qubit{s}\xspace}
 \newcommand{\bits}{\bit{s}\xspace}
 
+\newcommand{\qbit}{\type{qubit}}
+\newcommand{\qbits}{\type{qubits}}
+
+\newcommand{\interp}[1]{[\![#1]\!]}
 %------------------------------------------------------------------------------
 % General computing notation
 
@@ -247,7 +293,19 @@
 
 \newcommand{\lqpl}{L-QPL}
 
-% Additional gates
+%\newcommand{\ket}[1]{\ensuremath{|#1\rangle}}
+\newcommand{\kz}{\ket{0}}
+\newcommand{\ko}{\ket{1}}
+% gates as matrices
+
+\newcommand{\mgate}[4]{\ensuremath{\begin{pmatrix}#1 & #2 \\ #3 & #4\end{pmatrix}}}
+
+\newcommand{\notgate}{\mgate{0}{1}{1}{0}}
+\newcommand{\hadgate}{\ensuremath{\frac{1}{\sqrt{2}}\mgate{1}{1}{1}{-1}}}
+\newcommand{\vgate}{\mgate{1}{0}{0}{i}}
+\newcommand{\ygate}{\mgate{0}{-i}{i}{0}}
+\newcommand{\zgate}{\mgate{1}{0}{0}{-1}}
+% Additional gates for drawing
 
 \newcommand{\nowiregate}[1]{*{\xy *+<.6em>{#1};p\save+LU;+RU **\dir{-}\restore\save+RU;+RD **\dir{-}\restore\save+RD;+LD **\dir{-}\restore\POS+LD;+LU **\dir{-}\endxy}}
 
@@ -290,6 +348,10 @@
 
 
 \newcommand{\zeroob}{\ensuremath{\mathbf{0}}}
+
+
+\newcommand{\cpm}[1]{\specialcat{CPM(#1)}}
+\newcommand{\bcpm}[1]{\ensuremath{\cpm{#1}^{\+}}}
 
 %------------------------------------------------------------------------------
 % Restriction categories
