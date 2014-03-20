@@ -355,6 +355,45 @@ each object $A,B$ in $\C$ we have the map:
 \end{definition}
 % subsection functors_and_natural_transformations (end)
 
+\subsection{Categories with additional structure} % (fold)
+\label{sub:categories_with_additional_structure}
+
+\begin{definition}[Symmetric Monoidal Category]\label{symmetricmonoidalcat}
+  A \emph{symmetric monoidal category} \cD{} is a category equipped with a monoid $\+$ (a bi-functor
+  $\+:\cD \times \cD \to \cD$) together with three families of natural isomorphisms:
+  $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u_{A}:A\to A\+I$ and $c_{A,B}:A\+B \to B\+ A$, which satisfy
+  specific coherence diagrams. The isomorphisms are referred to as the \emph{structure isomorphisms}
+  for the symmetric monoidal category. $I$ is the unit of the monoid.
+\end{definition}
+For details on the coherence diagrams, please see e.g., \cite{barr:ctcs} or
+\cite{maclan97:categorieswrkmath}. The essence of the coherence diagrams is that any diagram
+composed solely of the structure isomorphisms will commute.
+
+\begin{definition}[Compact Closed Category]\label{def:compactclosedcat}
+A \emph{compact closed category} \cD{} is a symmetric monoidal category with monoid $\*$ where each
+object $A$ has a dual $A^{*}$ and there exist families of maps $\eta_{A}: I \to A^{*} \* A$ (the
+\emph{unit}) and $\epsilon_{A}: A\*A^{*}\to I$ (the \emph{counit}) such that
+\[
+  \xymatrix@C+20pt{
+    A \ar[r]^{u_{A}} \ar@{=}[d]  & A\*I \ar[r]^{1\*\eta_{A}}
+        & A\* (A^{*}\*A) \ar[d]^{a_{A,A^{*},A}} \\
+    A & I\* A \ar[l]^{u_{A}^{-1}} & (A\* A^{*})\*A \ar[l]^{\*\epsilon_{B}\*1}
+    }
+  \]
+commutes and so does the similar one based on $A^{*}$.
+\end{definition}
+
+Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*} \to A^{*}$ as
+\[
+  \xymatrix@C+10pt{
+    B^{*}\ar[r]^{u_{B^{*}}} \ar[d]_{f^{*}}& I\*B^{*} \ar[r]^{\eta_{A}\*1}
+      & A^{*}\*A\*B^{*}\ar[d]^{1\*f\*1}\\
+    A^{*}&    A^{*}\*I\ar[l]^{u_{A^{*}}^{-1}}  &   A^{*}\*B\*B^{*}\ar[l]^{1\*\epsilon_{B}}
+  }
+\]
+
+
+% subsection categories_with_additional_structure (end)
 
 % section categories (end)
 \section{Restriction categories} % (fold)
@@ -1249,3 +1288,7 @@ are graphic.
 % subsection graphic_categories (end)
 
 % section restriction_categories (end)
+\section{Turing Categories} % (fold)
+\label{sec:turing_categories}
+
+% section turing_categories (end)

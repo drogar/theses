@@ -1,0 +1,185 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+\section{Dagger categories}\label{sec:daggercategories}
+Dagger categories generalize the concepts of Hilbert spaces that are required to model quantum
+computation. These were introduced in \cite{abramsky04:catsemquantprot} as \emph{strongly compact
+closed categories}, an additional structure only on compact closed categories.
+
+
+\subsection{Definitions}\label{sec:daggerdefinitions}
+
+Although dagger categories were introduced in the context of compact closed categories, the concept
+of a dagger is definable independently. This was first done in \cite{selinger05:dagger}.
+\begin{definition}[Dagger, dagger category]\label{def:daggercat}
+A dagger operator on a category $D$ is an involutive, identity on objects
+contravariant functor $\dagger:\cD\to \cD$. A dagger category
+is a category that has a dagger operator.
+\end{definition}
+
+Typically, the dagger is written as a superscript on the morphism. So, if $f:A\to B$ is a map in
+\cD, then $\dgr{f}:B\to A$ is a map in \cD{} and is called the \emph{adjoint} of $f$. A map where
+$f^{-1} = \dgr{f}$ is called \emph{unitary} and a map $f:A\to A$ with $f=\dgr{f}$ is called
+\emph{self-adjoint} or \emph{hermitian}.
+
+\begin{definition}[Dagger symmetric monoidal]\label{def:daggersmc}
+  A \emph{dagger symmetric monoidal category} is a symmetric monoidal category \cD{} with a dagger
+  operator such that the dagger interacts coherently with the monoid to preserve the symmetric
+  monoidal structure.
+\end{definition}
+
+The coherence requirements in definition \ref{def:daggersmc} are in addition to the standard
+coherence diagrams for a symmetric monoidal category. The additional coherence requirements are for
+all maps $f:A\to B$ and $g:C\to D$, it is required that $\dgr{(f\*g)} = \dgr{f}\*\dgr{g}:B\*D \to
+A\* C$ and that the monoid structure isomporphisms $a_{A,B,C}:(A\*B)\to C$, $u_{A}:A\to I\*A$ and
+$c_{A,B}:A\*B \to B\*A$ are all unitary.
+
+
+\begin{definition}[Dagger compact closed]\label{def:daggercompact}
+  A \emph{dagger compact closed category} \cD{} is a dagger symmetric monoidal category
+  that is compact closed where the diagram
+  \[
+    \xymatrix @C+20pt @R+10pt{
+      I \ar[r]^{\epsilon^{\dagger}_{A}} \ar[dr]_{\eta_{A}} &A\*A^{*}\ar[d]^{\sigma_{A,A^{*}}}\\
+      &A^{*}\* A
+    }
+  \]
+  commutes for all  objects $A$ in \cD.
+\end{definition}
+
+A category \cD{} is said to have \emph{finite biproducts} when it has a zero object $\mathbf{0}$
+(an object that is both initial and terminal) and when each pair of objects $A,B$ have a biproduct
+$A\+B$. In such a category the unique map $A\to \mathbf{0} \to B$ is designated as $\zeroob_{A,B}$.
+
+Note that a category with finite biproducts is enriched in commutative monoids, where if $f,g:A\to
+B$, define $f+g:A\to B$ as $\<id_{A}, id_{A}\>\, (f\+g)\, [id_{B},id_{B}]$. The unit for the
+addition is $\zeroob_{A,B}$. In the future, $\<id, id\>$ will be designated by $\Delta$ and
+$[id,id]$ will be designated by $\nabla$.
+
+\begin{lemma}\label{lemma:daggerbiproducts}
+If \cD{} is a dagger category with biproducts, with injections $in_{1},in_{2}$ and projections
+$p_{1},p_{2}$, then the following are equivalent.
+\begin{enumerate}
+  \item $\dgr{p_{i}} = in_{i}, i=1,2$, \label{ldpdgrpisq}
+  \item $\dgr{(f\+g)} = \dgr{f}\+\dgr{g}$ and $\dgr{\Delta} = \nabla$,\label{ldpddeltisnab}
+  \item $\dgr{\<f,g\>} = [\dgr{f},\dgr{g}]$,\label{ldpdcopisprod}
+  \item the below diagram commutes.\label{ldpcommute}
+  \[
+    \xymatrix @C+20pt @R+10pt{
+      \dgr{A} \+ \dgr{B} \ar[d]_{id} \ar[dr]^{[\dgr{p_{1}},\dgr{p_{2}}]}\\
+      A\+B\ar[r]_{id}&\dgr{(A\+B)}
+    }
+  \]
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+  \begin{description}
+    \item[\ref{ldpdgrpisq}$\implies$\ref{ldpddeltisnab}] To show $\dgr{\Delta} = \nabla$,
+    draw the product cone for $\Delta$,
+    \[
+      \xymatrix {
+        &A \ar[d]^{\Delta} \ar[dr]^{id} \ar[dl]_{id}\\
+        A
+         & A\+A \ar[l]^{p_{1}}  \ar[r]_{p_{2}}
+         & A
+      }
+    \]
+    and apply the dagger functor to it. As $\dgr{p_{i}} = in_{i}$, and $\dagger$ is identity on
+    objects, this is now a coproduct diagram and therefore $\dgr{\Delta} = \nabla$.
+
+    For $\dgr{(f\+g)} = \dgr{f}\+\dgr{g}$, start with the diagram defining $f\+g$ as a product of
+    the arrows:
+    \[
+      \xymatrix{
+        A\ar[d]_{f}  & A\+B \ar[l]_{p_{1}} \ar[r]^{p_{2}} \ar[d]^{f\*g}&A \ar[d]^{g}\\
+        C & C\+D \ar[l]^{p_{1}} \ar[r]_{p_{2}}  & D
+      }
+    \]
+    and once again apply the dagger functor. This is now the diagram defining the coproduct of maps
+    and therefore $\dgr{(f\+g)} = \dgr{f}\+\dgr{g}$.
+    \item[\ref{ldpddeltisnab}$\implies$\ref{ldpdcopisprod}] The calculation showing this is
+      \begin{eqnarray*}
+        &[\dgr{f},\dgr{g}] & = \nabla; (\dgr{f}\+\dgr{g})\\
+        & &=\dgr{\Delta}; (\dgr{f}\+\dgr{g})\\
+        & &=\dgr{\Delta}; \dgr{(f\+g)}\\
+        & & = \dgr{((f\+g);\Delta)}\\
+        & & = \dgr{\<f,g\>}
+      \end{eqnarray*}
+    \item[\ref{ldpdcopisprod}$\implies$\ref{ldpcommute}]
+      Under the assumption,
+      \begin{eqnarray*}
+        &[\dgr{p_{1}},\dgr{p_{2}}] &= \dgr{\<p_{1},p_{2}\>}\\
+        &&=\dgr{id}\\
+        &&=id
+      \end{eqnarray*}
+      and therefore the diagram commutes.
+
+    \item[\ref{ldpcommute}$\implies$\ref{ldpdgrpisq}] Using the injections and under
+    the assumption, the following diagram commutes:
+      \[
+        \xymatrix @C+20pt @R+10pt{
+          \dgr{A} \+ \dgr{B} \ar[d]_{id} \ar[dr]^{[\dgr{p_{1}},\dgr{p_{2}}]}\ar[r]^{[in_{1},in_{2}]}
+            & \dgr{A} \+ \dgr{B} \ar[d]^{id}\\
+          A\+B\ar[r]_{id}&\dgr{(A\+B)}
+        }
+      \]
+      and therefore, $\dgr{p_{1}} = in_{1}$ and $\dgr{p_{2}} = in_{2}$.
+  \end{description}
+\end{proof}
+
+\begin{definition} \label{def:biproductdaggerccc}
+  A \emph{biproduct dagger compact closed category} is a dagger compact closed category with
+  biproducts where the conditions of lemma \ref{lemma:daggerbiproducts} hold.
+\end{definition}
+\subsection{Examples of dagger categories}
+
+\paragraph{\fdh{}} The category of finite dimensional Hilbert spaces is the motivating example for
+the creation of the dagger and is, in fact, a biproduct dagger compact closed category. The
+biproduct is the direct sum of Hilbert spaces and the tensor for compact closure is the standard
+tensor of Hilbert spaces. The dual $H^{*}$ of a space $H$ is the space of all continuous linear
+functions from $H$ to the base field. The dagger is defined via the adjoint as being the unique map
+$\dgr{f}:B\to A$ such that $\<f a|b\> = \<a | \dgr{f} b\>$ for all $a\in A, b\in B$.
+
+\paragraph{\rel{}} The category \rel of sets and relations has the tensor $S\*T = S\times T$, the
+cartesian product and the biproduct $S\+T = S+T$, the disjoint union. This is compact closed under
+$A^{*} = A$ and the dagger is the relational converse, that is if the relation $R=\{(s,t)|s\in S,
+t\in T\}:S\to T$, then $\dgr{R}=\{(t,s)|(s,t)\in R\}(=R^{*})$.
+
+\paragraph{Inverse categories}
+An inverse category \X is also a dagger category when the dagger is defined as the partial inverse.
+The unitary maps are the total maps which are isomorphisms. If the inverse category \X is also a
+symmetric monoidal category where the monoid $\+$ is actually a restriction bi-functor, then \X is
+a dagger symmetric monoidal category. This follows from
+\[
+  (f\*g) \inv{(f\*g)} = \rst{f\*g}=\rst{f} \*\rst{g} =
+   f\inv{f} \* g \inv{g} = (f\*g) (\rst{f} \* \rst{g})
+\]
+but since the partial inverse of $f\*g$ is unique, $\rst{f\*g} = \rst{f} \* \rst{g}$. Finally,
+since all the structure isomorphisms are total maps, they are unitary and \X is a dagger symmetric
+monoidal restriction category.
+
+\paragraph{Frobenius algebra}
+\begin{definition}[Frobenius algebra]\label{def:frobeniusalgebra}
+  Given a symmetric monoidal category \cD, a \emph{Frobenius algebra} is an object $X$ of \cD and
+  four maps, $\nabla :X\*X \to X$, $e: I \to X$, $\Delta: X\to X\* X$ and $\epsilon:X\to I$, with
+  the conditions that $(X,\nabla,e)$ forms a commutative monoid, $(X,\Delta, \epsilon)$ forms a
+  commutative comonoid and the diagram
+  \[
+    \xymatrix{
+      X\*X \ar[rr]^{X\*\Delta} \ar[dd]_{\Delta \* X} \ar[dr]^{\nabla}
+        && X\*X\*X \ar[dd]^{\nabla\*X}\\
+      & X\ar[dr]^{\Delta}\\
+      X\*X\*X\ar[rr]_{X\*\nabla}  && X\*X
+    }
+  \]
+  commutes. The Frobenius algebra is \emph{special} when $\Delta; \nabla = 1_{X}$ and
+  \emph{commutative} when $\Delta ; c_{X,X} = \Delta$
+\end{definition}
+\begin{definition}[$\dagger$-Frobenius algebra]\label{def:daggerfrob}
+  A Frobenius algebra in a dagger symmetric monoidal category where $\Delta = \dgr{\nabla}$ and
+  $\epsilon=\dgr{u}$ is a $\dagger$\emph{-Frobenius algebra}.
+\end{definition}
+For an example of a $\dagger$-Frobenius algebra, consider a finite dimensional Hilbert space $H$
+with an orthonormal basis $\{\ket{\phi_{i}}\}$ and define $\Delta:H\to H\*H: \ket{\phi_{i}}\mapsto
+\ket{\phi_{i}} \* \ket{\phi_{i}}$ and $\epsilon : H\to \C : \ket{\phi_{i}} \mapsto 1$. Then $(H,
+\nabla=\dgr{\Delta}, u=\dgr{\epsilon}, \Delta, \epsilon)$ forms a commutative special
+$\dagger$-Frobenius algebra.
+
