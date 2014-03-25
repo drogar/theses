@@ -470,7 +470,7 @@ total maps correspond precisely to the functions that are defined on all element
 \label{sub:enrichment_and_meets}
 
 
-In any restriction category, there is a partialorder on each hom-set, given by $f \le g$ iff
+In any restriction category, there is a partial order on each hom-set, given by $f \le g$ iff
 $\restr{f} g = f$, where $f,g:A\to B$.
 
 \begin{lemma}\label{lem:restriction_cats_are_partial_order_enriched}
@@ -693,7 +693,7 @@ the range of a function.
 \subsection{Partial monics, sections and isomorphisms} % (fold)
 \label{sub:restricted_monics_sections_and_partial_isomorphisms}
 
-Partial isomorphisms play a central role in this paper and below we develop
+Partial isomorphisms play a central role in this thesis and below we develop
 some their basic properties.
 
 \begin{definition}
@@ -707,6 +707,15 @@ some their basic properties.
       $r$ such that $r s = \restr{r s}$.
   \end{itemize}
 \end{definition}
+
+Note that restriction monic is a stronger notion than that of monic. Consider two objects $A, B$
+in a restriction category where we have $m: A\to B$, $r:B \to A$ with $m r = 1_A$. In this case
+$A$ is called a \emph{retract} of $B$, which we will write as $A\retract B$. As $m$ and $r$ need
+not be unique, we will also write $(m,r) A \retract B$ when the specific section and retraction
+are to be emphasized. Since $m$ is a section,
+it is a monic and therefore total. $r m$ is of course, an idempotent on $B$. $A$ is referred to as
+a splitting of the idempotent $r m$. Note there is no requirement that $r m = \rst{r m}$ if $m$ is
+simply monic.
 
 \begin{lemma}
   \label{lem:rcs_partial_monic_section_inverse_properties}
@@ -1288,7 +1297,4 @@ are graphic.
 % subsection graphic_categories (end)
 
 % section restriction_categories (end)
-\section{Turing Categories} % (fold)
-\label{sec:turing_categories}
-
-% section turing_categories (end)
+\input{chapters/section/turing-categories}
