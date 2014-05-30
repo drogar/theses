@@ -328,6 +328,7 @@
 \newcommand{\A}{\ltrcatbb{A}}
 \newcommand{\B}{\ltrcatbb{B}}
 \newcommand{\C}{\ltrcatbb{C}}
+\newcommand{\R}{\ltrcatbb{R}}
 \newcommand{\T}{\ltrcatbb{T}}
 \newcommand{\X}{\ltrcatbb{X}}
 \newcommand{\Y}{\ltrcatbb{Y}}
@@ -423,10 +424,21 @@
 %---------------------------------------------------------------------
 % Notation for inverse sum categories
 
+\newcommand{\imat}[1]{\ensuremath{iMat({#1})}\xspace}
+\newcommand{\imatx}{\imat{\X}}
+
 
 \newcommand{\cp}[1]{\amalg_{#1}}
 \newcommand{\cpa}{\cp{1}}
 \newcommand{\cpb}{\cp{2}}
+
+\newcommand{\icp}[1]{\inv{\cp{#1}}}
+\newcommand{\icpa}{\icp{1}}
+\newcommand{\icpb}{\icp{2}}
+
+\newcommand{\scp}[1]{\cp{#1}^{*}}
+\newcommand{\scpa}{\scp{1}}
+\newcommand{\scpb}{\scp{2}}
 
 
 \newcommand{\perpvv}[2]{{}_{{}_{#1}}{\perp_{{}_{#2}}}}
@@ -434,10 +446,15 @@
 \newcommand{\perpba}{\perpvv{B}{A}}
 \newcommand{\perpcb}{\perpvv{C}{B}}
 \newcommand{\tperp}{\perpvv{}{\oplus}}
-\newcommand{\join}{\sqcup}
+
+
+\newcommand{\compat}{\smile}
+\newcommand{\join}{\vee}
+\newcommand{\meet}{\cap}
+
 \newcommand{\djoin}{\sqcup}
 \newcommand{\djoinbig}{\bigsqcup}
-\newcommand{\diag}{diag}
+\DeclareMathOperator{\diag}{\scriptstyle{diag}}
 \newcommand{\altjoin}{\,\square\,}
 %\newcommand{\djoin}{{\,{{\sqcup}\hspace{-0.474em}{\mid}}\,\,}}
 \newcommand{\disjoint}{\perp}
@@ -478,7 +495,6 @@
 \DeclareMathOperator{\rgp}{\rg{+}}
 
 \DeclareMathOperator{\mat}{Mat}
-\DeclareMathOperator{\imat}{iMat}
 \DeclareMathOperator{\ob}{Ob}
 
 %-------------------------------------------------

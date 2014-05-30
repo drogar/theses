@@ -1,4 +1,16 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+\chapter{Inverse sum categories} % (fold)
+\label{cha:inverse_sum_categories}
+
+\begin{remark}
+  Throughout this chapter, we will work with a number of relations between maps and operations on
+  pairs of maps. Suppose we have a relation $\lozenge$ between maps $f,g:B\to C$, i.e., $f \lozenge
+  g$. We will refer to $\lozenge$ as \emph{stable} whenever given a $h:A \to B$, then $h f \lozenge
+  h g$. We will refer to $\lozenge$ as \emph{universal} whenever given a $k:C \to D$, then $f k
+  \lozenge g k$.
+\end{remark}
+
+
 \section{Coproducts in restriction categories} % (fold)
 \label{sec:coproducts_in_restriction_categories}
 \subsection{Coproducts} % (fold)
@@ -101,10 +113,11 @@ denoted as $0$. This gives rise to the zero map $0_{A,B}: A \to 0 \to B$ between
   An inverse category \X with restriction coproducts is a preorder.
 \end{proposition}
 \begin{proof}
-  By Lemma \ref{lem:restriction_coproduct_is_restriction_functor}, we know $\nabla$ is total and
+  By Lemma~\ref{lem:restriction_coproduct_is_restriction_functor}, we know $\nabla$ is total and
   therefore $\nabla\inv{\nabla} = 1$. From the coproduct diagrams, we have $\cpa\nabla =1$ and
-  $\cpb\nabla = 1$. But this gives us $\inv{\nabla}\inv{\cpa} = \inv{\cpa\nabla} = 1$ and
-  $\inv{\nabla}\inv{\cpb} =1$. Hence, $\inv{\nabla} = \cpa$ \emph{and} $\inv{\nabla} = \cpb$.
+  $\cpb\nabla = 1$. But this gives us $\inv{\nabla}\inv{\cpa} = \inv{(\cpa\nabla)} = 1$ and
+  similarly $\inv{\nabla}\inv{\cpb} =1$. Hence, $\inv{\nabla} = \cpa$ \emph{and} $\inv{\nabla} =
+  \cpb$.
 
   This means for parallel maps $f,g:A \to B$, we have
   \[
@@ -119,7 +132,52 @@ denoted as $0$. This gives rise to the zero map $0_{A,B}: A \to 0 \to B$ between
 \label{sec:disjointness_in_an_inverse_category}
 In the following, we will add two related structures to an inverse category with a
 restriction zero. This structure is meant to be evocative of the concept of \emph{join} in a
-restriction category.
+restriction category. We will first re-iterate some of the basic definitions and lemmas of
+join.
+\subsection{Joins in restriction categories} % (fold)
+\label{sub:joins_in_restriction_categories}
+
+\begin{definition}\label{def:compatible_maps}
+  In a restriction category \R, two parallel maps $f,g:A\to B$ are \emph{compatible}, written
+  $f\compat g$ when $\rst{f}g = \rst{g}f$.
+\end{definition}
+
+\begin{definition}\label{def:joins}
+  Given \R is a restriction category with a restriction zero, then \R is said to have \emph{joins}
+  whenever there is an operator $\join$ defined between compatible maps such that:
+  \begin{itemize}
+    \item $f \le f \join g$ and $g \le f \join g$,
+    \item $\rst{f\join g} = \rst{f}\join \rst{g}$,
+    \item $f,g \le h$ implies that $f\join g \le h$ and
+    \item $h(f\join g) = h f \join h g$.
+  \end{itemize}
+\end{definition}
+
+For example, in the restriction category $\Par$, the join is given by:
+\[(f \join g) (x) = \begin{cases}
+  f(x)( = g(x))& \text{ when both $f$ and $g$ are defined;}\\
+  f(x)& \text{ when only $f$ is defined;}\\
+  g(x)& \text{ when only $g$ is defined;}\\
+  \uparrow & \text{ when both $f$ and $g$ are undefined.}
+\end{cases}
+\]
+
+\begin{lemma}\label{lem:meet_distributes_over_join}
+  If \R is a meet restriction category with joins, then the meet distributes over the join, i.e.,
+  \[
+    h\meet(f\join g) = (h\meet f)\join (h\meet g).
+  \]
+\end{lemma}
+\begin{proof}
+  \begin{align*}
+    h\meet(f\join g) &= \rst{(f\join g)} h\meet (f\join g)\\
+    &= (\rst{f}\join \rst{g}) h\meet (f\join g)\\
+    &= (\rst{f}(h\meet (f\join g))) \join (\rst{g}(h\meet (f\join g)))\\
+    &= (h\meet \rst{f}(f\join g)) \join (h\meet \rst{g}(f\join g)))\\
+    &= (h\meet (f\join g)) \join (h\meet (f\join g))).
+  \end{align*}
+\end{proof}
+% subsection joins_in_restriction_categories (end)
 
 
 \subsection{Disjointness relations} % (fold)
@@ -128,8 +186,8 @@ In this subsection, we will define a disjointness relationship between maps and
 explore alternate characterizations of this relation on the restriction idempotents of objects.
 
 \begin{definition}\label{def:disjointness_relation}
-  In an inverse category \X with a restriction zero, the relation $\cdperp$ between two parallel maps
-  $f, g:A \to B$ is called a \emph{disjointess relation} when it satisfies the following
+  In an inverse category \X with a restriction zero, the relation $\cdperp$ between two parallel
+  maps $f, g:A \to B$ is called a \emph{disjointess relation} when it satisfies the following
   properties:
   \begin{align*}
     \axiom{Dis}{1}\quad &\text{ For all }f:A\to B,\ f\cdperp 0;\\
@@ -145,7 +203,7 @@ explore alternate characterizations of this relation on the restriction idempote
 \end{definition}
 
 \begin{lemma}\label{lem:disjointness_equivalent_axioms}
-  In Definition~\ref{def:disjointness_relation}, provided we retain $\axiom{Dis}{1-5}$ we may
+  In Definition~\ref{def:disjointness_relation}, provided we retain $\axiom{Dis}{1-5}$, we may
   replace $\axiom{Dis}{6}$ and $\axiom{Dis}{7}$ by:
   \begin{align*}
     \axiom{Dis}{6'}\quad &f\cdperp g\text{ if and only if }\rst{f} \cdperp \rst{g}
@@ -191,9 +249,9 @@ explore alternate characterizations of this relation on the restriction idempote
       \cdperp \inv{f}$ and therefore $\rst{\inv{g}}\inv{f} = \rg{g}\inv{f}= 0$. However, in an
       inverse category, $\inv{0} = 0$ and therefore $0 = \inv{(\rg{g}\inv{f})} = f \inv{\rg{g}} = f
       \rg{g}$.
-    \item Assume we have $f m \cdperp g n$ where $m, n$ are monic. By \axiom{Dis}{6},
-      $\rst{f m} \cdperp \rst{g n}$. By Lemma~\ref{lem:restrictionvarious}, $\rst{f m} = \rst{f
-      \rst{m}} = \rst{f 1} = \rst{f}$ and therefore $\rst{f} \cdperp \rst{g}$.
+    \item Assume $f m \cdperp g n$ where $m, n$ are monic. By \axiom{Dis}{6}, $\rst{f m} \cdperp
+      \rst{g n}$. By Lemma~\ref{lem:restrictionvarious}, $\rst{f m} = \rst{f \rst{m}} = \rst{f 1} =
+      \rst{f}$ and therefore $\rst{f} \cdperp \rst{g}$.
     \item This is a corollary to the previous item. By assumption, we have $\inv{m} f \cdperp
       \inv{n}g$ and therefore $\inv{f}m \cdperp \inv{g} n$. By the previous item, this means
       $\rst{\inv{f}} \cdperp \rst{\inv{g}}$ and hence $\rg{f} \cdperp \rg{g}$.
@@ -229,17 +287,19 @@ not germane to the point under discussion.
   \prepprooflist
   \setlist[enumerate,1]{leftmargin=1.5cm}
   \begin{enumerate}
-    \item[\axiom{$\mathcal{O}$dis}{1}] This follows immediately from \axiom{Dis}{1} by taking $f = 1$.
+    \item[\axiom{$\mathcal{O}$dis}{1}] This follows immediately from \axiom{Dis}{1} by taking
+      $f = 1$.
     \item[\axiom{$\mathcal{O}$dis}{2}] Reflexivity follows directly from  \axiom{Dis}{4}.
     \item[\axiom{$\mathcal{O}$dis}{3}] By \axiom{Dis}{2}, $0 = \rst{e} e' = e e'$.
-    \item[\axiom{$\mathcal{O}$dis}{4}] Given $e \cdperp e'$, we have $f e \cdperp f e'$ by \axiom{Dis}{5}. Then,
-      by \axiom{Dis}{6} we may conclude $\rst{f e} \cdperp \rst{f e'}$.
-    \item[\axiom{$\mathcal{O}$dis}{5}] This follows from the above item, using $\inv{g}$ for $f$. This means we
-      have $\rst{\inv{g}e} \cdperp \rst{\inv{g}e'}$. But this gives us $\rst{\inv{(e g)}} \cdperp
-      \rst{\inv{(e'g)}}$. Recalling from Lemma \ref{lem:inverse_categories_are_range_categories}
-      that $\rg{k} = \rst{\inv{k}}$, we may conclude $\wrg{e g} \cdperp \wrg{e' g}$.
-    \item[\axiom{$\mathcal{O}$dis}{6}] Assuming $e \cdperp e'$ and $e_1 \le e,\ e'_1 \le e'$, by \axiom{Dis}{3}, $e_1 \cdperp
-      e'_1$.
+    \item[\axiom{$\mathcal{O}$dis}{4}] Given $e \cdperp e'$, we have $f e \cdperp f e'$ by
+      \axiom{Dis}{5}. Then, by \axiom{Dis}{6} we may conclude $\rst{f e} \cdperp \rst{f e'}$.
+    \item[\axiom{$\mathcal{O}$dis}{5}] This follows from the above item, using $\inv{g}$ for $f$.
+      This means we have $\rst{\inv{g}e} \cdperp \rst{\inv{g}e'}$. But this gives us $\rst{\inv{(e
+      g)}} \cdperp \rst{\inv{(e'g)}}$. Recalling from
+      Lemma~\ref{lem:inverse_categories_are_range_categories} that $\rg{k} = \rst{\inv{k}}$, we may
+      conclude $\wrg{e g} \cdperp \wrg{e' g}$.
+    \item[\axiom{$\mathcal{O}$dis}{6}] Assuming $e \cdperp e'$ and $e_1 \le e,\ e'_1 \le e'$, by
+      \axiom{Dis}{3}, $e_1 \cdperp e'_1$.
   \end{enumerate}
   Therefore, $\cdperp$ acts as an open disjointness relation on $\open{A}^2$.
 
@@ -262,35 +322,36 @@ not germane to the point under discussion.
   \prepprooflist
   \setlist[enumerate,1]{leftmargin=1.5cm}
   \begin{enumerate}
-    \item[\axiom{Dis}{1}] We need to show $f \cdperp 0$ for any $f$. We know that $1 \ocdperp 0$ and therefore
-      $\rst{f} \ocdperp 0$ and $\rg{f} \ocdperp 0$, as $\rst{f}\le 1$ and $\rg{f}\le 1$. This gives
-      us $f \cdperp 0$.
-    \item[\axiom{Dis}{2}] Assume $f \cdperp g$, i.e., $\rst{f}\ocdperp \rst{g}$. Then, $\rst{f}g = \rst{f}\rst{g}g
-      = 0 g = 0$.
-    \item[\axiom{Dis}{3}] We are given $f \cdperp g$, $f' \le f$ and $g' \le g$. By lemma
-      \refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_3} $\rst{f'} \le \rst{f}$
-      and $\rst{g'} \le \rst{g}$. Then, by \axiom{$\mathcal{O}$dis}{6}, as $\rst{f} \ocdperp \rst{g}$ we have
-      $\rst{f'} \ocdperp \rst{g'}$. By
-      \refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_4}, we have $\wrg{f'} \le
-      \rg{f}$ and $\wrg{g'} \le \rg{g}$. Then, by \axiom{$\mathcal{O}$dis}{6}, as $\rg{f} \ocdperp \rg{g}$ we
-      have $\wrg{f'} \ocdperp \wrg{g'}$. This means $f' \cdperp g'$.
+    \item[\axiom{Dis}{1}] We need to show $f \cdperp 0$ for any $f$. We know that $1 \ocdperp 0$
+      and therefore $\rst{f} \ocdperp 0$ and $\rg{f} \ocdperp 0$, as $\rst{f}\le 1$ and $\rg{f}\le
+      1$. This gives us $f \cdperp 0$.
+    \item[\axiom{Dis}{2}] Assume $f \cdperp g$, i.e., $\rst{f}\ocdperp \rst{g}$. Then, $\rst{f}g =
+      \rst{f}\rst{g}g = 0 g = 0$.
+    \item[\axiom{Dis}{3}] We are given $f \cdperp g$, $f' \le f$ and $g' \le g$. By
+      Lemma~\refitem{lem:restriction_cats_are_partial_order_enriched}{lemitem:rst_ordering_2}
+      $\rst{f'} \le \rst{f}$ and $\rst{g'} \le \rst{g}$. Then, by \axiom{$\mathcal{O}$dis}{6}, as
+      $\rst{f} \ocdperp \rst{g}$ we have $\rst{f'} \ocdperp \rst{g'}$. By
+      Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_2}, we have $\wrg{f'}
+      \le \rg{f}$ and $\wrg{g'} \le \rg{g}$. Then, by \axiom{$\mathcal{O}$dis}{6}, as $\rg{f}
+      \ocdperp \rg{g}$ we have $\wrg{f'} \ocdperp \wrg{g'}$. This means $f' \cdperp g'$.
     \item[\axiom{Dis}{4}] Reflexivity of $\cdperp$ follows immediately from the reflexivity of
       $\ocdperp$.
     \item[\axiom{Dis}{5}] Assume $f \cdperp g$, i.e., $\rst{f}\ocdperp \rst{g}$ and $\rg{f}
-      \ocdperp \rg{g}$. Then we have $\rst{hf}\ocdperp \rst{hg}$ by \axiom{$\mathcal{O}$dis}{4}. By lemma
-      \refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_2} we have $\wrg{h f} \le
-      \rg{f}$ and $\wrg{h g} \le \rg{g}$. Therefore we have $\wrg{h f}\ocdperp \wrg{h g}$ by
+      \ocdperp \rg{g}$. Then we have $\rst{hf}\ocdperp \rst{hg}$ by \axiom{$\mathcal{O}$dis}{4}. By
+      Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1} we have $\wrg{h f}
+      \le \rg{f}$ and $\wrg{h g} \le \rg{g}$. Therefore we have $\wrg{h f}\ocdperp \wrg{h g}$ by
       \axiom{$\mathcal{O}$dis}{6} and therefore $h f \cdperp h g$.
     \item[\axiom{Dis}{6}] This follows directly from definition
       \ref{def:extended_open_disjointness}.
     \item[\axiom{Dis}{7}] We assume $\rst{f} \cdperp \rst{g}$ and $\rg{h} \cdperp \rg{k}$. By
       definition \ref{def:extended_open_disjointness} we have $\rst{f} \ocdperp \rst{g}$ and
-      $\rg{h} \ocdperp \rg{k}$. By lemma
-      \refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1}, we have $\rst{fh} \le
-      \rst{f}$ and $\rst{g k} \le \rst{g}$. Therefore, $\rst{f h} \ocdperp \rst{g k}$ by
-      \axiom{$\mathcal{O}$dis}{6}. By \refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_2},
-      $\wrg{f h} \le \rg{h}$ and $\wrg{g k} \le \rg{k}$, giving us $\wrg{f h}\ocdperp \wrg{g k}$
-      also by \axiom{$\mathcal{O}$dis}{6}. This means $f h \cdperp g k$.
+      $\rg{h} \ocdperp \rg{k}$. By
+      Lemma~\refitem{lem:restriction_cats_are_partial_order_enriched}{lemitem:rst_ordering_3}, we
+      have $\rst{fh} \le \rst{f}$ and $\rst{g k} \le \rst{g}$. Therefore, $\rst{f h} \ocdperp
+      \rst{g k}$ by \axiom{$\mathcal{O}$dis}{6}. By
+      Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1}, $\wrg{f h} \le
+      \rg{h}$ and $\wrg{g k} \le \rg{k}$, giving us $\wrg{f h}\ocdperp \wrg{g k}$ also by
+      \axiom{$\mathcal{O}$dis}{6}. This means $f h \cdperp g k$.
   \end{enumerate}
 \end{proof}
 \begin{theorem}\label{thm:open_disjointness_is_disjointness}
@@ -555,14 +616,14 @@ inverse categories with disjoint joins has a disjoint join.
     \item [\axiom{DJ}{1}] From Equation~\eqref{eq:disjoint_join_on_product}, we see that since
       $f,h \le f \djoin h$ and $g,k \le g \djoin' k$, we have $(f,g) \le (f,g)\djoin_{\times}(h,k)$
       and  $(h,k) \le (f,g)\djoin_{\times}(h,k)$.
-    \item [\axiom{DJ}{2}] Suppose $(f,g) \le (x,y)$, $(h,k) \le (x,y)$ and $(f,g) \perp_{\times} (h,k)$. Then
-      regarding it point-wise, we have
-      $(f,g)\djoin_{\times}(h,k) = (f \djoin h, g \djoin' k)   \le (x,y)$.
-    \item [\axiom{DJ}{3}] $(x,y)\left((f,g)\djoin_{\times}(h,k)\right) = (x(f \djoin h), y(g \djoin' k))
-      = (x f \djoin x h, y g \djoin' y k) = (x f,y g)\djoin_{\times}(x h,y k) =
+    \item [\axiom{DJ}{2}] Suppose $(f,g) \le (x,y)$, $(h,k) \le (x,y)$ and $(f,g) \perp_{\times}
+      (h,k)$. Then regarding it point-wise, we have $(f,g)\djoin_{\times}(h,k) = (f \djoin h, g
+      \djoin' k) \le (x,y)$.
+    \item [\axiom{DJ}{3}] $(x,y)\left((f,g)\djoin_{\times}(h,k)\right) = (x(f \djoin h), y(g
+      \djoin' k)) = (x f \djoin x h, y g \djoin' y k) = (x f,y g)\djoin_{\times}(x h,y k) =
       ((x,y)(f,g))\djoin_{\times}((x,y)(h,k))$.
-    \item [\axiom{DJ}{4}] Given $\perp_{\times}\!\![(f,g),(h,k),(x,y)]$, we know $f \perp (h\djoin x)$ and
-      $g \perp' (k\djoin' y)$. Hence, $(f,g) \perp_{\times}((h,k)\djoin_{\times}(x,y))$. The
+    \item [\axiom{DJ}{4}] Given $\perp_{\times}\!\![(f,g),(h,k),(x,y)]$, we know $f \perp (h\djoin
+      x)$ and $g \perp' (k\djoin' y)$. Hence, $(f,g) \perp_{\times}((h,k)\djoin_{\times}(x,y))$. The
       opposite direction is similar.
   \end{itemize}
 \end{proof}
@@ -572,9 +633,10 @@ inverse categories with disjoint joins has a disjoint join.
 \subsection{Monoidal Tensors for disjointness} % (fold)
 \label{sub:tensors_for_disjointness}
 
-Suppose we are given a monoidal tensor $\+$ on $\X$, an inverse category with a restriction zero. Under
-certain conditions, it is possible to define disjointness based upon the action of the tensor. Note
-that throughout, we are assuming the following naming for the standard monoidal tensor isomorphisms.
+Suppose we are given a monoidal tensor $\+$ on $\X$, an inverse category with a restriction zero.
+Under certain conditions, it is possible to define disjointness based upon the action of the
+tensor. Note that throughout, we are assuming the following naming for the standard monoidal tensor
+isomorphisms.
 \begin{align*}
    \upl &: 0 \+ A \to A\\
    \upr &: A \+ 0 \to A\\
@@ -590,12 +652,12 @@ Note we also require the tensor isomorphisms above be be natural.
     \item It is a restriction functor --- i.e., $\_ \+ \_ : \X \times \X \to \X$.
     \item The unit is the restriction zero. ($0 : \boldsymbol{1}\to \X$ picks out the restriction
     zero in \X).
-    \item Define $\Pi_0 := (1\+0)\upr: A\+B \to A$ and $\Pi_1 := (0\+1)\upl:A\+B \to B$. Then
-      $\Pi_0$  and $\Pi_1$ are jointly monic. That is, whenever $f\Pi_0 = g \Pi_0$ and
-      $f\Pi_1 = g\Pi_1$ then $f = g$.
     \item Define $\cpa = \inv{\upr}(1\+0):A\to A\+A$ and $\cpb = \inv{\upl}(0\+1): A\to A\+A$. Then
       $\cpa$ and $\cpb$ are jointly epic. That is, if $\cpa f = \cpa g$ and $\cpb f = \cpb g$, then
       $f = g$.
+    \item Define $\scpa := (1\+0)\upr: A\+B \to A$ and $\scpb := (0\+1)\upl:A\+B \to B$. Then
+      $\scpa$  and $\scpb$ are jointly monic. That is, whenever $f\scpa = g \scpa$ and
+      $f\scpb = g\scpb$ then $f = g$.
   \end{itemize}
 
 \end{definition}
@@ -647,86 +709,105 @@ Note we also require the tensor isomorphisms above be be natural.
 
 
 \begin{lemma}\label{lem:tensor_identities}
-  Given an inverse category \X with restriction zero and disjointness tensor $\+$, then the
-  following hold:
+  Given an inverse category \X with restriction zero and disjointness tensor $\+$,
+  $\scpa = \icpa$ and $\scpb = \icpb$ and the following hold:
   \begin{enumerate}
-    \item $\Pi_i \cp{i} = \rst{\Pi_i}$ and $\cp{i}\Pi_i = \rst{\cp{i}} = 1$;
-    \item $\rst{\Pi_0} \Pi_1 = 0$ and $\rst{\Pi_1} \Pi_0 = 0$;
-    \item $\cpb \Pi_0 = 0$, $\cpb \rst{\Pi_0} = 0$,  $\cpa \Pi_1 = 0$ and  $\cpa \rst{\Pi_1} = 0$;
+    \item $\scp{i} \cp{i} = \rst{\scp{i}}$ and $\cp{i}\scp{i} = \rst{\cp{i}} = 1$;
+    \item $\rst{\scpa} \scpb = 0$ and $\rst{\scpb} \scpa = 0$;
+    \item $\cpb \scpa = 0$, $\cpb \rst{\scpa} = 0$,  $\cpa \scpb = 0$ and
+      $\cpa \rst{\scpb} = 0$;
     \item the maps $\cpa$ and $\cpb$ are monic.
   \end{enumerate}
+  Accordingly,
 \end{lemma}
 \begin{proof}
-  For item 1, recalling that the restriction zero is its own partial inverse, we see from their
-  definitions that $\Pi_i = \inv{\cp{i}}$. Calculating the restriction of $\cpa$,
+  For item 1, recalling that the restriction zero is its own partial inverse,
+  we see that
+  \[
+    \icpa = \inv{(\inv{\upr}(1\+0))}  = \inv{(1\+0)}\upr = (1\+0)\upr = \scpa.
+  \]
+  Similarly,
+  \[
+    \icpb = \inv{(\inv{\upl}(0\+1))} = (0\+1)\upl = \scpb.
+  \]
+
+  Hence, we may calculate the restriction of $\cpa$,
   \begin{equation*}
-    \cpa \Pi_0   = \inv{\upr}(1\+0) (1\+0)\upr
+    \cpa \scpa   = \inv{\upr}(1\+0) (1\+0)\upr
       = (\inv{\upr}(1\+0))\upr = 1 \inv{\upr}\upr= 1.
   \end{equation*}
-  The calculation for $\Pi_1$ and $\cpb$ are analogous.
+  The calculation for $\scpb$ and $\cpb$ is analogous.
 
-  For the second item,
-  \[
-    \rst{\Pi_0} \Pi_1  = \rst{(1\+0)\upr}(0\+1)\upl  = \rst{1\+0} (0 \+ 1)\upl
-     = (1\+0) (0\+1)\upl
-      = (0\+0)\upl  = 0,
-  \]
+  To show $\rst{\scpa} \scpb = 0$ and $\rst{\scpb} \scpa = 0$,
+  \begin{align*}
+    \rst{\scpa} \scpb  &= \rst{(1\+0)\upr}(0\+1)\upl\\
+      &= \rst{1\+0} (0 \+ 1)\upl\\
+      &= (1\+0) (0\+1)\upl\\
+      &= (0\+0)\upl  = 0,
+  \end{align*}
   and
-  \[
-    \rst{\Pi_1} \Pi_0  = \rst{(0\+1)\upl}(1\+0)\upr
-     = (0\+1) (1\+0)\upr
-     = (0\+0)\upr
-     = 0.
- \]
+  \begin{align*}
+    \rst{\scpb} \scpa  &= \rst{(0\+1)\upl}(1\+0)\upr \\
+     &= (0\+1) (1\+0)\upr\\
+     &= (0\+0)\upr\\
+     &= 0.
+ \end{align*}
 
-  For the third item, we see
-  \[
-    \cpa \Pi_1 = (\inv{\upr}(1\+0))(0\+1) \upl
-       = \inv{\upr}(0\+0)\upl\\
-       = 0
-  \]
+  To show $\cp{i} \scp{j} = 0$, $\cp{i} \rst{\scp{j}} = 0$ when $i\ne j$,
+  \begin{align*}
+    \cpa \scpb &= (\inv{\upr}(1\+0))(0\+1) \upl\\
+       &= \inv{\upr}(0\+0)\upl\\
+       &= 0
+  \end{align*}
   and
-  \[
-    \cpb \Pi_0 = (\inv{\upl}(0\+1))(1\+0) \upr
-       = \inv{\upl}(0\+0)\upr
-       = 0.
-  \]
-  As $\rst{\Pi_0} = 1\+0$ and $\rst{\Pi_1} = 0 \+1$, we see the other two identities hold as well.
+  \begin{align*}
+    \cpb \scpa &= (\inv{\upl}(0\+1))(1\+0) \upr\\
+      &= \inv{\upl}(0\+0)\upr\\
+       &= 0.
+  \end{align*}
+  As $\rst{\scpa} = 1\+0$ and $\rst{\scpb} = 0 \+1$, we see the other two identities hold as well.
 
   To prove $\cpa$ is monic, suppose $f\cpa = g\cpa$. Therefore we must have
   \[
-    f = f (\cpa \Pi_0) = (f \cpa) \Pi_0 = (g \cpa) \Pi_0 = g (\cpa \Pi_0) = g.
+    f = f (\cpa \icpa) = (f \cpa) \icpa = (g \cpa) \icpa = g (\cpa \icpa) = g.
   \]
   The proof that $\cpb$ is monic is similar.
 \end{proof}
+
+As we have shown that $\scp{i} = \icp{i}$, we will prefer the explicit notation of $\icp{i}$ for
+rest of this paper.
+
 \begin{corollary}\label{cor:split_plus_tensor}
   In an inverse category \X with a restriction zero and disjointness tensor, the following hold:
   \begin{multicols}{2}
     \begin{enumerate}[{(}i{)}]
-      \item $\cpa f \+g \Pi_0 = f$;
-      \item $\cpa f\+ g \Pi_1 = 0$;
-      \item $\cpb f \+g \Pi_0 = 0$;
-      \item $\cpb f\+ g \Pi_1 = g$.
+      \item $\cpa (f \+g) \icpa = f$;
+      \item $\cpa (f\+ g) \icpb = 0$;
+      \item $\cpb (f \+g) \icpa = 0$;
+      \item $\cpb (f\+ g) \icpb = g$.
     \end{enumerate}
   \end{multicols}
-  Additionally, if $t$ is a map such that for $i \in \{0,1\}$,
+  Additionally, if $t$ is a map such that for $i \in \{1,2\}$,
   \[
-    \cp{i} t \Pi_j =
+    \cp{i} t \icp{j} =
     \begin{cases}
       t_i& : \quad i \neq j\\
       0 & : \quad i = j,
     \end{cases}
   \]
-  then $t = t_0 \+ t_1$
+  then $t = t_1 \+ t_2$
 \end{corollary}
 \begin{proof}
   The calculations for $f\+g$ follow from Lemma~\ref{lem:disjointness_tensor_has_injections} and
-  Lemma~\ref{lem:tensor_identities}. For example, $\cpa f\+g \Pi_0 = f \cpa \Pi_0 = f$.
+  Lemma~\ref{lem:tensor_identities}. For example, $\cpa (f\+g) \icpa = f \cpa \icpa = f$.
 
-  For the second claim, note that we have $\cpa (t \Pi_0) = t_0 = \cpa ( t_0 \+ t_1)\Pi_0$ and
-  $\cpb  (t \Pi_0) = 0 = \cpb ( t_0 \+ t_1)\Pi_0$, hence $t \Pi_0 = ( t_0 \+ t_1)\Pi_0$. Similary,
-  we see $t\Pi_1 = ( t_0 \+ t_1)\Pi_1$ and therefore $t = t_0 \+ t+1$.
+  For the second claim, note that we have $\cpa (t \icpa) = t_1 = \cpa ( t_1 \+ t_2)\icpa$ and
+  $\cpb  (t \icpa) = 0 = \cpb ( t_1 \+ t_2)\icpa$, hence $t \icpa = ( t_1 \+ t_2)\icpa$. Similarly,
+  we see $t\icpb = ( t_1 \+ t_2)\icpb$ and therefore $t = t_1 \+ t_2$.
 \end{proof}
+\subsubsection{Disjointess via a monoidal tensor} % (fold)
+\label{ssub:disjointess_via_a_monoidal_tensor}
+
 \begin{definition}\label{def:up_triangle_and_down_triangle}
   In an inverse category \X with a restriction zero and disjointness tensor, we define two partial
   operations on pairs of arrows in \X to another arrow in \X. First, for arrows
@@ -734,20 +815,20 @@ Note we also require the tensor isomorphisms above be be natural.
   being the map that makes diagram \eqref{eq:tjleftdefinition} below commute, when it exists.
   \begin{equation}
     \xymatrix@C+0pt @R+20pt{
-      B&&B\+C \ar[ll]_{\Pi_0} \ar[rr]^{\Pi_1} && C\\
-      &&A \ar[ull]^{g} \ar[urr]_{f} \ar@{.>}[u]|-{f\tjleft g}
+      &&A \ar[dll]^{g} \ar[drr]_{f} \ar@{.>}[d]|-{f\tjleft g}\\
+      B&&B\+C \ar[ll]_{\icpa} \ar[rr]^{\icpb} && C
       }\label{eq:tjleftdefinition}
   \end{equation}
   Then for $h:B \to A$, $k: C \to A$, $h\tjright k$ is that map that makes diagram
   \eqref{eq:tjrightdefinition} commute, if it exists.
   \begin{equation}
     \xymatrix@C+0pt @R+20pt{
-      &&A\\
-      B\ar[rr]_{\cpa} \ar[urr]^{h} &&B\+C   \ar@{.>}[u]|-{h\tjright k}
-        && C \ar[ll]^{\cpb} \ar[ull]_{k}
+      B\ar[rr]_{\cpa} \ar[drr]^{h} &&B\+C   \ar@{.>}[d]|-{h\tjright k}
+        && C \ar[ll]^{\cpb} \ar[dll]_{k}\\
+      &&A
       }\label{eq:tjrightdefinition}
   \end{equation}
-  Due to $\Pi_0$ and $\Pi_1$ being jointly monic, $f\tjleft g$ is unique when it exists.
+  Due to $\icpa$ and $\icpb$ being jointly monic, $f\tjleft g$ is unique when it exists.
   Similarly, as $\cpa$ and $\cpb$ are jointly epic, $f\tjright g$ is unique when it exists.
 \end{definition}
 
@@ -762,10 +843,11 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
     $g \tjright f$ exists. \label{lemitem:l_r_commute}
     \item $f \tjleft 0$ and $f \tjright 0$ always exist. \label{lemitem:l_r_zero_exists}
     \item When $f\tjleft g$ exists, $\rst{f}(f\tjleft g) = f \tjleft 0$, $\rst{f}g = 0$,
-    $\rst{g}(f \tjleft g) = 0 \tjleft g$ and $\rst{g}f = 0$.\label{lemitem:l_r_rst_orthogonal_to_zero}
+      $\rst{g}(f \tjleft g) = 0 \tjleft g$ and $\rst{g}f = 0$.
+      \label{lemitem:l_r_rst_orthogonal_to_zero}
     \item Dually to the previous item, when $f\tjright g$ exists,
-    $(f\tjright g)\rg{f} = f \tjright 0$, $g\rg{f} = 0$,
-    $(f \tjright g)\rg{g} = 0 \tjright g$ and $f\rg{g} = 0$.\label{lemitem:l_r_rg_orthogonal_to_zero}
+      $(f\tjright g)\rg{f} = f \tjright 0$, $g\rg{f} = 0$, $(f \tjright g)\rg{g} = 0 \tjright g$ and
+      $f\rg{g} = 0$.\label{lemitem:l_r_rg_orthogonal_to_zero}
     \item When $f\tjleft g$ exists, $f\tjleft g (h\+k) = f h \tjleft g k$.
       \label{lemitem:l_r_l_pull_right}
     \item Dually, when $f \tjright g$ exists, $(h \+ k) f \tjright g = h f \tjright k g$.
@@ -790,30 +872,30 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
     \item $g \tjleft f = (f \tjleft g)\comp $ and $g \tjright f = \comp(f\tjright g)$.
-    \item Consider $f \cpa$. Then $f \cpa \Pi_0 = f$ and
-      $f \cpa \Pi_1 = f 0 = 0$. Hence, $f \cpa = f \tjleft 0$.
+    \item Consider $f \cpa$. Then $f \cpa \icpa = f$ and
+      $f \cpa \icpb = f 0 = 0$. Hence, $f \cpa = f \tjleft 0$.
 
-      Consider $\Pi_0 f$. Then $\cpa \Pi_0 f = f$ and
-      $\cpb \Pi_0 f = 0 f = 0$ and therefore $\Pi_0 f = (f\tjright 0)$.
+      Consider $\icpa f$. Then $\cpa \icpa f = f$ and
+      $\cpb \icpa f = 0 f = 0$ and therefore $\icpa f = (f\tjright 0)$.
     \item Using Lemma~\ref{lem:tensor_identities}
       \[
-        \rst{f}g = \rst{(f\tjleft g)\Pi_0} (f\tjleft g)\Pi_1 =
-          (f\tjleft g) \rst{\Pi_0} \Pi_1 = 0.
+        \rst{f}g = \rst{(f\tjleft g)\icpa} (f\tjleft g)\icpb =
+          (f\tjleft g) \rst{\icpa} \icpb = 0.
       \]
-      Similarly, $\rst{g}f = f\tjleft g \rst{\Pi_1}\Pi_0 = 0$.
+      Similarly, $\rst{g}f = f\tjleft g \rst{\icpb}\icpa = 0$.
 
-      Recall that $\Pi_0$ and $\Pi_1$ are jointly monic. We have
-      $\rst{f}(f \tjleft g) \Pi_0 = \rst{f} f = f = (f\tjleft 0) \Pi_0$ and
-      $\rst{f}(f \tjleft g) \Pi_1 = \rst{f}g = 0= (f\tjleft 0) \Pi_1$.
+      Recall that $\icpa$ and $\icpb$ are jointly monic. We have
+      $\rst{f}(f \tjleft g) \icpa = \rst{f} f = f = (f\tjleft 0) \icpa$ and
+      $\rst{f}(f \tjleft g) \icpb = \rst{f}g = 0= (f\tjleft 0) \icpb$.
       Therefore, $\rst{f}(f \tjleft g) = f \tjleft 0$. Similarly,
       $\rst{g}(f \tjleft g) = 0 \tjleft g$.
     \item Using Lemma~\ref{lem:tensor_identities}
       \begin{multline*}
         g\rg{f} = \cpb(f\tjright g)\wrg{(\cpa(f\tjright g))}  =
-          \cpb(f\tjright g) \rst{\inv{(f\tjright g)}\Pi_0} \\
-          = \cpb(f\tjright g) \rst{\inv{(f\tjright g)}\rst{\Pi_0}} =
-          \rst{\cpb \rst{(f\tjright g)} \rst{\Pi_0}}\cpb(f\tjright g) =\\
-          \rst{\cpb \rst{\Pi_0}\rst{(f\tjright g)} }\cpb(f\tjright g) =
+          \cpb(f\tjright g) \rst{\inv{(f\tjright g)}\icpa} =\\
+          \cpb(f\tjright g) \rst{\inv{(f\tjright g)}\rst{\icpa}} =
+          \rst{\cpb \rst{(f\tjright g)} \rst{\icpa}}\cpb(f\tjright g) = \\
+          \rst{\cpb \rst{\icpa}\rst{(f\tjright g)} }\cpb(f\tjright g) =
           \rst{0}\cpb(f\tjright g) = 0
       \end{multline*}
       Similarly, $f\rg{g} =  0$.
@@ -825,21 +907,21 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
       $(f \tjright g) \rg{g} = 0 \tjright g$.
     \item Calculating, we have
       \[
-        f \tjleft g (h \+ k) \Pi_0 = f\tjleft g \Pi_0 h = f h \text{ and }
-        f \tjleft g (h \+ k) \Pi_1 = f\tjleft g \Pi_1 k = g k,
+        f \tjleft g (h \+ k) \icpa = f\tjleft g \icpa h = f h \text{ and }
+        f \tjleft g (h \+ k) \icpb = f\tjleft g \icpb k = g k,
       \]
       but this means that
-      $f \tjleft g (h \+ k) = f h \tjleft g k$ by the joint monic property of $\Pi_0$, $\Pi_1$.
+      $f \tjleft g (h \+ k) = f h \tjleft g k$ by the joint monic property of $\icpa$, $\icpb$.
     \item The proof for this is dual to the previous item, and depends on the joint epic property
       of $\cpa$ and $\cpb$.
-    \item We are given $f\tjleft g$ exists, therefore $f = (f\tjleft g)\Pi_0$ and
-      $g = (f\tjleft g)\Pi_1$. But this means $h f = h(f\tjleft g)\Pi_0$ and
-      $h g = h(f\tjleft g)\Pi_1$, from which we may conclude $h f \tjleft h g = h(f\tjleft g)$ by
-      the fact that $\Pi_0$ and $\Pi_1$ are jointly monic. The proof of
+    \item We are given $f\tjleft g$ exists, therefore $f = (f\tjleft g)\icpa$ and
+      $g = (f\tjleft g)\icpb$. But this means $hf = h(f\tjleft g)\icpa$ and
+      $hg = h(f\tjleft g)\icpb$, from which we may conclude $hf \tjleft hg = h(f\tjleft g)$ by
+      the fact that $\icpa$ and $\icpb$ are jointly monic. The proof of
       $(f\tjright g)h = f h \tjright g h$ is similar.
-    \item We are given $\rst{f} = \rst{f}\tjleft\rst{g} \Pi_0$. Therefore,
+    \item We are given $\rst{f} = \rst{f}\tjleft\rst{g} \icpa$. Therefore,
       \[
-        \rst{f} = \inv{\rst{f}} = \inv{\Pi_0}\inv{(\rst{f}\tjleft\rst{g})}
+        \rst{f} = \inv{\rst{f}} = \inv{\icpa}\inv{(\rst{f}\tjleft\rst{g})}
           = \cpa \inv{(\rst{f}\tjleft\rst{g})}.
       \]
       Similarly, $\rst{g} = \cpb \inv{(\rst{f}\tjleft\rst{g})}$. But this means
@@ -858,24 +940,28 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
           & = \rst{f'} \tjleft \rst{g'}  (f'\+g') \\
           & = f'\tjleft g'.
       \end{align*}
-    \item From our diagram for $\tjright$, we know that $\inv{f} = \inv{(f\tjright g)} \Pi_0$ and
-      $\inv{g} = \inv{(f\tjright g)} \Pi_1$. As well, we know that $\cpa(f\tjright g) = f$ and
+    \item From our diagram for $\tjright$, we know:
+      \begin{align*}
+        \inv{f} &= \inv{(f\tjright g)} \icpa\text{ and}\\
+        \inv{g} &= \inv{(f\tjright g)} \icpb.
+      \end{align*}
+      As well, we know that $\cpa(f\tjright g) = f$ and
       $\cpa(f\tjright g) = g$.
       Therefore, we have:
       \[
-         \cpa(f\tjright g)\inv{(f\tjright g)} \Pi_0 = \rst{f} \text{ and  }
-          \cpb(f\tjright g)\inv{(f\tjright g)} \Pi_1 = \rst{g}.
+         \cpa(f\tjright g)\inv{(f\tjright g)} \icpa = \rst{f} \text{ and  }
+          \cpb(f\tjright g)\inv{(f\tjright g)} \icpb = \rst{g}.
       \]
       As $f\tperp g$, we know that $f\inv{g} = f \rg{g} \inv{g} = 0 \inv{g} = 0$ and therefore,
 
       \[
-         \cpa(f\tjright g)\inv{(f\tjright g)} \Pi_1 = 0 \text{ and  }
-          \cpb(f\tjright g)\inv{(f\tjright g)} \Pi_0 = 0.
+         \cpa(f\tjright g)\inv{(f\tjright g)} \icpb = 0 \text{ and  }
+          \cpb(f\tjright g)\inv{(f\tjright g)} \icpa = 0.
       \]
       By Corollary~\ref{cor:split_plus_tensor} this means
       $(f\tjright g)\inv{(f\tjright g)} = \rst{f} \+ \rst{g}$.
-    \item As $(f\tjleft g)\+ (h\tjleft k)\Pi_0 = (f\tjleft g)$ and
-      $(f\tjleft g)\+ (h\tjleft k) \Pi_1 = (h\tjleft k)$, we see that
+    \item As $(f\tjleft g)\+ (h\tjleft k)\icpa = (f\tjleft g)$ and
+      $(f\tjleft g)\+ (h\tjleft k) \icpb = (h\tjleft k)$, we see that
       $(f\tjleft g)\+ (h\tjleft k)$ satisfies the diagram for $(f\+h)\tjleft(g\+k)$. Dually, as
       $\cpa (f\tjright g)\+ (h\tjright k) = (f\tjright g)$ and
       $\cpb(f\tjright g)\+ (h\tjright k) = (h\tjright k)$, $(f\tjright g)\+ (h\tjright k)$ satisfies
@@ -887,12 +973,12 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
 %   In an inverse category \X with a restriction zero and disjointness tensor, we define two partial
 %   operations on pairs of arrows in \X to another arrow in \X. First, for arrows
 %   $f:A \to B$ and $g:A \to C$, suppose we have arrows $f':A  \to B\+X$ and $g': A \to C\+X$
-%   such that $f'\Pi_0 =f$, $g'\Pi_0 = g$ and $f'\Pi_1 = g' \Pi_1$. Then, we say $f\gtjleft g$ if
+%   such that $f'\icpa =f$, $g'\icpa = g$ and $f'\icpb = g' \icpb$. Then, we say $f\gtjleft g$ if
 %   regardless of the choice of $f',\ g'$ and $X$, there exists a map $\alpha$ that makes
 %   diagram \eqref{eq:gtjleftdefinition} below commute.
 %   \begin{equation}
 %     \xymatrix@C+0pt @R+20pt{
-%       B\+X&&B\+C\+X \ar[ll]_{\Pi_{0,2}} \ar[rr]^{\Pi_{1,2}} && C\+X\\
+%       B\+X&&B\+C\+X \ar[ll]_{\icp{0,2}} \ar[rr]^{\icp{1,2}} && C\+X\\
 %       &&A \ar[ull]^{g'} \ar[urr]_{f'} \ar@{.>}[u]|-{\alpha}
 %       }\label{eq:gtjleftdefinition}
 %   \end{equation}
@@ -907,8 +993,8 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
 %         && C\+X \ar[ll]^{\amalg_{1,2}} \ar[ull]_{k'}
 %       }\label{eq:gtjrightdefinition}
 %   \end{equation}
-%   In the above diagrams, $\Pi_{0,2} = (1\+0\+1)(\upr\+1)$, $\amalg_{0,2} =
-%   (\inv{\upr}\+1)(1\+0\+1)$, $\Pi_{1,2}=(0\+1\+1)(\upl\+1)$ and
+%   In the above diagrams, $\icp{0,2} = (1\+0\+1)(\upr\+1)$, $\amalg_{0,2} =
+%   (\inv{\upr}\+1)(1\+0\+1)$, $\icp{1,2}=(0\+1\+1)(\upl\+1)$ and
 %   $\cp{1,2} = (\inv{\upl}\+1)(0\+1\+1)$.
 % \end{definition}
 % \begin{lemma}\label{lem:general_triangle_implies_triangle}
@@ -922,8 +1008,8 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
 %   first diagram of Definition~\ref{def:up_triangle_and_down_triangle} commute. In detail,
 %   \[
 %     \xymatrix@C+0pt @R+10pt{
-%       B&&B\+C \ar[ll]_{\Pi_0} \ar[rr]^{\Pi_1} && C\\
-%       &B\+0\ar[ul]^{\upl}&B\+C\+0 \ar[l]_{\Pi_{0,2}} \ar[r]^{\Pi_{1,2}} \ar[u]|-{\upl}
+%       B&&B\+C \ar[ll]_{\icpa} \ar[rr]^{\icpb} && C\\
+%       &B\+0\ar[ul]^{\upl}&B\+C\+0 \ar[l]_{\icp{0,2}} \ar[r]^{\icp{1,2}} \ar[u]|-{\upl}
 %         & C\+0\ar[ur]_{\upl}\\
 %       &&A \ar[ul]^{g \inv{\upl}} \ar[ur]_{f\inv{\upl}} \ar@{.>}[u]|-{\alpha}
 %       }
@@ -976,6 +1062,11 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
   \end{itemize}
 \end{proof}
 
+% subsubsection disjointess_via_a_monoidal_tensor (end)
+
+\subsubsection{Disjoint join via a monoidal tensor} % (fold)
+\label{ssub:disjoint_join_via_a_monoidal_tensor}
+
 The operations $\tjleft$ and $\tjright$ are sufficient to define a disjointness relation
 on an inverse category. However, when we wish to extend this to a disjoint join, we run into
 problems when trying to prove $\axiom{DJ}{4}$. Specifically, there is not enough information to
@@ -987,21 +1078,21 @@ Therefore, we add one more assumption regarding our tensor in order to define di
   Let \X be an inverse category with a disjointness tensor $\+$ and a restriction zero. Consider
   diagrams \ref{dia:tensor_complete_left} and \ref{dia:tensor_complete_right}.
   \begin{align}
-    &\xymatrix@C+5pt{
+    &\xymatrix@C+5pt@R+10pt{
       A \ar@/_/[ddr]_f \ar@/^/[drr]^g \ar@{.>}[dr]|-{\alpha} \\
-        & X\+Y\+Z \ar[d]^{\Pi_{0,1}} \ar[r]_{\Pi_{0,2}} & X\+Z \ar[d]^{\Pi_0} \\
-        & X\+Y \ar[r]_{\Pi_0} & X
+        & X\+Y\+Z \ar[d]^{\icp{1,2}} \ar[r]_{\icp{1,3}} & X\+Z \ar[d]^{\icpa} \\
+        & X\+Y \ar[r]_{\icpa} & X
     } \label{dia:tensor_complete_left}\\
-    &\xymatrix@C+5pt{
+    &\xymatrix@C+5pt@R+10pt{
         &&A \\
-         X\+Y \ar[r]_{\cp{0,1}} \ar@/^/[urr]^h &X\+Y\+Z \ar@{.>}[ur]|-{\beta} \\
-         X \ar[u]^{\cpa} \ar[r]_{\cpa} & X\+Y \ar[u]^{\cp{0,2}} \ar@/_/[uur]_k
+         X\+Y \ar[r]_{\cp{1,2}} \ar@/^/[urr]^h &X\+Y\+Z \ar@{.>}[ur]|-{\beta} \\
+         X \ar[u]^{\cpa} \ar[r]_{\cpa} & X\+Z \ar[u]^{\cp{1,3}} \ar@/_/[uur]_k
     } \label{dia:tensor_complete_right}
   \end{align}
   Then
   $\+$ is a \emph{disjoint sum tensor} when the following two conditions hold:
   \begin{itemize}
-    \item $\alpha$ exists if and only if  $f \Pi_1 \tjleft g \Pi_1$ exists;
+    \item $\alpha$ exists if and only if  $f \icpb \tjleft g \icpb$ exists;
     \item $\beta$ exists if and only if $\cpb h \tjright \cpb k$ exists.
   \end{itemize}
 
@@ -1015,20 +1106,20 @@ Therefore, we add one more assumption regarding our tensor in order to define di
   As all the maps are disjoint, we know that each pair's $\tjleft$ map and $\tjright$ maps
   exist.  Consider the diagram
   \[
-    \xymatrix@C+5pt{
+    \xymatrix@C+5pt@R+10pt{
       A \ar@/_/[ddr]_{g\tjleft h} \ar@/^/[drr]^{g\tjleft f} \ar@{.>}[dr]|-{\alpha} \ar[rr]^{f}
         & & B \\
-        & B\+B\+B \ar[d]^{\Pi_{0,1}} \ar[r]_{\Pi_{0,2}} & B\+B \ar[d]^{\Pi_0} \ar[u]^{\Pi_1} \\
-        & B\+B \ar[r]_{\Pi_0} & B
+        & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
+        & B\+B \ar[r]_{\icpa} & B
     }
   \]
   where we claim $\alpha = (g\tjleft h)\tjleft f$.
 
   The lower part of the diagram commutes as it fulfills the conditions of
-  Definition~\ref{def:disjoint_sum_tensor}. The upper triangle of the diagram commutes by the
-  definition of $g\tjleft f$. Noting that $\Pi_{0,1}:B\+B\+B \to B\+B$ is the same map as
-  $\Pi_0:(B\+B)\+B\to (B\+B)$ and $\Pi_{0,2} \Pi_1:B\+B\+B \to B\+B \to B$ is the same map as
-  $\Pi_1:(B\+B)\+B\to B$, we see $\alpha$ does make the $\tjleft$ diagram for $g\tjleft h$ and $f$
+  Definition~\ref{def:disjoint_sum_tensor}. The upper rightmost triangle of the diagram commutes by
+  the definition of $g\tjleft f$. Noting that $\icp{0,1}:B\+B\+B \to B\+B$ is the same map as
+  $\icpa:(B\+B)\+B\to (B\+B)$ and $\icp{0,2} \icpb:B\+B\+B \to B\+B \to B$ is the same map as
+  $\icpb:(B\+B)\+B\to B$, we see $\alpha$ does make the $\tjleft$ diagram for $g\tjleft h$ and $f$
   commute. Therefore by Lemma~\ref{lem:properties_of_tjleft_and_tjright}, $f\tjleft(g\tjleft h)$
   exists and is equal to $\alpha \com{\+\,\{01,2\}}$.
 
@@ -1045,32 +1136,32 @@ Therefore, we add one more assumption regarding our tensor in order to define di
 \begin{proof}
   Consider the diagram
   \[
-    \xymatrix@C+5pt{
+    \xymatrix@C+5pt@R+10pt{
       A \ar@/_/[ddr]_{f\tjleft g} \ar@/^/[drr]^{f\tjleft h} \ar@{.>}[dr]|-{\alpha} \ar[rr]^{h}
         & & B \\
-        & B\+B\+B \ar[d]^{\Pi_{0,1}} \ar[r]_{\Pi_{0,2}} & B\+B \ar[d]^{\Pi_0} \ar[u]^{\Pi_1} \\
-        & B\+B \ar[r]_{\Pi_0} & B
+        & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
+        & B\+B \ar[r]_{\icpa} & B
     }
   \]
   which gives us $\alpha = (f \tjleft g) \tjleft h: A \to (B\+B)\+B$ and
   $\alpha \assocp :A \to B\+(B\+B)$. Next consider the diagram
   \[
-    \xymatrix@C+5pt{
+    \xymatrix@C+5pt@R+10pt{
       A \ar@/_/[ddr]_{g\tjleft h} \ar@/^/[drr]^{g\tjleft f} \ar@{.>}[dr]|-{\gamma} \ar[rr]^{f}
         & & B \\
-        & B\+B\+B \ar[d]^{\Pi_{0,1}} \ar[r]_{\Pi_{0,2}} & B\+B \ar[d]^{\Pi_0} \ar[u]^{\Pi_1} \\
-        & B\+B \ar[r]_{\Pi_0} & B
+        & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
+        & B\+B \ar[r]_{\icpa} & B
     }
   \]
   which gives us $\gamma \comp = f \tjleft (g\tjleft h): A \to B\+(B\+B)$.
 
   Note from the diagrams we have:
   \begin{align*}
-    \gamma \comp  \Pi_{0}         =\, &f  = \alpha \assocp\Pi_0\\
-    \gamma \comp  \Pi_{1} \Pi_{0} =\, &g  = \alpha \assocp\Pi_1\Pi_0\\
-    \gamma \comp  \Pi_{1} \Pi_1   =\, & h = \alpha \assocp\Pi_1\Pi_1.
+    \gamma \comp  \icp{0}         =\, &f  = \alpha \assocp\icpa\\
+    \gamma \comp  \icp{1} \icp{0} =\, &g  = \alpha \assocp\icpb\icpa\\
+    \gamma \comp  \icp{1} \icpb   =\, & h = \alpha \assocp\icpb\icpb.
   \end{align*}
-  Hence, by the assumption that $\Pi_0, \Pi_1$ are jointly monic, we have
+  Hence, by the assumption that $\icpa, \icpb$ are jointly monic, we have
   $\alpha = \gamma \comp  \assocp$ and hence $f \tjleft (g \tjleft h) = (f \tjleft g) \tjleft h$,
   up to the associativity isomorphism.
 \end{proof}
@@ -1087,7 +1178,7 @@ For reference, the map $f \tjoin g$ may be visualized as follows:
     &A
       & B  \ar[dr]^{\rg{f}} \ar[d]_{\cpa}\\
     A \ar[ur]^{\rst{f}} \ar@{.>}[r]^{\rst{f}\tjleft \rst{g}} \ar[dr]_{\rst{g}}
-      & A\+A \ar[u]_{\Pi_0} \ar[d]^{\Pi_1}
+      & A\+A \ar[u]_{\icpa} \ar[d]^{\icpb}
         \ar[r]^{f\+g}
        &B\+B \ar@{.>}[r]^{\rg{f}\tjright\rg{g}} & B\\
     & A & B\ar[ur]_{\rg{g}} \ar[u]^{\cpb}
@@ -1103,14 +1194,15 @@ equivalent ways:
   & = f \tjleft g (\inv{f}\+\inv{g})f\tjright g
 \end{align*}
 
-In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjleft {g}) (\rst{f}\tjright\rst{g})$ as
-$\rg{\rst{g}} = \rst{g}$.
+In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjleft \rst{g})
+(\rst{f}\tjright\rst{g})$ as $\rg{\rst{g}} = \rst{g}$.
 
 \begin{lemma}\label{lem:tensor_disjoint_join_properties}
   Let \X be an inverse category with a disjointness tensor and restriction zero. Let \X have the
   maps $f,g: A \to B$ with $f\tperp g$. Then $\tjoin$ has the following properties.
   \begin{enumerate}[{(}i{)}]
-    \item For all maps $h:A \to B$, $\rst{f}h \tjoin \rst{g}h = (\rst{f}\tjoin \rst{g})h$. \label{lemitem:tdj_rst_universal}
+    \item For all maps $h:A \to B$, $\rst{f}h \tjoin \rst{g}h = (\rst{f}\tjoin \rst{g})h$.
+      \label{lemitem:tdj_rst_universal}
     \item $\rst{f}\tjoin \rst{g} = \rst{f\tjoin g}$. \label{lemitem:tdj_rst_is_rst}
   \end{enumerate}
 \end{lemma}
@@ -1159,11 +1251,11 @@ $\rg{\rst{g}} = \rst{g}$.
     \item [\axiom{DJ}{1}] We must show $f, g \le f \tjoin g$. Computing,
       \begin{align*}
         \rst{f}\,(\rst{f}\tjleft\rst{g})  f\tjright g
-          &= (\rst{f}\tjleft\rst{g}) \Pi_0 (\rst{f}\tjleft\rst{g} ) f\tjright g \\
-        &=\rst{(\rst{f}\tjleft\rst{g}) \Pi_0} (\rst{f}\tjleft\rst{g}) f\tjright g  \\
-        &=(\rst{f}\tjleft\rst{g}) \rst{\Pi_0} f\tjright g  \\
-        &=(\rst{f}\tjleft\rst{g}) \Pi_0 \cpa f\tjright g \\
-        &=((\rst{f}\tjleft\rst{g}) \Pi_0) (\cpa (f \tjright g)) \\
+          &= (\rst{f}\tjleft\rst{g}) \icpa (\rst{f}\tjleft\rst{g} ) f\tjright g \\
+        &=\rst{(\rst{f}\tjleft\rst{g}) \icpa} (\rst{f}\tjleft\rst{g}) f\tjright g  \\
+        &=(\rst{f}\tjleft\rst{g}) \rst{\icpa} f\tjright g  \\
+        &=(\rst{f}\tjleft\rst{g}) \icpa \cpa f\tjright g \\
+        &=((\rst{f}\tjleft\rst{g}) \icpa) (\cpa (f \tjright g)) \\
         &= \rst{f} f \\
         &=f
       \end{align*}
@@ -1194,9 +1286,9 @@ $\rg{\rst{g}} = \rst{g}$.
 
 
     \item [\axiom{DJ}{4}] We need to show $\tperp [f,g,h]$ if and only if $f \tperp (g \tjoin h)$.
-      For the right to left implication, note that the existence of $g\tjoin h$ implies $g \tperp h$.
-      We also know $g, h \le g\tjoin h$ by item 1 of this lemma. This gives us that $f \tperp g$ and
-      $f \tperp h$, hence $\tperp [f,g,h]$.
+      For the right to left implication, note that the existence of $g\tjoin h$ implies $g \tperp
+      h$. We also know $g, h \le g\tjoin h$ by item 1 of this lemma. This gives us that $f \tperp
+      g$ and $f \tperp h$, hence $\tperp [f,g,h]$.
 
       For the left to right implication, we use
       Lemma~\ref{lem:complete_disjointness_means_multiple_disjoints}. As we have $\tperp [f,g,h]$,
@@ -1217,6 +1309,8 @@ $\rg{\rst{g}} = \rst{g}$.
   \end{itemize}
 
 \end{proof}
+
+% subsubsection disjoint_join_via_a_monoidal_tensor (end)
 % subsection tensors_for_disjointness (end)
 
 % section disjointness_in_an_inverse_category (end)
@@ -1228,14 +1322,14 @@ $\rg{\rst{g}} = \rst{g}$.
 
 \begin{definition}\label{def:inverse_sum}
   In an inverse category with disjoint joins, an object $X$ is the \emph{inverse sum} of $A$ and
-  $B$ when there exist maps $i_0,\ i_1,\ \xa,\ \xb$ such that:
+  $B$ when there exist maps $i_1,\ i_2,\ \xa,\ \xb$ such that:
   \begin{enumerate}[{(}i{)}]
-    \item $i_0$ and $i_1$ are monic;
-    \item $i_0 : A \to X$, $i_1: B \to X$, $\xa: X \to A$ and $\xb: X \to B$.
-    \item $\inv{i_0} = \xa$ and $\inv{i_1} = \xb$.
-    \item $\inv{i_0}i_0 \perp \inv{i_1}i_1$ and $\inv{i_0}i_0 \djoin \inv{i_1}i_1 = 1_X$.
+    \item $i_1$ and $i_2$ are monic;
+    \item $i_1 : A \to X$, $i_2: B \to X$, $\xa: X \to A$ and $\xb: X \to B$.
+    \item $\inv{i_1} = \xa$ and $\inv{i_2} = \xb$.
+    \item $\inv{i_1}i_1 \perp \inv{i_2}i_2$ and $\inv{i_1}i_1 \djoin \inv{i_2}i_2 = 1_X$.
   \end{enumerate}
-  $i_0$ and $i_1$ will be referred to as the \emph{injection} maps of the inverse sum.
+  $i_1$ and $i_2$ will be referred to as the \emph{injection} maps of the inverse sum.
 \end{definition}
 
 \begin{lemma}\label{lem:inverse_sum_is_unique}
@@ -1245,47 +1339,56 @@ $\rg{\rst{g}} = \rst{g}$.
   Assume we have two inverse sums over $A$ and $B$:
   \[
     \xymatrix{
-      A\ar[r]^{i_0} &X\ar@/^9pt/[l]^{x_0} \ar@/_9pt/[r]_{x_1} & B \ar[l]_{i_1}
+      A\ar[r]^{i_1} &X\ar@/^9pt/[l]^{x_0} \ar@/_9pt/[r]_{x_1} & B \ar[l]_{i_2}
     }
     \qquad  \text{ and  }\qquad
     \xymatrix{
-      A\ar[r]^{\jay_0} &Y\ar@/^9pt/[l]^{y_0} \ar@/_9pt/[r]_{y_1} & B \ar[l]_{\jay_1}
+      A\ar[r]^{\jay_1} &Y\ar@/^9pt/[l]^{y_1} \ar@/_9pt/[r]_{y_2} & B \ar[l]_{\jay_2}
     }.
   \]
-  We will show that the map $x_0 \jay_0 \djoin x_1 \jay_1 : X \to Y$ is an isomorphism.
+  We will show that the map $x_1 \jay_1 \djoin x_2 \jay_2 : X \to Y$ is an isomorphism.
 
-  Note by the fact that $i_1$ is monic, we may conclude from the definition that
-  $0 = \rst{x_0 i_0 x_1}$ and therefore $0 = x_0 i_0 x_1$. Then, given that $x_0$ is the inverse
-  of the monic $i_0$, we may calculate
-  $0 = \rg{0} = \wrg{x_0 i_0 x_1} = \rst{\inv{x_1}\, \inv{i_0}\, i_0} =
-  \rst{\inv{x_1}\, \inv{i_0}} = \wrg{i_0 x_1}$. From this we see $i_0 x_1 = 0$. Similarly, we have
-  $i_1 x_0 = 0$, $j_0 y_1 =0$ and $j_1 y_0 = 0$.
+  Note by the fact that $i_2$ is monic, we may conclude from the definition that
+  $0 = \rst{x_1 i_1 x_2}$ and therefore $0 = x_1 i_1 x_2$. Then, given that $x_1$ is the inverse
+  of the monic $i_1$, we may calculate
+  $0 = \rg{0} = \wrg{x_2 i_1 x_2} = \rst{\inv{x_2}\, \inv{i_1}\, i_1} =
+  \rst{\inv{x_2}\, \inv{i_1}} = \wrg{i_1 x_2}$. From this we see $i_1 x_2 = 0$. Similarly, we have
+  $i_2 x_2 = 0$, $j_1 y_2 =0$ and $j_2 y_1 = 0$.
 
   Next, by Lemma~\ref{lem:disjointness_various}, we know that $\rst{\xa}\cdperp\rst{\xb}$ as both
-  $i_0$ and $i_1$ are monic. By the same lemma, $\rg{\jay_0} \cdperp \rg{\jay_1}$ as $y_0, y_1$
+  $i_1$ and $i_2$ are monic. By the same lemma, $\rg{\jay_1} \cdperp \rg{\jay_2}$ as $y_1, y_2$
   are the inverses of monic maps.  Then, from \axiom{Dis}{7}, we have
-  $x_0 \jay_0 \cdperp x_1 \jay_1$, hence we may form $x_0 \jay_0 \djoin x_1 \jay_1 : X \to Y$.
+  $x_2 \jay_1 \cdperp x_2 \jay_2$, hence we may form $x_2 \jay_1 \djoin x_2 \jay_2 : X \to Y$.
 
-  Similarly, we may form the map $y_0 i_0 \djoin y_1 i_1 : Y \to X$. Computing their composition:
+  Similarly, we may form the map $y_1 i_1 \djoin y_2 i_2 : Y \to X$. Computing their composition:
   \begin{align*}
-    (x_0 \jay_0 \djoin x_1 \jay_1)(y_0 i_0 \djoin y_1 i_1)
-      &= (x_0 \jay_0 (y_0 i_0 \djoin y_1 i_1))\djoin (x_1 \jay_1(y_0 i_0 \djoin y_1 i_1))\\
-      &= x_0 \jay_0 y_0 i_0 \djoin x_0 \jay_0 y_1 i_1 \djoin x_1 \jay_1 y_0 i_0 \djoin x_1
-        \jay_1 y_1 i_1 \\
-      &= x_0\, 1\, i_0 \djoin x_0\, 0\, i_1 \djoin x_1\, 0\, i_0 \djoin x_1\, 1\, i_1\\
-      &= x_0 i_0 \djoin x_1 i_1 = 1.
+    (x_2 \jay_1 \djoin x_2 \jay_2)(y_1 i_1 \djoin y_2 i_2)
+      &= (x_2 \jay_1 (y_1 i_1 \djoin y_2 i_2))\djoin (x_2 \jay_2(y_1 i_1 \djoin y_2 i_2))\\
+      &= x_2 \jay_1 y_1 i_1 \djoin x_2 \jay_1 y_2 i_2 \djoin x_2 \jay_2 y_1 i_1 \djoin x_2
+        \jay_2 y_2 i_2 \\
+      &= x_2\, 1\, i_1 \djoin x_2\, 0\, i_2 \djoin x_2\, 0\, i_1 \djoin x_2\, 1\, i_2\\
+      &= x_2 i_1 \djoin x_2 i_2 = 1.
   \end{align*}
   Computing the other direction,
   \begin{align*}
-    (y_0 i_0 \djoin y_1 i_1)(x_0 \jay_0 \djoin x_1 \jay_1)
-      &= (y_0 i_0 (x_0 \jay_0 \djoin x_1 \jay_1) )\djoin (y_1 i_1(x_0 \jay_0 \djoin x_1 \jay_1))\\
-      &= y_0 i_0 x_0 \jay_0 \djoin y_0 i_0 x_1 \jay_1 \djoin y_1 i_1 x_0 \jay_0 \djoin y_1 i_1 x_1 \jay_1\\
-      &= y_0\, 1\, \jay_0 \djoin y_0\, 0\, \jay_1 \djoin y_1\, 0\, \jay_0 \djoin y_1\, 1\, \jay_1\\
-      &= y_0 \jay_0 \djoin y_1 \jay_1 = 1.\\
+    (y_1 i_1 \djoin y_2 i_2)(x_2 \jay_1 \djoin x_2 \jay_2)
+      &= (y_1 i_1 (x_2 \jay_1 \djoin x_2 \jay_2) )\djoin (y_2 i_2(x_2 \jay_1 \djoin x_2 \jay_2))\\
+      &= y_1 i_1 x_2 \jay_1 \djoin y_1 i_1 x_2 \jay_2 \djoin y_2 i_2 x_2 \jay_1
+        \djoin y_2 i_2 x_2 \jay_2\\
+      &= y_1\, 1\, \jay_1 \djoin y_1\, 0\, \jay_2 \djoin y_2\, 0\, \jay_1 \djoin y_2\, 1\, \jay_2\\
+      &= y_1 \jay_1 \djoin y_2 \jay_2 = 1.\\
   \end{align*}
-  This shows that the map between any two inverse sums is an isomorphism.
+  This shows that the map between any two inverse sums over the same two objects is an isomorphism.
+\end{proof}
 
-
+\begin{lemma}\label{lem:all_maps_to_inverse_sum_are_disjoint}
+  Suppose $X$ is the inverse sum of $A$ and $B$ in the inverse category \X. Then for all maps
+  $f:C \to A$ and $g: C \to B$, the composition with the injections is disjoint, that is,
+  $f i_1 \perp g i_2$. (This is not right - need further thought...)
+\end{lemma}
+\begin{proof}
+  First note $f i_1 = f i_1 \wrg{i_1} = f i_1 \inv{i_1} i_1$ and similarly, $g i_2 = g i_2
+  \inv{i_2} i_2$.
 \end{proof}
 
 \begin{definition}\label{def:inverse_sum_category}
@@ -1300,17 +1403,17 @@ $\rg{\rst{g}} = \rst{g}$.
   an inverse sum category.
 \end{lemma}
 \begin{proof}
-  We claim that setting $i_i = \cp{i}$ and $x_i = \Pi_i$ and setting $X = A\+B$ produces inverse
+  We claim that setting $i_i = \cp{i}$ and $x_i = \icp{i}$ and setting $X = A\+B$ produces inverse
   sums in \X and show this satisfies the four conditions of Definition~\ref{def:inverse_sum}.
   \begin{enumerate}[{(}i{)}]
     \item From Lemma~\ref{lem:tensor_identities}, we know that $\cpa$ and $\cpb$ are monic maps.
-    \item $\cpa : A \to A\+B$, $\cpb: B \to A\+B$, $\Pi_0: A\+B \to A$ and $\Pi_1: A\+B \to B$.
-    \item $\inv{\cpa} = \Pi_0$ and $\inv{\cpb} = \Pi_1$.
-    \item $\inv{i_0}i_0 = 1\+ 0 \tperp 0\+1 = \inv{i_1}i_1$ as
+    \item $\cpa : A \to A\+B$, $\cpb: B \to A\+B$, $\icpa: A\+B \to A$ and $\icpb: A\+B \to B$.
+    \item $\inv{\cpa} = \icpa$ and $\inv{\cpb} = \icpb$.
+    \item $\inv{i_1}i_1 = 1\+ 0 \tperp 0\+1 = \inv{i_2}i_2$ as
       $1\+0 \tjleft 0\+1 = (\inv{\upr}\+\inv{\upl})$ and
-      $1\+0 \tjright 0\+1 = (\Pi_0\+\Pi_1)$. For their join,
-      $(1\+0)\tjoin (0\+1) = (\inv{\upr}\+\inv{\upl})(\Pi_0\+\Pi_1) =
-      \inv{\upr}\Pi_0 \+ \inv{\upl}\Pi_1 = 1\+1 = 1$.
+      $1\+0 \tjright 0\+1 = (\icpa\+\icpb)$. For their join,
+      $(1\+0)\tjoin (0\+1) = (\inv{\upr}\+\inv{\upl})(\icpa\+\icpb) =
+      \inv{\upr}\icpa \+ \inv{\upl}\icpb = 1\+1 = 1$.
   \end{enumerate}
 \end{proof}
 
@@ -1334,36 +1437,36 @@ $\rg{\rst{g}} = \rst{g}$.
   In \X, consider the inverse sum over $A$ and $B$,
   \[
     \xymatrix{
-      A\ar[r]^{i_0} &X\ar@/^9pt/[l]^{x_0} \ar@/_9pt/[r]_{x_1} & B \ar[l]_{i_1}
+      A\ar[r]^{i_1} &X\ar@/^9pt/[l]^{x_0} \ar@/_9pt/[r]_{x_1} & B \ar[l]_{i_2}
     }.
   \]
   The functor $F$ maps this as follows:
   \[
     \xymatrix@R+10pt@C+10pt{
-      F(A)\ar[r]^{F(i_0)} &F(X)\ar@/^13pt/[l]^{F(x_0)} \ar@/_13pt/[r]_{F(x_1)} & F(B)\ar[l]_{F(i_1)}
+      F(A)\ar[r]^{F(i_1)} &F(X)\ar@/^13pt/[l]^{F(x_0)} \ar@/_13pt/[r]_{F(x_1)} & F(B)\ar[l]_{F(i_2)}
     }.
   \]
-  As $F$ is a restriction functor, we immediately have $F(x_0) = F(\inv{i_0}) = \inv{F(i_0)}$ and
-  $F(x_1) = \inv{F(i_1)}$. Since $F$ preserves the disjoint join, we also have
-  $\inv{F(i_0)}F(i_0) \cdperp\inv{F(i_1)}F(i_1)$ and
-  $\inv{F(i_0)}F(i_0) \djoin \inv{F(i_1)}F(i_1) = 1$.
+  As $F$ is a restriction functor, we immediately have $F(x_0) = F(\inv{i_1}) = \inv{F(i_1)}$ and
+  $F(x_1) = \inv{F(i_2)}$. Since $F$ preserves the disjoint join, we also have
+  $\inv{F(i_1)}F(i_1) \cdperp\inv{F(i_2)}F(i_2)$ and
+  $\inv{F(i_1)}F(i_1) \djoin \inv{F(i_2)}F(i_2) = 1$.
 
-  Finally, as $F$ is a restriction functor, it preserves monics, hence $F(i_0)$ and $F(i_1)$ are
+  Finally, as $F$ is a restriction functor, it preserves monics, hence $F(i_1)$ and $F(i_2)$ are
   both monic and therefore $F(X)$ is the inverse sum of $F(A)$ and $F(B)$.
 
 \end{proof}
 \begin{lemma}\label{lem:inverse_sum_maps_are_perp}
   Given \X an inverse sum category and maps $f:A \to C$ and $g:B\to D$ in \X. Then
-  $\inv{i_0} f i_0 \cdperp \inv{i_1} g i_1 : \invsum{A}{B}\to \invsum{A}{B}$.
+  $\inv{i_1} f i_1 \cdperp \inv{i_2} g i_2 : \invsum{A}{B}\to \invsum{A}{B}$.
 \end{lemma}
 \begin{proof}
-  Note that $\rst{\inv{i_0} f i_0} = \rst{\inv{i_0} f} \le \rst{\inv{i_0}}$ and similarly
-  $\rst{\inv{i_1} g i_1} \le \rst{\inv{i_1}}$. Then, by \axiom{Dis}{3}, we have
-  $\rst{\inv{i_0} f i_0} \cdperp \rst{\inv{i_1} g i_1}$.
+  Note that $\rst{\inv{i_1} f i_1} = \rst{\inv{i_1} f} \le \rst{\inv{i_1}}$ and similarly
+  $\rst{\inv{i_2} g i_2} \le \rst{\inv{i_2}}$. Then, by \axiom{Dis}{3}, we have
+  $\rst{\inv{i_1} f i_1} \cdperp \rst{\inv{i_2} g i_2}$.
 
-  Then, as $\wrg{\inv{i_0} f i_0} \le \wrg{i_0}$ and $\wrg{\inv{i_1} g i_1} \le \wrg{i_1}$, this
-  means we have $\wrg{\inv{i_0} f i_0} \cdperp \wrg{\inv{i_1} g i_1}$ and by
-  Lemma~\ref{lem:disjointness_various}, this means $\inv{i_0} f i_0\cdperp \inv{i_1} g i_1$.
+  Then, as $\wrg{\inv{i_1} f i_1} \le \wrg{i_1}$ and  $\wrg{\inv{i_2} g i_2} \le \wrg{i_2}$, we
+  have $\wrg{\inv{i_1} f i_1} \cdperp \wrg{\inv{i_2} g i_2}$ and by
+  Lemma~\ref{lem:disjointness_various}, this means  $\inv{i_1} f i_1\cdperp \inv{i_2} g i_2$.
 \end{proof}
 
 
@@ -1373,30 +1476,30 @@ $\rg{\rst{g}} = \rst{g}$.
   $\rg{f} \cdperp \rg{g}$, there exists a unique map $h$ making the following diagram commute.
   \[
     \xymatrix@R+10pt@C+28pt {
-      A \ar[dr]^{f} \ar[d]_{i_0}
+      A \ar[dr]^{f} \ar[d]_{i_1}
         \\
       \invsum{A}{B} \ar@{.>}[r]^{h}
         & X\text{.}\\
-      B \ar[ur]_{g} \ar[u]_{i_1}
+      B \ar[ur]_{g} \ar[u]_{i_2}
     }
   \]
   We use the notation $f\rgp g$ for the unique map $h$.
 \end{lemma}
 \begin{proof}
-  As $\rg{f} \cdperp \rg{g}$ and $\rst{\inv{i_0}} \cdperp \rst{\inv{i_1}}$ we may form the map $h'
-  = \inv{i_0}f \djoin \inv{i_1}g$. By its construction, $h'$ is a map from $\invsum{A}{B}$ to $X$
+  As $\rg{f} \cdperp \rg{g}$ and $\rst{\inv{i_1}} \cdperp \rst{\inv{i_2}}$ we may form the map $h'
+  = \inv{i_1}f \djoin \inv{i_2}g$. By its construction, $h'$ is a map from $\invsum{A}{B}$ to $X$
   which makes the diagram commute. Suppose now that both maps $v$ and $w$ are such maps. Then we
   have
   \[
-    (\inv{i_0}i_0) v = (\inv{i_0}i_0) w \quad\text{ and }\quad(\inv{i_1}i_1) v = (\inv{i_1}i_1) w.
+    (\inv{i_1}i_1) v = (\inv{i_1}i_1) w \quad\text{ and }\quad(\inv{i_2}i_2) v = (\inv{i_2}i_2) w.
   \]
-  As $\inv{i_0}i_0 \cdperp \inv{i_1}i_1$, by Lemmas~\ref{lem:disjointness_various} and
-  \ref{lem:join_is_associative_and_commutative_monoid}, we know that $(\inv{i_0}i_0) v \cdperp
-  (\inv{i_1}i_1) v$ and $(\inv{i_0}i_0) w \cdperp (\inv{i_1}i_1) w$ allowing us to form their
+  As $\inv{i_1}i_1 \cdperp \inv{i_2}i_2$, by Lemmas~\ref{lem:disjointness_various} and
+  \ref{lem:join_is_associative_and_commutative_monoid}, we know that $(\inv{i_1}i_1) v \cdperp
+  (\inv{i_2}i_2) v$ and $(\inv{i_1}i_1) w \cdperp (\inv{i_2}i_2) w$ allowing us to form their
   respective disjoint joins. As the disjoint joins of equal maps remains equal, we have
   \begin{align*}
-    (\inv{i_0}i_0) v \djoin (\inv{i_1}i_1) v &=     (\inv{i_0}i_0) w \djoin (\inv{i_1}i_1) w \\
-    (\inv{i_0}i_0 \djoin \inv{i_1}i_1 )v &=     (\inv{i_0}i_0 \djoin \inv{i_1}i_1) w \\
+    (\inv{i_1}i_1) v \djoin (\inv{i_2}i_2) v &=     (\inv{i_1}i_1) w \djoin (\inv{i_2}i_2) w \\
+    (\inv{i_1}i_1 \djoin \inv{i_2}i_2 )v &=     (\inv{i_1}i_1 \djoin \inv{i_2}i_2) w \\
     (1 )v &=     (1) w \\
         v &=  w.
   \end{align*}
@@ -1408,17 +1511,17 @@ $\rg{\rst{g}} = \rst{g}$.
   $\rst{f} \cdperp \rst{g}$, there exists a unique map $h$ making the following diagram commute.
   \[
     \xymatrix@R+10pt@C+28pt {
-      &A \ar[d]_{i_0}
+      &A \ar[d]_{i_1}
         \\
       X   \ar[dr]_{g} \ar[ur]^{f}  \ar@{.>}[r]^{h} & \invsum{A}{B}\\
-      & B \ar[u]_{i_1}\text{.}
+      & B \ar[u]_{i_2}\text{.}
     }
   \]
   We use the notation $f\rstp g$ for the unique map $h$.
 \end{corollary}
 \begin{proof}
   This is simply the dual of Lemma~\ref{lem:inverse_sums_have_unique_maps_out}. The unique map $h$
-  in this case is $f i_0 \djoin g i_1$.
+  in this case is $f i_1 \djoin g i_2$.
 \end{proof}
 
 \begin{corollary}\label{cor:inverse_sums_have_unique_maps}
@@ -1426,19 +1529,19 @@ $\rg{\rst{g}} = \rst{g}$.
   and $g:B\to D$, there exists a unique map $h$ making the following diagram commute.
   \[
     \xymatrix@R+10pt@C+28pt {
-      A \ar[r]^{f} \ar[d]_{i_0}
-        & C \ar[d]_{i_0} \\
+      A \ar[r]^{f} \ar[d]_{i_1}
+        & C \ar[d]_{i_1} \\
       \invsum{A}{B} \ar@{.>}[r]^{h}
         & \invsum{C}{D}\\
-      B \ar[r]_{g} \ar[u]_{i_1}
-        & D \ar[u]_{i_1}\text{.}
+      B \ar[r]_{g} \ar[u]_{i_2}
+        & D \ar[u]_{i_2}\text{.}
     }
   \]
   We use the notation $\invsum{f}{g}$ for the map $h$.
 \end{corollary}
 \begin{proof}
   This follows directly from Lemma~\ref{lem:inverse_sums_have_unique_maps_out} by setting
-  $X = \invsum{C}{D}$. The unique map in this case is $\inv{i_0} f i_0 \djoin \inv{i_1} g i_1$.
+  $X = \invsum{C}{D}$. The unique map in this case is $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2$.
 \end{proof}
 \begin{lemma}\label{lem:functor_preserving_inverse_sums_preserves_joins}
   Suppose $\X$ and $\Y$ are inverse sum categories and $F:\X \to \Y$ is a restriction functor which
@@ -1452,8 +1555,8 @@ $\rg{\rst{g}} = \rst{g}$.
   \ref{cor:inverse_sums_have_unique_maps}.
 
   Suppose we are given $f, g: A \to B$ with $f \cdperp g$. In the inverse sum category, we know that
-  $f \djoin g = (\rst{f}i_0 \djoin \rst{g} i_1) (\inv{i_0} f i_0 \djoin \inv{i_1} g i_1)
-  (\inv{i_0} \rg{f} \djoin \inv{i_1} \rg{g})$, as this follows by:
+  $f \djoin g = (\rst{f}i_1 \djoin \rst{g} i_2) (\inv{i_1} f i_1 \djoin \inv{i_2} g i_2)
+  (\inv{i_1} \rg{f} \djoin \inv{i_2} \rg{g})$, as this follows by:
   \begin{enumerate}
     \item Apply Corollary~\ref{cor:inverse_sums_have_unique_maps_in} to $\rst{f}$ and $\rst{g}$;
     \item then apply Corollary~\ref{cor:inverse_sums_have_unique_maps} to $f, g$;
@@ -1560,14 +1663,14 @@ $\rg{\rst{g}} = \rst{g}$.
   Draw the inverse sum diagram:
   \[
     \xymatrix @C+60pt{
-      A\ar[r]^{i_0=\inv{\upr} (1\+0)}
+      A\ar[r]^{i_1=\inv{\upr} (1\+0)}
         & A\+B \ar@/^15pt/[l]^{x_0=(1\+0)\upr} \ar@/_15pt/[r]_{x_1=(0\+1)\upl}
-          & B \ar[l]_{i_1=\inv{\upl} (0\+1)}
+          & B \ar[l]_{i_2=\inv{\upl} (0\+1)}
     }.
   \]
-  Therefore, we have $\inv{i_0}i_0 =
-  (1\+0)\upr \inv{\upr} (1\+0) = (1\+0)(1\+0) = (1\+0)$. Similarly, $\inv{i_1} i_1 = (0\+1)$.
-  Since $0\cdperp 1$, we have $\inv{i_0}i_0 \cdperp \inv{i_1} i_1$.
+  Therefore, we have $\inv{i_1}i_1 =
+  (1\+0)\upr \inv{\upr} (1\+0) = (1\+0)(1\+0) = (1\+0)$. Similarly, $\inv{i_2} i_2 = (0\+1)$.
+  Since $0\cdperp 1$, we have $\inv{i_1}i_1 \cdperp \inv{i_2} i_2$.
 
   By the functorality of $\+$ and that it preserves disjoint joins, we have $(1\+0) \djoin (0 \+1)
   = (1\djoin 0 ) \+ (0\djoin 1) = 1 \+ 1 = 1_{A\+B}$. Hence $A\+ B$ is an inverse sum of $A$ and
@@ -1641,12 +1744,13 @@ be an inverse sum tensor.
 \end{definition}
 
 \begin{corollary}\label{cor:inverse_sum_of_maps_is_disjoint_join}
-  In an inverse sum tensor category, $f \+g$ is given by $\inv{i_0} f i_0 \djoin \inv{i_1} g i_1$.
+  In an inverse sum tensor category, $f \+g$ is given by $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2$.
 \end{corollary}
 \begin{proof}
-  Recall that in the proof of Lemma~\ref{lem:inverse_sum_is_unique} that we showed $\rst{\inv{i_0}}
-  \cdperp \rst{\inv{i_1}}$ and $\wrg{i_0}\perp \wrg{i_1}$. Hence, by \axiom{Dis}{7}, we know that
-  $\inv{i_0} f i_0 \perp \inv{i_1} g i_1$ and we can therefore form the disjoint join.
+  Recall that in the proof of Lemma~\ref{lem:inverse_sum_is_unique} that we showed $\rst{\inv{i_1}}
+  \cdperp \rst{\inv{i_2}}$ and $\wrg{i_1}\perp \wrg{i_2}$. Since $\rst{x f} \le \rst{x}$, by
+  \axiom{Dis}{3} and \axiom{Dis}{7}, we know that $\inv{i_1} f i_1 \perp \inv{i_2} g i_2$ and we
+  can therefore form the disjoint join.
 \end{proof}
 
 
@@ -1654,59 +1758,55 @@ be an inverse sum tensor.
 
 \subsubsection{Matrices} % (fold)
 \label{ssub:matrix_representation}
-In this section, we will show that when given an inverse sum category \X, one can define a
-type of matrix category based on $\X$. We will call this category $iMat(\X)$. Furthermore, we will
-show that $iMat(\X)$ has is an inverse category and that $\X$ embeds within this category.
+In this section, we will show that when given an inverse  category \X with a disjoint sum
+tensor, one can define a
+matrix category based on $\X$. We will call this category \imatx. Furthermore, we will
+show that \imatx has is an inverse category and that $\X$ embeds within this category.
 
 \begin{definition}\label{def:inverse_sum_matrix}
-  A matrix of maps $[f_{i j}]$ in an inverse sum category \X which satisfy the condition:
-  \begin{equation}
-    \text{For each }i\text{, whenever }j \ne k\text{, then }f_{i j} \cdperp f_{i k}
-    \label{eq:inverse_sum_matrix}
-  \end{equation}
+  Any matrix of maps $[f_{i j}]$ where $i \in \{1,\ldots, n\}$ and $j \in \{1,\ldots, m\}$ with
+  $f_{i\jay}:A_i \to B_\jay$ in an
+  inverse  category \X with a disjoint sum  tensor which satisfy the two conditions:
+  \begin{align}
+    &\text{For each }i,\ \cdperp[f_{i \jay} \cp{\jay}]_{\jay=1,\ldots,m}
+    \text{ where } \cp{\jay}: B_\jay \to B_1\+B_2\+\cdots\+B_m
+      \label{eq:inverse_sum_matrix_row_perp}\\
+    &\text{For each }j,\ \cdperp[\inv{\cp{i}} f_{i \jay}]_{i=1,\ldots,n}
+    \text{ where } \inv{\cp{i}} = \icp{i} : A_1\+A_2\+\cdots\+A_n \to A_i
+    \label{eq:inverse_sum_matrix_column_perp}
+  \end{align}
   is called an \emph{inverse sum matrix}.
-
-  In the following we will use the notation $\cp{i}$ for the $i^{\text{th}}$ injection map of the
-  inverse sum.
-
-  Further, we define a monoid $\diamond$ of any two such matrices by
-  $[h_{i k}] = [f_{i j}] \diamond [g_{j k}]$ where the element $h_{i k}$ of the matrix is given by:
-  \[
-    h_{i k} = \bigsqcup_j f_{i j} \cp{i} g_{j k}
-  \]
-  noting again that composition of maps is diagrammatic order. Of course, this is only defined when
-  the domain of $g_{\jay k}$ is the inverse sum of some objects in $\X$ and the range of
-  $f_{i \jay}$.
-
-  We also define $\diamond$ for an inverse sum matrix $[f_{i j}]$ and a row (list) of objects
-  $[A_i]$ in $\X$ by $[B_j] = [A_i]\diamond[f_{i\jay}]$ is given by
-  \[
-    B_j = \Sigma_i f_{i \jay} A_i
-  \]
-  where $\Sigma$ stands for the inverse sum operation of the category $\X$. Note this requires
-  choosing a specific inverse sum for each pair of objects from the set of isomorphic inverse sums.
 \end{definition}
 
+  In the above and following we will use the notation $\cp{i}$ for the $i^{\text{th}}$ injection
+  map of the disjoint sum tensor, with $i$ starting at 1. This simply extends the notation
+  introduced in Definition~\ref{def:disjointness_tensor}.
+
+  We will show that this type of matrix corresponds to maps in a the category \imatx, where
+  composition is given by ``matrix multiplication'', where the operations of multiplication and
+  addition are replaced with composition in \X and the disjoint join respectively.
+
 \begin{definition}\label{def:inverse_matrix_category}
-  Given an inverse sum category $\X$, we define $iMat(\X)$, the \emph{inverse matrix category} of
-  \X as follows:
-  \rcategory{Lists of the objects of $\X$.}{
-    The inverse sum matrix $[f_{i\jay}]: [A_i] \to [B_j]$ where each individual map
-    $f_{i\jay}:A_i \to B'_{i\jay}$ is a map in $\X$. The $B_j$ are the chosen inverse sums of the
-    $B'_{i\jay}$. The result of $[f_{i\jay}] [A_i]$ is given by $[A_i]\diamond[f_{i\jay}]$.}{
+  Given an inverse category \X with a disjoint sum tensor, we define the \emph{inverse
+  matrix category} of \X, \imatx, as follows:
+  \rcategory{Non-empty lists of the objects of $\X$.}{
+    Inverse sum matrices $[f_{i\jay}]: [A_i] \to [B_\jay]$. In such a matrix each individual map
+    $f_{i\jay}:A_i \to B_{\jay}$ is a map in $\X$. For each $j$, $B_\jay$ is given by
+    applying the map $\djoin_i \icp{i} f_{i\jay}$ to the object $\+_i A_i$}{
     The inverse sum matrix $I$.}{
     Given $[f_{i\jay}]: [A_i] \to [B_\jay]$ and $[g_{j k}] : [B_\jay] \to [C_k]$, then
-    $[f_{i\jay}][g_{j k}]: [A_i] \to [C_k]$ is defined as $[g_{j k}] \diamond [f_{i\jay}]$.}{
+    $[h_{i k}] = [f_{i\jay}][g_{\jay k}]: [A_i] \to [C_k]$ is defined as
+    $h_{i k} = \djoinbig_\jay f_{i \jay}g_{\jay k}$.}{
     We set $\rst{[f_{i\jay}]}$ to be $[f'_{i\jay}]$ where $f'_{i\jay} = 0$ when $i\neq \jay$
-    and $f'_{i i} = \sqcup_\jay \rst{f_{i\jay}}$.}
-  We will use the notation $\delta[d_1,d_2,\ldots,d_n]$ for a diagonal $n\times n$ matrix with
-  entries along the diagonal of $[d_1,d_2,\ldots,d_n]$ and $\delta_j[d_j]$ for diagonal matrices
-  where the $j,j$ entry is $d_j$.
+    and $f'_{i i} = \djoin_\jay \rst{f_{i\jay}}$.}
+  In the following, we will use the notation $\diag[d_1,d_2,\ldots,d_n]$ for a diagonal $n\times n$
+  matrix with entries $[d_1,d_2,\ldots,d_n]$ and $\diag_j[d_j]$ for diagonal matrices where the
+  $j,j$ entry is $d_j$.
   %TODO: Get the notation better
 \end{definition}
 
 \begin{lemma}\label{lem:inverse_matrix_category_is_a_restriction_category}
-  When $\X$ is an inverse sum category, $iMat(\X)$ is a restriction category.
+  When $\X$ is an inverse sum category, \imatx is a restriction category.
 \end{lemma}
 \begin{proof}
   We need to show the following:
@@ -1714,34 +1814,32 @@ show that $iMat(\X)$ has is an inverse category and that $\X$ embeds within this
     \item Composition is well defined and associative;
     \item The restriction is well defined.
   \end{itemize}
-  Composition is well defined: Consider $[h_{i k}] = [f_{i j}] [g_{j k}] (= [g_{j k}] \diamond
-  [f_{i\jay}])$ where
-  \[
-    [f_{i j}]: [A_1,\ldots, A_n] \to [B_1,\ldots, B_m] \text{ and }
-    [g_{j k}]: [B_1,\ldots, B_m] \to [C_1,\ldots, C_\ell].
-  \]
-  By Definition~\ref{def:inverse_sum_matrix}, we know $h_{i k} = \bigsqcup_\jay f_{i \jay} g_{\jay
-  k}$. Individually, for each $\jay$ we know the composition $f_{i \jay}\cp{i} g_{\jay k}$ is
-  defined and is from $A_i$ to $C'_{\jay k}$. By the the stability and universality of $\perp$, we
-  know $h_{i k}$ exists and by the definition of $\djoin$, we have each $h_{i k}: A_i \to C'_{\jay
-  k}$ and hence composition is well-defined.
 
-  Associativity of composition. We have
+  \emph{Composition is well defined:} Consider $[h_{i k}] = [f_{i j}] [g_{j k}]$ where $[f_{i j}]:
+  [A_1,\ldots, A_n] \to [B_1,\ldots, B_m]$ and $[g_{j k}]: [B_1,\ldots, B_m] \to [C_1,\ldots,
+  C_\ell]$. By supposition, we know $h_{i k} = \djoinbig_\jay f_{i \jay} g_{\jay k}$. As each of
+  the maps are inverse sum matrices, we know that $\cdperp [f_{i \jay} \cp{j}]$ and
+  $\cdperp[\inv{\cp{j}}g_{\jay k}]$. Hence, For each $\jay$ we know the composition $f_{i \jay}
+  \cp{j} \inv{\cp{j}}g_{\jay k} = f_{i \jay} g_{\jay k}$ is defined and from $A_i$ to $C_{k}$. By
+  the the stability and universality of $\djoin$, we know $h_{i k}$ exists and by the definition of
+  $\djoin$, we have each $h_{i k}: A_i \to C_k$ and hence composition is well-defined.
+
+  \emph{Associativity of composition.} We have
   \begin{align*}
     ([f_{i j}] [g_{j k}]) [h_{k \ell}]
-        &= \left[(\bigsqcup_j f_{i j} \cp{i} g_{j k})\right] [h_{k \ell}]\\
-        &=\left[ \bigsqcup_k (\bigsqcup_j f_{i j} \cp{i} g_{j k}) \cp{j} h_{k \ell}\right]\\
-        &=\left[ \bigsqcup_j f_{i j} \cp{i} (\bigsqcup_k g_{j k}\cp{j} h_{k \ell})\right]\\
+        &= \left[(\djoinbig_j f_{i j}  g_{j k})\right] [h_{k \ell}]\\
+        &=\left[ \djoinbig_k (\djoinbig_j f_{i j} g_{j k}) h_{k \ell}\right]\\
+        &=\left[ \djoinbig_j f_{i j}  (\djoinbig_k g_{j k} h_{k \ell})\right]\\
         &=[ f_{i j} ]  ([g_{j k}] [h_{k \ell}])
   \end{align*}
 
-  For the restriction axioms:
+  \emph{Proof the restriction axioms are held:}
   \begin{align*}
     \rone \quad& \rst{[f_{i\jay}]}[f_{i\jay}] =
       \begin{bmatrix}
-        (\sqcup_j \rst{f_{1\jay}}) f_{11} & \cdots & (\sqcup_\jay \rst{f_{1 \jay}}) f_{1n}\\
+        (\djoin_j \rst{f_{1\jay}}) f_{11} & \cdots & (\djoin_\jay \rst{f_{1 \jay}}) f_{1n}\\
         & \vdots & \\
-        (\sqcup_\jay \rst{f_{m\jay}}) f_{m1} & \cdots & (\sqcup_\jay \rst{f_{m\jay}}) f_{m n}
+        (\djoin_\jay \rst{f_{m\jay}}) f_{m1} & \cdots & (\djoin_\jay \rst{f_{m\jay}}) f_{m n}
       \end{bmatrix} = [f_{i\jay}].\\
   \end{align*}
   \begin{align*}
@@ -1750,59 +1848,328 @@ show that $iMat(\X)$ has is an inverse category and that $\X$ embeds within this
   \end{align*}
   \begin{align*}
     \rthree \quad & \rst{\rst{[f_i\jay]}[g_{\jay k}]} =
-      \rst{\delta[\sqcup_\jay \rst{f_{1\jay}},\ldots,\sqcup_\jay \rst{f_{n \jay}}] [g_{\jay k}]}
+      \rst{\diag[\djoin_\jay \rst{f_{1\jay}},\ldots,\djoin_\jay \rst{f_{n \jay}}] [g_{\jay k}]}
       \\[10pt]
       & = \rst{\begin{bmatrix}
-        \sqcup_\jay \rst{f_{1\jay}} g_{11} & \ldots & \sqcup_\jay \rst{f_{1 \jay}} g_{1 k}\\
+        \djoin_\jay \rst{f_{1\jay}} g_{11} & \ldots & \djoin_\jay \rst{f_{1 \jay}} g_{1 k}\\
         & \vdots & \\
-        \sqcup_\jay \rst{f_{n\jay}} g_{n 1} & \ldots & \sqcup_\jay \rst{f_{n \jay}} g_{n k}\\
+        \djoin_\jay \rst{f_{n\jay}} g_{n 1} & \ldots & \djoin_\jay \rst{f_{n \jay}} g_{n k}\\
       \end{bmatrix}} \\[10pt]
-      & = \delta[\sqcup_k (\rst{\sqcup_\jay (\rst{f_{1\jay}} g_{1k})}), \ldots,
-                 \sqcup_k (\rst{\sqcup_\jay(\rst{f_{n\jay})} g_{n k}})]\\
-      & = \delta[\sqcup_k (\sqcup_\jay(\rst{f_{1\jay}}) \rst{g_{1k}}), \ldots,
-                 \sqcup_k (\sqcup_\jay(\rst{f_{n\jay}}) \rst{g_{n k}})]\\
-      & = \delta[(\sqcup_\jay(\rst{f_{1\jay}}) \sqcup_k  \rst{g_{1k}}), \ldots,
-                 (\sqcup_\jay(\rst{f_{n\jay}}) \sqcup_k  \rst{g_{n k}})]\\
-      & = \rst{[f_i\jay]}\rst{[g_{\jay k}]}\\
+      & = \diag[\djoin_k (\rst{\djoin_\jay (\rst{f_{1\jay}} g_{1k})}), \ldots,
+                 \djoin_k (\rst{\djoin_\jay(\rst{f_{n\jay})} g_{n k}})]\\
+      & = \diag[\djoin_k (\djoin_\jay(\rst{f_{1\jay}}) \rst{g_{1k}}), \ldots,
+                 \djoin_k (\djoin_\jay(\rst{f_{n\jay}}) \rst{g_{n k}})]\\
+      & = \diag[(\djoin_\jay(\rst{f_{1\jay}}) \djoin_k  \rst{g_{1k}}), \ldots,
+                 (\djoin_\jay(\rst{f_{n\jay}}) \djoin_k  \rst{g_{n k}})]\\
+      & = \rst{[f_i\jay]}\,\rst{[g_{\jay k}]}\\
   \end{align*}
   \begin{align*}
-      \rfour \quad & [f_{i\jay}]\rst{[g_{\jay k}]} = [f_{i\jay}]\delta_\jay[\sqcup_k \rst{g_{\jay k}}]
+      \rfour \quad & [f_{i\jay}]\rst{[g_{\jay k}]} =
+        [f_{i\jay}]\diag_\jay[\djoin_k \rst{g_{\jay k}}]
         \\[10pt]
       & = \begin{bmatrix}
-        f_{11}\sqcup_k \rst{g_{1 k}} &\ldots & f_{1n}\sqcup_k \rst{g_{n k}} \\
+        f_{11}\djoin_k \rst{g_{1 k}} &\ldots & f_{1n}\djoin_k \rst{g_{n k}} \\
         & \vdots & \\
-        f_{m1}\sqcup_k \rst{g_{1 k}} &\ldots & f_{m n}\sqcup_k \rst{g_{n k}}
+        f_{m1}\djoin_k \rst{g_{1 k}} &\ldots & f_{m n}\djoin_k \rst{g_{n k}}
       \end{bmatrix}\\[10pt]
       & = \begin{bmatrix}
-        \sqcup_k f_{11}\rst{g_{1 k}} &\ldots & \sqcup_k f_{1n}\rst{g_{n k}} \\
+        \djoin_k f_{11}\rst{g_{1 k}} &\ldots & \djoin_k f_{1n}\rst{g_{n k}} \\
         & \vdots & \\
-        \sqcup_k f_{m1}\rst{g_{1 k}} &\ldots & \sqcup_k f_{m n}\rst{g_{n k}}
+        \djoin_k f_{m1}\rst{g_{1 k}} &\ldots & \djoin_k f_{m n}\rst{g_{n k}}
       \end{bmatrix}\\[10pt]
       & = \begin{bmatrix}
-        \sqcup_k \rst{f_{11} g_{1 k}} f_{11} &\ldots & \sqcup_k \rst{f_{1n} g_{n k}} f_{1n}\\
+        \djoin_k \rst{f_{11} g_{1 k}} f_{11} &\ldots & \djoin_k \rst{f_{1n} g_{n k}} f_{1n}\\
         & \vdots & \\
-        \sqcup_k \rst{f_{m1} g_{1 k}}f_{m1} &\ldots & \sqcup_k \rst{f_{m n} g_{n k}}f_{m n}
+        \djoin_k \rst{f_{m1} g_{1 k}}f_{m1} &\ldots & \djoin_k \rst{f_{m n} g_{n k}}f_{m n}
       \end{bmatrix}\\[10pt]
-      & = \begin{bmatrix}
-        \sqcup_\jay\sqcup_k \rst{f_{1\jay} g_{\jay k}} f_{11} &\ldots &
-          \sqcup_\jay\sqcup_k \rst{f_{1\jay} g_{\jay k}} f_{1n}\\
+      & = \begin{bmatrix} % becuase the f_ij \perp fi1 etc.
+        \djoin_\jay\djoin_k \rst{f_{1\jay} g_{\jay k}} f_{11} &\ldots &
+          \djoin_\jay\djoin_k \rst{f_{1\jay} g_{\jay k}} f_{1n}\\
         & \vdots & \\
-        \sqcup_\jay\sqcup_k \rst{f_{m\jay} g_{\jay k}}f_{m1} &\ldots &
-          \sqcup_\jay\sqcup_k \rst{f_{m \jay} g_{\jay k}}f_{m n}
+        \djoin_\jay\djoin_k \rst{f_{m\jay} g_{\jay k}}f_{m1} &\ldots &
+          \djoin_\jay\djoin_k \rst{f_{m \jay} g_{\jay k}}f_{m n}
       \end{bmatrix}\\[10pt]
       &= \rst{[f_{i\jay}][g_{\jay k}]} [f_{i\jay}].
   \end{align*}
 \end{proof}
 
+Note that when $\X$ is an inverse category with a disjoint join, \imatx is also an inverse
+category. The inverse of the map $f = [f_{i\jay}]$ is the map $\inv{f}:=[\inv{f_\jay i}]$. Recalling
+that the rows and columns of $f$ are each disjoint, we see that the composition
+$f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
+
+\begin{lemma}\label{lem:imat_has_restriction_zero}
+  Given \X is an inverse restriction category with a restriction zero, $0$, and a disjoint join,
+  then \imatx has a restriction zero.
+\end{lemma}
+\begin{proof}
+  The restriction zero in \imatx is the list $[0]$.
+
+  For the ojbect $A=[A_1,\ldots,A_n]$, the $0$ map to it is given by the $n\times 1$ matrix
+  $[0,\ldots,0]$. The map from $0$ is given by the $1\times n$ matrix
+  $\begin{bmatrix}0\\ \vdots\\ 0\end{bmatrix}$.
+
+\end{proof}
+
+\begin{lemma}\label{lem:imat_is_disjoint_tensor_category}
+  Given \X is an inverse restriction category with a restriction zero, $0$, and a disjoint join,
+  then the monoid $\+$ defined by list concatenation of objects is a disjointness tensor.
+\end{lemma}
+\begin{proof}
+  We first note the monoidal isomorphisms:
+  \begin{align*}
+    \upl : [0,A_1,A_2,\ldots,A_n] \to [A_1,A_2,\ldots,A_n] \qquad& \upl :=
+    \begin{bmatrix}
+      0&\cdots&0 \\
+      & I_{n\times n}
+    \end{bmatrix}\\
+    \upr : [A_1,A_2,\ldots,A_n,0] \to [A_1,A_2,\ldots,A_n] \qquad & \upr :=
+    \begin{bmatrix}
+      & I_{n\times n} \\
+      0&\cdots&0
+    \end{bmatrix} \\
+    a_{\+} : (A\+B)\+C \to A\+ (B\+C) \qquad &a_{\+} := id \\
+    c_{\+} : [A_1,\ldots,A_n,B_1,\ldots,B_m] \to [B_1,\ldots,B_m,A_1,\ldots,A_n]  \qquad &
+      c_{\+} := \begin{bmatrix}
+                      0_{m\times n} & I_{n\times n} \\
+                      I_{m\times m} & 0_{n\times m}
+                \end{bmatrix}
+  \end{align*}
+
+  The action of $\+$ on maps is given by:
+  \[
+    [f_{i\jay}]\+ [g_{\ell \kay}] = \begin{bmatrix}
+      [f_{i\jay}] & 0 \\
+      0 & [g_{\ell \kay}]
+      \end{bmatrix}.
+  \]
+
+  With this definition, we see that $\+$ is a restriction functor:
+  \begin{align*}
+    id_X \+ id_Y &= id_{X\+Y} \\
+    f_1 g_1 \+ f_2 g_2 &= h_1 \+ h_2 =
+    \begin{bmatrix}
+      h_1 & 0 \\ 0 & h_2
+    \end{bmatrix} =
+    \begin{bmatrix}
+      f_1 & 0 \\ 0 & g_1
+    \end{bmatrix}
+    \begin{bmatrix}
+      f_2 & 0 \\ 0 & g_2
+    \end{bmatrix} = (f_1 \+ g_1) (f_2 \+ g_2)
+  \end{align*}
+
+  Following Definition~\ref{def:disjointness_tensor}, we note $\icpa = (1\+0)\upr =
+  \begin{bmatrix}
+    1&0\\0&0
+  \end{bmatrix}
+  \begin{bmatrix}
+    1\\0
+  \end{bmatrix}  =
+  \begin{bmatrix}
+    1\\0
+  \end{bmatrix}
+  $ and similarly $\icpb =
+  \begin{bmatrix}
+    0\\1
+  \end{bmatrix}$. Suppose we have $f = [f_{i\jay}]$ and $g = [g_{i\jay}]$ where
+  $i \in \{1,\ldots,n\}$ and $j\in\{1,2\}$. Further suppose $f\icpa = g\icpa$ and $f\icpa = g\icpa$.
+  Therefore, $f \icpa = [f_{i 1}] = [g_{i 1}] = g\icpa$ and
+  $f \icpb = [f_{i 2}] = [g_{i 2}] = g\icpb$, but this means that $f = g$ and we may conclude
+  $\icpa$ and $\icpb$ are jointly monic. Similarly, $\cp{1} = [1\ 0]$ and $\cp{2} = [0\ 1]$ are
+  jointly epic.
+\end{proof}
+
+\begin{lemma}\label{lem:imat_tensor_is_a_disjoint_sum_tensor}
+  Given \X is an inverse category with a disjoint join and restriction zero, then \imatx
+  has a disjoint sum tensor.
+\end{lemma}
+\begin{proof}
+  By Lemma~\ref{lem:imat_is_disjoint_tensor_category}, we know that the tensor defined by
+  list catenation is a disjoint tensor. To show that it is disjoint sum tensor, we must
+  fulfill Definition~\ref{def:disjoint_sum_tensor}.
+
+  First, for the diagram below, we show that $\alpha$ exists if and only if
+  $f\icpb \tjleft g\icpb$. Note that diagram assumes all the solid arrows exist and make the
+  diagram a commutative diagram.
+
+  \begin{align*}
+    \xymatrix@C+5pt{
+      [A] \ar@/_/[ddr]_f \ar@/^/[drr]^g \ar@{.>}[dr]|-{\alpha} \\
+        & [X,Y,Z] \ar[d]^{\icp{1,2}} \ar[r]_{\icp{1,3}} & [X,Z] \ar[d]^{\icpa} \\
+        & [X,Y] \ar[r]_{\icpa} & [X]
+    }
+  \end{align*}
+  $f\icpb \tjleft g\icpb$ means there is an $h = [h_1,h_2]: [A]\to[Y,Z]$ such that
+  $h\icpa = f\icpb$ and $h\icpb = g\icpb$. From the diagram, given that $f = [f_1,f_2]$ and
+  $g = [g_1,g_2]$, we know that $f_1 = f\icpa = g\icpa = g_1$. We also have $h_1 = f_2$ and
+  $h_2 = g_2$. If we set $\alpha$ to the matrix $[f_1,f_2,g_2]$, the diagram above commutes.
+  We need only show that $\alpha$ is a map in \imatx. As $f, g$ and $h$ are maps in
+  \imatx, we know that:
+  \begin{align*}
+    f_1\cp{1} & \cdperp f_2 \cp{2}\\
+    f_1\cp{1} = g_1\cp{1} & \cdperp g_2 \cp{2}\\
+    f_2 \cp{2} = h_1\cp{1} & \cdperp h_2 \cp{2} = g_2 \cp{2}\\
+  \end{align*}
+  From this, we can conclude $\cdperp [f_1 \cp{1}, f_2 \cp{2}, g_2 \cp{3}]$.
+
+  Conversely, suppose we have an $\alpha = [\alpha_1, \alpha_2, \alpha_3]$ that makes the
+  above diagram commute. Then  $h := [\alpha_2, \alpha_3]$ is a map in $\X$.
+  Since $[\alpha_1,\alpha_3] = g$ and $[\alpha_1,\alpha_2] = f$, we have
+  $h\icpa = f\icpb$ and $h\icpb = g\icpb$, hence $h = f\icpb \tjleft g\icpb$.
+
+  The proof that $\beta$ in the diagram below exists if and only if $\cp{2}h\tjright \cp{2}k$
+  is similar.
+  \[
+    \xymatrix@C+5pt{
+        &&[A] \\
+         [X,Y] \ar[r]_{\cp{1,2}} \ar@/^/[urr]^h &[X,Y,Z] \ar@{.>}[ur]|-{\beta} \\
+         [X] \ar[u]^{\cpa} \ar[r]_{\cpa} & [X,Z]. \ar[u]^{\cp{1,3}} \ar@/_/[uur]_k
+    }
+  \]
+\end{proof}
+
+\begin{theorem}\label{thm:imatx_is_an_inverse_sum_category}
+  Given \X an inverse category with a disjoint sum tensor and restriction zero, \imatx is
+  an inverse sum category.
+\end{theorem}
+\begin{proof}
+  By Lemma~\ref{lem:imat_tensor_is_a_disjoint_sum_tensor}, we know $\imatx$ has a disjoint sum
+  tensor and therefore by Proposition~\ref{prop:disjointness_tensor_gives_disjoint_join},
+  it has a disjoint join. By Lemmas~\ref{lem:an_inverse_sum_tensor_gives_inverse_sums} and
+  \ref{lem:a_disjoint_sum_tensor_is_an_inverse_sum_tensor}, we know that $[A,B] = A\+B$ is
+  an inverse sum of $A$ and $B$ for any two objects in \imatx, and hence, \imatx is an inverse
+  sum category.
+\end{proof}
+
+\subsection{Equivalence between an inverse sum category and its matrix category} % (fold)
+\label{sub:equivalence_between_an_inverse_sum_category_and_its_matrix_category}
+In this sub-section we will provide restriction functors between an inverse sum category
+\X and its matrix category \imatx. Furthermore, we will show these functors form an
+equivalence between these two categories.
+
+\begin{definition}\label{def:functor_from_x_to_imatx}
+  Given $\X$ is an inverse sum category with disjoint join $\cdperp$ and restriction zero $0$,
+  define $M:\X \to \imatx$ by:
+  \begin{align*}
+    \text{Objects:}\ &M(A) := [A]\\
+    \text{Maps:}\ &M(f) := [f] \text{ -- The }1\times1\text{ matrix with entry }f.
+  \end{align*}
+\end{definition}
+\begin{lemma}\label{lem:m_is_a_functor}
+  The map $M$ from Definition~\ref{def:functor_from_x_to_imatx} is a restriction functor.
+\end{lemma}
+\begin{proof}
+  From the definition of \imatx, we have
+  \begin{align*}
+    &f: A\to B  \iff M(f):M(A)\to M(B)\quad ([f]: [A]\to [B])\\
+    &M(id_A)  = [id_{A}] = id_M(A)\\
+    &M(f g) = [f g] = [f][g] = M(f) M(g)\\
+    &M(\rst{f}) = [\rst{f}] = \rst{[f]} = \rst{M(f)}
+  \end{align*}
+\end{proof}
+
+\begin{definition}\label{def:functor_from_imatx_to_x}
+  Given $\X$ is an inverse sum category with disjoint join $\cdperp$ and restriction zero $0$,
+  and inverse sum tensor $\+$ define $S:\imatx \to \X$ by:
+  \begin{align*}
+    \text{Objects:}\ &S([A_1,A_2, \ldots, A_n]) := A_1\+A_2\+\cdots\+A_n\\
+    \text{Maps:}\ &S([f_{i\jay}]) := \djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j})
+  \end{align*}
+\end{definition}
+
+\begin{lemma}\label{lem:s_is_a_functor}
+  The map $S$ from Definition~\ref{def:functor_from_imatx_to_x} is a restriction functor.
+\end{lemma}
+\begin{proof}
+  From the definition of \imatx, where $A = [A_1,A_2,\ldots,A_n]$, $B=[B_1,B_2,\ldots,B_M]$,
+  and $f = [f_{i\jay}]$ we have
+  \begin{align*}
+    &S(id_A)  = S([id_{A_i}]) = \djoinbig_i \icp{i} (\djoin_j \cp{j}) = id_{S(A)}\\
+    &f: A\to B  \iff S(f):S(A)\to S(B) \iff
+      \djoinbig_i \icp{i} (\djoin_\jay f_{i\jay} \cp{j}) : A_1\+\cdots\+A_n \to B_1\+\cdots\+B_m\\
+    &M(\rst{f}) = [\rst{f}] = \rst{[f]} = \rst{M(f)}
+  \end{align*}
+  and for composition, we have
+  \begin{align*}
+    S(f)S(g) & = (\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j}))
+                  (\djoinbig_{j'} \icp{j'} (\djoin_k g_{\jay\kay} \cp{k})) \\
+    &= \djoinbig_i \icp{i} \djoinbig_j \djoinbig_{j'} f_{i\jay} \cp{j} \icp{j'}
+            (\djoin_k g_{\jay'\kay} \cp{k}) \\
+    &= \djoinbig_i \icp{i} \djoinbig_j  f_{i\jay} (\djoin_k g_{\jay\kay} \cp{k}) \\
+    &= \djoinbig_i \icp{i} \djoinbig_k (\djoin_j  f_{i\jay}  g_{\jay\kay} \cp{k}) \\
+    &= S([\djoin_j f_{i\jay} g_{\jay\kay}]) \\
+    &= S(f g)
+  \end{align*}
+
+\end{proof}
+
+\begin{proposition}\label{pro:x_and_imatx_are_equivalent}
+  Given an inverse category \X with a disjoint sum tensor $\+$ and restriction zero, then the
+  categories $\X$ and \imatx are equivalent.
+\end{proposition}
+\begin{proof}
+  The functors of the equivalence are $S$ from Definition~\ref{def:functor_from_imatx_to_x} and
+  $M$ from Definition~\ref{def:functor_from_x_to_imatx}.
+
+  First, we see that $M S:\X \to \X$ is the identity functor as
+  \begin{align*}
+    \text{Objects:}\ &S(M(A)) = S([A]) = A\\
+    \text{Maps:}\ &S(M(f)) = S([f]) = f
+  \end{align*}
+
+  Next, we need to show that there is a natural transformation and isomorphism $\rho$ such that
+  $\rho(S M) = I_{\imatx}$. For each object $[A_1,A_2,\ldots,A_n]$,
+  $\rho A = \begin{bmatrix}\icpa& \cdots &\icp{n}\end{bmatrix}$.
+
+  Note that the functor $S M$ has the following effect:
+
+  \begin{align*}
+    \text{Objects:}\quad &M(S([A_1,\ldots, A_n])) = M(A_1\+\cdots\+ A_n) =
+      [A_1\+\cdots\+ A_n]\\
+    \text{Maps:}\quad &M(S([f_{i\jay}]) = M(\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j}))
+      = [\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j})]
+  \end{align*}
+  We can now draw the commuting naturality square for $f=[f_{i\jay}]:[A_i]\to [B_j]$:
+  \[
+    \xymatrix{
+      SM([A_i]) \ar@{=}[r] & [\+_i A_i]
+          \ar[rrrr]^{\begin{bmatrix}\icpa& \cdots &\icp{n}\end{bmatrix}}
+          \ar[dd]_{SM(f)}
+          & &&& [A_i] \ar[dd]^{f}\\
+        &&&&&  \\
+      SM([B_j]) \ar@{=}[r] & [\+_j B_j]
+          \ar[rrrr]_{\begin{bmatrix}\icpa& \cdots &\icp{m}\end{bmatrix}}
+          & &&& [B_j] \\
+    }.
+  \]
+
+  Following the square by the top--right path from $[\+_i A_i]$ to $[B_j]$, by the definition of
+  the maps in the category \imatx, we see each $B_j = \djoin_i\icp{i} f_{i\jay}(\+_i A_i)$.
+  Following the left--bottom path, composing $SM(f)$ with $\begin{bmatrix}\icpa& \cdots
+  &\icp{m}\end{bmatrix}$ gives us the map
+  \begin{multline*}
+    \begin{bmatrix}\djoin_i \icp{i} (\djoin_j f_{i\jay}\cp{j})\icpa& \cdots
+      &\djoin_i \icp{i} (\djoin_j f_{i\jay}\cp{j})\icp{m}\end{bmatrix} = \\
+      \begin{bmatrix}\djoin_i \icp{i}  f_{i 1}& \cdots &\djoin_i \icp{i} f_{i m}\end{bmatrix}.
+  \end{multline*}
+  Applying this to $[\+_i A_i]$, we see each $B_j = \djoin_i\icp{i} f_{i\jay}(\+_i A_i)$ and the
+  two directions are equal.
+
+  Finally, we know that $\inv{\rho_{A_i}} = \begin{bmatrix}\cp{1}\\ \vdots \\\cp{n}\end{bmatrix}$
+  and defines an isomorphism between any object of the form $[\+_i A_i]$ and the
+  object $[A_1,\ldots,A_n]$
+\end{proof}
+% subsection equivalence_between_an_inverse_sum_category_and_its_matrix_category (end)
 \begin{lemma}\label{lem:inverse_sum_category_maps_are_matrices}
   In an inverse sum tensor category, any map $f:A\+B \to C\+D$ may be represented in a matrix form.
   Composition of maps may be computed by multiplication of the matrices, with composition taking
-  the place of base level multiplication and $djoin$ the place of addition.
+  the place of base level multiplication and $\djoin$ in the place of addition.
 \end{lemma}
 \begin{proof}
   Recall from Lemma~\ref{lem:an_inverse_sum_tensor_gives_inverse_sums} that $A\+B$ and $C\+D$ are
-  inverse sums. Referencing Definition~\ref{def:inverse_sum}, define $e_0 = \inv{i_0}i_0$ and $e_1
-  = \inv{i_1}i_1$ and recall that $e_0 \cdperp e_1$, $e_0 \djoin e_1 = 1$. Then given a function
+  inverse sums. Referencing Definition~\ref{def:inverse_sum}, define $e_0 = \inv{i_1}i_1$ and $e_1
+  = \inv{i_2}i_2$ and recall that $e_0 \cdperp e_1$, $e_0 \djoin e_1 = 1$. Then given a function
   $f:A\+B \to C\+D$ define
   \[ f_M =
      \begin{bmatrix}
@@ -1853,18 +2220,6 @@ $X=(X_1,\ldots,X_m)$. Maps between lists will be matrices $[f_{i j}]: (X_1,\ldot
 (Y_1,\ldots,Y_n)$. We will only consider maps whose matrices have disjoint rows, i.e., if
 $[f_{i j}]$ is a matrix, it must have $f_{i j} \cdperp f_{i k}$ for all $i$ whenever $j \ne k$.
 
-
-
-
-\begin{lemma}\label{lem:inverse_sums_means_mat_x_has_coproducts}
-  If $\X$ is an inverse category with an inverse sum tensor, $\imat{(\X)}$, the category of
-  inverse sum matrices over \X with composition as in Definition~\ref{def:inverse_sum_matrix},
-  has sums.
-\end{lemma}
-\begin{proof}
-
-
-\end{proof}
 
 
 
@@ -1941,65 +2296,328 @@ and
 
 \subsection{Distributive inverse categories} % (fold)
 \label{sub:distributive_inverse_categories}
-
+% \note{
+% The following two \emph{should} be equivalent. Either
+% \begin{itemize}
+%   \item $\*$ preserves sums
+%   \item $\*$ preserves disjoint
+% \end{itemize}
+%
+% Break down the map into disjoint items, if equivalent on pieces, then they are
+% equivalent.
+% }
 
 A \emph{Distributive inverse category} has a sum tensor and product tensor as defined in
 sub-section~\ref{sub:distributive_restriction_categories} where the product distributes over the sum
 in the following manner:
 \[
-  (A\* B) \+ (A \* C) \xrightarrow{f} A \* (B \+ C)
+  A \* (B \+ C) \xrightarrow{f}(A\* B) \+ (A \* C)
 \]
 where $f$ is some total function. As we are in an inverse category and $f$ is total, we have $f
 \inv{f} = 1$. This also implies $1 = \inv{f} f$ where
 \[
-  A \* (B \+ C) \xrightarrow{\inv{f}}(A\* B) \+ (A \* C).
+  (A\* B) \+ (A \* C) \xrightarrow{\inv{f}} A \* (B \+ C).
 \]
 
-Suppose we have an inverse category $\X$ with two tensors, $\*$ and $\+$, as described above and we
-have:
-\[
-  \xymatrix @C=80pt @R=50pt{
-    A \* (B \+ C) \ar[r]^{\inv{[1\* \cpa, 1\* \cpb]}} \ar@{=}[dr]
-    & (A\* B) \+ (A \* C) \ar[d]^{[1\* \cpa, 1\* \cpb]} \\
-    &A \* (B \+ C)
-  }
-\]
-%TODO: Find example where this is not identity
+\begin{definition}\label{def:join_of_arbitrary_maps}
+  Suppose \X is an inverse category with a disjoint sum tensor $\+$ and a restriction zero.
+  Then for maps $f:A \to B$ and $g:A \to C$, define the map $[f,g]:A \to B\+C$ as
+  $(f \cpa) \djoin (g \cpb)$. This is well defined as $\cpa \perp \cpb$ and $f\cpa \le \cpa$ and
+  $g \cpb \le \cpb$.
+\end{definition}
 
 \begin{lemma}
-  The category \X\ as defined above is an inverse distributive category.
+  Given an inverse category \X\ with a disjoint sum tensor $\+$, a restriction zero, and a tensor
+  $\*$ which distributes over the disjoint join, it is an inverse distributive category.
 \end{lemma}
 \begin{proof}
-  We will show that the required function, $f$ is $[1\* \cpa, 1\* \cpb]$.
 
-  \begin{equation}
-    (A\* B) \+ (A \* C) \xrightarrow{[1\* \cpa, 1\* \cpb]} A \* (B \+ C) \label{eq:dist1}
-  \end{equation}
-  The map in \ref{eq:dist1} is total. To see this, consider the unique decomposition of the
-  restriction of the map.
+  Note that we have
+  \[
+    \xymatrix @C=100pt @R=50pt{
+      A \* (B \+ C) \ar[r]^{[1\* \icpa, 1\* \icpb]} \ar@{=}[dr]
+      & (A\* B) \+ (A \* C) \ar[d]^{\inv{[1\* \icpa, 1\* \icpb]}} \\
+      &A \* (B \+ C)
+    }
+  \]
+  so all we need to show is that $f = [1\* \icpa, 1\* \icpb]$ is an isomorphism.
+
+  Using Definition~\ref{def:join_of_arbitrary_maps}, this map is
+  \[
+    ((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb)
+  \]
+
+  As a consequence of Lemma~\ref{lem:join_is_associative_and_commutative_monoid}, we know
+  the inverse of $f$ is
+  \[
+    \inv{((1 \* \icpa) \cpa )}\djoin \inv{((1\*\icpb) \cpb)} =
+      ( \icpa(1 \* \cpa) ) \djoin ( \icpb(1\*\cpb)).
+  \]
+  Having $\*$ distribute over the disjoint sum means that
+  $f \* (h\djoin k) = (f\*h) \djoin (f\*k)$. Given that we may calculate the restriction of $f$:
   \begin{align*}
-    \restr{[1\* \cpa, 1\* \cpb]} &=
-    \begin{bmatrix}
-      \restr{1\* \cpa} & 0 \\
-      0 & \restr{1\* \cpb}
-    \end{bmatrix}\\
-    &=
-    \begin{bmatrix}
-      \restr{1}\* \restr{\cpa} & 0 \\
-      0 & \restr{1}\* \restr{\cpb}
-    \end{bmatrix}\\
-    &=
-    \begin{bmatrix}
-      1\* 1 & 0 \\
-      0 & 1\* 1
-    \end{bmatrix}\\
-    &=
-    \begin{bmatrix}
-      1 & 0 \\
-      0 & 1
-    \end{bmatrix}\\
-    &=1
+    \rst{((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb)}
+      &= \rst{((1 \* \icpa) \cpa )}\djoin \rst{((1\*\icpb) \cpb)} \\
+      &= (1\* \rst{\icpa}) \djoin (1\* \rst{\icpb}) \\
+      &= (1\* (\rst{\icpa} \djoin \rst{\icpb}) \\
+      &= 1\* ((1\+0) \djoin (0\+1) )\\
+      &=1 \* 1 = 1
   \end{align*}
+  and for the inverse,
+
+  \begin{align*}
+    \rst{( \icpa(1 \* \cpa) ) \djoin ( \icpb(1\*\cpb))}
+      &= \rst{(\icpa(1 \* \cpa) )}\djoin \rst{(\icpb(1\*\cpb))} \\
+      &= (1\+0) \djoin (0\+1) \\
+      &= 1
+  \end{align*}
+
+  Hence, $[1\* \icpa, 1\* \icpb]$ is an isomorphism and $\X$ is a distributive category.
+\end{proof}
+
+We have seen that a second tensor distributing over the disjoint joins implies that we have an
+inverse distributive category. We now show the converse is true.
+\begin{lemma}\label{lem:distributive_means_distribute_over_triangles}
+  Given an inverse distributive category \X with a restriction zero, where $\*$ distributes over
+  $\+$ with $\+$ being a disjoint sum tensor, then $h\*(f\tjleft g) = (h\tjleft f) \* (h\tjleft g)$
+  and $h\*(f\tjright g) = (h\tjright f) \* (h\tjright g)$.
+\end{lemma}
+\begin{proof}
+  Let $h:A \to C$, $f:B \to D$ and $g: B \to E$. Consider the following diagram:
+  \[
+    \xymatrix@R+15pt@C+10pt{
+      & && B\*E\\
+      A\*C \ar[rr]^{h\*(f\tjleft g)} \ar[drrr]_{h\*f} \ar[urrr]_{h\*g}
+        && B \* (D \+ E) \ar[r]^{\cong} \ar[dr]^{1\*\cpa} \ar[ur]^{1\*\cpb}
+        & (B\*D) \+ (B \* E) \ar[d]^{\cpa} \ar[u]_{\cpb}\\
+      & && B\*D.
+    }
+  \]
+  The two leftmost  triangles commute by the diagram for $f\tjleft g$. The right hand triangles
+  commutes due to the distributivity of $\*$ over $\+$. But this then says that
+  $h\*(f\tjleft g) = (h\* f)\tjleft(h\* g)$, up to isomorphism, by the uniqueness of the
+  $\tjleft$ operation.
+
+  The argument for showing $h\*(f\tjright g) = (h\* f)\tjright(h\* g)$ follows the same methodology.
+\end{proof}
+\begin{lemma}\label{lem:distributive_means_distribute_over_join}
+  Given an inverse distributive category \X with a restriction zero, where $\*$ distributes over
+  $\+$ with $\+$ being a disjoint sum tensor, then $\*$ distributes over the disjoint join.
+\end{lemma}
+\begin{proof}
+  First recall the definition of $f\tjoin g = (\rst{f}\tjleft\rst{g})(f\tjright g)$. So, in order
+  to show $h\*(f\tjoin g) = (h\*f)\tjoin (h\*g)$, we need to show that
+  \begin{equation}
+    h\*(\rst{f}\tjleft\rst{g})(f\tjright g) = (\rst{h\*f}\tjleft\rst{h\*g})(h\*f\tjright h\*g).
+    \label{eq:distribute_over_left_right}
+  \end{equation}
+
+  Since $h\*(\rst{f}\tjleft\rst{g})(f\tjright g) =
+  (\rst{h}\*(\rst{f}\tjleft\rst{g}))(h\*(f\tjright g))$, this follows directly from
+  Lemma~\ref{lem:distributive_means_distribute_over_triangles} and the fact that $\*$ is a
+  restriction functor.
+\end{proof}
+
+\begin{corollary}\label{cor:inverse_pdt_preserves_disjointness}
+  Suppose we have an inverse distributive category \X with a restriction zero, where $\*$
+  distributes over $\+$ with $\+$ being a disjoint sum tensor. If $f \perp g$, then $h\*f \perp h\*
+  g$ for any $h$.
+\end{corollary}
+\begin{proof}
+  As $f\perp g$, we have $f\tjright g$ and $f\tjleft g$. By
+  Lemma~\ref{lem:distributive_means_distribute_over_triangles}, both $h\*f \tjright h\*g$ and
+  $h\*f \tjleft h\* g$ exist and therefore $h\*f \perp h\*g$.
+\end{proof}
+\begin{corollary}\label{cor:inv_product_of_disjoint_is_disjoint}
+  Suppose we have an inverse distributive category \X with a restriction zero, where $\*$
+  distributes over $\+$ with $\+$ being a disjoint sum tensor. Further suppose we have
+  $f\perp g : A\to B$ and $h \perp g: C\to D$. Then $(f\*h)\perp (g\*k)$.
+\end{corollary}
+\begin{proof}
+  By Corollary~\ref{cor:inv_product_of_disjoint_is_disjoint}, we have that
+  $((f\djoin g)\*h) \perp ((f\djoin g)\* k)$. Then, by \axiom{DJ}{1} and \axiom{Dis}{3} we have
+  $(f\*h)\perp (g\*k)$.
 \end{proof}
 % subsection distributive_inverse_categories (end)
-% section completing_a_distributive_inverse_category (end)
+
+\subsection{Discrete inverse categories with inverse sums} % (fold)
+\label{sub:discrete_inverse_categories_with_inverse_sums}
+
+We now consider the case where we have a discrete inverse category with inverse product
+tensor $\*$ and a disjoint join tensor $\+$, with the $\*$ tensor preserves the
+disjoint join.
+
+\begin{definition}\label{def:sum_product_inverse_category}
+  An inverse category will be referred to as a \emph{sum-product inverse category} when:
+  \begin{enumerate}
+    \item It is a discrete inverse category with inverse product tensor $\*$;
+    \item it has a restriction zero, $0$;
+    \item it has a disjoint join tensor, $\+$, and $\*$ preserves the associated disjoint join.
+  \end{enumerate}
+\end{definition}
+
+We recall the $\wtc$ construction of Definition~\ref{defn:xequivalence} where the discrete
+cartesian restriction category \Xt is built from the discrete inverse category \X. \Xt has the same
+objects as \X, while the maps are equivalence classes of maps in \X.
+
+A map in \Xt is related to map in \X in the following way:
+\[
+  \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
+\]
+
+Our goal is to show that an inverse sum in a sum-product inverse category becomes a co-product
+in \Xt.
+
+\begin{lemma}\label{lem:x_tilde_has_a_restriction_zero}
+  Given $\X$ is a sum-product inverse category, then $\Xt$, the discrete inverse category created
+  from $\X$, has a restriction zero.
+\end{lemma}
+\begin{proof}
+  Recall from ... that $\X$ is equivalent as a category to $\Xt$ under the identity on objects
+  functor $\wtf:\X \to \Xt$ given by $\wtf(f)\mapsto (f\inv{\usr},1)$.
+
+  In $\X$, we know $0$ is a terminal and initial object, with maps
+  $A \xrightarrow{t_A} 0 $ and $0 \xrightarrow{z_A} A$, with $\rst{0_{A,A}} = 0_{A,A} = t_A z_A$.
+
+  First we note that $0$ is both initial and terminal in $\Xt$, with the terminal maps being
+  $\wtf(t_A)$ and initial maps being $\wtf(z_A)$.
+
+  As was also shown in ..., $\wtf$ is a restriction functor, so in $\Xt$ we have
+  \[
+    0_{A,A} = \wtf(t_A)\wtf(z_A) = \wtf(t_A z_A) = \wtf(0_{A,A}) = \wtf(\rst{0_{A,A}}) =
+    \rst{\wtf(0_{A,A})} = \rst{0_{A,A}}.
+  \]
+  Hence, $0_{A,A}$ is a restriction zero in $\Xt$.
+\end{proof}
+
+\begin{lemma}\label{lem:maps_from_inverse_sums_have_disjoint_equivalences}
+  In a sum-product inverse category \X, given an inverse sum $X$ over $A$ and $B$ with maps $f, g$
+  as in the diagram below, then we may construct maps $f'$ and $g'$ with $f\xequiv{}f'$ and
+  $g\xequiv{}g'$ such that $\inv{i_1}f' \perp \inv{i_2}g'$.
+  \[
+    \xymatrix{
+      A \ar[dr]^{i_1} \ar[rr]^f && Y\*C\\
+      & X\\
+      B \ar[ur]^{i_2} \ar[rr]^g && Y\*D\\
+    }
+  \]
+\end{lemma}
+\begin{proof}
+  We set:
+  \begin{align*}
+    f' &= \Delta f(1\*\cpa)\* \rst{f}i_1\\
+    g' &= \Delta g(1\*\cpb)\* \rst{g}i_2
+  \end{align*}
+
+  To show $f\equiv f'$, we must first show their restriction is the same.
+  \begin{align*}
+    \rst{\Delta f(1\*\cpa)\* \rst{f}i_1} &= \rst{\Delta \rst{f(1\*\cpa)}\* \rst{\rst{f}i_1}}\\
+    & = \rst{\Delta \rst{f} \* \rst{f}}\\
+    & = \rst{\rst{f}\Delta}\\
+    &= \rst{\rst{f}} = \rst{f}
+  \end{align*}
+
+  Note that $\rst{g'} = \rst{g}$ using the same argument.
+
+  Now we detail the mediating map between $f$ and $f'$:
+  \[
+    \xymatrix @C=25pt @R=25pt{
+      & & Y \* C \ar@{.>}[dr]^{\Delta\* 1}\\
+      & & & Y \* (Y\* C) \ar@{.>}[d]^{1\*\Delta}\\
+      A \ar[uurr]^f \ar[ddrr]_{f'}
+      & & & Y \* (Y\* C)\* (Y\* C) \ar@{.>}[d]^{1\* (1\*\cpa) \* \inv{f} i_1} \\
+      & & & Y \* (Y\*(C\+ D)\*X) \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
+      && Y\*(C\+ D)\*X
+    }
+  \]
+  The primary points to remember when proving this is a commutative diagram is the use
+  of the exchange rule, the frobenius identities and of course, the naturality of $\Delta$.
+  \begin{align*}
+    f(\Delta\*1)&(1\*\Delta_{Y\*C})(1\*1\*\cpa\*\inv{f}i_1)(\*1\*1) \\
+    &= f(\Delta_Y\*1)(1\*\Delta_Y\*\Delta_C)(1\*1\*c_{\*}\*1)(\inv{\Delta_Y}\*\cpa\*\inv{f}i_1) \\
+    &= f(\Delta_Y\*1)(1\*\Delta_Y\*\Delta_C)(\inv{\Delta_Y}\*1\*1\*1)(1\*\*c_{\*}\*1)(1\*\cpa\*\inv{f}i_1) \\
+    &= f(\Delta_Y\*1)(1\*1\*\Delta_C)(1\*c_{\*}\*1)(1\*\cpa\*\inv{f}i_1) \\
+    &= f(\Delta_Y\*\Delta_C)(1\*c_{\*}\*1)(1\*\cpa\*\inv{f}i_1) \\
+    &= \Delta_A (f\*f)(1\*\cpa\*\inv{f}i_1) \\
+    &= \Delta_A f(1\*\cpa)\*\rst{f}i_1 \\
+    &= f'
+  \end{align*}
+  and hence $f\xequiv{h}f'$ where $h = \Delta (1\*\cpa) \* \inv{f} i_1$.
+
+  The proof for $g\equiv g'$ is analogous.
+\end{proof}
+
+\begin{lemma}\label{lem:inverse_sum_candidate_maps_are_disjoint}
+  Given the same assumptions as in Lemma~\ref{lem:maps_from_inverse_sums_have_disjoint_equivalences}
+  the maps $\inv{i_1}f'$ and $\inv{i_2}g'$ are disjoint.
+\end{lemma}
+\begin{proof}
+  Note first that by construction of $f'$ and $g'$ that we have parallel maps:
+  \[
+    \inv{i_1}f',\ \inv{i_2}g': X \to Y\*(C\+D)\*X.
+  \]
+
+  We will show that their restriction and ranges are disjoint, hence they will be disjoint.
+  As $\rst{\inv{i_1}} \perp \rst{\inv{i_2}}$ and $\rst{\inv{i_1}f'} \le \rst{\inv{i_1}}$ and
+  $\rst{\inv{i_2}g'} \le \rst{\inv{i_2}}$, we immediately have
+  $\rst{\inv{i_1}f'} \perp \rst{\inv{i_2}g'}$.
+
+  For the ranges, we have
+  \begin{align*}
+    \wrg{\inv{i_1}\Delta  (f (1\*\cpa)\* \rst{f}i_1)} &=
+      \rst{((1\*\icpa)\inv{f} \* \inv{i_1}\rst{f})\inv{\Delta}i_1}\\
+      &= \rst{((1\*\icpa)\inv{f} \* \inv{i_1}\rst{f})\inv{\Delta}}\\
+      &\le \rst{((1\*\icpa)\inv{f} \* \inv{i_1}\rst{f})}\\
+      &= \rst{((1\*\icpa)\inv{f}} \* \rst{\inv{i_1}\rst{f})}\\
+      &\le \rst{(1\*\icpa)} \* \rst{\inv{i_1}}
+  \end{align*}
+  and similarly
+  \[
+     \wrg{\inv{i_2} g'} \le \rst{((1\*\icpb)} \* \rst{\inv{i_2})}.
+  \]
+
+  Using Lemma~\ref{lem:disjointness_various}
+  we know that $\rst{\inv{i_1}} \perp \rst{\inv{i_2}}$ and by the same lemma,
+  $\rst{(\icpa)}\perp \rst{(\icpb)}$. From
+  Corollary~\ref{cor:inverse_pdt_preserves_disjointness}
+  we conclude that $\rst{(1\*\icpa)}\perp \rst{(1\*\icpb)}$ and finally by
+  Corollary~\ref{cor:inv_product_of_disjoint_is_disjoint} we have
+  $(\rst{(1\*\icpa)}\* \rst{\inv{i_2}} )\perp (\rst{(1\*\icpb)} \* \rst{\inv{i_2}})$ giving us
+  $\wrg{\inv{i_1}f'} \perp \wrg{\inv{i_2}g'}$ and therefore $\inv{i_1}f' \perp \inv{i_2}g'$.
+\end{proof}
+\begin{theorem}\label{thm:x_tilde_has_coproducts_if_x_is_sum_product_category}
+  Given \X is an sum-product inverse category, then the category \Xt has co-products.
+\end{theorem}
+\begin{proof}
+  From Lemma~\ref{lem:an_inverse_sum_tensor_gives_inverse_sums} we know that $A\+B$ is an inverse
+  sum of the objects $A, B$ in \X. This will become the co-product of $A, B$ in \Xt.
+
+  The injection maps of the co-product are $i_1 =(\cpa \usr, 1)$ and $i_2 = (\cpb \usr, 1)$.
+
+  Consider the following diagram in \Xt:
+  \[
+    \xymatrix{
+      A \ar[drrr]^{(f,C)} \ar[dr]_{i_1} \\
+      & A\+B \ar@{.>}[rr]^h & & Y \\
+      B \ar[urrr]_{(g,D)} \ar[ur]^{i_2}
+    }
+  \]
+
+  Note this corresponds to the diagram in \X of
+  Lemma~\ref{lem:maps_from_inverse_sums_have_disjoint_equivalences} where $X$ is replaced by $A\+B$.
+
+  Hence by that lemma we have an $f'$ and $g'$ in \X such that $\icpa f' \perp \icpb g'$ and
+  we may therefore form the disjoint join. We set $h$ to be $(\icpa f' \djoin \icpb g',
+  (C\+D)\*(A\+B))$.
+
+  By construction, in \X, $\cpa h = \cpa\icpa f' \djoin \cpa\icpb g' = f' \djoin 0 = f'$ and
+  $\cpb h = g'$. Hence, in \Xt, we have $(i_1 \usr, 1) h = f$ and $(i_2 \usr, 1) h = g$.
+
+  Also by definition of the disjoint join tensor, both $\cpa$ and $\cpb$ are monic in \X and
+  continue to be so in $\Xt$.
+
+  Therefore, $A\+B$ in \X is the co-product of $A$ and $B$ in \Xt.
+\end{proof}
+
+
+% chapter inverse_sum_categories (end)

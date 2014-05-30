@@ -475,44 +475,68 @@ $\restr{f} g = f$, where $f,g:A\to B$.
 
 \begin{lemma}\label{lem:restriction_cats_are_partial_order_enriched}
   In a restriction category \X:
-  \begin{enumerate}[{(}i{)}]
-    \item  $\le$ as defined  above is a partial order on each hom-set;
-    \item $f \le g \implies \restr{f} \le \restr{g}$;
-    \item $f \le g \implies h f \le h g$;
-    \item $f \le g \implies f h \le g h$;
-    \item $f \le 1 \iff f = \restr{f}$.
-  \end{enumerate}
+  \begin{multicols}{2}
+    \begin{enumerate}[{(}i{)}]
+      \item  $\le$ as defined  above is a partial order on each hom-set;
+      \item $f \le g \implies \restr{f} \le \restr{g}$;\label{lemitem:rst_ordering_2}
+      \item $\rst{f g} \le \rst{f}$; \label{lemitem:rst_ordering_3}
+      \item $f \le g \implies h f \le h g$;
+      \item $f \le g \implies f h \le g h$;
+      \item $f \le g$ and $\rst{f} = \rst{g}$ implies $f = g$;
+      \item $f \le 1 \iff f = \restr{f}$;
+      \item $\rst{g}f = f$ implies $\rst{f} \le \rst{g}$.
+    \end{enumerate}
+  \end{multicols}
 \end{lemma}
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
     \item With $f,g,h$ parallel maps in \X, each of the requirements for a partial order is
-      shown below:
-      \begin{description}
-        \itembf{Reflexivity:} $\restr{f} f = f$ and therefore, $ f \le f$.
-        \itembf{Anti-Symmetry:} Given $\restr{f}g = f$ and $\restr{g}f = g$, it follows:
-          \[
-            f = \restr{f} f = \restr{\restr{f} g} f = \restr{f}\, \restr{g} f
-            = \restr{g}\restr{f} f =  \restr{g} f = g.
-          \]
-        \itembf{Transitivity:} Given $f \le g$ and $g\le h$,
-          \[
-            \restr{f} h = \restr{\restr{f} g} h = \restr{f}\, \restr{g} h = \restr{f} g = f
-          \]
-          showing that $f \le h$.
-      \end{description}
-    \item The premise is that $\restr{f} g = f$. From this,
-      $ \restr{f}\, \restr{g} = \restr{\restr{f} g} = \restr{f}$, showing
-      $\restr{f} \le \restr{g}$.
-    \item $\restr{h f} hg = h \restr{f} g = h f$ and therefore $h f \le hg$.
-    \item $\restr{f} g = f$, this shows  $\restr{f h} g h = \restr{\restr{f} g h} g h
+    verified below:
+    \begin{description}
+      \itembf{Reflexivity:} $\restr{f} f = f$ and therefore, $ f \le f$.
+      \itembf{Anti-Symmetry:} Given $\restr{f}g = f$ and $\restr{g}f = g$, it follows:
+        \[
+          f = \restr{f} f = \restr{\restr{f} g} f = \restr{f}\, \restr{g} f
+          = \restr{g}\restr{f} f =  \restr{g} f = g.
+        \]
+      \itembf{Transitivity:} Given $f \le g$ and $g\le h$,
+        \[
+          \restr{f} h = \restr{\restr{f} g} h = \restr{f}\, \restr{g} h = \restr{f} g = f
+        \]
+        showing that $f \le h$.
+    \end{description}
+    \item The premise is that $\restr{f} g = f$. From this, $ \restr{f}\, \restr{g} =
+      \restr{\restr{f} g} = \restr{f}$, showing $\restr{f} \le \restr{g}$.
+    \item $\restr{h f} hg = h \restr{f} g = h f$  and therefore $h f \le hg$.
+    \item $\restr{f} g = f$, this shows $\restr{f h} g h = \restr{\restr{f} g h} g h
       = \restr{f}\, \restr{g h} g h = \restr{f} g h = f h$ and therefore $f h \le g h$.
+    \item $g = \rst{g} g = \rst{f} g = f$.
     \item As $f \le 1$ means precisely $\restr{f}1 = f$.
+    \item Assuming $\rst{g} f = f$, we need to show $\rst{f}\, \rst{g} = \rst{f}$.
+      \begin{align*}
+        \rst{f}\,\rst{g} &= \rst{g}\rst{f} & \rtwo \\
+        & = \rst{\rst{g} f} & \rthree \\
+        & = \rst{f} & \text{Assumption}.
+      \end{align*}
+      Hence, $\rst{f} \le \rst{g}$.
   \end{enumerate}
 \end{proof}
 
 Lemma \vref{lem:restriction_cats_are_partial_order_enriched} shows that restriction
 categories are enriched in partial orders.
+
+In a restriction category \X, we will use the notation $\open{A}$ for the restriction idempotents
+of $A\in \ob{\X}$. $\open{A} = \{x:A\to A| x = \rst{x}\}$. The notation $\open{A}$ was chosen
+to be suggestive of open sets.
+
+\begin{lemma}\label{lem:open_a_is_a_meet_semilattice}
+  In a restriction category \X, $\open{A}$ is a meet semi-lattice.
+\end{lemma}
+\begin{proof}
+  The top of the meet semi-lattice is $1_A$, the ordering is as above and the join is
+  given by composition.
+\end{proof}
 
 \begin{definition}
   A restriction category has \emph{meets} if there is an operation $\cap$ on parallel maps:
@@ -648,24 +672,21 @@ the range of a function.
   In a range category:
   \begin{multicols}{2}
     \begin{enumerate}[{(}i{)}]
-      \item $\rst{f g} \le \rst{f}$; \label{lemitem:ordering_1}
-      \item  $\wrg{h f} \le \rg{f}$; \label{lemitem:ordering_2}
-      \item $f' \le f$ implies $\rst{f'} \le \rst{f}$; \label{lemitem:ordering_3}
-      \item $f' \le f$ implies $\rg{f'} \le \rg{f}$. \label{lemitem:ordering_4}
+      \item  $\wrg{h f} \le \rg{f}$; \label{lemitem:ordering_1}
+      \item $f' \le f$ implies $\rg{f'} \le \rg{f}$. \label{lemitem:ordering_2}
     \end{enumerate}
   \end{multicols}
 \end{lemma}
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item This is immediate from Lemma \refitem{lem:restrictionvarious}{lemitem:rv_2}.
     \item Noting that $\rst{\wrg{hf}} \rg{f} = \wrg{hf} \rg{f}  = \wrg{hf \rg{f}} = \wrg{h f}$,
       we see $\wrg{h f} \le \rg{f}$.
-    \item  $\rst{f'}\,\rst{f} = \rst{\rst{f'} f} = \rst{f'}$, therefore $\rst{f'} \le \rst{f}$.
     \item Calculating $\rst{\rg{f'}} \rg{f} = \rg{f'} \rg{f} = \wrg{\rst{f'} f} \rg{f} =
       \wrg{\rst{f'} f \rg{f}} = \wrg{\rst{f'} f} = \rg{f'}$, we see $\rg{f'} \le \rg{f}$.
   \end{enumerate}
 \end{proof}
+
 \begin{remark}
   Note that unlike restrictions, a range is a \emph{property} of a restriction category. To see
   this, assume we have two ranges $\wrg{(\_)}$ and $\widetilde{(\_)}$. Then,
