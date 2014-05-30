@@ -811,161 +811,161 @@ rest of this paper.
 \begin{definition}\label{def:up_triangle_and_down_triangle}
   In an inverse category \X with a restriction zero and disjointness tensor, we define two partial
   operations on pairs of arrows in \X to another arrow in \X. First, for arrows
-  $f:A \to B$ and $g:A \to C$, we define $f\tjleft g$ as
-  being the map that makes diagram \eqref{eq:tjleftdefinition} below commute, when it exists.
+  $f:A \to B$ and $g:A \to C$, we define $f\tjdown g$ as
+  being the map that makes diagram \eqref{eq:tjdowndefinition} below commute, when it exists.
   \begin{equation}
     \xymatrix@C+0pt @R+20pt{
-      &&A \ar[dll]^{g} \ar[drr]_{f} \ar@{.>}[d]|-{f\tjleft g}\\
+      &&A \ar[dll]^{g} \ar[drr]_{f} \ar@{.>}[d]|-{f\tjdown g}\\
       B&&B\+C \ar[ll]_{\icpa} \ar[rr]^{\icpb} && C
-      }\label{eq:tjleftdefinition}
+      }\label{eq:tjdowndefinition}
   \end{equation}
-  Then for $h:B \to A$, $k: C \to A$, $h\tjright k$ is that map that makes diagram
-  \eqref{eq:tjrightdefinition} commute, if it exists.
+  Then for $h:B \to A$, $k: C \to A$, $h\tjup k$ is that map that makes diagram
+  \eqref{eq:tjupdefinition} commute, if it exists.
   \begin{equation}
     \xymatrix@C+0pt @R+20pt{
-      B\ar[rr]_{\cpa} \ar[drr]^{h} &&B\+C   \ar@{.>}[d]|-{h\tjright k}
+      B\ar[rr]_{\cpa} \ar[drr]^{h} &&B\+C   \ar@{.>}[d]|-{h\tjup k}
         && C \ar[ll]^{\cpb} \ar[dll]_{k}\\
       &&A
-      }\label{eq:tjrightdefinition}
+      }\label{eq:tjupdefinition}
   \end{equation}
-  Due to $\icpa$ and $\icpb$ being jointly monic, $f\tjleft g$ is unique when it exists.
-  Similarly, as $\cpa$ and $\cpb$ are jointly epic, $f\tjright g$ is unique when it exists.
+  Due to $\icpa$ and $\icpb$ being jointly monic, $f\tjdown g$ is unique when it exists.
+  Similarly, as $\cpa$ and $\cpb$ are jointly epic, $f\tjup g$ is unique when it exists.
 \end{definition}
 
 We give a lemma exploring the
-behaviour of the two operations: $\tjleft$ and $\tjright$.
+behaviour of the two operations: $\tjdown$ and $\tjup$.
 
-\begin{lemma}\label{lem:properties_of_tjleft_and_tjright}
+\begin{lemma}\label{lem:properties_of_tjdown_and_tjup}
   Given \X is an inverse category with a restriction zero and a disjointness tensor $\+$ then the
-  following relations hold for $\tjleft$ and $\tjright$:
+  following relations hold for $\tjdown$ and $\tjup$:
    \begin{enumerate}[{(}i{)}]
-    \item If $f \tjleft g$ exists, then $g \tjleft f$ exists. If $f \tjright g$ exists, then
-    $g \tjright f$ exists. \label{lemitem:l_r_commute}
-    \item $f \tjleft 0$ and $f \tjright 0$ always exist. \label{lemitem:l_r_zero_exists}
-    \item When $f\tjleft g$ exists, $\rst{f}(f\tjleft g) = f \tjleft 0$, $\rst{f}g = 0$,
-      $\rst{g}(f \tjleft g) = 0 \tjleft g$ and $\rst{g}f = 0$.
+    \item If $f \tjdown g$ exists, then $g \tjdown f$ exists. If $f \tjup g$ exists, then
+    $g \tjup f$ exists. \label{lemitem:l_r_commute}
+    \item $f \tjdown 0$ and $f \tjup 0$ always exist. \label{lemitem:l_r_zero_exists}
+    \item When $f\tjdown g$ exists, $\rst{f}(f\tjdown g) = f \tjdown 0$, $\rst{f}g = 0$,
+      $\rst{g}(f \tjdown g) = 0 \tjdown g$ and $\rst{g}f = 0$.
       \label{lemitem:l_r_rst_orthogonal_to_zero}
-    \item Dually to the previous item, when $f\tjright g$ exists,
-      $(f\tjright g)\rg{f} = f \tjright 0$, $g\rg{f} = 0$, $(f \tjright g)\rg{g} = 0 \tjright g$ and
+    \item Dually to the previous item, when $f\tjup g$ exists,
+      $(f\tjup g)\rg{f} = f \tjup 0$, $g\rg{f} = 0$, $(f \tjup g)\rg{g} = 0 \tjup g$ and
       $f\rg{g} = 0$.\label{lemitem:l_r_rg_orthogonal_to_zero}
-    \item When $f\tjleft g$ exists, $f\tjleft g (h\+k) = f h \tjleft g k$.
+    \item When $f\tjdown g$ exists, $f\tjdown g (h\+k) = f h \tjdown g k$.
       \label{lemitem:l_r_l_pull_right}
-    \item Dually, when $f \tjright g$ exists, $(h \+ k) f \tjright g = h f \tjright k g$.
+    \item Dually, when $f \tjup g$ exists, $(h \+ k) f \tjup g = h f \tjup k g$.
       \label{lemitem:l_r_r_pull_left}
-    \item When $f \tjleft g$ exists, then $h(f \tjleft g) = h f \tjleft hg$ and when $f \tjright g$
-      exists, $(f \tjright g)h = f h \tjright g h$.
+    \item When $f \tjdown g$ exists, then $h(f \tjdown g) = h f \tjdown hg$ and when $f \tjup g$
+      exists, $(f \tjup g)h = f h \tjup g h$.
       \label{lemitem:l_r_l_universal_r_stable}
-    \item If $\rst{f} \tjleft \rst{g}$ exists, then $\rst{f} \tjright \rst{g}$ exists and is
-      the partial inverse of $\rst{f} \tjleft \rst{g}$.
+    \item If $\rst{f} \tjdown \rst{g}$ exists, then $\rst{f} \tjup \rst{g}$ exists and is
+      the partial inverse of $\rst{f} \tjdown \rst{g}$.
       \label{lemitem:l_r_rst_inverses}
-    \item If $f\tjleft g$ exists and $f' \le f$, $g' \le g$, then $f' \tjleft g'$ exists.
+    \item If $f\tjdown g$ exists and $f' \le f$, $g' \le g$, then $f' \tjdown g'$ exists.
       \label{lemitem:l_r_less_than}
-    \item When $f\tjright g$ exists, $(f\tjright g) \inv{(f\tjright g)} = \rst{f}\+\rst{g}$.
+    \item When $f\tjup g$ exists, $(f\tjup g) \inv{(f\tjup g)} = \rst{f}\+\rst{g}$.
       \label{lemitem:l_r_rst_is_natural}
-    \item Given $f\tjleft g$ and $h\tjleft k$ exist, then
-      $(f\+h)\tjleft(g\+k) = (f\tjleft g)\+ (h\tjleft k)$. Dually, the existence of $f\tjright g$
-      and $h\tjright k$ implies $(f\+h)\tjright(g\+k) = (f\tjright g)\+ (h\tjright k)$.
+    \item Given $f\tjdown g$ and $h\tjdown k$ exist, then
+      $(f\+h)\tjdown(g\+k) = (f\tjdown g)\+ (h\tjdown k)$. Dually, the existence of $f\tjup g$
+      and $h\tjup k$ implies $(f\+h)\tjup(g\+k) = (f\tjup g)\+ (h\tjup k)$.
       \label{lemitem:l_r_preserve_tensor}
   \end{enumerate}
 \end{lemma}
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item $g \tjleft f = (f \tjleft g)\comp $ and $g \tjright f = \comp(f\tjright g)$.
+    \item $g \tjdown f = (f \tjdown g)\comp $ and $g \tjup f = \comp(f\tjup g)$.
     \item Consider $f \cpa$. Then $f \cpa \icpa = f$ and
-      $f \cpa \icpb = f 0 = 0$. Hence, $f \cpa = f \tjleft 0$.
+      $f \cpa \icpb = f 0 = 0$. Hence, $f \cpa = f \tjdown 0$.
 
       Consider $\icpa f$. Then $\cpa \icpa f = f$ and
-      $\cpb \icpa f = 0 f = 0$ and therefore $\icpa f = (f\tjright 0)$.
+      $\cpb \icpa f = 0 f = 0$ and therefore $\icpa f = (f\tjup 0)$.
     \item Using Lemma~\ref{lem:tensor_identities}
       \[
-        \rst{f}g = \rst{(f\tjleft g)\icpa} (f\tjleft g)\icpb =
-          (f\tjleft g) \rst{\icpa} \icpb = 0.
+        \rst{f}g = \rst{(f\tjdown g)\icpa} (f\tjdown g)\icpb =
+          (f\tjdown g) \rst{\icpa} \icpb = 0.
       \]
-      Similarly, $\rst{g}f = f\tjleft g \rst{\icpb}\icpa = 0$.
+      Similarly, $\rst{g}f = f\tjdown g \rst{\icpb}\icpa = 0$.
 
       Recall that $\icpa$ and $\icpb$ are jointly monic. We have
-      $\rst{f}(f \tjleft g) \icpa = \rst{f} f = f = (f\tjleft 0) \icpa$ and
-      $\rst{f}(f \tjleft g) \icpb = \rst{f}g = 0= (f\tjleft 0) \icpb$.
-      Therefore, $\rst{f}(f \tjleft g) = f \tjleft 0$. Similarly,
-      $\rst{g}(f \tjleft g) = 0 \tjleft g$.
+      $\rst{f}(f \tjdown g) \icpa = \rst{f} f = f = (f\tjdown 0) \icpa$ and
+      $\rst{f}(f \tjdown g) \icpb = \rst{f}g = 0= (f\tjdown 0) \icpb$.
+      Therefore, $\rst{f}(f \tjdown g) = f \tjdown 0$. Similarly,
+      $\rst{g}(f \tjdown g) = 0 \tjdown g$.
     \item Using Lemma~\ref{lem:tensor_identities}
       \begin{multline*}
-        g\rg{f} = \cpb(f\tjright g)\wrg{(\cpa(f\tjright g))}  =
-          \cpb(f\tjright g) \rst{\inv{(f\tjright g)}\icpa} =\\
-          \cpb(f\tjright g) \rst{\inv{(f\tjright g)}\rst{\icpa}} =
-          \rst{\cpb \rst{(f\tjright g)} \rst{\icpa}}\cpb(f\tjright g) = \\
-          \rst{\cpb \rst{\icpa}\rst{(f\tjright g)} }\cpb(f\tjright g) =
-          \rst{0}\cpb(f\tjright g) = 0
+        g\rg{f} = \cpb(f\tjup g)\wrg{(\cpa(f\tjup g))}  =
+          \cpb(f\tjup g) \rst{\inv{(f\tjup g)}\icpa} =\\
+          \cpb(f\tjup g) \rst{\inv{(f\tjup g)}\rst{\icpa}} =
+          \rst{\cpb \rst{(f\tjup g)} \rst{\icpa}}\cpb(f\tjup g) = \\
+          \rst{\cpb \rst{\icpa}\rst{(f\tjup g)} }\cpb(f\tjup g) =
+          \rst{0}\cpb(f\tjup g) = 0
       \end{multline*}
       Similarly, $f\rg{g} =  0$.
 
       Recall that $\cpa$ and $\cpb$ are jointly epic. We have
-      $\cpa(f \tjright g)\rg{f} = f\rg{f} = f = \cpa(f\tjright 0) $ and
-      $\cpb(f \tjright g)\rg{f} = g\rg{f} = 0= \cpb(f\tjright 0)$.
-      Therefore, $(f \tjright g)\rg{f} = f \tjright 0$. Similarly,
-      $(f \tjright g) \rg{g} = 0 \tjright g$.
+      $\cpa(f \tjup g)\rg{f} = f\rg{f} = f = \cpa(f\tjup 0) $ and
+      $\cpb(f \tjup g)\rg{f} = g\rg{f} = 0= \cpb(f\tjup 0)$.
+      Therefore, $(f \tjup g)\rg{f} = f \tjup 0$. Similarly,
+      $(f \tjup g) \rg{g} = 0 \tjup g$.
     \item Calculating, we have
       \[
-        f \tjleft g (h \+ k) \icpa = f\tjleft g \icpa h = f h \text{ and }
-        f \tjleft g (h \+ k) \icpb = f\tjleft g \icpb k = g k,
+        f \tjdown g (h \+ k) \icpa = f\tjdown g \icpa h = f h \text{ and }
+        f \tjdown g (h \+ k) \icpb = f\tjdown g \icpb k = g k,
       \]
       but this means that
-      $f \tjleft g (h \+ k) = f h \tjleft g k$ by the joint monic property of $\icpa$, $\icpb$.
+      $f \tjdown g (h \+ k) = f h \tjdown g k$ by the joint monic property of $\icpa$, $\icpb$.
     \item The proof for this is dual to the previous item, and depends on the joint epic property
       of $\cpa$ and $\cpb$.
-    \item We are given $f\tjleft g$ exists, therefore $f = (f\tjleft g)\icpa$ and
-      $g = (f\tjleft g)\icpb$. But this means $hf = h(f\tjleft g)\icpa$ and
-      $hg = h(f\tjleft g)\icpb$, from which we may conclude $hf \tjleft hg = h(f\tjleft g)$ by
+    \item We are given $f\tjdown g$ exists, therefore $f = (f\tjdown g)\icpa$ and
+      $g = (f\tjdown g)\icpb$. But this means $hf = h(f\tjdown g)\icpa$ and
+      $hg = h(f\tjdown g)\icpb$, from which we may conclude $hf \tjdown hg = h(f\tjdown g)$ by
       the fact that $\icpa$ and $\icpb$ are jointly monic. The proof of
-      $(f\tjright g)h = f h \tjright g h$ is similar.
-    \item We are given $\rst{f} = \rst{f}\tjleft\rst{g} \icpa$. Therefore,
+      $(f\tjup g)h = f h \tjup g h$ is similar.
+    \item We are given $\rst{f} = \rst{f}\tjdown\rst{g} \icpa$. Therefore,
       \[
-        \rst{f} = \inv{\rst{f}} = \inv{\icpa}\inv{(\rst{f}\tjleft\rst{g})}
-          = \cpa \inv{(\rst{f}\tjleft\rst{g})}.
+        \rst{f} = \inv{\rst{f}} = \inv{\icpa}\inv{(\rst{f}\tjdown\rst{g})}
+          = \cpa \inv{(\rst{f}\tjdown\rst{g})}.
       \]
-      Similarly, $\rst{g} = \cpb \inv{(\rst{f}\tjleft\rst{g})}$. But this means
-      $\inv{(\rst{f}\tjleft\rst{g})} = \rst{f}\tjright\rst{g}$.
+      Similarly, $\rst{g} = \cpb \inv{(\rst{f}\tjdown\rst{g})}$. But this means
+      $\inv{(\rst{f}\tjdown\rst{g})} = \rst{f}\tjup\rst{g}$.
     \item Note that from item \ref{lemitem:l_r_l_pull_right}, we know that
-      $f \tjleft g  = \rst{f} \tjleft \rst{g} (f\+g)$. We are given $f' \le f$ and $g' \le g$. This
+      $f \tjdown g  = \rst{f} \tjdown \rst{g} (f\+g)$. We are given $f' \le f$ and $g' \le g$. This
       gives us $\rst{f'}f =f'$, $\rst{g'}g =g'$, $\rst{f'}\,\rst{f} =\rst{f'}$ and
       $\rst{g'}\,\rst{g} =\rst{g'}$. Consider the map
-      $\rst{f} \tjleft \rst{g} (\rst{f'}\+\rst{g'})(f\+g)$. Calculating, we see
+      $\rst{f} \tjdown \rst{g} (\rst{f'}\+\rst{g'})(f\+g)$. Calculating, we see
       \begin{align*}
-        \rst{f} \tjleft \rst{g} (\rst{f'}\+\rst{g'})(f\+g)
-          &= \rst{f} \tjleft \rst{g} (\rst{f'}\+\rst{g'})(\rst{f'}\+\rst{g'})(f\+g) \\
-          & = \rst{f} \tjleft \rst{g} (\rst{f'}\+\rst{g'})(f'\+g') \\
-          & = \rst{f}\,\rst{f'} \tjleft \rst{g} \rst{g'} (f'\+g') \\
-          & = \rst{f'}\,\rst{f} \tjleft \rst{g'} \rst{g} (f'\+g') \\
-          & = \rst{f'} \tjleft \rst{g'}  (f'\+g') \\
-          & = f'\tjleft g'.
+        \rst{f} \tjdown \rst{g} (\rst{f'}\+\rst{g'})(f\+g)
+          &= \rst{f} \tjdown \rst{g} (\rst{f'}\+\rst{g'})(\rst{f'}\+\rst{g'})(f\+g) \\
+          & = \rst{f} \tjdown \rst{g} (\rst{f'}\+\rst{g'})(f'\+g') \\
+          & = \rst{f}\,\rst{f'} \tjdown \rst{g} \rst{g'} (f'\+g') \\
+          & = \rst{f'}\,\rst{f} \tjdown \rst{g'} \rst{g} (f'\+g') \\
+          & = \rst{f'} \tjdown \rst{g'}  (f'\+g') \\
+          & = f'\tjdown g'.
       \end{align*}
-    \item From our diagram for $\tjright$, we know:
+    \item From our diagram for $\tjup$, we know:
       \begin{align*}
-        \inv{f} &= \inv{(f\tjright g)} \icpa\text{ and}\\
-        \inv{g} &= \inv{(f\tjright g)} \icpb.
+        \inv{f} &= \inv{(f\tjup g)} \icpa\text{ and}\\
+        \inv{g} &= \inv{(f\tjup g)} \icpb.
       \end{align*}
-      As well, we know that $\cpa(f\tjright g) = f$ and
-      $\cpa(f\tjright g) = g$.
+      As well, we know that $\cpa(f\tjup g) = f$ and
+      $\cpa(f\tjup g) = g$.
       Therefore, we have:
       \[
-         \cpa(f\tjright g)\inv{(f\tjright g)} \icpa = \rst{f} \text{ and  }
-          \cpb(f\tjright g)\inv{(f\tjright g)} \icpb = \rst{g}.
+         \cpa(f\tjup g)\inv{(f\tjup g)} \icpa = \rst{f} \text{ and  }
+          \cpb(f\tjup g)\inv{(f\tjup g)} \icpb = \rst{g}.
       \]
       As $f\tperp g$, we know that $f\inv{g} = f \rg{g} \inv{g} = 0 \inv{g} = 0$ and therefore,
 
       \[
-         \cpa(f\tjright g)\inv{(f\tjright g)} \icpb = 0 \text{ and  }
-          \cpb(f\tjright g)\inv{(f\tjright g)} \icpa = 0.
+         \cpa(f\tjup g)\inv{(f\tjup g)} \icpb = 0 \text{ and  }
+          \cpb(f\tjup g)\inv{(f\tjup g)} \icpa = 0.
       \]
       By Corollary~\ref{cor:split_plus_tensor} this means
-      $(f\tjright g)\inv{(f\tjright g)} = \rst{f} \+ \rst{g}$.
-    \item As $(f\tjleft g)\+ (h\tjleft k)\icpa = (f\tjleft g)$ and
-      $(f\tjleft g)\+ (h\tjleft k) \icpb = (h\tjleft k)$, we see that
-      $(f\tjleft g)\+ (h\tjleft k)$ satisfies the diagram for $(f\+h)\tjleft(g\+k)$. Dually, as
-      $\cpa (f\tjright g)\+ (h\tjright k) = (f\tjright g)$ and
-      $\cpb(f\tjright g)\+ (h\tjright k) = (h\tjright k)$, $(f\tjright g)\+ (h\tjright k)$ satisfies
-      the diagram for $(f\+h)\tjright(g\+k)$.
+      $(f\tjup g)\inv{(f\tjup g)} = \rst{f} \+ \rst{g}$.
+    \item As $(f\tjdown g)\+ (h\tjdown k)\icpa = (f\tjdown g)$ and
+      $(f\tjdown g)\+ (h\tjdown k) \icpb = (h\tjdown k)$, we see that
+      $(f\tjdown g)\+ (h\tjdown k)$ satisfies the diagram for $(f\+h)\tjdown(g\+k)$. Dually, as
+      $\cpa (f\tjup g)\+ (h\tjup k) = (f\tjup g)$ and
+      $\cpb(f\tjup g)\+ (h\tjup k) = (h\tjup k)$, $(f\tjup g)\+ (h\tjup k)$ satisfies
+      the diagram for $(f\+h)\tjup(g\+k)$.
   \end{enumerate}
 \end{proof}
 
@@ -973,25 +973,25 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
 %   In an inverse category \X with a restriction zero and disjointness tensor, we define two partial
 %   operations on pairs of arrows in \X to another arrow in \X. First, for arrows
 %   $f:A \to B$ and $g:A \to C$, suppose we have arrows $f':A  \to B\+X$ and $g': A \to C\+X$
-%   such that $f'\icpa =f$, $g'\icpa = g$ and $f'\icpb = g' \icpb$. Then, we say $f\gtjleft g$ if
+%   such that $f'\icpa =f$, $g'\icpa = g$ and $f'\icpb = g' \icpb$. Then, we say $f\gtjdown g$ if
 %   regardless of the choice of $f',\ g'$ and $X$, there exists a map $\alpha$ that makes
-%   diagram \eqref{eq:gtjleftdefinition} below commute.
+%   diagram \eqref{eq:gtjdowndefinition} below commute.
 %   \begin{equation}
 %     \xymatrix@C+0pt @R+20pt{
 %       B\+X&&B\+C\+X \ar[ll]_{\icp{0,2}} \ar[rr]^{\icp{1,2}} && C\+X\\
 %       &&A \ar[ull]^{g'} \ar[urr]_{f'} \ar@{.>}[u]|-{\alpha}
-%       }\label{eq:gtjleftdefinition}
+%       }\label{eq:gtjdowndefinition}
 %   \end{equation}
 %
 %   Similarly, for $h:B \to A$, $k: C \to A$, and $h': A\+X \to C$, $k': B\+X \to C$, with $h = \cpa
-%   h'$ and $k = \cpb k'$, then $h\gtjright k$ if regardless of the choice of $h',\ k'$ and $X$, there
-%   exists a map $\beta$ that makes diagram \eqref{eq:gtjrightdefinition} commute.
+%   h'$ and $k = \cpb k'$, then $h\gtjup k$ if regardless of the choice of $h',\ k'$ and $X$, there
+%   exists a map $\beta$ that makes diagram \eqref{eq:gtjupdefinition} commute.
 %   \begin{equation}
 %     \xymatrix@C+0pt @R+20pt{
 %       &&A\\
 %       B\+X\ar[rr]_{\amalg_{0,2}} \ar[urr]^{h'} &&B\+C \+X  \ar@{.>}[u]|-{\beta}
 %         && C\+X \ar[ll]^{\amalg_{1,2}} \ar[ull]_{k'}
-%       }\label{eq:gtjrightdefinition}
+%       }\label{eq:gtjupdefinition}
 %   \end{equation}
 %   In the above diagrams, $\icp{0,2} = (1\+0\+1)(\upr\+1)$, $\amalg_{0,2} =
 %   (\inv{\upr}\+1)(1\+0\+1)$, $\icp{1,2}=(0\+1\+1)(\upl\+1)$ and
@@ -999,12 +999,12 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
 % \end{definition}
 % \begin{lemma}\label{lem:general_triangle_implies_triangle}
 %   In an inverse category $\X$ with a restriction zero and a disjointness tensor, with maps
-%   $f:A\to B$, $g: A \to C$, $h: B \to A$ and $k: C \to A$. Then $f\gtjleft g$
-%   (respectively $h \gtjright k$) implies that $f\tjleft g$ (respectively $h \tjright k$) exists.
+%   $f:A\to B$, $g: A \to C$, $h: B \to A$ and $k: C \to A$. Then $f\gtjdown g$
+%   (respectively $h \gtjup k$) implies that $f\tjdown g$ (respectively $h \tjup k$) exists.
 % \end{lemma}
 % \begin{proof}
-%   Suppose $f \gtjleft g$. Then set $f' = f \inv{\upr}$, $g' = g \inv{\upr}$ and $X = 0$. Then
-%   $\alpha: A \to B\+C\+0$ exists and we can see that setting $f\tjleft g = \alpha \upr$ makes the
+%   Suppose $f \gtjdown g$. Then set $f' = f \inv{\upr}$, $g' = g \inv{\upr}$ and $X = 0$. Then
+%   $\alpha: A \to B\+C\+0$ exists and we can see that setting $f\tjdown g = \alpha \upr$ makes the
 %   first diagram of Definition~\ref{def:up_triangle_and_down_triangle} commute. In detail,
 %   \[
 %     \xymatrix@C+0pt @R+10pt{
@@ -1018,11 +1018,11 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
 %   coherence diagrams of the tensor.
 %
 %   Similarly, setting $h' = \inv{\upr}h$ and $k' = \inv{\upr}k$ gives us $\beta:B\+C\+0 \to A\+0$ and
-%   we set $f\tjright = \beta \upr.$
+%   we set $f\tjup = \beta \upr.$
 % \end{proof}
 
 \begin{definition}\label{def:disjointness_via_a_disjointness_tensor}
-  Define $f \tperp g$ when $f, g: A\to B$ and both $f\tjleft g$ and $f\tjright g$.
+  Define $f \tperp g$ when $f, g: A\to B$ and both $f\tjdown g$ and $f\tjup g$.
 \end{definition}
 
 \begin{lemma}\label{lem:tensor_disjointness_is_disjointness}
@@ -1036,28 +1036,28 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
   \setlist[itemize,1]{leftmargin=1.5cm}
   \begin{itemize}
     \item[\axiom{Dis}{1}] We must show $f \tperp 0$. This follows immediately from
-      Lemma~\ref{lem:properties_of_tjleft_and_tjright}, item \ref{lemitem:l_r_zero_exists}.
+      Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item \ref{lemitem:l_r_zero_exists}.
     \item[\axiom{Dis}{2}] Show $f \tperp g$ implies $\rst{f}g = 0$. This is a direct consequence of
-      Lemma~\ref{lem:properties_of_tjleft_and_tjright}, item
+      Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
       \ref{lemitem:l_r_rst_orthogonal_to_zero}.
     \item[\axiom{Dis}{3}] We require $f\tperp g$, $f' \le f$, $g' \le g$ implies $f' \tperp g'$.
-      From Lemma~\ref{lem:properties_of_tjleft_and_tjright}, item \ref{lemitem:l_r_less_than}, we
-      immediately have $f' \tjleft g'$ exists. Using a similar argument to the proof of this item,
-      we also have $f' \tjright g'$ exists and hence $f' \tperp g'$.
+      From Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item \ref{lemitem:l_r_less_than}, we
+      immediately have $f' \tjdown g'$ exists. Using a similar argument to the proof of this item,
+      we also have $f' \tjup g'$ exists and hence $f' \tperp g'$.
     \item[\axiom{Dis}{4}] Commutativity of $\tperp$ follows from the symmetry of the two required
-    diagrams, see Lemma~\ref{lem:properties_of_tjleft_and_tjright}, item
+    diagrams, see Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
       \ref{lemitem:l_r_commute}.
     \item[\axiom{Dis}{5}] Show that if $f\tperp g$ then $h f \tperp h g$ for any map $h$.
-      By  Lemma~\ref{lem:properties_of_tjleft_and_tjright}, item
-      \ref{lemitem:l_r_l_universal_r_stable}, we know that $h f \tjleft h g$ exists.
-      By item \ref{lemitem:l_r_r_pull_left},  $(h f)\tjright (h g) = (h \+ h) (f\tjright g)$
+      By  Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
+      \ref{lemitem:l_r_l_universal_r_stable}, we know that $h f \tjdown h g$ exists.
+      By item \ref{lemitem:l_r_r_pull_left},  $(h f)\tjup (h g) = (h \+ h) (f\tjup g)$
       and therefore $h f \tperp h g$.
     \item[\axiom{Dis}{6'}] We need to show $f\tperp g$ if and only if $\rst{f} \tperp \rst{g}$ and
       $\rg{f}\tperp \rg{g}$. This follows directly from
-      Lemma~\ref{lem:properties_of_tjleft_and_tjright}, items
+      Lemma~\ref{lem:properties_of_tjdown_and_tjup}, items
       \ref{lemitem:l_r_l_pull_right} and       \ref{lemitem:l_r_r_pull_left}, which give us
-      $f\tjleft g = \rst{f}\tjleft \rst{g} (f\+g)$ and
-      $f\tjright g = (f \+ g)\rg{f}\tjright \rg{g}$, where the equalities hold if either side of
+      $f\tjdown g = \rst{f}\tjdown \rst{g} (f\+g)$ and
+      $f\tjup g = (f \+ g)\rg{f}\tjup \rg{g}$, where the equalities hold if either side of
       the equation exists.
   \end{itemize}
 \end{proof}
@@ -1067,7 +1067,7 @@ behaviour of the two operations: $\tjleft$ and $\tjright$.
 \subsubsection{Disjoint join via a monoidal tensor} % (fold)
 \label{ssub:disjoint_join_via_a_monoidal_tensor}
 
-The operations $\tjleft$ and $\tjright$ are sufficient to define a disjointness relation
+The operations $\tjdown$ and $\tjup$ are sufficient to define a disjointness relation
 on an inverse category. However, when we wish to extend this to a disjoint join, we run into
 problems when trying to prove $\axiom{DJ}{4}$. Specifically, there is not enough information to
 show that $\tperp [f,g,h]$ implies $f \tperp (g \tjoin h)$.
@@ -1092,68 +1092,68 @@ Therefore, we add one more assumption regarding our tensor in order to define di
   Then
   $\+$ is a \emph{disjoint sum tensor} when the following two conditions hold:
   \begin{itemize}
-    \item $\alpha$ exists if and only if  $f \icpb \tjleft g \icpb$ exists;
-    \item $\beta$ exists if and only if $\cpb h \tjright \cpb k$ exists.
+    \item $\alpha$ exists if and only if  $f \icpb \tjdown g \icpb$ exists;
+    \item $\beta$ exists if and only if $\cpb h \tjup \cpb k$ exists.
   \end{itemize}
 
 \end{definition}
 \begin{lemma}\label{lem:complete_disjointness_means_multiple_disjoints}
   Let \X be an inverse category with a disjoint sum tensor as in
   Definition~\ref{def:disjoint_sum_tensor} and we are given $f,g,h:A\to B$ with
-  $\tperp[f,g,h]$. Then both $f \tjleft (g \tjleft h)$ and $f\tjright(g\tjright h)$ exist.
+  $\tperp[f,g,h]$. Then both $f \tjdown (g \tjdown h)$ and $f\tjup(g\tjup h)$ exist.
 \end{lemma}
 \begin{proof}
-  As all the maps are disjoint, we know that each pair's $\tjleft$ map and $\tjright$ maps
+  As all the maps are disjoint, we know that each pair's $\tjdown$ map and $\tjup$ maps
   exist.  Consider the diagram
   \[
     \xymatrix@C+5pt@R+10pt{
-      A \ar@/_/[ddr]_{g\tjleft h} \ar@/^/[drr]^{g\tjleft f} \ar@{.>}[dr]|-{\alpha} \ar[rr]^{f}
+      A \ar@/_/[ddr]_{g\tjdown h} \ar@/^/[drr]^{g\tjdown f} \ar@{.>}[dr]|-{\alpha} \ar[rr]^{f}
         & & B \\
         & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
         & B\+B \ar[r]_{\icpa} & B
     }
   \]
-  where we claim $\alpha = (g\tjleft h)\tjleft f$.
+  where we claim $\alpha = (g\tjdown h)\tjdown f$.
 
   The lower part of the diagram commutes as it fulfills the conditions of
   Definition~\ref{def:disjoint_sum_tensor}. The upper rightmost triangle of the diagram commutes by
-  the definition of $g\tjleft f$. Noting that $\icp{0,1}:B\+B\+B \to B\+B$ is the same map as
+  the definition of $g\tjdown f$. Noting that $\icp{0,1}:B\+B\+B \to B\+B$ is the same map as
   $\icpa:(B\+B)\+B\to (B\+B)$ and $\icp{0,2} \icpb:B\+B\+B \to B\+B \to B$ is the same map as
-  $\icpb:(B\+B)\+B\to B$, we see $\alpha$ does make the $\tjleft$ diagram for $g\tjleft h$ and $f$
-  commute. Therefore by Lemma~\ref{lem:properties_of_tjleft_and_tjright}, $f\tjleft(g\tjleft h)$
+  $\icpb:(B\+B)\+B\to B$, we see $\alpha$ does make the $\tjdown$ diagram for $g\tjdown h$ and $f$
+  commute. Therefore by Lemma~\ref{lem:properties_of_tjdown_and_tjup}, $f\tjdown(g\tjdown h)$
   exists and is equal to $\alpha \com{\+\,\{01,2\}}$.
 
-  A dual diagram and reasoning shows $f\tjright(g\tjright h)$ exists.
+  A dual diagram and reasoning shows $f\tjup(g\tjup h)$ exists.
 \end{proof}
 
-\begin{lemma}\label{lem:tjleft_and_tjright_associate}
+\begin{lemma}\label{lem:tjdown_and_tjup_associate}
   In an inverse category $\X$ with a disjoint sum tensor, when $\tperp [f,g,h]$, then:
   \begin{enumerate}
-    \item   $f \tjleft (g \tjleft h) = ((f \tjleft g) \tjleft h) \assocp$ and both exist;
-    \item   $f \tjright (g \tjright h) = ((f \tjright g) \tjright h) \assocp$ and both exist;
+    \item   $f \tjdown (g \tjdown h) = ((f \tjdown g) \tjdown h) \assocp$ and both exist;
+    \item   $f \tjup (g \tjup h) = ((f \tjup g) \tjup h) \assocp$ and both exist;
   \end{enumerate}
 \end{lemma}
 \begin{proof}
   Consider the diagram
   \[
     \xymatrix@C+5pt@R+10pt{
-      A \ar@/_/[ddr]_{f\tjleft g} \ar@/^/[drr]^{f\tjleft h} \ar@{.>}[dr]|-{\alpha} \ar[rr]^{h}
+      A \ar@/_/[ddr]_{f\tjdown g} \ar@/^/[drr]^{f\tjdown h} \ar@{.>}[dr]|-{\alpha} \ar[rr]^{h}
         & & B \\
         & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
         & B\+B \ar[r]_{\icpa} & B
     }
   \]
-  which gives us $\alpha = (f \tjleft g) \tjleft h: A \to (B\+B)\+B$ and
+  which gives us $\alpha = (f \tjdown g) \tjdown h: A \to (B\+B)\+B$ and
   $\alpha \assocp :A \to B\+(B\+B)$. Next consider the diagram
   \[
     \xymatrix@C+5pt@R+10pt{
-      A \ar@/_/[ddr]_{g\tjleft h} \ar@/^/[drr]^{g\tjleft f} \ar@{.>}[dr]|-{\gamma} \ar[rr]^{f}
+      A \ar@/_/[ddr]_{g\tjdown h} \ar@/^/[drr]^{g\tjdown f} \ar@{.>}[dr]|-{\gamma} \ar[rr]^{f}
         & & B \\
         & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
         & B\+B \ar[r]_{\icpa} & B
     }
   \]
-  which gives us $\gamma \comp = f \tjleft (g\tjleft h): A \to B\+(B\+B)$.
+  which gives us $\gamma \comp = f \tjdown (g\tjdown h): A \to B\+(B\+B)$.
 
   Note from the diagrams we have:
   \begin{align*}
@@ -1162,13 +1162,13 @@ Therefore, we add one more assumption regarding our tensor in order to define di
     \gamma \comp  \icp{1} \icpb   =\, & h = \alpha \assocp\icpb\icpb.
   \end{align*}
   Hence, by the assumption that $\icpa, \icpb$ are jointly monic, we have
-  $\alpha = \gamma \comp  \assocp$ and hence $f \tjleft (g \tjleft h) = (f \tjleft g) \tjleft h$,
+  $\alpha = \gamma \comp  \assocp$ and hence $f \tjdown (g \tjdown h) = (f \tjdown g) \tjdown h$,
   up to the associativity isomorphism.
 \end{proof}
 \begin{definition}\label{def:tensor_disjoint_join}
   Let \X be an inverse category with a disjointness tensor and restriction zero. Assume we have two
-  maps $f,g: A \to B$ with $f\tperp g$. Then define the map $f \tjoin g = \rst{f}\tjleft\rst{g}
-  (f\+g) \rg{f}\tjright\rg{g}$.
+  maps $f,g: A \to B$ with $f\tperp g$. Then define the map $f \tjoin g = \rst{f}\tjdown\rst{g}
+  (f\+g) \rg{f}\tjup\rg{g}$.
 \end{definition}
 
 
@@ -1177,25 +1177,25 @@ For reference, the map $f \tjoin g$ may be visualized as follows:
   \xymatrix@C+20pt @R+10pt{
     &A
       & B  \ar[dr]^{\rg{f}} \ar[d]_{\cpa}\\
-    A \ar[ur]^{\rst{f}} \ar@{.>}[r]^{\rst{f}\tjleft \rst{g}} \ar[dr]_{\rst{g}}
+    A \ar[ur]^{\rst{f}} \ar@{.>}[r]^{\rst{f}\tjdown \rst{g}} \ar[dr]_{\rst{g}}
       & A\+A \ar[u]_{\icpa} \ar[d]^{\icpb}
         \ar[r]^{f\+g}
-       &B\+B \ar@{.>}[r]^{\rg{f}\tjright\rg{g}} & B\\
+       &B\+B \ar@{.>}[r]^{\rg{f}\tjup\rg{g}} & B\\
     & A & B\ar[ur]_{\rg{g}} \ar[u]^{\cpb}
   }
 \]
 
-Using Lemma~\ref{lem:properties_of_tjleft_and_tjright}, we may rewrite this in a variety of
+Using Lemma~\ref{lem:properties_of_tjdown_and_tjup}, we may rewrite this in a variety of
 equivalent ways:
 \begin{align*}
-  f \tjoin g &= \rst{f}\tjleft\rst{g} (f\+g) \rg{f}\tjright\rg{g} \\
-  &= f \tjleft g \rg{f}\tjright\rg{g}\\
-  & = \rst{f}\tjleft\rst{g}  f\tjright g\\
-  & = f \tjleft g (\inv{f}\+\inv{g})f\tjright g
+  f \tjoin g &= \rst{f}\tjdown\rst{g} (f\+g) \rg{f}\tjup\rg{g} \\
+  &= f \tjdown g \rg{f}\tjup\rg{g}\\
+  & = \rst{f}\tjdown\rst{g}  f\tjup g\\
+  & = f \tjdown g (\inv{f}\+\inv{g})f\tjup g
 \end{align*}
 
-In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjleft \rst{g})
-(\rst{f}\tjright\rst{g})$ as $\rg{\rst{g}} = \rst{g}$.
+In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
+(\rst{f}\tjup\rst{g})$ as $\rg{\rst{g}} = \rst{g}$.
 
 \begin{lemma}\label{lem:tensor_disjoint_join_properties}
   Let \X be an inverse category with a disjointness tensor and restriction zero. Let \X have the
@@ -1218,22 +1218,22 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjleft \rst{g})
       we may then calculate from the left hand side as follows:
       \begin{align*}
         \rst{f}h \tjoin \rst{g}h
-          & = (\rst{f}h \tjleft \rst{g} h) (\wrg{\rst{f}h}\tjright\wrg{\rst{g} h})\\
-          & = (\rst{f} \tjleft \rst{g} ) (h\wrg{\rst{f}h}\tjright h\wrg{\rst{g} h})\\
-          & = (\rst{f} \tjleft \rst{g} ) (\rst{f}h\tjright \rst{g} h)\\
-          & = (\rst{f} \tjleft \rst{g} ) (\rst{f}\tjright \rst{g} )h\\
+          & = (\rst{f}h \tjdown \rst{g} h) (\wrg{\rst{f}h}\tjup\wrg{\rst{g} h})\\
+          & = (\rst{f} \tjdown \rst{g} ) (h\wrg{\rst{f}h}\tjup h\wrg{\rst{g} h})\\
+          & = (\rst{f} \tjdown \rst{g} ) (\rst{f}h\tjup \rst{g} h)\\
+          & = (\rst{f} \tjdown \rst{g} ) (\rst{f}\tjup \rst{g} )h\\
           & = (\rst{f} \tjoin \rst{g} ) h.
       \end{align*}
     \item
-    Using Lemma~\ref{lem:properties_of_tjleft_and_tjright}, item~\ref{lemitem:l_r_rst_is_natural},
+    Using Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item~\ref{lemitem:l_r_rst_is_natural},
     we can compute:
     \begin{align*}
       \rst{f\tjoin g} & = f \tjoin g \inv{(f\tjoin g)} \\
-      & = \left((\rst{f} \tjleft \rst{g})(f\tjright g)\right)
-             \left(\inv{(f\tjleft g)} \inv{(\rst{f}\tjleft \rst{g})}\right)\\
-      & = \rst{f}\tjleft\rst{g}(f\tjleft g) \inv{(f\tjleft g)} \rst{f}\tjright \rst{g}\\
-      & = \rst{f}\tjleft\rst{g}(\rst{f}\+ \rst{g})\rst{f}\tjright \rst{g}\\
-      & = \rst{f}\tjleft\rst{g}\rst{f}\tjright \rst{g}\\
+      & = \left((\rst{f} \tjdown \rst{g})(f\tjup g)\right)
+             \left(\inv{(f\tjdown g)} \inv{(\rst{f}\tjdown \rst{g})}\right)\\
+      & = \rst{f}\tjdown\rst{g}(f\tjdown g) \inv{(f\tjdown g)} \rst{f}\tjup \rst{g}\\
+      & = \rst{f}\tjdown\rst{g}(\rst{f}\+ \rst{g})\rst{f}\tjup \rst{g}\\
+      & = \rst{f}\tjdown\rst{g}\rst{f}\tjup \rst{g}\\
       & = \rst{f}\tjoin\rst{g}
     \end{align*}
   \end{enumerate}
@@ -1250,12 +1250,12 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjleft \rst{g})
   \begin{itemize}
     \item [\axiom{DJ}{1}] We must show $f, g \le f \tjoin g$. Computing,
       \begin{align*}
-        \rst{f}\,(\rst{f}\tjleft\rst{g})  f\tjright g
-          &= (\rst{f}\tjleft\rst{g}) \icpa (\rst{f}\tjleft\rst{g} ) f\tjright g \\
-        &=\rst{(\rst{f}\tjleft\rst{g}) \icpa} (\rst{f}\tjleft\rst{g}) f\tjright g  \\
-        &=(\rst{f}\tjleft\rst{g}) \rst{\icpa} f\tjright g  \\
-        &=(\rst{f}\tjleft\rst{g}) \icpa \cpa f\tjright g \\
-        &=((\rst{f}\tjleft\rst{g}) \icpa) (\cpa (f \tjright g)) \\
+        \rst{f}\,(\rst{f}\tjdown\rst{g})  f\tjup g
+          &= (\rst{f}\tjdown\rst{g}) \icpa (\rst{f}\tjdown\rst{g} ) f\tjup g \\
+        &=\rst{(\rst{f}\tjdown\rst{g}) \icpa} (\rst{f}\tjdown\rst{g}) f\tjup g  \\
+        &=(\rst{f}\tjdown\rst{g}) \rst{\icpa} f\tjup g  \\
+        &=(\rst{f}\tjdown\rst{g}) \icpa \cpa f\tjup g \\
+        &=((\rst{f}\tjdown\rst{g}) \icpa) (\cpa (f \tjup g)) \\
         &= \rst{f} f \\
         &=f
       \end{align*}
@@ -1276,11 +1276,11 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjleft \rst{g})
       $h(f\tjoin g) = h f \tjoin h g$.
 
       \begin{align*}
-        h (f\tjoin g) &= h ((\rst{f}\tjleft\rst{g})  (f \tjright g))\\
-        &= (h\rst{f}\tjleft h\rst{g}) (f \tjright g)\\
-        &= (\rst{h f}h\tjleft \rst{h g}h)  (f \tjright g)\\
-        &= (\rst{h f}\tjleft \rst{h g})(h\+h)  (f \tjright g)\\
-        &= (\rst{h f}\tjleft \rst{h g}) (h f \tjright hg)\\
+        h (f\tjoin g) &= h ((\rst{f}\tjdown\rst{g})  (f \tjup g))\\
+        &= (h\rst{f}\tjdown h\rst{g}) (f \tjup g)\\
+        &= (\rst{h f}h\tjdown \rst{h g}h)  (f \tjup g)\\
+        &= (\rst{h f}\tjdown \rst{h g})(h\+h)  (f \tjup g)\\
+        &= (\rst{h f}\tjdown \rst{h g}) (h f \tjup hg)\\
         &= h f \tjoin h g
       \end{align*}
 
@@ -1292,20 +1292,20 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjleft \rst{g})
 
       For the left to right implication, we use
       Lemma~\ref{lem:complete_disjointness_means_multiple_disjoints}. As we have $\tperp [f,g,h]$,
-      we  know $f\tjleft(g\tjleft h)$ and $f\tjright(g\tjright h)$.
+      we  know $f\tjdown(g\tjdown h)$ and $f\tjup(g\tjup h)$.
 
-      Recall that $g\tjoin h = (g\tjleft h)(\rg{g}\tjright\rg{h})$. Then the map
+      Recall that $g\tjoin h = (g\tjdown h)(\rg{g}\tjup\rg{h})$. Then the map
       \[
-        A\xrightarrow{f\tjleft(g\tjleft h)} B\+B\+B\xrightarrow{1\+(\rg{g}\tjright\rg{h})} B\+B
+        A\xrightarrow{f\tjdown(g\tjdown h)} B\+B\+B\xrightarrow{1\+(\rg{g}\tjup\rg{h})} B\+B
       \]
-      makes the diagram for $f \tjleft (g\tjoin h)$ commute.
+      makes the diagram for $f \tjdown (g\tjoin h)$ commute.
 
       Recalling that  $g\tjoin h =
-      (\rst{g}\tjleft \rst{h})(g\tjright h)$, we also see that
+      (\rst{g}\tjdown \rst{h})(g\tjup h)$, we also see that
       \[
-        A\+A\xrightarrow{1\+(\rst{g}\tjleft\rst{h})}A\+A\+A\xrightarrow{f\tjright(g\tjright h)}B
+        A\+A\xrightarrow{1\+(\rst{g}\tjdown\rst{h})}A\+A\+A\xrightarrow{f\tjup(g\tjup h)}B
       \]
-      provides the witness map for $f \tjright(g\tjoin h)$ and hence $f \tperp (g \tjoin h)$.
+      provides the witness map for $f \tjup(g\tjoin h)$ and hence $f \tperp (g \tjoin h)$.
   \end{itemize}
 
 \end{proof}
@@ -1410,8 +1410,8 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjleft \rst{g})
     \item $\cpa : A \to A\+B$, $\cpb: B \to A\+B$, $\icpa: A\+B \to A$ and $\icpb: A\+B \to B$.
     \item $\inv{\cpa} = \icpa$ and $\inv{\cpb} = \icpb$.
     \item $\inv{i_1}i_1 = 1\+ 0 \tperp 0\+1 = \inv{i_2}i_2$ as
-      $1\+0 \tjleft 0\+1 = (\inv{\upr}\+\inv{\upl})$ and
-      $1\+0 \tjright 0\+1 = (\icpa\+\icpb)$. For their join,
+      $1\+0 \tjdown 0\+1 = (\inv{\upr}\+\inv{\upl})$ and
+      $1\+0 \tjup 0\+1 = (\icpa\+\icpb)$. For their join,
       $(1\+0)\tjoin (0\+1) = (\inv{\upr}\+\inv{\upl})(\icpa\+\icpb) =
       \inv{\upr}\icpa \+ \inv{\upl}\icpb = 1\+1 = 1$.
   \end{enumerate}
@@ -1627,22 +1627,22 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjleft \rst{g})
   preserves the disjoint join.
 
   Suppose we have $f \tperp g$ and $\ h \tperp k$.
-  From Lemma~\ref{lem:properties_of_tjleft_and_tjright}, item~\ref{lemitem:l_r_preserve_tensor}, we
-  know both $(f\+h)\tjleft(g\+k)$ and $(f\+h)\tjright(g\+k)$ exist, hence $(f\+h)\tperp(g\+k)$.
+  From Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item~\ref{lemitem:l_r_preserve_tensor}, we
+  know both $(f\+h)\tjdown(g\+k)$ and $(f\+h)\tjup(g\+k)$ exist, hence $(f\+h)\tperp(g\+k)$.
   This shows condition~\eqref{eq:invsum_preserve_perp}.
 
   For condition~\eqref{eq:invsum_preserve_join}, we compute from the right hand side:
   \begin{align*}
-    (f\+h)\tjoin(g\+k) &= (f\+h)\tjleft (g\+k) \wrg{(f\+h)}\tjright \wrg{(g\+k)}\\
-    &= \left( (f\tjleft g)\+ (h \tjleft k) \right)
-       \left( (\rg{f}\+\rg{h}) \tjright (\rg{g}\+\rg{k}) \right) \\
-    &= \left( (f\tjleft g)\+ (h \tjleft k) \right)
-       \left( (\rg{f}\tjright \rg{g}) \+ (\rg{h}\tjright\rg{k}) \right) \\
-    &= \left( (f\tjleft g)(\rg{f}\tjright \rg{g})\right) \+
-       \left((h \tjleft k) (\rg{h}\tjright\rg{k}) \right) \\
+    (f\+h)\tjoin(g\+k) &= (f\+h)\tjdown (g\+k) \wrg{(f\+h)}\tjup \wrg{(g\+k)}\\
+    &= \left( (f\tjdown g)\+ (h \tjdown k) \right)
+       \left( (\rg{f}\+\rg{h}) \tjup (\rg{g}\+\rg{k}) \right) \\
+    &= \left( (f\tjdown g)\+ (h \tjdown k) \right)
+       \left( (\rg{f}\tjup \rg{g}) \+ (\rg{h}\tjup\rg{k}) \right) \\
+    &= \left( (f\tjdown g)(\rg{f}\tjup \rg{g})\right) \+
+       \left((h \tjdown k) (\rg{h}\tjup\rg{k}) \right) \\
     &=  (f\tjoin g)\+(h \tjoin k).
   \end{align*}
-  The second and third lines above again use Lemma~\ref{lem:properties_of_tjleft_and_tjright},
+  The second and third lines above again use Lemma~\ref{lem:properties_of_tjdown_and_tjup},
   item~\ref{lemitem:l_r_preserve_tensor}.
 
 \end{proof}
@@ -1990,7 +1990,7 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
   fulfill Definition~\ref{def:disjoint_sum_tensor}.
 
   First, for the diagram below, we show that $\alpha$ exists if and only if
-  $f\icpb \tjleft g\icpb$. Note that diagram assumes all the solid arrows exist and make the
+  $f\icpb \tjdown g\icpb$. Note that diagram assumes all the solid arrows exist and make the
   diagram a commutative diagram.
 
   \begin{align*}
@@ -2000,7 +2000,7 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
         & [X,Y] \ar[r]_{\icpa} & [X]
     }
   \end{align*}
-  $f\icpb \tjleft g\icpb$ means there is an $h = [h_1,h_2]: [A]\to[Y,Z]$ such that
+  $f\icpb \tjdown g\icpb$ means there is an $h = [h_1,h_2]: [A]\to[Y,Z]$ such that
   $h\icpa = f\icpb$ and $h\icpb = g\icpb$. From the diagram, given that $f = [f_1,f_2]$ and
   $g = [g_1,g_2]$, we know that $f_1 = f\icpa = g\icpa = g_1$. We also have $h_1 = f_2$ and
   $h_2 = g_2$. If we set $\alpha$ to the matrix $[f_1,f_2,g_2]$, the diagram above commutes.
@@ -2016,9 +2016,9 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
   Conversely, suppose we have an $\alpha = [\alpha_1, \alpha_2, \alpha_3]$ that makes the
   above diagram commute. Then  $h := [\alpha_2, \alpha_3]$ is a map in $\X$.
   Since $[\alpha_1,\alpha_3] = g$ and $[\alpha_1,\alpha_2] = f$, we have
-  $h\icpa = f\icpb$ and $h\icpb = g\icpb$, hence $h = f\icpb \tjleft g\icpb$.
+  $h\icpa = f\icpb$ and $h\icpb = g\icpb$, hence $h = f\icpb \tjdown g\icpb$.
 
-  The proof that $\beta$ in the diagram below exists if and only if $\cp{2}h\tjright \cp{2}k$
+  The proof that $\beta$ in the diagram below exists if and only if $\cp{2}h\tjup \cp{2}k$
   is similar.
   \[
     \xymatrix@C+5pt{
@@ -2306,55 +2306,65 @@ and
 % Break down the map into disjoint items, if equivalent on pieces, then they are
 % equivalent.
 % }
+\begin{definition}\label{def:distributive_inverse_category}
+  A \emph{distributive inverse category} \D consists of the following:
+  \begin{itemize}
+    \item \D is an inverse category;
+    \item \D has an inverse product tensor, $\*$, per SubSection~\ref{sub:inverse_products};
+    \item \D has an inverse sum tensor, $\+$, per Definition~\ref{def:inverse_sum_tensor} and
+    \item diagram~\ref{eq:inverse_distributive_laws} commutes in \D for any choices of objects
+      $A, B, C$, where the map $d$ is an isomorphism.
+    \begin{equation}
+      \xymatrix{
+      && A\*B\\
+      A \* (B \+ C) \ar[rr]^{d} \ar[urr]^{1\*\icpa} \ar[drr]_{1\*\icpb}
+        && (A\*B) \+ (A \* C) \ar[u]^{\icpa} \ar[d]_{\icpb}\\
+      && A\*C.
+      }\label{eq:inverse_distributive_laws}
+    \end{equation}
+  \end{itemize}
+\end{definition}
 
-A \emph{Distributive inverse category} has a sum tensor and product tensor as defined in
-sub-section~\ref{sub:distributive_restriction_categories} where the product distributes over the sum
-in the following manner:
-\[
-  A \* (B \+ C) \xrightarrow{f}(A\* B) \+ (A \* C)
-\]
-where $f$ is some total function. As we are in an inverse category and $f$ is total, we have $f
-\inv{f} = 1$. This also implies $1 = \inv{f} f$ where
-\[
-  (A\* B) \+ (A \* C) \xrightarrow{\inv{f}} A \* (B \+ C).
-\]
-
-\begin{definition}\label{def:join_of_arbitrary_maps}
-  Suppose \X is an inverse category with a disjoint sum tensor $\+$ and a restriction zero.
-  Then for maps $f:A \to B$ and $g:A \to C$, define the map $[f,g]:A \to B\+C$ as
-  $(f \cpa) \djoin (g \cpb)$. This is well defined as $\cpa \perp \cpb$ and $f\cpa \le \cpa$ and
-  $g \cpb \le \cpb$.
+\begin{definition}\label{def:join_of_perp_rst_maps}
+  Suppose \X is an inverse category with a disjoint sum tensor $\+$ and a restriction zero. Then
+  for maps $f:A \to B$ and $g:A \to C$ with $\rst{f} \perp \rst{g}$, define the map $[f,g]:A \to
+  B\+C$ as $(f \cpa) \djoin (g \cpb)$. This is well defined as $\wrg{\cpa} \perp \wrg{\cpb}$ and
+  therefore by \axiom{Dis}{7}$f\cpa \perp g\cpb$.
 \end{definition}
 
 \begin{lemma}
-  Given an inverse category \X\ with a disjoint sum tensor $\+$, a restriction zero, and a tensor
-  $\*$ which distributes over the disjoint join, it is an inverse distributive category.
+  Given an inverse category \X\ with a disjoint sum tensor $\+$, a restriction zero, and an inverse
+  product tensor $\*$ which distributes over the disjoint join, it is an inverse distributive
+  category.
 \end{lemma}
 \begin{proof}
+  By assumption, we have the first three items of Definition~\ref{def:distributive_inverse_category}.
+  Therefore, we need to construct an isomorphism $d$ such that diagram~\ref{eq:inverse_distributive_laws}
+  commutes.
+  We claim that the map $d = [1\* \icpa, 1\* \icpb]$ does this.
 
-  Note that we have
+  First, note that the typing of $d$ is correct. By Definition~\ref{def:join_of_perp_rst_maps},
   \[
-    \xymatrix @C=100pt @R=50pt{
-      A \* (B \+ C) \ar[r]^{[1\* \icpa, 1\* \icpb]} \ar@{=}[dr]
-      & (A\* B) \+ (A \* C) \ar[d]^{\inv{[1\* \icpa, 1\* \icpb]}} \\
-      &A \* (B \+ C)
-    }
+    d = ((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb) : A \* (B \+ C) \to (A\*B)\+(A\*C)
   \]
-  so all we need to show is that $f = [1\* \icpa, 1\* \icpb]$ is an isomorphism.
+  as
+  \begin{align*}
+      A \* (B \+ C) & \xrightarrow{(1\*\icpa)} A\* B \xrightarrow{\icpa} (A\*B)\+(A\*C),\\
+      A \* (B \+ C) & \xrightarrow{(1\*\icpb)} A\* C \xrightarrow{\icpb} (A\*B)\+(A\*C).
+  \end{align*}
 
-  Using Definition~\ref{def:join_of_arbitrary_maps}, this map is
-  \[
-    ((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb)
-  \]
-
+  Next, we need to show $d$ is an isomorphism. We will do this by showing both $\rst{d} = 1$ and
+  $\rst{\inv{d}} = 1$.
   As a consequence of Lemma~\ref{lem:join_is_associative_and_commutative_monoid}, we know
-  the inverse of $f$ is
+  the inverse of $d$ is
   \[
     \inv{((1 \* \icpa) \cpa )}\djoin \inv{((1\*\icpb) \cpb)} =
       ( \icpa(1 \* \cpa) ) \djoin ( \icpb(1\*\cpb)).
   \]
-  Having $\*$ distribute over the disjoint sum means that
-  $f \* (h\djoin k) = (f\*h) \djoin (f\*k)$. Given that we may calculate the restriction of $f$:
+
+  Having $\*$ distribute over the disjoint sum means that for any maps $f,h,k$ with $h\perp k$, we
+  have $f \* (h\djoin k) = (f\*h) \djoin (f\*k)$. We use this in the calculation of the restriction
+  of $f$:
   \begin{align*}
     \rst{((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb)}
       &= \rst{((1 \* \icpa) \cpa )}\djoin \rst{((1\*\icpb) \cpb)} \\
@@ -2364,56 +2374,73 @@ where $f$ is some total function. As we are in an inverse category and $f$ is to
       &=1 \* 1 = 1
   \end{align*}
   and for the inverse,
-
   \begin{align*}
     \rst{( \icpa(1 \* \cpa) ) \djoin ( \icpb(1\*\cpb))}
       &= \rst{(\icpa(1 \* \cpa) )}\djoin \rst{(\icpb(1\*\cpb))} \\
+      &= \rst{(\icpa\rst{(1 \* \cpa)} )}\djoin \rst{(\icpb\rst{(1\*\cpb)})} \\
+      &= \rst{(\icpa)}\djoin \rst{(\icpb)}\\
       &= (1\+0) \djoin (0\+1) \\
       &= 1
   \end{align*}
 
-  Hence, $[1\* \icpa, 1\* \icpb]$ is an isomorphism and $\X$ is a distributive category.
+  Hence, $[1\* \icpa, 1\* \icpb]$ is an isomorphism.
+  Finally, we must show that diagram~\ref{eq:inverse_distributive_laws} commutes.
+  \begin{align*}
+    d \icpa & = \left( ((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb) \right)\icpa \\
+     & = \left(((1 \* \icpa) \cpa )\icpa \right) \djoin \left( ((1\*\icpb) \cpb) \icpa\right) \\
+     & = \left((1 \* \icpa) 1 \right) \djoin \left( (1\*\icpb) 0\right) \\
+     & = (1 \* \icpa) \djoin 0\\
+     & = 1 \* \icpa
+  \end{align*}
+  and
+  \begin{align*}
+    d \icpb & = \left( ((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb) \right)\icpb \\
+     & = \left(((1 \* \icpa) \cpa )\icpb \right) \djoin \left( ((1\*\icpb) \cpb) \icpb\right) \\
+     & = 0 \djoin (1 \* \icpb)\\
+     & = 1 \* \icpb.
+  \end{align*}
+  This shows the fourth condition is satisfied and $\X$ is a distributive inverse category.
 \end{proof}
 
 We have seen that a second tensor distributing over the disjoint joins implies that we have an
 inverse distributive category. We now show the converse is true.
 \begin{lemma}\label{lem:distributive_means_distribute_over_triangles}
-  Given an inverse distributive category \X with a restriction zero, where $\*$ distributes over
-  $\+$ with $\+$ being a disjoint sum tensor, then $h\*(f\tjleft g) = (h\tjleft f) \* (h\tjleft g)$
-  and $h\*(f\tjright g) = (h\tjright f) \* (h\tjright g)$.
+  Given an inverse distributive category \X, then $h\*(f\tjdown g) = (h\* f) \tjdown (h\* g)$
+  whenever $f\tjdown g$ exists and $h\*(f\tjup g) = (h\* f) \tjup (h\* g)$ whenever
+  $f\tjup g$ exists.
 \end{lemma}
 \begin{proof}
   Let $h:A \to C$, $f:B \to D$ and $g: B \to E$. Consider the following diagram:
   \[
-    \xymatrix@R+15pt@C+10pt{
+    \xymatrix@R+20pt@C+10pt{
       & && B\*E\\
-      A\*C \ar[rr]^{h\*(f\tjleft g)} \ar[drrr]_{h\*f} \ar[urrr]_{h\*g}
-        && B \* (D \+ E) \ar[r]^{\cong} \ar[dr]^{1\*\cpa} \ar[ur]^{1\*\cpb}
-        & (B\*D) \+ (B \* E) \ar[d]^{\cpa} \ar[u]_{\cpb}\\
+      A\*C \ar[rr]^{h\*(f\tjdown g)} \ar[drrr]_{h\*g} \ar[urrr]^{h\*f}
+        && B \* (D \+ E) \ar[r]^{d} \ar[ur]_{1\*\icpa} \ar[dr]^{1\*\icpb}
+        & (B\*D) \+ (B \* E) \ar[d]^{\icpb} \ar[u]_{\icpa}\\
       & && B\*D.
     }
   \]
-  The two leftmost  triangles commute by the diagram for $f\tjleft g$. The right hand triangles
+  The two leftmost  triangles commute by the diagram for $f\tjdown g$. The right hand triangles
   commutes due to the distributivity of $\*$ over $\+$. But this then says that
-  $h\*(f\tjleft g) = (h\* f)\tjleft(h\* g)$, up to isomorphism, by the uniqueness of the
-  $\tjleft$ operation.
+  $h\*(f\tjdown g) = (h\* f)\tjdown(h\* g)$, up to isomorphism, by the uniqueness of the
+  $\tjdown$ operation.
 
-  The argument for showing $h\*(f\tjright g) = (h\* f)\tjright(h\* g)$ follows the same methodology.
+  The argument for showing $h\*(f\tjup g) = (h\* f)\tjup(h\* g)$ follows the same methodology.
 \end{proof}
 \begin{lemma}\label{lem:distributive_means_distribute_over_join}
   Given an inverse distributive category \X with a restriction zero, where $\*$ distributes over
   $\+$ with $\+$ being a disjoint sum tensor, then $\*$ distributes over the disjoint join.
 \end{lemma}
 \begin{proof}
-  First recall the definition of $f\tjoin g = (\rst{f}\tjleft\rst{g})(f\tjright g)$. So, in order
+  First recall the definition of $f\tjoin g = (\rst{f}\tjdown\rst{g})(f\tjup g)$. So, in order
   to show $h\*(f\tjoin g) = (h\*f)\tjoin (h\*g)$, we need to show that
   \begin{equation}
-    h\*(\rst{f}\tjleft\rst{g})(f\tjright g) = (\rst{h\*f}\tjleft\rst{h\*g})(h\*f\tjright h\*g).
+    h\*(\rst{f}\tjdown\rst{g})(f\tjup g) = (\rst{h\*f}\tjdown\rst{h\*g})(h\*f\tjup h\*g).
     \label{eq:distribute_over_left_right}
   \end{equation}
 
-  Since $h\*(\rst{f}\tjleft\rst{g})(f\tjright g) =
-  (\rst{h}\*(\rst{f}\tjleft\rst{g}))(h\*(f\tjright g))$, this follows directly from
+  Since $h\*(\rst{f}\tjdown\rst{g})(f\tjup g) =
+  (\rst{h}\*(\rst{f}\tjdown\rst{g}))(h\*(f\tjup g))$, this follows directly from
   Lemma~\ref{lem:distributive_means_distribute_over_triangles} and the fact that $\*$ is a
   restriction functor.
 \end{proof}
@@ -2424,9 +2451,9 @@ inverse distributive category. We now show the converse is true.
   g$ for any $h$.
 \end{corollary}
 \begin{proof}
-  As $f\perp g$, we have $f\tjright g$ and $f\tjleft g$. By
-  Lemma~\ref{lem:distributive_means_distribute_over_triangles}, both $h\*f \tjright h\*g$ and
-  $h\*f \tjleft h\* g$ exist and therefore $h\*f \perp h\*g$.
+  As $f\perp g$, we have $f\tjup g$ and $f\tjdown g$. By
+  Lemma~\ref{lem:distributive_means_distribute_over_triangles}, both $h\*f \tjup h\*g$ and
+  $h\*f \tjdown h\* g$ exist and therefore $h\*f \perp h\*g$.
 \end{proof}
 \begin{corollary}\label{cor:inv_product_of_disjoint_is_disjoint}
   Suppose we have an inverse distributive category \X with a restriction zero, where $\*$
