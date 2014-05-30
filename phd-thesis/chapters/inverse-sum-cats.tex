@@ -2312,18 +2312,29 @@ and
     \item \D is an inverse category;
     \item \D has an inverse product tensor, $\*$, per SubSection~\ref{sub:inverse_products};
     \item \D has an inverse sum tensor, $\+$, per Definition~\ref{def:inverse_sum_tensor} and
-    \item diagram~\ref{eq:inverse_distributive_laws} commutes in \D for any choices of objects
-      $A, B, C$, where the map $d$ is an isomorphism.
+    \item The below diagram,
     \begin{equation}
       \xymatrix{
       && A\*B\\
       A \* (B \+ C) \ar[rr]^{d} \ar[urr]^{1\*\icpa} \ar[drr]_{1\*\icpb}
-        && (A\*B) \+ (A \* C) \ar[u]^{\icpa} \ar[d]_{\icpb}\\
-      && A\*C.
+        && (A\*B) \+ (A \* C) \ar[u]_{\icpa} \ar[d]^{\icpb}\\
+      && A\*C,
       }\label{eq:inverse_distributive_laws}
     \end{equation}
+    commutes in \D for any choices of objects $A, B, C$, where the map $d$ is an isomorphism.
   \end{itemize}
 \end{definition}
+
+Note that as we are operating in an inverse category, we also have the inverse of
+diagram~\ref{eq:inverse_distributive_laws} available to us. That is,
+\begin{equation}
+  \xymatrix{
+  A\*B \ar[d]_{\cpa} \ar[drr]^{1\*\cpa}\\
+  (A\*B) \+ (A \* C)  \ar[rr]^{\inv{d}}  &&A \* (B \+ C) \\
+  A\*C\ar[u]^{\cpb} \ar[urr]_{1\*\cpb}
+  }\label{eq:inverse_distributive_laws_reversed}
+\end{equation}
+is also a commuting diagram in an inverse category.
 
 \begin{definition}\label{def:join_of_perp_rst_maps}
   Suppose \X is an inverse category with a disjoint sum tensor $\+$ and a restriction zero. Then
@@ -2338,10 +2349,10 @@ and
   category.
 \end{lemma}
 \begin{proof}
-  By assumption, we have the first three items of Definition~\ref{def:distributive_inverse_category}.
-  Therefore, we need to construct an isomorphism $d$ such that diagram~\ref{eq:inverse_distributive_laws}
-  commutes.
-  We claim that the map $d = [1\* \icpa, 1\* \icpb]$ does this.
+  By assumption, we have the first three items of
+  Definition~\ref{def:distributive_inverse_category}. Therefore, we need to construct an
+  isomorphism $d$ such that diagram~\ref{eq:inverse_distributive_laws} commutes. We claim that the
+  map $d = [1\* \icpa, 1\* \icpb]$ does this.
 
   First, note that the typing of $d$ is correct. By Definition~\ref{def:join_of_perp_rst_maps},
   \[
@@ -2421,8 +2432,9 @@ inverse distributive category. We now show the converse is true.
     }
   \]
   The two leftmost  triangles commute by the diagram for $f\tjdown g$. The right hand triangles
-  commutes due to the distributivity of $\*$ over $\+$. But this then says that
-  $h\*(f\tjdown g) = (h\* f)\tjdown(h\* g)$, up to isomorphism, by the uniqueness of the
+  commute as per Definition~\ref{def:distributive_inverse_category}.
+  distributivity of $\*$ over $\+$. But this then says that
+  $h\*(f\tjdown g) = (h\* f)\tjdown(h\* g)$, by the uniqueness of the
   $\tjdown$ operation.
 
   The argument for showing $h\*(f\tjup g) = (h\* f)\tjup(h\* g)$ follows the same methodology.
