@@ -11,3 +11,6 @@
 *.ps
 *.xyc
 *~
+*.fdb_latexmk
+*.fls
+auto/
