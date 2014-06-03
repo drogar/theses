@@ -280,7 +280,7 @@ Given a subroutine $X$ in context $\Gamma=A$ with semantics $F$ (i.e., applying 
 gives $\Gamma'=F(A)$),
 \begin{itemize}
   \item{} The result of $X$ in context $b:$bit, $\Gamma=(A,B)$ is $b:$bit, $\Gamma'=(F(A),F(B))$.
-  \item{} The result of $X$ in context $q:$qubit, $\Gamma=\qsmat{A}{B}{C}{D}$ is $q:$qubit, $\Gamma'=\qsmat{F(A)}{F(B)}{F(C)}{F(D)}$.
+  \item{} The result of $X$ in context $q:$qubit, $\Gamma=\qsmat{A}{B}{C}{D}$ is\\ $q:$qubit, $\Gamma'=\qsmat{F(A)}{F(B)}{F(C)}{F(D)}$.
 \end{itemize}
 \end{lemma}
 \begin{proof}
@@ -716,4 +716,8 @@ completion, \bcpm{d}.
 
 Note that the canonical embedding from above, $F$, while it preserves the dagger compact closed
 structure, it does \emph{not} preserve biproducts.
-% section
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../phd-thesis"
+%%% End:

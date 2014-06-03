@@ -249,9 +249,9 @@ explore alternate characterizations of this relation on the restriction idempote
       \cdperp \inv{f}$ and therefore $\rst{\inv{g}}\inv{f} = \rg{g}\inv{f}= 0$. However, in an
       inverse category, $\inv{0} = 0$ and therefore $0 = \inv{(\rg{g}\inv{f})} = f \inv{\rg{g}} = f
       \rg{g}$.
-    \item Assume $f m \cdperp g n$ where $m, n$ are monic. By \axiom{Dis}{6}, $\rst{f m} \cdperp
-      \rst{g n}$. By Lemma~\ref{lem:restrictionvarious}, $\rst{f m} = \rst{f \rst{m}} = \rst{f 1} =
-      \rst{f}$ and therefore $\rst{f} \cdperp \rst{g}$.
+    \item Assume $f m \cdperp g n$ where $m, n$ are monic. By \axiom{Dis}{6}, this gives us
+      $\rst{f m} \cdperp \rst{g n}$. By Lemma~\ref{lem:restrictionvarious},
+      $\rst{f m} = \rst{f \rst{m}} = \rst{f 1} = \rst{f}$ and therefore $\rst{f} \cdperp \rst{g}$.
     \item This is a corollary to the previous item. By assumption, we have $\inv{m} f \cdperp
       \inv{n}g$ and therefore $\inv{f}m \cdperp \inv{g} n$. By the previous item, this means
       $\rst{\inv{f}} \cdperp \rst{\inv{g}}$ and hence $\rg{f} \cdperp \rg{g}$.
@@ -907,10 +907,13 @@ behaviour of the two operations: $\tjdown$ and $\tjup$.
       $(f \tjup g) \rg{g} = 0 \tjup g$.
     \item Calculating, we have
       \[
-        f \tjdown g (h \+ k) \icpa = f\tjdown g \icpa h = f h \text{ and }
+        f \tjdown g (h \+ k) \icpa = f\tjdown g \icpa h = f h
+      \]
+      and
+      \[
         f \tjdown g (h \+ k) \icpb = f\tjdown g \icpb k = g k,
       \]
-      but this means that
+      which means that
       $f \tjdown g (h \+ k) = f h \tjdown g k$ by the joint monic property of $\icpa$, $\icpb$.
     \item The proof for this is dual to the previous item, and depends on the joint epic property
       of $\cpa$ and $\cpb$.
@@ -1463,8 +1466,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
   Note that $\rst{\inv{i_1} f i_1} = \rst{\inv{i_1} f} \le \rst{\inv{i_1}}$ and similarly
   $\rst{\inv{i_2} g i_2} \le \rst{\inv{i_2}}$. Then, by \axiom{Dis}{3}, we have
   $\rst{\inv{i_1} f i_1} \cdperp \rst{\inv{i_2} g i_2}$.
-
-  Then, as $\wrg{\inv{i_1} f i_1} \le \wrg{i_1}$ and  $\wrg{\inv{i_2} g i_2} \le \wrg{i_2}$, we
+  As $\wrg{\inv{i_1} f i_1} \le \wrg{i_1}$ and  $\wrg{\inv{i_2} g i_2} \le \wrg{i_2}$, we
   have $\wrg{\inv{i_1} f i_1} \cdperp \wrg{\inv{i_2} g i_2}$ and by
   Lemma~\ref{lem:disjointness_various}, this means  $\inv{i_1} f i_1\cdperp \inv{i_2} g i_2$.
 \end{proof}
@@ -2086,8 +2088,8 @@ equivalence between these two categories.
   and $f = [f_{i\jay}]$ we have
   \begin{align*}
     &S(id_A)  = S([id_{A_i}]) = \djoinbig_i \icp{i} (\djoin_j \cp{j}) = id_{S(A)}\\
-    &f: A\to B  \iff S(f):S(A)\to S(B) \iff
-      \djoinbig_i \icp{i} (\djoin_\jay f_{i\jay} \cp{j}) : A_1\+\cdots\+A_n \to B_1\+\cdots\+B_m\\
+    &f: A\to B  \iff S(f):S(A)\to S(B) \iff \\
+    &\qquad \qquad  \djoinbig_i \icp{i} (\djoin_\jay f_{i\jay} \cp{j}) : A_1\+\cdots\+A_n \to B_1\+\cdots\+B_m\\
     &M(\rst{f}) = [\rst{f}] = \rst{[f]} = \rst{M(f)}
   \end{align*}
   and for composition, we have
@@ -2334,19 +2336,19 @@ diagram~\ref{eq:inverse_distributive_laws} available to us. That is,
   A\*C\ar[u]^{\cpb} \ar[urr]_{1\*\cpb}
   }\label{eq:inverse_distributive_laws_reversed}
 \end{equation}
-is also a commuting diagram in an inverse category.
+is also a commuting diagram in \D.
 
 \begin{definition}\label{def:join_of_perp_rst_maps}
-  Suppose \X is an inverse category with a disjoint sum tensor $\+$ and a restriction zero. Then
+  Suppose \X is an inverse category with a disjoint join tensor $\+$ and a restriction zero. Then
   for maps $f:A \to B$ and $g:A \to C$ with $\rst{f} \perp \rst{g}$, define the map $[f,g]:A \to
   B\+C$ as $(f \cpa) \djoin (g \cpb)$. This is well defined as $\wrg{\cpa} \perp \wrg{\cpb}$ and
-  therefore by \axiom{Dis}{7}$f\cpa \perp g\cpb$.
+  therefore by \axiom{Dis}{7}, $f\cpa \perp g\cpb$.
 \end{definition}
 
 \begin{lemma}
-  Given an inverse category \X\ with a disjoint sum tensor $\+$, a restriction zero, and an inverse
-  product tensor $\*$ which distributes over the disjoint join, it is an inverse distributive
-  category.
+  Given an inverse category \X\ with a disjoint join tensor $\+$, a restriction zero, and an inverse
+  product tensor $\*$ which distributes over disjoint joins, (i.e.,
+  $f\*(g\djoin h) = (f\*g) \djoin (f\* h)$  it is an inverse distributive  category.
 \end{lemma}
 \begin{proof}
   By assumption, we have the first three items of
@@ -2426,26 +2428,25 @@ inverse distributive category. We now show the converse is true.
     \xymatrix@R+20pt@C+10pt{
       & && B\*E\\
       A\*C \ar[rr]^{h\*(f\tjdown g)} \ar[drrr]_{h\*g} \ar[urrr]^{h\*f}
-        && B \* (D \+ E) \ar[r]^{d} \ar[ur]_{1\*\icpa} \ar[dr]^{1\*\icpb}
+        && B \* (D \+ E) \ar[r]^{\cong} \ar[ur]_{1\*\icpa} \ar[dr]^{1\*\icpb}
         & (B\*D) \+ (B \* E) \ar[d]^{\icpb} \ar[u]_{\icpa}\\
       & && B\*D.
     }
   \]
   The two leftmost  triangles commute by the diagram for $f\tjdown g$. The right hand triangles
-  commute as per Definition~\ref{def:distributive_inverse_category}.
-  distributivity of $\*$ over $\+$. But this then says that
+  commute as per Definition~\ref{def:distributive_inverse_category}. From this, we see
   $h\*(f\tjdown g) = (h\* f)\tjdown(h\* g)$, by the uniqueness of the
   $\tjdown$ operation.
 
   The argument for showing $h\*(f\tjup g) = (h\* f)\tjup(h\* g)$ follows the same methodology.
+  %TODO: Is the isomorphism important? Do we need to do something with it?
 \end{proof}
 \begin{lemma}\label{lem:distributive_means_distribute_over_join}
-  Given an inverse distributive category \X with a restriction zero, where $\*$ distributes over
-  $\+$ with $\+$ being a disjoint sum tensor, then $\*$ distributes over the disjoint join.
+  Given an inverse distributive category \X, then $\*$ distributes over the disjoint join.
 \end{lemma}
 \begin{proof}
-  First recall the definition of $f\tjoin g = (\rst{f}\tjdown\rst{g})(f\tjup g)$. So, in order
-  to show $h\*(f\tjoin g) = (h\*f)\tjoin (h\*g)$, we need to show that
+  First recall the definition of $f\djoin g = (\rst{f}\tjdown\rst{g})(f\tjup g)$. So, in order
+  to show $h\*(f\djoin g) = (h\*f)\djoin (h\*g)$, we need to show that
   \begin{equation}
     h\*(\rst{f}\tjdown\rst{g})(f\tjup g) = (\rst{h\*f}\tjdown\rst{h\*g})(h\*f\tjup h\*g).
     \label{eq:distribute_over_left_right}
@@ -2457,25 +2458,22 @@ inverse distributive category. We now show the converse is true.
   restriction functor.
 \end{proof}
 
-\begin{corollary}\label{cor:inverse_pdt_preserves_disjointness}
-  Suppose we have an inverse distributive category \X with a restriction zero, where $\*$
-  distributes over $\+$ with $\+$ being a disjoint sum tensor. If $f \perp g$, then $h\*f \perp h\*
-  g$ for any $h$.
+\begin{corollary}\label{cor:inverse_product_and_disjointness}
+  Suppose we have an inverse distributive category \X. Then,
+  \begin{enumerate}[{(}i{)}]
+    \item if $f \perp g$, then $h\*f \perp h\*  g$ for any $h$,
+    \item  if  $f\perp g : A\to B$ and $h \perp k: C\to D$, then $(f\*h)\perp (g\*k)$.
+   \end{enumerate}
 \end{corollary}
 \begin{proof}
-  As $f\perp g$, we have $f\tjup g$ and $f\tjdown g$. By
-  Lemma~\ref{lem:distributive_means_distribute_over_triangles}, both $h\*f \tjup h\*g$ and
-  $h\*f \tjdown h\* g$ exist and therefore $h\*f \perp h\*g$.
-\end{proof}
-\begin{corollary}\label{cor:inv_product_of_disjoint_is_disjoint}
-  Suppose we have an inverse distributive category \X with a restriction zero, where $\*$
-  distributes over $\+$ with $\+$ being a disjoint sum tensor. Further suppose we have
-  $f\perp g : A\to B$ and $h \perp g: C\to D$. Then $(f\*h)\perp (g\*k)$.
-\end{corollary}
-\begin{proof}
-  By Corollary~\ref{cor:inv_product_of_disjoint_is_disjoint}, we have that
-  $((f\djoin g)\*h) \perp ((f\djoin g)\* k)$. Then, by \axiom{DJ}{1} and \axiom{Dis}{3} we have
-  $(f\*h)\perp (g\*k)$.
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item As $f\perp g$, we have $f\tjup g$ and $f\tjdown g$. By
+      Lemma~\ref{lem:distributive_means_distribute_over_triangles}, both $h\*f \tjup h\*g$ and
+      $h\*f \tjdown h\* g$ exist and therefore $h\*f \perp h\*g$.
+    \item By the previous item, we have that $((f\djoin g)\*h) \perp ((f\djoin g)\* k)$. Then, by
+      \axiom{DJ}{1} and \axiom{Dis}{3} we have $(f\*h)\perp (g\*k)$.
+  \end{enumerate}
 \end{proof}
 % subsection distributive_inverse_categories (end)
 
@@ -2486,34 +2484,26 @@ We now consider the case where we have a discrete inverse category with inverse 
 tensor $\*$ and a disjoint join tensor $\+$, with the $\*$ tensor preserves the
 disjoint join.
 
-\begin{definition}\label{def:sum_product_inverse_category}
-  An inverse category will be referred to as a \emph{sum-product inverse category} when:
-  \begin{enumerate}
-    \item It is a discrete inverse category with inverse product tensor $\*$;
-    \item it has a restriction zero, $0$;
-    \item it has a disjoint join tensor, $\+$, and $\*$ preserves the associated disjoint join.
-  \end{enumerate}
-\end{definition}
-
-We recall the $\wtc$ construction of Definition~\ref{defn:xequivalence} where the discrete
-cartesian restriction category \Xt is built from the discrete inverse category \X. \Xt has the same
-objects as \X, while the maps are equivalence classes of maps in \X.
-
 A map in \Xt is related to map in \X in the following way:
 \[
   \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
 \]
 
-Our goal is to show that an inverse sum in a sum-product inverse category becomes a co-product
+Our goal is to show that an inverse sum in a distributive inverse category becomes a co-product
 in \Xt.
 
 \begin{lemma}\label{lem:x_tilde_has_a_restriction_zero}
-  Given $\X$ is a sum-product inverse category, then $\Xt$, the discrete inverse category created
+  Given $\X$ is a distributive inverse category, then $\Xt$, the discrete inverse category created
   from $\X$, has a restriction zero.
 \end{lemma}
 \begin{proof}
-  Recall from ... that $\X$ is equivalent as a category to $\Xt$ under the identity on objects
-  functor $\wtf:\X \to \Xt$ given by $\wtf(f)\mapsto (f\inv{\usr},1)$.
+  Recall from Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories}
+  that $\X$ is equivalent as a category to $\Xt$ under the identity on objects
+  functor
+  \[
+    {\raisebox{-15pt}{$\wtf:\X \to \Xt;$}} \qquad \xymatrix{A\ar[d]^{f}\\B}\mapsto \xymatrix{A\ar[d]^{(f\inv{\usr},1)}\\B}
+    \ \raisebox{-15pt}{ given by }\xymatrix{A\ar[d]^{f\usr}\\B\*1}\raisebox{-15pt}{).}
+  \]
 
   In $\X$, we know $0$ is a terminal and initial object, with maps
   $A \xrightarrow{t_A} 0 $ and $0 \xrightarrow{z_A} A$, with $\rst{0_{A,A}} = 0_{A,A} = t_A z_A$.
@@ -2530,103 +2520,81 @@ in \Xt.
 \end{proof}
 
 \begin{lemma}\label{lem:maps_from_inverse_sums_have_disjoint_equivalences}
-  In a sum-product inverse category \X, given an inverse sum $X$ over $A$ and $B$ with maps $f, g$
-  as in the diagram below, then we may construct maps $f'$ and $g'$ with $f\xequiv{}f'$ and
-  $g\xequiv{}g'$ such that $\inv{i_1}f' \perp \inv{i_2}g'$.
-  \[
-    \xymatrix{
-      A \ar[dr]^{i_1} \ar[rr]^f && Y\*C\\
-      & X\\
-      B \ar[ur]^{i_2} \ar[rr]^g && Y\*D\\
-    }
-  \]
+  In a distributive inverse category \X:
+  \begin{enumerate}[{(}i{)}]
+    \item Given $f : A \to Y\*C$, we can construct $f' : A \to Y \* (C\+D)$ for some object $D$ such
+      that $f \xequiv{} f'$.
+    \item Given $g : B \to Y\*D$, we can construct $g'' : B \to Y \* (C\+D)$ for some object $C$ such
+      that $g \xequiv{} g''$.
+    \item Given $f : A \to Y \* C$, $g : A\to Y \* D$, then the $f', g''$ as constructed by the
+      previous points satisfy $\icpa f' \perp \icpb g''$, where $icpa f',\,\icpb g'': A\+B \to Y\*(C\+D)$.
+  \end{enumerate}
+%  \[
+%    \xymatrix{
+%      A \ar[dr]^{i_1} \ar[rr]^f && Y\*C\\
+%      & X\\
+%      B \ar[ur]^{i_2} \ar[rr]^g && Y\*D\\
+%    }
+%  \]
 \end{lemma}
 \begin{proof}
-  We set:
-  \begin{align*}
-    f' &= \Delta f(1\*\cpa)\* \rst{f}i_1\\
-    g' &= \Delta g(1\*\cpb)\* \rst{g}i_2
-  \end{align*}
-
-  To show $f\equiv f'$, we must first show their restriction is the same.
-  \begin{align*}
-    \rst{\Delta f(1\*\cpa)\* \rst{f}i_1} &= \rst{\Delta \rst{f(1\*\cpa)}\* \rst{\rst{f}i_1}}\\
-    & = \rst{\Delta \rst{f} \* \rst{f}}\\
-    & = \rst{\rst{f}\Delta}\\
-    &= \rst{\rst{f}} = \rst{f}
-  \end{align*}
-
-  Note that $\rst{g'} = \rst{g}$ using the same argument.
-
-  Now we detail the mediating map between $f$ and $f'$:
-  \[
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+  \item Set $f' = f(1\*\cpa)$.
+    To show $f\equiv f'$, we must first show their restriction is the same.
+    \begin{align*}
+      \rst{f(1\*\cpa)} &= \rst{f\rst{(1\*\cpa)}}\\
+      & = \rst{f 1}\\
+      &=  \rst{f}
+    \end{align*}
+    Now we detail the mediating map between $f$ and $f'$:
+    \[
     \xymatrix @C=25pt @R=25pt{
       & & Y \* C \ar@{.>}[dr]^{\Delta\* 1}\\
-      & & & Y \* (Y\* C) \ar@{.>}[d]^{1\*\Delta}\\
-      A \ar[uurr]^f \ar[ddrr]_{f'}
-      & & & Y \* (Y\* C)\* (Y\* C) \ar@{.>}[d]^{1\* (1\*\cpa) \* \inv{f} i_1} \\
-      & & & Y \* (Y\*(C\+ D)\*X) \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
+      & & & Y \* (Y\* C) \ar@{.>}[dd]^{1\*1\*\cpa}\\
+      A \ar[uurr]^f \ar[ddrr]_{f'} \\
+      & & & Y \* Y\*(C\+ D) \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
       && Y\*(C\+ D)\*X
     }
-  \]
-  The primary points to remember when proving this is a commutative diagram is the use
-  of the exchange rule, the frobenius identities and of course, the naturality of $\Delta$.
+    \]
+  To show this commutes, we primarily use that $\Delta\inv{Delta} = 1$
   \begin{align*}
-    f(\Delta\*1)&(1\*\Delta_{Y\*C})(1\*1\*\cpa\*\inv{f}i_1)(\*1\*1) \\
-    &= f(\Delta_Y\*1)(1\*\Delta_Y\*\Delta_C)(1\*1\*c_{\*}\*1)(\inv{\Delta_Y}\*\cpa\*\inv{f}i_1) \\
-    &= f(\Delta_Y\*1)(1\*\Delta_Y\*\Delta_C)(\inv{\Delta_Y}\*1\*1\*1)(1\*\*c_{\*}\*1)(1\*\cpa\*\inv{f}i_1) \\
-    &= f(\Delta_Y\*1)(1\*1\*\Delta_C)(1\*c_{\*}\*1)(1\*\cpa\*\inv{f}i_1) \\
-    &= f(\Delta_Y\*\Delta_C)(1\*c_{\*}\*1)(1\*\cpa\*\inv{f}i_1) \\
-    &= \Delta_A (f\*f)(1\*\cpa\*\inv{f}i_1) \\
-    &= \Delta_A f(1\*\cpa)\*\rst{f}i_1 \\
+    f(\Delta\*1)&(1\*1\*\cpa\)(\inv{\Delta}\*1) \\
+    &= f(\Delta\*1)(\inv{\Delta} \* \cpa)\\
+    &= f(1 \* \cpa)\\
     &= f'
   \end{align*}
-  and hence $f\xequiv{h}f'$ where $h = \Delta (1\*\cpa) \* \inv{f} i_1$.
+  and hence $f\xequiv{h}f'$ where $h = (1\*\cpa)$.
+  \item For this item, we set $g'' = g(1\*\cpb)$. The proof that $g\xequiv{k}g''$, where
+    $k = (1\*\cpb)$ is done in the same way as the previous point.
+  \item In order to show  $\icpa f' \perp \icpb g''$, we will proceed by showing their restrictions
+    and ranges are disjoint.
+    As $\rst{\inv{\cpa}} \perp \rst{\inv{\cpb}}$ and $\rst{\inv{\cpa}f'} \le \rst{\inv{\cpa}}$ and
+    $\rst{\inv{\cpb}g''} \le \rst{\inv{\cpb}}$, we immediately have
+    $\rst{\inv{\cpa}f'} \perp \rst{\inv{\cpb}g'}$.
 
-  The proof for $g\equiv g'$ is analogous.
+    For the ranges, we have
+    \begin{align*}
+      \wrg{\inv{\cpa} (f (1\*\cpa))} &=
+      \rst{((1\*\icpa)\inv{f})\cpa}\\
+      &= \rst{((1\*\icpa)\inv{f}}\\
+      &\le \rst{(1\*\icpa)}
+    \end{align*}
+    and similarly
+    \[
+      \wrg{\inv{\cpb} g''} \le \rst{(1\*\icpb)}.
+    \]
+
+    Using Lemma~\ref{lem:disjointness_various}
+    we know that $\rst{(\icpa)}\perp \rst{(\icpb)}$. From
+    Corollary~\ref{cor:inverse_product_and_disjointness}
+    we conclude that $\rst{(1\*\icpa)}\perp \rst{(1\*\icpb)}$ and giving us
+    $\wrg{\inv{\cpa}f'} \perp \wrg{\inv{\cpb}g''}$ and therefore $\inv{\cpa}f' \perp \inv{\cpb}g''$.
+  \end{enumerate}
 \end{proof}
-
-\begin{lemma}\label{lem:inverse_sum_candidate_maps_are_disjoint}
-  Given the same assumptions as in Lemma~\ref{lem:maps_from_inverse_sums_have_disjoint_equivalences}
-  the maps $\inv{i_1}f'$ and $\inv{i_2}g'$ are disjoint.
-\end{lemma}
-\begin{proof}
-  Note first that by construction of $f'$ and $g'$ that we have parallel maps:
-  \[
-    \inv{i_1}f',\ \inv{i_2}g': X \to Y\*(C\+D)\*X.
-  \]
-
-  We will show that their restriction and ranges are disjoint, hence they will be disjoint.
-  As $\rst{\inv{i_1}} \perp \rst{\inv{i_2}}$ and $\rst{\inv{i_1}f'} \le \rst{\inv{i_1}}$ and
-  $\rst{\inv{i_2}g'} \le \rst{\inv{i_2}}$, we immediately have
-  $\rst{\inv{i_1}f'} \perp \rst{\inv{i_2}g'}$.
-
-  For the ranges, we have
-  \begin{align*}
-    \wrg{\inv{i_1}\Delta  (f (1\*\cpa)\* \rst{f}i_1)} &=
-      \rst{((1\*\icpa)\inv{f} \* \inv{i_1}\rst{f})\inv{\Delta}i_1}\\
-      &= \rst{((1\*\icpa)\inv{f} \* \inv{i_1}\rst{f})\inv{\Delta}}\\
-      &\le \rst{((1\*\icpa)\inv{f} \* \inv{i_1}\rst{f})}\\
-      &= \rst{((1\*\icpa)\inv{f}} \* \rst{\inv{i_1}\rst{f})}\\
-      &\le \rst{(1\*\icpa)} \* \rst{\inv{i_1}}
-  \end{align*}
-  and similarly
-  \[
-     \wrg{\inv{i_2} g'} \le \rst{((1\*\icpb)} \* \rst{\inv{i_2})}.
-  \]
-
-  Using Lemma~\ref{lem:disjointness_various}
-  we know that $\rst{\inv{i_1}} \perp \rst{\inv{i_2}}$ and by the same lemma,
-  $\rst{(\icpa)}\perp \rst{(\icpb)}$. From
-  Corollary~\ref{cor:inverse_pdt_preserves_disjointness}
-  we conclude that $\rst{(1\*\icpa)}\perp \rst{(1\*\icpb)}$ and finally by
-  Corollary~\ref{cor:inv_product_of_disjoint_is_disjoint} we have
-  $(\rst{(1\*\icpa)}\* \rst{\inv{i_2}} )\perp (\rst{(1\*\icpb)} \* \rst{\inv{i_2}})$ giving us
-  $\wrg{\inv{i_1}f'} \perp \wrg{\inv{i_2}g'}$ and therefore $\inv{i_1}f' \perp \inv{i_2}g'$.
-\end{proof}
-\begin{theorem}\label{thm:x_tilde_has_coproducts_if_x_is_sum_product_category}
-  Given \X is an sum-product inverse category, then the category \Xt has co-products.
-\end{theorem}
+\begin{proposition}\label{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category}
+  Given \X is an distributive inverse category, then the category \Xt has co-products.
+\end{proposition}
 \begin{proof}
   From Lemma~\ref{lem:an_inverse_sum_tensor_gives_inverse_sums} we know that $A\+B$ is an inverse
   sum of the objects $A, B$ in \X. This will become the co-product of $A, B$ in \Xt.
@@ -2642,16 +2610,15 @@ in \Xt.
     }
   \]
 
-  Note this corresponds to the diagram in \X of
-  Lemma~\ref{lem:maps_from_inverse_sums_have_disjoint_equivalences} where $X$ is replaced by $A\+B$.
-
-  Hence by that lemma we have an $f'$ and $g'$ in \X such that $\icpa f' \perp \icpb g'$ and
-  we may therefore form the disjoint join. We set $h$ to be $(\icpa f' \djoin \icpb g',
-  (C\+D)\*(A\+B))$.
+  Note this corresponds to the conditions of
+  Lemma~\ref{lem:maps_from_inverse_sums_have_disjoint_equivalences}. Hence by that lemma we have an
+  $f'$ and $g''$ in \X such that $\icpa f' \perp \icpb g''$ and we may therefore form the disjoint
+  join. We set $h$ in \Xt to be $(\icpa f' \djoin \icpb g'', (C\+D))$.
 
   By construction, in \X, $\cpa h = \cpa\icpa f' \djoin \cpa\icpb g' = f' \djoin 0 = f'$ and
-  $\cpb h = g'$. Hence, in \Xt, we have $(i_1 \usr, 1) h = f$ and $(i_2 \usr, 1) h = g$.
+  $\cpb h = g''$. Hence, in \Xt, we have $(i_1 \usr, 1) h = f$ and $(i_2 \usr, 1) h = g$.
 
+  %TODO: Show that the joint epicness of cpa, cpb give us a unique item.
   Also by definition of the disjoint join tensor, both $\cpa$ and $\cpb$ are monic in \X and
   continue to be so in $\Xt$.
 
@@ -2660,3 +2627,8 @@ in \Xt.
 
 
 % chapter inverse_sum_categories (end)
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:
