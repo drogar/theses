@@ -652,7 +652,7 @@ Note we also require the tensor isomorphisms above be be natural.
     \item It is a restriction functor --- i.e., $\_ \+ \_ : \X \times \X \to \X$.
     \item The unit is the restriction zero. ($0 : \boldsymbol{1}\to \X$ picks out the restriction
     zero in \X).
-    \item Define $\cpa = \inv{\upr}(1\+0):A\to A\+A$ and $\cpb = \inv{\upl}(0\+1): A\to A\+A$. Then
+    \item Define $\cpa = \inv{\upr}(1\+0):A\to A\+B$ and $\cpb = \inv{\upl}(0\+1): A\to B\+A$. Then
       $\cpa$ and $\cpb$ are jointly epic. That is, if $\cpa f = \cpa g$ and $\cpb f = \cpb g$, then
       $f = g$.
     \item Define $\scpa := (1\+0)\upr: A\+B \to A$ and $\scpb := (0\+1)\upl:A\+B \to B$. Then
@@ -2529,13 +2529,6 @@ in \Xt.
     \item Given $f : A \to Y \* C$, $g : A\to Y \* D$, then the $f', g''$ as constructed by the
       previous points satisfy $\icpa f' \perp \icpb g''$, where $icpa f',\,\icpb g'': A\+B \to Y\*(C\+D)$.
   \end{enumerate}
-%  \[
-%    \xymatrix{
-%      A \ar[dr]^{i_1} \ar[rr]^f && Y\*C\\
-%      & X\\
-%      B \ar[ur]^{i_2} \ar[rr]^g && Y\*D\\
-%    }
-%  \]
 \end{lemma}
 \begin{proof}
   \prepprooflist
@@ -2596,8 +2589,7 @@ in \Xt.
   Given \X is an distributive inverse category, then the category \Xt has co-products.
 \end{proposition}
 \begin{proof}
-  From Lemma~\ref{lem:an_inverse_sum_tensor_gives_inverse_sums} we know that $A\+B$ is an inverse
-  sum of the objects $A, B$ in \X. This will become the co-product of $A, B$ in \Xt.
+  The tensor object, $A\+B$ in \X will become the co-product of $A, B$ in \Xt.
 
   The injection maps of the co-product are $i_1 =(\cpa \usr, 1)$ and $i_2 = (\cpb \usr, 1)$.
 
@@ -2610,13 +2602,42 @@ in \Xt.
     }
   \]
 
-  Note this corresponds to the conditions of
-  Lemma~\ref{lem:maps_from_inverse_sums_have_disjoint_equivalences}. Hence by that lemma we have an
-  $f'$ and $g''$ in \X such that $\icpa f' \perp \icpb g''$ and we may therefore form the disjoint
-  join. We set $h$ in \Xt to be $(\icpa f' \djoin \icpb g'', (C\+D))$.
+  In \X, this comes from the diagram:
+  \begin{equation}
+    \xymatrix{
+      A \ar[dr]_{\cpa} \ar[rr]^f && Y\*C\\
+      & A\+B\\
+      B \ar[ur]^{\cpb} \ar[rr]^g && Y\*D\\
+    }\label{diag:pre-coproduct}
+  \end{equation}
+  where the extraneous unit isomorphisms are removed.
 
-  By construction, in \X, $\cpa h = \cpa\icpa f' \djoin \cpa\icpb g' = f' \djoin 0 = f'$ and
-  $\cpb h = g''$. Hence, in \Xt, we have $(i_1 \usr, 1) h = f$ and $(i_2 \usr, 1) h = g$.
+  This corresponds to the conditions of
+  Lemma~\ref{lem:maps_from_inverse_sums_have_disjoint_equivalences}. Hence by that lemma we may
+  revise Diagram~\eqref{diag:pre-coproduct} as
+  \begin{equation}
+    \xymatrix@R+10pt {
+      A \ar[d]^{\cpa} \ar[drrr]^{f'}\\
+      A\+B \ar[rrr]^(.4){\icpa f' \djoin \icpb g''} &&& Y\*(C\+D)\\
+      B \ar[u]^{\cpb} \ar[urrr]_{g''}\\
+    }\label{diag:pre-coproduct-with-common-map}
+  \end{equation}
+  where $f'$ and $g''$ are respectively equivalent to $f,g$.
+
+  Lifting Diagram~\ref{diag:pre-coproduct-with-common-map} to \X, we see this corresponds to the
+  desired co-product diagram, where  $h$ in \Xt is the map $(\icpa f' \djoin \icpb g'', (C\+D))$.
+
+  By construction, in \X,
+  \[
+    \cpa (\icpa f' \djoin \cpa\icpb g'') = (\cpa\icpa f') \djoin (\cpa\icpb g'') = f' \djoin 0 = f'
+  \]
+  and
+  \[
+    \cpb (\icpa f' \djoin \cpa\icpb g'') = g''.
+  \]
+  Hence, in \Xt, we have  $(i_1 \usr, 1) h = f$ and $(i_2 \usr, 1) h = g$.
+
+  All that remains to be shown is that $h$ is unique.
 
   %TODO: Show that the joint epicness of cpa, cpb give us a unique item.
   Also by definition of the disjoint join tensor, both $\cpa$ and $\cpb$ are monic in \X and
