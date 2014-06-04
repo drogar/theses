@@ -137,14 +137,10 @@ join.
 \subsection{Joins in restriction categories} % (fold)
 \label{sub:joins_in_restriction_categories}
 
-\begin{definition}\label{def:compatible_maps}
-  In a restriction category \R, two parallel maps $f,g:A\to B$ are \emph{compatible}, written
-  $f\compat g$ when $\rst{f}g = \rst{g}f$.
-\end{definition}
-
 \begin{definition}\label{def:joins}
   Given \R is a restriction category with a restriction zero, then \R is said to have \emph{joins}
-  whenever there is an operator $\join$ defined between compatible maps such that:
+  whenever there is an operator $\join$ defined between compatible maps (from
+  Definition~\vref{def:compatible_maps}) such that:
   \begin{itemize}
     \item $f \le f \join g$ and $g \le f \join g$,
     \item $\rst{f\join g} = \rst{f}\join \rst{g}$,
