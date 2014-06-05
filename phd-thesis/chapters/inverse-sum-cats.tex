@@ -2635,11 +2635,27 @@ in \Xt.
 
   All that remains to be shown is that $h$ is unique.
 
-  %TODO: Show that the joint epicness of cpa, cpb give us a unique item.
-  Also by definition of the disjoint join tensor, both $\cpa$ and $\cpb$ are monic in \X and
-  continue to be so in $\Xt$.
+  Suppose there is another $(k,E)$ in \Xt such that it satisfies the coproduct properties, i.e.,
+  that $i_1 (k,E) = (f',C\+D)$ and $i_2 (k,E) = (g'',C\+D)$. In \X, $k:A\+B \to Y \+E$ and we have
+  \begin{align*}
+    \cpa k &\xequiv{x} f'\quad\text{and}\\
+    \cpb k &\xequiv{y} g''
+  \end{align*}
+  where the maps $x, y: Y\*E \to Y\*(C\+D)$ fulfill the respective equivalence diagrams.
 
-  Therefore, $A\+B$ in \X is the co-product of $A$ and $B$ in \Xt.
+  The above gives us $\icpa\cpa k \xequiv{} \icpa f'$ and $\icpb\cpb k \xequiv{} \icpb g''$.
+  As we know that $\*$ preserves the disjoint join, and the equivalence diagrams consist of maps
+  under $\*$, we now have:
+  \begin{align*}
+    h&=\icpa f' \djoin \icpb g''\\
+    &\xequiv{} \icpa\cpa k \djoin \icpb\cpb k\\
+    &= (\icpa\cpa  \djoin \icpb\cpb) k\\
+    &= 1 k = k.
+  \end{align*}
+
+  Hence, $h \xequiv{} k$ in $\X$ and $(h, C\+D) = (k,E)$ in \Xt, meaning
+ %TODO: Show that the joint epicness of cpa, cpb give us a unique item.
+ $A\+B$ in \X is the co-product of $A$ and $B$ in \Xt.
 \end{proof}
 
 
