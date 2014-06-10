@@ -1,4 +1,25 @@
 \chapter{Sums in Frobenius Algebras} % (fold)
 \label{cha:sums_in_frobenius_algebras}
 
+\begin{tikzpicture}
+ [ node distance=.1mm, inner sep=0.5mm,
+   delta/.style={shape=isosceles triangle, isosceles triangle apex angle=70, draw, shape border
+     rotate=90, minimum size=4mm},
+   nabla/.style={shape=isosceles triangle, isosceles triangle apex angle=70, draw, shape border rotate=270, minimum size=4mm}]
+\path node at (0,0) [nabla] (n1) {}
+node at (0,2.5) (start) {}
+node at (-.5,1) [shape=square,draw] (fh) {$\scriptstyle f h$}
+node at (.5,1) [shape=square,draw] (gk) {$\scriptstyle g k$}
+node at (0,2) [delta] (d) {};
+\draw [] (d) to (start);
+\draw [] (n1) to (0,-0.5);
+\draw [] (d) to[out=305,in=90] (gk);
+\draw [] (d) to[out=235,in=90] (fh);
+\draw [-] (fh) to[out=270,in=125] (n1);
+\draw [-] (gk) to[out=270,in=65] (n1);
+\end{tikzpicture}
 % chapter sums_in_frobenius_algebras (end)
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:
