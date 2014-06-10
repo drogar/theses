@@ -110,7 +110,7 @@ denoted as $0$. This gives rise to the zero map $0_{A,B}: A \to 0 \to B$ between
 
 
 \begin{proposition}
-  An inverse category \X with restriction coproducts is a preorder.
+  An inverse category \X with restriction coproducts is a pre-order.
 \end{proposition}
 \begin{proof}
   By Lemma~\ref{lem:restriction_coproduct_is_restriction_functor}, we know $\nabla$ is total and
@@ -123,7 +123,7 @@ denoted as $0$. This gives rise to the zero map $0_{A,B}: A \to 0 \to B$ between
   \[
     f = \cpa \<f|g\> = \inv{\nabla} \<f|g\> = \cpb\<f|g\> = g
   \]
-  and therefore \X is a preorder.
+  and therefore \X is a pre-order.
 \end{proof}
 % subsection inverse_categories_with_restriction_coproducts (end)
 % section coproducts_in_restriction_categories (end)
@@ -183,7 +183,7 @@ explore alternate characterizations of this relation on the restriction idempote
 
 \begin{definition}\label{def:disjointness_relation}
   In an inverse category \X with a restriction zero, the relation $\cdperp$ between two parallel
-  maps $f, g:A \to B$ is called a \emph{disjointess relation} when it satisfies the following
+  maps $f, g:A \to B$ is called a \emph{disjointness relation} when it satisfies the following
   properties:
   \begin{align*}
     \axiom{Dis}{1}\quad &\text{ For all }f:A\to B,\ f\cdperp 0;\\
@@ -311,7 +311,7 @@ not germane to the point under discussion.
 \end{definition}
 
 \begin{proposition}\label{prop:extended_disjointness_is_a_disjointness_relation}
-  If $\cdperp$ is an extended disjointess relation based on $\ocdperp$ in \X, then
+  If $\cdperp$ is an extended disjointness relation based on $\ocdperp$ in \X, then
   $\cdperp$ is a disjointness relation in \X.
 \end{proposition}
 \begin{proof}
@@ -351,11 +351,11 @@ not germane to the point under discussion.
   \end{enumerate}
 \end{proof}
 \begin{theorem}\label{thm:open_disjointness_is_disjointness}
-   To give a disjointness relation $\perp$ on $\X$ is to give an open disjointess relation
+   To give a disjointness relation $\perp$ on $\X$ is to give an open disjointness relation
    $\ocdperp$ on \X.
 \end{theorem}
 \begin{proof}
-  Suppose we are given the disjointess relation $\perp$. By
+  Suppose we are given the disjointness relation $\perp$. By
   Proposition~\ref{prop:disjointness_is_open_disjointness}, this is an open disjointness relation
   on each of the sets of idempotents, $\open{A}$. We will label that relation $\ocdperp$.
 
@@ -374,9 +374,9 @@ not germane to the point under discussion.
 
 
   Now, suppose we are given the open disjointness relation $\ocdperp$. Similar to above, we can
-  construct the extended disjointess relation $\perp$ by
+  construct the extended disjointness relation $\perp$ by
   Definition~\ref{def:extended_open_disjointness}. From the disjointness relation $\perp$, we have
-  the open disjointess relation $\overline{\perp}$ by
+  the open disjointness relation $\overline{\perp}$ by
   Lemma~\ref{prop:disjointness_is_open_disjointness}.
 
   Assume $e \ocdperp e'$. As this means both $\rst{e} \ocdperp \rst{e'}$ and
@@ -460,7 +460,7 @@ on derived categories, such as the product category.
 \subsection{Disjoint joins} % (fold)
 \label{sub:disjoint_joins}
 
-We now consider additional structure on the inverse category, dependant upon the disjointness
+We now consider additional structure on the inverse category, dependent upon the disjointness
 relation.
 \begin{definition}\label{def:disjoint_join}
   An \emph{inverse category with disjoint joins} is an inverse category $\X$, with a restriction
@@ -601,7 +601,7 @@ inverse categories with disjoint joins has a disjoint join.
 \end{lemma}
 \begin{proof}
   From Lemma~\ref{lem:disjointness_is_derivable_on_a_product_category}, we know $\X\times\Y$ has a
-  disjointness relation that is defined pointwise.  We therefore define $\djoin_{\times}$ the
+  disjointness relation that is defined point-wise.  We therefore define $\djoin_{\times}$ the
   disjoint join on $\X\times\Y$ by
   \begin{equation}
     (f,g)\djoin_{\times}(h,k) = (f \djoin h, g \djoin' k) \label{eq:disjoint_join_on_product}
@@ -801,7 +801,7 @@ rest of this paper.
   $\cpb  (t \icpa) = 0 = \cpb ( t_1 \+ t_2)\icpa$, hence $t \icpa = ( t_1 \+ t_2)\icpa$. Similarly,
   we see $t\icpb = ( t_1 \+ t_2)\icpb$ and therefore $t = t_1 \+ t_2$.
 \end{proof}
-\subsubsection{Disjointess via a monoidal tensor} % (fold)
+\subsubsection{Disjointness via a monoidal tensor} % (fold)
 \label{ssub:disjointess_via_a_monoidal_tensor}
 
 \begin{definition}\label{def:up_triangle_and_down_triangle}
@@ -1061,7 +1061,7 @@ behaviour of the two operations: $\tjdown$ and $\tjup$.
   \end{itemize}
 \end{proof}
 
-% subsubsection disjointess_via_a_monoidal_tensor (end)
+% sub-subsection disjointness_via_a_monoidal_tensor (end)
 
 \subsubsection{Disjoint join via a monoidal tensor} % (fold)
 \label{ssub:disjoint_join_via_a_monoidal_tensor}
@@ -1309,7 +1309,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 
 \end{proof}
 
-% subsubsection disjoint_join_via_a_monoidal_tensor (end)
+% sub-subsection disjoint_join_via_a_monoidal_tensor (end)
 % subsection tensors_for_disjointness (end)
 
 % section disjointness_in_an_inverse_category (end)
@@ -1612,7 +1612,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 
 
 
-% subsubsection inverse_sum_tensor_definitions (end)
+% sub-subsection inverse_sum_tensor_definitions (end)
 
 \subsubsection{Disjointness and the inverse sum tensor} % (fold)
 \label{ssub:disjointness_and_the_inverse_sum_tensor}
@@ -1644,7 +1644,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
   item~\ref{lemitem:l_r_preserve_tensor}.
 
 \end{proof}
-% subsubsection disjointness_and_the_inverse_sum_tensor (end)
+% sub-subsection disjointness_and_the_inverse_sum_tensor (end)
 
 \subsubsection{Inverse sums and the inverse sum tensor} % (fold)
 \label{ssub:inverse_sums_and_the_inverse_sum_tensor}
@@ -1752,7 +1752,7 @@ be an inverse sum tensor.
 \end{proof}
 
 
-% subsubsection inverse_sums_and_the_inverse_sum_tensor (end)
+% sub-subsection inverse_sums_and_the_inverse_sum_tensor (end)
 
 \subsubsection{Matrices} % (fold)
 \label{ssub:matrix_representation}
@@ -1880,7 +1880,7 @@ show that \imatx has is an inverse category and that $\X$ embeds within this cat
         & \vdots & \\
         \djoin_k \rst{f_{m1} g_{1 k}}f_{m1} &\ldots & \djoin_k \rst{f_{m n} g_{n k}}f_{m n}
       \end{bmatrix}\\[10pt]
-      & = \begin{bmatrix} % becuase the f_ij \perp fi1 etc.
+      & = \begin{bmatrix} % because the f_ij \perp fi1 etc.
         \djoin_\jay\djoin_k \rst{f_{1\jay} g_{\jay k}} f_{11} &\ldots &
           \djoin_\jay\djoin_k \rst{f_{1\jay} g_{\jay k}} f_{1n}\\
         & \vdots & \\
@@ -1903,7 +1903,7 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
 \begin{proof}
   The restriction zero in \imatx is the list $[0]$.
 
-  For the ojbect $A=[A_1,\ldots,A_n]$, the $0$ map to it is given by the $n\times 1$ matrix
+  For the object $A=[A_1,\ldots,A_n]$, the $0$ map to it is given by the $n\times 1$ matrix
   $[0,\ldots,0]$. The map from $0$ is given by the $1\times n$ matrix
   $\begin{bmatrix}0\\ \vdots\\ 0\end{bmatrix}$.
 
@@ -2221,7 +2221,7 @@ $[f_{i j}]$ is a matrix, it must have $f_{i j} \cdperp f_{i k}$ for all $i$ when
 
 
 
-% subsubsection matrix_representation (end)
+% sub-subsection matrix_representation (end)
 
 
 
@@ -2261,8 +2261,8 @@ $[f_{i j}]$ is a matrix, it must have $f_{i j} \cdperp f_{i k}$ for all $i$ when
 %   }
 % \]
 %
-% The codiagonal does not exist, except at the $0$ object. To see this, recall this is an inverse
-% category and the codiagonal is a total map. Therefore, given $\nabla: A \+ A \to A$, then
+% The co-diagonal does not exist, except at the $0$ object. To see this, recall this is an inverse
+% category and the co-diagonal is a total map. Therefore, given $\nabla: A \+ A \to A$, then
 % $\nabla^{(-1)} : A \to A \+ A$ and $\nabla \nabla^{(-1)} = 1_{A\+A}, \nabla^{(-1)} \nabla = 1_{A}$.
 
 % subsection inverse_sum_tensor (end)
@@ -2308,9 +2308,9 @@ and
   A \emph{distributive inverse category} \D consists of the following:
   \begin{itemize}
     \item \D is an inverse category;
-    \item \D has an inverse product tensor, $\*$, per SubSection~\ref{sub:inverse_products};
+    \item \D has an inverse product tensor, $\*$, per Sub-Section~\ref{sub:inverse_products};
     \item \D has an inverse sum tensor, $\+$, per Definition~\ref{def:inverse_sum_tensor} and
-    \item The below diagram,
+    \item There is a family of isomorphisms, $d$, such that
     \begin{equation}
       \xymatrix{
       && A\*B\\
@@ -2319,7 +2319,7 @@ and
       && A\*C,
       }\label{eq:inverse_distributive_laws}
     \end{equation}
-    commutes in \D for any choices of objects $A, B, C$, where the map $d$ is an isomorphism.
+    commutes in \D for any choices of objects $A, B, C$.
   \end{itemize}
 \end{definition}
 
@@ -2344,7 +2344,7 @@ is also a commuting diagram in \D.
 \begin{lemma}
   Given an inverse category \X\ with a disjoint join tensor $\+$, a restriction zero, and an inverse
   product tensor $\*$ which distributes over disjoint joins, (i.e.,
-  $f\*(g\djoin h) = (f\*g) \djoin (f\* h)$  it is an inverse distributive  category.
+  $f\*(g\djoin h) = (f\*g) \djoin (f\* h)$),  it is an inverse distributive  category.
 \end{lemma}
 \begin{proof}
   By assumption, we have the first three items of
@@ -2548,7 +2548,7 @@ in \Xt.
     \]
   To show this commutes, we primarily use that $\Delta\inv{Delta} = 1$
   \begin{align*}
-    f(\Delta\*1)&(1\*1\*\cpa\)(\inv{\Delta}\*1) \\
+    f(\Delta\*1)&(1\*1\*\cpa)(\inv{\Delta}\*1) \\
     &= f(\Delta\*1)(\inv{\Delta} \* \cpa)\\
     &= f(1 \* \cpa)\\
     &= f'
