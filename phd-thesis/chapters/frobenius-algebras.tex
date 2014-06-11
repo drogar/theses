@@ -108,7 +108,7 @@ such a category, with $\*$ the monoid tensor and $I$ the unit of the monoid.
       A^{*} \ar[dr]^{id} \ar[d]_{\eta\*A^{*}} \\
       A^{*} \*A\*A^{*}  \ar[r]_(.6){A^{*} \*\epsilon} & A^{*}
     }
-    \hskip{10pt}
+    \text{ and }
     \xymatrix@C+20pt{
       A \ar[r]^(.4){A\*\eta} \ar[dr]_{id} & A\* A^{*}\* A \ar[d]^{\epsilon\*A}\\
       & A
@@ -175,7 +175,7 @@ $\dgr{\epsilon_{X}}\, \Delta_{X}$.
   homomorphisms which do not necessarily preserve the unit.
 \end{example}
 
-\begin{theorem}
+\begin{theorem}\label{thm:cfrob_is_a_discrete_inverse_category}
   When \X is a symmetric monoidal category, CFrob(\X) is a discrete inverse category.
 \end{theorem}
 \begin{proof}
@@ -184,6 +184,24 @@ $\dgr{\epsilon_{X}}\, \Delta_{X}$.
     Y \xrightarrow{1\*\eta} Y\*X \xrightarrow{1\*\Delta}
       Y\*X\*X \xrightarrow{1\*f\*1} Y\*Y\*X \xrightarrow{\nabla\*1}
       Y\*X \xrightarrow{\epsilon\*1}X
+  \]
+  As a string diagram, this looks like:
+  \[
+  \begin{tikzpicture}
+    \path node at (-1,3) (starty) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (0,2) [delta] (d) {}
+    node at (-.5,1.5) [shape=rectangle,draw] (f) {$\scriptstyle f$}
+    node at (-1,1) [nabla] (n1) {}
+    node at (-1,.5) [epsilon] (e1) {}
+    node at (0,0) (end) {};
+    \draw [] (starty) to (n1);
+    \draw [] (eta1) to (d);
+    \draw [] (d) to (end);
+    \draw [] (d) to (f);
+    \draw [] (f) to (n1);
+    \draw [-] (n1) to (e1);
+  \end{tikzpicture}
   \]
   Using a result from \cite{cockett2002:restcategories1}, we need only show:
   \begin{align*}
