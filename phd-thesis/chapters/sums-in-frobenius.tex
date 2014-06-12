@@ -9,8 +9,8 @@
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1) [shape=rectangle,draw] (f) {$\scriptstyle f$}
-node at (.5,1) [shape=rectangle,draw] (g) {$\scriptstyle g$}
+node at (-.5,1) [map] (f) {$\scriptstyle f$}
+node at (.5,1) [map] (g) {$\scriptstyle g$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
@@ -34,8 +34,8 @@ We need to show the seven axioms of the disjointness relation hold. Note that we
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1) [shape=rectangle,draw] (f) {$\scriptstyle f$}
-node at (.5,1) [shape=rectangle,draw] (z) {$\scriptstyle 0$}
+node at (-.5,1) [map] (f) {$\scriptstyle f$}
+node at (.5,1) [map] (z) {$\scriptstyle 0$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
@@ -48,9 +48,9 @@ node at (0,2) [delta] (d) {};
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1) [shape=rectangle,draw] (f) {$\scriptstyle f$}
-node at (.5,.75) [shape=rectangle,draw] (z) {$\scriptstyle 0$}
-node at (.5,1.25) [shape=rectangle,draw] (rz) {$\scriptstyle \rst{0}$}
+node at (-.5,1) [map] (f) {$\scriptstyle f$}
+node at (.5,.75) [map] (z) {$\scriptstyle 0$}
+node at (.5,1.25) [map] (rz) {$\scriptstyle \rst{0}$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
@@ -63,9 +63,9 @@ node at (0,2) [delta] (d) {};
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
-node at (0,2.75) [shape=rectangle,draw] (tz) {$\scriptstyle 0(=\rst{0})$}
-node at (-.5,1) [shape=rectangle,draw] (f) {$\scriptstyle f$}
-node at (.5,1) [shape=rectangle,draw] (z) {$\scriptstyle 0$}
+node at (0,2.75) [map] (tz) {$\scriptstyle 0(=\rst{0})$}
+node at (-.5,1) [map] (f) {$\scriptstyle f$}
+node at (.5,1) [map] (z) {$\scriptstyle 0$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (tz);
 \draw [] (n1) to (0,-0.5);
@@ -84,8 +84,8 @@ $\inv{f}$ as given in Theorem~\ref{thm:cfrob_is_a_discrete_inverse_category}. Th
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1) [shape=rectangle,draw] (f) {$\scriptstyle \rst{f}$}
-node at (.5,1) [shape=rectangle,draw] (g) {$\scriptstyle \rst{g}$}
+node at (-.5,1) [map] (f) {$\scriptstyle \rst{f}$}
+node at (.5,1) [map] (g) {$\scriptstyle \rst{g}$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
@@ -99,14 +99,14 @@ node at (0,2) [delta] (d) {};
     \path node at (0.5,3.5) [delta] (start) {}
     node at (0,2.5) [eta] (eta1) {}
     node at (0,2) [delta] (d) {}
-    node at (-1.2,1.5) [shape=rectangle,draw] (f1) {$\scriptstyle f$}
-    node at (-.5,1.5) [shape=rectangle,draw] (f) {$\scriptstyle f$}
+    node at (-1.2,1.5) [map] (f1) {$\scriptstyle f$}
+    node at (-.5,1.5) [map] (f) {$\scriptstyle f$}
     node at (-1,1) [nabla] (n1) {}
     node at (-1,.5) [epsilon] (e1) {}
     node at (2,2.5) [eta] (etag) {}
     node at (2,2) [delta] (dg) {}
-    node at (.8,1.5) [shape=rectangle,draw] (g1) {$\scriptstyle g$}
-    node at (1.5,1.5) [shape=rectangle,draw] (g) {$\scriptstyle g$}
+    node at (.8,1.5) [map] (g1) {$\scriptstyle g$}
+    node at (1.5,1.5) [map] (g) {$\scriptstyle g$}
     node at (1,1) [nabla] (ng) {}
     node at (1,.5) [epsilon] (eg) {}
     node at (1,-.5) [nabla] (end) {};
@@ -134,8 +134,8 @@ node at (0,2) [delta] (d) {};
     node at (1,3) [delta] (d2) {}
     node at (-.5,2.5) [nabla] (n1) {}
     node at (.5,2.5) [nabla] (n2) {}
-    node at (-.5,2) [shape=rectangle,draw] (f1) {$\scriptstyle f$}
-    node at (.5,2) [shape=rectangle,draw] (g2) {$\scriptstyle g$}
+    node at (-.5,2) [map] (f1) {$\scriptstyle f$}
+    node at (.5,2) [map] (g2) {$\scriptstyle g$}
     node at (-.5,1.5) [epsilon] (e1) {}
     node at (.5,1.5) [epsilon] (e2) {}
     node at (0,.5) [nabla] (n) {};
@@ -159,8 +159,8 @@ node at (0,2) [delta] (d) {};
     \path node at (0,4) [delta] (start) {}
     node at (-.5,3) [delta] (d1) {}
     node at (.5,3) [delta] (d2) {}
-    node at (-.25,2) [shape=rectangle,draw] (f1) {$\scriptstyle f$}
-    node at (.25,2) [shape=rectangle,draw] (g2) {$\scriptstyle g$}
+    node at (-.25,2) [map] (f1) {$\scriptstyle f$}
+    node at (.25,2) [map] (g2) {$\scriptstyle g$}
     node at (-.25,1.5) [epsilon] (e1) {}
     node at (.25,1.5) [epsilon] (e2) {}
     node at (0,0) [nabla] (n) {};
@@ -182,8 +182,8 @@ node at (0,2) [delta] (d) {};
     \path node at (0,4) [delta] (start) {}
     node at (.5,3.5) [delta] (d2) {}
     node at (0,2.5) [delta] (d1) {}
-    node at (-.25,2) [shape=rectangle,draw] (f1) {$\scriptstyle f$}
-    node at (.25,2) [shape=rectangle,draw] (g2) {$\scriptstyle g$}
+    node at (-.25,2) [map] (f1) {$\scriptstyle f$}
+    node at (.25,2) [map] (g2) {$\scriptstyle g$}
     node at (0,1.5) [nabla] (n12) {}
     node at (0,1) [epsilon] (e2) {}
     node at (0,0) [nabla] (n) {};
@@ -203,7 +203,7 @@ node at (0,2) [delta] (d) {};
 \begin{tikzpicture}
     \path node at (0,3) [delta] (start) {}
     node at (.5,2.5) [delta] (d2) {}
-    node at (0,1.75) [shape=rectangle,draw] (z) {$\scriptstyle 0$}
+    node at (0,1.75) [map] (z) {$\scriptstyle 0$}
     node at (0,1) [epsilon] (e2) {}
     node at (0,0) [nabla] (n) {};
     \draw [] (start) to (0,3.5);
@@ -218,7 +218,7 @@ node at (0,2) [delta] (d) {};
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (.5,1) [shape=rectangle,draw] (z) {$\scriptstyle 0$}
+node at (.5,1) [map] (z) {$\scriptstyle 0$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
@@ -234,8 +234,8 @@ In this proof, we use the result of \axiom{Dis}{6}, i.e., that $\rst{f}\perp\rst
 \raisebox{25pt}{
 \begin{tikzpicture}
   \begin{pgfonlayer}{nodelayer}
-    \node [style=map] (0) at (-2, 1) {$\scriptsize \rst{f}$};
-    \node [style=map] (1) at (-2, 0) {$\scriptsize g$};
+    \node [style=map] (0) at (-2, 1) {$\scriptstyle \rst{f}$};
+    \node [style=map] (1) at (-2, 0) {$\scriptstyle g$};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
       \draw (0) to (1);
@@ -247,12 +247,12 @@ In this proof, we use the result of \axiom{Dis}{6}, i.e., that $\rst{f}\perp\rst
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
   \begin{pgfonlayer}{nodelayer}
-    \node [style=map] (0) at (-2, 3) {$\scriptsize \rst{f}$};
-    \node [style=map] (1) at (-2, 2.25) {$\scriptsize g$};
+    \node [style=map] (0) at (-2, 3) {$\scriptstyle \rst{f}$};
+    \node [style=map] (1) at (-2, 2.25) {$\scriptstyle g$};
     \node [style=delta] (2) at (-1.25, 4) {};
     \node [style=nabla] (3) at (-1.25, 1.25) {};
-    \node [style=map] (4) at (-0.5, 3) {$\scriptsize \rst{f}$};
-    \node [style=map] (5) at (-0.5, 2.25) {$\scriptsize g$};
+    \node [style=map] (4) at (-0.5, 3) {$\scriptstyle \rst{f}$};
+    \node [style=map] (5) at (-0.5, 2.25) {$\scriptstyle g$};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
       \draw (0) to (1);
@@ -268,11 +268,11 @@ In this proof, we use the result of \axiom{Dis}{6}, i.e., that $\rst{f}\perp\rst
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
   \begin{pgfonlayer}{nodelayer}
-    \node [style=map] (0) at (-2, 3) {$\scriptsize \rst{f}$};
-    \node [style=map] (1) at (-2, 2.25) {$\scriptsize g$};
+    \node [style=map] (0) at (-2, 3) {$\scriptstyle \rst{f}$};
+    \node [style=map] (1) at (-2, 2.25) {$\scriptstyle g$};
     \node [style=delta] (2) at (-1.25, 4) {};
     \node [style=nabla] (3) at (-1.25, 1.25) {};
-    \node [style=map] (4) at (-0.5, 2.25) {$\scriptsize g$};
+    \node [style=map] (4) at (-0.5, 2.25) {$\scriptstyle g$};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
       \draw (0) to (1);
@@ -287,11 +287,11 @@ In this proof, we use the result of \axiom{Dis}{6}, i.e., that $\rst{f}\perp\rst
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
   \begin{pgfonlayer}{nodelayer}
-    \node [style=map] (0) at (-2, 2.75) {$\scriptsize \rst{f}$};
-    \node [style=map] (1) at (-1.25, 0.75) {$\scriptsize g$};
+    \node [style=map] (0) at (-2, 2.75) {$\scriptstyle \rst{f}$};
+    \node [style=map] (1) at (-1.25, 0.75) {$\scriptstyle g$};
     \node [style=delta] (2) at (-1.25, 4) {};
     \node [style=nabla] (3) at (-1.25, 1.5) {};
-    \node [style=map] (4) at (-0.5, 2.75) {$\scriptsize \rst{g}$};
+    \node [style=map] (4) at (-0.5, 2.75) {$\scriptstyle \rst{g}$};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
       \draw (4) to[out=270,in=65] (3);
@@ -307,8 +307,8 @@ In this proof, we use the result of \axiom{Dis}{6}, i.e., that $\rst{f}\perp\rst
 \raisebox{25pt}{
 \begin{tikzpicture}
   \begin{pgfonlayer}{nodelayer}
-    \node [style=map] (0) at (-1.25, 1.75) {$\scriptsize 0$};
-    \node [style=map] (1) at (-1.25, 0.75) {$\scriptsize g$};
+    \node [style=map] (0) at (-1.25, 1.75) {$\scriptstyle 0$};
+    \node [style=map] (1) at (-1.25, 0.75) {$\scriptstyle g$};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
       \draw (0) to (1);
@@ -324,8 +324,8 @@ In this proof, we use the result of \axiom{Dis}{6}, i.e., that $\rst{f}\perp\rst
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1) [shape=rectangle,draw] (f) {$\scriptstyle f'$}
-node at (.5,1) [shape=rectangle,draw] (g) {$\scriptstyle g'$}
+node at (-.5,1) [map] (f) {$\scriptstyle f'$}
+node at (.5,1) [map] (g) {$\scriptstyle g'$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
@@ -337,12 +337,12 @@ node at (0,2) [delta] (d) {};
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
   \begin{pgfonlayer}{nodelayer}
-    \node [style=map] (0) at (-2, 3) {$\scriptsize \rst{f'}$};
-    \node [style=map] (1) at (-2, 2.25) {$\scriptsize f$};
+    \node [style=map] (0) at (-2, 3) {$\scriptstyle \rst{f'}$};
+    \node [style=map] (1) at (-2, 2.25) {$\scriptstyle f$};
     \node [style=delta] (2) at (-1.25, 4) {};
     \node [style=nabla] (3) at (-1.25, 1.25) {};
-    \node [style=map] (4) at (-0.5, 3) {$\scriptsize \rst{g'}$};
-    \node [style=map] (5) at (-0.5, 2.25) {$\scriptsize g$};
+    \node [style=map] (4) at (-0.5, 3) {$\scriptstyle \rst{g'}$};
+    \node [style=map] (5) at (-0.5, 2.25) {$\scriptstyle g$};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
       \draw (0) to (1);
@@ -359,10 +359,10 @@ node at (0,2) [delta] (d) {};
 \begin{tikzpicture}
 \path
 node at (0,3) (start) {}
-node at (0,2.5) [shape=rectangle,draw] (fg) {$\scriptstyle \rst{f'}\,\rst{g'}$}
+node at (0,2.5) [map] (fg) {$\scriptstyle \rst{f'}\,\rst{g'}$}
 node at (0,2) [delta] (d) {}
-node at (-.5,1) [shape=rectangle,draw] (f) {$\scriptstyle f$}
-node at (.5,1) [shape=rectangle,draw] (g) {$\scriptstyle g$}
+node at (-.5,1) [map] (f) {$\scriptstyle f$}
+node at (.5,1) [map] (g) {$\scriptstyle g$}
  node at (0,0) [nabla] (n1) {};
 \draw [] (d) to (fg);
 \draw [] (start) to (fg);
@@ -377,8 +377,8 @@ node at (.5,1) [shape=rectangle,draw] (g) {$\scriptstyle g$}
 \begin{tikzpicture}
 \path
 node at (0,1.5) (start) {}
-node at (0,1) [shape=rectangle,draw] (fg) {$\scriptstyle \rst{f'}\rst{g'}$}
-node at (0,.5) [shape=rectangle,draw] (z) {$\scriptstyle 0$};
+node at (0,1) [map] (fg) {$\scriptstyle \rst{f'}\,\rst{g'}$}
+node at (0,.5) [map] (z) {$\scriptstyle 0$};
 \draw [] (z) to (fg);
 \draw [] (start) to (fg);
 \draw [] (z) to (0,0);
@@ -387,16 +387,16 @@ node at (0,.5) [shape=rectangle,draw] (z) {$\scriptstyle 0$};
 \ \raisebox{45pt}{$=0$}
 \]
 \axiom{Dis}{4}: $f\cdperp g$ implies $g \cdperp f$.\\
-This follows directly from the co-commutativity of $\Delta$.
+This follows directly from the co-commutativity of $\Delta$.\\
 \axiom{Dis}{5}: $f\cdperp g$ implies $h f \cdperp h g$.\\
-This follows directly from the naturality of $\Delta$.
+This follows directly from the naturality of $\Delta$.\\
 \axiom{Dis}{7}: $\rst{f}\cdperp \rst{g},\ \rg{h}\cdperp \rg{k}$ implies $f h \cdperp g k$.\\
 \[
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1) [shape=rectangle,draw] (fh) {$\scriptstyle f h$}
-node at (.5,1) [shape=rectangle,draw] (gk) {$\scriptstyle g k$}
+node at (-.5,1) [map] (fh) {$\scriptstyle f h$}
+node at (.5,1) [map] (gk) {$\scriptstyle g k$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
@@ -409,12 +409,12 @@ node at (0,2) [delta] (d) {};
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1.5) [shape=rectangle,draw] (rf) {$\scriptstyle \rst{f}$}
-node at (-.5,1) [shape=rectangle,draw] (fh) {$\scriptstyle f h$}
-node at (-.5,.5) [shape=rectangle,draw] (rngh) {$\scriptstyle \rg{h}$}
-node at (.5,1.5) [shape=rectangle,draw] (rg) {$\scriptstyle \rst{g}$}
-node at (.5,1) [shape=rectangle,draw] (gk) {$\scriptstyle g k$}
-node at (.5,.5) [shape=rectangle,draw] (rngk) {$\scriptstyle \rg{k}$}
+node at (-.5,1.5) [map] (rf) {$\scriptstyle \rst{f}$}
+node at (-.5,1) [map] (fh) {$\scriptstyle f h$}
+node at (-.5,.5) [map] (rngh) {$\scriptstyle \rg{h}$}
+node at (.5,1.5) [map] (rg) {$\scriptstyle \rst{g}$}
+node at (.5,1) [map] (gk) {$\scriptstyle g k$}
+node at (.5,.5) [map] (rngk) {$\scriptstyle \rg{k}$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
@@ -431,10 +431,10 @@ node at (0,2) [delta] (d) {};
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1) [shape=rectangle,draw] (fh) {$\scriptstyle f h$}
-node at (-.5,.5) [shape=rectangle,draw] (rnghrngk) {$\scriptstyle \rg{h}\rg{k}$}
-node at (.5,1.5) [shape=rectangle,draw] (rfrg) {$\scriptstyle \rst{f}\rst{g}$}
-node at (.5,1) [shape=rectangle,draw] (gk) {$\scriptstyle g k$}
+node at (-.5,1) [map] (fh) {$\scriptstyle f h$}
+node at (-.5,.5) [map] (rnghrngk) {$\scriptstyle \rg{h}\rg{k}$}
+node at (.5,1.5) [map] (rfrg) {$\scriptstyle \rst{f}\rst{g}$}
+node at (.5,1) [map] (gk) {$\scriptstyle g k$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
@@ -449,10 +449,10 @@ node at (0,2) [delta] (d) {};
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1) [shape=rectangle,draw] (fh) {$\scriptstyle f h$}
-node at (-.5,.5) [shape=rectangle,draw] (rnghrngk) {$\scriptstyle 0$}
-node at (.5,1.5) [shape=rectangle,draw] (rfrg) {$\scriptstyle 0$}
-node at (.5,1) [shape=rectangle,draw] (gk) {$\scriptstyle g k$}
+node at (-.5,1) [map] (fh) {$\scriptstyle f h$}
+node at (-.5,.5) [map] (rnghrngk) {$\scriptstyle 0$}
+node at (.5,1.5) [map] (rfrg) {$\scriptstyle 0$}
+node at (.5,1) [map] (gk) {$\scriptstyle g k$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
@@ -467,8 +467,8 @@ node at (0,2) [delta] (d) {};
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1) [shape=rectangle,draw] (fh) {$\scriptstyle 0$}
-node at (.5,1) [shape=rectangle,draw] (gk) {$\scriptstyle 0$}
+node at (-.5,1) [map] (fh) {$\scriptstyle 0$}
+node at (.5,1) [map] (gk) {$\scriptstyle 0$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);

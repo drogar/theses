@@ -227,6 +227,29 @@ As $\D$ is discrete, $\Delta$ is forced to be the identity. By inspection, we ca
 the conditions for $\Delta$ are satisfied by $\*$ and by $\odot$.
 
 % subsection inverse_products (end)
+\subsection{Diagrammatic Language} % (fold)
+\label{sub:diagrammatic_language}
+
+While it is certainly possible to prove results about inverse products using direct algebraic
+manipulation, it is much more succinct to proceed with string diagrams. As shown in
+\cite{street-ross-1991-GTC-I} this is equivalent to reasoning algebraically for symmetric monoidal
+categories.
+
+In the diagrams, we will use the following representations:
+\begin{itemize}
+  \item $\Delta$ will be represented by an upward pointing triangle: \begin{tikzpicture}
+      \path node [delta] at (0,0) {}; \end{tikzpicture}.
+  \item $\inv{\Delta}$ by a downward triangle: \begin{tikzpicture}
+      \path node [nabla] at (0,0) {}; \end{tikzpicture}.
+  \item maps by a rectangle with the map inside: \begin{tikzpicture}
+      \path node [map] at (0,0) {$f$}; \end{tikzpicture}.
+  \item unit introduction (often referred to as an $\eta$ map): \begin{tikzpicture}
+      \path node [eta] at (0,0) {}; \end{tikzpicture}.
+  \item unit removaln (often referred to as an $\epsilon$ map): \begin{tikzpicture}
+      \path node [epsilon] at (0,0) {}; \end{tikzpicture}.
+\end{itemize}
+
+% end sub:diagrammatic_language
 
 
 \subsection{Discrete inverse categories} % (fold)
