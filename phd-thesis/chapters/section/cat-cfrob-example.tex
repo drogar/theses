@@ -1,0 +1,105 @@
+\section{The category of Commutative Frobenius Algebras} % (fold)
+\label{sec:the_category_of_commutative_frobenius_algebras}
+\begin{example}[Commutative Frobenius algebras]\label{example:commfrob}
+  Let \X be a symmetric monoidal category and form CFrob(\X) as follows: \paragraph{Objects:}
+  Commutative Frobenius algebras\cite{kock04}: A quintuple $(A,\nabla,\eta,\Delta,\epsilon)$ where
+  $A$ is a $k$-algebra for some field $k$, and $\nabla :A\*A \to A$, $\eta:k\to A$, $\Delta : A \to
+  A\*A$, $\epsilon : A \to k$ are natural maps in the algebra. Additionally, these satisfy
+  \[
+    \xymatrix @C=40pt @R=25pt{
+      A \* A \ar[dd]_{1\*\Delta} \ar[dr]^{\nabla}
+        \ar[rr]^{\Delta \* 1} & &
+        A \* (A \* A) \ar[dd]^{1 \* \nabla}\\
+      & A \ar[dr]^{\Delta} & \\
+      (A \* A) \* A \ar[rr]_{\nabla \* 1} & &
+        A \* A
+    }
+  \]
+  together with the additional property that $\Delta \nabla = 1$.
+
+  \paragraph{Maps:} Multiplication ($\nabla$) and co-multiplication ($\Delta$) preserving
+  homomorphisms which do not necessarily preserve the unit.
+\end{example}
+
+\begin{theorem}\label{thm:cfrob_is_a_discrete_inverse_category}
+  When \X is a symmetric monoidal category, CFrob(\X) is a discrete inverse category.
+\end{theorem}
+\begin{proof}
+  For $f:X \to Y$, define $\inv{f}$ as
+  \[
+    Y \xrightarrow{1\*\eta} Y\*X \xrightarrow{1\*\Delta}
+      Y\*X\*X \xrightarrow{1\*f\*1} Y\*Y\*X \xrightarrow{\nabla\*1}
+      Y\*X \xrightarrow{\epsilon\*1}X
+  \]
+  As a string diagram, this looks like:
+  \[
+  \begin{tikzpicture}
+    \path node at (-1,3) (starty) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (0,2) [delta] (d) {}
+    node at (-.5,1.5) [shape=rectangle,draw] (f) {$\scriptstyle f$}
+    node at (-1,1) [nabla] (n1) {}
+    node at (-1,.5) [epsilon] (e1) {}
+    node at (0,0) (end) {};
+    \draw [] (starty) to (n1);
+    \draw [] (eta1) to (d);
+    \draw [] (d) to (end);
+    \draw [] (d) to (f);
+    \draw [] (f) to (n1);
+    \draw [-] (n1) to (e1);
+  \end{tikzpicture}
+  \]
+  Using a result from \cite{cockett2002:restcategories1}, we need only show:
+  \begin{align*}
+    \inv{(\inv{f})} &= f\\
+    f\inv{f}f &= f\\
+    f\inv{f}g\inv{g} &=g\inv{g} f\inv{f}
+  \end{align*}
+  We also use the following two identities from \cite{kock04}:
+  \begin{align}
+    (1\*\eta)\nabla &= id\\
+    \Delta(1\*\epsilon) &= id.
+  \end{align}
+
+  \begin{align*}
+    \inv{\inv{f}} &=(1\*\eta)(1\*\Delta)(1\*(\inv{f})\*1)(\nabla\*1)(\epsilon\*1) \\
+    &=(1\*\eta)(1\*\Delta)(1\*((1\*\eta)(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1))\*1)\\
+    &\qquad\qquad(\nabla\*1)(\epsilon\*1) \\
+    &=(1\*\eta)(1\*\Delta)(1\*1\*\eta)(1\*1\*f\*1\*1)(1\*\nabla\*1\*1)\\
+    &\qquad\qquad(1\*\epsilon\*1\*1) (\nabla\*1)(\epsilon\*1)\\
+    &=(\eta\*1)(\Delta\*1)(1\*\nabla)(f\*1)(((\eta)(\Delta\*1)(1\*\nabla)(1\*\epsilon))\*1)
+      ((1\*\epsilon)\\
+    &=(1\*\eta)\nabla \Delta(1\*\epsilon)f(\eta\*1)\nabla\Delta(1\*\epsilon)\\
+    &=id_{x}id_{x}\  f \ id_{y} id_{y}\\
+    &=f
+  \end{align*}
+  \begin{align*}
+    f\inv{f}f &= f(1\*\eta)(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1)f\\
+    &=(1\*\eta)(1\*\Delta)(f\*f\*1)(\nabla\*1)(1\*f)(\epsilon\*1)\\
+    &=(1\*\eta)(1\*\Delta)(\nabla\*1)(f\*f)(\epsilon\*1)\\
+    &=(1\*\eta)\nabla\Delta(f\*f)(\epsilon\*1)\\
+    &=\Delta(f\*f)(\epsilon\*1)\\
+    &=f\Delta(\epsilon\*1)\\
+    &=f
+  \end{align*}
+  Finally, to show $f\inv{f}$ and $g\inv{g} $ commute:
+  \begin{align*}
+    f(1\*\eta)&(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1)g(1\*\eta)(1\*\Delta)(1\*g\*1)
+      (\nabla\*1)(\epsilon\*1)\\
+    &=(1\*\eta)(1\*\Delta)(\nabla\*1)(f\*1)(\epsilon\*1)(1\*\eta)(1\*\Delta)(\nabla\*1)(g\*1)
+      (\epsilon\*1)\\
+    &=(1\*\eta)\nabla\Delta(f\*1)(\epsilon\*1)(1\*\eta)\nabla\Delta(g\*1)(\epsilon\*1)\\
+    &=\Delta(f\*1)(\epsilon\*1)\Delta(g\*1)(\epsilon\*1)\\
+    &=\Delta(1\*\Delta)(f\*g\*1)(\epsilon\*\epsilon\*1)\\
+    &=\Delta(1\*\Delta)(g\*f\*1)(\epsilon\*\epsilon\*1)\qquad\qquad\qquad\text{co-commutativity}\\
+    &=g\inv{g}f\inv{f}
+  \end{align*}
+
+\end{proof}
+
+% section the_category_of_commutative_frobenius_algebras (end)
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:

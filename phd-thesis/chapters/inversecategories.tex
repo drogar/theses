@@ -366,20 +366,10 @@ a Cartesian restriction category.
       \begin{align*}
         (\Delta &(h \* g)\inv{\Delta})h  = \rst{\Delta (h \* g) \inv{\Delta}}h&\\
         &=\Delta(1 \* g \inv{h}) \inv{\Delta}h&\text{This lemma(\ref{le:restfg})}\\
-        &=\Delta(1 \* g \inv{h}) \inv{\Delta}\Delta(h\*h)\inv{\Delta}&\Delta\text{ total and natural}\\
-        &=\Delta(1 \* g \inv{h}) (\Delta \* 1)(1\*\inv{\Delta})(h\*h)\inv{\Delta}&\text{Frobenius}\\
-        &=\Delta(\Delta\*1)(1\*1\*g\inv{h})\\
-          &\qquad(1\*\inv{\Delta}) (h\*h)\inv{\Delta}&\Delta \text{ natural}\\
-        &=\Delta(\Delta\*1)(1\*1\*g\inv{h})\\
-          &\qquad(h\*h\*h)(1\*\inv{\Delta}) \inv{\Delta}&\inv{\Delta}\text{ natural}\\
-        &=\Delta(\Delta\*1)(h\*h\*g\inv{h}h)\\
-        &\qquad(1\*\inv{\Delta}) \inv{\Delta}&\text{combine terms}\\
-        &=\Delta(h\*g\restr{\inv{h}})(\Delta\*1)(1\*\inv{\Delta})\inv{\Delta} &\Delta \text{ natural}\\
-        &=\Delta(h\*g\restr{\inv{h}})\inv{\Delta}\Delta\inv{\Delta} &\text{Frobenius}\\
-        &=\Delta(h \* g \restr{\inv{h}})\inv{\Delta}&\Delta \text{ total}\\
-        &=\Delta(h \* g )\inv{\Delta}\restr{\inv{h}}& \text{part (\ref{le:deltaefg})}\\
-        &=\Delta(h\restr{\inv{h}}\*g)\inv{\Delta}&\text{part (\ref{le:deltaefg})}\\
-        &=\Delta(h\*g)\inv{\Delta}&\text{property of inverse}.
+        &=\Delta(1 \* g \inv{h}) (h\*h)\inv{\Delta}&\inv{\Delta}\text{ natural}\\
+        &=\Delta(h \* g \rst{\inv{h}}) \inv{\Delta}&\\
+        &=\Delta(h\rst{\inv{h}} \* g) \inv{\Delta}&\text{part (\ref{le:deltaefg})}\\
+         &=\Delta(h\*g)\inv{\Delta}&\text{property of inverse}.
       \end{align*}
 
     \item[\ref{le:dfgisfg}]As $\Delta$ is total and natural, we start with:
@@ -550,6 +540,10 @@ inverse category.
 % subsection the_inverse_subcategory_of_a_graphic_cartesian_restriction_category (end)
 
 % section inverse_products (end)
+
+
+\input{chapters/section/cat-cfrob-example}
+
 
 \section{Completing a discrete inverse category} % (fold)
 \label{sec:completing_a_discrete_inverse_category}
@@ -997,7 +991,7 @@ Define the restriction in \Xt\ as follows:
       \begin{align*}
         \rst{f(g\* 1)a_{\*}} \inv{\usr} (f\* 1) a_{\*}
           & = \rst{f(g\* 1)} f \inv{\usr} a_{\*} & a_{\*} \text{ iso, } \inv{\usr}\text{ natural.}\\
-        & = f (\rst{g} \* 1) \inv{\usr} a_{\*} & \rthree, \* \text{ a restriction functor.}
+        & = f (\rst{g} \* 1) \inv{\usr} a_{\*} & \rfour, \* \text{ a restriction functor.}
       \end{align*}
       \[
         \xymatrix @C=40pt @R=35pt{
@@ -1247,7 +1241,7 @@ result.
 \end{proof}
 
 \begin{lemma}\label{lem:universal_diagram_is_a_commutative_diagram}
-  Diagram (\ref{dia:universal_property_of_inverse_categories}) above is a commutative diagram.
+  Diagram~\ref{dia:universal_property_of_inverse_categories} above is a commutative diagram.
 
 \end{lemma}
 \begin{proof}
@@ -1258,7 +1252,7 @@ result.
       &F(f) \ar@{=}[r] & F(f\inv{\usr})\pi_0
     }
   \]
-  As $\eta$ is identity on the objects, Diagram~\eqref{dia:universal_property_of_inverse_categories}
+  As $\eta$ is identity on the objects, Diagram~\ref{dia:universal_property_of_inverse_categories}
   commutes.
 \end{proof}
 
@@ -1440,13 +1434,7 @@ $. Once again, the tensor in \D is the meet.
 \end{example}
 % subsection examples_of_the_wtf_construction (end)
 
-\section{Inverse Turing Categories} % (fold)
-\label{sec:inverse_turing_categories}
 
-% section inverse_turing_categories (end)
-
-
-\input{chapters/section/inverse-reversible}
 % chapter inverse_categories (end)
 %%% Local Variables:
 %%% mode: latex
