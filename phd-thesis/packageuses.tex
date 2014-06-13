@@ -10,10 +10,12 @@
 \usepackage[mathscr]{euscript}
 \usepackage[all]{xy}
 \usepackage{stmaryrd}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{fancyvrb}
 \usepackage{proof}
+\usepackage{delarray}
 %\usepackage{mchaskell}
 \usepackage{float}
 %\usepackage{makeidx}
@@ -29,14 +31,28 @@
 \usepackage{blkarray}
 
 \usepackage{xspace}
-\usepackage[colorlinks=true,citecolor=magenta]{hyperref} 
+\usepackage[colorlinks=true,citecolor=magenta]{hyperref}
 \usepackage{hyperref}
 %\usepackage{lqpl}
 %\usepackage{prettyref}
 \usepackage[shortlabels]{enumitem}
 \usepackage{multicol}
 \usepackage{tikz}
-\usetikzlibrary{calc,arrows,positioning}
+\usetikzlibrary{calc,arrows,positioning,shapes.geometric,fit,decorations.markings}
+
+\pgfdeclarelayer{edgelayer}
+\pgfdeclarelayer{nodelayer}
+\pgfsetlayers{edgelayer,nodelayer,main}
+
+\tikzset{ node distance=.1mm, inner sep=0.5mm}
+
+\tikzstyle{delta}=[isosceles triangle, isosceles triangle apex angle=70, draw, shape border rotate=90, minimum size=3mm]
+\tikzstyle{eta}=[circle, draw, minimum size=2mm]
+\tikzstyle{epsilon}=[circle, draw, fill=black!75, minimum size=2mm]
+\tikzstyle{nabla}=[isosceles triangle, isosceles triangle apex angle=70, draw, shape border rotate=270, minimum size=3mm]
+\tikzstyle{map}=[rectangle,draw, minimum height=4mm, minimum width=3mm]
+\tikzstyle{nothing}=[rectangle,draw=white]
+
 
 \reversemarginpar
 
@@ -46,13 +62,18 @@
 
 % label formats for use with varioref
 
-\labelformat{section}{section~#1}
-\labelformat{chapter}{chapter~#1}
-\labelformat{equation}{equation~(#1)}
-\labelformat{theorem}{theorem~#1}
-\labelformat{lemma}{lemma~#1}
-\labelformat{proposition}{proposition~#1}
-\labelformat{definition}{definition~#1}
+\labelformat{section}{#1}
+\labelformat{chapter}{#1}
+\labelformat{equation}{(#1)}
+\labelformat{theorem}{#1}
+\labelformat{lemma}{#1}
+\labelformat{proposition}{#1}
+\labelformat{definition}{#1}
 
-% This causes horrid processing error - text garbage appearing instead of 
+% This causes horrid processing error - text garbage appearing instead of
 % The diagram. DO NOT USE \CompileMatrices
+
+%%% Local Variables:
+%%% mode: plain-tex
+%%% TeX-master: "phd-thesis"
+%%% End:

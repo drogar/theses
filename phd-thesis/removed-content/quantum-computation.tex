@@ -1,0 +1,163 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+
+\chapter{Quantum computation}\label{chap:quantum_computation}
+
+
+
+\section{Quantum computation overview} % (fold)
+\label{sec:quantum_computation_overview}
+
+Quantum computation proceeds via the application of reversible transformations --- Unitary
+transformations.
+
+The semantics of quantum computation can be defined as a $\dagger$-compact closed category as
+introduced in \cite{abramsky02:traces,abramsky05:abstracttraces} and completely positive maps as
+discussed in \cite{selinger05:dagger}.
+
+\begin{definition}[Dagger Category]
+  A \emph{Dagger Category}\cite{selinger05:dagger} is a category \C together with an operation
+  $\dagger$ that is an involutive, identity on objects, contra-variant endofunctor on \C.
+\end{definition}
+Recalling first that a \emph{symmetric monoidal category} is a category \B with a bi-functor $\*$,
+an object $I$ and natural isomorphisms:
+\begin{align*}
+  a_{A,B,C}&: (A\*B)\*C \to A\* (B\*C)\\
+  c_{A,B} &:A\*B \to B\*A\\
+  ul_A &:A \to I \* A
+\end{align*}
+with standard coherence conditions, as in \cite{maclan97:categorieswrkmath}. Note that we
+also have a map $ur_A: A \to A\*I$ given by $ur_A = ul_A c_{I,A}$ Furthermore, a \emph{compact
+closed category} \C is a symmetric monoidal category where each object $A$ has a dual $A^{*}$
+together with the maps:
+\begin{align*}
+  \eta_A:I \to \dual{A} \* A\\
+  \epsilon_A : A\*\dual{A} \to I
+\end{align*}
+such that
+\[
+  \xymatrix@C+8pt@R-10pt{
+    A \ar[r]^{ur_A} \ar@{=}[dddrr]
+      & A\* I \ar[r]^(.4){A\*\eta_A}
+      & A\* (\dual{A}\*A) \ar[d]^{a^{-1}}\\
+    & & (A\*\dual{A})\*A \ar[d]^{\epsilon\*A}\\
+    & & I\* A \ar[d]^{ul^{-1}}\\
+    & & A
+  }
+  \quad\text{ and  }\quad
+  \xymatrix@C+8pt@R-10pt{
+    \dual{A} \ar[r]^{ul_{\dual{A}}} \ar@{=}[dddrr]
+      & I\*\dual{A} \ar[r]^(.4){\eta_{\dual{A}\*\dual{A}}}
+      & (\dual{A}\*A)\*\dual{A} \ar[d]^{a}\\
+    & & \dual{A}\*(A\*\dual{A}) \ar[d]^{\dual{A}\*\epsilon}\\
+    & & \dual{A}\*I \ar[d]^{ur^{-1}}\\
+    & & A
+  }
+\]
+
+From the above, we can define a \emph{Dagger symmetric monoidal category} and a \emph{Dagger
+compact closed category}. The latter is referred to as a \emph{strongly compact closed category} in
+\cite{abramsky02:traces}, where they were initially introduced. In each case, the $\dagger$ functor
+is added in a way that retains coherence with the bi-functor $\*$ and with the dualizing operator.
+The coherence implies that the $\dgr{i} = i^{-1}$ for the SMC isomorphisms, that $\dgr{(f\*g)} =
+\dgr{f}\*\dgr{g}$ for all maps $f,g$ in the symmetric monoidal category and that
+\[
+  \xymatrix{
+    I \ar[dr]_{\eta_A} \ar[r]^{\dgr{\epsilon_A}} & A\* \dual{A} \ar[d]^{c} \\
+    &\dual{A}\*A
+  }
+\]
+commutes for all objects $A$ in the compact closed category.
+
+
+\begin{example}[\rel]
+  \rel is a dagger compact closed category with the dual of an object $A$ is $A$, $\*$ is the
+  cartesian product and for $R:A\to B$, we have $\dual{R} = \dgr{R} = \{(y,x) | (x,y) \in R\}$.
+\end{example}
+\begin{example}[\fdh]
+  The category of finite dimensional Hilbert spaces, \fdh is a dagger compact closed category with
+  the dual of an object $H$ is the normal Hilbert space dual $H^{*}$, the space of continuous
+  linear functions from $H$ to the base field. $\*$ is the normal Hilbert space tensor and and for
+  $f:A\to B$, we have $\dgr{f}$ is the unique map such that $\langle f x | y \rangle = \langle y |
+  \dgr{f}x \rangle$ for all $x\in A$, $y \in B$.
+\end{example}
+
+Additionally, if one has a dagger compact closed category with biproducts where the biproducts and
+dagger interact such that $\dgr{p_i} = q_i$, this is called a \emph{biproduct dagger compact closed
+category}.
+
+In \cite{selinger05:dagger}, the author continues from this point: Starting with a biproduct dagger
+compact closed category $\C$, he creates a new category, $\text{CPM}(\C)$ which has the same
+objects as $\C$, but morphisms $f:A \to B$ in $\text{CPM}(\C)$ are given by maps $f:\dual{A} \* A
+\to \dual{B} \* B$ in $\C$ which are \emph{completely positive}. Note that \rel and \fdh are
+biproduct dagger compact closed categories.
+
+From this, the category $\text{CPM}(\C)^{\+}$, the free biproduct completion of $\text{CPM}(\C)$ is
+formed, which is suitable for describing quantum computation semantics. For example, given \fdh as
+our starting point, the tensor unit $I$ is the field of complex numbers. The type of
+$\mathbf{qubit}$ (in \fdh and by lifting, in $\text{CPM}(\fdh)^{\+}$) is given as $I\+I$. At this
+stage, the necessity of the CPM construction to model physical reality can be seen in the following
+as in \fdh, the morphisms initialization of a qubit: $init:I\+I \to \mathbf{qubit}$ and destructive
+measure: $meas: \mathbf{qubit} \to I\+I$ are inverses. However, in $\text{CPM}(\fdh)^{\+}$, these
+same maps are given as
+\[
+  \dual{\mathbf{qubit}} \* \mathbf{qubit} \xrightarrow{meas} I\+
+    I \xrightarrow{init}\dual{\mathbf{qubit}} \* \mathbf{qubit}
+\]
+by the formulae:
+\[
+  meas
+  \begin{pmatrix}
+    a & b \\
+    c & d
+  \end{pmatrix}
+  = (a,d), \qquad init(a,d) =
+  \begin{pmatrix}
+    a &0 \\
+    0 & d
+  \end{pmatrix}.
+\]
+Therefore, the maps are not inverses and reflect the physical reality.
+
+
+\subsection{Density matrix representation}\label{sec:density}
+An alternate representation of quantum states, both pure and mixed, is via \emph{density matrices}.
+If the state of a system is represented by some column vector $u$, then the matrix $u u^{*}$ is its
+density matrix. Note that if $u = \nu v$ for some complex scalar $\nu$ with norm 1, then $u u^{*} =
+(\nu v) (\nu v)^{*} = \nu \bar{\nu} v v^{*} = v v^{*} $. For the mixed state $\sum
+\nu_{i}\{v_{i}\}$, the density matrix is $\sum \nu_{i}v_{i}v_{i}^{*}$. Density matrices are
+positive hermitian matrices with trace $\le 1$. Note that the trace of the density matrix is the
+probability the system has reached this particular value in the computation.
+
+The result of applying the unitary transform $U$ to a state $u$ represented by the density matrix
+$A$ is $UAU^{*}$. The measurement operation on a density matrix is derived from the measurement
+effects on the \qubit. For example, consider the density matrix for $q=\alpha\kz+\beta\ko$,
+$\begin{pmatrix}\alpha\bar{\alpha}&\alpha\bar{\beta}\\ \beta\bar{\alpha} &
+\beta\bar{\beta}\end{pmatrix}$. Measuring this \qubit gives either
+$\begin{pmatrix}\alpha\bar{\alpha}&0\\ 0& 0\end{pmatrix}$ with probability $|\alpha|^{2}$ or
+$\begin{pmatrix}0&0\\ 0 & \beta\bar{\beta}\end{pmatrix}$ with probability $|\beta|^{2}$. If the
+results of the measurment are not used, this will result in the density matrix
+$\begin{pmatrix}\alpha\bar{\alpha}&0\\ 0 & \beta\bar{\beta}\end{pmatrix}$. This extends linearly so
+that if a \qubit is measured in the system whose density matrix is \qsmat{A}{B}{C}{D}, the result
+will be the mixed density matrix \qsmat{A}{0}{0}{D}.
+
+It is possible to create a complete partial order on density matrices.
+
+\begin{definition}[L\"owner partial order]\label{def:lownerorder}
+  For square complex matrices $A,B$ of the same size, define $A \le B$ if $B-A$ is positive.
+\end{definition}
+
+\begin{lemma} \label{lemma:cpodensity}
+  Designate $D_{n}$ to be the density matrices of size $n\times n$, then the poset $(D_{n}, \le)$
+  is a complete partial order.
+\end{lemma}
+\begin{proof}
+  See \cite{selinger04:qpl}, pp 13--14.
+\end{proof}
+
+% section quantum_computation_overview (end)
+\include{chapters/section/dagger-categories}
+\include{chapters/section/quantum-semantics}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:

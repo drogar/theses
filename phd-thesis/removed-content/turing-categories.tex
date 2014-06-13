@@ -1,0 +1,103 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+\section{Turing Categories} % (fold)
+\label{sec:turing_categories}
+
+\begin{definition}[Turing category]\label{def:turing_category}
+  Given \X is a cartesian restriction category:
+  \begin{enumerate}
+    \item For a map $\txy: A \times X \to Y$, a map $f:B\times X \to Y$ \emph{admits a $\txy$-index}
+      when there is a total $h:B\to A$ such that
+      \[
+        \xymatrix@C+10pt@R+10pt{
+          A\times X \ar[r]^{\txy} & Y \\
+          B\times X \ar@{.>}[u]^{h\times 1_X} \ar[ur]_f
+        }
+      \]
+      commutes.\label{defitem:turing_admit_txy_index}
+    \item A map $\txy: A \times X \to Y$ is called a \emph{universal application} if all
+      $f:B\times X \to Y$ admit a $\txy$-index.\label{defitem:turing_universal_application}
+    \item If $A$ is an object in $\X$ such that for every pair of objects $X,Y$ in \X there is
+      a universal application, then $A$ is called a \emph{Turing object}.
+    \item A cartesian restriction category that contains a Turing object is called a
+      \emph{Turing category}.
+  \end{enumerate}
+\end{definition}
+
+Note there is no requirement in the definition for the map $h$ to be unique. When $h$ is unique
+for a specific $\txy$, then that $\txy$ is called \emph{extensional}. In the case where the object
+$B$ is the terminal object, then the map $h$ is a point of $A$ (with $f = (h \times 1)\txy$) and
+$h$ is referred to as a \emph{code} of $f$.
+
+\begin{definition}\label{def:turing_structure}
+  Given $\T$ is a Turing category and $A$ is an object of \T,
+  \begin{enumerate}
+    \item If $\Upsilon=\{\txy: A\times X \to Y | X,Y \in ob(\T)\}$, then $\Upsilon$ is called an
+      \emph{applicative family} for $A$.
+    \item An applicative family $\Upsilon$ is called \emph{universal for $A$} when each $\txy$ is
+      a universal application. This is also referred to as a \emph{Turing structure} on $A$.
+    \item A pair $(A,\Upsilon)$ where $\Upsilon$ is universal for $A$ is called a \emph{Turing
+      structure} on \T.
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}\label{lem:turing_object_is_retractable}
+  If \T is a Turing category with Turing object $A$, then every object $B$ in \T is a retract of
+  $A$.
+\end{lemma}
+\begin{proof}
+  As $A$ is a Turing object, we have a diagram for $\tur{1}{B}$ and $\pi_0:B\times 1 \to B$:
+  \[
+    \xymatrix@C+10pt@R+10pt{
+      A\times 1 \ar[r]^{\tur{1}{B}} & B \\
+      B\times 1 \ar@{.>}[u]^{h\times 1_X} \ar[ur]_{\pi_0}
+    }
+  \]
+  where $h$ is the $\tur{1}{B}$ index for $\pi_0$. Note we also have $u_r:B\to B\times 1$ is an
+  isomorphism and therefore we have $1_X = u_r \pi_0 = (u_r (h\times 1)) \tur{1}{X}$. Hence, we
+  have $((u_r (h\times 1)), \tur{1}{X}):B \retract A$.
+\end{proof}
+
+This allows us to move to the primary recognition criteria for Turing categories.
+
+\begin{theorem}\label{thm:turing_recognition}
+  A cartesian restriction category \C is a Turing category if and only if $\C$ has an object $T$
+  which every other object of \C is a retract and $T$ has a universal self-application map
+  $\bullet$, written as $T\times T \xrightarrow{\ \bullet\ }T$.
+\end{theorem}
+\begin{proof}
+  The ``only if'' portion follows immediately from setting $T$ to be the Turing object of $\C$ and
+  $\bullet = \tur{T}{T}$.
+
+  For the ``if'' direction, we need to construct the family of universal applications
+  $\txy : T\times X \to Y$ for each pair of objects $X,Y$ in \C.
+
+  Let us choose pairs of maps that witness the retractions of $X, Y$ of $T$, that is:
+  \[
+    (m_X,r_X):X \retract T \quad\text{and}\quad(m_Y,r_Y):Y \retract T.
+  \]
+  Define $\txy = (1_T\times m_X ) \bullet r_Y$. Suppose we are given $f:B\times X \to Y$. Consider
+  \[
+    \xymatrix@C+10pt@R+10pt{
+      T \times X \ar[r]^{1_T\times m_X} & T\times T \ar[r]^{\bullet} & T \ar[r]^{r_Y} & Y \\
+      B \times X \ar[r]^{1_B\times m_X} \ar[u]^{h\times 1_X}
+        & B \times T \ar@{.>}[u]^{h\times 1_T} \ar[r]^{1_B \times r_X}
+        & B \times X \ar[ur]^{f} \ar[u]^{f m_Y}
+      }
+  \]
+  where $h$ is the index for the composite map $(1_B \times r_X) f m_Y$. The middle square commutes
+  as $\bullet$ is a universal application for $T,T$. The right triangle commutes as $m_Y r_Y =1$.
+  The left square commutes as each composite is $h \times m_X$. Noting that the bottom path from
+  $B\times X$ to $Y$ is $(1_B \times m_X)(1_B \times r_X)f = f$ and the top path from $T\times X$ to
+  $Y$ is our definition of $\txy$, this means $f$ admits the $\txy$-index $h$.
+\end{proof}
+
+Note that different splittings (choices of $(m,r)$ pairs) would lead to different $\txy$ maps. In
+fact there is no requirement that this is the only way to create a universal applicative family
+for $T$.
+
+
+
+
+
+
+% section turing_categories (end)

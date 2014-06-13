@@ -10,6 +10,41 @@
 \newbox\mybox
 \def\mp#1#2{\setbox\mybox\hbox{#2}\localh\ht\mybox\locald\dp\mybox\addtolength{\localh}{-\locald}\raisebox{-#1\localh}{\box\mybox}}
 \def\m#1{\scalebox{0.8}{\mp{0.5}{#1}}}
+
+%----------------------------------------------------------------------
+%  Boxes for flowcharts
+
+\def\branchbox#1#2#3#4{ % draw diamond around current object and set "a0"
+                        % "a1" and "au" positions
+    \save
+    []!U+/u#3/*{}="u"="#1u";
+    []!R+/r#4/*{}="r";
+    []!D+/d#3/*{}="d";
+    []!L+/l#4/*{}="l";
+    "d";"l"**{}?(#2)="#10";  % see note 3h for usage of ? and **
+    "d";"r"**{}?(#2)="#11";
+    \ar@{-}"u";"r"
+    \ar@{-}"d";"r"
+    \ar@{-}"u";"l"
+    \ar@{-}"d";"l"
+    \restore
+}
+
+
+\def\procbox#1#2{  % draw a box shaped like a procedure call around
+                   % the object #1. #2=name of procedure
+                   % usage:   \procbox{[ll].[].[ul]}{Proc1}
+  \save#1="box";
+  "box"!C*+<2ex,0ex>[F]\frm{}*{{\bf #2}};
+  "box"!LU*[.]{}="lu";
+  "box"!LD*[.]{}="ld";
+  "box"!RU*[.]{}="ru";
+  "box"!RD*[.]{}="rd";
+  \ar@{-}"lu";"ld"
+  \ar@{-}"ru";"rd"
+  \restore
+}
+
 %----------------------------------------------------------------------
 % Ad hoc quantum circuits using TikZ
 
@@ -65,6 +100,8 @@
 \newcommand{\itemtt}[1]{\item{\texttt{#1}}}
 
 \newcommand{\uts}{\hspace{0.1pt}}
+
+\newcommand{\refitem}[2]{\ref{#1}[\ref{#2}]}
 
 %------------------------------------------------------------------------------
 % Term algebras
@@ -153,6 +190,9 @@
 \DeclareMathOperator*{\dom}{dom}
 \DeclareMathOperator*{\rng}{range}
 
+
+\newcommand{\intersect}{\ensuremath{\bigcap}}
+
 %-----------------------------------------------------------------------------
 % Regular expressions, MA algo
 
@@ -171,7 +211,7 @@
 \newcommand{\sCp}{\mathscr{C}\,'}
 \newcommand{\sHp}{\mathscr{H}\,'}
 \newcommand{\sH}{\mathscr{H}}
-\newcommand{\sm}{\setminus}  
+\newcommand{\sm}{\setminus}
 \newcommand{\seq}{\subseteq}
 \newcommand{\pp}{{++}}
 
@@ -201,6 +241,13 @@
 
 
 \newcommand{\bigI}{\rule[-1.5ex]{0mm}{4ex}~I~}
+
+
+
+\newcommand{\qsmatgen}[5]{\ensuremath{#5 \begin{array} ( {c|c} ) #5 #1 & #5 #2 \\ \hline #5 #3& #5 #4\end{array}}}
+
+\newcommand{\qsmatss}[4]{\qsmatgen{#1}{#2}{#3}{#4}{\scriptstyle}}
+\newcommand{\qsmat}[4]{\qsmatgen{#1}{#2}{#3}{#4}{}}
 % ----------------------------------------------------------------------
 % Various macros to assist with TikZ drawing
 
@@ -229,6 +276,10 @@
 \newcommand{\qubits}{\qubit{s}\xspace}
 \newcommand{\bits}{\bit{s}\xspace}
 
+\newcommand{\qbit}{\type{qubit}}
+\newcommand{\qbits}{\type{qubits}}
+
+\newcommand{\interp}[1]{[\![#1]\!]}
 %------------------------------------------------------------------------------
 % General computing notation
 
@@ -242,7 +293,19 @@
 
 \newcommand{\lqpl}{L-QPL}
 
-% Additional gates
+%\newcommand{\ket}[1]{\ensuremath{|#1\rangle}}
+\newcommand{\kz}{\ket{0}}
+\newcommand{\ko}{\ket{1}}
+% gates as matrices
+
+\newcommand{\mgate}[4]{\ensuremath{\begin{pmatrix}#1 & #2 \\ #3 & #4\end{pmatrix}}}
+
+\newcommand{\notgate}{\mgate{0}{1}{1}{0}}
+\newcommand{\hadgate}{\ensuremath{\frac{1}{\sqrt{2}}\mgate{1}{1}{1}{-1}}}
+\newcommand{\vgate}{\mgate{1}{0}{0}{i}}
+\newcommand{\ygate}{\mgate{0}{-i}{i}{0}}
+\newcommand{\zgate}{\mgate{1}{0}{0}{-1}}
+% Additional gates for drawing
 
 \newcommand{\nowiregate}[1]{*{\xy *+<.6em>{#1};p\save+LU;+RU **\dir{-}\restore\save+RU;+RD **\dir{-}\restore\save+RD;+LD **\dir{-}\restore\POS+LD;+LU **\dir{-}\endxy}}
 
@@ -260,15 +323,21 @@
 \newcommand{\natto}{\Rightarrow}
 \newcommand{\specialcat}[1]{\textsc{#1}\xspace}
 \newcommand{\ltrcatbb}[1]{\ensuremath{\mathbb{#1}}\xspace}
+\newcommand{\retract}{\ensuremath{\triangleleft}}
 
 \newcommand{\A}{\ltrcatbb{A}}
 \newcommand{\B}{\ltrcatbb{B}}
 \newcommand{\C}{\ltrcatbb{C}}
+\newcommand{\R}{\ltrcatbb{R}}
+\newcommand{\T}{\ltrcatbb{T}}
 \newcommand{\X}{\ltrcatbb{X}}
 \newcommand{\Y}{\ltrcatbb{Y}}
 
+\newcommand{\cD}{\ltrcatbb{D}}
+
 \newcommand{\Lat}{\ltrcatbb{L}}
 \newcommand{\Mstab}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\inj}{\specialcat{Inj}}
 
 \newcommand{\sets}{\specialcat{Sets}}
 \newcommand{\cat}{\specialcat{Cat}}
@@ -279,6 +348,13 @@
 \newcommand{\fdh}{\specialcat{FdHilb}}
 
 \newcommand{\spl}[2]{\ensuremath{\text{K}_{#1}(#2)}}
+
+
+\newcommand{\zeroob}{\ensuremath{\mathbf{0}}}
+
+
+\newcommand{\cpm}[1]{\specialcat{CPM(#1)}}
+\newcommand{\bcpm}[1]{\ensuremath{\cpm{#1}^{\+}}}
 
 %------------------------------------------------------------------------------
 % Restriction categories
@@ -295,9 +371,25 @@
 }
 
 
+\newcommand{\rcategory}[5]{%
+\begin{description}%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
+\item{\textbf{Restriction: }}{#5}%
+\end{description}%
+%
+}
+
 \newcommand{\restr}[1]{\overline{#1}}
 \newcommand{\rst}[1]{\restr{#1}}
 
+\newcommand{\rg}[1]{\hat{#1}}
+\newcommand{\wrg}[1]{\widehat{#1}}
+
+\newcommand{\tur}[2]{\ensuremath{\tau_{{#1},{#2}}}}
+\newcommand{\txy}{\tur{X}{Y}}
 
 %--------------------------------------------------------------------------------------
 % Notation for inverse categories
@@ -328,6 +420,83 @@
 \newcommand{\wtc}{\ensuremath{\widetilde{(\_)}}\xspace}
 \newcommand{\wtf}{\ensuremath{\mathbf{T}}\xspace}
 \newcommand{\wt}[1]{\ensuremath{\mathbf{T}({#1})}\xspace}
+
+%---------------------------------------------------------------------
+% Notation for inverse sum categories
+
+\newcommand{\imat}[1]{\ensuremath{iMat({#1})}\xspace}
+\newcommand{\imatx}{\imat{\X}}
+
+
+\newcommand{\cp}[1]{\amalg_{#1}}
+\newcommand{\cpa}{\cp{1}}
+\newcommand{\cpb}{\cp{2}}
+
+\newcommand{\icp}[1]{\inv{\cp{#1}}}
+\newcommand{\icpa}{\icp{1}}
+\newcommand{\icpb}{\icp{2}}
+
+\newcommand{\scp}[1]{\cp{#1}^{*}}
+\newcommand{\scpa}{\scp{1}}
+\newcommand{\scpb}{\scp{2}}
+
+
+\newcommand{\perpvv}[2]{{}_{{}_{#1}}{\perp_{{}_{#2}}}}
+\newcommand{\perpab}{\perpvv{A}{B}}
+\newcommand{\perpba}{\perpvv{B}{A}}
+\newcommand{\perpcb}{\perpvv{C}{B}}
+\newcommand{\tperp}{\perpvv{}{\oplus}}
+
+
+\newcommand{\compat}{\smile}
+\newcommand{\join}{\vee}
+\newcommand{\meet}{\cap}
+
+\newcommand{\djoin}{\sqcup}
+\newcommand{\djoinbig}{\bigsqcup}
+\DeclareMathOperator{\diag}{\scriptstyle{diag}}
+\newcommand{\altjoin}{\,\square\,}
+%\newcommand{\djoin}{{\,{{\sqcup}\hspace{-0.474em}{\mid}}\,\,}}
+\newcommand{\disjoint}{\perp}
+\newcommand{\invdisjoint}{\disjoint^0}
+\newcommand{\invjoin}{\join^0}
+\newcommand{\tjoin}{\djoin_{{_{\oplus}}}}
+
+\DeclareMathOperator{\tjdown}{\triangledown}
+\DeclareMathOperator{\tjup}{\vartriangle}
+\DeclareMathOperator{\gtjdown}{\overline{\triangledown}}
+\DeclareMathOperator{\gtjup}{\underline{\vartriangle}}
+
+\newcommand{\ocdperp}{\,\underline{\perp}\,}
+\newcommand{\eocdperp}{\,\underline{\underline{\perp}}\,}
+\newcommand{\ocdperpsub}[1]{\,\underline{\perp}_{{}_{#1}}\,}
+\newcommand{\cdperp}{\perp}
+\newcommand{\invsum}[2]{{{#1}+{#2}}} %\bowtie_{{}_{{#1},{#2}}}}
+\newcommand{\invinvsum}[2]{{{#1}\hat{+}{#2}}}
+
+
+\newcommand{\open}[1]{\ensuremath{\mathcal{O}({#1})}}
+
+\newcommand{\upl}{\uleft{\+}}
+\newcommand{\upr}{\uright{\+}}
+
+\newcommand{\com}[1]{\ensuremath{c_{#1}}}
+\newcommand{\comp}{\com{\+}}
+\newcommand{\assoc}[1]{\ensuremath{a_{#1}}}
+\newcommand{\assocp}{\assoc{\+}}
+
+
+\newcommand{\ea}{e_1}
+\newcommand{\eb}{e_2}
+\newcommand{\xa}{x_1}
+\newcommand{\xb}{x_2}
+
+\DeclareMathOperator{\rstp}{\rst{+}}
+\DeclareMathOperator{\rgp}{\rg{+}}
+
+\DeclareMathOperator{\mat}{Mat}
+\DeclareMathOperator{\ob}{Ob}
+
 %-------------------------------------------------
 % sub/super scripting and decorating
 
@@ -380,14 +549,6 @@
 \newtheorem*{slexercise}{Exercise}
 \newtheorem*{sllemma}{Lemma}
 
-% reference formats -
-\labelformat{chapter}{chapter~#1}
-\labelformat{section}{section~#1}
-\labelformat{subsection}{sub-section~#1}
-\labelformat{subsubsection}{sub-sub-section~#1}
-\labelformat{equation}{equation~(#1)}
-\labelformat{table}{table~#1}
-\labelformat{figure}{figure~#1}
 
 %-------------------------------------------------------------------------------
 % Code environments for Verbatim package
@@ -406,12 +567,10 @@
 
 
 %-----------------------------------------------------------------------------------
-% Macros for including code 
+% Macros for including code
 
 %------------------------------------------------------------------------------------
 % Formatting macros
 
 %------------------------------------------------------------------------------------
 %  Notation for describing syntax of language (lqpl primarily)
-
-
