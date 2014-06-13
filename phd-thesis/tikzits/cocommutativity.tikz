@@ -1,0 +1,21 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=nothing] (0) at (-3.75, 5.75) {};
+		\node [style=delta] (1) at (-3.75, 5) {};
+		\node [style=nothing] (2) at (-4.25, 4.25) {};
+		\node [style=nothing] (3) at (-3.25, 4.25) {};
+		\node [style=whever] (4) at (-2.5, 5) {$=$};
+		\node [style=nothing] (5) at (-1, 6) {};
+		\node [style=delta] (6) at (-1, 5) {};
+		\node [style=nothing] (7) at (-1.75, 4.25) {};
+		\node [style=nothing] (8) at (-0.5, 4.25) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=new] (0) to (1);
+		\draw [style=new] (1) to (3);
+		\draw [style=new] (1) to (2);
+		\draw [style=new] (5) to (6);
+		\draw [style=new] (6) to (7);
+		\draw [style=new] (6) to (8);
+	\end{pgfonlayer}
+\end{tikzpicture}

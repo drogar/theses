@@ -245,9 +245,63 @@ In the diagrams, we will use the following representations:
       \path node [map] at (0,0) {$f$}; \end{tikzpicture}.
   \item unit introduction (often referred to as an $\eta$ map): \begin{tikzpicture}
       \path node [eta] at (0,0) {}; \end{tikzpicture}.
-  \item unit removaln (often referred to as an $\epsilon$ map): \begin{tikzpicture}
+  \item unit removal (often referred to as an $\epsilon$ map): \begin{tikzpicture}
       \path node [epsilon] at (0,0) {}; \end{tikzpicture}.
 \end{itemize}
+
+The axioms of Definition~\ref{def:inverse_product} then become:\\
+\begin{tikzpicture}
+  \begin{pgfonlayer}{nodelayer}
+    \node [style=nothing] (0) at (-3.75, 5.5) {};
+    \node [style=delta] (1) at (-3.75, 5) {};
+    \node [style=nothing] (2) at (-4, 4.25) {};
+    \node [style=nothing] (3) at (-3.5, 4.25) {};
+    \node [style=nothing] (4) at (-3, 5) {$=$};
+    \node [style=nothing] (5) at (-2.25, 5.5) {};
+    \node [style=delta] (6) at (-2.25, 5) {};
+    \node [style=nothing] (7) at (-2.5, 4.25) {};
+    \node [style=nothing] (8) at (-2, 4.25) {};
+    \node [style=nothing] (9) at (-3, 4) {Co-commutativity};
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{edgelayer}
+      \draw [] (0) to (1);
+      \draw [] (1) to[out=305,in=90] (2);
+      \draw [] (1) to[out=235,in=90] (3);
+      \draw [] (5) to (6);
+      \draw [] (6) to[out=235,in=90] (7);
+      \draw [] (6) to[out=305,in=90] (8);
+      \end{pgfonlayer}
+\end{tikzpicture}
+\begin{tikzpicture}
+  \begin{pgfonlayer}{nodelayer}
+    \node [style=nothing] (0) at (-3.75, 5.5) {};
+    \node [style=delta] (1) at (-3.75, 5) {};
+    \node [style=delta] (2) at (-4, 4.5) {};
+    \node [style=nothing] (3a) at (-4.25, 4) {};
+    \node [style=nothing] (3b) at (-3.75, 4) {};
+    \node [style=nothing] (3c) at (-3.5, 4) {};
+    \node [style=nothing] (4) at (-3, 5) {$=$};
+    \node [style=nothing] (5) at (-2.25, 5.5) {};
+    \node [style=delta] (6) at (-2.25, 5) {};
+    \node [style=delta] (8) at (-2, 4.5) {};
+    \node [style=nothing] (7a) at (-2.5, 4) {};
+    \node [style=nothing] (7b) at (-2.25, 4) {};
+    \node [style=nothing] (7c) at (-1.75, 4) {};
+    \node [style=nothing] (9) at (-3, 3.5) {Co-associativity};
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{edgelayer}
+      \draw [] (0) to (1);
+      \draw [] (1) to[out=305,in=90] (3c);
+      \draw [] (1) to[out=235,in=90] (2);
+      \draw [] (2) to[out=305,in=90] (3b);
+      \draw [] (2) to[out=235,in=90] (3a);
+      \draw [] (5) to (6);
+      \draw [] (6) to[out=235,in=90] (7a);
+      \draw [] (6) to[out=305,in=90] (8);
+      \draw [] (8) to[out=305,in=90] (7c);
+      \draw [] (8) to[out=235,in=90] (7b);
+      \end{pgfonlayer}
+\end{tikzpicture}
 
 % end sub:diagrammatic_language
 
