@@ -15,7 +15,7 @@ node at (0,2) [delta] (d) {};
 \draw [] (d) to[out=305,in=90] (g);
 \draw [] (d) to[out=235,in=90] (f);
 \draw [-] (f) to[out=270,in=125] (n1);
-\draw [-] (g) to[out=270,in=65] (n1);
+\draw [-] (g) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$= 0$}\
 \]
@@ -40,7 +40,7 @@ node at (0,2) [delta] (d) {};
 \draw [] (d) to[out=235,in=90] (f);
 \draw [] (d) to[out=305,in=90] (z);
 \draw [-] (f) to[out=270,in=125] (n1);
-\draw [-] (z) to[out=270,in=65] (n1);
+\draw [-] (z) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
@@ -56,7 +56,7 @@ node at (0,2) [delta] (d) {};
 \draw [] (d) to[out=305,in=90] (rz);
 \draw [] (rz) to (z);
 \draw [-] (f) to[out=270,in=125] (n1);
-\draw [-] (z) to[out=270,in=65] (n1);
+\draw [-] (z) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
@@ -70,7 +70,7 @@ node at (0,2) [delta] (d) {};
 \draw [] (d) to[out=235,in=90] (f);
 \draw [] (d) to[out=305,in=90] (z);
 \draw [-] (f) to[out=270,in=125] (n1);
-\draw [-] (z) to[out=270,in=65] (n1);
+\draw [-] (z) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$= 0$}
 \]
@@ -90,7 +90,7 @@ node at (0,2) [delta] (d) {};
 \draw [] (d) to[out=305,in=90] (g);
 \draw [] (d) to[out=235,in=90] (f);
 \draw [-] (f) to[out=270,in=125] (n1);
-\draw [-] (g) to[out=270,in=65] (n1);
+\draw [-] (g) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
@@ -118,7 +118,7 @@ node at (0,2) [delta] (d) {};
     \draw [] (n1) to (e1);
     \draw [] (g1) to (ng);
     \draw [] (etag) to (dg);
-    \draw [] (dg) to[out=305,in=65] (end);
+    \draw [] (dg) to[out=305,in=55] (end);
     \draw [] (dg) to (g);
     \draw [] (g) to (ng);
     \draw [] (ng) to (eg);
@@ -145,7 +145,7 @@ node at (0,2) [delta] (d) {};
     \draw [] (d1) to[out=235,in=125] (n);
     \draw [] (d1) to (n1);
     \draw [] (d2) to (n2);
-    \draw [] (d2) to[out=305,in=65] (n);
+    \draw [] (d2) to[out=305,in=55] (n);
     \draw [] (n1) to (f1);
     \draw [] (n2) to (g2);
     \draw [] (f1) to (e1);
@@ -168,7 +168,7 @@ node at (0,2) [delta] (d) {};
     \draw [] (d1) to[out=235,in=125] (n);
     \draw [] (d1) to (f1);
     \draw [] (d2) to (g2);
-    \draw [] (d2) to[out=305,in=65] (n);
+    \draw [] (d2) to[out=305,in=55] (n);
     \draw [] (f1) to (e1);
     \draw [] (g2) to (e2);
     \draw [] (n)  to (0,-.5);
@@ -191,7 +191,7 @@ node at (0,2) [delta] (d) {};
     \draw [] (d2) to[out=235,in=90] (d1);
     \draw [] (d1) to (f1);
     \draw [] (d1) to (g2);
-    \draw [] (d2) to[out=305,in=65] (n);
+    \draw [] (d2) to[out=305,in=55] (n);
     \draw [] (f1) to (n12);
     \draw [] (g2) to (n12);
     \draw [] (n12) to (e2);
@@ -208,7 +208,7 @@ node at (0,2) [delta] (d) {};
     \draw [] (start) to[out=235,in=125] (n);
     \draw [] (start) to (d2);
     \draw [] (d2) to[out=235,in=90] (z);
-    \draw [] (d2) to[out=270,in=65] (n);
+    \draw [] (d2) to[out=270,in=55] (n);
     \draw [] (z) to (e2);
     \draw [] (n)  to (0,-.5);
 \end{tikzpicture}
@@ -222,7 +222,7 @@ node at (0,2) [delta] (d) {};
 \draw [] (n1) to (0,-0.5);
 \draw [] (d) to[out=305,in=90] (z);
 \draw [] (d) to[out=235,in=125] (n1);
-\draw [-] (z) to[out=270,in=65] (n1);
+\draw [-] (z) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$= 0$}
 \]
@@ -255,7 +255,7 @@ In this proof, we use the result of \axiom{Dis}{6}, i.e., that $\rst{f}\perp\rst
     \begin{pgfonlayer}{edgelayer}
       \draw (0) to (1);
       \draw (1) to[out=270,in=125] (3);
-      \draw (5) to[out=270,in=65] (3);
+      \draw (5) to[out=270,in=55] (3);
       \draw (4) to (5);
       \draw (2) to[out=305,in=90] (4);
       \draw (2) to[out=235,in=90] (0);
@@ -275,7 +275,7 @@ In this proof, we use the result of \axiom{Dis}{6}, i.e., that $\rst{f}\perp\rst
     \begin{pgfonlayer}{edgelayer}
       \draw (0) to (1);
       \draw (1) to[out=270,in=125] (3);
-      \draw (4) to[out=270,in=65] (3);
+      \draw (4) to[out=270,in=55] (3);
       \draw (2) to[out=235,in=90] (0);
       \draw (2) to[out=305,in=90] (4);
       \draw (3) to (-1.25,.75);
@@ -292,7 +292,7 @@ In this proof, we use the result of \axiom{Dis}{6}, i.e., that $\rst{f}\perp\rst
     \node [style=map] (4) at (-0.5, 2.75) {$\scriptstyle \rst{g}$};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
-      \draw (4) to[out=270,in=65] (3);
+      \draw (4) to[out=270,in=55] (3);
       \draw (2) to[out=235,in=90] (0);
       \draw (2) to[out=305,in=90] (4);
       \draw (0) to[out=270,in=125] (3);
@@ -330,7 +330,7 @@ node at (0,2) [delta] (d) {};
 \draw [] (d) to[out=305,in=90] (g);
 \draw [] (d) to[out=235,in=90] (f);
 \draw [-] (f) to[out=270,in=125] (n1);
-\draw [-] (g) to[out=270,in=65] (n1);
+\draw [-] (g) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
@@ -345,7 +345,7 @@ node at (0,2) [delta] (d) {};
     \begin{pgfonlayer}{edgelayer}
       \draw (0) to (1);
       \draw (1) to[out=270,in=125] (3);
-      \draw (5) to[out=270,in=65] (3);
+      \draw (5) to[out=270,in=55] (3);
       \draw (4) to (5);
       \draw (2) to[out=305,in=90] (4);
       \draw (2) to[out=235,in=90] (0);
@@ -368,7 +368,7 @@ node at (.5,1) [map] (g) {$\scriptstyle g$}
 \draw [] (d) to[out=305,in=90] (g);
 \draw [] (d) to[out=235,in=90] (f);
 \draw [-] (f) to[out=270,in=125] (n1);
-\draw [-] (g) to[out=270,in=65] (n1);
+\draw [-] (g) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$=$}\
 \raisebox{25pt}{
@@ -401,7 +401,7 @@ node at (0,2) [delta] (d) {};
 \draw [] (d) to[out=305,in=90] (gk);
 \draw [] (d) to[out=235,in=90] (fh);
 \draw [-] (fh) to[out=270,in=125] (n1);
-\draw [-] (gk) to[out=270,in=65] (n1);
+\draw [-] (gk) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
@@ -423,7 +423,7 @@ node at (0,2) [delta] (d) {};
 \draw (rg) to (gk);
 \draw (gk) to (rngk);
 \draw [-] (rngh) to[out=270,in=125] (n1);
-\draw [-] (rngk) to[out=270,in=65] (n1);
+\draw [-] (rngk) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
@@ -441,7 +441,7 @@ node at (0,2) [delta] (d) {};
 \draw (fh) to (rnghrngk);
 \draw (rfrg) to (gk);
 \draw [-] (rnghrngk) to[out=270,in=125] (n1);
-\draw [-] (gk) to[out=270,in=65] (n1);
+\draw [-] (gk) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
@@ -459,7 +459,7 @@ node at (0,2) [delta] (d) {};
 \draw (fh) to (rnghrngk);
 \draw (rfrg) to (gk);
 \draw [-] (rnghrngk) to[out=270,in=125] (n1);
-\draw [-] (gk) to[out=270,in=65] (n1);
+\draw [-] (gk) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
@@ -473,7 +473,7 @@ node at (0,2) [delta] (d) {};
 \draw [] (d) to[out=305,in=90] (gk);
 \draw [] (d) to[out=235,in=90] (fh);
 \draw [-] (fh) to[out=270,in=125] (n1);
-\draw [-] (gk) to[out=270,in=65] (n1);
+\draw [-] (gk) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$= 0$}\
 \]

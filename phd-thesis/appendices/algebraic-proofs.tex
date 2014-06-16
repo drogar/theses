@@ -1,0 +1,131 @@
+\chapter{Selected algebraic proofs}
+
+\section{Algebraic proofs for Lemma~\ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}}
+
+\begin{lemma}
+  In a discrete inverse category \X with the inverse product $\*$ and $\Delta$, where
+  $e=\rst{e}$ is a restriction idempotent and $f,g,h$ are arrows in \X, the following are true:
+  \begin{enumerate}[{(}i{)}]
+    \item{}$e=\Delta (e\* 1) \inv{\Delta}$.\label{le:eisde1}
+    \item{}$e\Delta (f \* g) = \Delta (e f \* g) $ (and $= \Delta (f \* e g) $ and
+      $ = \Delta (e f \* e g)$.)\label{le:deltaefg}
+    \item{}$ (f \* g e) \inv{\Delta} =(f \* g) \inv{\Delta} e $ (and $= (f e\* g) \inv{\Delta}$ and
+      $ = (f e\* g e)\inv{\Delta}$.)\label{le:efginvdelta}
+    \item{}$\restr{\Delta (f \* g) \inv{\Delta}} =
+       \Delta(1\* g \inv{f})\inv{\Delta}$. \label{le:restfg}
+    \item{} If $\Delta (h \* g) \inv{\Delta} = \restr{\Delta (h \* g) \inv{\Delta}}$ then
+      $(\Delta (h \* g) \inv{\Delta}) h = \Delta (h \* g) \inv{\Delta}$.\label{le:hge}
+    \item{}$\Delta (f\*1) = \Delta (g\*1) \implies f = g$.\label{le:dfgisfg}
+    \item{}$(f\*1) = (g\*1) \implies f = g$.\label{le:fgisfg}
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item[\ref{le:eisde1}]This is shown by proving both sides
+      equal $\Delta (e\* 1) \inv{\Delta} \Delta (e\* 1) \inv{\Delta}$.
+      \begin{align*}
+        \Delta (e\* 1) &\inv{\Delta} \Delta (e\* 1) \inv{\Delta} \\
+        &= \Delta (e\* 1) \inv{\Delta} \Delta (1\* e) \inv{\Delta}&\text{co-commutativity}\\
+        &=\Delta(e \Delta \* 1) (1\*\inv{\Delta} e) \inv{\Delta} &\text{Frobenius}\\
+        &=\Delta(\Delta \* 1) (e\*e\*1) (1\*\inv{\Delta}e)\inv{\Delta}&\Delta\text{natural}\\
+        &=\Delta(\Delta \* 1) (e\*e\*1) \\
+          & \qquad(1\*e\*e)(1\*\inv{\Delta})\inv{\Delta}&\inv{\Delta}\text{ natural}\\
+        &=\Delta (\Delta \*1) (e\* e\* e)(1\* \inv{\Delta})\inv{\Delta}&e\text{ idempotent}\\
+        &=\Delta (\Delta \*1) (e\* \inv{\Delta}e)\inv{\Delta}&\inv{\Delta}\text{ natural}\\
+        &=\Delta (\Delta \*1) (1\* \inv{\Delta})\inv{\Delta}e&\inv{\Delta}\text{ natural}\\
+        &=\Delta \inv{\Delta}\Delta \inv{\Delta}e&\text{Frobenius}\\
+        &=e&\Delta\text{ total}.
+      \end{align*}
+      At the same time,
+      \begin{align*}
+        \Delta (e\* 1) &\inv{\Delta} \Delta (e\* 1) \inv{\Delta}
+        =\Delta(e \Delta \* 1) (e\*\inv{\Delta} 1) \inv{\Delta} &\text{Frobenius}\\
+        &=\Delta(\Delta \* 1) (e\*e\*1) (e\*\inv{\Delta})\inv{\Delta}&\Delta\text{natural}\\
+        &=\Delta(\Delta \* 1) (e\*e\*1) (e\*1\*1)(1\*\inv{\Delta})\inv{\Delta}&\inv{\Delta}\text{ natural}\\
+        &=\Delta (\Delta \*1) (e\* e\* 1)(1\* \inv{\Delta})\inv{\Delta}&e\text{ idempotent}\\
+        &=\Delta  (e\Delta\* 1)(1\*\inv{\Delta})\inv{\Delta}&\Delta\text{natural}\\
+        &=\Delta (e \* 1) \inv{\Delta}\Delta\inv{\Delta} &\text{Frobenius}\\
+        &=\Delta (e \* 1) \inv{\Delta} &\Delta\text{ total}\
+      \end{align*}
+      which gives $e = \Delta (e \* 1) \inv{\Delta}$.
+    \item[\ref{le:deltaefg}]This equality starts by using the previous equality:
+      \begin{align*}
+        e\Delta &(f \* g) = \Delta (e\* 1) \inv{\Delta} \Delta(f \* g)
+          &\text{by part \ref{le:eisde1}}\\
+        &=\Delta(e  \* 1) \rst{\inv{\Delta}}(f\*g)&\\
+        &=\Delta\rst{\inv{\Delta}}(e \*1)(f\*g)
+          & \text{\rtwo}\\
+        &=\Delta (e f \* g) &\text{ ($f\inv{f} = f$)}.
+      \end{align*}
+      The second and third equalities follow by co-commutativity and naturality of $\Delta$ and $e$
+      being a restriction idempotent.
+    \item[\ref{le:efginvdelta}] As in (\ref{le:deltaefg}), details are only given for the
+      first equality.
+      \begin{align*}
+        (f \* g)&\inv{\Delta} e \\
+        &= (f \* g) \inv{\Delta}\Delta (1\*e) \inv{\Delta}   &\text{part \ref{le:eisde1}}\\
+        &=(f\*g)\rst{\inv{\Delta}}(1\*e) \inv{\Delta}&\\
+        &=(f\*g)(1\*e) \rst{\inv{\Delta}}\inv{\Delta}&\rtwo\\
+        &=(f\*g e)\inv{\Delta}&\rone
+      \end{align*}
+      The other equalities follow from co-commutativity and naturality of $\Delta$ and $e$ being
+      a restriction idempotent.
+    \item[\ref{le:restfg}]Here, we start by using the fact all maps have a partial inverse:
+      \begin{align*}
+        ~&\restr{\Delta (f \* g) \inv{\Delta} } \\
+        &=\Delta (f \* g) \inv{\Delta} \Delta (\inv{f} \* \inv{g}) \inv{\Delta} \\
+        &=\Delta (g \* f) \inv{\Delta} \Delta (\inv{g} \* \inv{f}) \inv{\Delta}& \text{co-commutative} \\
+        &=\Delta(g\Delta \*f)(\inv{g}\*\inv{\Delta}\inv{f})\inv{\Delta}&\text{Frobenius}\\
+        &=\Delta (\Delta\*1)(g \* g \* f)(\inv{g}\*\inv{\Delta}\inv{f})\inv{\Delta}&\Delta \text{ natural}\\
+        &=\Delta (\Delta\*1)(g \* g \* f)\\
+          &\qquad(\inv{g} \* \inv{f}\* \inv{f})(1\* \inv{\Delta})\inv{\Delta}&\inv{\Delta} \text{ natural}\\
+        &=\Delta (\Delta\*1)(\restr{g} \* g \inv{f}\* \restr{f})(1\* \inv{\Delta})\inv{\Delta}&\text{combine maps}\\
+        &=\Delta (\Delta\*1)(\restr{g} \* \restr{g}\,g \inv{f}\restr{f}\* \restr{f})(1\* \inv{\Delta})\inv{\Delta}&\text{restriction axioms}\\
+        &=\Delta (\restr{g}\Delta\*1)(1\*g\inv{f}\restr{f}\* \restr{f})(1\*\inv{\Delta}) \inv{\Delta}&\Delta \text{ natural}\\
+        &=\Delta (\restr{g}\Delta\*1)(1\*g\inv{f}\*1)(1\*\inv{\Delta}\restr{f}) \inv{\Delta}&\inv{\Delta} \text{ natural}\\
+        &=\Delta (\Delta\*1)(1 \* \restr{g}g \inv{f}\*1)(1\*\inv{\Delta}\restr{f}) \inv{\Delta}&\text{This lemma(\ref{le:deltaefg})}\\
+        &=\Delta (\Delta\*1)(1 \* \restr{g}g \inv{f}\restr{f}\*1)(1\*\inv{\Delta}) \inv{\Delta}&\text{This lemma(\ref{le:efginvdelta})}\\
+        &=\Delta (\Delta\*1)(1 \*g \inv{f}\*1)(1\*\inv{\Delta}) \inv{\Delta}&\text{restriction axioms}\\
+        &=\Delta c_{A,A}(\Delta\*1)(1 \*g \inv{f}\*1)(1\*\inv{\Delta}) \inv{\Delta}&\text{co-commutative}\\
+        &=\Delta (1\*\Delta)c_{A,A\*A}(1 \*g \inv{f}\*1)(1\*\inv{\Delta}) \inv{\Delta}&c_{\*}\text{natural}\\
+        &=\Delta (1\*\Delta)(1\*1\*g \inv{f})c_{A,A\*A}(1\*\inv{\Delta}) \inv{\Delta}&c_{\*}\text{natural}\\
+        &=\Delta (1\*\Delta)(1\*1\*g \inv{f})(\inv{\Delta}\*1)c_{A,A} \inv{\Delta}&c_{\*}\text{natural}\\
+        &=\Delta (1\*\Delta)(1\*1\*g \inv{f})(\inv{\Delta}\*1) \inv{\Delta}&c_{\*}\text{co-commutative}\\
+        &=\Delta \inv{\Delta}\Delta (1 \* g \inv{f})\inv{\Delta}&\text{Frobenius}\\
+        &=\Delta(1 \* g \inv{f}) \inv{\Delta}&\Delta\text{ total}
+      \end{align*}
+      Note the pattern in the last few lines of using the co-commutativity of $\Delta$, the
+      naturality of the commutativity isomorphism and finishing with the co-commutativity of
+      $\inv{\Delta}$. In future proofs, these steps will be combined to a single line and referred to
+      as commutativity.
+    \item[\ref{le:hge}]Beginning with the assumption,
+      \begin{align*}
+        (\Delta &(h \* g)\inv{\Delta})h  = \rst{\Delta (h \* g) \inv{\Delta}}h&\\
+        &=\Delta(1 \* g \inv{h}) \inv{\Delta}h&\text{This lemma(\ref{le:restfg})}\\
+        &=\Delta(1 \* g \inv{h}) (h\*h)\inv{\Delta}&\inv{\Delta}\text{ natural}\\
+        &=\Delta(h \* g \rst{\inv{h}}) \inv{\Delta}&\\
+        &=\Delta(h\rst{\inv{h}} \* g) \inv{\Delta}&\text{part (\ref{le:deltaefg})}\\
+         &=\Delta(h\*g)\inv{\Delta}&\text{property of inverse}.
+      \end{align*}
+
+    \item[\ref{le:dfgisfg}]As $\Delta$ is total and natural, we start with:
+      \begin{align*}
+        f&=\Delta(f\*f)\inv{\Delta}  & \\
+        &= \Delta(f\*1)(1\*f)\inv{\Delta} &  \\
+        &= \Delta(g\*1)(1\*f)\inv{\Delta} &\text{assumption} \\
+        &= \Delta(1\*f)(g\*1)\inv{\Delta} &\text{Identities commute}\\
+        &= \Delta(1\*g)(g\*1)\inv{\Delta} &\text{assumption, co-commutative}\\
+        &= \Delta(g\*g)\inv{\Delta} \\
+        &= g\Delta\inv{\Delta} & \Delta \text{ natural}\\
+        &= g&\Delta\text{ total}.
+      \end{align*}
+    \item[\ref{le:fgisfg}] Immediate from part \ref{le:dfgisfg}.
+  \end{enumerate}
+\end{proof}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: ../phd-thesis.tex
+%%% End:

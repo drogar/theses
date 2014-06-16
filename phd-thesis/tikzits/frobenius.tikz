@@ -1,0 +1,42 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=nothing] (0) at (-2.75, 3.75) {};
+		\node [style=nothing] (1) at (-2.25, 3.75) {};
+		\node [style=delta] (2) at (-2.75, 3.25) {};
+		\node [style=nothing] (3) at (-2.75, 2) {};
+		\node [style=nothing] (4) at (-2.25, 2) {};
+		\node [style=nothing] (5) at (-0.5, 3) {$=$};
+		\node [style=nothing] (6) at (0, 3.75) {};
+		\node [style=nothing] (7) at (0.5, 3.75) {};
+		\node [style=delta] (8) at (-1, 2.5) {};
+		\node [style=delta] (9) at (0.5, 3.25) {};
+		\node [style=nothing] (10) at (0, 2) {};
+		\node [style=nothing] (11) at (0.5, 2) {};
+		\node [style=nabla] (12) at (-2.25, 2.5) {};
+		\node [style=nabla] (13) at (-1, 3.25) {};
+		\node [style=nabla] (14) at (0, 2.5) {};
+		\node [style=nothing] (15) at (-1.75, 3) {$=$};
+		\node [style=nothing] (16) at (-1.25, 3.75) {};
+		\node [style=nothing] (17) at (-0.75, 3.75) {};
+		\node [style=nothing] (18) at (-1.25, 2) {};
+		\node [style=nothing] (19) at (-0.75, 2) {};
+		\node [style=nothing] (20) at (-1, 1.75) {Frobenius};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=new] (0) to (2);
+		\draw [style=new] (2) to (3);
+		\draw [style=new] (7) to (9);
+		\draw [style=new] (9) to (11);
+		\draw (1) to (12);
+		\draw (2) to (12);
+		\draw (12) to (4);
+		\draw (13) to (8);
+		\draw (16) to (13);
+		\draw (17) to (13);
+		\draw (8) to (18);
+		\draw (8) to (19);
+		\draw (14) to (10);
+		\draw (9) to (14);
+		\draw (6) to (14);
+	\end{pgfonlayer}
+\end{tikzpicture}
