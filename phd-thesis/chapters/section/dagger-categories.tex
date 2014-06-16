@@ -9,31 +9,33 @@ closed categories}, an additional structure only on compact closed categories.
 
 Although dagger categories were introduced in the context of compact closed categories, the concept
 of a dagger is definable independently. This was first done in \cite{selinger05:dagger}.
-\begin{definition}[Dagger, dagger category]\label{def:daggercat}
-A dagger operator on a category $D$ is an involutive, identity on objects
-contravariant functor $\dagger:\cD\to \cD$. A dagger category
-is a category that has a dagger operator.
+
+\begin{definition}\label{def:daggercat}
+  A dagger operator on a category $D$ is an involutive, identity on objects
+  contravariant functor $\dagger:\cD\to \cD$. A dagger category
+  is a category that has a dagger operator.
 \end{definition}
 
 Typically, the dagger is written as a superscript on the morphism. So, if $f:A\to B$ is a map in
 \cD, then $\dgr{f}:B\to A$ is a map in \cD{} and is called the \emph{adjoint} of $f$. A map where
-$f^{-1} = \dgr{f}$ is called \emph{unitary} and a map $f:A\to A$ with $f=\dgr{f}$ is called
-\emph{self-adjoint} or \emph{hermitian}.
+$f^{-1} = \dgr{f}$ is called \emph{unitary}. A map $f:A\to A$ with $f=\dgr{f}$ is called
+\emph{self-adjoint} or \emph{Hermitian}.
 
-\begin{definition}[Dagger symmetric monoidal]\label{def:daggersmc}
+\begin{definition}\label{def:daggersmc}
   A \emph{dagger symmetric monoidal category} is a symmetric monoidal category \cD{} with a dagger
   operator such that the dagger interacts coherently with the monoid to preserve the symmetric
   monoidal structure.
 \end{definition}
 
 The coherence requirements in definition \ref{def:daggersmc} are in addition to the standard
-coherence diagrams for a symmetric monoidal category. The additional coherence requirements are for
-all maps $f:A\to B$ and $g:C\to D$, it is required that $\dgr{(f\*g)} = \dgr{f}\*\dgr{g}:B\*D \to
-A\* C$ and that the monoid structure isomporphisms $a_{A,B,C}:(A\*B)\to C$, $u_{A}:A\to I\*A$ and
-$c_{A,B}:A\*B \to B\*A$ are all unitary.
+coherence diagrams for a symmetric monoidal category. The additional coherence requirements are:
+\begin{itemize}
+  \item For all maps $f:A\to B$ and $g:C\to D$, $\dgr{(f\*g)} = \dgr{f}\*\dgr{g}:B\*D \to A\* C$;
+  \item The monoid structure isomorphisms $a_{A,B,C}:(A\*B)\to C$, $u_{A}:A\to I\*A$ and
+    $c_{A,B}:A\*B \to B\*A$ are unitary.
+\end{itemize}
 
-
-\begin{definition}[Dagger compact closed]\label{def:daggercompact}
+\begin{definition}\label{def:daggercompact}
   A \emph{dagger compact closed category} \cD{} is a dagger symmetric monoidal category
   that is compact closed where the diagram
   \[
@@ -90,11 +92,11 @@ $p_{1},p_{2}$, then the following are equivalent.
     \[
       \xymatrix{
         A\ar[d]_{f}  & A\+B \ar[l]_{p_{1}} \ar[r]^{p_{2}} \ar[d]^{f\*g}&A \ar[d]^{g}\\
-        C & C\+D \ar[l]^{p_{1}} \ar[r]_{p_{2}}  & D
+        C & C\+D \ar[l]^{p_{1}} \ar[r]_{p_{2}}  & D.
       }
     \]
-    and once again apply the dagger functor. This is now the diagram defining the coproduct of maps
-    and therefore $\dgr{(f\+g)} = \dgr{f}\+\dgr{g}$.
+    Then, apply the dagger functor to this diagram. This is now the diagram defining the
+    co-product of maps and therefore $\dgr{(f\+g)} = \dgr{f}\+\dgr{g}$.
     \item[\ref{ldpddeltisnab}$\implies$\ref{ldpdcopisprod}] The calculation showing this is
       \begin{eqnarray*}
         &[\dgr{f},\dgr{g}] & = \nabla; (\dgr{f}\+\dgr{g})\\
@@ -139,8 +141,8 @@ functions from $H$ to the base field. The dagger is defined via the adjoint as b
 $\dgr{f}:B\to A$ such that $\<f a|b\> = \<a | \dgr{f} b\>$ for all $a\in A, b\in B$.
 
 \paragraph{\rel{}:} The category \rel of sets and relations has the tensor $S\*T = S\times T$, the
-cartesian product and the biproduct $S\+T = S+T$, the disjoint union. This is compact closed under
-$A^{*} = A$ and the dagger is the relational converse, that is if the relation $R=\{(s,t)|s\in S,
+Cartesian product and the biproduct $S\+T = S+T$, the disjoint union. This is compact closed under
+$A^{*} = A$ and the dagger is the relational converse. That is, if the relation $R=\{(s,t)|s\in S,
 t\in T\}:S\to T$, then $\dgr{R}=\{(t,s)|(s,t)\in R\}(=R^{*})$.
 
 \paragraph{Inverse categories:}
@@ -155,6 +157,3 @@ a dagger symmetric monoidal category. This follows from
 but since the partial inverse of $f\*g$ is unique, $\inv{f\*g} = \inv{f} \* \inv{g}$. Finally,
 since all the structure isomorphisms are total maps, they are unitary and \X is a dagger symmetric
 monoidal restriction category.
-
-
-

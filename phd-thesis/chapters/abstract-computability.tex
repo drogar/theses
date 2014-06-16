@@ -32,7 +32,7 @@ Another definition, often used in introducing categories, is given next.
   A \emph{category} $\A$ is a directed graph consisting of objects $A_o$ and maps $A_m$. Each $f\in
   A_m$ has two associated objects in $A_o$, called the domain and co-domain. When $f$ has domain $X$
   and co-domain $Y$ we will write $f:X \to Y$. For $f, g \in A_m$, if $f:X\to Y$ and $g:Y \to Z$,
-  there is a map called the \emph{composite} of $f$ and $g$, written $fg$ such that $fg:X \to Z$.
+  there is a map called the \emph{composite} of $f$ and $g$, written $f g$ such that $f g:X \to Z$.
   For any $W \in A_o$ there is an \emph{identity} map $1_W:W \to W$. Additionally, these two axioms
   must hold:
   \begin{itemize}
@@ -44,7 +44,7 @@ Another definition, often used in introducing categories, is given next.
 
 \begin{lemma}\label{lem:category_is_category_alt}
   A category as defined in Definition~\ref{def:category} is equivalent to a category as defined
-  in Definition~\ref{def:category_alt} and vice versa.
+  in Definition~\ref{def:category_alt} and vice-versa.
 \end{lemma}
 \begin{proof}
   Assume $\A$ is as in Definition~\ref{def:category}. Then:
@@ -53,7 +53,7 @@ Another definition, often used in introducing categories, is given next.
     \item Set $A_m$ to all the maps in $\A$.
   \end{itemize}
   The domain of any map $f \in A_m$ is $D(f)$
-  and the co-domain is $C(f)$. By \catthree, for $f:X\to Y$ and $g:Y \to Z$ the composite $fg$ is
+  and the co-domain is $C(f)$. By \catthree, for $f:X\to Y$ and $g:Y \to Z$ the composite $f g$ is
   defined. The identity map of the object $D(f)$ is the map $D(f)$ and the identity map of the
   object $C(f)$ is $C(f)$. By \catfive, we see \axiom{C'}{1} is satisfied. By \catfour, we see
   \axiom{C'}{2} is satisfied. Therefore, $\A$ satisfies Definition~\ref{def:category_alt}.
@@ -131,7 +131,7 @@ Note that \rel is enriched in posets, via set inclusion. \Par can be viewed as a
 \label{ssub:matrix_categories}
 Given a rig $R$ (i.e., a ring minus negatives, e.g., the positive rationals), one may form the
 category \specialcat{Mat}($R$).
-\category{\nat}{$[r_{ij}]: n \to m$ where $[r_{ij}]$ is an $n \times m$ matrix over $R$}{
+\category{\nat}{$[r_{i j}]: n \to m$ where $[r_{i j}]$ is an $n \times m$ matrix over $R$}{
 $I_n$}{Matrix multiplication}
 % sub-subsection matrix_categories (end)
 
@@ -170,7 +170,7 @@ Right Inverse & Retraction & $f$ is a retraction when there is a map $f_*$ such 
 $f$ is also referred to as the \emph{right inverse} of $f_*$. A map that is both a section and a
 retraction is called an \emph{isomorphism}.\\
 \hline
-Idempotent & Idempotent & An endomap $e$ is idempotent whenever $e e = e$.\\
+Idempotent & Idempotent & An endomorphism $e$ is idempotent whenever $e e = e$.\\
 \hline
 \end{tabular}\\[14pt]
 
@@ -250,7 +250,7 @@ and terminal objects.
 \begin{proof}
   First, note that by definition there is only one map from $I$ to $I$ --- which must be the
   identity map. As $I$ is initial there is a map $i: I \to J$. As $J$ is initial there is a map
-  $j:J \to I$. But this means $ij : I \to I = 1$ and $j i : J \to J = 1$ and hence $i$ is the
+  $j:J \to I$. But this means $i j : I \to I = 1$ and $j i : J \to J = 1$ and hence $i$ is the
   unique isomorphism from $I$ to $J$.
 \end{proof}
 
@@ -297,7 +297,7 @@ We now turn to products and co-products.
 \end{lemma}
 \begin{proof}
   \category{Categories.}{Functors.}{The identity functor which takes a map to the same map.}{
-  $FG(x) = F(G(x))$ which is clearly associative.}
+  $F G(x) = F(G(x))$ which is clearly associative.}
 \end{proof}
 
 We will often restrict ourselves to specific classes of functors which either \emph{preserve} or
@@ -527,7 +527,7 @@ total maps correspond precisely to the functions that are defined on all element
     \end{description}
     \item The premise is that $\restr{f} g = f$. From this, $ \restr{f}\, \restr{g} =
       \restr{\restr{f} g} = \restr{f}$, showing $\restr{f} \le \restr{g}$.
-    \item $\restr{h f} hg = h \restr{f} g = h f$  and therefore $h f \le hg$.
+    \item $\restr{h f} h g = h \restr{f} g = h f$  and therefore $h f \le h g$.
     \item $\restr{f} g = f$, this shows $\restr{f h} g h = \restr{\restr{f} g h} g h
       = \restr{f}\, \restr{g h} g h = \restr{f} g h = f h$ and therefore $f h \le g h$.
     \item $g = \rst{g} g = \rst{f} g = f$.
@@ -564,7 +564,7 @@ to be suggestive of open sets.
     \infer{A\xrightarrow{f\cap g} B}
       {A\overset{f}{\underset{g}{\rightrightarrows}}B}
   \]
-  such that $f\cap g \le f, f\cap g \le g, f\cap f = f, h (f\cap g) = h f \cap hg$.
+  such that $f\cap g \le f, f\cap g \le g, f\cap f = f, h (f\cap g) = h f \cap h g$.
 \end{definition}
 
 Meets were introduced in \cite{cockett-guo-hofstra-2012:range2}.
@@ -780,7 +780,7 @@ simply monic.
       \begin{align*}
         h \restr{f g} f &= k \restr{f g} f &\rfour\\
         h \restr{f g}\,\restr{f} &= k \restr{f g}\, \restr{f} & f\text{partial monic}\\
-        h \restr{fg}&= k \restr{fg} & \text{Lemma \ref{lem:restrictionvarious},
+        h \restr{f g}&= k \restr{f g} & \text{Lemma \ref{lem:restrictionvarious},
           \ref{lemitem:rv_2}}
       \end{align*}
     \item Suppose $g f = k f$. Then, $g\restr{f} = g f h = k f h = k \restr{f}$.
@@ -1029,7 +1029,7 @@ preserved by splitting.
       $\rst{\mbf \capspl \mbg} \mbf =  \mbf \capspl \mbg$.  Calculating now in \X:
       \begin{align*}
         d \rst{f \cap g} f&= \rst{d(f\cap g)} d f\\
-        & = \rst{df \cap dg} df \\
+        & = \rst{d f \cap d g} d f \\
         & = \rst{f \cap g} f \\
         & = f \cap g
       \end{align*}
@@ -1037,7 +1037,7 @@ preserved by splitting.
     \item{$\mbf\capspl \mbg \le \mbg$: } Similarly and once again calculating in \X,
       \begin{align*}
         d \rst{f \cap g} g&= \rst{d(f\cap g)} d g\\
-        & = \rst{df \cap dg} dg \\
+        & = \rst{d f \cap d g} d g \\
         & = \rst{f \cap g} g \\
         & = f \cap g
       \end{align*}
@@ -1082,13 +1082,13 @@ exists and $m' \in \Mstab$. A category that has a stable system of monics
 is referred to as an \Mstab-category.
 
 \begin{lemma}
-  If $nm \in \Mstab$, a stable system of monics, and $m$ is monic, then $n \in \Mstab$.
+  If $n m \in \Mstab$, a stable system of monics, and $m$ is monic, then $n \in \Mstab$.
 \end{lemma}
 \begin{proof}
   The commutative square
   \[
     \xymatrix{
-      A\ar[d]_n \ar[r]^{1} &A\ar[d]^{nm}\\
+      A\ar[d]_n \ar[r]^{1} &A\ar[d]^{n m}\\
       A' \ar[r]_{m} & B
     }
   \]
@@ -1191,14 +1191,14 @@ Restriction categories have analogues of products and terminal objects.
   By the definition of the restriction product:
   \[
     f \cap g =  \<f,g\>\inv{\Delta} =\<f,g\>\inv{\Delta} \Delta \pi_0 =
-      \<f,g\>\restr{\inv{\Delta}}\pi_0 \le \<f,g\>\pi_0 \le f
+      \<f,g\>\restr{\inv{\Delta}}\pi_0 \le \<f,g\>\pi_0 \le f.
   \]
-  Similarly, substituting $\pi_1$ for $\pi_0$ above, this gives $f \cap g \le g$.
+  Then, substituting $\pi_1$ for $\pi_0$ above, gives us $f \cap g \le g$.
   For the left distributive law,
   \[
-    h(f \cap g) = h \<f,g\>\inv{\Delta} =  \<h f,h g\>\inv{\Delta} = h f \cap h g
+    h(f \cap g) = h \<f,g\>\inv{\Delta} =  \<h f,h g\>\inv{\Delta} = h f \cap h g.
   \]
-  and finally an intersection of a map with itself is
+  The intersection of a map with itself is
   \[
     f\cap f = \<f,f\> \inv{\Delta} = (f \Delta) \inv{\Delta} = f \restr{\Delta} = f
   \]
@@ -1206,23 +1206,27 @@ Restriction categories have analogues of products and terminal objects.
   Cartesian restriction category \X.
 
 \end{proof}
+\begin{definition}\label{def:discrete_restriction_category}
+  A  Cartesian restriction category in which every object is
+discrete is called a \emph{discrete restriction category}.
+\end{definition}
 
-We shall refer to a Cartesian restriction category in which every object is
-discrete as simply a discrete restriction category.
 % subsection restriction_products_and_cartesian_restriction_categories (end)
 
 \subsection{Discrete Categories} % (fold)
 \label{sub:discrete_categories}
 
+\begin{definition}\label{def:graphic_map}
+  In a Cartesian restriction category, a map $A\xrightarrow{f}B$ is called \emph{graphic} when the
+  maps
+  \[
+    A\xrightarrow{\<f,1\>}B\times A\qquad \text{and}\qquad
+    A\xrightarrow{\<\rst{f},1\>}A\times A
+  \]
+  have partial inverses. A Cartesian restriction category is \emph{graphic} when all of its maps
+  are graphic.
+\end{definition}
 
-In a Cartesian restriction category, a map $A\xrightarrow{f}B$ is
-called \emph{graphic} when the maps
-\[
-  A\xrightarrow{\<f,1\>}B\times A\qquad \text{and}\qquad
-  A\xrightarrow{\<\rst{f},1\>}A\times A
-\]
-have partial inverses. A Cartesian restriction category is \emph{graphic} when all of its maps
-are graphic.
 \begin{lemma}\label{lem:graphic_maps_are_closed_in_a_cartesian_restriction_category}
   In a Cartesian restriction category:
   \begin{enumerate}[{(}i{)}]
@@ -1321,13 +1325,13 @@ are graphic.
     &= \rst{(1 \times f)\inv{\Delta}} \< \pi_0, \pi_1 \>\\ % products
     &= \rst{(1 \times f)\inv{\Delta}}
   \end{align*}
-  The one tricky step is to realize
+  The above follows as in a discrete restriction category, we have
   \begin{align*}
     \rst{\inv{\Delta}} \pi_1
       &= \inv{\Delta} \Delta \pi_1\\
       &= \inv{\Delta}\\
       &= \inv{\Delta} \Delta \pi_0\\
-      &= \rst{\inv{\Delta}} \pi_0
+      &= \rst{\inv{\Delta}} \pi_0.
   \end{align*}
 
   For $\<\rst{f},1\>$, the inverse is $\rst{(1 \times \rst{f})\inv{\Delta}} \pi_1$. Similarly

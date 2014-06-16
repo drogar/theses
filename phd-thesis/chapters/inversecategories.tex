@@ -4,10 +4,10 @@
 \section{Inverse products} % (fold)
 \label{sec:inverse_products}
 
-This chapter is focussed on adding ``products'' to an inverse category.
+This chapter will focus on adding ``products'' to an inverse category.
 
 We will show below that inverse category that has a
-restriction product is a restriction preorder. Given this, by ``product'', we mean a construction
+restriction product is a restriction pre-order. Given this, by ``product'', we mean a construction
 that behaves in a product-like manner in an inverse category. We call \emph{inverse products}, which
 will be defined below in sub-section~\ref{sub:inverse_products}.
 Inverse products are given by a tensor product which supports a diagonal but lacks projections. The
@@ -15,18 +15,18 @@ diagonal map is required to give a natural Frobenius structure to each object.
 
 \subsection{Inverse categories with restriction products} % (fold)
 \label{sub:inverse_categories_with_restriction_products}
-We start by showing that an inverse category with restriction products is a restriction preorder.
+We start by showing that an inverse category with restriction products is a restriction pre-order.
 
 \begin{definition}\label{def:compatible_maps}
   Two parallel maps $f,g:A \to B$ in a restriction category are \emph{compatible}, written as $f
   \smile g$, when $\rst{f} g = \rst{g} f$.
 \end{definition}
 \begin{definition}\label{def:restrictionpreorder}
-  A restriction category \X is a \emph{restriction preorder} when all parallel pairs of maps are
+  A restriction category \X is a \emph{restriction pre-order} when all parallel pairs of maps are
   compatible.
 \end{definition}
 \begin{lemma}\label{lem:an_inverse_category_with_products_is_a_restriction_preorder}
-  Given an inverse category \X, if it has restriction products, it is a restriction preorder. That
+  Given an inverse category \X, if it has restriction products, it is a restriction pre-order. That
   is,
   \[
     \xymatrix {
@@ -57,19 +57,19 @@ We start by showing that an inverse category with restriction products is a rest
 \end{proof}
 
 \begin{corollary}
-  \X\ is a Cartesian inverse category if and only if Total($\spl{r}{\X}$) is a meet preorder.
+  \X\ is a Cartesian inverse category if and only if Total($\spl{r}{\X}$) is a meet pre-order.
 \end{corollary}
 
 \begin{proof}
   Total(\X), the subcategory of total maps on \X, has products and therefore every pair of parallel
   maps is compatible. As total compatible maps are equal, there is at most
-  one map between any two objects. Hence, Total(\X) is a preorder with the meet being the product.
+  one map between any two objects. Hence, Total(\X) is a pre-order with the meet being the product.
 
   Similarly, from \cite{cockett2002:restcategories1} and \cite{cockettlack2004:restcategories3},
   Total($\spl{r}{\X}$) is an inverse category and has products and is therefore also a meet
-  preorder. This shows the ``only if'' side of the corollary.
+  pre-order. This shows the ``only if'' side of the corollary.
 
-  For the other direction, if Total($\spl{r}{\X}$) is a meet preorder, define the product as the
+  For the other direction, if Total($\spl{r}{\X}$) is a meet pre-order, define the product as the
   meet of the maps and the terminal object as the supremum of all maps.
 \end{proof}
 
@@ -104,7 +104,7 @@ We start by showing that an inverse category with restriction products is a rest
 \end{definition}
 
 \begin{definition}\label{def:inverse_product}
-  An \emph{inverse product} on an invese category \X is given by an inverse product tensor $\*$
+  An \emph{inverse product} on an inverse category \X is given by an inverse product tensor $\*$
   together with a  natural ``Frobenius'' diagonal map, $\Delta$. Additionally, we define the
   map $\excs: (A\*B)\*(C\*D) \to (A\*C) \* (B\*D)$:
   \[
@@ -151,7 +151,7 @@ We start by showing that an inverse category with restriction products is a rest
       &*!<0pc,-25pt>{\text{\textbf{Frobenius}}}
     }
   \]
-  Thus, $\Delta$ is a co-commutative, coassociative map which together with $\inv{\Delta}$ forms a
+  Thus, $\Delta$ is a co-commutative, co-associative map which together with $\inv{\Delta}$ forms a
   Frobenius algebra.
 \end{definition}
 
@@ -462,12 +462,12 @@ a Cartesian restriction category.
     &= f&\Delta\text{ total}.
   \end{align*}
 
-  $h(f\cap g) = h f \cap hg$:
+  $h(f\cap g) = h f \cap h g$:
   \begin{align*}
     h(f\cap g) &= h \Delta(f\* g) \inv{\Delta}& \text{Definition of }\cap\\
     &= \Delta(h \* h) (f \* g) \inv{\Delta} &\Delta\text{ natural}\\
-    &= \Delta(h f\* hg) \inv{\Delta} &\text{compose maps}\\
-    &= h f \cap hg&\text{Definition of }\cap.
+    &= \Delta(h f\* h g) \inv{\Delta} &\text{compose maps}\\
+    &= h f \cap h g&\text{Definition of }\cap.
   \end{align*}
 \end{proof}
 % subsection discrete_inverse_categories (end)
@@ -790,11 +790,11 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
     & = \restr{f(g\*1)a_{\*} (h\*1)} & \restr{a_{\*}}=1 \\
     & = \restr{f(g\*1) ((h\*1)\*1) a_{\*} } & a_{\*}\text{ natural} \\
     & = \restr{f(g\*1) ((h\*1)\*1) }
-      & a_{\*}   \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+      & a_{\*}   \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
     & = \restr{f(g\*1) ((h\*1)\*1) (a_{\*}\*1)}
-      & a_{\*}\*1 \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+      & a_{\*}\*1 \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
     & = \restr{f((g (h\*1)a )\*1)} & \text{ see above}\\
-    & = \restr{f((g (h\*1)a )\*1)a_{\*}} & a_{\*}   \text{ iso}
+    & = \restr{f((g (h\*1)a )\*1)a_{\*}} & a_{\*}   \text{ isomorphism}
   \end{align*}
 
   For the mediating map, see the diagram below, where the calculation is in \X. The path starting at
@@ -881,10 +881,10 @@ Define the restriction in \Xt\ as follows:
       \X, we have:
       \begin{align*}
         \restr{\rst{f}\inv{\usr} (f\*1) a_{\*}} & = \restr{\rst{f}\inv{\usr} (f\*1)}
-          & a_{\*}   \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+          & a_{\*}   \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{\rst{f}f \inv{\usr}}  & \inv{\usr} \text{ natural}\\
         & = \restr{f \inv{\usr}}  & \text{ \rone in }\X\\
-        & = \restr{f } & \inv{\usr}   \text{ iso, Lemma \ref{lem:restrictionvarious}}.
+        & = \restr{f } & \inv{\usr}   \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}.
       \end{align*}
 
       Then, the following diagram
@@ -954,29 +954,29 @@ Define the restriction in \Xt\ as follows:
       \begin{align*}
         \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr}}
         & = \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}}} & \inv{\usr}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} &
           \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{\restr{f} g \inv{\usr} a_{\*}} & \inv{\usr} \text{ natural}\\
         & = \restr{\restr{f} g } & \inv{\usr}, a_{\*}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{f} \rst{g} & \text{\rthree in }\X.
       \end{align*}
       The restriction of the right hand side computes in \X as:
       \begin{align*}
         &\rst{(\restr{f} \inv{\usr})(\rst{g} \inv{\usr}\* 1) a_{\*}}\\
         & = \rst{(\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) } &  a_{\*}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
         & = \rst{\restr{f}  \rst{g} \inv{\usr}\inv{\usr} } &  \inv{\usr} \text{ natural}\\
         & = \rst{\restr{f}  \rst{g} } &\inv{\usr}\inv{\usr}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{f} \rst{g} & \text{Lemma \ref{lem:restrictionvarious}}.
       \end{align*}
 
       Additionally, we see $\rst{\rst{f} g}$ in \Xt is expressed in \X as:
       \begin{align*}
         &\restr{(\restr{f} \inv{\usr})(g\* 1) a_{\*}} \inv{\usr} \\
-        & = \rst{f} \inv{\usr} \rst{g\* 1} & \text{\rthree, \rfour, }a_{\*} \text{ iso} \\
+        & = \rst{f} \inv{\usr} \rst{g\* 1} & \text{\rthree, \rfour, }a_{\*} \text{ isomorphism} \\
         & = \rst{f} \rst{g} \inv{\usr} & \*
           \text{a restriction bi-functor, }\inv{\usr}\text{ natural.}
       \end{align*}
@@ -1023,28 +1023,28 @@ Define the restriction in \Xt\ as follows:
       \begin{align*}
         \rst{f (\restr{g} \inv{\usr}\* 1) a_{\*}}
           & = \rst{f (\restr{g} \inv{\usr}\* 1)} & a_{\*}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}} \\
+          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}} \\
         & = \rst{f \rst{g} \inv{\usr}} \* \rst{f} & \* \text{ restriction functor}\\
         & = \rst{f \rst{g}} \* \rst{f} & \inv{\usr}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}} \\
+          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}} \\
         & = \rst{f (\rst{g} \* 1)}
       \end{align*}
       and the restriction of the right hand side of Equation~\ref{eq:rfour_in_xt}  is:
       \begin{align*}
         \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) a_{\*}}
           & = \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) } & a_{\*}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
         & = \rst{\rst{f (g \* 1)} f \inv{\usr}  } & \inv{\usr} \text{ natural}\\
         & = \rst{f \rst{(g \* 1)}  \inv{\usr}  } & \text{ \rfour for }\X\\
         & = \rst{f (\rst{g} \* 1)  \inv{\usr}  } & \* \text{ is a restriction functor}\\
         & = \rst{f (\rst{g} \* 1)    } & \inv{\usr}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}}
+          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}
       \end{align*}
 
       Computing the right hand side of Equation~\ref{eq:rfour_in_xt} in \X,
       \begin{align*}
         \rst{f(g\* 1)a_{\*}} \inv{\usr} (f\* 1) a_{\*}
-          & = \rst{f(g\* 1)} f \inv{\usr} a_{\*} & a_{\*} \text{ iso, } \inv{\usr}\text{ natural.}\\
+          & = \rst{f(g\* 1)} f \inv{\usr} a_{\*} & a_{\*} \text{ isomorphism, } \inv{\usr}\text{ natural.}\\
         & = f (\rst{g} \* 1) \inv{\usr} a_{\*} & \rfour, \* \text{ a restriction functor.}
       \end{align*}
       \[
@@ -1127,7 +1127,7 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
   \begin{align*}
     \rst{\<f,g\>}
       &=\rst{\Delta(f\*g)(1\*c_{\*}\*1)}\inv{\usr}&\text{in }\X, \text{ definition of restriction}\\
-    &=\rst{\Delta(f\*g)}\inv{\usr} &c_{\*}\text{ is iso}\\
+    &=\rst{\Delta(f\*g)}\inv{\usr} &c_{\*}\text{ is isomorphism}\\
     &=\rst{\Delta\rst{(f\*g)}}\inv{\usr} &\text{from Lemma \ref{lem:restrictionvarious}}\\
     &=\rst{\Delta(\rst{f}\*\rst{g})}\inv{\usr} &\*\text{ is a restriction functor}\\
     &=\rst{\rst{f}\,\rst{g}\,\Delta(1\*1)}\inv{\usr}
@@ -1326,7 +1326,7 @@ result.
   To see $H$ is a functor:
   \begin{align*}
     H(1) &= G(\<1,1\>)\pi_0 = \Delta_{\D}\pi_0 = 1\\
-    H(fg) &= G(\<fg,1\>)\pi_0 = G(\<f,1\>)\pi_0G(\<g,1\>)\pi_0 = H(f)H(g)
+    H(f g) &= G(\<f g,1\>)\pi_0 = G(\<f,1\>)\pi_0G(\<g,1\>)\pi_0 = H(f)H(g)
   \end{align*}
   But on any invertible map, $H(f) = G(\<f,1\>)\pi_0 = \<G(f),1\>\pi_0 = G(f)$ and therefore
   $\Inv(H) = G$, so $\Invf$ is full.
@@ -1389,7 +1389,7 @@ result.
 \begin{proof}
   From the above lemmas, we have shown that we have an adjoint:
   \begin{equation}
-    (\eta,\varepsilon):\wtf \vdash \Invf :D_{ic} \to D_{rc} \label{eq:inv_and_wtf_are_adjoint_pair}
+    (\eta,\varepsilon):\wtf \vdash \Invf :D_{i c} \to D_{r c} \label{eq:inv_and_wtf_are_adjoint_pair}
   \end{equation}
   By Lemma~\ref{lem:the_functor_eta_is_an_isomorphism} we know $\eta$ is an isomorphism. But this
   means the functor $\wtf$ is full and faithful, as shown in, e.g., Proposition 2.2.6 of
@@ -1407,7 +1407,7 @@ result.
 \end{example}
 Continuing from Example~\ref{example:invprodisstructure}, recall the discrete category of 4
 elements with two different tensors. Completing these gives two different lattices. They are either
-the straight line lattice, or the diamond semilattice. Below are the details of these constructions.
+the straight line lattice, or the diamond semi-lattice. Below are the details of these constructions.
 
 Recall $\D$ has four elements $a,b,c$ and $d$, and there are two possible inverse product tensors:
 \begin{quote}\qquad\qquad

@@ -3,7 +3,7 @@
 \label{cha:inverse_sum_categories}
 
 \begin{remark}
-  Throughout this chapter, we will work with a number of relations between maps and operations on
+  Throughout this chapter we will work with a number of relations between maps and operations on
   pairs of maps. Suppose we have a relation $\lozenge$ between maps $f,g:B\to C$, i.e., $f \lozenge
   g$. We will refer to $\lozenge$ as \emph{stable} whenever given a $h:A \to B$, then $h f \lozenge
   h g$. We will refer to $\lozenge$ as \emph{universal} whenever given a $k:C \to D$, then $f k
@@ -131,9 +131,9 @@ denoted as $0$. This gives rise to the zero map $0_{A,B}: A \to 0 \to B$ between
 \section{Disjointness in an inverse category} % (fold)
 \label{sec:disjointness_in_an_inverse_category}
 In the following, we will add two related structures to an inverse category with a
-restriction zero. This structure is meant to be evocative of the concept of \emph{join} in a
-restriction category. We will first re-iterate some of the basic definitions and lemmas of
-join.
+restriction zero. This structure is meant to be evocative of the \emph{join} concept in a
+restriction category. We will first re-iterate some of the basic definitions and lemmas
+about joins.
 \subsection{Joins in restriction categories} % (fold)
 \label{sub:joins_in_restriction_categories}
 
@@ -192,9 +192,9 @@ explore alternate characterizations of this relation on the restriction idempote
     \axiom{Dis}{4}\quad &f\cdperp g\text{ implies }g \cdperp f;\\
     \axiom{Dis}{5}\quad &f\cdperp g\text{ implies }h f \cdperp h g; \text{ (Stable)}\\
     \axiom{Dis}{6}\quad &f\cdperp g\text{ implies }\rst{f} \cdperp \rst{g}
-      \text{ and }\rg{f}\cdperp\rg{g}.\\
+      \text{ and }\rg{f}\cdperp\rg{g};\\
     \axiom{Dis}{7}\quad &\rst{f}\cdperp \rst{g},\ \rg{h}\cdperp \rg{k}\text{ implies }f h
-      \cdperp g k;
+      \cdperp g k.
   \end{align*}
 \end{definition}
 
@@ -226,20 +226,21 @@ explore alternate characterizations of this relation on the restriction idempote
     \item $f \cdperp g$ implies $f h \cdperp g h$ (Universal);\label{lemitem:djv_universal}
     \item $f \cdperp g$ implies $f\rg{g} = 0$;
     \item if $m,n$ are monic, then $f m \cdperp g n$ implies $\rst{f} \perp \rst{g}$;
-    \item if $m,n$ are monic, then $\inv{m} f \cdperp \inv{n}g$ implies $\rg{f} \perp \rg{g}$;
+      \label{lemitem:djv_monic_implies}
+    \item if $m,n$ are monic, then $\inv{m} f \cdperp \inv{n}g$ implies $\rg{f} \perp \rg{g}$.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item Assume $f \cdperp g$. Then we know that $\rst{f} \cdperp \rst{g}$ and
-      $\rg{f}\cdperp\rg{g}$. But since $\rg{f} = \rst{\inv{f}}$ and $\rst{f} = \wrg{\inv{f}}$, this
-      means $\rst{\inv{f}} \cdperp \rst{\inv{g}}$ and $\wrg{\inv{f}}\cdperp\wrg{\inv{g}}$ and again
-      by the first item of this lemma, we have $\inv{f} \cdperp \inv{g}$. The converse follows with
-      a similar argument.
+    \item Assume $f \cdperp g$. By \axiom{Dis}{6}, we have $\rst{f} \cdperp \rst{g}$ and
+      $\rg{f}\cdperp\rg{g}$. Since $\rg{f} = \rst{\inv{f}}$ and $\rst{f} = \wrg{\inv{f}}$, this
+      means $\rst{\inv{f}} \cdperp \rst{\inv{g}}$ and $\wrg{\inv{f}}\cdperp\wrg{\inv{g}}$. By
+      \axiom{Dis}{6'} from Lemma~\ref{lem:disjointness_equivalent_axioms}, we have
+      $\inv{f} \cdperp \inv{g}$. The converse follows with  a similar argument.
     \item Assume $f \cdperp g$. By the previous item, we have $\inv{f}\cdperp\inv{g}$. By
       \axiom{Dis}{5}, $\inv{h}\inv{f}\cdperp\inv{h}\inv{g}$, giving us $\inv{(f h)} \cdperp
-      \inv{(g h)}$. Again by the previous item, we now have $f h \cdperp g h$.
+      \inv{(g h)}$. By this Lemma, item \ref{lemitem:djv_inverses}, we now have $f h \cdperp g h$.
     \item Assume $f \cdperp g$. From item \ref{lemitem:djv_inverses} and reflexivity, we know that
       $\inv{g}
       \cdperp \inv{f}$ and therefore $\rst{\inv{g}}\inv{f} = \rg{g}\inv{f}= 0$. However, in an
@@ -248,9 +249,9 @@ explore alternate characterizations of this relation on the restriction idempote
     \item Assume $f m \cdperp g n$ where $m, n$ are monic. By \axiom{Dis}{6}, this gives us
       $\rst{f m} \cdperp \rst{g n}$. By Lemma~\ref{lem:restrictionvarious},
       $\rst{f m} = \rst{f \rst{m}} = \rst{f 1} = \rst{f}$ and therefore $\rst{f} \cdperp \rst{g}$.
-    \item This is a corollary to the previous item. By assumption, we have $\inv{m} f \cdperp
-      \inv{n}g$ and therefore $\inv{f}m \cdperp \inv{g} n$. By the previous item, this means
-      $\rst{\inv{f}} \cdperp \rst{\inv{g}}$ and hence $\rg{f} \cdperp \rg{g}$.
+    \item This is a corollary to this Lemma, item~\ref{lemitem:djv_monic_implies}. By assumption,
+      we have $\inv{m} f \cdperp  \inv{n}g$ and therefore $\inv{f}m \cdperp \inv{g} n$. By the
+      previous item, this means $\rst{\inv{f}} \cdperp \rst{\inv{g}}$ and hence $\rg{f} \cdperp \rg{g}$.
   \end{enumerate}
 \end{proof}
 
@@ -291,7 +292,7 @@ not germane to the point under discussion.
       \axiom{Dis}{5}. Then, by \axiom{Dis}{6} we may conclude $\rst{f e} \cdperp \rst{f e'}$.
     \item[\axiom{$\mathcal{O}$dis}{5}] This follows from the above item, using $\inv{g}$ for $f$.
       This means we have $\rst{\inv{g}e} \cdperp \rst{\inv{g}e'}$. But this gives us $\rst{\inv{(e
-      g)}} \cdperp \rst{\inv{(e'g)}}$. Recalling from
+      g)}} \cdperp \rst{\inv{(e' g)}}$. Recalling from
       Lemma~\ref{lem:inverse_categories_are_range_categories} that $\rg{k} = \rst{\inv{k}}$, we may
       conclude $\wrg{e g} \cdperp \wrg{e' g}$.
     \item[\axiom{$\mathcal{O}$dis}{6}] Assuming $e \cdperp e'$ and $e_1 \le e,\ e'_1 \le e'$, by
@@ -333,7 +334,7 @@ not germane to the point under discussion.
     \item[\axiom{Dis}{4}] Reflexivity of $\cdperp$ follows immediately from the reflexivity of
       $\ocdperp$.
     \item[\axiom{Dis}{5}] Assume $f \cdperp g$, i.e., $\rst{f}\ocdperp \rst{g}$ and $\rg{f}
-      \ocdperp \rg{g}$. Then we have $\rst{hf}\ocdperp \rst{hg}$ by \axiom{$\mathcal{O}$dis}{4}. By
+      \ocdperp \rg{g}$. Then we have $\rst{hf}\ocdperp \rst{h g}$ by \axiom{$\mathcal{O}$dis}{4}. By
       Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1} we have $\wrg{h f}
       \le \rg{f}$ and $\wrg{h g} \le \rg{g}$. Therefore we have $\wrg{h f}\ocdperp \wrg{h g}$ by
       \axiom{$\mathcal{O}$dis}{6} and therefore $h f \cdperp h g$.
@@ -343,7 +344,7 @@ not germane to the point under discussion.
       definition \ref{def:extended_open_disjointness} we have $\rst{f} \ocdperp \rst{g}$ and
       $\rg{h} \ocdperp \rg{k}$. By
       Lemma~\refitem{lem:restriction_cats_are_partial_order_enriched}{lemitem:rst_ordering_3}, we
-      have $\rst{fh} \le \rst{f}$ and $\rst{g k} \le \rst{g}$. Therefore, $\rst{f h} \ocdperp
+      have $\rst{f h} \le \rst{f}$ and $\rst{g k} \le \rst{g}$. Therefore, $\rst{f h} \ocdperp
       \rst{g k}$ by \axiom{$\mathcal{O}$dis}{6}. By
       Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1}, $\wrg{f h} \le
       \rg{h}$ and $\wrg{g k} \le \rg{k}$, giving us $\wrg{f h}\ocdperp \wrg{g k}$ also by
@@ -364,13 +365,14 @@ not germane to the point under discussion.
   By Proposition~\ref{prop:extended_disjointness_is_a_disjointness_relation}, $\eocdperp$ is
   a disjointness relation on $\X$.
 
-  Assume $f\perp g$. Then we have $\rst{f}\ocdperp\rst{g}$ and $\rg{f}\ocdperp\rg{g}$ by
+  Assume $f\perp g$. We have $\rst{f}\ocdperp\rst{g}$ and $\rg{f}\ocdperp\rg{g}$ by
   \axiom{Dis}{6} and Proposition~\ref{prop:disjointness_is_open_disjointness}. Then, from
   Definition~\ref{def:extended_open_disjointness}, we have $f \eocdperp g$.
 
-  Assume $f \eocdperp g$. Then we must have had $\rst{f}\ocdperp\rst{g}$ and $\rg{f}\ocdperp\rg{g}$
+  Assume $f \eocdperp g$. This means we must have had $\rst{f}\ocdperp\rst{g}$ and
+  $\rg{f}\ocdperp\rg{g}$
   by Definition~\ref{def:extended_open_disjointness} and therefore $\rst{f}\perp\rst{g}$ and
-  $\rg{f}\perp\rg{g}$. Then, by Proposition~\ref{lem:disjointness_various}, we have $f \perp g$.
+  $\rg{f}\perp\rg{g}$. By Proposition~\ref{lem:disjointness_various}, we have $f \perp g$.
 
 
   Now, suppose we are given the open disjointness relation $\ocdperp$. Similar to above, we can
@@ -529,7 +531,7 @@ join given a specific disjointness relation.
       Then, we have $(e_0 \djoin e_1)e_2 = e_2(e_0 \djoin e_1) = e_2 e_0 \djoin e_2 e_1 =
       e_0 e_2 \djoin e_1 e_2$.
       Next, note that for general $f,g,h$, we have $f k \djoin g k \le (f\djoin g) k$ as both
-      $fk, gk \le (f\djoin g) k$.
+      $f k, g k \le (f\djoin g) k$.
       By Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}, we need only show that their
       restrictions are equal:
       \begin{align*}
@@ -584,8 +586,8 @@ $f_1 \djoin f_2 \djoin \cdots \djoin f_n$.
   g_j$ for all $i,j$;
 \end{lemma}
 \begin{proof}
-  Assume $\djoin [f_i] \cdperp \djoin [g_j]$. Then by \axiom{Dj}{4} and associativity, we have
-  $\djoin [f_i] \cdperp g_j$ for each $j$. Then, applying the reflexivity of $\cdperp$,
+  Assume $\djoin [f_i] \cdperp \djoin [g_j]$. By \axiom{Dj}{4} and associativity, we have
+  $\djoin [f_i] \cdperp g_j$ for each $j$. Using the reflexivity of $\cdperp$,
   \axiom{Dj}{4} and associativity, we have $f_i \cdperp g_j$ for each $i$ and $j$.
 
   Assume $f_i \cdperp g_j$ for each $i$ and $j$. Then by \axiom{Dj}{4} and associativity, $f_i
@@ -604,7 +606,7 @@ inverse categories with disjoint joins has a disjoint join.
   disjointness relation that is defined point-wise.  We therefore define $\djoin_{\times}$ the
   disjoint join on $\X\times\Y$ by
   \begin{equation}
-    (f,g)\djoin_{\times}(h,k) = (f \djoin h, g \djoin' k) \label{eq:disjoint_join_on_product}
+    (f,g)\djoin_{\times}(h,k) = (f \djoin h, g \djoin' k). \label{eq:disjoint_join_on_product}
   \end{equation}
   We now prove each of the axioms in Definition~\ref{def:disjoint_join} hold.
   \setlist[itemize,1]{leftmargin=1.5cm}
@@ -631,28 +633,28 @@ inverse categories with disjoint joins has a disjoint join.
 
 Suppose we are given a monoidal tensor $\+$ on $\X$, an inverse category with a restriction zero.
 Under certain conditions, it is possible to define disjointness based upon the action of the
-tensor. Note that throughout, we are assuming the following naming for the standard monoidal tensor
-isomorphisms.
+tensor. We are assuming the following naming for the standard monoidal tensor
+isomorphisms:
 \begin{align*}
    \upl &: 0 \+ A \to A\\
    \upr &: A \+ 0 \to A\\
    a_\+ &: (A \+ B) \+ C \to A \+ (B \+ C) \\
    c_\+ &: A \+ B \to B \+ A.
  \end{align*}
-Note we also require the tensor isomorphisms above be be natural.
+We also require the tensor isomorphisms above be be natural.
 
 \begin{definition}\label{def:disjointness_tensor}
   Suppose we are given an inverse category \X with restriction zero and a symmetric monoidal tensor
-  $\+$. Then $\+$ is a \emph{disjointness tensor} when:
+  $\+$. $\+$ is a \emph{disjointness tensor} when:
   \begin{itemize}
     \item It is a restriction functor --- i.e., $\_ \+ \_ : \X \times \X \to \X$.
     \item The unit is the restriction zero. ($0 : \boldsymbol{1}\to \X$ picks out the restriction
     zero in \X).
-    \item Define $\cpa = \inv{\upr}(1\+0):A\to A\+B$ and $\cpb = \inv{\upl}(0\+1): A\to B\+A$. Then
-      $\cpa$ and $\cpb$ are jointly epic. That is, if $\cpa f = \cpa g$ and $\cpb f = \cpb g$, then
+    \item Define $\cpa = \inv{\upr}(1\+0):A\to A\+B$ and $\cpb = \inv{\upl}(0\+1): A\to B\+A$.
+      $\cpa$ and $\cpb$ must be jointly epic. That is, if $\cpa f = \cpa g$ and $\cpb f = \cpb g$, then
       $f = g$.
-    \item Define $\scpa := (1\+0)\upr: A\+B \to A$ and $\scpb := (0\+1)\upl:A\+B \to B$. Then
-      $\scpa$  and $\scpb$ are jointly monic. That is, whenever $f\scpa = g \scpa$ and
+    \item Define $\scpa := (1\+0)\upr: A\+B \to A$ and $\scpb := (0\+1)\upl:A\+B \to B$.
+      $\scpa$  and $\scpb$ must be jointly monic. That is, whenever $f\scpa = g \scpa$ and
       $f\scpb = g\scpb$ then $f = g$.
   \end{itemize}
 
@@ -706,7 +708,7 @@ Note we also require the tensor isomorphisms above be be natural.
 
 \begin{lemma}\label{lem:tensor_identities}
   Given an inverse category \X with restriction zero and disjointness tensor $\+$,
-  $\scpa = \icpa$ and $\scpb = \icpb$ and the following hold:
+  $\scpa = \icpa$ and $\scpb = \icpb$ and the following identities hold:
   \begin{enumerate}
     \item $\scp{i} \cp{i} = \rst{\scp{i}}$ and $\cp{i}\scp{i} = \rst{\cp{i}} = 1$;
     \item $\rst{\scpa} \scpb = 0$ and $\rst{\scpb} \scpa = 0$;
@@ -774,7 +776,8 @@ As we have shown that $\scp{i} = \icp{i}$, we will prefer the explicit notation 
 rest of this paper.
 
 \begin{corollary}\label{cor:split_plus_tensor}
-  In an inverse category \X with a restriction zero and disjointness tensor, the following hold:
+  In an inverse category \X with a restriction zero and disjointness tensor, the following
+  identities hold:
   \begin{multicols}{2}
     \begin{enumerate}[{(}i{)}]
       \item $\cpa (f \+g) \icpa = f$;
@@ -791,7 +794,7 @@ rest of this paper.
       0 & : \quad i = j,
     \end{cases}
   \]
-  then $t = t_1 \+ t_2$
+  then $t = t_1 \+ t_2$.
 \end{corollary}
 \begin{proof}
   The calculations for $f\+g$ follow from Lemma~\ref{lem:disjointness_tensor_has_injections} and
@@ -801,8 +804,6 @@ rest of this paper.
   $\cpb  (t \icpa) = 0 = \cpb ( t_1 \+ t_2)\icpa$, hence $t \icpa = ( t_1 \+ t_2)\icpa$. Similarly,
   we see $t\icpb = ( t_1 \+ t_2)\icpb$ and therefore $t = t_1 \+ t_2$.
 \end{proof}
-\subsubsection{Disjointness via a monoidal tensor} % (fold)
-\label{ssub:disjointess_via_a_monoidal_tensor}
 
 \begin{definition}\label{def:up_triangle_and_down_triangle}
   In an inverse category \X with a restriction zero and disjointness tensor, we define two partial
@@ -848,7 +849,7 @@ behaviour of the two operations: $\tjdown$ and $\tjup$.
       \label{lemitem:l_r_l_pull_right}
     \item Dually, when $f \tjup g$ exists, $(h \+ k) f \tjup g = h f \tjup k g$.
       \label{lemitem:l_r_r_pull_left}
-    \item When $f \tjdown g$ exists, then $h(f \tjdown g) = h f \tjdown hg$ and when $f \tjup g$
+    \item When $f \tjdown g$ exists, then $h(f \tjdown g) = h f \tjdown h g$ and when $f \tjup g$
       exists, $(f \tjup g)h = f h \tjup g h$.
       \label{lemitem:l_r_l_universal_r_stable}
     \item If $\rst{f} \tjdown \rst{g}$ exists, then $\rst{f} \tjup \rst{g}$ exists and is
@@ -915,7 +916,7 @@ behaviour of the two operations: $\tjdown$ and $\tjup$.
       of $\cpa$ and $\cpb$.
     \item We are given $f\tjdown g$ exists, therefore $f = (f\tjdown g)\icpa$ and
       $g = (f\tjdown g)\icpb$. But this means $hf = h(f\tjdown g)\icpa$ and
-      $hg = h(f\tjdown g)\icpb$, from which we may conclude $hf \tjdown hg = h(f\tjdown g)$ by
+      $h g = h(f\tjdown g)\icpb$, from which we may conclude $hf \tjdown h g = h(f\tjdown g)$ by
       the fact that $\icpa$ and $\icpb$ are jointly monic. The proof of
       $(f\tjup g)h = f h \tjup g h$ is similar.
     \item We are given $\rst{f} = \rst{f}\tjdown\rst{g} \icpa$. Therefore,
@@ -1061,11 +1062,6 @@ behaviour of the two operations: $\tjdown$ and $\tjup$.
   \end{itemize}
 \end{proof}
 
-% sub-subsection disjointness_via_a_monoidal_tensor (end)
-
-\subsubsection{Disjoint join via a monoidal tensor} % (fold)
-\label{ssub:disjoint_join_via_a_monoidal_tensor}
-
 The operations $\tjdown$ and $\tjup$ are sufficient to define a disjointness relation
 on an inverse category. However, when we wish to extend this to a disjoint join, we run into
 problems when trying to prove $\axiom{DJ}{4}$. Specifically, there is not enough information to
@@ -1134,27 +1130,27 @@ Therefore, we add one more assumption regarding our tensor in order to define di
 \end{lemma}
 \begin{proof}
   Consider the diagram
-  \[
+  \begin{equation}
     \xymatrix@C+5pt@R+10pt{
       A \ar@/_/[ddr]_{f\tjdown g} \ar@/^/[drr]^{f\tjdown h} \ar@{.>}[dr]|-{\alpha} \ar[rr]^{h}
         & & B \\
         & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
         & B\+B \ar[r]_{\icpa} & B
-    }
-  \]
+    }\label{dia:alpha_plus_h}
+  \end{equation}
   which gives us $\alpha = (f \tjdown g) \tjdown h: A \to (B\+B)\+B$ and
   $\alpha \assocp :A \to B\+(B\+B)$. Next consider the diagram
-  \[
+  \begin{equation}
     \xymatrix@C+5pt@R+10pt{
       A \ar@/_/[ddr]_{g\tjdown h} \ar@/^/[drr]^{g\tjdown f} \ar@{.>}[dr]|-{\gamma} \ar[rr]^{f}
         & & B \\
         & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
         & B\+B \ar[r]_{\icpa} & B
-    }
+    }\label{dia:gamma_plus_f}
   \]
   which gives us $\gamma \comp = f \tjdown (g\tjdown h): A \to B\+(B\+B)$.
 
-  Note from the diagrams we have:
+  Note from Diagrams~\ref{dia:alpha_plus_h,dia:gamma_plus_f} we have
   \begin{align*}
     \gamma \comp  \icp{0}         =\, &f  = \alpha \assocp\icpa\\
     \gamma \comp  \icp{1} \icp{0} =\, &g  = \alpha \assocp\icpb\icpa\\
@@ -1179,7 +1175,7 @@ For reference, the map $f \tjoin g$ may be visualized as follows:
     A \ar[ur]^{\rst{f}} \ar@{.>}[r]^{\rst{f}\tjdown \rst{g}} \ar[dr]_{\rst{g}}
       & A\+A \ar[u]_{\icpa} \ar[d]^{\icpb}
         \ar[r]^{f\+g}
-       &B\+B \ar@{.>}[r]^{\rg{f}\tjup\rg{g}} & B\\
+       &B\+B \ar@{.>}[r]^{\rg{f}\tjup\rg{g}} & B.\\
     & A & B\ar[ur]_{\rg{g}} \ar[u]^{\cpb}
   }
 \]
@@ -1190,7 +1186,7 @@ equivalent ways:
   f \tjoin g &= \rst{f}\tjdown\rst{g} (f\+g) \rg{f}\tjup\rg{g} \\
   &= f \tjdown g \rg{f}\tjup\rg{g}\\
   & = \rst{f}\tjdown\rst{g}  f\tjup g\\
-  & = f \tjdown g (\inv{f}\+\inv{g})f\tjup g
+  & = f \tjdown g (\inv{f}\+\inv{g})f\tjup g.
 \end{align*}
 
 In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
@@ -1233,7 +1229,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
       & = \rst{f}\tjdown\rst{g}(f\tjdown g) \inv{(f\tjdown g)} \rst{f}\tjup \rst{g}\\
       & = \rst{f}\tjdown\rst{g}(\rst{f}\+ \rst{g})\rst{f}\tjup \rst{g}\\
       & = \rst{f}\tjdown\rst{g}\rst{f}\tjup \rst{g}\\
-      & = \rst{f}\tjoin\rst{g}
+      & = \rst{f}\tjoin\rst{g}.
     \end{align*}
   \end{enumerate}
 \end{proof}
@@ -1247,7 +1243,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 \begin{proof}
   \setlist[itemize,1]{leftmargin=1.5cm}
   \begin{itemize}
-    \item [\axiom{DJ}{1}] We must show $f, g \le f \tjoin g$. Computing,
+    \item [\axiom{DJ}{1}] We must show $f, g \le f \tjoin g$.
       \begin{align*}
         \rst{f}\,(\rst{f}\tjdown\rst{g})  f\tjup g
           &= (\rst{f}\tjdown\rst{g}) \icpa (\rst{f}\tjdown\rst{g} ) f\tjup g \\
@@ -1256,11 +1252,11 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
         &=(\rst{f}\tjdown\rst{g}) \icpa \cpa f\tjup g \\
         &=((\rst{f}\tjdown\rst{g}) \icpa) (\cpa (f \tjup g)) \\
         &= \rst{f} f \\
-        &=f
+        &=f.
       \end{align*}
-      we see $f \le f \tjoin g$. Showing $g \le f \tjoin g$ proceeds in the same manner.
+      Thus, we see $f \le f \tjoin g$. Showing $g \le f \tjoin g$ proceeds in the same manner.
     \item [\axiom{DJ}{2}] We must show that $f \le h,\ g\le h$ and $f\tperp g$ implies
-      $f \tjoin g \le h$. First, note that
+      $f \tjoin g \le h$.
       \begin{align*}
         \rst{f \tjoin g} \,h & = \rst{\rst{f} h \tjoin \rst{g} h} \,h\\
         & = \rst{(\rst{f} \tjoin \rst{g})h} \,h\\
@@ -1269,7 +1265,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
         & = \rst{(\rst{f} \tjoin \rst{g})h}\,(\rst{f} \tjoin \rst{g})h\\
         & = (\rst{f}\tjoin \rst{g})h\\
         & = (\rst{f}h\tjoin \rst{g}h)\\
-        & = (f\tjoin g)
+        & = (f\tjoin g).
       \end{align*}
     \item [\axiom{DJ}{3}] We must show stability of $\tjoin$, i.e., that
       $h(f\tjoin g) = h f \tjoin h g$.
@@ -1279,8 +1275,8 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
         &= (h\rst{f}\tjdown h\rst{g}) (f \tjup g)\\
         &= (\rst{h f}h\tjdown \rst{h g}h)  (f \tjup g)\\
         &= (\rst{h f}\tjdown \rst{h g})(h\+h)  (f \tjup g)\\
-        &= (\rst{h f}\tjdown \rst{h g}) (h f \tjup hg)\\
-        &= h f \tjoin h g
+        &= (\rst{h f}\tjdown \rst{h g}) (h f \tjup h g)\\
+        &= h f \tjoin h g.
       \end{align*}
 
 
@@ -1393,7 +1389,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 \end{proof}
 
 \begin{definition}\label{def:inverse_sum_category}
-  Suppose \X is an inverse category with with disjoint joins $\djoin$ based on a disjointness
+  Suppose \X is an inverse category with disjoint joins $\djoin$ based on a disjointness
   relation $\cdperp$ and a restriction zero. If every pair of objects has an inverse sum as in
   Definition~\ref{def:inverse_sum}, we call the category an \emph{inverse sum} category. For any
   two objects $A,B$ in \X, we write their inverse sum as $\invsum{A}{B}$.
@@ -1563,9 +1559,9 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
     \item finally apply Lemma~\ref{lem:inverse_sums_have_unique_maps_out} to $\rg{f}, \rg{g}$.
   \end{enumerate}
 
-  In the notation above, we have that $f\djoin g =
-  (\rst{f} \rstp \rst{g})(\invsum{f}{g})(\rg{f} \rgp \rg{g})$. This gives us, as $F$ preserves
-  the inverse sum:
+  Thus, we have that $f\djoin g =
+  (\rst{f} \rstp \rst{g})(\invsum{f}{g})(\rg{f} \rgp \rg{g})$. As $F$ preserves
+  the inverse sum, this gives us:
   \begin{align*}
     F(f\djoin g) &= F(\rst{f}\rstp \rst{g})F(\invsum{f}{g})F(\rg{f} \rgp \rg{g})\\
     &=(F(\rst{f})\rstp F(\rst{g}))(\invsum{F(f)}{F(g)})(F(\rg{f}) \rgp F(\rg{g}))\\
@@ -1573,7 +1569,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
     &=F(f) \djoin F(g).
   \end{align*}
 
-  The last line in the above is due to \Y being an inverse sum category as well.
+  The last line is due to \Y being an inverse sum category as well.
 
 \end{proof}
 
@@ -1581,8 +1577,6 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 % subsection inverse_sums (end)
 
 \subsection{Inverse sum tensor} % (fold)
-\subsubsection{Inverse sum tensor definitions} % (fold)
-\label{ssub:inverse_sum_tensor_definitions}
 \label{sub:inverse_sum_tensor}
 \begin{definition}\label{def:inverse_sum_tensor}
   An \emph{inverse sum tensor} in an inverse category \X with disjoint joins $\djoin$ based
@@ -1613,11 +1607,6 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 \end{definition}
 
 
-
-% sub-subsection inverse_sum_tensor_definitions (end)
-
-\subsubsection{Disjointness and the inverse sum tensor} % (fold)
-\label{ssub:disjointness_and_the_inverse_sum_tensor}
 \begin{lemma}\label{lem:a_disjoint_sum_tensor_is_an_inverse_sum_tensor}
   Given an inverse category \X with a disjoint sum tensor $\+$ as in
   Definition~\ref{def:disjoint_sum_tensor}, then $\+$ is an inverse sum tensor.
@@ -1646,10 +1635,6 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
   item~\ref{lemitem:l_r_preserve_tensor}.
 
 \end{proof}
-% sub-subsection disjointness_and_the_inverse_sum_tensor (end)
-
-\subsubsection{Inverse sums and the inverse sum tensor} % (fold)
-\label{ssub:inverse_sums_and_the_inverse_sum_tensor}
 
 \begin{lemma}\label{lem:an_inverse_sum_tensor_gives_inverse_sums}
   If $\+$ is an inverse sum tensor in the inverse category \X, then $A\+B \cong A+B$, an inverse
@@ -1690,8 +1675,7 @@ be an inverse sum tensor.
 \begin{proof}
   Similarly, this follows immediately from
   Lemma~\ref{lem:functor_preserving_inverse_sums_preserves_joins}. We show it directly below:
-
-  \[
+  \begin{equation}
     \xymatrix@R+10pt@C+28pt {
       A \ar[r]^{\rst{f}} \ar[d]_{\cpa} \ar@/^20pt/[rr]^f
         & A \ar[d]_{\cpa} \ar[r]^{f\djoin g} & B \ar[d]_{\cpa}\\
@@ -1699,40 +1683,40 @@ be an inverse sum tensor.
         & A\+C  \ar[r]^{f\djoin g \+ h\djoin k}_{(2)} & B \+D \\
       C \ar[r]_{\rst{h}} \ar[u]_{\cpb} \ar@/_20pt/[rr]_h
         & C \ar[u]_{\cpb} \ar[r]_{h\djoin k} & D \ar[u]_{\cpb}
-    }
+    }\label{dia:sum_preserve_joins1}
   \]
   Consider $\inv{\cpa} \rst{f}\cpa$. As this is idempotent and we are in an inverse category, we
   know that $\inv{\cpa} \rst{f}\cpa = \rst{\inv{\cpa} \rst{f}\cpa} = \rst{\inv{\cpa}\rst{f}} =
   \wrg{\rst{f}\cpa}$. Similarly, $\inv{\cpb}\rst{h}\cpb = \wrg{\rst{h}\cpb}$. By \axiom{Dis}{5} and
   \axiom{Dis}{6}, we know that $\wrg{\rst{f}\cpa} \cdperp \wrg{\rst{g}\cpa}$ and $\wrg{\rst{h}\cpb}
-  \cdperp \wrg{\rst{k}\cpb}$. Additionally, as shown in the proof of
+  \cdperp \wrg{\rst{k}\cpb}$. As shown in the proof of
   Lemma~\ref{lem:inverse_sum_is_unique}, we know $\wrg{\cpa}\cdperp \wrg{\cpb}$. Hence, by
   \axiom{Dis}{3}, we have $\wrg{\rst{x}\cpa} \cdperp \wrg{\rst{y}\cpb}$ for any maps $x,y$.
 
   Hence, we can form the map $\wrg{\rst{f}\cpa} \djoin \wrg{\rst{h}\cpb}$. Referring to the
-  commutative diagram above, by Corollary~\ref{cor:inverse_sums_have_unique_maps} there is an unique
-  map at location $(1)$ which makes the diagram commute --- currently given as
-  $\rst{f}\+\rst{h}$. But, the map $\wrg{\rst{f}\cpa} \djoin \wrg{\rst{h}\cpb}$ also satisfies
-  this, hence we have $\wrg{\rst{f}\cpa} \djoin \wrg{\rst{h}\cpb} = \rst{f}\+\rst{h}$. Similarly,
-  $\wrg{\rst{g}\cpa} \djoin \wrg{\rst{k}\cpb} = \rst{g}\+\rst{k}$. But, by
+  Diagram~\ref{dia:sum_preserve_joins1}, by Corollary~\ref{cor:inverse_sums_have_unique_maps} there is
+  a unique map at location $(1)$ which makes the diagram commute --- currently given as
+  $\rst{f}\+\rst{h}$. The map $\wrg{\rst{f}\cpa} \djoin \wrg{\rst{h}\cpb}$ also makes the diagram commute.
+  Hence, we have $\wrg{\rst{f}\cpa} \djoin \wrg{\rst{h}\cpb} = \rst{f}\+\rst{h}$. Similarly,
+  $\wrg{\rst{g}\cpa} \djoin \wrg{\rst{k}\cpb} = \rst{g}\+\rst{k}$. By
   Lemma~\ref{lem:disjoint_joins_only_when_all_disjoint}, this means $\rst{f\+h} \cdperp \rst{g\+k}$.
 
   Using a similar argument based on the diagram
 
-  \[
+  \begin{equation}
     \xymatrix@R+10pt@C+28pt {
       A \ar[r]^{f\djoin g} \ar[d]_{\cpa} \ar@/^20pt/[rr]^f
         & B \ar[r]^{f} \ar[d]_{\cpa}  & B \ar[d]_{\cpa}\\
-      A\+C  \ar[r]^{f\djoin g \+ h\djoin k}_{(2)}
-        & B\+D \ar[r]^{\rg{f}\+\rg{h}}_{(3)}   & B \+D \\
+      A\+C  \ar[r]^{f\djoin g \+ h\djoin k}_{(3)}
+        & B\+D \ar[r]^{\rg{f}\+\rg{h}}_{(4)}   & B \+D \\
       C  \ar[r]_{h\djoin k} \ar[u]_{\cpb} \ar@/_20pt/[rr]_h
         & D\ar[r]_{\rg{h}} \ar[u]_{\cpb}  & D \ar[u]_{\cpb}
-    }
-  \]
+    }\label{dia:sum_preserve_joins2}
+  \end{equation}
   we can show $\wrg{f\+h} \cdperp \wrg{g\+k}$ and therefore $f\+h \cdperp g\+k$.
 
   This allows us to form the map $(f\+h) \djoin (g\+k)$. Once again, as the objects are inverse
-  sums, the map at $(2)$ is unique.
+  sums, the map at $(3)$ in Diagram~\ref{dia:sum_preserve_joins2} is unique.
   However, we see that both $f\djoin g \+ h\djoin k$ and $(f\+h) \djoin (g\+k)$ fulfill this
   requirement and hence they are equal.
 \end{proof}
@@ -1754,36 +1738,33 @@ be an inverse sum tensor.
 \end{proof}
 
 
-% sub-subsection inverse_sums_and_the_inverse_sum_tensor (end)
-
-\subsubsection{Matrices} % (fold)
-\label{ssub:matrix_representation}
-In this section, we will show that when given an inverse  category \X with a disjoint sum
+\subsection{Matrices} % (fold)
+\label{sub:matrix_representation}
+In this sub-section, we will show that when given an inverse  category \X with a disjoint sum
 tensor, one can define a
 matrix category based on $\X$. We will call this category \imatx. Furthermore, we will
-show that \imatx has is an inverse category and that $\X$ embeds within this category.
+show that \imatx is an inverse category and that $\X$ embeds within this category.
 
 \begin{definition}\label{def:inverse_sum_matrix}
-  Any matrix of maps $[f_{i j}]$ where $i \in \{1,\ldots, n\}$ and $j \in \{1,\ldots, m\}$ with
-  $f_{i\jay}:A_i \to B_\jay$ in an
-  inverse  category \X with a disjoint sum  tensor which satisfy the two conditions:
+  Given \X is an inverse category with a disjoint sum tensor. Then an \emph{inverse sum matrix} in \X
+  is a matrix of maps $[f_{i j}]$ where $i \in \{1,\ldots, n\}$ and $j \in \{1,\ldots, m\}$ with
+  $f_{i\jay}:A_i \to B_\jay$ which satisfy the two conditions:
   \begin{align}
     &\text{For each }i,\ \cdperp[f_{i \jay} \cp{\jay}]_{\jay=1,\ldots,m}
-    \text{ where } \cp{\jay}: B_\jay \to B_1\+B_2\+\cdots\+B_m
+    \text{ where } \cp{\jay}: B_\jay \to B_1\+B_2\+\cdots\+B_m.
       \label{eq:inverse_sum_matrix_row_perp}\\
     &\text{For each }j,\ \cdperp[\inv{\cp{i}} f_{i \jay}]_{i=1,\ldots,n}
-    \text{ where } \inv{\cp{i}} = \icp{i} : A_1\+A_2\+\cdots\+A_n \to A_i
+    \text{ where } \inv{\cp{i}} = \icp{i} : A_1\+A_2\+\cdots\+A_n \to A_i.
     \label{eq:inverse_sum_matrix_column_perp}
   \end{align}
-  is called an \emph{inverse sum matrix}.
 \end{definition}
 
   In the above and following we will use the notation $\cp{i}$ for the $i^{\text{th}}$ injection
   map of the disjoint sum tensor, with $i$ starting at 1. This simply extends the notation
   introduced in Definition~\ref{def:disjointness_tensor}.
 
-  We will show that this type of matrix corresponds to maps in a the category \imatx, where
-  composition is given by ``matrix multiplication'', where the operations of multiplication and
+  We will show that this type of matrix corresponds to maps in the category \imatx, where
+  composition is given by ``matrix multiplication'', with the operations of multiplication and
   addition are replaced with composition in \X and the disjoint join respectively.
 
 \begin{definition}\label{def:inverse_matrix_category}
@@ -1811,7 +1792,7 @@ show that \imatx has is an inverse category and that $\X$ embeds within this cat
 \begin{proof}
   We need to show the following:
   \begin{itemize}
-    \item Composition is well defined and associative;
+    \item Composition is well defined and associative.
     \item The restriction is well defined.
   \end{itemize}
 
@@ -1830,10 +1811,10 @@ show that \imatx has is an inverse category and that $\X$ embeds within this cat
         &= \left[(\djoinbig_j f_{i j}  g_{j k})\right] [h_{k \ell}]\\
         &=\left[ \djoinbig_k (\djoinbig_j f_{i j} g_{j k}) h_{k \ell}\right]\\
         &=\left[ \djoinbig_j f_{i j}  (\djoinbig_k g_{j k} h_{k \ell})\right]\\
-        &=[ f_{i j} ]  ([g_{j k}] [h_{k \ell}])
+        &=[ f_{i j} ]  ([g_{j k}] [h_{k \ell}]).
   \end{align*}
 
-  \emph{Proof the restriction axioms are held:}
+  \emph{The restriction axioms.}
   \begin{align*}
     \rone \quad& \rst{[f_{i\jay}]}[f_{i\jay}] =
       \begin{bmatrix}
@@ -1861,7 +1842,7 @@ show that \imatx has is an inverse category and that $\X$ embeds within this cat
                  \djoin_k (\djoin_\jay(\rst{f_{n\jay}}) \rst{g_{n k}})]\\
       & = \diag[(\djoin_\jay(\rst{f_{1\jay}}) \djoin_k  \rst{g_{1k}}), \ldots,
                  (\djoin_\jay(\rst{f_{n\jay}}) \djoin_k  \rst{g_{n k}})]\\
-      & = \rst{[f_i\jay]}\,\rst{[g_{\jay k}]}\\
+      & = \rst{[f_i\jay]}\,\rst{[g_{\jay k}]}.\\
   \end{align*}
   \begin{align*}
       \rfour \quad & [f_{i\jay}]\rst{[g_{\jay k}]} =
@@ -1905,7 +1886,7 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
 \begin{proof}
   The restriction zero in \imatx is the list $[0]$.
 
-  For the object $A=[A_1,\ldots,A_n]$, the $0$ map to it is given by the $n\times 1$ matrix
+  For the object $A=[A_1,\ldots,A_n]$, the $0$ map is given by the $n\times 1$ matrix
   $[0,\ldots,0]$. The map from $0$ is given by the $1\times n$ matrix
   $\begin{bmatrix}0\\ \vdots\\ 0\end{bmatrix}$.
 
@@ -1933,7 +1914,7 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
       c_{\+} := \begin{bmatrix}
                       0_{m\times n} & I_{n\times n} \\
                       I_{m\times m} & 0_{n\times m}
-                \end{bmatrix}
+                \end{bmatrix}.
   \end{align*}
 
   The action of $\+$ on maps is given by:
@@ -1946,7 +1927,7 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
 
   With this definition, we see that $\+$ is a restriction functor:
   \begin{align*}
-    id_X \+ id_Y &= id_{X\+Y} \\
+    id_X \+ id_Y &= id_{X\+Y}, \\
     f_1 g_1 \+ f_2 g_2 &= h_1 \+ h_2 =
     \begin{bmatrix}
       h_1 & 0 \\ 0 & h_2
@@ -1956,7 +1937,7 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
     \end{bmatrix}
     \begin{bmatrix}
       f_2 & 0 \\ 0 & g_2
-    \end{bmatrix} = (f_1 \+ g_1) (f_2 \+ g_2)
+    \end{bmatrix} = (f_1 \+ g_1) (f_2 \+ g_2).
   \end{align*}
 
   Following Definition~\ref{def:disjointness_tensor}, we note $\icpa = (1\+0)\upr =
@@ -2009,7 +1990,7 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
   \begin{align*}
     f_1\cp{1} & \cdperp f_2 \cp{2}\\
     f_1\cp{1} = g_1\cp{1} & \cdperp g_2 \cp{2}\\
-    f_2 \cp{2} = h_1\cp{1} & \cdperp h_2 \cp{2} = g_2 \cp{2}\\
+    f_2 \cp{2} = h_1\cp{1} & \cdperp h_2 \cp{2} = g_2 \cp{2}.\\
   \end{align*}
   From this, we can conclude $\cdperp [f_1 \cp{1}, f_2 \cp{2}, g_2 \cp{3}]$.
 
@@ -2065,7 +2046,7 @@ equivalence between these two categories.
     &f: A\to B  \iff M(f):M(A)\to M(B)\quad ([f]: [A]\to [B])\\
     &M(id_A)  = [id_{A}] = id_M(A)\\
     &M(f g) = [f g] = [f][g] = M(f) M(g)\\
-    &M(\rst{f}) = [\rst{f}] = \rst{[f]} = \rst{M(f)}
+    &M(\rst{f}) = [\rst{f}] = \rst{[f]} = \rst{M(f)}.
   \end{align*}
 \end{proof}
 
@@ -2074,7 +2055,7 @@ equivalence between these two categories.
   and inverse sum tensor $\+$ define $S:\imatx \to \X$ by:
   \begin{align*}
     \text{Objects:}\ &S([A_1,A_2, \ldots, A_n]) := A_1\+A_2\+\cdots\+A_n\\
-    \text{Maps:}\ &S([f_{i\jay}]) := \djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j})
+    \text{Maps:}\ &S([f_{i\jay}]) := \djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j}).
   \end{align*}
 \end{definition}
 
@@ -2088,9 +2069,9 @@ equivalence between these two categories.
     &S(id_A)  = S([id_{A_i}]) = \djoinbig_i \icp{i} (\djoin_j \cp{j}) = id_{S(A)}\\
     &f: A\to B  \iff S(f):S(A)\to S(B) \iff \\
     &\qquad \qquad  \djoinbig_i \icp{i} (\djoin_\jay f_{i\jay} \cp{j}) : A_1\+\cdots\+A_n \to B_1\+\cdots\+B_m\\
-    &M(\rst{f}) = [\rst{f}] = \rst{[f]} = \rst{M(f)}
+    &M(\rst{f}) = [\rst{f}] = \rst{[f]} = \rst{M(f)}.
   \end{align*}
-  and for composition, we have
+  For composition, we have
   \begin{align*}
     S(f)S(g) & = (\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j}))
                   (\djoinbig_{j'} \icp{j'} (\djoin_k g_{\jay\kay} \cp{k})) \\
@@ -2099,7 +2080,7 @@ equivalence between these two categories.
     &= \djoinbig_i \icp{i} \djoinbig_j  f_{i\jay} (\djoin_k g_{\jay\kay} \cp{k}) \\
     &= \djoinbig_i \icp{i} \djoinbig_k (\djoin_j  f_{i\jay}  g_{\jay\kay} \cp{k}) \\
     &= S([\djoin_j f_{i\jay} g_{\jay\kay}]) \\
-    &= S(f g)
+    &= S(f g).
   \end{align*}
 
 \end{proof}
@@ -2119,7 +2100,7 @@ equivalence between these two categories.
   \end{align*}
 
   Next, we need to show that there is a natural transformation and isomorphism $\rho$ such that
-  $\rho(S M) = I_{\imatx}$. For each object $[A_1,A_2,\ldots,A_n]$,
+  $\rho(S M) = I_{\imatx}$. For each object $[A_1,A_2,\ldots,A_n]$, set
   $\rho A = \begin{bmatrix}\icpa& \cdots &\icp{n}\end{bmatrix}$.
 
   Note that the functor $S M$ has the following effect:
@@ -2128,7 +2109,7 @@ equivalence between these two categories.
     \text{Objects:}\quad &M(S([A_1,\ldots, A_n])) = M(A_1\+\cdots\+ A_n) =
       [A_1\+\cdots\+ A_n]\\
     \text{Maps:}\quad &M(S([f_{i\jay}]) = M(\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j}))
-      = [\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j})]
+      = [\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j})].
   \end{align*}
   We can now draw the commuting naturality square for $f=[f_{i\jay}]:[A_i]\to [B_j]$:
   \[
@@ -2140,7 +2121,7 @@ equivalence between these two categories.
         &&&&&  \\
       SM([B_j]) \ar@{=}[r] & [\+_j B_j]
           \ar[rrrr]_{\begin{bmatrix}\icpa& \cdots &\icp{m}\end{bmatrix}}
-          & &&& [B_j] \\
+          & &&& [B_j]. \\
     }.
   \]
 
@@ -2158,7 +2139,7 @@ equivalence between these two categories.
 
   Finally, we know that $\inv{\rho_{A_i}} = \begin{bmatrix}\cp{1}\\ \vdots \\\cp{n}\end{bmatrix}$
   and defines an isomorphism between any object of the form $[\+_i A_i]$ and the
-  object $[A_1,\ldots,A_n]$
+  object $[A_1,\ldots,A_n]$.
 \end{proof}
 % subsection equivalence_between_an_inverse_sum_category_and_its_matrix_category (end)
 \begin{lemma}\label{lem:inverse_sum_category_maps_are_matrices}
@@ -2181,7 +2162,7 @@ equivalence between these two categories.
   stability of the disjointness relation. Similarly, the maps in the columns are disjoint by
   universality. We have $e_0 f e_0 \djoin e_0 f e_1 = e_0 f$ and $e_1 f e_0 \djoin e_1 f e_1 = e_1
   f$. Each of these maps are disjoint by universality. Finally, $e_0 f \djoin e_1 f = (e_0 \djoin
-  e_1) f = f$ and hence we may recover the initial map whenever we have a matrix of this from.
+  e_1) f = f$ and hence we may recover the initial map whenever we have a matrix of this form.
   We will call this computation the distinct join of $f_M$.
 
   Next, consider $f_M \times g_M$. As each $e_i$ is idempotent, this is
@@ -2484,7 +2465,7 @@ disjoint join.
 
 A map in \Xt is related to map in \X in the following way:
 \[
-  \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
+  \infer{A\xrightarrow{f} B\*C \text{ in }\X.}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
 \]
 
 Our goal is to show that an inverse sum in a distributive inverse category becomes a co-product
@@ -2499,7 +2480,8 @@ in \Xt.
   that $\X$ is equivalent as a category to $\Xt$ under the identity on objects
   functor
   \[
-    {\raisebox{-15pt}{$\wtf:\X \to \Xt;$}} \qquad \xymatrix{A\ar[d]^{f}\\B}\mapsto \xymatrix{A\ar[d]^{(f\inv{\usr},1)}\\B}
+    {\raisebox{-15pt}{$\wtf:\X \to \Xt;$}} \qquad
+    \xymatrix{A\ar[d]^{f}\\B}\mapsto \xymatrix{A\ar[d]^{(f\inv{\usr},1)}\\B}
     \ \raisebox{-15pt}{ given by }\xymatrix{A\ar[d]^{f\usr}\\B\*1}\raisebox{-15pt}{).}
   \]
 
@@ -2509,7 +2491,9 @@ in \Xt.
   First we note that $0$ is both initial and terminal in $\Xt$, with the terminal maps being
   $\wtf(t_A)$ and initial maps being $\wtf(z_A)$.
 
-  As was also shown in ..., $\wtf$ is a restriction functor, so in $\Xt$ we have
+  As was also shown in
+  Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories},
+$\wtf$ is a restriction functor, so in $\Xt$ we have
   \[
     0_{A,A} = \wtf(t_A)\wtf(z_A) = \wtf(t_A z_A) = \wtf(0_{A,A}) = \wtf(\rst{0_{A,A}}) =
     \rst{\wtf(0_{A,A})} = \rst{0_{A,A}}.
@@ -2545,7 +2529,7 @@ in \Xt.
       & & & Y \* (Y\* C) \ar@{.>}[dd]^{1\*1\*\cpa}\\
       A \ar[uurr]^f \ar[ddrr]_{f'} \\
       & & & Y \* Y\*(C\+ D) \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
-      && Y\*(C\+ D)\*X
+      && Y\*(C\+ D)\*X.
     }
     \]
   To show this commutes, we primarily use that $\Delta\inv{Delta} = 1$
@@ -2595,7 +2579,7 @@ in \Xt.
   \[
     \xymatrix{
       A \ar[drrr]^{(f,C)} \ar[dr]_{i_1} \\
-      & A\+B \ar@{.>}[rr]^h & & Y \\
+      & A\+B \ar@{.>}[rr]^h & & Y. \\
       B \ar[urrr]_{(g,D)} \ar[ur]^{i_2}
     }
   \]
@@ -2625,7 +2609,7 @@ in \Xt.
   Lifting Diagram~\ref{diag:pre-coproduct-with-common-map} to \X, we see this corresponds to the
   desired co-product diagram, where  $h$ in \Xt is the map $(\icpa f' \djoin \icpb g'', (C\+D))$.
 
-  By construction, in \X,
+  By construction, in \X, we have
   \[
     \cpa (\icpa f' \djoin \cpa\icpb g'') = (\cpa\icpa f') \djoin (\cpa\icpb g'') = f' \djoin 0 = f'
   \]
