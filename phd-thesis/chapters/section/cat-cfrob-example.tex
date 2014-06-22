@@ -34,18 +34,18 @@
   As a string diagram, this looks like:
   \[
   \begin{tikzpicture}
-    \path node at (-1,3) (starty) {}
+    \path node at (-.5,3) (starty) {}
     node at (0,2.5) [eta] (eta1) {}
     node at (0,2) [delta] (d) {}
-    node at (-.5,1.5) [shape=rectangle,draw] (f) {$\scriptstyle f$}
-    node at (-1,1) [nabla] (n1) {}
-    node at (-1,.5) [epsilon] (e1) {}
+    node at (-.25,1.5) [map] (f) {$\scriptstyle f$}
+    node at (-.5,1) [nabla] (n1) {}
+    node at (-.5,.5) [epsilon] (e1) {}
     node at (0,0) (end) {};
-    \draw [] (starty) to (n1);
+    \draw [] (starty) to[out=270,in=125] (n1);
     \draw [] (eta1) to (d);
-    \draw [] (d) to (end);
-    \draw [] (d) to (f);
-    \draw [] (f) to (n1);
+    \draw [] (d) to[out=305,in=90] (end);
+    \draw [] (d) to[out=235,in=90] (f);
+    \draw [] (f) to[out=270,in=55] (n1);
     \draw [-] (n1) to (e1);
   \end{tikzpicture}
   \]
@@ -101,5 +101,5 @@
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../phd-thesis"
+%%% TeX-master: "../../phd-thesis"
 %%% End:

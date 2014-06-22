@@ -642,6 +642,7 @@ a Cartesian restriction category.
         \draw [] (n1) to (end);
       \end{tikzpicture}
       }
+      \,\raisebox{45pt}{.}
 \]
     \item[\ref{le:deltaefg}]This equality uses the previous equality, the commutativity
       of restriction idempotents (\rtwo) and the identity $\Delta\rst{\inv{\Delta}} = \Delta$.
@@ -738,6 +739,7 @@ a Cartesian restriction category.
         \draw (g) to (end2);
       \end{tikzpicture}
       }
+      \,\raisebox{45pt}{.}
       \]
       The second equality ($e\Delta(f\*g) = \Delta(f\*e g)$) follows by co-commutativity. The third
       equality,  ($e\Delta(f\*g) = \Delta(ef\*e g)$) follows by naturality of $\Delta$.
@@ -818,6 +820,7 @@ a Cartesian restriction category.
         \draw (g) to (end2);
       \end{tikzpicture}
       }
+      \,\raisebox{45pt}{.}
       \]
       The other equalities follow for the same reasons as in \ref{le:deltaefg}.
 
@@ -919,7 +922,7 @@ a Cartesian restriction category.
         \draw (d2) to[out=235,in=90] (gr);
         \draw (d2) to[out=305,in=90] (g);
         \draw (gr) to[out=270,in=125] (n2);
-        \draw (g) to (finv);
+v        \draw (g) to (finv);
         \draw (finv) to[out=270,in=125] (n1);
         \draw (fr) to[out=270,in=55] (n1);
         \draw (n1) to[out=270,in=55] (n2);
@@ -996,52 +999,358 @@ a Cartesian restriction category.
         \draw (n2) to (end);
       \end{tikzpicture}
       }
+      \,\raisebox{45pt}{.}
      \]
-    \item[\ref{le:hge}]Beginning with the assumption,
-      \begin{align*}
-        (\Delta &(h \* g)\inv{\Delta})h  = \rst{\Delta (h \* g) \inv{\Delta}}h&\\
-        &=\Delta(1 \* g \inv{h}) \inv{\Delta}h&\text{This lemma(\ref{le:restfg})}\\
-        &=\Delta(1 \* g \inv{h}) (h\*h)\inv{\Delta}&\inv{\Delta}\text{ natural}\\
-        &=\Delta(h \* g \rst{\inv{h}}) \inv{\Delta}&\\
-        &=\Delta(h\rst{\inv{h}} \* g) \inv{\Delta}&\text{part (\ref{le:deltaefg})}\\
-         &=\Delta(h\*g)\inv{\Delta}&\text{property of inverse}.
-      \end{align*}
+    \item[\ref{le:hge}]Beginning with the assumption that $\Delta (h \* g)\inv{\Delta}$ equals its
+      restriction and by item \ref{le:restfg}, we have:
+      \[
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (h1) {$\scriptstyle h$};
+        \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) [map] (h) {$\scriptstyle h$};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (h1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw (h1) to[out=270,in=125] (n1);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (n1) to (h);
+        \draw (h) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.5,2.5) [map] (ghinv) {$\scriptstyle g\inv{h}$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) [map] (h) {$\scriptstyle h$};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=125] (n1);
+        \draw [] (d1) to[out=305,in=90] (ghinv);
+        \draw (ghinv) to[out=270,in=55] (n1);
+        \draw (n1) to (h);
+        \draw (h) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.5,2.25) [map] (ghinv) {$\scriptstyle g\inv{h}$};
+        \node at (-.25,1.5) [map] (h1) {$\scriptstyle h$};
+        \node at (.25,1.5) [map] (h2) {$\scriptstyle h$};
+        \node at (0, 1) [nabla] (n1) {};
+        \node at (0,.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (h1);
+        \draw [] (d1) to[out=305,in=90] (ghinv);
+        \draw (ghinv) to[out=270,in=90] (h2);
+        \draw (h1) to[out=270,in=125] (n1);
+        \draw (h2) to[out=270,in=55] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.5,2.25) [map] (ghinv) {$\scriptstyle g\rst{\inv{h}}$};
+        \node at (-.25,1.5) [map] (h1) {$\scriptstyle h$};
+        \node at (0, 1) [nabla] (n1) {};
+        \node at (0,.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (h1);
+        \draw [] (d1) to[out=305,in=90] (ghinv);
+        \draw (h1) to[out=270,in=125] (n1);
+        \draw (ghinv) to[out=270,in=55] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.25,2.25) [map] (g) {$\scriptstyle g$};
+        \node at (-.5,1.5) [map] (h1) {$\scriptstyle h\rst{\inv{h}}$};
+        \node at (0, 1) [nabla] (n1) {};
+        \node at (0,.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (h1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw (h1) to[out=270,in=125] (n1);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,2.5) [map] (h1) {$\scriptstyle h$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (h1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw (h1) to[out=270,in=125] (n1);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \ \raisebox{45pt}{$=$}\
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (.25,2.5) [map] (h1) {$\scriptstyle h$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (h1);
+        \draw [] (d1) to[out=235,in=90] (g);
+        \draw (h1) to[out=270,in=55] (n1);
+        \draw (g) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \,\raisebox{45pt}{.}
+      \]
 
-    \item[\ref{le:dfgisfg}]As $\Delta$ is total and natural, we start with:
-      \begin{align*}
-        f&=\Delta(f\*f)\inv{\Delta}  & \\
-        &= \Delta(f\*1)(1\*f)\inv{\Delta} &  \\
-        &= \Delta(g\*1)(1\*f)\inv{\Delta} &\text{assumption} \\
-        &= \Delta(1\*f)(g\*1)\inv{\Delta} &\text{Identities commute}\\
-        &= \Delta(1\*g)(g\*1)\inv{\Delta} &\text{assumption, co-commutative}\\
-        &= \Delta(g\*g)\inv{\Delta} \\
-        &= g\Delta\inv{\Delta} & \Delta \text{ natural}\\
-        &= g&\Delta\text{ total}.
-      \end{align*}
-    \item[\ref{le:fgisfg}] Immediate from part \ref{le:dfgisfg}.
+    \item[\ref{le:dfgisfg}] Our assumption is that:
+      \[
+        \begin{tikzpicture}
+        \node at (0,1.5) (start) {};
+        \node at (0,1) [delta] (d1) {};
+        \node at (-.25,.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25, 0) (end1) {};
+        \node at (.25,0) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (end2);
+        \draw [] (d1) to[out=235,in=90] (g);
+        \draw (g) to (end1);
+      \end{tikzpicture}
+      \ \raisebox{20pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,1.5) (start) {};
+        \node at (0,1) [delta] (d1) {};
+        \node at (-.25,.5) [map] (f) {$\scriptstyle f$};
+        \node at (-.25, 0) (end1) {};
+        \node at (.25,0) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (end2);
+        \draw [] (d1) to[out=235,in=90] (f);
+        \draw (f) to (end1);
+      \end{tikzpicture}
+      \raisebox{20pt}{ and by co-commutativity, }
+        \begin{tikzpicture}
+        \node at (0,1.5) (start) {};
+        \node at (0,1) [delta] (d1) {};
+        \node at (.25,.5) [map] (g) {$\scriptstyle g$};
+        \node at (.25, 0) (end1) {};
+        \node at (-.25,0) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (end2);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw (g) to (end1);
+      \end{tikzpicture}
+      \ \raisebox{20pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,1.5) (start) {};
+        \node at (0,1) [delta] (d1) {};
+        \node at (.25,.5) [map] (f) {$\scriptstyle f$};
+        \node at (.25, 0) (end1) {};
+        \node at (-.25,0) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (end2);
+        \draw [] (d1) to[out=305,in=90] (f);
+        \draw (f) to (end1);
+      \end{tikzpicture}
+      \,\raisebox{20pt}{.}
+      \]
+      Hence,
+      \[
+      \ \raisebox{45pt}{$f=$}\
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (f1) {$\scriptstyle f$};
+        \node at (.25,2.5) [map] (f2) {$\scriptstyle f$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (f2);
+        \draw [] (d1) to[out=235,in=90] (f1);
+        \draw (f2) to[out=270,in=55] (n1);
+        \draw (f1) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (f1) {$\scriptstyle f$};
+        \node at (.25,2) [map] (f2) {$\scriptstyle f$};
+        \node at (0, 1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (f2);
+        \draw [] (d1) to[out=235,in=90] (f1);
+        \draw (f2) to[out=270,in=55] (n1);
+        \draw (f1) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (g1) {$\scriptstyle g$};
+        \node at (.25,2) [map] (f2) {$\scriptstyle f$};
+        \node at (0, 1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (f2);
+        \draw [] (d1) to[out=235,in=90] (g1);
+        \draw (f2) to[out=270,in=55] (n1);
+        \draw (g1) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2) [map] (g1) {$\scriptstyle g$};
+        \node at (.25,2.5) [map] (f2) {$\scriptstyle f$};
+        \node at (0, 1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (f2);
+        \draw [] (d1) to[out=235,in=90] (g1);
+        \draw (f2) to[out=270,in=55] (n1);
+        \draw (g1) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2) [map] (g1) {$\scriptstyle g$};
+        \node at (.25,2.5) [map] (g2) {$\scriptstyle g$};
+        \node at (0, 1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (g2);
+        \draw [] (d1) to[out=235,in=90] (g1);
+        \draw (g2) to[out=270,in=55] (n1);
+        \draw (g1) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$= g.$}\
+      \]
+    \item[\ref{le:fgisfg}] Use the same diagram argument as in item \ref{le:dfgisfg}.
   \end{enumerate}
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:discrete_inverse_category_has_meets}
   A discrete inverse category has meets, where $f\cap g =\Delta (f\* g) \inv{\Delta}$.
 \end{proposition}
 \begin{proof}
   $f\cap g \le f$:
-  \begin{align*}
-    f\cap g&= \Delta (f\*g) \inv{\Delta}&\text{Definition of }\cap \\
-    &= \Delta (f\restr{\inv{f}}\*g) \inv{\Delta} &\text{property of inverse}\\
-    &= \Delta (f \* g\restr{\inv{f}}) \inv{\Delta} &\text{by lemma \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}(\ref{le:efginvdelta})}\\
-    &= \Delta (f \* g\inv{f}f) \inv{\Delta} &\text{definition of inverse}\\
-    &= \Delta (1 \* g\inv{f}) \inv{\Delta} f &\inv{\Delta}\text{ natural}\\
-    &=\restr{f \cap g} f &\text{by lemma \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}(\ref{le:restfg})}\\
-  \end{align*}
+  \[
+  \raisebox{45pt}{$f\cap g =$}
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (f) {$\scriptstyle f$};
+        \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw [] (d1) to[out=235,in=90] (f);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (f) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \raisebox{45pt}{$=$}
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.5,2.5) [map] (f) {$\scriptstyle f\rst{\inv{f}}$};
+        \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw [] (d1) to[out=235,in=90] (f);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (f) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \raisebox{45pt}{$=$}
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (f) {$\scriptstyle f$};
+        \node at (.5,2.5) [map] (g) {$\scriptstyle g\rst{\inv{f}}$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw [] (d1) to[out=235,in=90] (f);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (f) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \raisebox{45pt}{$=$}
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2) [map] (f) {$\scriptstyle f$};
+        \node at (.5,2.5) [map] (g) {$\scriptstyle g\inv{f}$};
+        \node at (.25,2) [map] (f2) {$\scriptstyle f$};
+        \node at (0, 1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw [] (d1) to[out=235,in=90] (f);
+        \draw (g) to (f2);
+        \draw (f2) to[out=270,in=55] (n1);
+        \draw (f) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.5,2.5) [map] (g) {$\scriptstyle g\inv{f}$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) [map] (f) {$\scriptstyle f$};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw [] (d1) to[out=235,in=125] (n1);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (n1) to (f);
+        \draw (f) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$= \rst{f\cap g}f.$}
+  \]
 
   $f\cap f = f$:
-  \begin{align*}
-    f\cap f &= \Delta(f\* f) \inv{\Delta}\\
-    &=f \Delta \inv{\Delta} &\Delta\text{ natural}\\
-    &= f&\Delta\text{ total}.
-  \end{align*}
+  \begin{equation*}
+    f\cap f = \Delta(f\* f) \inv{\Delta} =f \Delta \inv{\Delta} = f\Delta.
+  \end{equation*}
 
   $h(f\cap g) = h f \cap h g$:
   \begin{align*}
@@ -1457,8 +1766,8 @@ Define the restriction in \Xt\ as follows:
 \begin{proof}
   Given the above definition the four restriction axioms must now be checked. For the remainder of
   this proof, all diagrams will be in $\X$.
-  \begin{description}
-    \item[\rone] ($\restr{f} f = f$) Calculating the restriction of the left hand side in
+
+  \rone ($\restr{f} f = f$). Calculating the restriction of the left hand side in
       \X, we have:
       \begin{align*}
         \restr{\rst{f}\inv{\usr} (f\*1) a_{\*}} & = \restr{\rst{f}\inv{\usr} (f\*1)}
@@ -1483,8 +1792,7 @@ Define the restriction in \Xt\ as follows:
       shows $\rst{f}\inv{\usr} (f\*1) a_{\*} \xequiv{1 \* {\usr}} f$ in \X and therefore $\rst{f}f
       = f$ in \Xt.
 
-
-    \item[\rtwo] ($\restr{g} \restr{f} = \restr{f} \restr{g}$) We must show
+     \rtwo ($\restr{g} \restr{f} = \restr{f} \restr{g}$). We must show
       \begin{equation}
         \rst{f}\inv{\usr} ((\restr{g}\inv\usr)\*1)) a_{\*} \xequiv{}
         \rst{g}\inv{\usr}((\restr{f}\inv\usr)\*1) a_{\*}.
@@ -1522,7 +1830,7 @@ Define the restriction in \Xt\ as follows:
       \]
       which allows us to conclude $\rst{f} \rst{g} = \rst{g} \rst{f}$ in \Xt.
 
-    \item[\textbf{R.3}] ($\restr{\restr{f} g} = \restr{f} \restr{g}$ ). We must show
+    \rthree ($\restr{\restr{f} g} = \restr{f} \restr{g}$ ). We must show
       \begin{equation}
         \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr} \xequiv{}
         (\restr{f} \inv{\usr})(\rst{g} \inv{\usr}\* 1) a_{\*}
@@ -1592,42 +1900,37 @@ Define the restriction in \Xt\ as follows:
       (\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) a_{\*}$ and therefore $\restr{\restr{f} g} =
       \restr{f} \restr{g}$ in \Xt.
 
-
-
-    \item[\textbf{R.4}] $f \restr{g} = \restr{f g} f$ We must show
+      \rfour ($f \restr{g} = \restr{f g} f$). We must show
       \begin{equation}
         f (\restr{g} \inv{\usr}\* 1) a_{\*} \xequiv{}
-        \rst{f (g \* 1)} \inv{\usr} (f\* 1) a_{\*}
+        \rst{f (g \* 1)} \inv{\usr} (f\* 1) a_{\*}.
         \label{eq:rfour_in_xt}
       \end{equation}
       The restriction of the left hand side of Equation~\ref{eq:rfour_in_xt} is:
       \begin{align*}
         \rst{f (\restr{g} \inv{\usr}\* 1) a_{\*}}
-          & = \rst{f (\restr{g} \inv{\usr}\* 1)} & a_{\*}
-          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}} \\
+          & = \rst{f (\restr{g} \inv{\usr}\* 1)} & \text{Lemma \ref{lem:restrictionvarious}} \\
         & = \rst{f \rst{g} \inv{\usr}} \* \rst{f} & \* \text{ restriction functor}\\
-        & = \rst{f \rst{g}} \* \rst{f} & \inv{\usr}
-          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}} \\
+        & = \rst{f \rst{g}} \* \rst{f} & \text{Lemma \ref{lem:restrictionvarious}} \\
         & = \rst{f (\rst{g} \* 1)}
       \end{align*}
       and the restriction of the right hand side of Equation~\ref{eq:rfour_in_xt}  is:
       \begin{align*}
         \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) a_{\*}}
-          & = \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) } & a_{\*}
-          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
+          & = \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) } &  \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \rst{\rst{f (g \* 1)} f \inv{\usr}  } & \inv{\usr} \text{ natural}\\
         & = \rst{f \rst{(g \* 1)}  \inv{\usr}  } & \text{ \rfour for }\X\\
-        & = \rst{f (\rst{g} \* 1)  \inv{\usr}  } & \* \text{ is a restriction functor}\\
-        & = \rst{f (\rst{g} \* 1)    } & \inv{\usr}
-          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}
+        & = \rst{f (\rst{g} \* 1)  \inv{\usr}  } & \* \text{ a restriction functor}\\
+        & = \rst{f (\rst{g} \* 1)    } & \text{Lemma \ref{lem:restrictionvarious}.}
       \end{align*}
-
       Computing the right hand side of Equation~\ref{eq:rfour_in_xt} in \X,
       \begin{align*}
         \rst{f(g\* 1)a_{\*}} \inv{\usr} (f\* 1) a_{\*}
-          & = \rst{f(g\* 1)} f \inv{\usr} a_{\*} & a_{\*} \text{ isomorphism, } \inv{\usr}\text{ natural.}\\
-        & = f (\rst{g} \* 1) \inv{\usr} a_{\*} & \rfour, \* \text{ a restriction functor.}
+          & = \rst{f(g\* 1)} f \inv{\usr} a_{\*} & \inv{\usr}\text{ natural,}\\
+        & = f (\rst{g} \* 1) \inv{\usr} a_{\*} & \rfour.
       \end{align*}
+
+      Thus,
       \[
         \xymatrix @C=40pt @R=35pt{
           A \ar[r]^f \ar[dr]_{f}
@@ -1641,8 +1944,6 @@ Define the restriction in \Xt\ as follows:
             & B \* (C\*1)
         }
       \]
-  \end{description}
-
   and hence, \Xt\ is a restriction category.
 \end{proof}
 % subsection the_restriction_category_hypxt (end)
@@ -1680,7 +1981,7 @@ the $\*$ tensor in \X.
 First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
 \begin{align}
   \pi_0:\qquad & A \* B \xrightarrow{(1,B)} A \label{eq:defn:pia}\\
-  \pi_1:\qquad & A \* B \xrightarrow{(c_{\*},A)} B \label{eq:defn:pib}
+  \pi_1:\qquad & A \* B \xrightarrow{(c_{\*},A)} B. \label{eq:defn:pib}
 \end{align}
 
 \begin{definition}\label{def:product_map_in_xt}
@@ -1692,7 +1993,7 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
   where associativity is assumed as needed. Note that with the associativity maps, this is actually:
   \begin{equation}
     Z\xrightarrow{(\Delta  ( f \* g )  a_{\*} (1\*\inv{a_{\*}})
-      (1\* (c_{\*} \* 1)) (1\*a_{\*}) \inv{a_{\*}}, C\* C')} A \* B\label{eq:defn:fg2}
+      (1\* (c_{\*} \* 1)) (1\*a_{\*}) \inv{a_{\*}}, C\* C')} A \* B.\label{eq:defn:fg2}
   \end{equation}
 \end{definition}
 
@@ -1756,7 +2057,7 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
     & = \rst{f} \rst{g}.
   \end{align*}
 
-  The diagram below, shows the required mediating map.
+  The diagram below shows the required mediating map.
   \[
     \xymatrix @C=27pt @R=25pt{
       & & & A \* C \ar[dr]^{\Delta\*1}\\
@@ -1813,7 +2114,7 @@ partial inverses. That is, given $G:\C \to \D$, then:
 \begin{align*}
   &\Inv{G}: \Inv{\C} \to \Inv{\D}\\
   &\Inv{G}(A) = G{A}&\text{(all objects of $\D$ are in $Inv(\D)$)}\\
-  &\Inv{G}(f) = G(f)&\text{(restriction functors preserve partial inverse)}
+  &\Inv{G}(f) = G(f)&\text{(restriction functors preserve partial inverse)}.
 \end{align*}
 We continue by showing the $\eta$ and $\varepsilon$ of the universal property are isomorphisms.
 First, let $\eta:\X \to \Inv{\Xt}$ be an identity on objects functor. For maps $f$ in \X, $\eta(f)
@@ -1829,7 +2130,7 @@ This allows us to write the diagram:
 \begin{equation}
   \xymatrix @C=65pt @R=40pt{
     \X \ar[r]^{\eta} \ar[rd]_{F}& \Inv{\Xt} \ar[d]^{\Inv{F^{\#}}}\\
-    &\Inv{\D}
+    &\Inv{\D}.
   }
   \label{dia:universal_property_of_inverse_categories}
 \end{equation}
@@ -1867,7 +2168,7 @@ result.
       &B\*B\*C\*C\*D \ar[d]^{1\*1\*\inv{\Delta}\*1}\\
       &B\*B\*C\*D \ar[d]^{1\*n}\\
       &B\*B\*1 \ar[d]^{(\inv{\Delta}\* 1) \usl }\\
-      &B
+      &B.
     }
   \]
   By its construction, $f:A\to B$ in \X and $(f\inv{\usr},1)$ are in the same equivalence class as
@@ -1906,11 +2207,11 @@ result.
   $H$ is well defined as we know $\<f,1\>$ is an invertible map and therefore in the domain of $G$.
   To see $H$ is a functor:
   \begin{align*}
-    H(1) &= G(\<1,1\>)\pi_0 = \Delta_{\D}\pi_0 = 1\\
-    H(f g) &= G(\<f g,1\>)\pi_0 = G(\<f,1\>)\pi_0G(\<g,1\>)\pi_0 = H(f)H(g)
+    H(1) &= G(\<1,1\>)\pi_0 = \Delta_{\D}\pi_0 = 1,\\
+    H(f g) &= G(\<f g,1\>)\pi_0 = G(\<f,1\>)\pi_0G(\<g,1\>)\pi_0 = H(f)H(g).
   \end{align*}
   But on any invertible map, $H(f) = G(\<f,1\>)\pi_0 = \<G(f),1\>\pi_0 = G(f)$ and therefore
-  $\Inv(H) = G$, so $\Invf$ is full.
+  $\Inv{H} = G$, so $\Invf$ is full.
 
   Next, assume we have $F,G:\C\to\D$ with $\Inv{F} = \Inv{G}$. Considering $F(f)$ and $F(g)$, we
   know $F(\<f,1\>) = G(\<f,1\>) $ as $\<f,1\>$ is invertible. Thus, as the functors preserve the

@@ -124,6 +124,36 @@
   \end{enumerate}
 \end{proof}
 
+\section{Algebraic proof for Proposition \ref{prop:discrete_inverse_category_has_meets}}
+
+\begin{proposition}
+  A discrete inverse category has meets, where $f\cap g =\Delta (f\* g) \inv{\Delta}$.
+\end{proposition}
+\begin{proof}
+  $f\cap g \le f$:
+
+  \begin{align*}
+    f\cap g&= \Delta (f\*g) \inv{\Delta}&\text{Definition of }\cap \\
+    &= \Delta (f\restr{\inv{f}}\*g) \inv{\Delta} &\text{property of inverse}\\
+    &= \Delta (f \* g\restr{\inv{f}}) \inv{\Delta} &\text{by lemma \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}(\ref{le:efginvdelta})}\\
+    &= \Delta (f \* g\inv{f}f) \inv{\Delta} &\text{definition of inverse}\\
+    &= \Delta (1 \* g\inv{f}) \inv{\Delta} f &\inv{\Delta}\text{ natural}\\
+    &=\restr{f \cap g} f &\text{by lemma \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}(\ref{le:restfg})}\\
+  \end{align*}
+
+  $f\cap f = f$:
+  \begin{equation*}
+    f\cap f = \Delta(f\* f) \inv{\Delta} =f \Delta \inv{\Delta} = f\Delta.
+  \end{align*}
+
+  $h(f\cap g) = h f \cap h g$:
+  \begin{align*}
+    h(f\cap g) &= h \Delta(f\* g) \inv{\Delta}& \text{Definition of }\cap\\
+    &= \Delta(h \* h) (f \* g) \inv{\Delta} &\Delta\text{ natural}\\
+    &= \Delta(h f\* h g) \inv{\Delta} &\text{compose maps}\\
+    &= h f \cap h g&\text{Definition of }\cap.
+  \end{align*}
+\end{proof}
 
 %%% Local Variables:
 %%% mode: latex
