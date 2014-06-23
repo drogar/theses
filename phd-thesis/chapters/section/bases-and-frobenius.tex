@@ -25,7 +25,7 @@ The $(\_)'$ construction is actually an involution:
   Any $\dagger$-Frobenius algebra in \fdh is a $C^{*}$-algebra.
 \end{lemma}
 \begin{proof}
-  The endomorphism monoid of \fdh(H,H) is a $C^{*}$-algebra. From the proceeding,
+  The endomorphism monoid of \fdh(H,H) is a $C^{*}$-algebra. From the proceeding, we have
   \[
     H \cong \fdh(\C,H) \cong R_{[\fdh(\C,H)]}\subseteq\fdh(H,H).
   \]
@@ -40,7 +40,7 @@ homomorphisms as $\dgr{\phi_{i}}:H \to \C$. Then their adjoints, $\phi_{i}:\C\to
 basis for the space $H$. These are the copyable elements in $H$.
 
 This, together with continued applications of the Frobenius rules and linear algebra allow the
-authors to prove:
+authors to prove the following Theorem.
 \begin{theorem}
   Every commutative $\dagger$-Frobenius algebra in \fdh determines an orthogonal basis consisting
   of its copyable elements. Conversely, every orthogonal basis $\{\ket{\phi_{i}}\}_{i}$ determines
@@ -55,7 +55,7 @@ to start from a $\dagger$-symmetric monoidal category and construct the minimal 
 model quantum and classical computations. For the rest of this section, $\cD$ will be assumed to be
 such a category, with $\*$ the monoid tensor and $I$ the unit of the monoid.
 
-\begin{definition}
+\begin{definition}\label{def:compact_structure}
   A compact structure on an object $A$ in the category $\cD$ is given by the object $A$, an object
   $A^{*}$ called its \emph{dual} and the maps $\eta:I \to A^{*}\* A$, $\epsilon: A\* A^{*} \to I$
   such that the diagrams
@@ -73,7 +73,7 @@ such a category, with $\*$ the monoid tensor and $I$ the unit of the monoid.
   commute.
 \end{definition}
 
-\begin{definition}[Quantum Structure]\label{def:quantumstructure}
+\begin{definition}\label{def:quantumstructure}
   A \emph{quantum structure} is an object $A$ and map $\eta:I\to A\*A$ such that
   $(A,A,\eta,\dgr{\eta})$ form a compact structure.
 \end{definition}
@@ -83,24 +83,24 @@ This allows the creation of the category $\cD_{q}$ which has as objects quantum 
 are the maps in $\cD$ between the objects in the quantum structures.
 
 In the category $\cD_{q}$, it is now possible to define the upper and lower $*$ operations on maps,
-such that $(f_{*})^{*}= (f^{*})_{*} = \dgr{f}$.
+such that $(f_{*})^{*}= (f^{*})_{*} = \dgr{f}$:
 \begin{eqnarray*}
-&f^{*} &:= (\eta_{A}\*1) (1 \* f\*1) (1\*\dgr{\eta}_{B})\\
-&f_{*} &:= (\eta_{B}\*1) (1 \* \dgr{f}\*1) (1\*\dgr{\eta}_{A})
+&f^{*} &:= (\eta_{A}\*1) (1 \* f\*1) (1\*\dgr{\eta}_{B}),\\
+&f_{*} &:= (\eta_{B}\*1) (1 \* \dgr{f}\*1) (1\*\dgr{\eta}_{A}).
 \end{eqnarray*}
 
 Interestingly, $\cD_{q}$ possesses enough structure to be axiomatized in the same manner as above in
 section \ref{sec:puresemantics}, excepting the portions dependent upon biproducts.
 
 Next, define a classical structure on \cD.
-\begin{definition}[Classical structure]\label{def:classicalstructure}
-  A \emph{classical structure} in \cD{} is an objects $X$ and two maps, $\Delta :X \to X\* X$,
-  $\epsilon:X\to I$ such that $X,\dgr{\Delta},\dgr{\epsilon},\Delta,\epsilon$ forms a special
+\begin{definition}\label{def:classicalstructure}
+  A \emph{classical structure} in \cD{} is an object $X$ together with two maps, $\Delta :X \to X\* X$,
+  $\epsilon:X\to I$ such that $(X,\dgr{\Delta},\dgr{\epsilon},\Delta,\epsilon)$ forms a special
   Frobenius algebra.
 \end{definition}
 
 As above, this allows us to define $\cD_{c}$, the category whose objects are the classical
-structures of $\cD$ with maps between classical structures being the maps in $\cD$ between the
+structures of $\cD$. The maps in $\cD_{c}$ are given by the maps in $\cD$ between the
 objects of the classical structure.
 
 Note that a classical structure will induce a quantum structure, setting $\eta_{X}$ to be

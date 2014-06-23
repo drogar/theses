@@ -14,21 +14,6 @@ referred to as co-domains in category theory and we will use the co-domain termi
 section.
 
 \begin{definition}\label{def:category}
-  A \emph{category} $\A$ is a collection of maps together with two functions, $D$ and $C$, from
-  $\A$ to $\A$ and a partial associative composition of maps (written by juxtaposing maps), such
-  that:
-  \begin{itemize}
-    \item[\catone] $D(f) f$ is defined and equals $f$,
-    \item[\cattwo] $f C(f)$ is defined and equals $f$,
-    \item[\catthree] $f g$ is defined iff $C(f) = D(g)$ and $D(f g) = D(f)$ and $C(f g) = C(g)$,
-    \item[\catfour] $(f g) h = f (g h)$ whenever either side is defined,
-    \item[\catfive] $D(C(x)) = C(x)$, $C(D(x)) = D(x)$ and $C,D$ are both idempotent.
-  \end{itemize}
-\end{definition}
-
-Another definition, often used in introducing categories, is given next.
-
-\begin{definition}\label{def:category_alt}
   A \emph{category} $\A$ is a directed graph consisting of objects $A_o$ and maps $A_m$. Each $f\in
   A_m$ has two associated objects in $A_o$, called the domain and co-domain. When $f$ has domain $X$
   and co-domain $Y$ we will write $f:X \to Y$. For $f, g \in A_m$, if $f:X\to Y$ and $g:Y \to Z$,
@@ -36,43 +21,11 @@ Another definition, often used in introducing categories, is given next.
   For any $W \in A_o$ there is an \emph{identity} map $1_W:W \to W$. Additionally, these two axioms
   must hold:
   \begin{itemize}
-    \item[\axiom{C'}{1}] for $f:X \to Y$, $1_X f = f = f 1_Y$,
-    \item[\axiom{C'}{2}] given $f:X \to Y,\ g:Y \to Z$ and $h: Z\to W$, then $f (g h) = (f g) h$.
+    \item[\catone] for $f:X \to Y$, $1_X f = f = f 1_Y$,
+    \item[\cattwo] given $f:X \to Y,\ g:Y \to Z$ and $h: Z\to W$, then $f (g h) = (f g) h$.
   \end{itemize}
 
 \end{definition}
-
-\begin{lemma}\label{lem:category_is_category_alt}
-  A category as defined in Definition~\ref{def:category} is equivalent to a category as defined
-  in Definition~\ref{def:category_alt} and vice-versa.
-\end{lemma}
-\begin{proof}
-  Assume $\A$ is as in Definition~\ref{def:category}. Then:
-  \begin{itemize}
-    \item Set $A_o$ to the collection of all  $D(f)$ and $C(f)$;
-    \item Set $A_m$ to all the maps in $\A$.
-  \end{itemize}
-  The domain of any map $f \in A_m$ is $D(f)$
-  and the co-domain is $C(f)$. By \catthree, for $f:X\to Y$ and $g:Y \to Z$ the composite $f g$ is
-  defined. The identity map of the object $D(f)$ is the map $D(f)$ and the identity map of the
-  object $C(f)$ is $C(f)$. By \catfive, we see \axiom{C'}{1} is satisfied. By \catfour, we see
-  \axiom{C'}{2} is satisfied. Therefore, $\A$ satisfies Definition~\ref{def:category_alt}.
-
-  Conversely, assume $\Z$ is as in Definition~\ref{def:category_alt}, with the
-  collection of maps, $Z_m$. For each $f : A \to B \in Z_m$, set $D(f) = 1_A$ and $C(f) = 1_B$. By
-  the definition of the identity maps and \axiom{C'}{1}, we see \catone, \cattwo and \catfive are
-  all satisfied. From the composition requirements on $\Z$ and \axiom{C'}{2}, it follows that
-  \catfour is satisfied. For \catthree, assume $f g$ is defined. Then for some $A,B,C \in Z_o$,
-  $f:A \to B$ and $g:B \to C$. This gives us $1_B = C(f) = D(g)$, $1_A = D(f g) = D_f$ and $1_B =
-  C(f g) = C(g)$. Next, assume we have $C(f) = D(g)$, $D(f g) = D(f)$ and $C(f g) = C(g)$. This
-  tells us the co-domain of $f$ is some object $B$ which is also the domain of $g$, hence we may
-  form the composition $f g$ which will have domain $A$, the domain of $f$ and co-domain $C$, the
-  co-domain of $g.$
-\end{proof}
-
-We have shown the two definitions are equivalent. It will be convenient to reference either
-definition and manner of referring to a category throughout this thesis. We will use
-whichever definition seems the most appropriate to use at any point.
 
 We may also consider the notion of containment between categories.
 
@@ -105,10 +58,7 @@ enriched in sets of cardinality of 0 or 1, then $\X$ must be a pre-order.
 % subsection enrichment_of_categories (end)
 \subsection{Examples of categories} % (fold)
 \label{sub:examples_of_categories}
-In this section, we will offer a few examples of categories. As Definition~\ref{def:category_alt}
-tends to be a more succinct way to present the data of a category, this section will give the
-examples in terms of objects and maps rather than the ``object-free'' definition.
-
+In this section, we will offer a few examples of categories.
 
 \subsubsection{Categories based on \protect{\sets}} % (fold)
 \label{ssub:categories_based_on_sets}
@@ -149,30 +99,34 @@ The identity maps of $\C$}{If $f g = h$ in $\C$, $g^{op} f^{op} = h^{op}$}
 \label{sub:properties_of_maps}
 Many interesting properties of maps are generalizations of notions that have been found useful in
 considering sets and functions. We present a few of these in a tabular format, together with their
-categorical definition. Throughout the table, $e,f,g$ are maps in a category $C$ with
-$e:A \to A$ and $f,g:A \to B$.
-\\[14pt]
-
-\begin{tabular}{|p{1in}p{1in}p{3.73in}|}
-\hline
-{\bf Sets} & {\bf Categorical Property} & {\bf Definition}\\
-\hline
-\hline
-Injective & Monic & $f$ is monic whenever $h f = k f$ means that $h = k$.\\
-\hline
-Surjective & Epic & The dual notion to monic, $g$ is epic whenever $g h = g k$ means that $h = k$.
-A map that is both monic and epic is called \emph{bijic}.\\
-\hline
-Left~Inverse & Section & $f$ is a section when there is a map $f^*$ such that $f f^* = 1_A$. $f$
-is also referred to as the \emph{left inverse} of $f^*$.\\
-\hline
-Right Inverse & Retraction & $f$ is a retraction when there is a map $f_*$ such that $f_* f = 1_B$.
-$f$ is also referred to as the \emph{right inverse} of $f_*$. A map that is both a section and a
-retraction is called an \emph{isomorphism}.\\
-\hline
-Idempotent & Idempotent & An endomorphism $e$ is idempotent whenever $e e = e$.\\
-\hline
-\end{tabular}\\[14pt]
+categorical definition. Throughout Table~\ref{tab:properties_of_maps_in_categories}, $e,f,g$ are
+maps in a category $C$ with $e:A \to A$ and $f,g:A \to B$.
+\begin{table}[h!]
+  \begin{center}
+    \begin{tabular}{|p{1in}p{1in}p{3.73in}|}
+      \hline
+      {\bf Sets} & {\bf Categorical Property} & {\bf Definition}\\
+      \hline
+      \hline
+      Injective & Monic & $f$ is monic whenever $h f = k f$ means that $h = k$.\\
+      \hline
+      Surjective & Epic & The dual notion to monic, $g$ is epic whenever $g h = g k$ means that $h = k$.
+      A map that is both monic and epic is called \emph{bijic}.\\
+      \hline
+      Left~Inverse & Section & $f$ is a section when there is a map $f^*$ such that $f f^* = 1_A$. $f$
+      is also referred to as the \emph{left inverse} of $f^*$.\\
+      \hline
+      Right Inverse & Retraction & $f$ is a retraction when there is a map $f_*$ such that $f_* f = 1_B$.
+      $f$ is also referred to as the \emph{right inverse} of $f_*$. A map that is both a section and a
+      retraction is called an \emph{isomorphism}.\\
+      \hline
+      Idempotent & Idempotent & An endomorphism $e$ is idempotent whenever $e e = e$.\\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Properties of Maps In Categories}
+  \label{tab:properties_of_maps_in_categories}
+\end{table}
 
 We state without proof a number of properties about maps.
 
@@ -189,7 +143,8 @@ We state without proof a number of properties about maps.
 
 
 \begin{lemma}\label{lem:categorical_inverses_are_unique}
-  If $f:A \to B$ is both a section and a retraction, then $f^* = f_*$.
+  If $f:A \to B$ is both a section and a retraction, then $f^* = f_*$, where $f^*$ and $f_*$ are as
+  defined in Table~\ref{tab:properties_of_maps_in_categories}.
 \end{lemma}
 
 \begin{lemma}\label{lem:categorical_iso_is_epic_section}
@@ -225,8 +180,8 @@ create a category based on the original one in which all idempotents do split.
   full sub-category.
 
   Suppose we have the map $d_{e,e}: (A,e) \to (A,e)$ with $d d = d$, i.e., it is idempotent in $C$
-  and Split($\C$). In Split($\C$), we have the map $d_{e,d}:(A,e) \to (A,d)$ and $d_{d,e}:(A,d) \to
-  (A,e)$ where $d_{d,e} d_{e,d} = d_{d,d} = 1_{(A,d)}$ and $d_{e,d} d_{d,e} = d_{e,e}$, hence
+  and Split($\C$). In Split($\C$), we have the maps $d_{e,d}:(A,e) \to (A,d)$ and $d_{d,e}:(A,d) \to
+  (A,e)$ where $d_{d,e} d_{e,d} = d_{d,d} = 1_{(A,d)}$ and $d_{e,d} d_{d,e} = d_{e,e}$. Hence,
   it is a splitting of the map  $d_{e,e}$.
 \end{proof}
 % subsection properties_of_maps (end)
@@ -266,7 +221,7 @@ We now turn to products and co-products.
   $A$ and $B$ when:
   \begin{itemize}
     \item There exist maps $\pi_0, \pi_1$ with $\pi_0:A\times B \to A$, $\pi_1:A\times B \to B$;
-    \item Given an object $C$ with maps $f:C\to A$ and $g:C \to B$ there exists a unique map
+    \item Given an object $C$ with maps $f:C\to A$ and $g:C \to B$ there is a unique map
     $\<f,g\>$ such that the following diagram commutes:
     \[
       \xymatrix@C+15pt@R+25pt{
@@ -284,7 +239,7 @@ We now turn to products and co-products.
 \label{ssub:functors_and_natural_transformations}
 
 \begin{definition}\label{def:functor}
-  A map $F:\X \to \Y$ between categories (as in Definition~\ref{def:category} is called a
+  A map $F:\X \to \Y$ between categories, as in Definition~\ref{def:category}, is called a
   \emph{functor}, provided it satisfies the following:
   \begin{itemize}
     \item[\axiom{F}{1}] $F(D(f)) = D(F(f))$ and $F(C(f)) = C(F(f))$;
@@ -365,7 +320,7 @@ each object $A,B$ in $\C$ we have the map:
 \subsection{Categories with additional structure} % (fold)
 \label{sub:categories_with_additional_structure}
 
-\begin{definition}[Symmetric Monoidal Category]\label{symmetricmonoidalcat}
+\begin{definition}\label{symmetricmonoidalcat}
   A \emph{symmetric monoidal category} \cD{} is a category equipped with a monoid $\+$ (a bi-functor
   $\+:\cD \times \cD \to \cD$) together with three families of natural isomorphisms:
   $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u_{A}:A\to A\+I$ and $c_{A,B}:A\+B \to B\+ A$, which satisfy
@@ -376,10 +331,10 @@ For details on the coherence diagrams, please see e.g., \cite{barr:ctcs} or
 \cite{maclan97:categorieswrkmath}. The essence of the coherence diagrams is that any diagram
 composed solely of the structure isomorphisms will commute.
 
-\begin{definition}[Compact Closed Category]\label{def:compactclosedcat}
+\begin{definition}\label{def:compactclosedcat}
 A \emph{compact closed category} \cD{} is a symmetric monoidal category with monoid $\*$ where each
-object $A$ has a dual $A^{*}$ and there exist families of maps $\eta_{A}: I \to A^{*} \* A$ (the
-\emph{unit}) and $\epsilon_{A}: A\*A^{*}\to I$ (the \emph{counit}) such that
+object $A$ has a dual $A^{*}$. Additionally, there must exist families of maps $\eta_{A}: I \to
+A^{*} \* A$ (the \emph{unit}) and $\epsilon_{A}: A\*A^{*}\to I$ (the \emph{counit}) such that
 \[
   \xymatrix@C+20pt{
     A \ar[r]^{u_{A}} \ar@{=}[d]  & A\*I \ar[r]^{1\*\eta_{A}}
@@ -395,7 +350,7 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
   \xymatrix@C+10pt{
     B^{*}\ar[r]^{u_{B^{*}}} \ar[d]_{f^{*}}& I\*B^{*} \ar[r]^{\eta_{A}\*1}
       & A^{*}\*A\*B^{*}\ar[d]^{1\*f\*1}\\
-    A^{*}&    A^{*}\*I\ar[l]^{u_{A^{*}}^{-1}}  &   A^{*}\*B\*B^{*}\ar[l]^{1\*\epsilon_{B}}
+    A^{*}&    A^{*}\*I\ar[l]^{u_{A^{*}}^{-1}}  &   A^{*}\*B\*B^{*}\ar[l]^{1\*\epsilon_{B}}.
   }
 \]
 
@@ -408,22 +363,22 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
 
 
 Restriction categories were introduced in
- \cite{cockett2002:restcategories1} as a convenient axiomatization of partial maps.
+ \cite{cockett2002:restcategories1} as a way to give an algebraic axiomatization of partial maps.
 \begin{definition}\label{def:restriction_category}
   A \emph{restriction category} is a category \X\ together with a \emph{restriction operator} on
-  maps:
+  maps,
   \[
-    \infer{\restr{f}:A\to A}{f:A \to B}
+    \infer{\restr{f}:A\to A,}{f:A \to B}
   \]
   where $f$ is a map of \X\ and $A,B$ are objects of \X, such that the
   following four \emph{restriction identities} hold, whenever the
   compositions\footnote{Note that composition is
-  written in diagrammatic order throughout this paper.} are defined.
+  written in diagrammatic order throughout this paper.} are defined:
   \begin{align*}
     &\rone\ \restr{f} f = f & &
     \rtwo\ \restr{g}  \restr{f} = \restr{f}  \restr{g}\\
     &\rthree\ \restr{\restr{f}  g} = \restr{f}   \restr{g} & &
-    \rfour\  f \restr{g} = \restr{f g} f
+    \rfour\  f \restr{g} = \restr{f g} f.
   \end{align*}
 \end{definition}
 
@@ -436,9 +391,10 @@ Restriction categories were introduced in
   \]
 \end{definition}
 
-Any map such that $r=\restr{r}$ is an idempotent, as $\rst{r}\rst{r} = \rst{\rst{r} r} = \rst{r}$,
-and is called a \emph{restriction idempotent}. All maps $\restr{f}$ are restriction idempotents as
-$\rst{f}=\rst{\rst{f}}$.
+\begin{definition}\label{def:restriction_idempotent}
+Note that any map such that $r=\restr{r}$ is an idempotent, as $r r = \rst{r} r = r$.
+Such a map is called a \emph{restriction idempotent}.
+\end{definition}
 
 Here are some basic facts for restriction categories as originally
 shown in \cite{cockett2002:restcategories1} pp 4-5:
@@ -457,6 +413,10 @@ shown in \cite{cockett2002:restcategories1} pp 4-5:
     \end{enumerate}
   \end{multicols}
 \end{lemma}
+
+Note that by Lemma~\ref{lem:restrictionvarious}, all maps $\restr{f}$ are restriction idempotents
+as $\rst{f}=\rst{\rst{f}}$.
+
 
 \begin{definition}\label{def:total_map}
   A map $f:A\to B$ in a restriction category is said to be \emph{total} when
@@ -484,7 +444,7 @@ total maps correspond precisely to the functions that are defined on all element
 \label{sub:enrichment_and_meets}
 
 \begin{definition}\label{def:restriction_category_hom_set_ordering}
-  In any restriction category, for any two maps  $f,g:A\to B$, define $f \le g$ iff
+  In a restriction category, for any two parallel maps  $f,g:A\to B$, define $f \le g$ iff
   $\restr{f} g = f$.
 
 \end{definition}
@@ -756,9 +716,9 @@ in a restriction category where we have $m: A\to B$, $r:B \to A$ with $m r = 1_A
 $A$ is called a \emph{retract} of $B$, which we will write as $A\retract B$. As $m$ and $r$ need
 not be unique, we will also write $(m,r) A \retract B$ when the specific section and retraction
 are to be emphasized. Since $m$ is a section,
-it is a monic and therefore total. $r m$ is of course, an idempotent on $B$. $A$ is referred to as
-a splitting of the idempotent $r m$. Note there is no requirement that $r m = \rst{r m}$ if $m$ is
-simply monic.
+it is a monic and therefore total. The map $r m$ is idempotent on $B$ as $r m r m = r 1 m = r m$.
+$A$ is referred to as a \emph{splitting} of the idempotent $r m$. Note there is no requirement that
+$r m = \rst{r m}$ when $m$ is simply monic.
 
 \begin{lemma}
   \label{lem:rcs_partial_monic_section_inverse_properties}
@@ -781,7 +741,7 @@ simply monic.
         h \restr{f g} f &= k \restr{f g} f &\rfour\\
         h \restr{f g}\,\restr{f} &= k \restr{f g}\, \restr{f} & f\text{partial monic}\\
         h \restr{f g}&= k \restr{f g} & \text{Lemma \ref{lem:restrictionvarious},
-          \ref{lemitem:rv_2}}
+          \ref{lemitem:rv_2}.}
       \end{align*}
     \item Suppose $g f = k f$. Then, $g\restr{f} = g f h = k f h = k \restr{f}$.
     \item We have $f h = \restr{f}$ and $g h' = \restr{g}$. Therefore,
@@ -791,22 +751,22 @@ simply monic.
         &= \restr{f g}\, \restr{f} & f \text{ partial section}\\
         &= \restr{f}\, \restr{f g} & \rtwo\\
         &= \restr{\restr{f}f g} & \rthree\\
-        &= \restr{f g} & \rone
+        &= \restr{f g} & \rone.
       \end{align*}
-    \item Suppose both $\inv{f}$ and $f^*$ are partial inverses of $f$. Then,
+    \item Suppose both $\inv{f}$ and $f^{\diamond}$ are partial inverses of $f$. Then,
       \begin{multline*}
         \inv{f}
         = \restr{\inv{f}}\inv{f} %R.1
         =\inv{f}f\inv{f}  %Assumption, inverse is \inv{f}
         = \inv{f} \restr{f}   %Assumption, inverse is \inv{f}
-        = \inv{f} f f^*   %Assumption, inverse is f^*
-        = \inv{f} f \restr{f^*} f^*  \\ %R.1
-        = \restr{\inv{f}}\restr{f^*} f^*   %Assumption, inverse is \inv{f}
-        = \restr{f^*}\restr{\inv{f}} f^* %R.2
-        = f^* f \restr{\inv{f}}  f^* %Assumption, inverse is f^*
-        = f^* f \inv{f} f f^* %Assumption, inverse is \inv{f}
-        = f^* f f^* %Assumption, inverse is \inv{f} and R.1
-        = f^* %Assumption, inverse is f^*
+        = \inv{f} f f^{\diamond}   %Assumption, inverse is f^{\diamond}
+        = \inv{f} f \restr{f^{\diamond}} f^{\diamond}  \\ %R.1
+        = \restr{\inv{f}}\restr{f^{\diamond}} f^{\diamond}   %Assumption, inverse is \inv{f}
+        = \restr{f^{\diamond}}\restr{\inv{f}} f^{\diamond} %R.2
+        = f^{\diamond} f \restr{\inv{f}}  f^{\diamond} %Assumption, inverse is f^{\diamond}
+        = f^{\diamond} f \inv{f} f f^{\diamond} %Assumption, inverse is \inv{f}
+        = f^{\diamond} f f^{\diamond} %Assumption, inverse is \inv{f} and R.1
+        = f^{\diamond}. %Assumption, inverse is f^{\diamond}
       \end{multline*}
     \item For $f:A\to B,\ g:B\to C$ with partial inverses $\inv{f}$ and $\inv{g}$ respectively,
       the partial inverse of $f g$ is $\inv{g} \inv{f}$. Calculating $f g \inv{g} \inv{f}$
@@ -834,8 +794,6 @@ simply monic.
 
 A restriction category in which every map is a partial
 isomorphism is called an \emph{inverse category}.
-
-An interesting property of inverse categories:
 
 \begin{lemma}
   \label{lem:inverse_idempotents_are_restriction_idempotents}
@@ -949,7 +907,7 @@ preserved by splitting.
 
 \begin{proposition}\label{pro:in_rc_x_with_meets_split_x_is_cong_to_split_r_x}
   In a restriction category \X, with meets, let $R$ be the set of restriction idempotents.
-  Then, $\spl{}{\X} \cong \spl{R}{\X}$(where \spl{}{\X} is the split of \X over all idempotents).
+  Then, $\spl{}{\X} \cong \spl{R}{\X}$, where \spl{}{\X} is the split of \X over all idempotents.
   Furthermore, $\spl{R}{\X}$ has meets.
 \end{proposition}
 \begin{proof}
@@ -1011,8 +969,8 @@ preserved by splitting.
   \]
   both commute. Therefore, $U V = I$ and $V U \cong I$, giving an equivalence of the categories.
 
-  For the rest of this proof, the bolded functions, e.g., $\mbf$ are in $\spl{R}{\X}$.
-  Italic functions, e.g., $f$ are in \X.
+  For the rest of this proof, functions in bold type, e.g., $\mbf$, are in $\spl{R}{\X}$.
+  Functions in normal slanted type, e.g., $f$ are in \X.
 
   To show that $\spl{R}{\X}$ has meets,  designate the meet in $\spl{R}{\X}$ as \capspl
   and define $\mbf \capspl \mbg$ as the map given by the \X map $f \cap g$, where
@@ -1127,7 +1085,7 @@ In \cite{cockettlack2003:restcategories2}, it is shown that:
 Restriction categories have analogues of products and terminal objects.
 
 \begin{definition}
-  In a restriction category \X\, a \emph{restriction product}  of two objects $X, Y$ is an
+  In a restriction category \X, a \emph{restriction product}  of two objects $X, Y$ is an
   object $X\times Y$ equipped with \emph{total} projections
   $\pi_0:X\times Y\to X, \pi_1:X\times Y\to Y $ where:
   \begin{quote}
@@ -1142,7 +1100,7 @@ Restriction categories have analogues of products and terminal objects.
 
 \begin{definition}
   In a restriction category \X\, a \emph{restriction terminal object}
-  is an object $\top$ such that $\forall X$, there is a
+  is an object $\top$ such that for all objects $X$, there is a
   unique total map $!_X : X \to \top$ and the diagram
   \[
     \xymatrix @C=40pt @R=25pt{
@@ -1166,8 +1124,11 @@ Restriction categories have analogues of products and terminal objects.
     \Delta:A \to A \times A
   \]
   is a partial isomorphism.
+\end{definition}
 
-  A Cartesian restriction category is \emph{discrete} when every object is discrete.
+\begin{definition}\label{def:discrete_restriction_category}
+  A  Cartesian restriction category where all objects are
+  discrete is called a \emph{discrete restriction category}.
 \end{definition}
 
 \begin{theorem}\label{thm:a_crc_is_discrete_iff_it_has_meets}
@@ -1176,9 +1137,9 @@ Restriction categories have analogues of products and terminal objects.
 \begin{proof}
   If \X has meets, then
   \[
-    \Delta(\pi_0 \cap \pi_1) = \Delta\pi_0 \cap \Delta\pi_1 = 1\cap 1 = 1
+    \Delta(\pi_0 \cap \pi_1) = \Delta\pi_0 \cap \Delta\pi_1 = 1\cap 1 = 1.
   \]
-  and as $\<\pi_0,\pi_1\>$ is identity,
+  As $\<\pi_0,\pi_1\>$ is identity,
   \begin{align*}
     \restr{\pi_0 \cap \pi_1} &= \restr{\pi_0 \cap \pi_1} \<\pi_0, \pi_1\> \\
     &=\<\rst{\pi_0 \cap \pi_1}\pi_0, \rst{\pi_0 \cap \pi_1}\pi_1\>\\
@@ -1187,13 +1148,14 @@ Restriction categories have analogues of products and terminal objects.
   \end{align*}
   and therefore, $\pi_0 \cap \pi_1$ is $\inv{\Delta}$.
 
-  For the other direction, set $f\cap g = \<f,g\>\inv{\Delta}$.
+  To show the other direction, we set $f\cap g = \<f,g\>\inv{\Delta}$.
   By the definition of the restriction product:
   \[
     f \cap g =  \<f,g\>\inv{\Delta} =\<f,g\>\inv{\Delta} \Delta \pi_0 =
       \<f,g\>\restr{\inv{\Delta}}\pi_0 \le \<f,g\>\pi_0 \le f.
   \]
-  Then, substituting $\pi_1$ for $\pi_0$ above, gives us $f \cap g \le g$.
+  Then, substituting $\pi_1$ for $\pi_0$ above, this gives us $f \cap g \le g$.
+
   For the left distributive law,
   \[
     h(f \cap g) = h \<f,g\>\inv{\Delta} =  \<h f,h g\>\inv{\Delta} = h f \cap h g.
@@ -1206,10 +1168,6 @@ Restriction categories have analogues of products and terminal objects.
   Cartesian restriction category \X.
 
 \end{proof}
-\begin{definition}\label{def:discrete_restriction_category}
-  A  Cartesian restriction category in which every object is
-discrete is called a \emph{discrete restriction category}.
-\end{definition}
 
 % subsection restriction_products_and_cartesian_restriction_categories (end)
 
@@ -1244,7 +1202,7 @@ discrete is called a \emph{discrete restriction category}.
       \[
         \inv{(\<f,1\> ; \<g,1\>\times 1)} = \inv{\<g,1\>} \times 1 ; \inv{\<f,1\>} .
       \]
-      By the definition of the restriction product, $\rst{\<f g,1\>} = \rst{f g}$. Additionally,
+      By the definition of the restriction product, we have $\rst{\<f g,1\>} = \rst{f g}$. Additionally,
       a straightforward calculation shows that
         $\rst{\<f,1\>;\<g,1\> \times 1} =
           \rst{\<f\<g,1\>, 1\>} = \rst{f ;\< g,1\>}
@@ -1258,25 +1216,25 @@ discrete is called a \emph{discrete restriction category}.
         A \ar[r]^{\<f,1\>} \ar[drr]_{\<f g,1\>} &
            B \times A  \ar[r]^{\<g,1\> \times 1}
            &  C \times B \times A \\
-        &&C \times A \ar[u]_{1 \times \<f,1\>}
+        &&C \times A. \ar[u]_{1 \times \<f,1\>}
       }
     \]
 
-    From this:
+    Thus,
     \begin{align*}
-      \<f g,1\>  (1\times \<f,1\>) ( \inv{\<g,1\>}\times 1) \inv{\<f,1\>}
+      \<f g,1\>  (1\times \<f,1\>) &( \inv{\<g,1\>}\times 1) \inv{\<f,1\>}\\
       &=\<f,1\>(\<g,1\>\times 1 ) (\inv{\<g,1\>}\times 1) \inv{\<f,1\>}\\
       &=\<f,1\> (\rst{g\times 1}) \inv{\<f,1\>}\\
       &=\rst{\<f,1\> (g\times 1)}  \<f,1\> \inv{\<f,1\>}\\
-      &=\rst{\<f,1\> (g\times 1)}  \rst{\<f,1\>}\\
-      &= \rst{\<f,1\>} \rst{\<f,1\>(g\times 1)}\\
+      &=\rst{\<f,1\> (g\times 1)}\,  \rst{\<f,1\>}\\
+      &= \rst{\<f,1\>}\, \rst{\<f,1\>(g\times 1)}\\
       &= \rst{\<f,1\> (g\times 1)}\\
       &= \rst{\<f g,1\>}(=\restr{f g})\\
     \end{align*}
     showing that $1\times \<f,1\>  (\inv{\<g,1\>}\times 1 ) \inv{\<f,1\>}$ is
     a right inverse for $\<f g,1\>$.
 
-    For the other direction, note that in general $\inv{h k} = \inv{k}\inv{h}$ and that
+    For the other direction, note that in general $\inv{(h k)} = \inv{k}\inv{h}$ and that
     we have $\<f g,1\> = \<f,1\> (\<g,1\>\times 1)  (1 \times \inv{\<f,1\>})$, thus
     $(1\times \<f,1\>)  (\inv{\<g,1\>}\times 1) \inv{\<f,1\>}$ will also be a left inverse and
     $\<f g,1\>$ is a restriction isomorphism.
@@ -1325,14 +1283,10 @@ discrete is called a \emph{discrete restriction category}.
     &= \rst{(1 \times f)\inv{\Delta}} \< \pi_0, \pi_1 \>\\ % products
     &= \rst{(1 \times f)\inv{\Delta}}
   \end{align*}
-  The above follows as in a discrete restriction category, we have
-  \begin{align*}
-    \rst{\inv{\Delta}} \pi_1
-      &= \inv{\Delta} \Delta \pi_1\\
-      &= \inv{\Delta}\\
-      &= \inv{\Delta} \Delta \pi_0\\
-      &= \rst{\inv{\Delta}} \pi_0.
-  \end{align*}
+  The above follows in a discrete restriction category, as we have
+  \begin{equation*}
+    \rst{\inv{\Delta}} \pi_1 = \inv{\Delta} \Delta \pi_1 = \inv{\Delta} = \inv{\Delta} \Delta \pi_0 = \rst{\inv{\Delta}} \pi_0.
+  \end{equation*}
 
   For $\<\rst{f},1\>$, the inverse is $\rst{(1 \times \rst{f})\inv{\Delta}} \pi_1$. Similarly
   to above,

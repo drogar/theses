@@ -3,8 +3,8 @@
 \label{sec:semanticsquantum}
 
 \subsection{Semantics of pure quantum computations}\label{sec:puresemantics}
-In \cite{abramsky04:catsemquantprot}, the authors approach the creation of a categorical semantics
-for quantum computation independently of a specific language. Rather, they use finitary quantum
+In \cite{abramsky04:catsemquantprot}, Abramsky and Coecke approach the creation of a categorical semantics
+for quantum computation independently of a specific language. They use finitary quantum
 mechanics as their reference point.
 
 Finitary quantum mechanics consists of the following:
@@ -32,7 +32,7 @@ The above definition does allow for the possibility of mixed states, but for the
 remainder of this section, it is assumed both steps of the
 measurement are carried out, resulting in pure states only.
 
-\cite{abramsky04:catsemquantprot} gives the interpretation of finitary quantum mechanics in the
+The interpretation of finitary quantum mechanics from \cite{abramsky04:catsemquantprot} is given in the
 context of a biproduct dagger compact closed category, \cD.
 \begin{description}
   \item[\ref{lis:qfm1}.] An $n-$dimensional state space $S$ is an object of \cD,
@@ -75,12 +75,12 @@ logic gate teleportation and entanglement swapping.
 Given a $\dagger$-compact closed category, it is possible to construct its category of completely
 positive maps.
 
-\begin{definition}[Positive map]\label{def:positivemap}
+\begin{definition}\label{def:positivemap}
   A map $f:A\to A$ in a dagger category is called \emph{positive} if there is an object $B$ and a
-  map $g:A\to B$ with $f = g \dgr{g}$
+  map $g:A\to B$ with $f = g \dgr{g}$.
 \end{definition}
 
-\begin{definition}[Trace]\label{def:tracecp}
+\begin{definition}\label{def:tracecp}
   For $f:A\to A$ in a compact closed category, its \emph{trace} is defined as $tr\, f:I\to I =
   \eta_{A} ; c_{A^{*},A} ; (f\*A^{*}) ; \epsilon$.
 \end{definition}

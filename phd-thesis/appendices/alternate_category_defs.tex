@@ -1,0 +1,52 @@
+\chapter{Additional definitions of categories}
+\begin{definition}\label{def:category_alt}
+  A \emph{category} $\A$ is a collection of maps together with two functions, $D$ and $C$, from
+  $\A$ to $\A$ and a partial associative composition of maps (written by juxtaposing maps), such
+  that:
+  \begin{itemize}
+    \item[\cataltone] $D(f) f$ is defined and equals $f$,
+    \item[\catalttwo] $f C(f)$ is defined and equals $f$,
+    \item[\cataltthree] $f g$ is defined iff $C(f) = D(g)$ and $D(f g) = D(f)$ and $C(f g) = C(g)$,
+    \item[\cataltfour] $(f g) h = f (g h)$ whenever either side is defined,
+    \item[\cataltfive] $D(C(x)) = C(x)$, $C(D(x)) = D(x)$ and $C,D$ are both idempotent.
+  \end{itemize}
+\end{definition}
+
+Another definition, often used in introducing categories, is given next.
+
+\begin{lemma}\label{lem:category_is_category_alt}
+  A category as defined in Definition~\ref{def:category} is equivalent to a category as defined
+  in Definition~\ref{def:category_alt} and vice-versa.
+\end{lemma}
+\begin{proof}
+  Assume $\A$ is as in Definition~\ref{def:category_alt}. Then:
+  \begin{itemize}
+    \item Set $A_o$ to the collection of all  $D(f)$ and $C(f)$;
+    \item Set $A_m$ to all the maps in $\A$.
+  \end{itemize}
+  The domain of any map $f \in A_m$ is $D(f)$
+  and the co-domain is $C(f)$. By \cataltthree, for $f:X\to Y$ and $g:Y \to Z$ the composite $f g$ is
+  defined. The identity map of the object $D(f)$ is the map $D(f)$ and the identity map of the
+  object $C(f)$ is $C(f)$. By \cataltfive, we see \catone is satisfied. By \cataltfour, we see
+  \cattwo is satisfied. Therefore, $\A$ satisfies Definition~\ref{def:category_alt}.
+
+  Conversely, assume $\Z$ is as in Definition~\ref{def:category_alt}, with the
+  collection of maps, $Z_m$. For each $f : A \to B \in Z_m$, set $D(f) = 1_A$ and $C(f) = 1_B$. By
+  the definition of the identity maps and \catone, we see \cataltone, \catalttwo and \cataltfive are
+  all satisfied. From the composition requirements on $\Z$ and \cattwo, it follows that
+  \cataltfour is satisfied. For \cataltthree, assume $f g$ is defined. Then for some $A,B,C \in Z_o$,
+  $f:A \to B$ and $g:B \to C$. This gives us $1_B = C(f) = D(g)$, $1_A = D(f g) = D_f$ and $1_B =
+  C(f g) = C(g)$. Next, assume we have $C(f) = D(g)$, $D(f g) = D(f)$ and $C(f g) = C(g)$. This
+  tells us the co-domain of $f$ is some object $B$ which is also the domain of $g$, hence we may
+  form the composition $f g$ which will have domain $A$, the domain of $f$ and co-domain $C$, the
+  co-domain of $g.$
+\end{proof}
+
+We have shown the two definitions are equivalent. It will be convenient to reference either
+definition and manner of referring to a category throughout this thesis. We will use
+whichever definition seems the most appropriate to use at any point.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:

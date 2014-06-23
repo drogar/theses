@@ -31,7 +31,7 @@ The coherence requirements in definition \ref{def:daggersmc} are in addition to 
 coherence diagrams for a symmetric monoidal category. The additional coherence requirements are:
 \begin{itemize}
   \item For all maps $f:A\to B$ and $g:C\to D$, $\dgr{(f\*g)} = \dgr{f}\*\dgr{g}:B\*D \to A\* C$;
-  \item The monoid structure isomorphisms $a_{A,B,C}:(A\*B)\to C$, $u_{A}:A\to I\*A$ and
+  \item The monoid structure isomorphisms $a_{A,B,C}:(A\*B)\* C\to A\*(B\*C)$, $u_{A}:A\to I\*A$ and
     $c_{A,B}:A\*B \to B\*A$ are unitary.
 \end{itemize}
 
@@ -63,11 +63,11 @@ $p_{1},p_{2}$, then the following are equivalent.
   \item $\dgr{p_{i}} = in_{i}, i=1,2$, \label{ldpdgrpisq}
   \item $\dgr{(f\+g)} = \dgr{f}\+\dgr{g}$ and $\dgr{\Delta} = \nabla$,\label{ldpddeltisnab}
   \item $\dgr{\<f,g\>} = [\dgr{f},\dgr{g}]$,\label{ldpdcopisprod}
-  \item the below diagram commutes.\label{ldpcommute}
+  \item the below diagram commutes:\label{ldpcommute}
   \[
     \xymatrix @C+20pt @R+10pt{
       \dgr{A} \+ \dgr{B} \ar[d]_{id} \ar[dr]^{[\dgr{p_{1}},\dgr{p_{2}}]}\\
-      A\+B\ar[r]_{id}&\dgr{(A\+B)}
+      A\+B\ar[r]_{id}&\dgr{(A\+B)}.
     }
   \]
 \end{enumerate}
@@ -147,13 +147,20 @@ t\in T\}:S\to T$, then $\dgr{R}=\{(t,s)|(s,t)\in R\}(=R^{*})$.
 
 \paragraph{Inverse categories:}
 An inverse category \X is also a dagger category when the dagger is defined as the partial inverse.
-The unitary maps are the total maps which are isomorphisms. If the inverse category \X is also a
+The unitary maps are the restriction idempotents. However, if the inverse category \X is also a
 symmetric monoidal category where the monoid $\*$ is actually a restriction bi-functor, then \X is
-a dagger symmetric monoidal category. This follows from
+not a dagger symmetric monoidal category. The first requirement for being a dagger symmetric
+monoidal category is fulfilled, as
 \[
   (f\*g) \inv{(f\*g)} = \rst{f\*g}=\rst{f} \*\rst{g} =
    f\inv{f} \* g \inv{g} = (f\*g) (\inv{f} \* \inv{g})
 \]
-but since the partial inverse of $f\*g$ is unique, $\inv{f\*g} = \inv{f} \* \inv{g}$. Finally,
-since all the structure isomorphisms are total maps, they are unitary and \X is a dagger symmetric
-monoidal restriction category.
+and since the partial inverse of $f\*g$ is unique, $\inv{(f\*g)} = \inv{f} \* \inv{g}$. The other
+requirement is that the structure isomorphisms are unitary. This is, of course, not the case
+\emph{unless \X is a strict symmetric monoidal category}. In general,
+therefore \X is not a dagger symmetric monoidal restriction category.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../phd-thesis"
+%%% End:

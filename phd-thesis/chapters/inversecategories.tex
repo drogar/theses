@@ -6,7 +6,7 @@
 
 This chapter will focus on adding ``products'' to an inverse category.
 
-We will show below that inverse category that has a
+We will show below an inverse category which has a
 restriction product is a restriction pre-order. Given this, by ``product'', we mean a construction
 that behaves in a product-like manner in an inverse category. We call these \emph{inverse products}, which
 will be defined below in sub-section~\ref{sub:inverse_products}.
@@ -100,7 +100,7 @@ We start by showing that an inverse category with restriction products is a rest
       &c_{\*} &: A \* B \xrightarrow{\cong} B \* A.
     \end{align*}
   \end{itemize}
-  Note that as all the coherence maps are isomorphisms, they are total.
+  Note that since all the coherence maps are isomorphisms, they are total.
 \end{definition}
 
 \begin{definition}\label{def:inverse_product}
@@ -393,10 +393,10 @@ The axioms of Definition~\ref{def:inverse_product} then become:\\
   a \emph{discrete inverse category}.
 \end{definition}
 
-This sub-section will present some properties of discrete inverse categories. This sub-section will
+In this sub-section we will present some properties of discrete inverse categories. This  will
 form the basis for our eventual goal, that of connecting discrete inverse categories to Cartesian
-restriction categories. This connection will be given as a functor that lifts an inverse category to
-a Cartesian restriction category.
+restriction categories. The connection between them will be given as a functor that lifts a discrete
+inverse category to a discrete Cartesian restriction category.
 
 \begin{lemma}\label{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}
   In a discrete inverse category \X with the inverse product $\*$ and $\Delta$, where
@@ -1251,7 +1251,7 @@ v        \draw (g) to (finv);
       \end{tikzpicture}
       \ \raisebox{45pt}{$= g.$}\
       \]
-    \item[\ref{le:fgisfg}] Use the same diagram argument as in item \ref{le:dfgisfg}.
+    \item[\ref{le:fgisfg}] Use the same diagrammatic argument as in item \ref{le:dfgisfg}.
   \end{enumerate}
 \end{proof}
 
@@ -1508,7 +1508,7 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
       & & B \* C \ar@{.>}[dr]^{(\Delta\* 1) \, a_{\*}}\\
       && & B \* (B\* C) \ar@{.>}[dd]^{1\* h} \\
       A \ar[uurr]^f \ar[ddrr]_{f'}&&&\\
-      && & B \* (B \* C') \ar@{.>}[dl]^(.4){\ \inv{a_{\*}}\,(\inv{\Delta}\* 1)}\\
+      && & B \* (B \* C'). \ar@{.>}[dl]^(.4){\ \inv{a_{\*}}\,(\inv{\Delta}\* 1)}\\
       && B\* C'
     }
   \]
@@ -1557,7 +1557,7 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
       $f(\Delta \* 1)a_{\*}(1 \* \ell)\inv{a_{\*}}(\inv{\Delta}\*1) = f''$. In the interest of some
       brevity, this is shown below with the associativity maps elided from the equations.
 
-      We need to show that $(\Delta \* 1)(1 \* \ell)(\inv{\Delta}\*1) = \ell$.
+      We need to show that $(\Delta \* 1)(1 \* \ell)(\inv{\Delta}\*1) = \ell$:
       \begin{align*}
         (\Delta &\* 1)(1 \* \ell)(\inv{\Delta}\*1) \\
         &=
@@ -1680,11 +1680,11 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
     & = \restr{f(g\*1)a_{\*} (h\*1)} & \restr{a_{\*}}=1 \\
     & = \restr{f(g\*1) ((h\*1)\*1) a_{\*} } & a_{\*}\text{ natural} \\
     & = \restr{f(g\*1) ((h\*1)\*1) }
-      & a_{\*}   \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
+      &  \text{Lemma \ref{lem:restrictionvarious}}\\
     & = \restr{f(g\*1) ((h\*1)\*1) (a_{\*}\*1)}
-      & a_{\*}\*1 \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
+      & \text{Lemma \ref{lem:restrictionvarious}}\\
     & = \restr{f((g (h\*1)a )\*1)} & \text{ see above}\\
-    & = \restr{f((g (h\*1)a )\*1)a_{\*}} & a_{\*}   \text{ isomorphism}
+    & = \restr{f((g (h\*1)a )\*1)a_{\*}} & a_{\*}.
   \end{align*}
 
   For the mediating map, see the diagram below, where the calculation is in \X. The path starting at
@@ -1707,7 +1707,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
         \ar[u]_{a_\*} \ar[dll]_{a_{\*}\*1}
       \\
       \xtdmn{(\xtdmn{D}{D' \* C'})}{B'}  \ar[rrr]_{a_{\*}}
-        &&& \xtdmn{D}{(D' \* C') \* B'} %\ar @/^14pt/ [uu]^{1\*a_{\*}}
+        &&& \xtdmn{D}{(D' \* C') \* B'}. %\ar @/^14pt/ [uu]^{1\*a_{\*}}
     }
   \]
   From this, we can conclude
@@ -1754,7 +1754,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
 
 Define the restriction in \Xt\ as follows:
 \[
-  \infer{A\xrightarrow{\restr{f}  \inv{u_{\*}^r}} A\*1 \text{ in }\X}
+  \infer{A\xrightarrow{\restr{f}  \inv{u_{\*}^r}} A\*1 \text{ in }\X.}
         {\infer{A\xrightarrow{\restr{(f,C)}}A}
                {A\xrightarrow{(f,C)}B}
         }
@@ -1771,10 +1771,10 @@ Define the restriction in \Xt\ as follows:
       \X, we have:
       \begin{align*}
         \restr{\rst{f}\inv{\usr} (f\*1) a_{\*}} & = \restr{\rst{f}\inv{\usr} (f\*1)}
-          & a_{\*}   \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
+          & \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{\rst{f}f \inv{\usr}}  & \inv{\usr} \text{ natural}\\
         & = \restr{f \inv{\usr}}  & \text{ \rone in }\X\\
-        & = \restr{f } & \inv{\usr}   \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}.
+        & = \restr{f } & \text{Lemma \ref{lem:restrictionvarious}}.
       \end{align*}
 
       Then, the following diagram
@@ -1833,7 +1833,7 @@ Define the restriction in \Xt\ as follows:
     \rthree ($\restr{\restr{f} g} = \restr{f} \restr{g}$ ). We must show
       \begin{equation}
         \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr} \xequiv{}
-        (\restr{f} \inv{\usr})(\rst{g} \inv{\usr}\* 1) a_{\*}
+        (\restr{f} \inv{\usr})(\rst{g} \inv{\usr}\* 1) a_{\*}.
         \label{eq:rthree_in_xt}
       \end{equation}
       As above, the first step is
@@ -1842,30 +1842,26 @@ Define the restriction in \Xt\ as follows:
       hand side in \X:
       \begin{align*}
         \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr}}
-        & = \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}}} & \inv{\usr}
-          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
+        & = \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}}} & \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} &
           \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{\restr{f} g \inv{\usr} a_{\*}} & \inv{\usr} \text{ natural}\\
-        & = \restr{\restr{f} g } & \inv{\usr}, a_{\*}
-          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
+        & = \restr{\restr{f} g } & \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{f} \rst{g} & \text{\rthree in }\X.
       \end{align*}
       The restriction of the right hand side computes in \X as:
       \begin{align*}
         &\rst{(\restr{f} \inv{\usr})(\rst{g} \inv{\usr}\* 1) a_{\*}}\\
-        & = \rst{(\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) } &  a_{\*}
-          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
+        & = \rst{(\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) } &  \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \rst{\restr{f}  \rst{g} \inv{\usr}\inv{\usr} } &  \inv{\usr} \text{ natural}\\
-        & = \rst{\restr{f}  \rst{g} } &\inv{\usr}\inv{\usr}
-          \text{ isomorphism, Lemma \ref{lem:restrictionvarious}}\\
+        & = \rst{\restr{f}  \rst{g} } &\text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{f} \rst{g} & \text{Lemma \ref{lem:restrictionvarious}}.
       \end{align*}
 
       Additionally, we see $\rst{\rst{f} g}$ in \Xt is expressed in \X as:
       \begin{align*}
         &\restr{(\restr{f} \inv{\usr})(g\* 1) a_{\*}} \inv{\usr} \\
-        & = \rst{f} \inv{\usr} \rst{g\* 1} & \text{\rthree, \rfour, }a_{\*} \text{ isomorphism} \\
+        & = \rst{f} \inv{\usr} \rst{g\* 1} & \text{\rthree, \rfour} \\
         & = \rst{f} \rst{g} \inv{\usr} & \*
           \text{a restriction bi-functor, }\inv{\usr}\text{ natural.}
       \end{align*}
@@ -1893,7 +1889,7 @@ Define the restriction in \Xt\ as follows:
           &&A \ar[dr]_{\restr{g}}\\
           &&&A \ar[dr]_{\inv\usr}\\
           &&&&A\*1 \ar@{=}[dr]\\
-          &&&&&A\*1
+          &&&&&A\*1.
         }
       \]
       Hence, in \X, $\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr} \xequiv{1\*\usr}
@@ -1972,7 +1968,7 @@ Define the restriction in \Xt\ as follows:
       Y \*C\ar[rr]_{\inv{\usl}} & & 1 \*Y \* C
     }
   \]
-  commute, which is true by \rone and from the coherence diagrams for the inverse product tensor.
+  to commute, which is true by \rone and from the coherence diagrams for the inverse product tensor.
 \end{proof}
 
 Next,we show that the category \Xt\ has restriction products, given by the action of \wtc on
@@ -1980,7 +1976,7 @@ the $\*$ tensor in \X.
 
 First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
 \begin{align}
-  \pi_0:\qquad & A \* B \xrightarrow{(1,B)} A \label{eq:defn:pia}\\
+  \pi_0:\qquad & A \* B \xrightarrow{(1,B)} A, \label{eq:defn:pia}\\
   \pi_1:\qquad & A \* B \xrightarrow{(c_{\*},A)} B. \label{eq:defn:pib}
 \end{align}
 
@@ -2009,7 +2005,7 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
   \begin{align*}
     \rst{\<f,g\>}
       &=\rst{\Delta(f\*g)(1\*c_{\*}\*1)}\inv{\usr}&\text{in }\X, \text{ definition of restriction}\\
-    &=\rst{\Delta(f\*g)}\inv{\usr} &c_{\*}\text{ is isomorphism}\\
+    &=\rst{\Delta(f\*g)}\inv{\usr} &\\
     &=\rst{\Delta\rst{(f\*g)}}\inv{\usr} &\text{from Lemma \ref{lem:restrictionvarious}}\\
     &=\rst{\Delta(\rst{f}\*\rst{g})}\inv{\usr} &\*\text{ is a restriction functor}\\
     &=\rst{\rst{f}\,\rst{g}\,\Delta(1\*1)}\inv{\usr}
@@ -2066,7 +2062,7 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
       Z\ar[ur]^{\rst{g}}\ar[dr]_{\Delta}&& & &  A \* A \*C \* Z \ar@{.>}[d]^{1 \* 1 \* 1 \* g}\\
       &Z\*Z\ar[dr]_{f\* g}& & & A\*A\*C\*B\*C'\ar@{.>}[d]^{1\*1\*c_{\*}\*1}\\
       &&A\*C\*B\* C'\ar[dr]_{1\*c_{\*}\*1}&&A\*A\*B\*C\*C'\ar[dl]^{\inv{\Delta}\*1\*1\*1}\\
-      & & & A\*B\*C\*C'
+      & & & A\*B\*C\*C'.
     }
   \]
 \end{proof}
@@ -2142,9 +2138,9 @@ result.
   equivalence class of $(f \inv{\usr},1)$ for some $f:A\to B$.
 \end{lemma}
 \begin{proof}
-  As $(g,C)$ is invertible in \Xt, the map $\inv{(g,C)}: B \to A$ exists. $\inv{(g,C)}$ must be in
-  the equivalence class of some map $k:B \to A \* D$, and also note that $\rst{(g,C)}$ is by
-  construction the equivalence class of the map $\rst{g}\inv{\usr}:A \to A\*1$ in \X. This means,
+  As $(g,C)$ is invertible in \Xt, the map $\inv{(g,C)}: B \to A$ exists. The map $\inv{(g,C)}$ must be in
+  the equivalence class of some map $k:B \to A \* D$. By construction, the map  $\rst{(g,C)}$ is
+  in the equivalence class of the map $\rst{g}\inv{\usr}:A \to A\*1$ in \X. This means,
   diagramming in \X, there is an $n$ such that
   \[
     \xymatrix @C=45pt @R=25pt{
@@ -2185,7 +2181,7 @@ result.
   \[
     \xymatrix @C=35pt @R=40pt{
       f \ar@{|->}[rr]^{\eta} \ar@{|->}[rd]_{F}&& (f\inv{\usr},1) \ar@{|->}[d]^{\Inv{F^{\#}}}\\
-      &F(f) \ar@{=}[r] & F(f\inv{\usr})\pi_0
+      &F(f) \ar@{=}[r] & F(f\inv{\usr})\pi_0.
     }
   \]
   As $\eta$ is identity on the objects, Diagram~\ref{dia:universal_property_of_inverse_categories}
@@ -2291,8 +2287,10 @@ Continuing from Example~\ref{example:invprodisstructure}, recall the discrete ca
 elements with two different tensors. Completing these gives two different lattices. They are either
 the straight line lattice, or the diamond semi-lattice. Below are the details of these constructions.
 
-Recall $\D$ has four elements $a,b,c$ and $d$, and there are two possible inverse product tensors:
-\begin{quote}\qquad\qquad
+Recall $\D$ has four elements $a,b,c$ and $d$, and there are two possible inverse product tensors,
+given in Table~\ref{tab:two_different_inverse_products}.
+\begin{table}[h!]
+  \begin{center}
   \begin{tabular}{|l||c|c|c|c|}
     \hline
     $\*$&a&b&c&d\\ \hline \hline
@@ -2301,19 +2299,22 @@ Recall $\D$ has four elements $a,b,c$ and $d$, and there are two possible invers
     c&a&\textbf{b}&c&c \\ \hline
     d&a&b&c&d \\ \hline
   \end{tabular}
-  \hfil
+  \qquad
   \begin{tabular}{|l||c|c|c|c|} \hline
-    $\*$&a&b&c&d\\ \hline \hline
+    $\odot$&a&b&c&d\\ \hline \hline
     a&a&a&a&a\\ \hline
     b&a&b&\textbf{a}&b\\ \hline
     c&a&\textbf{a}&c&c \\ \hline
     d&a&b&c&d \\ \hline
   \end{tabular}
-  \qquad \qquad
-\end{quote}
+  \end{center}
+  \caption{Two different inverse products on the same category.}
+  \label{tab:two_different_inverse_products}
+\end{table}
 
 
-Define $\Delta$ as the identity map. Then, for the first tensor, $\widetilde{\D}$ has the following
+Define $\Delta$ as the identity map. Then, for the first tensor, $\*$ of
+Table~\ref{tab:two_different_inverse_products}, $\widetilde{\D}$ has the following
 maps
 \begin{align*}
   %a \xrightarrow{(id,a)} a \ (\equiv a \xrightarrow{(id, b)} a \equiv a \xrightarrow{(id,c)} a
@@ -2332,7 +2333,7 @@ resulting in the straight-line ($a \to b \to c \to d$) lattice. The tensor in \D
 and hence is a categorical product in $\widetilde{\D}$. Note that the only partial inverses in
 $\widetilde{\D}$ are the identity functions and that for all maps $f$, $\<f,1\> = id$.
 
-With the second tensor table, we have:
+With the second tensor, $\odot$ from Table~\ref{tab:two_different_inverse_products}, we have:
 \begin{align*}
   a \xrightarrow{(id,a) \ (\equiv (id, b) \equiv (id,c) \equiv (id,d))} a, \qquad
     a \xrightarrow{(id,a)} b, \qquad a \xrightarrow{(id, a)} c , \qquad a \xrightarrow{(id, a)} d \\
@@ -2340,14 +2341,14 @@ With the second tensor table, we have:
   c \xrightarrow{(id, c) \ (\equiv (id, d))} c,   \qquad c \xrightarrow{(id,c)} d\\
   d \xrightarrow{(id,d)} d
 \end{align*}
-resulting in the ``diamond'' lattice,
+resulting in the ``diamond'' lattice, \raisebox{19pt}{
 $
   \xymatrix @R=3pt @C=8pt {
     & b \ar[dr]\\
     a \ar[ur] \ar[dr] & &d\\
     & c \ar[ur]
   }
-$. Once again, the tensor in \D is the meet.
+$}. Once again, the tensor in \D becomes the meet.
 
 \begin{example}{Lattice completion.}\label{example:lattice_completion}
   Suppose we have a set together with an idempotent, commutative, associative operation $\wedge$ on
@@ -2359,7 +2360,7 @@ $. Once again, the tensor in \D is the meet.
     \xymatrix{
       &x\\
       x' \ar[ur]_{\le} & & y' \ar[ul]^{\le}\\
-      &x'\wedge y'  \ar[ul]_{\le} \ar[ur]^{\le}
+      &x'\wedge y'.  \ar[ul]_{\le} \ar[ur]^{\le}
     }
   \]
 

@@ -132,6 +132,7 @@
 \newcommand{\axiom}[2]{\ensuremath{[\text{\bfseries {#1}.{#2}}]}\xspace}
 
 \newcommand{\cataxiom}[1]{\axiom{C}{#1}}
+\newcommand{\cataltaxiom}[1]{\axiom{C'}{#1}}
 
 \newcommand{\rstaxiom}[1]{\axiom{R}{#1}}
 
@@ -139,9 +140,12 @@
 
 \newcommand{\catone}{\cataxiom{1}}
 \newcommand{\cattwo}{\cataxiom{2}}
-\newcommand{\catthree}{\cataxiom{3}}
-\newcommand{\catfour}{\cataxiom{4}}
-\newcommand{\catfive}{\cataxiom{5}}
+
+\newcommand{\cataltone}{\cataltaxiom{1}}
+\newcommand{\catalttwo}{\cataltaxiom{2}}
+\newcommand{\cataltthree}{\cataltaxiom{3}}
+\newcommand{\cataltfour}{\cataltaxiom{4}}
+\newcommand{\cataltfive}{\cataltaxiom{5}}
 
 \newcommand{\rone}{\rstaxiom{1}}
 \newcommand{\rtwo}{\rstaxiom{2}}
@@ -180,7 +184,7 @@
 \newcommand{\capspl}{\ensuremath{\cap_{\text{K}}}\xspace}
 
 
-
+\newcommand{\conjugate}[1]{{#1}^{*}}
 
 \newcommand{\norm}[1]{\|#1\|}
 \newcommand{\weight}[1]{\norm{#1}_{\rm weight}}

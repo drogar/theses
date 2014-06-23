@@ -12,13 +12,12 @@ We start with the definition of a \emph{vector space}.
 \begin{definition}\label{def:vector_space}
   Given a field $F$, whose elements will be referred to as scalars, a \emph{vector space} over $F$
   is a non-empty set $V$ with two operations, \emph{vector addition} and \emph{scalar
-  multiplication}. \emph{Vector addition} is a functions ${+}:V\times V \to V$ and denoted as
-  $\vc{v}+\vc{w}$ where $\vc{v},\vc{w}\in V$. The set $V$ must be an abelian group under $+$.
-  \emph{Scalar multiplication} is a function $F\times V \to V$ and denoted as $c\vc{v}$ where
-  $c\in F, \vc{v} \in V$. Scalar multiplication distributes over both vector addition and scalar
-  addition and is associative. $F$'s multiplicative identity is an identity for scalar
-  multiplication.
-
+  multiplication}. \emph{Vector addition} is denoted by an infix $+$ and the set $V$ must be an
+  abelian group under $+$.
+  \emph{Scalar multiplication} is a function $F\times V \to V$ and denoted by juxtaposing the scalar
+  from $F$ and the vector from $V$, i.e., $c\vc{v}$. Scalar multiplication distributes over both
+  vector  addition and addition of scalars.  Scalar multiplication is associative. $F$'s multiplicative identity is an
+  identity for scalar  multiplication.
 \end{definition}
 The specific algebraic requirements are:
 \begin{enumerate}
@@ -47,12 +46,12 @@ Examples of vector spaces over $F$ are:
 \end{itemize}
 
 $F^{n\times 1}$, the set of $n\times 1$
-matrices over $F$ is also called the space of column vectors, while $F^{1\times n}$, the set of row
-vectors. As is customary, we shall identify $F^n$ is with $F^{n\times 1}$.
+matrices over $F$ is also called the space of column vectors, while $F^{1\times n}$ is called the
+space of row vectors. As is customary, we shall identify $F^n$ with $F^{n\times 1}$.
 
 \begin{definition}\label{def:linearly_independent}
   A set of vectors $\{\vc{v}_i\}$ in the vector space $V$ is said to be \emph{linearly
-  independent} when no finite linear combination of them, $\sum a_j\vc{v}_j$ equals \vc{0} unless
+  independent} when no finite linear combination of them, $\sum a_j\vc{v}_j$, equals \vc{0} unless
   all the $a_j$ are zero.
 
 \end{definition}
@@ -63,11 +62,12 @@ vectors. As is customary, we shall identify $F^n$ is with $F^{n\times 1}$.
 \end{definition}
 
 \begin{definition}\label{def:linear_map_of_vector_spaces}
-  Given $V, W$ are vector spaces over $F$ with $v \in V$ and $s \in F$, then
-  if $f:V \to W$ is a group homomorphism such that $f(v s) = f(v) s$, then we say $f$ is a
-  \emph{linear map}. Furthermore, a map $f:V\times W \to X$ is called \emph{bilinear} when the
-  map $f_v:W\to T$ and $f_w:V\to T$ are linear for each $v\in V$ and $w\in W$, where $f_v$ is the
-  map obtained from $f$ by fixing $v\in V$ and $f_w$ is obtained from $f$ by fixing  $w\in W$.
+  Suppose we have $V, W$ vector spaces over $F$ with $v \in V$ and $s \in F$. We say $f$ is a
+  \emph{linear map} when $f:V \to W$ is a group homomorphism such that $f(v s) = f(v)s$. Let
+  $f_v$ be the
+  map obtained from $f$ by fixing $v\in V$ and $f_w$ be the map obtained from $f$ by fixing  $w\in W$.
+  Then, a map $f:V\times W \to X$ is called \emph{bilinear} when the
+  map $f_v:W\to T$ and $f_w:V\to T$ are linear for each $v\in V$ and $w\in W$, where
 \end{definition}
 
 \begin{definition}\label{def:free_vector_space}
@@ -119,15 +119,15 @@ The diagonal matrix $n\times n$ with only $1$'s on the diagonal is the identity 
 multiplication, and is designated by $I_n$.
 
 \begin{definition}\label{def:transpose}
-  The \emph{transpose} of a $n\times m$ matrix $A=[a_{i j}]$ is a $m\times n$ matrix $A^{t}$ with
+  The \emph{transpose} of a $n\times m$ matrix, $A=[a_{i j}]$, is a $m\times n$ matrix $A^{t}$ with
   the $i,j$ entry being $a_{j i}$.
 \end{definition}
 
 \begin{definition}\label{def:conjugate_transpose}
   When the base field of a matrix is \complex, the complex numbers, the \emph{conjugate transpose}
-  (also called the \emph{adjoint}) of an $n\times m$ matrix $A=[a_{i j}]$ is defined as the $m\times
-  n$ matrix $A^{*}$ with the $i,j$ entry being $\overline{a}_{j i}$, where $\overline{a}$ is the
-  complex conjugate of $a\in\complex$.
+  of an $n\times m$ matrix $A=[a_{i j}]$ is defined as the $m\times
+  n$ matrix $A^{*}$ with the $i,j$ entry being $\conjugate{a}_{j i}$. The conjugate transpose is
+  also referred to as the \emph{adjoint} of the matrix.
 \end{definition}
 
 When working with column vectors over \complex, note that $\vc{u} \in \complex^n \implies
@@ -140,12 +140,8 @@ This thesis will use the usual identification of \complex{} with $\complex^{1\ti
 \end{definition}
 
 \begin{definition}\label{def:trace}
-  The \emph{trace}, $Tr(A)$ of a square matrix $A=[a_{i j}]$ is $\sum a_{ii}$.
+  The \emph{trace}, $Tr(A)$, of a square matrix $A=[a_{i j}]$ is $\sum a_{ii}$.
 \end{definition}
-
-\subsubsection{Tensor Product} % (fold)
-\label{ssub:tensor_product}
-
 
 The tensor product of two matrices is the usual Kronecker product:
   \[
