@@ -2,13 +2,11 @@
 \chapter{Inverse sum categories} % (fold)
 \label{cha:inverse_sum_categories}
 
-\begin{remark}
-  Throughout this chapter we will work with a number of relations between maps and operations on
-  pairs of maps. Suppose we have a relation $\lozenge$ between maps $f,g:B\to C$, i.e., $f \lozenge
-  g$. We will refer to $\lozenge$ as \emph{stable} whenever given a $h:A \to B$, then $h f \lozenge
-  h g$. We will refer to $\lozenge$ as \emph{universal} whenever given a $k:C \to D$, then $f k
-  \lozenge g k$.
-\end{remark}
+Throughout this chapter we will work with a number of relations between maps and operations on
+pairs of maps. Suppose we have a relation $\lozenge$ between maps $f,g:B\to C$, i.e., $f \lozenge
+g$. We will refer to $\lozenge$ as \emph{stable} whenever given a $h:A \to B$, then $h f \lozenge
+h g$. We will refer to $\lozenge$ as \emph{universal} whenever given a $k:C \to D$, then $f k
+\lozenge g k$.
 
 
 \section{Coproducts in restriction categories} % (fold)
@@ -39,7 +37,7 @@ Restriction categories may also have coproducts and initial objects.
         \xymatrix @C=30pt @R=35pt{
           A \ar[rr]_{f} \ar[dr]_{\cpa} && A' \ar[dr]^{\cpa'}\\
           &A+B \ar@{.>}[rr]^{f+g} & & A' + B'\\
-          B \ar[rr]_{g} \ar[ur]^{\cpb} && B' \ar[ur]_{\cpb'}
+          B \ar[rr]_{g} \ar[ur]^{\cpb} && B'. \ar[ur]_{\cpb'}
         }
       \]
       In order to show $\restr{f+g} = \restr{f} + \restr{g}$, it suffices to show that
@@ -49,7 +47,7 @@ Restriction categories may also have coproducts and initial objects.
         &= \restr{f \cpa'} \cpa &\text{coproduct diagram}\\
         &= \restr{f \restr{\cpa'}} \cpa
           & \text{Lemma }\refitem{lem:restrictionvarious}{lemitem:rv_3}\\
-        &= \restr{f} \cpa & \cpa'\text{ total}
+        &= \restr{f} \cpa & \cpa'\text{ total}.
       \end{align*}
     \item   \textbf{$\nabla:A+A\to A$ is total.}
       By the definition of $\nabla$ ($=\<1 | 1 \>$) and the co-product, the following diagram
@@ -61,22 +59,20 @@ Restriction categories may also have coproducts and initial objects.
         }
       \]
       resulting in:
-      \begin{align*}
-        \cpa \restr{\nabla} & = \restr{\cpa \nabla} \cpa\\
-        &= \restr{1} \cpa\\
-        &= \cpa
-      \end{align*}
+      \[
+         \cpa \restr{\nabla}  = \restr{\cpa \nabla} \cpa = \restr{1} \cpa = \cpa.
+      \]
       Similarly, $\cpb \restr{\nabla} = \cpb$, hence, the restriction of $\nabla$ is $1$ and
       therefore $\nabla$ is total.
-    \item  \textbf{$?:0 \to A$ is total.}
+    \item  \textbf{$\why:0 \to A$ is total.}
       This follows from
       \[
         \xymatrix @C=30pt @R=35pt{
-          0 \ar[dr]_{?} \ar[r]^{\cpb} &A + 0 \\
+          0 \ar[dr]_{\why} \ar[r]^{\cpb} &A + 0 \\
           & A \ar@{=}[u]
         }
       \]
-      so $?$ can be defined as the total coproduct injection.
+      so $\why$ can be defined as the total coproduct injection.
   \end{enumerate}
 
 
@@ -583,7 +579,7 @@ $f_1 \djoin f_2 \djoin \cdots \djoin f_n$.
 \begin{lemma}\label{lem:disjoint_joins_only_when_all_disjoint}
   Given $\X$ is an inverse category with a disjoint join, then if $f_i, g_j : A \to B$ and $\cdperp
   [f_i]$ and $\cdperp [g_j]$, then $\djoin [f_i] \cdperp \djoin [g_j]$ if and only $f_i \cdperp
-  g_j$ for all $i,j$;
+  g_j$ for all $i,j$.
 \end{lemma}
 \begin{proof}
   Assume $\djoin [f_i] \cdperp \djoin [g_j]$. By \axiom{Dj}{4} and associativity, we have
@@ -631,8 +627,8 @@ inverse categories with disjoint joins has a disjoint join.
 \subsection{Monoidal Tensors for disjointness} % (fold)
 \label{sub:tensors_for_disjointness}
 
-Suppose we are given a monoidal tensor $\+$ on $\X$, an inverse category with a restriction zero.
-Under certain conditions, it is possible to define disjointness based upon the action of the
+When we have a monoidal tensor $\+$ on $\X$, an inverse category with a restriction zero,
+there are certain conditions where it is possible to define disjointness based upon the action of the
 tensor. We are assuming the following naming for the standard monoidal tensor
 isomorphisms:
 \begin{align*}
@@ -641,11 +637,11 @@ isomorphisms:
    a_\+ &: (A \+ B) \+ C \to A \+ (B \+ C) \\
    c_\+ &: A \+ B \to B \+ A.
  \end{align*}
-We also require the tensor isomorphisms above be be natural.
+We also require the tensor isomorphisms above be natural.
 
 \begin{definition}\label{def:disjointness_tensor}
-  Suppose we are given an inverse category \X with restriction zero and a symmetric monoidal tensor
-  $\+$. $\+$ is a \emph{disjointness tensor} when:
+  Given we have an inverse category \X with restriction zero and a symmetric monoidal tensor
+  $\+$, the tensor $\+$ is a \emph{disjointness tensor} when:
   \begin{itemize}
     \item It is a restriction functor --- i.e., $\_ \+ \_ : \X \times \X \to \X$.
     \item The unit is the restriction zero. ($0 : \boldsymbol{1}\to \X$ picks out the restriction
@@ -666,20 +662,20 @@ We also require the tensor isomorphisms above be be natural.
 \end{lemma}
 \begin{proof}
   Recall the zero map factors through the restriction zero, i.e. $0:A \to B$ is the same as
-  saying $A\xrightarrow{!} 0 \xrightarrow{?}B$. Additionally, as objects, $0\+0 \cong 0$ ---
+  saying $A\xrightarrow{!} 0 \xrightarrow{\why}B$. Additionally, as objects, $0\+0 \cong 0$ ---
   the restriction zero.
 
   Therefore the map $0\+0: A\+B \to C\+D$ is writable as
   \[
-    A\+B \xrightarrow{!\+!}0\+0  \xrightarrow{?\+?} C\+D,
+    A\+B \xrightarrow{!\+!}0\+0  \xrightarrow{\why\+\why} C\+D,
   \]
   which may then be rewritten as
   \[
     A\+B \xrightarrow{!\+!}0\+0 \xrightarrow{\upl} 0
-      \xrightarrow{\inv{\upl}} 0\+0 \xrightarrow{?\+?} C\+D.
+      \xrightarrow{\inv{\upl}} 0\+0 \xrightarrow{\why\+\why} C\+D.
   \]
 
-  But by the properties of the restriction zero, $(!\+!) \upl = !$ and $\inv{\upl}(?\+?) = ?$
+  But by the properties of the restriction zero, $(!\+!) \upl = !$ and $\inv{\upl}(\why\+\why) = \why$
   and therefore the map $0\+0: A\+B \to C\+D$ is the same as the map $0: A\+B \to C\+D$.
 \end{proof}
 
@@ -769,7 +765,7 @@ We also require the tensor isomorphisms above be be natural.
   \[
     f = f (\cpa \icpa) = (f \cpa) \icpa = (g \cpa) \icpa = g (\cpa \icpa) = g.
   \]
-  The proof that $\cpb$ is monic is similar.
+  The proof that $\cpb$ is monic follows via a similar argument.
 \end{proof}
 
 As we have shown that $\scp{i} = \icp{i}$, we will prefer the explicit notation of $\icp{i}$ for
@@ -1098,8 +1094,8 @@ Therefore, we add one more assumption regarding our tensor in order to define di
   $\tperp[f,g,h]$. Then both $f \tjdown (g \tjdown h)$ and $f\tjup(g\tjup h)$ exist.
 \end{lemma}
 \begin{proof}
-  As all the maps are disjoint, we know that each pair's $\tjdown$ map and $\tjup$ maps
-  exist.  Consider the diagram
+  As all the maps are disjoint, we know the maps $\tjdown$ and $\tjup$ exist for each pair.
+  Consider the diagram
   \[
     \xymatrix@C+5pt@R+10pt{
       A \ar@/_/[ddr]_{g\tjdown h} \ar@/^/[drr]^{g\tjdown f} \ar@{.>}[dr]|-{\alpha} \ar[rr]^{f}
@@ -1118,14 +1114,14 @@ Therefore, we add one more assumption regarding our tensor in order to define di
   commute. Therefore by Lemma~\ref{lem:properties_of_tjdown_and_tjup}, $f\tjdown(g\tjdown h)$
   exists and is equal to $\alpha \com{\+\,\{01,2\}}$.
 
-  A dual diagram and reasoning shows $f\tjup(g\tjup h)$ exists.
+  A dual diagram and corresponding reasoning shows $f\tjup(g\tjup h)$ exists.
 \end{proof}
 
 \begin{lemma}\label{lem:tjdown_and_tjup_associate}
   In an inverse category $\X$ with a disjoint sum tensor, when $\tperp [f,g,h]$, then:
   \begin{enumerate}
-    \item   $f \tjdown (g \tjdown h) = ((f \tjdown g) \tjdown h) \assocp$ and both exist;
-    \item   $f \tjup (g \tjup h) = ((f \tjup g) \tjup h) \assocp$ and both exist;
+    \item   $f \tjdown (g \tjdown h) = ((f \tjdown g) \tjdown h) \assocp$ and both exist,
+    \item   $f \tjup (g \tjup h) = ((f \tjup g) \tjup h) \assocp$ and both exist.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -1156,8 +1152,8 @@ Therefore, we add one more assumption regarding our tensor in order to define di
     \gamma \comp  \icp{1} \icp{0} =\, &g  = \alpha \assocp\icpb\icpa\\
     \gamma \comp  \icp{1} \icpb   =\, & h = \alpha \assocp\icpb\icpb.
   \end{align*}
-  Hence, by the assumption that $\icpa, \icpb$ are jointly monic, we have
-  $\alpha = \gamma \comp  \assocp$ and hence $f \tjdown (g \tjdown h) = (f \tjdown g) \tjdown h$,
+  By the assumption that $\icpa, \icpb$ are jointly monic, we have
+  $\alpha = \gamma \comp  \assocp$. Therefore $f \tjdown (g \tjdown h) = (f \tjdown g) \tjdown h$,
   up to the associativity isomorphism.
 \end{proof}
 \begin{definition}\label{def:tensor_disjoint_join}
@@ -1666,10 +1662,10 @@ Conversely, we can show that given a tensor which produces inverse sums, that te
 be an inverse sum tensor.
 
 \begin{lemma}\label{lem:inverse_sums_give_inverse_sum_tensors}
-  Given an inverse category $\X$ with restriction zero, a disjointness relation $\cdperp$, a
+  Suppose we have an inverse category $\X$ with restriction zero, a disjointness relation $\cdperp$, a
   disjoint join $\djoin$ and a symmetric monoidal tensor $\+$, with natural restriction monics
-  $\cpa: A\to A\+B$ and $\cpb: B \to A\+B$ such that $A\+B$ is an inverse sum under $\cpa$ and
-  $\cpb$, then when $f,g :A \to B$ and $h,k:C\to D$ with $f \cdperp g$ and $h \cdperp k$, then $f
+  $\cpa: A\to A\+B$ and $\cpb: B \to A\+B$. Further suppose that $A\+B$ is an inverse sum under $\cpa$ and
+  $\cpb$. When $f,g :A \to B$ and $h,k:C\to D$ with $f \cdperp g$ and $h \cdperp k$, then $f
   \+h \cdperp g\+k$ and $(f\+h)\djoin (g\+k) = (f\djoin g)\+ (h\djoin k)$.
 \end{lemma}
 \begin{proof}
@@ -1764,7 +1760,7 @@ show that \imatx is an inverse category and that $\X$ embeds within this categor
   introduced in Definition~\ref{def:disjointness_tensor}.
 
   We will show that this type of matrix corresponds to maps in the category \imatx, where
-  composition is given by ``matrix multiplication'', with the operations of multiplication and
+  composition is given by ``matrix multiplication'', where the operations of multiplication and
   addition are replaced with composition in \X and the disjoint join respectively.
 
 \begin{definition}\label{def:inverse_matrix_category}
@@ -1800,9 +1796,9 @@ show that \imatx is an inverse category and that $\X$ embeds within this categor
   [A_1,\ldots, A_n] \to [B_1,\ldots, B_m]$ and $[g_{j k}]: [B_1,\ldots, B_m] \to [C_1,\ldots,
   C_\ell]$. By supposition, we know $h_{i k} = \djoinbig_\jay f_{i \jay} g_{\jay k}$. As each of
   the maps are inverse sum matrices, we know that $\cdperp [f_{i \jay} \cp{j}]$ and
-  $\cdperp[\inv{\cp{j}}g_{\jay k}]$. Hence, For each $\jay$ we know the composition $f_{i \jay}
+  $\cdperp[\inv{\cp{j}}g_{\jay k}]$. Hence, for each $\jay$ we know the composition $f_{i \jay}
   \cp{j} \inv{\cp{j}}g_{\jay k} = f_{i \jay} g_{\jay k}$ is defined and from $A_i$ to $C_{k}$. By
-  the the stability and universality of $\djoin$, we know $h_{i k}$ exists and by the definition of
+  the stability and universality of $\djoin$, we know $h_{i k}$ exists and by the definition of
   $\djoin$, we have each $h_{i k}: A_i \to C_k$ and hence composition is well-defined.
 
   \emph{Associativity of composition.} We have
@@ -1880,11 +1876,11 @@ that the rows and columns of $f$ are each disjoint, we see that the composition
 $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
 
 \begin{lemma}\label{lem:imat_has_restriction_zero}
-  Given \X is an inverse restriction category with a restriction zero, $0$, and a disjoint join,
+  Given \X is an inverse restriction category with a restriction zero and a disjoint join,
   then \imatx has a restriction zero.
 \end{lemma}
 \begin{proof}
-  The restriction zero in \imatx is the list $[0]$.
+  The restriction zero in \imatx is the list $[0]$ where $0$ is the restriction zero in \X.
 
   For the object $A=[A_1,\ldots,A_n]$, the $0$ map is given by the $n\times 1$ matrix
   $[0,\ldots,0]$. The map from $0$ is given by the $1\times n$ matrix
@@ -1894,7 +1890,7 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
 
 \begin{lemma}\label{lem:imat_is_disjoint_tensor_category}
   Given \X is an inverse restriction category with a restriction zero, $0$, and a disjoint join,
-  then the monoid $\+$ defined by list concatenation of objects is a disjointness tensor.
+  then the monoid $\+$ defined by list catenation of objects is a disjointness tensor.
 \end{lemma}
 \begin{proof}
   We first note the monoidal isomorphisms:
@@ -1967,21 +1963,20 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
 \end{lemma}
 \begin{proof}
   By Lemma~\ref{lem:imat_is_disjoint_tensor_category}, we know that the tensor defined by
-  list catenation is a disjoint tensor. To show that it is disjoint sum tensor, we must
+  list catenation is a disjoint tensor. To show that it is a disjoint sum tensor, we must
   fulfill Definition~\ref{def:disjoint_sum_tensor}.
 
   First, for the diagram below, we show that $\alpha$ exists if and only if
   $f\icpb \tjdown g\icpb$. Note that diagram assumes all the solid arrows exist and make the
   diagram a commutative diagram.
-
   \begin{align*}
     \xymatrix@C+5pt{
       [A] \ar@/_/[ddr]_f \ar@/^/[drr]^g \ar@{.>}[dr]|-{\alpha} \\
         & [X,Y,Z] \ar[d]^{\icp{1,2}} \ar[r]_{\icp{1,3}} & [X,Z] \ar[d]^{\icpa} \\
-        & [X,Y] \ar[r]_{\icpa} & [X]
+        & [X,Y] \ar[r]_{\icpa} & [X].
     }
   \end{align*}
-  $f\icpb \tjdown g\icpb$ means there is an $h = [h_1,h_2]: [A]\to[Y,Z]$ such that
+  The existence of $f\icpb \tjdown g\icpb$ means there is an $h = [h_1,h_2]: [A]\to[Y,Z]$ such that
   $h\icpa = f\icpb$ and $h\icpb = g\icpb$. From the diagram, given that $f = [f_1,f_2]$ and
   $g = [g_1,g_2]$, we know that $f_1 = f\icpa = g\icpa = g_1$. We also have $h_1 = f_2$ and
   $h_2 = g_2$. If we set $\alpha$ to the matrix $[f_1,f_2,g_2]$, the diagram above commutes.
@@ -2030,7 +2025,7 @@ In this sub-section we will provide restriction functors between an inverse sum 
 equivalence between these two categories.
 
 \begin{definition}\label{def:functor_from_x_to_imatx}
-  Given $\X$ is an inverse sum category with disjoint join $\cdperp$ and restriction zero $0$,
+  Given $\X$ is an inverse sum category with disjoint join $\cdperp$ and restriction zero,
   define $M:\X \to \imatx$ by:
   \begin{align*}
     \text{Objects:}\ &M(A) := [A]\\
@@ -2095,8 +2090,8 @@ equivalence between these two categories.
 
   First, we see that $M S:\X \to \X$ is the identity functor as
   \begin{align*}
-    \text{Objects:}\ &S(M(A)) = S([A]) = A\\
-    \text{Maps:}\ &S(M(f)) = S([f]) = f
+    \text{Objects:}\ &S(M(A)) = S([A]) = A,\\
+    \text{Maps:}\ &S(M(f)) = S([f]) = f.
   \end{align*}
 
   Next, we need to show that there is a natural transformation and isomorphism $\rho$ such that
@@ -2150,7 +2145,7 @@ equivalence between these two categories.
 \begin{proof}
   Recall from Lemma~\ref{lem:an_inverse_sum_tensor_gives_inverse_sums} that $A\+B$ and $C\+D$ are
   inverse sums. Referencing Definition~\ref{def:inverse_sum}, define $e_0 = \inv{i_1}i_1$ and $e_1
-  = \inv{i_2}i_2$ and recall that $e_0 \cdperp e_1$, $e_0 \djoin e_1 = 1$. Then given a function
+  = \inv{i_2}i_2$ and note that $e_0 \cdperp e_1$, $e_0 \djoin e_1 = 1$. Then given a function
   $f:A\+B \to C\+D$ define
   \[ f_M =
      \begin{bmatrix}
@@ -2158,12 +2153,12 @@ equivalence between these two categories.
        e_1 f e_0 & e_1 f e_1
       \end{bmatrix}.
   \]
-  Note first that since $e_0 \cdperp e_1$, the maps in the rows of $f_M$ are disjoint by the
+  Since $e_0 \cdperp e_1$, the maps in the rows of $f_M$ are disjoint by the
   stability of the disjointness relation. Similarly, the maps in the columns are disjoint by
   universality. We have $e_0 f e_0 \djoin e_0 f e_1 = e_0 f$ and $e_1 f e_0 \djoin e_1 f e_1 = e_1
-  f$. Each of these maps are disjoint by universality. Finally, $e_0 f \djoin e_1 f = (e_0 \djoin
-  e_1) f = f$ and hence we may recover the initial map whenever we have a matrix of this form.
-  We will call this computation the distinct join of $f_M$.
+  f$. Once again, each of these maps are disjoint by universality. Finally,
+  $e_0 f \djoin e_1 f = (e_0 \djoin  e_1) f = f$ and hence we may recover the initial map whenever
+  we have a matrix of this form. We will call this computation the distinct join of $f_M$.
 
   Next, consider $f_M \times g_M$. As each $e_i$ is idempotent, this is
   \[ f_M \times g_M =
@@ -2325,9 +2320,14 @@ is also a commuting diagram in \D.
 \end{definition}
 
 \begin{lemma}
-  Given an inverse category \X\ with a disjoint join tensor $\+$, a restriction zero, and an inverse
-  product tensor $\*$ which distributes over disjoint joins, (i.e.,
-  $f\*(g\djoin h) = (f\*g) \djoin (f\* h)$),  it is an inverse distributive  category.
+  Suppose \X is an inverse category \X\ with:
+  \begin{itemize}
+    \item a disjoint join tensor $\+$,
+    \item a restriction zero, and
+    \item an inverse  product tensor $\*$ which distributes over disjoint joins, (i.e.,
+      $f\*(g\djoin h) = (f\*g) \djoin (f\* h)$).
+  \end{itemize}
+  Then, \X is an inverse distributive  category.
 \end{lemma}
 \begin{proof}
   By assumption, we have the first three items of
@@ -2372,11 +2372,11 @@ is also a commuting diagram in \D.
       &= \rst{(\icpa\rst{(1 \* \cpa)} )}\djoin \rst{(\icpb\rst{(1\*\cpb)})} \\
       &= \rst{(\icpa)}\djoin \rst{(\icpb)}\\
       &= (1\+0) \djoin (0\+1) \\
-      &= 1
+      &= 1.
   \end{align*}
 
   Hence, $[1\* \icpa, 1\* \icpb]$ is an isomorphism.
-  Finally, we must show that diagram~\ref{eq:inverse_distributive_laws} commutes.
+  Finally, we must show that diagram~\ref{eq:inverse_distributive_laws} commutes:
   \begin{align*}
     d \icpa & = \left( ((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb) \right)\icpa \\
      & = \left(((1 \* \icpa) \cpa )\icpa \right) \djoin \left( ((1\*\icpb) \cpb) \icpa\right) \\
@@ -2413,9 +2413,8 @@ inverse distributive category. We now show the converse is true.
     }
   \]
   The two leftmost  triangles commute by the diagram for $f\tjdown g$. The right hand triangles
-  commute as per Definition~\ref{def:distributive_inverse_category}. From this, we see
-  $h\*(f\tjdown g) = (h\* f)\tjdown(h\* g)$, by the uniqueness of the
-  $\tjdown$ operation.
+  commute as per Definition~\ref{def:distributive_inverse_category}. By the uniqueness of the
+  $\tjdown$ operation we see  $h\*(f\tjdown g) = (h\* f)\tjdown(h\* g)$,
 
   The argument for showing $h\*(f\tjup g) = (h\* f)\tjup(h\* g)$ follows the same methodology.
   %TODO: Is the isomorphism important? Do we need to do something with it?
@@ -2424,7 +2423,7 @@ inverse distributive category. We now show the converse is true.
   Given an inverse distributive category \X, then $\*$ distributes over the disjoint join.
 \end{lemma}
 \begin{proof}
-  First recall the definition of $f\djoin g = (\rst{f}\tjdown\rst{g})(f\tjup g)$. So, in order
+  First recall the definition of $f\djoin g = (\rst{f}\tjdown\rst{g})(f\tjup g)$. In order
   to show $h\*(f\djoin g) = (h\*f)\djoin (h\*g)$, we need to show that
   \begin{equation}
     h\*(\rst{f}\tjdown\rst{g})(f\tjup g) = (\rst{h\*f}\tjdown\rst{h\*g})(h\*f\tjup h\*g).
@@ -2432,9 +2431,9 @@ inverse distributive category. We now show the converse is true.
   \end{equation}
 
   Since $h\*(\rst{f}\tjdown\rst{g})(f\tjup g) =
-  (\rst{h}\*(\rst{f}\tjdown\rst{g}))(h\*(f\tjup g))$, this follows directly from
-  Lemma~\ref{lem:distributive_means_distribute_over_triangles} and the fact that $\*$ is a
-  restriction functor.
+  (\rst{h}\*(\rst{f}\tjdown\rst{g}))(h\*(f\tjup g))$, Equation~(\ref{eq:distribute_over_left_right})
+  follows directly from  Lemma~\ref{lem:distributive_means_distribute_over_triangles} and the fact
+  that $\*$ is a  restriction functor.
 \end{proof}
 
 \begin{corollary}\label{cor:inverse_product_and_disjointness}
@@ -2463,7 +2462,7 @@ We now consider the case where we have a discrete inverse category with inverse 
 tensor $\*$ and a disjoint join tensor $\+$, with the $\*$ tensor preserves the
 disjoint join.
 
-A map in \Xt is related to map in \X in the following way:
+A map in \Xt is related to a map in \X in the following way:
 \[
   \infer{A\xrightarrow{f} B\*C \text{ in }\X.}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
 \]
@@ -2480,13 +2479,13 @@ in \Xt.
   that $\X$ is equivalent as a category to $\Xt$ under the identity on objects
   functor
   \[
-    {\raisebox{-15pt}{$\wtf:\X \to \Xt;$}} \qquad
-    \xymatrix{A\ar[d]^{f}\\B}\mapsto \xymatrix{A\ar[d]^{(f\inv{\usr},1)}\\B}
-    \ \raisebox{-15pt}{ given by }\xymatrix{A\ar[d]^{f\usr}\\B\*1}\raisebox{-15pt}{).}
+    {\raisebox{-18pt}{$\wtf:\X \to \Xt;$}} \quad
+    \xymatrix{A\ar[d]^{f}\\B}\ \raisebox{-18pt}{$\mapsto$}\, \xymatrix{A\ar[d]^{(f\inv{\usr},1)}\\B}
+    \,\raisebox{-18pt}{.}
   \]
 
   In $\X$, we know $0$ is a terminal and initial object, with maps
-  $A \xrightarrow{t_A} 0 $ and $0 \xrightarrow{z_A} A$, with $\rst{0_{A,A}} = 0_{A,A} = t_A z_A$.
+  $A \xrightarrow{t_A} 0 $ and $0 \xrightarrow{z_A} A$, where  $\rst{0_{A,A}} = 0_{A,A} = t_A z_A$.
 
   First we note that $0$ is both initial and terminal in $\Xt$, with the terminal maps being
   $\wtf(t_A)$ and initial maps being $\wtf(z_A)$.
@@ -2509,7 +2508,7 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
     \item Given $g : B \to Y\*D$, we can construct $g'' : B \to Y \* (C\+D)$ for some object $C$ such
       that $g \xequiv{} g''$.
     \item Given $f : A \to Y \* C$, $g : A\to Y \* D$, then the $f', g''$ as constructed by the
-      previous points satisfy $\icpa f' \perp \icpb g''$, where $icpa f',\,\icpb g'': A\+B \to Y\*(C\+D)$.
+      previous points satisfy $\icpa f' \perp \icpb g''$, where $\icpa f',\,\icpb g'': A\+B \to Y\*(C\+D)$.
   \end{enumerate}
 \end{lemma}
 \begin{proof}

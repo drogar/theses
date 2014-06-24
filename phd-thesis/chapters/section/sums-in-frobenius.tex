@@ -17,7 +17,7 @@ node at (0,2) [delta] (d) {};
 \draw [-] (f) to[out=270,in=125] (n1);
 \draw [-] (g) to[out=270,in=55] (n1);
 \end{tikzpicture}
-\ \raisebox{45pt}{$= 0$}\
+\ \raisebox{45pt}{$= 0.$}\
 \]
 \end{definition}
 
@@ -48,31 +48,31 @@ node at (0,2) [delta] (d) {};
 node at (0,2.5) (start) {}
 node at (-.5,1) [map] (f) {$\scriptstyle f$}
 node at (.5,.75) [map] (z) {$\scriptstyle 0$}
-node at (.5,1.25) [map] (rz) {$\scriptstyle \rst{0}$}
+node at (.5,1.25) [map] (r_z) {$\scriptstyle \rst{0}$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
 \draw [] (d) to[out=235,in=90] (f);
-\draw [] (d) to[out=305,in=90] (rz);
-\draw [] (rz) to (z);
+\draw [] (d) to[out=305,in=90] (r_z);
+\draw [] (r_z) to (z);
 \draw [-] (f) to[out=270,in=125] (n1);
 \draw [-] (z) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
-node at (0,2.75) [map] (tz) {$\scriptstyle 0(=\rst{0})$}
+node at (0,2.75) [map] (t_z) {$\scriptstyle 0(=\rst{0})$}
 node at (-.5,1) [map] (f) {$\scriptstyle f$}
 node at (.5,1) [map] (z) {$\scriptstyle 0$}
 node at (0,2) [delta] (d) {};
-\draw [] (d) to (tz);
+\draw [] (d) to (t_z);
 \draw [] (n1) to (0,-0.5);
 \draw [] (d) to[out=235,in=90] (f);
 \draw [] (d) to[out=305,in=90] (z);
 \draw [-] (f) to[out=270,in=125] (n1);
 \draw [-] (z) to[out=270,in=55] (n1);
 \end{tikzpicture}
-\ \raisebox{45pt}{$= 0$}
+\ \raisebox{45pt}{$= 0.$}
 \]
 \axiom{Dis}{6}: $f\cdperp g$ implies $\rst{f} \cdperp \rst{g}$ and $\rg{f}\cdperp\rg{g}$.\\
 We will show the details of $\rst{f} \cdperp \rst{g}$, using $\rst{f} = f\inv{f}$ and the definition of
@@ -101,12 +101,12 @@ node at (0,2) [delta] (d) {};
     node at (-.5,1.5) [map] (f) {$\scriptstyle f$}
     node at (-1,1) [nabla] (n1) {}
     node at (-1,.5) [epsilon] (e1) {}
-    node at (2,2.5) [eta] (etag) {}
-    node at (2,2) [delta] (dg) {}
+    node at (2,2.5) [eta] (e_tag) {}
+    node at (2,2) [delta] (d_g) {}
     node at (.8,1.5) [map] (g1) {$\scriptstyle g$}
     node at (1.5,1.5) [map] (g) {$\scriptstyle g$}
-    node at (1,1) [nabla] (ng) {}
-    node at (1,.5) [epsilon] (eg) {}
+    node at (1,1) [nabla] (n_g) {}
+    node at (1,.5) [epsilon] (e_g) {}
     node at (1,-.5) [nabla] (end) {};
     \draw [] (start) to[out=235,in=90] (f1);
     \draw [] (start) to[out=305,in=90] (g1);
@@ -116,14 +116,14 @@ node at (0,2) [delta] (d) {};
     \draw [] (d) to (f);
     \draw [] (f) to (n1);
     \draw [] (n1) to (e1);
-    \draw [] (g1) to (ng);
-    \draw [] (etag) to (dg);
-    \draw [] (dg) to[out=305,in=55] (end);
-    \draw [] (dg) to (g);
-    \draw [] (g) to (ng);
-    \draw [] (ng) to (eg);
+    \draw [] (g1) to (n_g);
+    \draw [] (e_tag) to (d_g);
+    \draw [] (d_g) to[out=305,in=55] (end);
+    \draw [] (d_g) to (g);
+    \draw [] (g) to (n_g);
+    \draw [] (n_g) to (e_g);
 \end{tikzpicture}
-\ \raisebox{45pt}{$=$}\
+\ \raisebox{45pt}{$ = $}\
 \begin{tikzpicture}
     \path node at (0,4) [delta] (start) {}
     node at (-1,3.5) [eta] (eta1) {}
@@ -224,7 +224,7 @@ node at (0,2) [delta] (d) {};
 \draw [] (d) to[out=235,in=125] (n1);
 \draw [-] (z) to[out=270,in=55] (n1);
 \end{tikzpicture}
-\ \raisebox{45pt}{$= 0$}
+\ \raisebox{45pt}{$= 0.$}
 \]
 \axiom{Dis}{2}: $f\cdperp g$ implies $\rst{f} g = 0$.\\
 In this proof, we use the result of \axiom{Dis}{6}, i.e., that $\rst{f}\perp\rst{g}$.
@@ -475,11 +475,11 @@ node at (0,2) [delta] (d) {};
 \draw [-] (fh) to[out=270,in=125] (n1);
 \draw [-] (gk) to[out=270,in=55] (n1);
 \end{tikzpicture}
-\ \raisebox{45pt}{$= 0$}\
+\ \raisebox{45pt}{$= 0.$}\
 \]
 \end{proof}
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../phd-thesis"
+%%% TeX-master: "../../phd-thesis"
 %%% End:
