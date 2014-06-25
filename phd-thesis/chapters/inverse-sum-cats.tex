@@ -1374,15 +1374,16 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
   This shows that the map between any two inverse sums over the same two objects is an isomorphism.
 \end{proof}
 
-\begin{lemma}\label{lem:all_maps_to_inverse_sum_are_disjoint}
-  Suppose $X$ is the inverse sum of $A$ and $B$ in the inverse category \X. Then for all maps
-  $f:C \to A$ and $g: C \to B$, the composition with the injections is disjoint, that is,
-  $f i_1 \perp g i_2$. (This is not right - need further thought...)
-\end{lemma}
-\begin{proof}
-  First note $f i_1 = f i_1 \wrg{i_1} = f i_1 \inv{i_1} i_1$ and similarly, $g i_2 = g i_2
-  \inv{i_2} i_2$.
-\end{proof}
+% TODO: Is this needed??? Where? Why?
+%\begin{lemma}\label{lem:all_maps_to_inverse_sum_are_disjoint}
+%  Suppose $X$ is the inverse sum of $A$ and $B$ in the inverse category \X. Then for all maps
+%  $f:C \to A$ and $g: C \to B$, the composition with the injections is disjoint, that is,
+%  $f i_1 \perp g i_2$. (This is not right - need further thought...)
+%\end{lemma}
+%\begin{proof}
+%  First note $f i_1 = f i_1 \wrg{i_1} = f i_1 \inv{i_1} i_1$ and similarly, $g i_2 = g i_2
+%  \inv{i_2} i_2$.
+%\end{proof}
 
 \begin{definition}\label{def:inverse_sum_category}
   Suppose \X is an inverse category with disjoint joins $\djoin$ based on a disjointness
@@ -2595,7 +2596,7 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
 
   This corresponds to the conditions of
   Lemma~\ref{lem:maps_from_inverse_sums_have_disjoint_equivalences}. Hence by that lemma we may
-  revise Diagram~\eqref{diag:pre-coproduct} as
+  revise Diagram~\ref{diag:pre-coproduct} as
   \begin{equation}
     \xymatrix@R+10pt {
       A \ar[d]^{\cpa} \ar[drrr]^{f'}\\

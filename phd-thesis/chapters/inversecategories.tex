@@ -170,23 +170,6 @@ We start by showing that an inverse category with restriction products is a rest
   Similarly, one can show that $(\inv{\Delta}\* 1)\inv{\Delta} =
   a_{\*}(\inv{\Delta}\* 1)\inv{\Delta}$.
 \end{remark}
-% \subsubsection{Diagrammatic language} % (fold)
-% \label{ssub:diagrammatic_language}
-
-% \begin{tikzpicture}[scale=.3]
-%   \draw (2,1) -- (2,0);
-%   \draw (2,0) -- (1.25,-1.2) -- (2.75,-1.2) -- cycle;
-%   \draw (1.5,-1.2) -- (1.5,-2.5);
-%   \draw (2.5,-1.2) -- (2.5,-2.5);
-
-%   \node at (3.3,-1.3) {$=$};
-
-%   \draw (5,1) -- (5,0);
-%   \draw (5,0) -- (4.25,-1.2) -- (5.75,-1.2) -- cycle;
-%   \draw (4.5,-1.2) .. controls (4.9,-2.5) and (5.1, -1.2) .. (5.5,-2.5);
-%   \draw (5.5,-1.2)  .. controls (5.1,-2.5) and (4.9, -1.2) .. (4.5,-2.5);
-% \end{tikzpicture}
-% % subsubsection diagrammatic_language (end)
 
 
 Inverse products are extra structure on an inverse category, rather than a property. A concrete
@@ -231,9 +214,11 @@ the conditions for $\Delta$ are satisfied by $\*$ and by $\odot$.
 \label{sub:diagrammatic_language}
 
 While it is certainly possible to prove results about inverse products using direct algebraic
-manipulation, it is much more succinct to proceed with string diagrams. As shown in
-\cite{street-ross-1991-GTC-I} this is equivalent to reasoning algebraically for symmetric monoidal
-categories.
+manipulation, it is much more succinct to proceed with string diagrams. See
+\cite{selinger11:graphical} for a comparison of various graphical languages for monoidal categories.
+As shown in
+\cite{street-ross-1991-GTC-I}, diagrammatic reasoning is equivalent to reasoning algebraically for
+symmetric monoidal categories.
 
 In the diagrams, we will use the following representations:
 \begin{itemize}
@@ -242,7 +227,7 @@ In the diagrams, we will use the following representations:
   \item $\inv{\Delta}$ by a downward triangle: \begin{tikzpicture}
       \path node [nabla] at (0,0) {}; \end{tikzpicture}.
   \item maps by a rectangle with the map inside: \begin{tikzpicture}
-      \path node [map] at (0,0) {$f$}; \end{tikzpicture}.
+      \path node [map] at (0,0) {$\scriptstyle f$}; \end{tikzpicture}.
   \item unit introduction (often referred to as an $\eta$ map): \begin{tikzpicture}
       \path node [eta] at (0,0) {}; \end{tikzpicture}.
   \item unit removal (often referred to as an $\epsilon$ map): \begin{tikzpicture}

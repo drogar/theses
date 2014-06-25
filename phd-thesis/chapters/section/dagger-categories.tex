@@ -11,9 +11,9 @@ Although dagger categories were introduced in the context of compact closed cate
 of a dagger is definable independently. This was first done in \cite{selinger05:dagger}.
 
 \begin{definition}\label{def:daggercat}
-  A dagger operator on a category $D$ is an involutive, identity on objects
-  contravariant functor $\dagger:\cD\to \cD$. A dagger category
-  is a category that has a dagger operator.
+  A \emph{dagger operator} on a category $D$ is an involutive, contravariant functor $\dagger:\cD\to
+  \cD$, which is the identity on objects. A \emph{dagger category} is a category that has a dagger
+  operator.
 \end{definition}
 
 Typically, the dagger is written as a superscript on the morphism. So, if $f:A\to B$ is a map in
@@ -40,25 +40,16 @@ coherence diagrams for a symmetric monoidal category. The additional coherence r
   that is compact closed where the diagram
   \[
     \xymatrix @C+20pt @R+10pt{
-      I \ar[r]^{\epsilon^{\dagger}_{A}} \ar[dr]_{\eta_{A}} &A\*A^{*}\ar[d]^{\sigma_{A,A^{*}}}\\
+      I \ar[r]^{\epsilon^{\dagger}_{A}} \ar[dr]_{\eta_{A}} &A\*A^{*}\ar[d]^{\c_{A,A^{*}}}\\
       &A^{*}\* A
     }
   \]
   commutes for all  objects $A$ in \cD.
 \end{definition}
 
-A category \cD{} is said to have \emph{finite biproducts} when it has a zero object $\mathbf{0}$
-(an object that is both initial and terminal) and when each pair of objects $A,B$ have a biproduct
-$A\+B$. In such a category the unique map $A\to \mathbf{0} \to B$ is designated as $\zeroob_{A,B}$.
-
-Note that a category with finite biproducts is enriched in commutative monoids, where if $f,g:A\to
-B$, define $f+g:A\to B$ as $\<id_{A}, id_{A}\>\, (f\+g)\, [id_{B},id_{B}]$. The unit for the
-addition is $\zeroob_{A,B}$. In the future, $\<id, id\>$ will be designated by $\Delta$ and
-$[id,id]$ will be designated by $\nabla$.
-
 \begin{lemma}\label{lemma:daggerbiproducts}
 If \cD{} is a dagger category with biproducts, with injections $in_{1},in_{2}$ and projections
-$p_{1},p_{2}$, then the following are equivalent.
+$p_{1},p_{2}$, then the following are equivalent:
 \begin{enumerate}
   \item $\dgr{p_{i}} = in_{i}, i=1,2$, \label{ldpdgrpisq}
   \item $\dgr{(f\+g)} = \dgr{f}\+\dgr{g}$ and $\dgr{\Delta} = \nabla$,\label{ldpddeltisnab}
@@ -147,7 +138,7 @@ t\in T\}:S\to T$, then $\dgr{R}=\{(t,s)|(s,t)\in R\}(=R^{*})$.
 
 \paragraph{Inverse categories:}
 An inverse category \X is also a dagger category when the dagger is defined as the partial inverse.
-The unitary maps are the restriction idempotents. However, if the inverse category \X is also a
+The unitary maps are the total restriction idempotents. However, if the inverse category \X is also a
 symmetric monoidal category where the monoid $\*$ is actually a restriction bi-functor, then \X is
 not a dagger symmetric monoidal category. The first requirement for being a dagger symmetric
 monoidal category is fulfilled, as

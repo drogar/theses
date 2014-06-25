@@ -2,10 +2,15 @@
 
 \chapter{Abstract Computability}\label{chap:abstract_computability}
 
-\input{chapters/section/linear-algebra}
+%\input{chapters/section/linear-algebra}
 
 \section{Categories}
 \label{sec:categories}
+
+The information in this section is presented to introduce categories and fix notation for them. More
+details of the definitions and lemmas presented here can be found in various books or online
+resources for category theory, e.g., \cite{maclan97:categorieswrkmath}, \cite{cockett2009:ctcs},
+\cite{barr:ctcs} and \cite{various:nlab}.
 
 A category as a mathematical object can be defined in a variety of equivalent ways. As much of our
 work will involve the exploration of partial and reversible maps, their domains and ranges, we
@@ -17,7 +22,8 @@ section.
   A \emph{category} $\A$ is a directed graph consisting of objects $A_o$ and maps $A_m$. Each $f\in
   A_m$ has two associated objects in $A_o$, called the domain and co-domain. When $f$ has domain $X$
   and co-domain $Y$ we will write $f:X \to Y$. For $f, g \in A_m$, if $f:X\to Y$ and $g:Y \to Z$,
-  there is a map called the \emph{composite} of $f$ and $g$, written $f g$ such that $f g:X \to Z$.
+  there is a map called the \emph{composite} of $f$ and $g$, written $f g$,\footnote{Note that
+    composition is written in diagrammatic order throughout this paper.} such that $f g:X \to Z$.
   For any $W \in A_o$ there is an \emph{identity} map $1_W:W \to W$. Additionally, these two axioms
   must hold:
   \begin{itemize}
@@ -46,21 +52,24 @@ We may also consider the notion of containment between categories.
   of all arrows $f$ with $D(f) = A$ and $C(f) = B$.
 \end{definition}
 
-In the case where the hom-objects of a category $\X$ are all sets, we call them hom-sets. Additionally,
-we say $\X$ is \emph{enriched} in \sets. We may extend this to any mathematical structure, e.g.,
-enriched in partial orders, enriched in groups, etc..
-
+In the case where the objects of a hom-collection of a category $\X$ are all sets, we call them
+hom-sets. Alternatively, we say $\X$ is \emph{enriched} in sets. In general, categories may be enriched in a
+variety of algebraic structures. For example a category may be enriched in groups, vector spaces or
+monoids.
 
 Specific types of enrichment may force a specific structure on a category. For example, if $\X$ is
 enriched in sets of cardinality of 0 or 1, then $\X$ must be a pre-order.
 
-
+\begin{example}
+  A group $G$ may be considered as a one-object category $\mathbb{G}$, where the elements of the
+  group are all the  maps between the single element. This category is (trivially) enriched in groups.
+\end{example}
 % subsection enrichment_of_categories (end)
 \subsection{Examples of categories} % (fold)
 \label{sub:examples_of_categories}
 In this section, we will offer a few examples of categories.
 
-\subsubsection{Categories based on \protect{\sets}} % (fold)
+\subsubsection{Categories based on sets} % (fold)
 \label{ssub:categories_based_on_sets}
 There are three primary categories of interest to us where the objects are the collection of sets.
 The first is \sets, where the maps are given by all set functions. The second is \Par, where the
@@ -69,7 +78,7 @@ identities, compositions and associativity are all satisfied. Domain and co-doma
 domain and range respectively.
 
 A third example, often of interest in quantum programming language semantics is \rel:
-\category{Sets}{Relations: $R:X \to Y$}{$1_X = \{(x,x) | x \in X\}$}{$RS = \{(x,z) |
+\category{All sets}{Relations: $R:X \to Y$}{$1_X = \{(x,x) | x \in X\}$}{$RS = \{(x,z) |
 \exists y, (x,y) \in R$ and $(y,z)\in S\}$}
 
 Note that \rel is enriched in posets, via set inclusion. \Par can be viewed as a sub-category of
@@ -80,7 +89,7 @@ Note that \rel is enriched in posets, via set inclusion. \Par can be viewed as a
 \subsubsection{Matrix categories} % (fold)
 \label{ssub:matrix_categories}
 Given a rig $R$ (i.e., a ring minus negatives, e.g., the positive rationals), one may form the
-category \specialcat{Mat}($R$).
+category \textsc{Mat}($R$).
 \category{\nat}{$[r_{i j}]: n \to m$ where $[r_{i j}]$ is an $n \times m$ matrix over $R$}{
 $I_n$}{Matrix multiplication}
 % sub-subsection matrix_categories (end)
@@ -163,24 +172,28 @@ In general, not all idempotents in a category will split. The following construc
 create a category based on the original one in which all idempotents do split.
 
 \begin{definition}\label{def:split_category}
-  Given a category $\C$ we define \emph{Split($\C$)} as the following category:
+  Given a category $\C$ and a set of idempotents $E$ of $\C$, we define \emph{Split${}_E$($\C$)},
+  written as $\spl{E}{\C}$, as the following category:
   \category{$(A,e)$, where $A$ is an object of \C, $e:A\to A$ and $e\in E$.}
     {$f_{d,e}:(A,d)\to(B,e)$ is given by $f:A\to B$ in \C, where $f = d\uts f e$.}
     {The map $e_{e,e}$ for $(A,e)$.}
     {Inherited from \C.}
+  When $E$ is the set of all idempotents in $\C$, we write $\spl{}{\C}$.
 \end{definition}
+This is the standard idempotent splitting construction, also known as the Karoubi
+envelope.
 
 \begin{lemma}\label{lem:split_category_splits_and_has_category}
-  Given a category $\C$, then it is a full sub-category of Split($\C$) and all idempotents split
-  in Split($\C$).
+  Given a category $\C$, then it is a full sub-category of $\spl{}{\C}$ and all idempotents split
+  in  $\spl{}{\C}$.
 \end{lemma}
 \begin{proof}
-  We identify each object $A$ in $\C$ with the object $(A,1)$ in Split($\C$). The only maps between
-  $(A,1)$ and $(B,1)$ in Split($\C$) are the maps between $A$ and $B$ in $\C$, hence we have a
+  We identify each object $A$ in $\C$ with the object $(A,1)$ in $\spl{}{\C}$. The only maps between
+  $(A,1)$ and $(B,1)$ in $\spl{}{\C}$ are the maps between $A$ and $B$ in $\C$, hence we have a
   full sub-category.
 
   Suppose we have the map $d_{e,e}: (A,e) \to (A,e)$ with $d d = d$, i.e., it is idempotent in $C$
-  and Split($\C$). In Split($\C$), we have the maps $d_{e,d}:(A,e) \to (A,d)$ and $d_{d,e}:(A,d) \to
+  and $\spl{}{\C}$. In $\spl{}{\C}$, we have the maps $d_{e,d}:(A,e) \to (A,d)$ and $d_{d,e}:(A,d) \to
   (A,e)$ where $d_{d,e} d_{e,d} = d_{d,d} = 1_{(A,d)}$ and $d_{e,d} d_{d,e} = d_{e,e}$. Hence,
   it is a splitting of the map  $d_{e,e}$.
 \end{proof}
@@ -233,6 +246,51 @@ We now turn to products and co-products.
   \end{itemize}
 
 \end{definition}
+
+A co-product is the dual of a product.
+
+\begin{definition}\label{def:categorical_coproduct}
+  Let $A,B$ be objects of the category $\C$. Then the object $A + B$ is a \emph{coproduct} of
+  $A$ and $B$ when:
+  \begin{itemize}
+    \item There exist maps $\cpa, \cpb$ with $\cpa:A \to A + B$, $\cpb:B \to A+ B$;
+    \item Given an object $C$ with maps $h:A\to C$ and $k:B \to C$ there is a unique map
+    $[f,g]$ such that the following diagram commutes:
+    \[
+      \xymatrix@C+15pt@R+25pt{
+        A \ar[drr]^h \ar[d]_{\cpa} \\
+        A +B \ar@{.>}[rr]^{[f,g]} && C\\
+        B \ar[urr]_k \ar[u]^{\cpb}
+      }
+    \]
+  \end{itemize}
+\end{definition}
+
+It is possible for an object to both a limit and a co-limit at the same time.
+\begin{definition}\label{def:categorical_zero}
+  Given a category $\C$, any object that is both a terminal and initial object is called a
+  \emph{zero object}. This object is labelled $\zeroob$.
+\end{definition}
+
+Note that any category with a zero object has a special map, $\zeroob_{A,B}$
+between any two objects $A,B$ of the category given by: $\zeroob_{A,B} : A \to \mathbf{0} \to B$.
+
+\begin{definition}\label{def:categorical_biproduct}
+  In a category \C, given any two objects, $A,B$, if $A\times B$ is isomorphic to $A+B$,  it is
+  referred to as the \emph{biproduct}.
+\end{definition}
+
+\begin{definition}\label{def:finite_biproducts}
+A category \cD{} is said to have \emph{finite biproducts} when it has a zero object $\mathbf{0}$
+and when each pair of objects $A,B$ have a biproduct $A\+B$.
+\end{definition}
+
+Note that a category with finite biproducts is enriched in commutative monoids. If $f,g:A\to
+B$, define $f+g:A\to B$ as $\<id_{A}, id_{A}\>\, (f\+g)\, [id_{B},id_{B}]$. The unit for the
+addition is $\zeroob_{A,B}$. Throughout this thesis, when working in a category with finite
+biproducts, $\<id, id\>$ will be designated by $\Delta$ and $[id,id]$ will be designated by
+$\nabla$.
+
 % subsection limits_and_colimits_in_categories (end)
 
 \subsection{Functors and natural transformations} % (fold)
@@ -254,6 +312,11 @@ We now turn to products and co-products.
   \category{Categories.}{Functors.}{The identity functor which takes a map to the same map.}{
   $F G(x) = F(G(x))$ which is clearly associative.}
 \end{proof}
+
+
+Functors with two arguments, e.g., $F:\sets \times \sets \to \sets$ which satisfy \axiom{F}{1} and
+\axiom{F}{2} for each argument independently are called \emph{bi-functors}.
+
 
 We will often restrict ourselves to specific classes of functors which either \emph{preserve} or
 \emph{reflect} certain characteristics of the domain category or co-domain category. To be more
@@ -296,7 +359,7 @@ each object $A,B$ in $\C$ we have the map:
 \]
 
 \begin{definition}\label{def:full_functor_faithful_functor}
-  Given a functor $F:\C to \D$, we say:
+  Given a functor $F:\C \to \D$, we say:
   \begin{itemize}
     \item $F$ is \emph{faithful} when for all $A,B$, $F_{AB}$ is an injective function;
     \item $F$ is \emph{full} when  for all $A,B$, $F_{AB}$ is an surjective function.
@@ -326,6 +389,8 @@ each object $A,B$ in $\C$ we have the map:
   $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u_{A}:A\to A\+I$ and $c_{A,B}:A\+B \to B\+ A$, which satisfy
   specific coherence diagrams. The isomorphisms are referred to as the \emph{structure isomorphisms}
   for the symmetric monoidal category. $I$ is the unit of the monoid.
+  A symmetric monoidal category where each of $a_{A,B,C}$, $u_{A}$ and $c_{A,B}$ are actually
+  identity maps is called a \emph{strict symmetric monoidal category}.
 \end{definition}
 For details on the coherence diagrams, please see e.g., \cite{barr:ctcs} or
 \cite{maclan97:categorieswrkmath}. The essence of the coherence diagrams is that any diagram
@@ -372,8 +437,7 @@ Restriction categories were introduced in
   \]
   where $f$ is a map of \X\ and $A,B$ are objects of \X, such that the
   following four \emph{restriction identities} hold, whenever the
-  compositions\footnote{Note that composition is
-  written in diagrammatic order throughout this paper.} are defined:
+  compositions are defined:
   \begin{align*}
     &\rone\ \restr{f} f = f & &
     \rtwo\ \restr{g}  \restr{f} = \restr{f}  \restr{g}\\
@@ -425,9 +489,8 @@ as $\rst{f}=\rst{\rst{f}}$.
 \end{definition}
 
 
-An example of a restriction category is \Par, the category defined via:
-\rcategory{Sets.}{Partial set functions.}{The identity function.}{%
-Normal set function composition.}{The restriction of $f:A\to B$ is:
+An example of a restriction category is \Par, as defined in
+Sub-Section~\ref{ssub:categories_based_on_sets}. The restriction of $f:A\to B$ is:
 \[
   \rst{f}(x) =
   \begin{cases}
@@ -442,6 +505,11 @@ total maps correspond precisely to the functions that are defined on all element
 
 \subsection{Enrichment and meets} % (fold)
 \label{sub:enrichment_and_meets}
+
+We may use the restriction to define a partial order on the hom-sets of a restriction
+category. Intuitively, we would think of a map $f$ being less than a map $g$ if $f$ is
+defined on fewer elements than $g$ \emph{and} they agree where they are defined. This sub-section
+will bring precision to the above intuition.
 
 \begin{definition}\label{def:restriction_category_hom_set_ordering}
   In a restriction category, for any two parallel maps  $f,g:A\to B$, define $f \le g$ iff
@@ -607,92 +675,6 @@ The following are basic results on meets:
   \end{enumerate}
 \end{proof}
 % subsection enrichment_and_meets (end)
-
-\subsection{Range categories} % (fold)
-\label{sub:range_categories}
-Corresponding to Definition~\ref{def:restriction_category} for restriction, which axiomatizes the
-concept of a domain of definition, we now introduce range categories which algebraically axiomatize
-the concept of the range for a function.
-
-\begin{definition}\label{def:range_category}
-  A restriction category \X is a \emph{range category} when it has an operator on all maps
-  \[
-    \infer{\rg{f}:B\to B}{f:A\to B}
-  \]
-  where the operator satisfies the following:
-  \begin{align*}
-    &\rrone\ \restr{\rg{f}} = \rg{f} & &
-     \rrtwo\ f \rg{f} = f\\
-    &\rrthree\ \wrg{f\rst{g}} = \rg{f} \rst{g} & &
-     \rrfour\  \wrg{\rg{f}g} = \wrg{f g}
-  \end{align*}
-  whenever the compositions are defined.
-
-\end{definition}
-
-\begin{lemma}\label{lem:basic_range_category_properties}
-  In a range category \X, the following hold:
-  \begin{multicols}{2}
-    \begin{enumerate}[{(}i{)}]
-      \item $\rg{g}\rg{f} = \rg{f}\rg{g}$;
-      \item $\rst{f}\rg{g} = \rg{g}\rst{f}$;
-      \item $\wrg{f\rg{g}} = \rg{f}\rg{g}$;
-      \item $\rg{f} = 1$ when $f$ is epic, hence $\rg{1} = 1$;
-      \item $\rg{f}\rg{f} = \rg{f}$;
-      \item $\rg{\rg{f}} = \rg{f}$;
-      \item $\rg{\rst{f}} = \rst{f}$;
-      \item $\rg{g}\wrg{f g} = \wrg{f g}$;
-      \item $\wrg{\rg{f}\rg{g}} = \rg{f}\rg{g}$.
-    \end{enumerate}
-  \end{multicols}
-\end{lemma}
-\begin{proof}
-  See, e.g., \cite{guox:thesis}.
-\end{proof}
-
-\begin{lemma}\label{lem:ordering_of_restriction_and_range}
-  In a range category:
-  \begin{multicols}{2}
-    \begin{enumerate}[{(}i{)}]
-      \item  $\wrg{h f} \le \rg{f}$; \label{lemitem:ordering_1}
-      \item $f' \le f$ implies $\rg{f'} \le \rg{f}$. \label{lemitem:ordering_2}
-    \end{enumerate}
-  \end{multicols}
-\end{lemma}
-\begin{proof}
-  \prepprooflist
-  \begin{enumerate}[{(}i{)}]
-    \item Noting that $\rst{\wrg{hf}} \rg{f} = \wrg{hf} \rg{f}  = \wrg{hf \rg{f}} = \wrg{h f}$,
-      we see $\wrg{h f} \le \rg{f}$.
-    \item Calculating $\rst{\rg{f'}} \rg{f} = \rg{f'} \rg{f} = \wrg{\rst{f'} f} \rg{f} =
-      \wrg{\rst{f'} f \rg{f}} = \wrg{\rst{f'} f} = \rg{f'}$, we see $\rg{f'} \le \rg{f}$.
-  \end{enumerate}
-\end{proof}
-
-\begin{remark}
-  Note that unlike restrictions, a range is a \emph{property} of a restriction category. To see
-  this, assume we have two ranges $\wrg{(\_)}$ and $\widetilde{(\_)}$. Then,
-  \[\rg{f}=\wrg{f \tilde{f}}=\rg{f} \tilde{f}=\tilde{f} \rg{f}=\widetilde{f \rg{f}}=\tilde{f}.\]
-\end{remark}
-\begin{lemma}\label{lem:inverse_categories_are_range_categories}
-  An inverse category \X is a range category, where $\rg{f} = \inv{f}f = \rst{\inv{f}}$.
-\end{lemma}
-\begin{proof}
-  \prepprooflist
-  \setlist[enumerate,1]{leftmargin=1.5cm}
-  \begin{enumerate}
-    \item[\rrone] $\restr{\rg{f}} = \rst{\rst{\inv{f}}} = \rst{\inv{f}} = \rg{f}$;
-    \item[\rrtwo] $f \rg{f} = f \rst{\inv{f}} = f \inv{f} f = \rst{f} f = f$;
-    \item[\rrthree] $\wrg{f\rst{g}} = \rst{\inv{(f\rst{g})}} = \rst{\inv{\rst{g}} \inv{f}} =
-      \rst{\rst{g} \inv{f}} =
-      \rst{g} \rst{\inv{f}} = \rst{\inv{f}} \rst{g} =\rg{f} \rst{g}$;
-    \item[\rrfour]  $\wrg{\rg{f}g} = \rst{\inv{(\rst{\inv{f}} g)}} =
-      \rst{\inv{g}\inv{\rst{\inv{f}}}} = \rst{\inv{g} \rst{\inv{f}}} =
-      \rst{\inv{g} \inv{f}} = \rst{\inv{(f g)}} = \wrg{f g}$
-  \end{enumerate}
-\end{proof}
-% subsection range_categories (end)
-
 \subsection{Partial monics, sections and isomorphisms} % (fold)
 \label{sub:restricted_monics_sections_and_partial_isomorphisms}
 
@@ -791,9 +773,10 @@ $r m = \rst{r m}$ when $m$ is simply monic.
   \end{enumerate}
 \end{proof}
 
-
-A restriction category in which every map is a partial
-isomorphism is called an \emph{inverse category}.
+\begin{definition}\label{def:inverse_category}
+  A restriction category in which every map is a partial
+  isomorphism is called an \emph{inverse category}.
+\end{definition}
 
 \begin{lemma}
   \label{lem:inverse_idempotents_are_restriction_idempotents}
@@ -806,16 +789,97 @@ isomorphism is called an \emph{inverse category}.
   \]
 \end{proof}
 % subsection restricted_monics_sections_and_partial_isomorphisms (end)
+
+\subsection{Range categories} % (fold)
+\label{sub:range_categories}
+Corresponding to Definition~\ref{def:restriction_category} for restriction, which axiomatizes the
+concept of a domain of definition, we now introduce range categories which algebraically axiomatize
+the concept of the range for a function.
+
+\begin{definition}\label{def:range_category}
+  A restriction category \X is a \emph{range category} when it has an operator on all maps
+  \[
+    \infer{\rg{f}:B\to B}{f:A\to B}
+  \]
+  where the operator satisfies the following:
+  \begin{align*}
+    &\rrone\ \restr{\rg{f}} = \rg{f} & &
+     \rrtwo\ f \rg{f} = f\\
+    &\rrthree\ \wrg{f\rst{g}} = \rg{f} \rst{g} & &
+     \rrfour\  \wrg{\rg{f}g} = \wrg{f g}
+  \end{align*}
+  whenever the compositions are defined.
+
+\end{definition}
+
+\begin{lemma}\label{lem:basic_range_category_properties}
+  In a range category \X, the following hold:
+  \begin{multicols}{2}
+    \begin{enumerate}[{(}i{)}]
+      \item $\rg{g}\rg{f} = \rg{f}\rg{g}$;
+      \item $\rst{f}\rg{g} = \rg{g}\rst{f}$;
+      \item $\wrg{f\rg{g}} = \rg{f}\rg{g}$;
+      \item $\rg{f} = 1$ when $f$ is epic, hence $\rg{1} = 1$;
+      \item $\rg{f}\rg{f} = \rg{f}$;
+      \item $\rg{\rg{f}} = \rg{f}$;
+      \item $\rg{\rst{f}} = \rst{f}$;
+      \item $\rg{g}\wrg{f g} = \wrg{f g}$;
+      \item $\wrg{\rg{f}\rg{g}} = \rg{f}\rg{g}$.
+    \end{enumerate}
+  \end{multicols}
+\end{lemma}
+\begin{proof}
+  See, e.g., \cite{guox:thesis}.
+\end{proof}
+
+\begin{lemma}\label{lem:ordering_of_restriction_and_range}
+  In a range category:
+  \begin{multicols}{2}
+    \begin{enumerate}[{(}i{)}]
+      \item  $\wrg{h f} \le \rg{f}$; \label{lemitem:ordering_1}
+      \item $f' \le f$ implies $\rg{f'} \le \rg{f}$. \label{lemitem:ordering_2}
+    \end{enumerate}
+  \end{multicols}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item Noting that $\rst{\wrg{hf}} \rg{f} = \wrg{hf} \rg{f}  = \wrg{hf \rg{f}} = \wrg{h f}$,
+      we see $\wrg{h f} \le \rg{f}$.
+    \item Calculating $\rst{\rg{f'}} \rg{f} = \rg{f'} \rg{f} = \wrg{\rst{f'} f} \rg{f} =
+      \wrg{\rst{f'} f \rg{f}} = \wrg{\rst{f'} f} = \rg{f'}$, we see $\rg{f'} \le \rg{f}$.
+  \end{enumerate}
+\end{proof}
+
+\begin{remark}
+  Note that unlike restrictions, a range is a \emph{property} of a restriction category. To see
+  this, assume we have two ranges $\wrg{(\_)}$ and $\widetilde{(\_)}$. Then,
+  \[\rg{f}=\wrg{f \tilde{f}}=\rg{f} \tilde{f}=\tilde{f} \rg{f}=\widetilde{f \rg{f}}=\tilde{f}.\]
+\end{remark}
+\begin{lemma}\label{lem:inverse_categories_are_range_categories}
+  An inverse category \X is a range category, where $\rg{f} = \inv{f}f = \rst{\inv{f}}$.
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \setlist[enumerate,1]{leftmargin=1.5cm}
+  \begin{enumerate}
+    \item[\rrone] $\restr{\rg{f}} = \rst{\rst{\inv{f}}} = \rst{\inv{f}} = \rg{f}$;
+    \item[\rrtwo] $f \rg{f} = f \rst{\inv{f}} = f \inv{f} f = \rst{f} f = f$;
+    \item[\rrthree] $\wrg{f\rst{g}} = \rst{\inv{(f\rst{g})}} = \rst{\inv{\rst{g}} \inv{f}} =
+      \rst{\rst{g} \inv{f}} =
+      \rst{g} \rst{\inv{f}} = \rst{\inv{f}} \rst{g} =\rg{f} \rst{g}$;
+    \item[\rrfour]  $\wrg{\rg{f}g} = \rst{\inv{(\rst{\inv{f}} g)}} =
+      \rst{\inv{g}\inv{\rst{\inv{f}}}} = \rst{\inv{g} \rst{\inv{f}}} =
+      \rst{\inv{g} \inv{f}} = \rst{\inv{(f g)}} = \wrg{f g}$
+  \end{enumerate}
+\end{proof}
+% subsection range_categories (end)
+
 \subsection{Split restriction categories} % (fold)
 \label{sub:split_restriction_categories}
 
-The split restriction category, $\spl{E}{\X}$  is defined as:
-\category{$(A,e)$, where $A$ is an object of \X, $e:A\to A$ and $e\in E$.}
-  {$f:(A,d)\to(B,e)$ is given by $f:A\to B$ in \X, where $f = d\uts f e$.}
-  {The map $e$ for $(A,e)$.}
-  {inherited from \X.}
-This is the standard idempotent splitting construction, also known as the Karoubi
-envelope.
+The Karoubi envelope, $\spl{E}{\X}$ as defined in Definition~\ref{def:split_category}
+is also a restriction category when $\X$ is a restriction category.
 
 Note that for $f:(A,d)\to(B,e)$, by definition, in \X we have $f=d\uts f e$, giving
 \[
@@ -828,6 +892,7 @@ given by $e_1 \restr{f}$ in \X. Note that for $f:(A,d)\to(B,e)$, in \X we have:
 \[
   d\uts\restr{f} = \restr{d\uts f} d = \restr{f} d.
 \]
+
 \begin{proposition}\label{prop:spleisarestrictioncat}
   If \X is a restriction category and $E$ is a set of idempotents, then
   the restriction as defined above makes $\spl{E}{\X}$ a restriction category.
@@ -1303,7 +1368,7 @@ Restriction categories have analogues of products and terminal objects.
 
 % section restriction_categories (end)
 \input{chapters/section/dagger-categories}
-\input{chapters/section/quantum-semantics}
+%\input{chapters/section/quantum-semantics}
 \input{chapters/section/frobenius-algebra-definition}
 \input{chapters/section/bases-and-frobenius}
 
