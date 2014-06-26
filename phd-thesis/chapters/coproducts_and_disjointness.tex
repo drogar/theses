@@ -1,0 +1,1312 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+\chapter{Disjointness in Inverse Categories} % (fold)
+\label{cha:disjointness_in_inverse_categories}
+
+Throughout this chapter and the following chapter we will work with a number of relations between
+maps and operations on
+pairs of maps. Suppose we have a relation $\lozenge$ between maps $f,g:B\to C$, i.e., $f \lozenge
+g$. We will refer to $\lozenge$ as \emph{stable} whenever given a $h:A \to B$, then $h f \lozenge
+h g$. We will refer to $\lozenge$ as \emph{universal} whenever given a $k:C \to D$, then $f k
+\lozenge g k$.
+
+
+\section{Coproducts in restriction categories} % (fold)
+\label{sec:coproducts_in_restriction_categories}
+\subsection{Coproducts} % (fold)
+\label{sub:coproducts}
+
+Restriction categories may also have coproducts and initial objects.
+\begin{definition}
+  In a restriction category \X, a coproduct is a \emph{restriction coproduct} when the embeddings
+  $\cpa$ and $\cpb$ are total.
+\end{definition}
+
+\begin{lemma}\label{lem:restriction_coproduct_is_restriction_functor}
+  The definition of restriction coproduct implies the following:
+  \begin{enumerate}[{(}i{)}]
+    \item $\restr{f+g} = \restr{f} + \restr{g}$ which means $+$ is a restriction functor.
+    \item $\nabla:A+A\to A$ is total.
+    \item $?:0 \to A$ is total, where $0$ is the initial object in the restriction category.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item \textbf{$+$ is a restriction functor.}
+      Consider the diagram:
+      \[
+        \xymatrix @C=30pt @R=35pt{
+          A \ar[rr]_{f} \ar[dr]_{\cpa} && A' \ar[dr]^{\cpa'}\\
+          &A+B \ar@{.>}[rr]^{f+g} & & A' + B'\\
+          B \ar[rr]_{g} \ar[ur]^{\cpb} && B'. \ar[ur]_{\cpb'}
+        }
+      \]
+      In order to show $\restr{f+g} = \restr{f} + \restr{g}$, it suffices to show that
+      $\cpa\restr{f+g} = \cpa(\restr{f} + \restr{g}) = \restr{f}\cpa$.
+      \begin{align*}
+        \cpa\restr{f+g} &= \restr{\cpa(f+g)}\cpa & \rfour\\
+        &= \restr{f \cpa'} \cpa &\text{coproduct diagram}\\
+        &= \restr{f \restr{\cpa'}} \cpa
+          & \text{Lemma }\refitem{lem:restrictionvarious}{lemitem:rv_3}\\
+        &= \restr{f} \cpa & \cpa'\text{ total}.
+      \end{align*}
+    \item   \textbf{$\nabla:A+A\to A$ is total.}
+      By the definition of $\nabla$ ($=\<1 | 1 \>$) and the co-product, the following diagram
+      commutes,
+      \[
+        \xymatrix @C=30pt @R=35pt{
+          &A + A \ar[d]_{\nabla}\\
+          A \ar@{=}[r] \ar[ur]^{\cpa}&A \ar@{=}[r] & A \ar[ul]_{\cpb}
+        }
+      \]
+      resulting in:
+      \[
+         \cpa \restr{\nabla}  = \restr{\cpa \nabla} \cpa = \restr{1} \cpa = \cpa.
+      \]
+      Similarly, $\cpb \restr{\nabla} = \cpb$, hence, the restriction of $\nabla$ is $1$ and
+      therefore $\nabla$ is total.
+    \item  \textbf{$\why:0 \to A$ is total.}
+      This follows from
+      \[
+        \xymatrix @C=30pt @R=35pt{
+          0 \ar[dr]_{\why} \ar[r]^{\cpb} &A + 0 \\
+          & A \ar@{=}[u]
+        }
+      \]
+      so $\why$ can be defined as the total coproduct injection.
+  \end{enumerate}
+
+
+
+\end{proof}
+
+Recall that when an object is both initial and terminal, it is referred to as a zero object and
+denoted as $0$. This gives rise to the zero map $0_{A,B}: A \to 0 \to B$ between any two objects.
+
+\begin{definition}\label{def:restriction_zero}
+  Given a restriction category \X with a zero object, then $0$ is a \emph{restriction zero} when
+  for each object $A$ in \X we have $\restr{0_{A,A}} = 0_{A,A}$.
+\end{definition}
+
+\begin{lemma}[Cockett-Lack]\label{lem:restriction_zero_equivalences}
+  For a restriction category \X, the following are equivalent:
+  \begin{enumerate}[{(}i{)}]
+    \item \X has a restriction zero;
+    \item \X has an initial object $0$ and terminal object $1$ and each initial map $z_A$ is a
+      restriction monic;
+    \item \X has a terminal object $1$ and each terminal map $t_A$ is a restriction retraction.
+  \end{enumerate}
+\end{lemma}
+% subsection coproducts (end)
+
+
+
+
+\subsection{Inverse categories with restriction coproducts} % (fold)
+\label{sub:inverse_categories_with_restriction_coproducts}
+
+
+\begin{proposition}
+  An inverse category \X with restriction coproducts is a pre-order.
+\end{proposition}
+\begin{proof}
+  By Lemma~\ref{lem:restriction_coproduct_is_restriction_functor}, we know $\nabla$ is total and
+  therefore $\nabla\inv{\nabla} = 1$. From the coproduct diagrams, we have $\cpa\nabla =1$ and
+  $\cpb\nabla = 1$. But this gives us $\inv{\nabla}\inv{\cpa} = \inv{(\cpa\nabla)} = 1$ and
+  similarly $\inv{\nabla}\inv{\cpb} =1$. Hence, $\inv{\nabla} = \cpa$ \emph{and} $\inv{\nabla} =
+  \cpb$.
+
+  This means for parallel maps $f,g:A \to B$, we have
+  \[
+    f = \cpa \<f|g\> = \inv{\nabla} \<f|g\> = \cpb\<f|g\> = g
+  \]
+  and therefore \X is a pre-order.
+\end{proof}
+% subsection inverse_categories_with_restriction_coproducts (end)
+% section coproducts_in_restriction_categories (end)
+
+\section{Disjointness in an inverse category} % (fold)
+\label{sec:disjointness_in_an_inverse_category}
+In the following, we will add two related structures to an inverse category with a
+restriction zero. This structure is meant to be evocative of the \emph{join} concept in a
+restriction category. We will first re-iterate some of the basic definitions and lemmas
+about joins.
+\subsection{Joins in restriction categories} % (fold)
+\label{sub:joins_in_restriction_categories}
+
+\begin{definition}\label{def:joins}
+  Given \R is a restriction category with a restriction zero, then \R is said to have \emph{joins}
+  whenever there is an operator $\join$ defined between compatible maps (from
+  Definition~\vref{def:compatible_maps}) such that:
+  \begin{itemize}
+    \item $f \le f \join g$ and $g \le f \join g$,
+    \item $\rst{f\join g} = \rst{f}\join \rst{g}$,
+    \item $f,g \le h$ implies that $f\join g \le h$ and
+    \item $h(f\join g) = h f \join h g$.
+  \end{itemize}
+\end{definition}
+
+For example, in the restriction category $\Par$, the join is given by:
+\[(f \join g) (x) = \begin{cases}
+  f(x)( = g(x))& \text{ when both $f$ and $g$ are defined;}\\
+  f(x)& \text{ when only $f$ is defined;}\\
+  g(x)& \text{ when only $g$ is defined;}\\
+  \uparrow & \text{ when both $f$ and $g$ are undefined.}
+\end{cases}
+\]
+
+\begin{lemma}\label{lem:meet_distributes_over_join}
+  If \R is a meet restriction category with joins, then the meet distributes over the join, i.e.,
+  \[
+    h\meet(f\join g) = (h\meet f)\join (h\meet g).
+  \]
+\end{lemma}
+\begin{proof}
+  \begin{align*}
+    h\meet(f\join g) &= \rst{(f\join g)} h\meet (f\join g)\\
+    &= (\rst{f}\join \rst{g}) h\meet (f\join g)\\
+    &= (\rst{f}(h\meet (f\join g))) \join (\rst{g}(h\meet (f\join g)))\\
+    &= (h\meet \rst{f}(f\join g)) \join (h\meet \rst{g}(f\join g)))\\
+    &= (h\meet (f\join g)) \join (h\meet (f\join g))).
+  \end{align*}
+\end{proof}
+% subsection joins_in_restriction_categories (end)
+
+
+\subsection{Disjointness relations} % (fold)
+\label{sub:disjointness_relations}
+In this subsection, we will define a disjointness relationship between maps and
+explore alternate characterizations of this relation on the restriction idempotents of objects.
+
+\begin{definition}\label{def:disjointness_relation}
+  In an inverse category \X with a restriction zero, the relation $\cdperp$ between two parallel
+  maps $f, g:A \to B$ is called a \emph{disjointness relation} when it satisfies the following
+  properties:
+  \begin{align*}
+    \axiom{Dis}{1}\quad &\text{ For all }f:A\to B,\ f\cdperp 0;\\
+    \axiom{Dis}{2}\quad &f\cdperp g\text{ implies }\rst{f} g = 0; \\
+    \axiom{Dis}{3}\quad &f\cdperp g,\ f' \le f,\ g' \le g\text{ implies }f' \cdperp g';\\
+    \axiom{Dis}{4}\quad &f\cdperp g\text{ implies }g \cdperp f;\\
+    \axiom{Dis}{5}\quad &f\cdperp g\text{ implies }h f \cdperp h g; \text{ (Stable)}\\
+    \axiom{Dis}{6}\quad &f\cdperp g\text{ implies }\rst{f} \cdperp \rst{g}
+      \text{ and }\rg{f}\cdperp\rg{g};\\
+    \axiom{Dis}{7}\quad &\rst{f}\cdperp \rst{g},\ \rg{h}\cdperp \rg{k}\text{ implies }f h
+      \cdperp g k.
+  \end{align*}
+\end{definition}
+
+\begin{lemma}\label{lem:disjointness_equivalent_axioms}
+  In Definition~\ref{def:disjointness_relation}, provided we retain $\axiom{Dis}{1-5}$, we may
+  replace $\axiom{Dis}{6}$ and $\axiom{Dis}{7}$ by:
+  \begin{align*}
+    \axiom{Dis}{6'}\quad &f\cdperp g\text{ if and only if }\rst{f} \cdperp \rst{g}
+      \text{ and }\rg{f}\cdperp\rg{g}.
+  \end{align*}
+\end{lemma}
+\begin{proof}
+  Given $\axiom{Dis}{6}$ and $\axiom{Dis}{7}$, the \emph{only if} direction of $\axiom{Dis}{6'}$ is
+  immediate. To show the \emph{if} direction, assume $\rst{f} \cdperp \rst{g}$ and
+  $\rg{f}\cdperp\rg{g}$. This also means that $\rst{\rst{f}} \cdperp \rst{\rst{g}}$. Then, by
+  \axiom{Dis}{7}, $\rst{f} f \cdperp \rst{g}g$ and therefore $f \cdperp g$.
+
+  Conversely, assume we are given \axiom{Dis}{6'}. Then, \axiom{Dis}{6} follows immediately. To show
+  \axiom{Dis}{7}, assume we have $\rst{f}\cdperp \rst{g},\ \rg{h}\cdperp \rg{k}$. As
+  $\rst{f h} \le \rst{f}$ and $\rst{g k}\le\rst{g}$, by \axiom{Dis}{3}, we know that
+  $\rst{f h} \cdperp \rst{g k}$. Similarly, $\wrg{f h} \le \rg{h}$ and $\wrg{g k} \le \rg{k}$,
+  giving us $\wrg{f h}\cdperp \wrg{g k}$. Then, from \axiom{Dis}{6'} we may conclude
+  $f h \cdperp g k$, showing \axiom{Dis}{7} holds.
+\end{proof}
+\begin{lemma}\label{lem:disjointness_various}
+  In an inverse category \X with $\cdperp$ a disjointness relation:
+  \begin{enumerate}[{(}i{)}]
+    \item $f \cdperp g$ if and only if $\inv{f}\cdperp \inv{g}$; \label{lemitem:djv_inverses}
+    \item $f \cdperp g$ implies $f h \cdperp g h$ (Universal);\label{lemitem:djv_universal}
+    \item $f \cdperp g$ implies $f\rg{g} = 0$;
+    \item if $m,n$ are monic, then $f m \cdperp g n$ implies $\rst{f} \perp \rst{g}$;
+      \label{lemitem:djv_monic_implies}
+    \item if $m,n$ are monic, then $\inv{m} f \cdperp \inv{n}g$ implies $\rg{f} \perp \rg{g}$.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item Assume $f \cdperp g$. By \axiom{Dis}{6}, we have $\rst{f} \cdperp \rst{g}$ and
+      $\rg{f}\cdperp\rg{g}$. Since $\rg{f} = \rst{\inv{f}}$ and $\rst{f} = \wrg{\inv{f}}$, this
+      means $\rst{\inv{f}} \cdperp \rst{\inv{g}}$ and $\wrg{\inv{f}}\cdperp\wrg{\inv{g}}$. By
+      \axiom{Dis}{6'} from Lemma~\ref{lem:disjointness_equivalent_axioms}, we have
+      $\inv{f} \cdperp \inv{g}$. The converse follows with  a similar argument.
+    \item Assume $f \cdperp g$. By the previous item, we have $\inv{f}\cdperp\inv{g}$. By
+      \axiom{Dis}{5}, $\inv{h}\inv{f}\cdperp\inv{h}\inv{g}$, giving us $\inv{(f h)} \cdperp
+      \inv{(g h)}$. By this Lemma, item \ref{lemitem:djv_inverses}, we now have $f h \cdperp g h$.
+    \item Assume $f \cdperp g$. From item \ref{lemitem:djv_inverses} and reflexivity, we know that
+      $\inv{g}
+      \cdperp \inv{f}$ and therefore $\rst{\inv{g}}\inv{f} = \rg{g}\inv{f}= 0$. However, in an
+      inverse category, $\inv{0} = 0$ and therefore $0 = \inv{(\rg{g}\inv{f})} = f \inv{\rg{g}} = f
+      \rg{g}$.
+    \item Assume $f m \cdperp g n$ where $m, n$ are monic. By \axiom{Dis}{6}, this gives us
+      $\rst{f m} \cdperp \rst{g n}$. By Lemma~\ref{lem:restrictionvarious},
+      $\rst{f m} = \rst{f \rst{m}} = \rst{f 1} = \rst{f}$ and therefore $\rst{f} \cdperp \rst{g}$.
+    \item This is a corollary to this Lemma, item~\ref{lemitem:djv_monic_implies}. By assumption,
+      we have $\inv{m} f \cdperp  \inv{n}g$ and therefore $\inv{f}m \cdperp \inv{g} n$. By the
+      previous item, this means $\rst{\inv{f}} \cdperp \rst{\inv{g}}$ and hence $\rg{f} \cdperp \rg{g}$.
+  \end{enumerate}
+\end{proof}
+
+We may define the disjointness relation via its action in \open{a}.
+
+\begin{definition}\label{def:disjointness_in_open_x}
+  Given an inverse category \X, a relation $\ocdperpsub{A} \subseteq \open{A}^2$ for each $
+  A \in \mathrm{ob}(\X)$, is an \emph{open disjointness} relation when for all $e, e' \in \open{A}$
+  \begin{align*}
+    \axiom{$\mathcal{O}$dis}{1}\quad &1 \ocdperpsub{A} 0; \\
+    \axiom{$\mathcal{O}$dis}{2}\quad &e \ocdperpsub{A} e' \text{ implies }e' \ocdperpsub{A} e;\\
+    \axiom{$\mathcal{O}$dis}{3}\quad &e \ocdperpsub{A} e' \text{ implies }e e' = 0;\\
+    \axiom{$\mathcal{O}$dis}{4}\quad &e \ocdperpsub{A} e' \text{ implies }\rst{f e} \ocdperpsub{B}
+      \rst{f e'}\text{ for all }f:B \to A;\\
+    \axiom{$\mathcal{O}$dis}{5}\quad &e \ocdperpsub{A} e' \text{ implies }\wrg{e g} \ocdperpsub{C}
+      \wrg{e' g}\text{ for all }g:A \to C; \\
+    \axiom{$\mathcal{O}$dis}{6}\quad &e \ocdperpsub{A} e',\ e_1 \le e,\ e_1' \le e'
+      \text{ implies }e_1 \ocdperpsub{A} e_1'.
+  \end{align*}
+\end{definition}
+
+We will normally write $\ocdperp$ rather than $\ocdperpsub{A}$ where the object is either clear or
+not germane to the point under discussion.
+
+\begin{proposition}\label{prop:disjointness_is_open_disjointness}
+  If $\cdperp$ is a disjointness relation in $\X$, it is an open disjointness
+  relation on the restriction idempotents.
+\end{proposition}
+\begin{proof}
+  \prepprooflist
+  \setlist[enumerate,1]{leftmargin=1.5cm}
+  \begin{enumerate}
+    \item[\axiom{$\mathcal{O}$dis}{1}] This follows immediately from \axiom{Dis}{1} by taking
+      $f = 1$.
+    \item[\axiom{$\mathcal{O}$dis}{2}] Reflexivity follows directly from  \axiom{Dis}{4}.
+    \item[\axiom{$\mathcal{O}$dis}{3}] By \axiom{Dis}{2}, $0 = \rst{e} e' = e e'$.
+    \item[\axiom{$\mathcal{O}$dis}{4}] Given $e \cdperp e'$, we have $f e \cdperp f e'$ by
+      \axiom{Dis}{5}. Then, by \axiom{Dis}{6} we may conclude $\rst{f e} \cdperp \rst{f e'}$.
+    \item[\axiom{$\mathcal{O}$dis}{5}] This follows from the above item, using $\inv{g}$ for $f$.
+      This means we have $\rst{\inv{g}e} \cdperp \rst{\inv{g}e'}$. But this gives us $\rst{\inv{(e
+      g)}} \cdperp \rst{\inv{(e' g)}}$. Recalling from
+      Lemma~\ref{lem:inverse_categories_are_range_categories} that $\rg{k} = \rst{\inv{k}}$, we may
+      conclude $\wrg{e g} \cdperp \wrg{e' g}$.
+    \item[\axiom{$\mathcal{O}$dis}{6}] Assuming $e \cdperp e'$ and $e_1 \le e,\ e'_1 \le e'$, by
+      \axiom{Dis}{3}, $e_1 \cdperp e'_1$.
+  \end{enumerate}
+  Therefore, $\cdperp$ acts as an open disjointness relation on $\open{A}^2$.
+
+\end{proof}
+
+\begin{definition}\label{def:extended_open_disjointness}
+  If $\ocdperp$ is an open disjointness relation in $\X$, then we may define a relation
+  $\perpab \in \X(A,B)^2$ by
+  \[
+    \infer{f\perpab g}{f,g:A\to B,\ \rst{f}\ocdperp\rst{g},\ \rg{f}\ocdperp\rg{g}}.
+  \]
+  We call $\perpab$ an \emph{extended disjointness relation}.
+\end{definition}
+
+\begin{proposition}\label{prop:extended_disjointness_is_a_disjointness_relation}
+  If $\cdperp$ is an extended disjointness relation based on $\ocdperp$ in \X, then
+  $\cdperp$ is a disjointness relation in \X.
+\end{proposition}
+\begin{proof}
+  \prepprooflist
+  \setlist[enumerate,1]{leftmargin=1.5cm}
+  \begin{enumerate}
+    \item[\axiom{Dis}{1}] We need to show $f \cdperp 0$ for any $f$. We know that $1 \ocdperp 0$
+      and therefore $\rst{f} \ocdperp 0$ and $\rg{f} \ocdperp 0$, as $\rst{f}\le 1$ and $\rg{f}\le
+      1$. This gives us $f \cdperp 0$.
+    \item[\axiom{Dis}{2}] Assume $f \cdperp g$, i.e., $\rst{f}\ocdperp \rst{g}$. Then, $\rst{f}g =
+      \rst{f}\rst{g}g = 0 g = 0$.
+    \item[\axiom{Dis}{3}] We are given $f \cdperp g$, $f' \le f$ and $g' \le g$. By
+      Lemma~\refitem{lem:restriction_cats_are_partial_order_enriched}{lemitem:rst_ordering_2}
+      $\rst{f'} \le \rst{f}$ and $\rst{g'} \le \rst{g}$. Then, by \axiom{$\mathcal{O}$dis}{6}, as
+      $\rst{f} \ocdperp \rst{g}$ we have $\rst{f'} \ocdperp \rst{g'}$. By
+      Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_2}, we have $\wrg{f'}
+      \le \rg{f}$ and $\wrg{g'} \le \rg{g}$. Then, by \axiom{$\mathcal{O}$dis}{6}, as $\rg{f}
+      \ocdperp \rg{g}$ we have $\wrg{f'} \ocdperp \wrg{g'}$. This means $f' \cdperp g'$.
+    \item[\axiom{Dis}{4}] Reflexivity of $\cdperp$ follows immediately from the reflexivity of
+      $\ocdperp$.
+    \item[\axiom{Dis}{5}] Assume $f \cdperp g$, i.e., $\rst{f}\ocdperp \rst{g}$ and $\rg{f}
+      \ocdperp \rg{g}$. Then we have $\rst{hf}\ocdperp \rst{h g}$ by \axiom{$\mathcal{O}$dis}{4}. By
+      Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1} we have $\wrg{h f}
+      \le \rg{f}$ and $\wrg{h g} \le \rg{g}$. Therefore we have $\wrg{h f}\ocdperp \wrg{h g}$ by
+      \axiom{$\mathcal{O}$dis}{6} and therefore $h f \cdperp h g$.
+    \item[\axiom{Dis}{6}] This follows directly from definition
+      \ref{def:extended_open_disjointness}.
+    \item[\axiom{Dis}{7}] We assume $\rst{f} \cdperp \rst{g}$ and $\rg{h} \cdperp \rg{k}$. By
+      definition \ref{def:extended_open_disjointness} we have $\rst{f} \ocdperp \rst{g}$ and
+      $\rg{h} \ocdperp \rg{k}$. By
+      Lemma~\refitem{lem:restriction_cats_are_partial_order_enriched}{lemitem:rst_ordering_3}, we
+      have $\rst{f h} \le \rst{f}$ and $\rst{g k} \le \rst{g}$. Therefore, $\rst{f h} \ocdperp
+      \rst{g k}$ by \axiom{$\mathcal{O}$dis}{6}. By
+      Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1}, $\wrg{f h} \le
+      \rg{h}$ and $\wrg{g k} \le \rg{k}$, giving us $\wrg{f h}\ocdperp \wrg{g k}$ also by
+      \axiom{$\mathcal{O}$dis}{6}. This means $f h \cdperp g k$.
+  \end{enumerate}
+\end{proof}
+\begin{theorem}\label{thm:open_disjointness_is_disjointness}
+   To give a disjointness relation $\perp$ on $\X$ is to give an open disjointness relation
+   $\ocdperp$ on \X.
+\end{theorem}
+\begin{proof}
+  Suppose we are given the disjointness relation $\perp$. By
+  Proposition~\ref{prop:disjointness_is_open_disjointness}, this is an open disjointness relation
+  on each of the sets of idempotents, $\open{A}$. We will label that relation $\ocdperp$.
+
+  Use Definition~\ref{def:extended_open_disjointness} to create an extended
+  disjointness relation based on $\ocdperp$, signify it by $\eocdperp$.
+  By Proposition~\ref{prop:extended_disjointness_is_a_disjointness_relation}, $\eocdperp$ is
+  a disjointness relation on $\X$.
+
+  Assume $f\perp g$. We have $\rst{f}\ocdperp\rst{g}$ and $\rg{f}\ocdperp\rg{g}$ by
+  \axiom{Dis}{6} and Proposition~\ref{prop:disjointness_is_open_disjointness}. Then, from
+  Definition~\ref{def:extended_open_disjointness}, we have $f \eocdperp g$.
+
+  Assume $f \eocdperp g$. This means we must have had $\rst{f}\ocdperp\rst{g}$ and
+  $\rg{f}\ocdperp\rg{g}$
+  by Definition~\ref{def:extended_open_disjointness} and therefore $\rst{f}\perp\rst{g}$ and
+  $\rg{f}\perp\rg{g}$. By Proposition~\ref{lem:disjointness_various}, we have $f \perp g$.
+
+
+  Now, suppose we are given the open disjointness relation $\ocdperp$. Similar to above, we can
+  construct the extended disjointness relation $\perp$ by
+  Definition~\ref{def:extended_open_disjointness}. From the disjointness relation $\perp$, we have
+  the open disjointness relation $\overline{\perp}$ by
+  Lemma~\ref{prop:disjointness_is_open_disjointness}.
+
+  Assume $e \ocdperp e'$. As this means both $\rst{e} \ocdperp \rst{e'}$ and
+  $\rg{e} \ocdperp \wrg{e'}$, we have $e \perp e'$. By
+  Proposition~\ref{prop:disjointness_is_open_disjointness} this means $e \overline{\perp} e'$.
+
+  If we are given that $e \overline{\perp} e'$, then we know that $e \perp e'$ by
+  Proposition~\ref{prop:disjointness_is_open_disjointness}. From
+  Definition~\ref{def:extended_open_disjointness}, this requires that $\rst{e} \ocdperp \rst{e'}$
+  and $\rg{e} \ocdperp \wrg{e'}$, but that just means $e \ocdperp e'$.
+\end{proof}
+
+Note that while we have worked with binary disjointness throughout this section, one may extend
+the concept to lists of maps simply by considering disjointness pairwise. I.e., we have
+$\cdperp [f_1,f_2,\ldots,f_n]$ if and only if $f_i \cdperp f_k$ whenever $i \ne j$.
+
+Disjointness is additional structure on a restriction category, i.e., it is possible to have more
+than one disjointness relation on the category.
+\begin{example}\label{ex:disjointness_is_a_structure_not_a_property}
+  Consider the restriction category \inj. Here, the objects are sets and maps are
+  the partial injective set functions, where $\rst{f}=id_{|\dom(f)}$. The restriction zero is the
+  empty map (i.e., $\dom(0) = \rng(0) = \emptyset$).
+
+  We may define the disjointness relation $\perp$ by $f \perp g$ if and only if
+  $\dom(f)\intersect\dom(g)=\emptyset$ and $\rng(f)\intersect\rng(g) = \emptyset$. It is reasonably
+  straightforward to verify \axiom{Dis}{1} through \axiom{Dis}{7}. For example, take \axiom{Dis}{7}:
+  \begin{proof}
+    We are given $\rst{f}\cdperp\rst{g}$ and $\rg{h}\cdperp\rg{k}$. This means
+    \[
+      \dom f\intersect\dom g=\emptyset \text{ and }\rng h\intersect\rng k = \emptyset.
+    \]
+    Note that in    general for partial injective functions $m$ and $n$ we have
+    $\dom{m n} \subseteq \dom{m}$ and that $\rng{m n} \subseteq \rng{n}$. Hence we have
+    \begin{align*}
+      \dom{f h}\intersect\dom{g k}&\subseteq \dom{f}\intersect \dom{g}= \emptyset\\
+      \rng{f h}\intersect\rng{g k}&\subseteq \rng{h}\intersect \rng{k}= \emptyset.
+    \end{align*}
+    Therefore, $f h \cdperp g k$.
+  \end{proof}
+
+  We may define a different disjointness relation, $\perp'$, on the same restriction category.
+  Define $f \perp' g$ if and only if one of $f$ or $g$ is the restriction 0, $\emptyset$. As
+  $0 = \rst{0} = \rg{0} = h 0 = 0 k$, all of the seven disjointness axioms are easily verifiable.
+\end{example}
+
+Although disjointness is additional structure on a restriction category, one can use the
+disjointness structure of a base category (or categories) to define a disjointness structure
+on derived categories, such as the product category.
+
+\begin{lemma}\label{lem:disjointness_is_derivable_on_a_product_category}
+  If $\X$ and $\Y$ are inverse categories with restriction zeros and respective disjointness
+  relations $\perp$ and $\perp'$, then we may construct a disjointness relation
+  $\perp_{\times}$ on $\X\times\Y$.
+\end{lemma}
+\begin{proof}
+  Recall that product categories are defined component-wise. These definitions extend to the
+  restriction, the inverse and the restriction zero. That is:
+  \begin{itemize}
+    \item If $(f,g)$ is a map in $\X\times\Y$, then $\inv{(f,g)} = (\inv{f}, \inv{g})$;
+    \item If $(f,g)$ is a map in $\X\times\Y$, then $\rst{(f,g)} = (\rst{f}, \rst{g})$;
+    \item The map $(0_X,0_Y)$ is the restriction zero in $\X\times\Y$.
+  \end{itemize}
+
+  Following this pattern, for $(f,g)$ and $(h,k)$ maps in $\X\times\Y$, $(f,g) \perp_{\times}(h,k)$
+  iff $f\perp h$ and $g\perp' k$.
+
+  Verifying the disjointness axioms is straightforward, we show axioms 2 and 5. Proofs of the
+  others are similar.
+  {
+  \setlist[itemize,1]{leftmargin=1.5cm}
+  \begin{itemize}
+    \item [\axiom{Dis}{2}]: Given $(f,g)\perp_{\times}(h,k)$, we have
+      $\rst{(f,g)}(h,k) =  (\rst{f},\rst{g})(h,k) = (\rst{f} h, \rst{g} k) = (0, 0) = 0$.
+    \item [\axiom{Dis}{5}]: We are given $(f,g)\perp_{\times}(h,k)$. Consider the map $z = (x,y)$
+      in $\X \times \Y$. We know that $x f \perp x h$ and $y g \perp y k$, therefore we have
+      $z(f,g) = (x f, y g) \perp_{\times} (x h, y k) = z(h,k)$.
+  \end{itemize}
+  }
+\end{proof}
+% subsection disjointness_relations (end)
+
+\section{Disjoint joins} % (fold)
+\label{sec:disjoint_joins}
+
+We now consider additional structure on the inverse category, dependent upon the disjointness
+relation.
+\begin{definition}\label{def:disjoint_join}
+  An \emph{inverse category with disjoint joins} is an inverse category $\X$, with a restriction
+  $0$, a disjointness relation $\perp$ and a binary operator on disjointness parallel maps:
+  \[
+    \infer{f \djoin g : A \to B}{f: A\to B,\ g: A\to B,\ f \perp g}
+  \]
+  where the following hold:
+  \begin{align*}
+    \axiom{DJ}{1}\quad & f \le f \djoin g\text{ and }g \le f \djoin g; \\
+    \axiom{DJ}{2}\quad & f \le h,\ g \le h\text{ and }f\perp g\text{ implies }f \djoin g \le h;\\
+    \axiom{DJ}{3}\quad & h(f \djoin g) = h f \djoin h g. \text{ (Stable)} \\
+    \axiom{DJ}{4}\quad & \cdperp [f, g, h]\text{ if and only if }f \perp (g\djoin h).\\
+  \end{align*}
+  The binary operator, $\djoin$, is referred to as the \emph{disjoint join}.
+\end{definition}
+
+Note that \axiom{DJ}{1} with \axiom{DJ}{2} immediately gives us that there is only one disjoint
+join given a specific disjointness relation.
+\begin{lemma}\label{lem:disjoint_join_is_unique}
+  Suppose \X in an inverse category with disjoint joins, with the join $\djoin$ and that it
+  has a second disjoint join, $\altjoin$. Then $f \djoin g = f \altjoin g$ for all maps $f,g$ in
+  \X.
+\end{lemma}
+\begin{proof}
+  The first axiom tells us:
+  \[
+    f,g \le f\djoin g\text{ and }f,g \le f \altjoin g.
+  \]
+  Using the second axiom, we may therefore conclude $f \djoin g \le f \altjoin g$ and
+  $f \altjoin g \le f\djoin g$, hence $f \djoin g = f \altjoin g$.
+\end{proof}
+\begin{lemma}\label{lem:join_is_associative_and_commutative_monoid}
+  In an inverse category with disjoint joins, the disjoint join respects the restriction and is
+  universal. Additionally, it is a partial associative and
+  commutative operation, with identity $0$. That is, the following hold:
+  \begin{enumerate}[{(}i{)}]
+    \item $\rst{f\djoin g} = \rst{f} \djoin \rst{g}$;
+    \item $(f \djoin g)k = f k \djoin g k$ (Universal);
+    \item $f \perp g,\ g\perp h,\ f\perp h$ implies that $(f\djoin g)\djoin h = f\djoin(g\djoin
+      h)$; \label{lemitem:associative_join}
+    \item $f \perp g$ implies $f \djoin g = g \djoin f$; \label{lemitem:commutative_join}
+    \item $f \djoin 0 = f$. \label{lemitem:identity_for_join}
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item As $\rst{f}, \rst{g} \le \rst{f\djoin g}$, we immediately have
+      $\rst{f} \djoin \rst{g} \le \rst{f \djoin g}$. To show the other direction, consider
+      \begin{align*}
+        \rst{f}(\rst{f} \djoin \rst{g}) (f \djoin g)
+        &= (\rst{f}\,\rst{f} \djoin \rst{f}\rst{g})(f \djoin g) &\text{\axiom{DJ}{3}}\\
+        &= \rst{f} (f\djoin g) &\text{Lemma~\ref{lem:restrictionvarious}, \axiom{Dis}{2}}\\
+        &= f.
+      \end{align*}
+      Hence, we have $f \le (\rst{f} \djoin \rst{g}) (f \djoin g)$ and similarly, so is $g$. By
+      \axiom{DJ}{2} and that $\rst{f} \djoin \rst{g}$ is a restriction idempotent, we then have
+      \[
+        f \djoin g \le (\rst{f} \djoin \rst{g}) (f \djoin g) \le f \djoin g
+      \]
+      and therefore $f \djoin g = (\rst{f} \djoin \rst{g}) (f \djoin g)$. By
+      Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}, $\rst{f\djoin g} \le \rst{f}
+      \djoin \rst{g}$ and so $\rst{f\djoin g} = \rst{f}\djoin \rst{g}$.
+    \item First consider when $f, g$ and $k$ are restriction idempotents, say $e_0, e_1 $ and $e_2$.
+      Then, we have $(e_0 \djoin e_1)e_2 = e_2(e_0 \djoin e_1) = e_2 e_0 \djoin e_2 e_1 =
+      e_0 e_2 \djoin e_1 e_2$.
+      Next, note that for general $f,g,h$, we have $f k \djoin g k \le (f\djoin g) k$ as both
+      $f k, g k \le (f\djoin g) k$.
+      By Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}, we need only show that their
+      restrictions are equal:
+      \begin{align*}
+        \rst{(f\djoin g)k} &= \rst{\rst{f\djoin g}(f\djoin g) k } & \rone \\
+        & = \rst{f\djoin g}\, \rst{(f\djoin g)k } & \rthree\\
+        & = (\rst{f}\djoin \rst{g}) \rst{(f\djoin g)k }  & \text{previous item}\\
+        & = \rst{f}\,\rst{(f\djoin g)k } \djoin \rst{g}\, \rst{(f\djoin g)k }
+          &\text{idempotent universal}\\
+        & = \rst{\rst{f} (f\djoin g)k} \djoin \rst{\rst{g} (f\djoin g)k} & \rthree\\
+        & = \rst{f k} \djoin \rst{g k}\\
+        & = \rst{f k \djoin g k}.
+      \end{align*}
+      Therefore, as the restrictions are equal, we have shown $(f\djoin g)k = f k \djoin g k$.
+    \item \emph{Associativity}: Note that \axiom{DJ}{4} shows that both sides of the equation
+      exist. To show they are equal, we show that they are less than or equal to each other.
+
+      From the definitions, we know that $f\djoin g, h \le (f\djoin g)\djoin h$, which also means
+      $f, g \le (f\djoin g)\djoin h$. Similarly, $g\djoin h \le (f\djoin g)\djoin h $ and then $f
+      \djoin (g\djoin h)\le (f\djoin g)\djoin h$. Conversely, $f,g,h \le f \djoin (g\djoin h)$ and
+      therefore $(f\djoin g)\djoin h \le f \djoin (g\djoin h)$ and both sides are equal.
+    \item \emph{Commutativity}: Note first that both $f$ and $g$ are less than or equal to both
+      $f\djoin g$ and $g \djoin f$, by \axiom{DJ}{1}. By \axiom{DJ}{2}, we have $f \djoin g \le
+      g\djoin f$ and $g\djoin f \le f \djoin g$ and we may conclude $f \djoin g = g \djoin f$.
+    \item \emph{Identity}: By \axiom{DJ}{1}, $f \le f \djoin 0$. As $0 \le f$ and $f \le f$, by
+      \axiom{DJ}{2}, $f \djoin 0 \le f$ and we have $f = f \djoin 0$.
+  \end{enumerate}
+\end{proof}
+
+Note that the previous lemma and proof of associativity allows a simple inductive argument which
+shows that having binary disjoint joins extends unambiguously to disjoint joins of an arbitrary
+finite collection of disjoint maps.
+
+We will write $[f_i]$ to signify a list of maps, where each $f_i: A \to B$. For disjointness,
+$\cdperp [f_i]$ will mean that $f_j \cdperp f_k$ where $j\ne k$ and $f_j, f_k \in [f_i]$. Finally,
+$\djoin [f_i]$ will mean the disjoint join of all maps $f_i$, i.e.,
+$f_1 \djoin f_2 \djoin \cdots \djoin f_n$.
+
+\begin{lemma}\label{lem:arbitrary_disjoint_joins}
+  In an inverse category with disjoint joins, $\cdperp [f_i]$ if and only if
+  $\djoin [f_i]$ is defined unambiguously.
+\end{lemma}
+\begin{proof}
+  Using \axiom{Dj}{4}, proceed as in the proof of
+  Lemma~\refitem{lem:join_is_associative_and_commutative_monoid}{lemitem:associative_join},
+  inducting on $n$.
+\end{proof}
+
+
+\begin{lemma}\label{lem:disjoint_joins_only_when_all_disjoint}
+  Given $\X$ is an inverse category with a disjoint join, then if $f_i, g_j : A \to B$ and $\cdperp
+  [f_i]$ and $\cdperp [g_j]$, then $\djoin [f_i] \cdperp \djoin [g_j]$ if and only $f_i \cdperp
+  g_j$ for all $i,j$.
+\end{lemma}
+\begin{proof}
+  Assume $\djoin [f_i] \cdperp \djoin [g_j]$. By \axiom{Dj}{4} and associativity, we have
+  $\djoin [f_i] \cdperp g_j$ for each $j$. Using the reflexivity of $\cdperp$,
+  \axiom{Dj}{4} and associativity, we have $f_i \cdperp g_j$ for each $i$ and $j$.
+
+  Assume $f_i \cdperp g_j$ for each $i$ and $j$. Then by \axiom{Dj}{4} and associativity, $f_i
+  \cdperp \djoin [g_j]$ for each $i$. Applying \axiom{Dj}{4} again, we have $\djoin [f_i] \cdperp
+  \djoin [g_j]$.
+\end{proof}
+
+Following the same method as in the previous section, we show that the product of two
+inverse categories with disjoint joins has a disjoint join.
+\begin{lemma}\label{lem:disjoint_join_is_in_product_category}
+  Given $\X, \Y$ are inverse categories with disjoint joins, $\djoin$ and $\djoin'$ respectively,
+  then the category $\X \times \Y$ is an inverse category with disjoint joins.
+\end{lemma}
+\begin{proof}
+  From Lemma~\ref{lem:disjointness_is_derivable_on_a_product_category}, we know $\X\times\Y$ has a
+  disjointness relation that is defined point-wise.  We therefore define $\djoin_{\times}$ the
+  disjoint join on $\X\times\Y$ by
+  \begin{equation}
+    (f,g)\djoin_{\times}(h,k) = (f \djoin h, g \djoin' k). \label{eq:disjoint_join_on_product}
+  \end{equation}
+  We now prove each of the axioms in Definition~\ref{def:disjoint_join} hold.
+  \setlist[itemize,1]{leftmargin=1.5cm}
+  \begin{itemize}
+    \item [\axiom{DJ}{1}] From Equation~\eqref{eq:disjoint_join_on_product}, we see that since
+      $f,h \le f \djoin h$ and $g,k \le g \djoin' k$, we have $(f,g) \le (f,g)\djoin_{\times}(h,k)$
+      and  $(h,k) \le (f,g)\djoin_{\times}(h,k)$.
+    \item [\axiom{DJ}{2}] Suppose $(f,g) \le (x,y)$, $(h,k) \le (x,y)$ and $(f,g) \perp_{\times}
+      (h,k)$. Then regarding it point-wise, we have $(f,g)\djoin_{\times}(h,k) = (f \djoin h, g
+      \djoin' k) \le (x,y)$.
+    \item [\axiom{DJ}{3}] $(x,y)\left((f,g)\djoin_{\times}(h,k)\right) = (x(f \djoin h), y(g
+      \djoin' k)) = (x f \djoin x h, y g \djoin' y k) = (x f,y g)\djoin_{\times}(x h,y k) =
+      ((x,y)(f,g))\djoin_{\times}((x,y)(h,k))$.
+    \item [\axiom{DJ}{4}] Given $\perp_{\times}\!\![(f,g),(h,k),(x,y)]$, we know $f \perp (h\djoin
+      x)$ and $g \perp' (k\djoin' y)$. Hence, $(f,g) \perp_{\times}((h,k)\djoin_{\times}(x,y))$. The
+      opposite direction is similar.
+  \end{itemize}
+\end{proof}
+
+% section disjoint_joins (end)
+
+\section{Monoidal Tensors for disjointness} % (fold)
+\label{sec:tensors_for_disjointness}
+
+When we have a monoidal tensor $\+$ on $\X$, an inverse category with a restriction zero,
+there are certain conditions where it is possible to define disjointness based upon the action of the
+tensor. We are assuming the following naming for the standard monoidal tensor
+isomorphisms:
+\begin{align*}
+   \upl &: 0 \+ A \to A\\
+   \upr &: A \+ 0 \to A\\
+   a_\+ &: (A \+ B) \+ C \to A \+ (B \+ C) \\
+   c_\+ &: A \+ B \to B \+ A.
+ \end{align*}
+We also require the tensor isomorphisms above be natural.
+
+\begin{definition}\label{def:disjointness_tensor}
+  Given we have an inverse category \X with restriction zero and a symmetric monoidal tensor
+  $\+$, the tensor $\+$ is a \emph{disjointness tensor} when:
+  \begin{itemize}
+    \item It is a restriction functor --- i.e., $\_ \+ \_ : \X \times \X \to \X$.
+    \item The unit is the restriction zero. ($0 : \boldsymbol{1}\to \X$ picks out the restriction
+    zero in \X).
+    \item Define $\cpa = \inv{\upr}(1\+0):A\to A\+B$ and $\cpb = \inv{\upl}(0\+1): A\to B\+A$.
+      $\cpa$ and $\cpb$ must be jointly epic. That is, if $\cpa f = \cpa g$ and $\cpb f = \cpb g$, then
+      $f = g$.
+    \item Define $\scpa := (1\+0)\upr: A\+B \to A$ and $\scpb := (0\+1)\upl:A\+B \to B$.
+      $\scpa$  and $\scpb$ must be jointly monic. That is, whenever $f\scpa = g \scpa$ and
+      $f\scpb = g\scpb$ then $f = g$.
+  \end{itemize}
+
+\end{definition}
+
+\begin{lemma}\label{lem:zero_plus_zero_is_zero}
+  Given an inverse category \X with restriction zero and disjointness tensor $\+$, then the map
+  $0\+0: A\+B \to C\+D$ is the map $0: A\+B \to C\+D$.
+\end{lemma}
+\begin{proof}
+  Recall the zero map factors through the restriction zero, i.e. $0:A \to B$ is the same as
+  saying $A\xrightarrow{!} 0 \xrightarrow{\why}B$. Additionally, as objects, $0\+0 \cong 0$ ---
+  the restriction zero.
+
+  Therefore the map $0\+0: A\+B \to C\+D$ is writable as
+  \[
+    A\+B \xrightarrow{!\+!}0\+0  \xrightarrow{\why\+\why} C\+D,
+  \]
+  which may then be rewritten as
+  \[
+    A\+B \xrightarrow{!\+!}0\+0 \xrightarrow{\upl} 0
+      \xrightarrow{\inv{\upl}} 0\+0 \xrightarrow{\why\+\why} C\+D.
+  \]
+
+  But by the properties of the restriction zero, $(!\+!) \upl = !$ and $\inv{\upl}(\why\+\why) = \why$
+  and therefore the map $0\+0: A\+B \to C\+D$ is the same as the map $0: A\+B \to C\+D$.
+\end{proof}
+
+
+\begin{lemma}\label{lem:disjointness_tensor_has_injections}
+  Given an inverse category \X with a restriction zero and a disjointness tensor, the map $\cpa$ is
+  natural in the left component and $\cpb$ is natural in the right, up to isomorphism. This means:
+  \[
+    \cpa (f\+g) = f \cpa \quad\text{and}\quad \cpb (f\+g) = g \cpb.
+  \]
+\end{lemma}
+\begin{proof}
+  For the left and right naturality, we see:
+  \[
+    \cpa (f\+g) = \inv{\upr} (1\+0) (f\+g) = \inv{\upr} (f \+ 0) =
+      f \inv{\upr} (1\+0) = f \cpa,
+  \]
+  and
+  \[
+    \cpb (f\+g) = \inv{\upl} (0\+1) (f\+g) = \inv{\upl} (0 \+ g) =
+      g \inv{\upl} (0\+1) = g \cpb.
+  \]
+\end{proof}
+
+
+
+\begin{lemma}\label{lem:tensor_identities}
+  Given an inverse category \X with restriction zero and disjointness tensor $\+$,
+  $\scpa = \icpa$ and $\scpb = \icpb$ and the following identities hold:
+  \begin{enumerate}
+    \item $\scp{i} \cp{i} = \rst{\scp{i}}$ and $\cp{i}\scp{i} = \rst{\cp{i}} = 1$;
+    \item $\rst{\scpa} \scpb = 0$ and $\rst{\scpb} \scpa = 0$;
+    \item $\cpb \scpa = 0$, $\cpb \rst{\scpa} = 0$,  $\cpa \scpb = 0$ and
+      $\cpa \rst{\scpb} = 0$;
+    \item the maps $\cpa$ and $\cpb$ are monic.
+  \end{enumerate}
+  Accordingly,
+\end{lemma}
+\begin{proof}
+  For item 1, recalling that the restriction zero is its own partial inverse,
+  we see that
+  \[
+    \icpa = \inv{(\inv{\upr}(1\+0))}  = \inv{(1\+0)}\upr = (1\+0)\upr = \scpa.
+  \]
+  Similarly,
+  \[
+    \icpb = \inv{(\inv{\upl}(0\+1))} = (0\+1)\upl = \scpb.
+  \]
+
+  Hence, we may calculate the restriction of $\cpa$,
+  \begin{equation*}
+    \cpa \scpa   = \inv{\upr}(1\+0) (1\+0)\upr
+      = (\inv{\upr}(1\+0))\upr = 1 \inv{\upr}\upr= 1.
+  \end{equation*}
+  The calculation for $\scpb$ and $\cpb$ is analogous.
+
+  To show $\rst{\scpa} \scpb = 0$ and $\rst{\scpb} \scpa = 0$,
+  \begin{align*}
+    \rst{\scpa} \scpb  &= \rst{(1\+0)\upr}(0\+1)\upl\\
+      &= \rst{1\+0} (0 \+ 1)\upl\\
+      &= (1\+0) (0\+1)\upl\\
+      &= (0\+0)\upl  = 0,
+  \end{align*}
+  and
+  \begin{align*}
+    \rst{\scpb} \scpa  &= \rst{(0\+1)\upl}(1\+0)\upr \\
+     &= (0\+1) (1\+0)\upr\\
+     &= (0\+0)\upr\\
+     &= 0.
+ \end{align*}
+
+  To show $\cp{i} \scp{j} = 0$, $\cp{i} \rst{\scp{j}} = 0$ when $i\ne j$,
+  \begin{align*}
+    \cpa \scpb &= (\inv{\upr}(1\+0))(0\+1) \upl\\
+       &= \inv{\upr}(0\+0)\upl\\
+       &= 0
+  \end{align*}
+  and
+  \begin{align*}
+    \cpb \scpa &= (\inv{\upl}(0\+1))(1\+0) \upr\\
+      &= \inv{\upl}(0\+0)\upr\\
+       &= 0.
+  \end{align*}
+  As $\rst{\scpa} = 1\+0$ and $\rst{\scpb} = 0 \+1$, we see the other two identities hold as well.
+
+  To prove $\cpa$ is monic, suppose $f\cpa = g\cpa$. Therefore we must have
+  \[
+    f = f (\cpa \icpa) = (f \cpa) \icpa = (g \cpa) \icpa = g (\cpa \icpa) = g.
+  \]
+  The proof that $\cpb$ is monic follows via a similar argument.
+\end{proof}
+
+As we have shown that $\scp{i} = \icp{i}$, we will prefer the explicit notation of $\icp{i}$ for
+rest of this paper.
+
+\begin{corollary}\label{cor:split_plus_tensor}
+  In an inverse category \X with a restriction zero and disjointness tensor, the following
+  identities hold:
+  \begin{multicols}{2}
+    \begin{enumerate}[{(}i{)}]
+      \item $\cpa (f \+g) \icpa = f$;
+      \item $\cpa (f\+ g) \icpb = 0$;
+      \item $\cpb (f \+g) \icpa = 0$;
+      \item $\cpb (f\+ g) \icpb = g$.
+    \end{enumerate}
+  \end{multicols}
+  Additionally, if $t$ is a map such that for $i \in \{1,2\}$,
+  \[
+    \cp{i} t \icp{j} =
+    \begin{cases}
+      t_i& : \quad i \neq j\\
+      0 & : \quad i = j,
+    \end{cases}
+  \]
+  then $t = t_1 \+ t_2$.
+\end{corollary}
+\begin{proof}
+  The calculations for $f\+g$ follow from Lemma~\ref{lem:disjointness_tensor_has_injections} and
+  Lemma~\ref{lem:tensor_identities}. For example, $\cpa (f\+g) \icpa = f \cpa \icpa = f$.
+
+  For the second claim, note that we have $\cpa (t \icpa) = t_1 = \cpa ( t_1 \+ t_2)\icpa$ and
+  $\cpb  (t \icpa) = 0 = \cpb ( t_1 \+ t_2)\icpa$, hence $t \icpa = ( t_1 \+ t_2)\icpa$. Similarly,
+  we see $t\icpb = ( t_1 \+ t_2)\icpb$ and therefore $t = t_1 \+ t_2$.
+\end{proof}
+
+\begin{definition}\label{def:up_triangle_and_down_triangle}
+  In an inverse category \X with a restriction zero and disjointness tensor, we define two partial
+  operations on pairs of arrows in \X to another arrow in \X. First, for arrows
+  $f:A \to B$ and $g:A \to C$, we define $f\tjdown g$ as
+  being the map that makes diagram \eqref{eq:tjdowndefinition} below commute, when it exists.
+  \begin{equation}
+    \xymatrix@C+0pt @R+20pt{
+      &&A \ar[dll]^{g} \ar[drr]_{f} \ar@{.>}[d]|-{f\tjdown g}\\
+      B&&B\+C \ar[ll]_{\icpa} \ar[rr]^{\icpb} && C
+      }\label{eq:tjdowndefinition}
+  \end{equation}
+  Then for $h:B \to A$, $k: C \to A$, $h\tjup k$ is that map that makes diagram
+  \eqref{eq:tjupdefinition} commute, if it exists.
+  \begin{equation}
+    \xymatrix@C+0pt @R+20pt{
+      B\ar[rr]_{\cpa} \ar[drr]^{h} &&B\+C   \ar@{.>}[d]|-{h\tjup k}
+        && C \ar[ll]^{\cpb} \ar[dll]_{k}\\
+      &&A
+      }\label{eq:tjupdefinition}
+  \end{equation}
+  Due to $\icpa$ and $\icpb$ being jointly monic, $f\tjdown g$ is unique when it exists.
+  Similarly, as $\cpa$ and $\cpb$ are jointly epic, $f\tjup g$ is unique when it exists.
+\end{definition}
+
+We give a lemma exploring the
+behaviour of the two operations: $\tjdown$ and $\tjup$.
+
+\begin{lemma}\label{lem:properties_of_tjdown_and_tjup}
+  Given \X is an inverse category with a restriction zero and a disjointness tensor $\+$ then the
+  following relations hold for $\tjdown$ and $\tjup$:
+   \begin{enumerate}[{(}i{)}]
+    \item If $f \tjdown g$ exists, then $g \tjdown f$ exists. If $f \tjup g$ exists, then
+    $g \tjup f$ exists. \label{lemitem:l_r_commute}
+    \item $f \tjdown 0$ and $f \tjup 0$ always exist. \label{lemitem:l_r_zero_exists}
+    \item When $f\tjdown g$ exists, $\rst{f}(f\tjdown g) = f \tjdown 0$, $\rst{f}g = 0$,
+      $\rst{g}(f \tjdown g) = 0 \tjdown g$ and $\rst{g}f = 0$.
+      \label{lemitem:l_r_rst_orthogonal_to_zero}
+    \item Dually to the previous item, when $f\tjup g$ exists,
+      $(f\tjup g)\rg{f} = f \tjup 0$, $g\rg{f} = 0$, $(f \tjup g)\rg{g} = 0 \tjup g$ and
+      $f\rg{g} = 0$.\label{lemitem:l_r_rg_orthogonal_to_zero}
+    \item When $f\tjdown g$ exists, $f\tjdown g (h\+k) = f h \tjdown g k$.
+      \label{lemitem:l_r_l_pull_right}
+    \item Dually, when $f \tjup g$ exists, $(h \+ k) f \tjup g = h f \tjup k g$.
+      \label{lemitem:l_r_r_pull_left}
+    \item When $f \tjdown g$ exists, then $h(f \tjdown g) = h f \tjdown h g$ and when $f \tjup g$
+      exists, $(f \tjup g)h = f h \tjup g h$.
+      \label{lemitem:l_r_l_universal_r_stable}
+    \item If $\rst{f} \tjdown \rst{g}$ exists, then $\rst{f} \tjup \rst{g}$ exists and is
+      the partial inverse of $\rst{f} \tjdown \rst{g}$.
+      \label{lemitem:l_r_rst_inverses}
+    \item If $f\tjdown g$ exists and $f' \le f$, $g' \le g$, then $f' \tjdown g'$ exists.
+      \label{lemitem:l_r_less_than}
+    \item When $f\tjup g$ exists, $(f\tjup g) \inv{(f\tjup g)} = \rst{f}\+\rst{g}$.
+      \label{lemitem:l_r_rst_is_natural}
+    \item Given $f\tjdown g$ and $h\tjdown k$ exist, then
+      $(f\+h)\tjdown(g\+k) = (f\tjdown g)\+ (h\tjdown k)$. Dually, the existence of $f\tjup g$
+      and $h\tjup k$ implies $(f\+h)\tjup(g\+k) = (f\tjup g)\+ (h\tjup k)$.
+      \label{lemitem:l_r_preserve_tensor}
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item $g \tjdown f = (f \tjdown g)\comp $ and $g \tjup f = \comp(f\tjup g)$.
+    \item Consider $f \cpa$. Then $f \cpa \icpa = f$ and
+      $f \cpa \icpb = f 0 = 0$. Hence, $f \cpa = f \tjdown 0$.
+
+      Consider $\icpa f$. Then $\cpa \icpa f = f$ and
+      $\cpb \icpa f = 0 f = 0$ and therefore $\icpa f = (f\tjup 0)$.
+    \item Using Lemma~\ref{lem:tensor_identities}
+      \[
+        \rst{f}g = \rst{(f\tjdown g)\icpa} (f\tjdown g)\icpb =
+          (f\tjdown g) \rst{\icpa} \icpb = 0.
+      \]
+      Similarly, $\rst{g}f = f\tjdown g \rst{\icpb}\icpa = 0$.
+
+      Recall that $\icpa$ and $\icpb$ are jointly monic. We have
+      $\rst{f}(f \tjdown g) \icpa = \rst{f} f = f = (f\tjdown 0) \icpa$ and
+      $\rst{f}(f \tjdown g) \icpb = \rst{f}g = 0= (f\tjdown 0) \icpb$.
+      Therefore, $\rst{f}(f \tjdown g) = f \tjdown 0$. Similarly,
+      $\rst{g}(f \tjdown g) = 0 \tjdown g$.
+    \item Using Lemma~\ref{lem:tensor_identities}
+      \begin{multline*}
+        g\rg{f} = \cpb(f\tjup g)\wrg{(\cpa(f\tjup g))}  =
+          \cpb(f\tjup g) \rst{\inv{(f\tjup g)}\icpa} =\\
+          \cpb(f\tjup g) \rst{\inv{(f\tjup g)}\rst{\icpa}} =
+          \rst{\cpb \rst{(f\tjup g)} \rst{\icpa}}\cpb(f\tjup g) = \\
+          \rst{\cpb \rst{\icpa}\rst{(f\tjup g)} }\cpb(f\tjup g) =
+          \rst{0}\cpb(f\tjup g) = 0
+      \end{multline*}
+      Similarly, $f\rg{g} =  0$.
+
+      Recall that $\cpa$ and $\cpb$ are jointly epic. We have
+      $\cpa(f \tjup g)\rg{f} = f\rg{f} = f = \cpa(f\tjup 0) $ and
+      $\cpb(f \tjup g)\rg{f} = g\rg{f} = 0= \cpb(f\tjup 0)$.
+      Therefore, $(f \tjup g)\rg{f} = f \tjup 0$. Similarly,
+      $(f \tjup g) \rg{g} = 0 \tjup g$.
+    \item Calculating, we have
+      \[
+        f \tjdown g (h \+ k) \icpa = f\tjdown g \icpa h = f h
+      \]
+      and
+      \[
+        f \tjdown g (h \+ k) \icpb = f\tjdown g \icpb k = g k,
+      \]
+      which means that
+      $f \tjdown g (h \+ k) = f h \tjdown g k$ by the joint monic property of $\icpa$, $\icpb$.
+    \item The proof for this is dual to the previous item, and depends on the joint epic property
+      of $\cpa$ and $\cpb$.
+    \item We are given $f\tjdown g$ exists, therefore $f = (f\tjdown g)\icpa$ and
+      $g = (f\tjdown g)\icpb$. But this means $hf = h(f\tjdown g)\icpa$ and
+      $h g = h(f\tjdown g)\icpb$, from which we may conclude $hf \tjdown h g = h(f\tjdown g)$ by
+      the fact that $\icpa$ and $\icpb$ are jointly monic. The proof of
+      $(f\tjup g)h = f h \tjup g h$ is similar.
+    \item We are given $\rst{f} = \rst{f}\tjdown\rst{g} \icpa$. Therefore,
+      \[
+        \rst{f} = \inv{\rst{f}} = \inv{\icpa}\inv{(\rst{f}\tjdown\rst{g})}
+          = \cpa \inv{(\rst{f}\tjdown\rst{g})}.
+      \]
+      Similarly, $\rst{g} = \cpb \inv{(\rst{f}\tjdown\rst{g})}$. But this means
+      $\inv{(\rst{f}\tjdown\rst{g})} = \rst{f}\tjup\rst{g}$.
+    \item Note that from item \ref{lemitem:l_r_l_pull_right}, we know that
+      $f \tjdown g  = \rst{f} \tjdown \rst{g} (f\+g)$. We are given $f' \le f$ and $g' \le g$. This
+      gives us $\rst{f'}f =f'$, $\rst{g'}g =g'$, $\rst{f'}\,\rst{f} =\rst{f'}$ and
+      $\rst{g'}\,\rst{g} =\rst{g'}$. Consider the map
+      $\rst{f} \tjdown \rst{g} (\rst{f'}\+\rst{g'})(f\+g)$. Calculating, we see
+      \begin{align*}
+        \rst{f} \tjdown \rst{g} (\rst{f'}\+\rst{g'})(f\+g)
+          &= \rst{f} \tjdown \rst{g} (\rst{f'}\+\rst{g'})(\rst{f'}\+\rst{g'})(f\+g) \\
+          & = \rst{f} \tjdown \rst{g} (\rst{f'}\+\rst{g'})(f'\+g') \\
+          & = \rst{f}\,\rst{f'} \tjdown \rst{g} \rst{g'} (f'\+g') \\
+          & = \rst{f'}\,\rst{f} \tjdown \rst{g'} \rst{g} (f'\+g') \\
+          & = \rst{f'} \tjdown \rst{g'}  (f'\+g') \\
+          & = f'\tjdown g'.
+      \end{align*}
+    \item From our diagram for $\tjup$, we know:
+      \begin{align*}
+        \inv{f} &= \inv{(f\tjup g)} \icpa\text{ and}\\
+        \inv{g} &= \inv{(f\tjup g)} \icpb.
+      \end{align*}
+      As well, we know that $\cpa(f\tjup g) = f$ and
+      $\cpa(f\tjup g) = g$.
+      Therefore, we have:
+      \[
+         \cpa(f\tjup g)\inv{(f\tjup g)} \icpa = \rst{f} \text{ and  }
+          \cpb(f\tjup g)\inv{(f\tjup g)} \icpb = \rst{g}.
+      \]
+      As $f\tperp g$, we know that $f\inv{g} = f \rg{g} \inv{g} = 0 \inv{g} = 0$ and therefore,
+
+      \[
+         \cpa(f\tjup g)\inv{(f\tjup g)} \icpb = 0 \text{ and  }
+          \cpb(f\tjup g)\inv{(f\tjup g)} \icpa = 0.
+      \]
+      By Corollary~\ref{cor:split_plus_tensor} this means
+      $(f\tjup g)\inv{(f\tjup g)} = \rst{f} \+ \rst{g}$.
+    \item As $(f\tjdown g)\+ (h\tjdown k)\icpa = (f\tjdown g)$ and
+      $(f\tjdown g)\+ (h\tjdown k) \icpb = (h\tjdown k)$, we see that
+      $(f\tjdown g)\+ (h\tjdown k)$ satisfies the diagram for $(f\+h)\tjdown(g\+k)$. Dually, as
+      $\cpa (f\tjup g)\+ (h\tjup k) = (f\tjup g)$ and
+      $\cpb(f\tjup g)\+ (h\tjup k) = (h\tjup k)$, $(f\tjup g)\+ (h\tjup k)$ satisfies
+      the diagram for $(f\+h)\tjup(g\+k)$.
+  \end{enumerate}
+\end{proof}
+
+% \begin{definition}\label{def:general_triangle}
+%   In an inverse category \X with a restriction zero and disjointness tensor, we define two partial
+%   operations on pairs of arrows in \X to another arrow in \X. First, for arrows
+%   $f:A \to B$ and $g:A \to C$, suppose we have arrows $f':A  \to B\+X$ and $g': A \to C\+X$
+%   such that $f'\icpa =f$, $g'\icpa = g$ and $f'\icpb = g' \icpb$. Then, we say $f\gtjdown g$ if
+%   regardless of the choice of $f',\ g'$ and $X$, there exists a map $\alpha$ that makes
+%   diagram \eqref{eq:gtjdowndefinition} below commute.
+%   \begin{equation}
+%     \xymatrix@C+0pt @R+20pt{
+%       B\+X&&B\+C\+X \ar[ll]_{\icp{0,2}} \ar[rr]^{\icp{1,2}} && C\+X\\
+%       &&A \ar[ull]^{g'} \ar[urr]_{f'} \ar@{.>}[u]|-{\alpha}
+%       }\label{eq:gtjdowndefinition}
+%   \end{equation}
+%
+%   Similarly, for $h:B \to A$, $k: C \to A$, and $h': A\+X \to C$, $k': B\+X \to C$, with $h = \cpa
+%   h'$ and $k = \cpb k'$, then $h\gtjup k$ if regardless of the choice of $h',\ k'$ and $X$, there
+%   exists a map $\beta$ that makes diagram \eqref{eq:gtjupdefinition} commute.
+%   \begin{equation}
+%     \xymatrix@C+0pt @R+20pt{
+%       &&A\\
+%       B\+X\ar[rr]_{\amalg_{0,2}} \ar[urr]^{h'} &&B\+C \+X  \ar@{.>}[u]|-{\beta}
+%         && C\+X \ar[ll]^{\amalg_{1,2}} \ar[ull]_{k'}
+%       }\label{eq:gtjupdefinition}
+%   \end{equation}
+%   In the above diagrams, $\icp{0,2} = (1\+0\+1)(\upr\+1)$, $\amalg_{0,2} =
+%   (\inv{\upr}\+1)(1\+0\+1)$, $\icp{1,2}=(0\+1\+1)(\upl\+1)$ and
+%   $\cp{1,2} = (\inv{\upl}\+1)(0\+1\+1)$.
+% \end{definition}
+% \begin{lemma}\label{lem:general_triangle_implies_triangle}
+%   In an inverse category $\X$ with a restriction zero and a disjointness tensor, with maps
+%   $f:A\to B$, $g: A \to C$, $h: B \to A$ and $k: C \to A$. Then $f\gtjdown g$
+%   (respectively $h \gtjup k$) implies that $f\tjdown g$ (respectively $h \tjup k$) exists.
+% \end{lemma}
+% \begin{proof}
+%   Suppose $f \gtjdown g$. Then set $f' = f \inv{\upr}$, $g' = g \inv{\upr}$ and $X = 0$. Then
+%   $\alpha: A \to B\+C\+0$ exists and we can see that setting $f\tjdown g = \alpha \upr$ makes the
+%   first diagram of Definition~\ref{def:up_triangle_and_down_triangle} commute. In detail,
+%   \[
+%     \xymatrix@C+0pt @R+10pt{
+%       B&&B\+C \ar[ll]_{\icpa} \ar[rr]^{\icpb} && C\\
+%       &B\+0\ar[ul]^{\upl}&B\+C\+0 \ar[l]_{\icp{0,2}} \ar[r]^{\icp{1,2}} \ar[u]|-{\upl}
+%         & C\+0\ar[ur]_{\upl}\\
+%       &&A \ar[ul]^{g \inv{\upl}} \ar[ur]_{f\inv{\upl}} \ar@{.>}[u]|-{\alpha}
+%       }
+%   \]
+%   where the lower triangle commutes by assumption and the upper quadrilaterals commute due to the
+%   coherence diagrams of the tensor.
+%
+%   Similarly, setting $h' = \inv{\upr}h$ and $k' = \inv{\upr}k$ gives us $\beta:B\+C\+0 \to A\+0$ and
+%   we set $f\tjup = \beta \upr.$
+% \end{proof}
+
+\begin{definition}\label{def:disjointness_via_a_disjointness_tensor}
+  Define $f \tperp g$ when $f, g: A\to B$ and both $f\tjdown g$ and $f\tjup g$.
+\end{definition}
+
+\begin{lemma}\label{lem:tensor_disjointness_is_disjointness}
+  If \X is an inverse category with a restriction zero and a disjointness tensor $\+$ then
+  the relation $\tperp$ is a disjointness relation.
+\end{lemma}
+\begin{proof}
+  We need to show that $\tperp$ satisfies the disjointness axioms. We will use \axiom{Dis}{6'} in
+  place of \axiom{Dis}{6} and \axiom{Dis}{7} as discussed in
+  Lemma~\ref{lem:disjointness_equivalent_axioms}.
+  \setlist[itemize,1]{leftmargin=1.5cm}
+  \begin{itemize}
+    \item[\axiom{Dis}{1}] We must show $f \tperp 0$. This follows immediately from
+      Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item \ref{lemitem:l_r_zero_exists}.
+    \item[\axiom{Dis}{2}] Show $f \tperp g$ implies $\rst{f}g = 0$. This is a direct consequence of
+      Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
+      \ref{lemitem:l_r_rst_orthogonal_to_zero}.
+    \item[\axiom{Dis}{3}] We require $f\tperp g$, $f' \le f$, $g' \le g$ implies $f' \tperp g'$.
+      From Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item \ref{lemitem:l_r_less_than}, we
+      immediately have $f' \tjdown g'$ exists. Using a similar argument to the proof of this item,
+      we also have $f' \tjup g'$ exists and hence $f' \tperp g'$.
+    \item[\axiom{Dis}{4}] Commutativity of $\tperp$ follows from the symmetry of the two required
+    diagrams, see Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
+      \ref{lemitem:l_r_commute}.
+    \item[\axiom{Dis}{5}] Show that if $f\tperp g$ then $h f \tperp h g$ for any map $h$.
+      By  Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
+      \ref{lemitem:l_r_l_universal_r_stable}, we know that $h f \tjdown h g$ exists.
+      By item \ref{lemitem:l_r_r_pull_left},  $(h f)\tjup (h g) = (h \+ h) (f\tjup g)$
+      and therefore $h f \tperp h g$.
+    \item[\axiom{Dis}{6'}] We need to show $f\tperp g$ if and only if $\rst{f} \tperp \rst{g}$ and
+      $\rg{f}\tperp \rg{g}$. This follows directly from
+      Lemma~\ref{lem:properties_of_tjdown_and_tjup}, items
+      \ref{lemitem:l_r_l_pull_right} and       \ref{lemitem:l_r_r_pull_left}, which give us
+      $f\tjdown g = \rst{f}\tjdown \rst{g} (f\+g)$ and
+      $f\tjup g = (f \+ g)\rg{f}\tjup \rg{g}$, where the equalities hold if either side of
+      the equation exists.
+  \end{itemize}
+\end{proof}
+
+The operations $\tjdown$ and $\tjup$ are sufficient to define a disjointness relation
+on an inverse category. However, when we wish to extend this to a disjoint join, we run into
+problems when trying to prove $\axiom{DJ}{4}$. Specifically, there is not enough information to
+show that $\tperp [f,g,h]$ implies $f \tperp (g \tjoin h)$.
+
+Therefore, we add one more assumption regarding our tensor in order to define disjointness.
+
+\begin{definition}\label{def:disjoint_sum_tensor}
+  Let \X be an inverse category with a disjointness tensor $\+$ and a restriction zero. Consider
+  diagrams \ref{dia:tensor_complete_left} and \ref{dia:tensor_complete_right}.
+  \begin{align}
+    &\xymatrix@C+5pt@R+10pt{
+      A \ar@/_/[ddr]_f \ar@/^/[drr]^g \ar@{.>}[dr]|-{\alpha} \\
+        & X\+Y\+Z \ar[d]^{\icp{1,2}} \ar[r]_{\icp{1,3}} & X\+Z \ar[d]^{\icpa} \\
+        & X\+Y \ar[r]_{\icpa} & X
+    } \label{dia:tensor_complete_left}\\
+    &\xymatrix@C+5pt@R+10pt{
+        &&A \\
+         X\+Y \ar[r]_{\cp{1,2}} \ar@/^/[urr]^h &X\+Y\+Z \ar@{.>}[ur]|-{\beta} \\
+         X \ar[u]^{\cpa} \ar[r]_{\cpa} & X\+Z \ar[u]^{\cp{1,3}} \ar@/_/[uur]_k
+    } \label{dia:tensor_complete_right}
+  \end{align}
+  Then
+  $\+$ is a \emph{disjoint sum tensor} when the following two conditions hold:
+  \begin{itemize}
+    \item $\alpha$ exists if and only if  $f \icpb \tjdown g \icpb$ exists;
+    \item $\beta$ exists if and only if $\cpb h \tjup \cpb k$ exists.
+  \end{itemize}
+
+\end{definition}
+\begin{lemma}\label{lem:complete_disjointness_means_multiple_disjoints}
+  Let \X be an inverse category with a disjoint sum tensor as in
+  Definition~\ref{def:disjoint_sum_tensor} and we are given $f,g,h:A\to B$ with
+  $\tperp[f,g,h]$. Then both $f \tjdown (g \tjdown h)$ and $f\tjup(g\tjup h)$ exist.
+\end{lemma}
+\begin{proof}
+  As all the maps are disjoint, we know the maps $\tjdown$ and $\tjup$ exist for each pair.
+  Consider the diagram
+  \[
+    \xymatrix@C+5pt@R+10pt{
+      A \ar@/_/[ddr]_{g\tjdown h} \ar@/^/[drr]^{g\tjdown f} \ar@{.>}[dr]|-{\alpha} \ar[rr]^{f}
+        & & B \\
+        & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
+        & B\+B \ar[r]_{\icpa} & B
+    }
+  \]
+  where we claim $\alpha = (g\tjdown h)\tjdown f$.
+
+  The lower part of the diagram commutes as it fulfills the conditions of
+  Definition~\ref{def:disjoint_sum_tensor}. The upper rightmost triangle of the diagram commutes by
+  the definition of $g\tjdown f$. Noting that $\icp{0,1}:B\+B\+B \to B\+B$ is the same map as
+  $\icpa:(B\+B)\+B\to (B\+B)$ and $\icp{0,2} \icpb:B\+B\+B \to B\+B \to B$ is the same map as
+  $\icpb:(B\+B)\+B\to B$, we see $\alpha$ does make the $\tjdown$ diagram for $g\tjdown h$ and $f$
+  commute. Therefore by Lemma~\ref{lem:properties_of_tjdown_and_tjup}, $f\tjdown(g\tjdown h)$
+  exists and is equal to $\alpha \com{\+\,\{01,2\}}$.
+
+  A dual diagram and corresponding reasoning shows $f\tjup(g\tjup h)$ exists.
+\end{proof}
+
+\begin{lemma}\label{lem:tjdown_and_tjup_associate}
+  In an inverse category $\X$ with a disjoint sum tensor, when $\tperp [f,g,h]$, then:
+  \begin{enumerate}
+    \item   $f \tjdown (g \tjdown h) = ((f \tjdown g) \tjdown h) \assocp$ and both exist,
+    \item   $f \tjup (g \tjup h) = ((f \tjup g) \tjup h) \assocp$ and both exist.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  Consider the diagram
+  \begin{equation}
+    \xymatrix@C+5pt@R+10pt{
+      A \ar@/_/[ddr]_{f\tjdown g} \ar@/^/[drr]^{f\tjdown h} \ar@{.>}[dr]|-{\alpha} \ar[rr]^{h}
+        & & B \\
+        & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
+        & B\+B \ar[r]_{\icpa} & B
+    }\label{dia:alpha_plus_h}
+  \end{equation}
+  which gives us $\alpha = (f \tjdown g) \tjdown h: A \to (B\+B)\+B$ and
+  $\alpha \assocp :A \to B\+(B\+B)$. Next consider the diagram
+  \begin{equation}
+    \xymatrix@C+5pt@R+10pt{
+      A \ar@/_/[ddr]_{g\tjdown h} \ar@/^/[drr]^{g\tjdown f} \ar@{.>}[dr]|-{\gamma} \ar[rr]^{f}
+        & & B \\
+        & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
+        & B\+B \ar[r]_{\icpa} & B
+    }\label{dia:gamma_plus_f}
+  \end{equation}
+  which gives us $\gamma \comp = f \tjdown (g\tjdown h): A \to B\+(B\+B)$.
+
+  Note from Diagrams~\ref{dia:alpha_plus_h} and \ref{dia:gamma_plus_f} we have
+  \begin{align*}
+    \gamma \comp  \icp{0}         =\, &f  = \alpha \assocp\icpa\\
+    \gamma \comp  \icp{1} \icp{0} =\, &g  = \alpha \assocp\icpb\icpa\\
+    \gamma \comp  \icp{1} \icpb   =\, & h = \alpha \assocp\icpb\icpb.
+  \end{align*}
+  By the assumption that $\icpa, \icpb$ are jointly monic, we have
+  $\alpha = \gamma \comp  \assocp$. Therefore $f \tjdown (g \tjdown h) = (f \tjdown g) \tjdown h$,
+  up to the associativity isomorphism.
+\end{proof}
+\begin{definition}\label{def:tensor_disjoint_join}
+  Let \X be an inverse category with a disjointness tensor and restriction zero. Assume we have two
+  maps $f,g: A \to B$ with $f\tperp g$. Then define the map $f \tjoin g = \rst{f}\tjdown\rst{g}
+  (f\+g) \rg{f}\tjup\rg{g}$.
+\end{definition}
+
+
+For reference, the map $f \tjoin g$ may be visualized as follows:
+\[
+  \xymatrix@C+20pt @R+10pt{
+    &A
+      & B  \ar[dr]^{\rg{f}} \ar[d]_{\cpa}\\
+    A \ar[ur]^{\rst{f}} \ar@{.>}[r]^{\rst{f}\tjdown \rst{g}} \ar[dr]_{\rst{g}}
+      & A\+A \ar[u]_{\icpa} \ar[d]^{\icpb}
+        \ar[r]^{f\+g}
+       &B\+B \ar@{.>}[r]^{\rg{f}\tjup\rg{g}} & B.\\
+    & A & B\ar[ur]_{\rg{g}} \ar[u]^{\cpb}
+  }
+\]
+
+Using Lemma~\ref{lem:properties_of_tjdown_and_tjup}, we may rewrite this in a variety of
+equivalent ways:
+\begin{align*}
+  f \tjoin g &= \rst{f}\tjdown\rst{g} (f\+g) \rg{f}\tjup\rg{g} \\
+  &= f \tjdown g \rg{f}\tjup\rg{g}\\
+  & = \rst{f}\tjdown\rst{g}  f\tjup g\\
+  & = f \tjdown g (\inv{f}\+\inv{g})f\tjup g.
+\end{align*}
+
+In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
+(\rst{f}\tjup\rst{g})$ as $\rg{\rst{g}} = \rst{g}$.
+
+\begin{lemma}\label{lem:tensor_disjoint_join_properties}
+  Let \X be an inverse category with a disjointness tensor and restriction zero. Let \X have the
+  maps $f,g: A \to B$ with $f\tperp g$. Then $\tjoin$ has the following properties.
+  \begin{enumerate}[{(}i{)}]
+    \item For all maps $h:A \to B$, $\rst{f}h \tjoin \rst{g}h = (\rst{f}\tjoin \rst{g})h$.
+      \label{lemitem:tdj_rst_universal}
+    \item $\rst{f}\tjoin \rst{g} = \rst{f\tjoin g}$. \label{lemitem:tdj_rst_is_rst}
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \begin{enumerate}[{(}i{)}]
+    \item By Lemma~\ref{lem:disjointness_various}, item \ref{lemitem:djv_universal}, we know that
+    $\rst{f}h \tperp \rst{g} h$, hence we can form $\rst{f}h \tjoin \rst{g}h$.
+    Also, noting that
+      \[
+        h \wrg{\rst{f} h} = h \rst{\inv{h}\rst{f}} = \rst{h \inv{h} \rst{f}} h
+          = \rst{\rst{h}\rst{f}} h = \rst{f} \rst{h}h = \rst{f} h,
+      \]
+      we may then calculate from the left hand side as follows:
+      \begin{align*}
+        \rst{f}h \tjoin \rst{g}h
+          & = (\rst{f}h \tjdown \rst{g} h) (\wrg{\rst{f}h}\tjup\wrg{\rst{g} h})\\
+          & = (\rst{f} \tjdown \rst{g} ) (h\wrg{\rst{f}h}\tjup h\wrg{\rst{g} h})\\
+          & = (\rst{f} \tjdown \rst{g} ) (\rst{f}h\tjup \rst{g} h)\\
+          & = (\rst{f} \tjdown \rst{g} ) (\rst{f}\tjup \rst{g} )h\\
+          & = (\rst{f} \tjoin \rst{g} ) h.
+      \end{align*}
+    \item
+    Using Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item~\ref{lemitem:l_r_rst_is_natural},
+    we can compute:
+    \begin{align*}
+      \rst{f\tjoin g} & = f \tjoin g \inv{(f\tjoin g)} \\
+      & = \left((\rst{f} \tjdown \rst{g})(f\tjup g)\right)
+             \left(\inv{(f\tjdown g)} \inv{(\rst{f}\tjdown \rst{g})}\right)\\
+      & = \rst{f}\tjdown\rst{g}(f\tjdown g) \inv{(f\tjdown g)} \rst{f}\tjup \rst{g}\\
+      & = \rst{f}\tjdown\rst{g}(\rst{f}\+ \rst{g})\rst{f}\tjup \rst{g}\\
+      & = \rst{f}\tjdown\rst{g}\rst{f}\tjup \rst{g}\\
+      & = \rst{f}\tjoin\rst{g}.
+    \end{align*}
+  \end{enumerate}
+\end{proof}
+
+
+\begin{proposition}\label{prop:disjointness_tensor_gives_disjoint_join}
+  Let \X be an inverse category with a disjoint sum tensor and restriction zero. Assume we have two
+  maps $f,g$ with $f\tperp g$. Then the map $f \tjoin g$ from
+  Definition~\ref{def:tensor_disjoint_join} is a disjoint join.
+\end{proposition}
+\begin{proof}
+  \setlist[itemize,1]{leftmargin=1.5cm}
+  \begin{itemize}
+    \item [\axiom{DJ}{1}] We must show $f, g \le f \tjoin g$.
+      \begin{align*}
+        \rst{f}\,(\rst{f}\tjdown\rst{g})  f\tjup g
+          &= (\rst{f}\tjdown\rst{g}) \icpa (\rst{f}\tjdown\rst{g} ) f\tjup g \\
+        &=\rst{(\rst{f}\tjdown\rst{g}) \icpa} (\rst{f}\tjdown\rst{g}) f\tjup g  \\
+        &=(\rst{f}\tjdown\rst{g}) \rst{\icpa} f\tjup g  \\
+        &=(\rst{f}\tjdown\rst{g}) \icpa \cpa f\tjup g \\
+        &=((\rst{f}\tjdown\rst{g}) \icpa) (\cpa (f \tjup g)) \\
+        &= \rst{f} f \\
+        &=f.
+      \end{align*}
+      Thus, we see $f \le f \tjoin g$. Showing $g \le f \tjoin g$ proceeds in the same manner.
+    \item [\axiom{DJ}{2}] We must show that $f \le h,\ g\le h$ and $f\tperp g$ implies
+      $f \tjoin g \le h$.
+      \begin{align*}
+        \rst{f \tjoin g} \,h & = \rst{\rst{f} h \tjoin \rst{g} h} \,h\\
+        & = \rst{(\rst{f} \tjoin \rst{g})h} \,h\\
+        & = \rst{\rst{(\rst{f} \tjoin \rst{g})}h} \,h\\
+        & = \rst{\rst{(\rst{f} \tjoin \rst{g})}h}\,(\rst{f} \tjoin \rst{g})h\\
+        & = \rst{(\rst{f} \tjoin \rst{g})h}\,(\rst{f} \tjoin \rst{g})h\\
+        & = (\rst{f}\tjoin \rst{g})h\\
+        & = (\rst{f}h\tjoin \rst{g}h)\\
+        & = (f\tjoin g).
+      \end{align*}
+    \item [\axiom{DJ}{3}] We must show stability of $\tjoin$, i.e., that
+      $h(f\tjoin g) = h f \tjoin h g$.
+
+      \begin{align*}
+        h (f\tjoin g) &= h ((\rst{f}\tjdown\rst{g})  (f \tjup g))\\
+        &= (h\rst{f}\tjdown h\rst{g}) (f \tjup g)\\
+        &= (\rst{h f}h\tjdown \rst{h g}h)  (f \tjup g)\\
+        &= (\rst{h f}\tjdown \rst{h g})(h\+h)  (f \tjup g)\\
+        &= (\rst{h f}\tjdown \rst{h g}) (h f \tjup h g)\\
+        &= h f \tjoin h g.
+      \end{align*}
+
+
+    \item [\axiom{DJ}{4}] We need to show $\tperp [f,g,h]$ if and only if $f \tperp (g \tjoin h)$.
+      For the right to left implication, note that the existence of $g\tjoin h$ implies $g \tperp
+      h$. We also know $g, h \le g\tjoin h$ by item 1 of this lemma. This gives us that $f \tperp
+      g$ and $f \tperp h$, hence $\tperp [f,g,h]$.
+
+      For the left to right implication, we use
+      Lemma~\ref{lem:complete_disjointness_means_multiple_disjoints}. As we have $\tperp [f,g,h]$,
+      we  know $f\tjdown(g\tjdown h)$ and $f\tjup(g\tjup h)$.
+
+      Recall that $g\tjoin h = (g\tjdown h)(\rg{g}\tjup\rg{h})$. Then the map
+      \[
+        A\xrightarrow{f\tjdown(g\tjdown h)} B\+B\+B\xrightarrow{1\+(\rg{g}\tjup\rg{h})} B\+B
+      \]
+      makes the diagram for $f \tjdown (g\tjoin h)$ commute.
+
+      Recalling that  $g\tjoin h =
+      (\rst{g}\tjdown \rst{h})(g\tjup h)$, we also see that
+      \[
+        A\+A\xrightarrow{1\+(\rst{g}\tjdown\rst{h})}A\+A\+A\xrightarrow{f\tjup(g\tjup h)}B
+      \]
+      provides the witness map for $f \tjup(g\tjoin h)$ and hence $f \tperp (g \tjoin h)$.
+  \end{itemize}
+
+\end{proof}
+
+% subsection disjoint_join_via_a_monoidal_tensor (end)
+% section tensors_for_disjointness (end)
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:
