@@ -12,8 +12,8 @@ h g$. We will refer to $\lozenge$ as \emph{universal} whenever given a $k:C \to 
 
 \section{Coproducts in restriction categories} % (fold)
 \label{sec:coproducts_in_restriction_categories}
-\subsection{Coproducts} % (fold)
-\label{sub:coproducts}
+\subsection{Restriction Coproducts} % (fold)
+\label{sub:restriction_coproducts}
 
 Restriction categories may also have coproducts and initial objects.
 \begin{definition}
@@ -106,7 +106,7 @@ denoted as $0$. This gives rise to the zero map $0_{A,B}: A \to 0 \to B$ between
 \label{sub:inverse_categories_with_restriction_coproducts}
 
 
-\begin{proposition}
+\begin{proposition}\label{prop:inverse_category_with_coproducts_is_pre-order}
   An inverse category \X with restriction coproducts is a pre-order.
 \end{proposition}
 \begin{proof}
@@ -155,6 +155,22 @@ For example, in the restriction category $\Par$, the join is given by:
 \end{cases}
 \]
 
+\begin{theorem}[Cockett-Guo]\label{lem:join_determines_coproduct}
+  Given a restriction category $\C$ with joins, then
+  \[
+    A \xrightarrow{\cpa} C \xleftarrow{\cpb} B
+  \]
+  is a coproduct if and only iff:
+  \begin{itemize}
+    \item $\cpa$ and $\cpb$ are restriction monics;
+    \item $\rst{\icpa}\,\rst{\icpb} = 0$ and
+    \item $\rst{\icpa} \join \rst{\icpb} = 1_C$.
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  See \cite{cockett-guo2007:joinrestrictioncats}.
+\end{proof}
+
 \begin{lemma}\label{lem:meet_distributes_over_join}
   If \R is a meet restriction category with joins, then the meet distributes over the join, i.e.,
   \[
@@ -193,6 +209,7 @@ explore alternate characterizations of this relation on the restriction idempote
     \axiom{Dis}{7}\quad &\rst{f}\cdperp \rst{g},\ \rg{h}\cdperp \rg{k}\text{ implies }f h
       \cdperp g k.
   \end{align*}
+  When $f\cdperp g$, we will say $f$ is \emph{disjoint} from $g$.
 \end{definition}
 
 \begin{lemma}\label{lem:disjointness_equivalent_axioms}
@@ -464,7 +481,7 @@ We now consider additional structure on the inverse category, dependent upon the
 relation.
 \begin{definition}\label{def:disjoint_join}
   An \emph{inverse category with disjoint joins} is an inverse category $\X$, with a restriction
-  $0$, a disjointness relation $\perp$ and a binary operator on disjointness parallel maps:
+  $0$, a disjointness relation $\perp$ and a binary operator on disjoint parallel maps:
   \[
     \infer{f \djoin g : A \to B}{f: A\to B,\ g: A\to B,\ f \perp g}
   \]

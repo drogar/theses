@@ -1,8 +1,6 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
 \chapter{Inverse categories} % (fold)
 \label{cha:inverse_categories}
-\section{Inverse products} % (fold)
-\label{sec:inverse_products}
 
 This chapter will focus on adding ``products'' to an inverse category.
 
@@ -13,8 +11,8 @@ will be defined below in sub-section~\ref{sub:inverse_products}.
 Inverse products are given by a tensor product which supports a diagonal but lacks projections. The
 diagonal map is required to give a natural Frobenius structure to each object.
 
-\subsection{Inverse categories with restriction products} % (fold)
-\label{sub:inverse_categories_with_restriction_products}
+\section{Inverse categories with restriction products} % (fold)
+\label{sec:inverse_categories_with_restriction_products}
 We start by showing that an inverse category with restriction products is a restriction pre-order.
 
 \begin{definition}\label{def:compatible_maps}
@@ -25,7 +23,7 @@ We start by showing that an inverse category with restriction products is a rest
   A restriction category \X is a \emph{restriction pre-order} when all parallel pairs of maps are
   compatible.
 \end{definition}
-\begin{lemma}\label{lem:an_inverse_category_with_products_is_a_restriction_preorder}
+\begin{proposition}\label{prop:an_inverse_category_with_products_is_a_restriction_preorder}
   Given an inverse category \X, if it has restriction products, it is a restriction pre-order. That
   is,
   \[
@@ -34,7 +32,7 @@ We start by showing that an inverse category with restriction products is a rest
     }
     \implies f \smile g.
   \]
-\end{lemma}
+\end{proposition}
 \begin{proof}
   Notice,
   \begin{align*}
@@ -79,10 +77,12 @@ We start by showing that an inverse category with restriction products is a rest
 \end{corollary}
 
 
-% subsection inverse_categories_with_restriction_products (end)
+% section inverse_categories_with_restriction_products (end)
+\section{Inverse products} % (fold)
+\label{sec:inverse_products}
 
-\subsection{Inverse products} % (fold)
-\label{sub:inverse_products}
+\subsection{Inverse product tensor} % (fold)
+\label{sub:inverse_product_tensor}
 
 \begin{definition}\label{def:inverse_product_tensor}
   Given a restriction category \X, a tensor $\*$ is called an \emph{inverse product tensor}
@@ -675,17 +675,17 @@ inverse category to a discrete Cartesian restriction category.
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
         \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
-        \node at (0,1.25) [map] (ninv) {$\scriptstyle \rst{\inv{\Delta}}$};
+        \node at (0,1.25) [map] (inverse-delta-r) {$\scriptstyle \rst{\inv{\Delta}}$};
         \node at (-.25,.5) [map] (f) {$\scriptstyle f$};
         \node at (.25,.5) [map] (g) {$\scriptstyle g$};
         \node at (-.25,0) (end1) {};
         \node at (.25,0) (end2) {};
         \draw [] (start) to (d1);
         \draw [] (d1) to[out=235,in=90] (e1);
-        \draw [] (d1) to[out=305,in=55] (ninv);
-        \draw (e1) to[out=270,in=125] (ninv);
-        \draw (ninv) to[out=235,in=90] (f);
-        \draw (ninv) to[out=305,in=90] (g);
+        \draw [] (d1) to[out=305,in=55] (inverse-delta-r);
+        \draw (e1) to[out=270,in=125] (inverse-delta-r);
+        \draw (inverse-delta-r) to[out=235,in=90] (f);
+        \draw (inverse-delta-r) to[out=305,in=90] (g);
         \draw (f) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
@@ -693,18 +693,18 @@ inverse category to a discrete Cartesian restriction category.
         \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
-        \node at (0,2) [map] (ninv) {$\scriptstyle \rst{\inv{\Delta}}$};
+        \node at (0,2) [map] (inverse-delta-r) {$\scriptstyle \rst{\inv{\Delta}}$};
         \node at (-.25,1.25) [map] (e1) {$\scriptstyle e$};
         \node at (-.25,.5) [map] (f) {$\scriptstyle f$};
         \node at (.25,.5) [map] (g) {$\scriptstyle g$};
         \node at (-.25,0) (end1) {};
         \node at (.25,0) (end2) {};
         \draw [] (start) to (d1);
-        \draw [] (d1) to[out=235,in=125] (ninv);
-        \draw [] (d1) to[out=305,in=55] (ninv);
-        \draw (ninv) to[out=235,in=90] (e1);
+        \draw [] (d1) to[out=235,in=125] (inverse-delta-r);
+        \draw [] (d1) to[out=305,in=55] (inverse-delta-r);
+        \draw (inverse-delta-r) to[out=235,in=90] (e1);
         \draw (e1) to (f);
-        \draw (ninv) to[out=305,in=90] (g);
+        \draw (inverse-delta-r) to[out=305,in=90] (g);
         \draw (f) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
@@ -713,21 +713,21 @@ inverse category to a discrete Cartesian restriction category.
         \begin{tikzpicture}
         \node at (0,1.5) (start) {};
         \node at (0,1) [delta] (d1) {};
-        \node at (-.25,.5) [map] (fe) {$\scriptstyle f e$};
+        \node at (-.25,.5) [map] (f_e) {$\scriptstyle f e$};
         \node at (.25,.5) [map] (g) {$\scriptstyle g$};
         \node at (-.25,0) (end1) {};
         \node at (.25,0) (end2) {};
         \draw [] (start) to (d1);
-        \draw [] (d1) to[out=235,in=90] (fe);
+        \draw [] (d1) to[out=235,in=90] (f_e);
         \draw [] (d1) to[out=305,in=90] (g);
-        \draw (fe) to (end1);
+        \draw (f_e) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
       }
       \,\raisebox{45pt}{.}
       \]
       The second equality ($e\Delta(f\*g) = \Delta(f\*e g)$) follows by co-commutativity. The third
-      equality,  ($e\Delta(f\*g) = \Delta(ef\*e g)$) follows by naturality of $\Delta$.
+      equality,  ($e\Delta(f\*g) = \Delta(e f\*e g)$) follows by naturality of $\Delta$.
 
     \item[\ref{le:efginvdelta}] As in \ref{le:deltaefg}, details are only given for the
       first equality. This proof is arrived at by reversing the diagrams of \ref{le:deltaefg}.
@@ -775,17 +775,17 @@ inverse category to a discrete Cartesian restriction category.
         \node at (0,0) (start) {};
         \node at (0,.5) [nabla] (d1) {};
         \node at (-.25,1) [map] (e1) {$\scriptstyle e$};
-        \node at (0,1.75) [map] (ninv) {$\scriptstyle \rst{\inv{\Delta}}$};
+        \node at (0,1.75) [map] (inverse-delta-r) {$\scriptstyle \rst{\inv{\Delta}}$};
         \node at (-.25,2.5) [map] (f) {$\scriptstyle f$};
         \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
         \node at (-.25,3) (end1) {};
         \node at (.25,3) (end2) {};
         \draw [] (start) to (d1);
         \draw [] (d1) to[out=125,in=270] (e1);
-        \draw [] (d1) to[out=55,in=305] (ninv);
-        \draw (e1) to[out=90,in=235] (ninv);
-        \draw (ninv) to[out=125,in=270] (f);
-        \draw (ninv) to[out=55,in=270] (g);
+        \draw [] (d1) to[out=55,in=305] (inverse-delta-r);
+        \draw (e1) to[out=90,in=235] (inverse-delta-r);
+        \draw (inverse-delta-r) to[out=125,in=270] (f);
+        \draw (inverse-delta-r) to[out=55,in=270] (g);
         \draw (f) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
@@ -794,14 +794,14 @@ inverse category to a discrete Cartesian restriction category.
         \begin{tikzpicture}
         \node at (0,0) (start) {};
         \node at (0,.5) [nabla] (d1) {};
-        \node at (-.25,1) [map] (fe) {$\scriptstyle f e$};
+        \node at (-.25,1) [map] (f e) {$\scriptstyle f e$};
         \node at (.25,1) [map] (g) {$\scriptstyle g$};
         \node at (-.25,1.5) (end1) {};
         \node at (.25,1.5) (end2) {};
         \draw [] (start) to (d1);
-        \draw [] (d1) to[out=125,in=270] (fe);
+        \draw [] (d1) to[out=125,in=270] (f e);
         \draw [] (d1) to[out=55,in=270] (g);
-        \draw (fe) to (end1);
+        \draw (f e) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
       }
@@ -825,8 +825,8 @@ inverse category to a discrete Cartesian restriction category.
         \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
         \node at (0, 2) [nabla] (n1) {};
         \node at (0,1.5) [delta] (d2) {};
-        \node at (-.5,1) [map] (finv) {$\scriptstyle \inv{f}$};
-        \node at (.5,1) [map] (ginv) {$\scriptstyle \inv{g}$};
+        \node at (-.5,1) [map] (f-inverse) {$\scriptstyle \inv{f}$};
+        \node at (.5,1) [map] (g-inverse) {$\scriptstyle \inv{g}$};
         \node at (0, .5) [nabla] (n2) {};
         \node at (0,0) (end) {};
         \draw [] (start) to (d1);
@@ -835,10 +835,10 @@ inverse category to a discrete Cartesian restriction category.
         \draw (f) to[out=270,in=125] (n1);
         \draw (g) to[out=270,in=55] (n1);
         \draw (n1) to (d2);
-        \draw [] (d2) to[out=235,in=90] (finv);
-        \draw [] (d2) to[out=305,in=90] (ginv);
-        \draw (finv) to[out=270,in=125] (n2);
-        \draw (ginv) to[out=270,in=55] (n2);
+        \draw [] (d2) to[out=235,in=90] (f-inverse);
+        \draw [] (d2) to[out=305,in=90] (g-inverse);
+        \draw (f-inverse) to[out=270,in=125] (n2);
+        \draw (g-inverse) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
       \ \raisebox{45pt}{$=$}\
@@ -849,8 +849,8 @@ inverse category to a discrete Cartesian restriction category.
         \node at (-.25,2.5) [map] (g) {$\scriptstyle g$};
         \node at (0, 2) [nabla] (n1) {};
         \node at (0,1.5) [delta] (d2) {};
-        \node at (.5,1) [map] (finv) {$\scriptstyle \inv{f}$};
-        \node at (-.5,1) [map] (ginv) {$\scriptstyle \inv{g}$};
+        \node at (.5,1) [map] (f-inverse) {$\scriptstyle \inv{f}$};
+        \node at (-.5,1) [map] (g-inverse) {$\scriptstyle \inv{g}$};
         \node at (0, .5) [nabla] (n2) {};
         \node at (0,0) (end) {};
         \draw [] (start) to (d1);
@@ -859,10 +859,10 @@ inverse category to a discrete Cartesian restriction category.
         \draw (g) to[out=270,in=125] (n1);
         \draw (f) to[out=270,in=55] (n1);
         \draw (n1) to (d2);
-        \draw [] (d2) to[out=235,in=90] (ginv);
-        \draw [] (d2) to[out=305,in=90] (finv);
-        \draw (ginv) to[out=270,in=125] (n2);
-        \draw (finv) to[out=270,in=55] (n2);
+        \draw [] (d2) to[out=235,in=90] (g-inverse);
+        \draw [] (d2) to[out=305,in=90] (f-inverse);
+        \draw (g-inverse) to[out=270,in=125] (n2);
+        \draw (f-inverse) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
       \ \raisebox{45pt}{$=$}\
@@ -873,8 +873,8 @@ inverse category to a discrete Cartesian restriction category.
         \node at (-.25,2.5) [map] (g) {$\scriptstyle g$};
         \node at (-.25,2) [delta] (d2) {};
         \node at (.25, 1.5) [nabla] (n1) {};
-        \node at (.5,1) [map] (finv) {$\scriptstyle \inv{f}$};
-        \node at (-.5,1) [map] (ginv) {$\scriptstyle \inv{g}$};
+        \node at (.5,1) [map] (f-inverse) {$\scriptstyle \inv{f}$};
+        \node at (-.5,1) [map] (g-inverse) {$\scriptstyle \inv{g}$};
         \node at (0, .5) [nabla] (n2) {};
         \node at (0,0) (end) {};
         \draw [] (start) to (d1);
@@ -883,10 +883,10 @@ inverse category to a discrete Cartesian restriction category.
         \draw (g) to (d2);
         \draw (d2) to[out=305,in=125] (n1);
         \draw (f) to[out=270,in=55] (n1);
-        \draw (n1) to (finv);
-        \draw [] (d2) to[out=235,in=90] (ginv);
-        \draw (ginv) to[out=270,in=125] (n2);
-        \draw (finv) to[out=270,in=55] (n2);
+        \draw (n1) to (f-inverse);
+        \draw [] (d2) to[out=235,in=90] (g-inverse);
+        \draw (g-inverse) to[out=270,in=125] (n2);
+        \draw (f-inverse) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
       \ \raisebox{45pt}{$=$}\
@@ -894,22 +894,22 @@ inverse category to a discrete Cartesian restriction category.
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
         \node at (-.25,2.5) [delta] (d2) {};
-        \node at (-.5,2) [map] (gr) {$\scriptstyle \rst{g}$};
+        \node at (-.5,2) [map] (rest-g) {$\scriptstyle \rst{g}$};
         \node at (0,2) [map] (g) {$\scriptstyle g$};
-        \node at (.75,1.5) [map] (fr) {$\scriptstyle \rst{f}$};
-        \node at (0.1,1.5) [map] (finv) {$\scriptstyle \inv{f}$};
+        \node at (.75,1.5) [map] (rest-f) {$\scriptstyle \rst{f}$};
+        \node at (0.1,1.5) [map] (f-inverse) {$\scriptstyle \inv{f}$};
         \node at (.25, 1) [nabla] (n1) {};
         \node at (0, .5) [nabla] (n2) {};
         \node at (0,0) (end) {};
         \draw [] (start) to (d1);
         \draw [] (d1) to[out=235,in=90] (d2);
-        \draw [] (d1) to[out=305,in=90] (fr);
-        \draw (d2) to[out=235,in=90] (gr);
+        \draw [] (d1) to[out=305,in=90] (rest-f);
+        \draw (d2) to[out=235,in=90] (rest-g);
         \draw (d2) to[out=305,in=90] (g);
-        \draw (gr) to[out=270,in=125] (n2);
-v        \draw (g) to (finv);
-        \draw (finv) to[out=270,in=125] (n1);
-        \draw (fr) to[out=270,in=55] (n1);
+        \draw (rest-g) to[out=270,in=125] (n2);
+v        \draw (g) to (f-inverse);
+        \draw (f-inverse) to[out=270,in=125] (n1);
+        \draw (rest-f) to[out=270,in=55] (n1);
         \draw (n1) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
@@ -920,7 +920,7 @@ v        \draw (g) to (finv);
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
         \node at (-.35,2.5) [delta] (d2) {};
-        \node at (0,1.75) [map] (gfinv) {$\scriptstyle g \inv{f}$};
+        \node at (0,1.75) [map] (g-f-inverse) {$\scriptstyle g \inv{f}$};
         \node at (.35, 1) [nabla] (n1) {};
         \node at (0, .5) [nabla] (n2) {};
         \node at (0,0) (end) {};
@@ -928,8 +928,8 @@ v        \draw (g) to (finv);
         \draw [] (d1) to[out=235,in=90] (d2);
         \draw [] (d1) to[out=305,in=55] (n1);
         \draw (d2) to[out=235,in=125] (n2);
-        \draw (d2) to[out=305,in=90] (gfinv);
-        \draw (gfinv) to[out=270,in=125] (n1);
+        \draw (d2) to[out=305,in=90] (g-f-inverse);
+        \draw (g-f-inverse) to[out=270,in=125] (n1);
         \draw (n1) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
@@ -939,15 +939,15 @@ v        \draw (g) to (finv);
         \node at (0,3) [delta] (d1) {};
         \node at (-.35,2.5) [delta] (d2) {};
         \node at (.35, 2) [nabla] (n1) {};
-        \node at (-.35,1.25) [map] (gfinv) {$\scriptstyle g \inv{f}$};
+        \node at (-.35,1.25) [map] (g-f-inverse) {$\scriptstyle g \inv{f}$};
         \node at (0, .5) [nabla] (n2) {};
         \node at (0,0) (end) {};
         \draw [] (start) to (d1);
         \draw [] (d1) to[out=235,in=90] (d2);
         \draw [] (d1) to[out=305,in=55] (n1);
         \draw (d2) to[out=305,in=125] (n1);
-        \draw (d2) to[out=235,in=90] (gfinv);
-        \draw (gfinv) to[out=270,in=125] (n2);
+        \draw (d2) to[out=235,in=90] (g-f-inverse);
+        \draw (g-f-inverse) to[out=270,in=125] (n2);
         \draw (n1) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
@@ -957,16 +957,16 @@ v        \draw (g) to (finv);
         \node at (0,2.5) [delta] (d1) {};
         \node at (0, 2) [nabla] (n1) {};
         \node at (0,1.5) [delta] (d2) {};
-        \node at (-.5,1) [map] (gfinv) {$\scriptstyle g\inv{f}$};
+        \node at (-.5,1) [map] (g-f-inverse) {$\scriptstyle g\inv{f}$};
         \node at (0, .5) [nabla] (n2) {};
         \node at (0,0) (end) {};
         \draw [] (start) to (d1);
         \draw [] (d1) to[out=235,in=125] (n1);
         \draw [] (d1) to[out=305,in=55] (n1);
         \draw (n1) to (d2);
-        \draw [] (d2) to[out=235,in=90] (gfinv);
+        \draw [] (d2) to[out=235,in=90] (g-f-inverse);
         \draw [] (d2) to[out=305,in=55] (n2);
-        \draw (gfinv) to[out=270,in=125] (n2);
+        \draw (g-f-inverse) to[out=270,in=125] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
       \ \raisebox{45pt}{$=$}\
@@ -974,13 +974,13 @@ v        \draw (g) to (finv);
        \begin{tikzpicture}
         \node at (0,2) (start) {};
         \node at (0,1.5) [delta] (d2) {};
-        \node at (.5,1) [map] (gfinv) {$\scriptstyle g\inv{f}$};
+        \node at (.5,1) [map] (g-f-inverse) {$\scriptstyle g\inv{f}$};
         \node at (0, .5) [nabla] (n2) {};
         \node at (0,0) (end) {};
         \draw [] (start) to (d2);
-        \draw [] (d2) to[out=305,in=90] (gfinv);
+        \draw [] (d2) to[out=305,in=90] (g-f-inverse);
         \draw [] (d2) to[out=235,in=125] (n2);
-        \draw (gfinv) to[out=270,in=55] (n2);
+        \draw (g-f-inverse) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
       }
@@ -1009,14 +1009,14 @@ v        \draw (g) to (finv);
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
-        \node at (.5,2.5) [map] (ghinv) {$\scriptstyle g\inv{h}$};
+        \node at (.5,2.5) [map] (g-h-inverse) {$\scriptstyle g\inv{h}$};
         \node at (0, 2) [nabla] (n1) {};
         \node at (0,1.5) [map] (h) {$\scriptstyle h$};
         \node at (0,1) (end) {};
         \draw [] (start) to (d1);
         \draw [] (d1) to[out=235,in=125] (n1);
-        \draw [] (d1) to[out=305,in=90] (ghinv);
-        \draw (ghinv) to[out=270,in=55] (n1);
+        \draw [] (d1) to[out=305,in=90] (g-h-inverse);
+        \draw (g-h-inverse) to[out=270,in=55] (n1);
         \draw (n1) to (h);
         \draw (h) to (end);
       \end{tikzpicture}
@@ -1024,15 +1024,15 @@ v        \draw (g) to (finv);
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
-        \node at (.5,2.25) [map] (ghinv) {$\scriptstyle g\inv{h}$};
+        \node at (.5,2.25) [map] (g-h-inverse) {$\scriptstyle g\inv{h}$};
         \node at (-.25,1.5) [map] (h1) {$\scriptstyle h$};
         \node at (.25,1.5) [map] (h2) {$\scriptstyle h$};
         \node at (0, 1) [nabla] (n1) {};
         \node at (0,.5) (end) {};
         \draw [] (start) to (d1);
         \draw [] (d1) to[out=235,in=90] (h1);
-        \draw [] (d1) to[out=305,in=90] (ghinv);
-        \draw (ghinv) to[out=270,in=90] (h2);
+        \draw [] (d1) to[out=305,in=90] (g-h-inverse);
+        \draw (g-h-inverse) to[out=270,in=90] (h2);
         \draw (h1) to[out=270,in=125] (n1);
         \draw (h2) to[out=270,in=55] (n1);
         \draw (n1) to (end);
@@ -1041,15 +1041,15 @@ v        \draw (g) to (finv);
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
-        \node at (.5,2.25) [map] (ghinv) {$\scriptstyle g\rst{\inv{h}}$};
+        \node at (.5,2.25) [map] (g-h-inverse) {$\scriptstyle g\rst{\inv{h}}$};
         \node at (-.25,1.5) [map] (h1) {$\scriptstyle h$};
         \node at (0, 1) [nabla] (n1) {};
         \node at (0,.5) (end) {};
         \draw [] (start) to (d1);
         \draw [] (d1) to[out=235,in=90] (h1);
-        \draw [] (d1) to[out=305,in=90] (ghinv);
+        \draw [] (d1) to[out=305,in=90] (g-h-inverse);
         \draw (h1) to[out=270,in=125] (n1);
-        \draw (ghinv) to[out=270,in=55] (n1);
+        \draw (g-h-inverse) to[out=270,in=55] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
       \ \raisebox{45pt}{$=$}\
