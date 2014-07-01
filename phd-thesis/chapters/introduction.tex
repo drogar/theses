@@ -4,7 +4,33 @@
 \label{sec:background}
 
 Reversible computing, at the level of Turing machines, was shown to be equivalent to standard
-computing by Bennet \cite{bennett:1973reverse} in 1973.
+computing by Bennet \cite{bennett:1973reverse} in 1973. In the past fifteen or so years, there has
+been an increased interest in reversible computing, perhaps engendered by the obvious relationship
+to Quantum computing (e.g., \cite{neilsen2000:QuantumComputationAndInfo}) where computation is done
+by a series of unitary transforms, each of which is reversible, followed by an irreversible
+measurement.
+
+The semantics of reversible computing has been examined in a variety of ways. An early example by
+Zuliani, \cite{zuliani01:reversibility}, examines logical reversibility via extending $pGCL$
+\cite{MorganIver99} to $qGCL$ \cite{sanders:quantum}.
+
+\subsection{Reversible languages}
+\label{subsec:reversible_languages}
+In \cite{mu06bidirectional} and \cite{muetal04:injreversible}, Mu et.al. introduce the language
+\textbf{Inv}, a language that is composed only of partial injective functions. The language has an
+operational semantics based on relations and converses. They provide a variety of examples of the
+language, including translations from XML to HTML and simple functions such as $wrap$, which wraps
+its argument into a list. Additionally they describe how non-injective functions may be converted to
+injective ones in \textbf{Inv} via the addition of logging. In fact, they use this logging to argue
+the language is equivalent in terms of power to the reversible Turing machine of
+\cite{bennett:1973reverse}.
+
+The approach to this language is perhaps the most explicitly like the theory presented in this
+Thesis. Their approach of insisting on injective functions is a specific case of an inverse
+category. When given two functions $f,g$ of \textbf{Inv}, constructing their union, $f\cup g$
+requires that both $\dom f \cap \dom g = \nothing$ and $\rng f \cap \rng g = \nothing$. This
+compares favourably to our introduction of the disjoint join in Section~\ref{sec:disjoint_joins}.
+
 
 \section{Objectives}
 \label{sec:objectives}
@@ -12,8 +38,9 @@ computing by Bennet \cite{bennett:1973reverse} in 1973.
 \section{Contributions}
 \label{sec:contributions}
 
-The initial contribution of this thesis is the characterization of products and coproducts in inverse
-categories. We show in Proposition~\ref{prop:an_inverse_category_with_products_is_a_restriction_preorder}
+The initial contribution of this thesis is the characterization of inverse categories with products
+and coproducts.
+We show in Proposition~\ref{prop:an_inverse_category_with_products_is_a_restriction_preorder}
 and Proposition~\ref{prop:inverse_category_with_coproducts_is_pre-order} that each of products and
 coproducts impose a trivialization of the structure of the base category.
 
@@ -62,7 +89,7 @@ Section~\ref{sec:completing_a_discrete_inverse_category} then explores how to co
 restriction category based on a discrete inverse category, culminating in
 Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories}
 giving an equivalence adjunction between discrete inverse categories and discrete Cartesian
-restriction categories, which were introduced in SubSection~\ref{sub:discrete_restriction_categories}.
+restriction categories, which were introduced in Sub-Section~\ref{sub:discrete_restriction_categories}.
 
 Having explored how to introduce a product-like construction in an inverse category,
 Chapter~\ref{cha:disjointness_in_inverse_categories} begins the exploration of how to add a
