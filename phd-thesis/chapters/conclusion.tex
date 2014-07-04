@@ -1,7 +1,103 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
 \chapter{Conclusions and future work} % (fold)
 \label{cha:conclusions_and_future_work}
-Conclusions go here.
+
+This thesis has studied inverse categories \cite{cockett2002:restcategories1}, providing conditions
+for a tensor to act in a product like way --- the inverse product --- and similarly for a second
+tensor to behave like a sum --- the inverse sum.
+
+The following are the main results of this thesis.
+
+\begin{enumerate}
+\item \textbf{Inverse Categories}
+
+We showed in Proposition~\ref{prop:an_inverse_category_with_products_is_a_restriction_preorder} that
+an inverse category with restriction products is a restriction pre-order. Similarly, in
+Proposition~\ref{prop:inverse_category_with_coproducts_is_pre-order}, an inverse category with
+coproducts is a pre-order.
+
+\item \textbf{Discrete Inverse Categories}
+
+We introduced the inverse product, Definition~\ref{def:inverse_product} and showed that this
+provided meets for the inverse category in
+Proposition~\ref{prop:discrete_inverse_category_has_meets}. We showed that the inverse sub-category
+of a discrete Cartesian restriction category is a Discrete Inverse Category in
+Lemma~\ref{lem:inv_x_is_a_discrete_inverse_category}. Commutative Frobenius Algebras are given as an
+example of a discrete inverse category.
+
+We then provided an equivalence relation on the maps of a discrete inverse category \X in
+Definition~\ref{defn:xequivalence}. This allowed us to introduce the category $\Xt$ constructed from
+$\X$ by using the equivalence relation to generate more maps between each object in
+Definition~\ref{def:xt}. In Lemmas~\ref{lem:xt_is_a_category} and
+\ref{lem:xt_is_a_restriction_category} we showed $\Xt$ is a restriction category and in
+Theorem~\ref{thm:xt_is_a_discrete_crc_when_x_is_an_inverse_category} we showed it is in fact a
+discrete Cartesian restriction category.
+
+Finally, in
+Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories} we
+provided an equivalence functor between the categories of discrete inverse categories and discrete
+Cartesian restriction categories.
+
+\item \textbf{Disjointness Relations and Disjoint Joins}
+
+In Definition~\ref{def:disjointness_relation} we defined what a disjointness relation is in an
+inverse category, followed by Definition~\ref{def:disjointness_in_open_x} which defined disjointness
+on the restriction idempotents of the inverse
+category. Theorem~\ref{thm:open_disjointness_is_disjointness} shows that these two definitions are
+equivalent, allowing us to define disjointness in whichever way is most convenient.
+
+Disjoint joins are introduced with Definition~\ref{def:disjoint_join}, providing a correspondence to
+joins in a restriction category.
+
+In Section~\ref{sec:tensors_for_disjointness} we explore the properties a symmetric monoidal tensor
+on an inverse category requires in order to generate a disjointness relation and a disjoint
+join. These are referred to as disjoint join tensors.
+
+We show that in the category of commutative Frobenius algebras that $\Delta(f\* g)\inv{Delta} = 0$
+gives a disjointness relation.
+
+\item \textbf{Inverse Sum Categories}
+
+Inverse sum categories are given by inverse categories that have a disjoint join tensor. We define
+$\imatx$, a matrix category over the inverse sum category \X in
+Definition~\ref{def:inverse_matrix_category} and show that it is an inverse sum category in
+Theorem~\ref{thm:imatx_is_an_inverse_sum_category}. Furthermore, we show
+that an inverse sum category \X is equivalent to a $\imatx$ in
+Proposition~\ref{pro:x_and_imatx_are_equivalent}.
+
+
+\item \textbf{Distributive Inverse Categories}
+
+We define distributive inverse categories in Definition~\ref{def:distributive_inverse_category} and
+show that distributivity of the inverse product over the disjoint join is equivalent to distributing
+over an inverse sum tensor in Lemma~\ref{lem:distributive_means_distribute_over_join}.
+
+Then, in Theorem~\ref{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category} we show that
+the $\wtf$ construction of Section~\ref{sub:the_restriction_category_hypxt} lifts an inverse sum
+tensor into a coproduct. From this we conclude that $\Xt$ is a distributive restriction category in
+Corollary~\ref{cor:xt_is_a_distributive_restriction_category}.
+\end{enumerate}
+
+\section{Whither next?}
+\label{sec:whither-next}
+
+The obvious next step is to apply these results to existing reversible languages such as
+\textbf{Inv} \cite{muetal04:injreversible}, and the pair $\Pi^0$, \cite{james2013isomorphic} and $\Pi$,
+\cite{james2012information}. In each case, there do not appear to be any issues in doing this work,
+it simply requires careful attention to the language definitions.
+
+A more interesting direction, in my opinion would be to further investigate the work on reversible
+CCS as in \cite{danos2004reversible} and \cite{phillips2006operational}. This could be combined with
+the work of Chakraborty on MPL \cite{chakraborty2014} to describe the communication of multiple
+processes and generalize that to a series of reversible processes.
+
+A third direction would be to formalize types in reversible languages using the results of this
+thesis as a basis. The obvious correspondences are from product types to the inverse product and
+between sum types and the inverse sum. From there, one would study the trace and explore infinite
+and recursive types. Note that some of this work would follow naturally from exploring the semantics
+of $\Pi^0$ and $\Pi$ from \cite{james2013isomorphic,james2012information}.
+
+
 % chapter conclusions_and_future_work (end)
 
 %%% Local Variables:

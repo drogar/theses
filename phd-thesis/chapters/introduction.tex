@@ -24,15 +24,24 @@ references consider partiality to a greater or lesser degree, but none of them t
 consideration.
 
 Partiality was shown to have an algebraic treatment, restriction categories, by Cockett and Lack in
-\cite{cockett2002:restcategories1,cockettlack2003:restcategories2,cockettlack2004:restcategories3}.
+\cite{cockett2002:restcategories1,cockettlack2003:restcategories2,cockettlack2004:restcategories3}. The
+algebraic treatment consists of an operator $(\rst{~})$ on maps such that for a map $f:A\to B$ in a
+category, then $\rst{f}:A\to A$ is an idempotent map in the category. Full details are given here in
+Section~\ref{sec:restriction_categories}.
+
+In much of the research on reversibility, specific conditions are placed on some aspect of the
+computational model or reversible language to ensure ``programs'' in this model are reversible. Due
+to the variety of models and languages it is unclear what are the common threads of these restrictions.
+We contend that our treatment of the theory of reversibility will provide the basis to show the
+relationships of the variety of approaches.
 
 \subsection{Algebraic models of reversibility}
 \label{subsec:algebraic_models_of_reversibility}
-In \cite{abramsky05:reversible}, Abramsky considers Bi-orthogonal automata as his computational
+In \cite{abramsky05:reversible}, Abramsky considers bi-orthogonal automata as his computational
 model. (An automata is considered orthogonal if it is non-ambiguous and left-linear. It is
-bi-orthogonal when the automata and its converse are both orthogonal). He then builds a bridge from
-partial injective and involutive functions to these automata. To show universality, he provides
-specific constructions of bi-orthogonal automata that create a Linear Combinatory Algebra
+bi-orthogonal when both the automata and its converse are both orthogonal). Abramsky then builds a
+bridge from partial injective and involutive functions to these automata. To show universality,
+specific constructions of bi-orthogonal automata are provide which create a Linear Combinatory Algebra
 \cite{abramsky02:GOI}.
 
 In \cite{danos2004reversible}, Danos and Krivine extend CCS (Calculus for Communicating Systems)
@@ -58,15 +67,23 @@ To preserve information and allow reversibility, this is replaced with
 
 \subsection{Reversible languages}
 \label{subsec:reversible_languages}
-An early example by
-Zuliani, \cite{zuliani01:reversibility}, examines logical reversibility via extending $pGCL$
-\cite{MorganIver99} and comparing to $qGCL$ \cite{sanders:quantum}. He provides a method for
-transforming an irreversible $pGCL$ program into a reversible one. He accomplishes this via an
-application of expectation transform semantics to the $pGCL$ program. Interestingly, he specifically
-excludes partial programs from his definition of reversible programs. The paper provides a
-translation for a $pGCL$ program into a reversible one. The initial definition of a reversible
-program is initially strict, i.e., the program is equivalent to $skip$ which does nothing. To
-alleviate this and allow us to extract the output, he follows the example of
+
+Early examples of reversible languages include Janus \cite{lutz1986janus}, an imperative language
+written as an experiment in producing a language that did not erase information. There were not
+attempts made at creating a semantics for this language, as far as we know.
+
+Additionally, there are special purpose reversible languages, such as biXid \cite{bixid06}, a
+language developed explicitly to transform XML \cite{xml} from one schema to another. The main
+novelty of biXid is that a single program targets two schemas and will transform in either direction.
+
+In the realm of languages which posses an explicit semantics, we start with Zuliani
+\cite{zuliani01:reversibility}, who examines logical reversibility via extending $pGCL$
+\cite{MorganIver99} and comparing to $qGCL$ \cite{sanders:quantum}. Zuliani provides a method for
+transforming an irreversible $pGCL$ program into a reversible one. This is accomplished via an
+application of expectation transform semantics to the $pGCL$ program. Interestingly, partial
+programs are specifically excluded from the definition of reversible programs. The initial
+definition of a reversible program is initially strict, i.e., the program is equivalent to $skip$
+which does nothing. To alleviate this and allow us to extract the output, he follows the example of
 \cite{bennett:1973reverse} and modifies the result so that the output is copied before reversing the
 rest of the program.
 
@@ -79,17 +96,48 @@ injective ones in \textbf{Inv} via the addition of logging. In fact, they use th
 the language is equivalent in terms of power to the reversible Turing machine of
 \cite{bennett:1973reverse}.
 
-The approach to this language is perhaps the most explicitly like the theory presented in this
-Thesis. Their approach of insisting on injective functions is a specific case of an inverse
-category. When given two functions $f,g$ of \textbf{Inv}, constructing their union, $f\cup g$
-requires that both $\dom f \cap \dom g = \nothing$ and $\rng f \cap \rng g = \nothing$. This
-compares favourably to our introduction of the disjoint join in Section~\ref{sec:disjoint_joins}.
+The approach of Mu et.al. is a good example of a specific case which is describable by the theory
+presented in this Thesis. Their approach of insisting on injective functions is a specific case of
+an inverse category. When given two functions $f,g$ of \textbf{Inv}, constructing their union,
+$f\cup g$ requires that both $\dom f \cap \dom g = \nothing$ and $\rng f \cap \rng g =
+\nothing$. This is an explicit creation of a disjoint join as introduced in
+Section~\ref{sec:disjoint_joins}.
 
 A more recent entry into the field of reversible languages is that of Theseus,
 \cite{james2014theseus}, by Sabry and James. Theseus is a functional language which compiles to
-$\PI$ as presented in \cite{james2012information,james2013isomorphic}.
+$\Pi^0$ as presented in \cite{james2013isomorphic} which is based on $\Pi$
+\cite{james2012information}.  $\Pi$ is a graphical language for reversible computation, based on
+isomorphisms of finite sums and products of types. Their chosen isomorphisms include commutativity
+and associativity for sums and products, units for product and distributivity of product over
+sums. $\Pi^0$ extends this with recursive types and looping operators. $\Pi^0$ introduces partiality
+due to the possibility of non-terminating loops.
+
+The basis of $\Pi^0$ is reminiscent of what we produce in this thesis, however, our approach differs
+significantly in focusing first on partiality and the expressiveness this gives us, rather than
+building a specific language.
+
+
+Finally, we note there are a number of quantum programming languages which, as noted, included
+reversible operations. Our first example is LQPL \cite{giles2007}, a compiled language based on the
+semantics of \cite{selinger04:qpl}. The language includes a variety of reversible operations
+(unitary transforms) as primitives, a linear type system and an operational semantics. A more recent
+entry is Quipper, \cite{green2013introduction,green2013quipper} a language embedded in Haskell
+\cite{peyton2003:haskell98}. Quipper uses quantum \emph{and} classical circuits as an underlying
+model. An interesting aspect of reversibility in Quipper is the inclusion of an operator to compute
+the reverse of a given circuit.
+
 \section{Objectives}
 \label{sec:objectives}
+
+Based upon our review of current research as noted in Section~\ref{sec:background}, reversibility
+lacks a unifying semantic model. Standard computing has Cartesian closed categories
+\cite{barr:ctcs}, while quantum computing has had much success with dagger compact closed categories
+\cite{selinger04:towardssemantics,selinger05:dagger,abramsky05:abstractscalars}.
+
+In this thesis, we will present a type of restriction category which abstracts partial reversible
+computations in as general a way as possible. We will show this category admits product-like and
+sum-like structures. We will also show this type of restriction category is equivalent to a specific
+type of Cartesian restriction category, showing there is a relation to standard computing models.
 
 \section{Contributions}
 \label{sec:contributions}
