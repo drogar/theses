@@ -10,17 +10,65 @@ to Quantum computing (e.g., \cite{neilsen2000:QuantumComputationAndInfo}) where 
 by a series of unitary transforms, each of which is reversible, followed by an irreversible
 measurement.
 
-The semantics of reversible computing has been examined in a variety of ways. Broadly, they can be
+The semantics of reversible computing has been examined in a variety of ways. Broadly, they may be
 broken into two classes. The first class consists of those that introduce a reversible
 language and then describe the semantics of that language in some way. Examples of this include
-Zuliani, \cite{zuliani01:reversibility} and Mu et.al., \cite{muetal04:injreversible}.
+Zuliani, \cite{zuliani01:reversibility} and Mu et.al., \cite{muetal04:injreversible}. The second
+class focus on some algebraic model and then introduce reversibility to that model. Examples of this
+include Abramsky \cite{abramsky05:reversible}, Di Pierro et.al. \cite{DiPierro200625}, Danos and
+Krivine \cite{danos2004reversible} and Phillips and Uladowski \cite{phillips2006operational}.
 
-The second
+An important aspect of the treatment of reversible computing is the consideration of partiality in
+programs, i.e., it is possible for programs to not return an answer for certain inputs. The above
+references consider partiality to a greater or lesser degree, but none of them treat it as a central
+consideration.
+
+Partiality was shown to have an algebraic treatment, restriction categories, by Cockett and Lack in
+\cite{cockett2002:restcategories1,cockettlack2003:restcategories2,cockettlack2004:restcategories3}.
+
+\subsection{Algebraic models of reversibility}
+\label{subsec:algebraic_models_of_reversibility}
+In \cite{abramsky05:reversible}, Abramsky considers Bi-orthogonal automata as his computational
+model. (An automata is considered orthogonal if it is non-ambiguous and left-linear. It is
+bi-orthogonal when the automata and its converse are both orthogonal). He then builds a bridge from
+partial injective and involutive functions to these automata. To show universality, he provides
+specific constructions of bi-orthogonal automata that create a Linear Combinatory Algebra
+\cite{abramsky02:GOI}.
+
+In \cite{danos2004reversible}, Danos and Krivine extend CCS (Calculus for Communicating Systems)
+\cite{milner1980calculus,milner1989communication} to produces RCCS, which adds reversible
+transitions to CCS. This is done by adding a syntax for backtracking, together with a labelling
+which guides the backtracking. The interesting aspect of this paper is the applicability to
+multi-processor programs.
+
+Phillips and Uladowski \cite{phillips2006operational} take a different approach to creating a
+reversible CCS from that of Danos and Krivine. Rather, their stated goal is to use a structural
+approach, inspired by \cite{abramsky05:reversible}. The paper is only an initial step in this
+process, primarily explaining how to turn dynamic rules (such as choice operators) into a series of
+static rules that keep all the information of the input. For example (from the paper), in standard
+CCS, we have the rule
+\[
+  \infer{X+Y \to X'}{X\to X'}.
+\]
+To preserve information and allow reversibility, this is replaced with
+\[
+  \infer{X+Y \to X' +Y}{X\to X'}.
+\]
+
+
 \subsection{Reversible languages}
 \label{subsec:reversible_languages}
 An early example by
 Zuliani, \cite{zuliani01:reversibility}, examines logical reversibility via extending $pGCL$
-\cite{MorganIver99} to $qGCL$ \cite{sanders:quantum}.
+\cite{MorganIver99} and comparing to $qGCL$ \cite{sanders:quantum}. He provides a method for
+transforming an irreversible $pGCL$ program into a reversible one. He accomplishes this via an
+application of expectation transform semantics to the $pGCL$ program. Interestingly, he specifically
+excludes partial programs from his definition of reversible programs. The paper provides a
+translation for a $pGCL$ program into a reversible one. The initial definition of a reversible
+program is initially strict, i.e., the program is equivalent to $skip$ which does nothing. To
+alleviate this and allow us to extract the output, he follows the example of
+\cite{bennett:1973reverse} and modifies the result so that the output is copied before reversing the
+rest of the program.
 
 In \cite{mu06bidirectional} and \cite{muetal04:injreversible}, Mu et.al. introduce the language
 \textbf{Inv}, a language that is composed only of partial injective functions. The language has an
@@ -37,7 +85,9 @@ category. When given two functions $f,g$ of \textbf{Inv}, constructing their uni
 requires that both $\dom f \cap \dom g = \nothing$ and $\rng f \cap \rng g = \nothing$. This
 compares favourably to our introduction of the disjoint join in Section~\ref{sec:disjoint_joins}.
 
-
+A more recent entry into the field of reversible languages is that of Theseus,
+\cite{james2014theseus}, by Sabry and James. Theseus is a functional language which compiles to
+$\PI$ as presented in \cite{james2012information,james2013isomorphic}.
 \section{Objectives}
 \label{sec:objectives}
 
