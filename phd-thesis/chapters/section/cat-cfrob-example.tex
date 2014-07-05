@@ -61,19 +61,142 @@
     (1\*\eta)\nabla &= id\\
     \Delta(1\*\epsilon) &= id.
   \end{align}
+  Diagrammatically, this is:
+  \[
+    \begin{tikzpicture}
+    \path   node at (.5,1) (start) {}
+    node at (0,1) [eta] (eta1) {}
+    node at (.25,.5) [nabla] (n1) {}
+    node at (.25,0) (end) {};
+    \draw [] (eta1) to[out=270,in=125] (n1);
+    \draw [] (start) to[out=270,in=55] (n1);
+    \draw [] (n1)   to (end);
+  \end{tikzpicture}
+  \ \raisebox{15pt}{\text{= }}
+  \begin{tikzpicture}
+    \path node at (0,1) (starty) {}
+    node at (0,0) (end) {};
+    \draw [-] (starty) to (end);
+  \end{tikzpicture}
+  \ \raisebox{15pt}{\text{=}}
+  \begin{tikzpicture}
+    \path node at (0,1) (start) {}
+    node at (0,.5) [delta] (d1) {}
+    node at (-.25,0) (end) {}
+    node at (.25,0) [epsilon] (e1) {};
+    \draw [] (start) to (d1);
+    \draw [] (d1) to[out=305,in=90] (e1);
+    \draw [] (d1) to[out=235,in=90] (end);
+  \end{tikzpicture}
+  \ \raisebox{15pt}{.}
+  \]
   Proof of Equation~\ref{eq:finvinv_is_f}:
-  \begin{align*}
-    \inv{\inv{f}} &=(1\*\eta)(1\*\Delta)(1\*(\inv{f})\*1)(\nabla\*1)(\epsilon\*1) \\
-    &=(1\*\eta)(1\*\Delta)(1\*((1\*\eta)(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1))\*1)\\
-    &\qquad\qquad(\nabla\*1)(\epsilon\*1) \\
-    &=(1\*\eta)(1\*\Delta)(1\*1\*\eta)(1\*1\*f\*1\*1)(1\*\nabla\*1\*1)\\
-    &\qquad\qquad(1\*\epsilon\*1\*1) (\nabla\*1)(\epsilon\*1)\\
-    &=(\eta\*1)(\Delta\*1)(1\*\nabla)(f\*1)(((\eta)(\Delta\*1)(1\*\nabla)(1\*\epsilon))\*1)
-      ((1\*\epsilon)\\
-    &=(1\*\eta)\nabla \Delta(1\*\epsilon)f(\eta\*1)\nabla\Delta(1\*\epsilon)\\
-    &=id_{x}id_{x}\  f \ id_{y} id_{y}\\
-    &=f.
-  \end{align*}
+  \[
+  \begin{tikzpicture}
+    \path node at (-.75,4) (starty) {}
+    node at (0,3.5) [eta] (eta2) {}
+    node at (0,3) [delta] (d2) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (0,2) [delta] (d1) {}
+    node at (-.25,1.5) [map] (f) {$\scriptstyle f$}
+    node at (-.5,1) [nabla] (n1) {}
+    node at (-.5,.5) [epsilon] (e1) {}
+    node at (-.5,0) [nabla] (n2) {}
+    node at (-.5,-.5) [epsilon] (e2) {}
+    node at (.25,-1) (end) {};
+    \draw [] (starty) to[out=270,in=125] (n2);
+    \draw [] (eta2) to (d2);
+    \draw [] (d2) to[out=235,in=125] (n1);
+    \draw [] (d2) to[out=305,in=90] (end);
+    \draw [] (eta1) to (d1);
+    \draw [] (d1) to[out=305,in=55] (n2);
+    \draw [] (d1) to[out=235,in=90] (f);
+    \draw [] (f) to[out=270,in=55] (n1);
+    \draw [-] (n1) to (e1);
+    \draw [-] (n2) to (e2);
+  \end{tikzpicture}
+  \ \raisebox{50pt}{\text{=}}
+  \begin{tikzpicture}
+    \path node at (.25,4) (starty) {}
+    node at (-.5,3.5) [eta] (eta2) {}
+    node at (-.5,3) [delta] (d2) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (0,2) [delta] (d1) {}
+    node at (-.25,1.5) [map] (f) {$\scriptstyle f$}
+    node at (-.5,1) [nabla] (n1) {}
+    node at (-.5,.5) [epsilon] (e1) {}
+    node at (0,0) [nabla] (n2) {}
+    node at (0,-.5) [epsilon] (e2) {}
+    node at (-.5,-1) (end) {};
+    \draw [] (starty) to[out=270,in=55] (n2);
+    \draw [] (eta2) to (d2);
+    \draw [] (d2) to[out=305,in=125] (n1);
+    \draw [] (d2) to[out=235,in=90] (end);
+    \draw [] (eta1) to (d1);
+    \draw [] (d1) to[out=305,in=125] (n2);
+    \draw [] (d1) to[out=235,in=90] (f);
+    \draw [] (f) to[out=270,in=55] (n1);
+    \draw [-] (n1) to (e1);
+    \draw [-] (n2) to (e2);
+  \end{tikzpicture}
+  \ \raisebox{50pt}{\text{= }}
+  \begin{tikzpicture}
+    \path node at (.25,4) (starty) {}
+    node at (-.5,1) [eta] (eta2) {}
+    node at (-.5,.5) [delta] (d2) {}
+    node at (0,3.5) [eta] (eta1) {}
+    node at (0,3) [delta] (d1) {}
+    node at (-.25,1.5) [map] (f) {$\scriptstyle f$}
+    node at (-.25,0) [nabla] (n1) {}
+    node at (-.25,-.5) [epsilon] (e1) {}
+    node at (.25,2.5) [nabla] (n2) {}
+    node at (.25,2) [epsilon] (e2) {}
+    node at (-.5,-1) (end) {};
+    \draw [] (starty) to[out=270,in=55] (n2);
+    \draw [] (eta2) to (d2);
+    \draw [] (d2) to[out=305,in=125] (n1);
+    \draw [] (d2) to[out=235,in=90] (end);
+    \draw [] (eta1) to (d1);
+    \draw [] (d1) to[out=305,in=125] (n2);
+    \draw [] (d1) to[out=235,in=90] (f);
+    \draw [] (f) to[out=270,in=55] (n1);
+    \draw [-] (n1) to (e1);
+    \draw [-] (n2) to (e2);
+  \end{tikzpicture}
+  \ \raisebox{50pt}{\text{= }}
+  \begin{tikzpicture}
+    \path node at (.5,4) (starty) {}
+    node at (0,3.5) [eta] (eta1) {}
+    node at (.25,3) [nabla] (n1) {}
+    node at (.25,2.5) [delta] (d1) {}
+    node at (.5,2) [epsilon] (e1) {}
+    node at (0,1.5) [map] (f) {$\scriptstyle f$}
+    node at (-.5,1) [eta] (eta2) {}
+    node at (-.25,.5) [nabla] (n2) {}
+    node at (-.25,0) [delta] (d2) {}
+    node at (0,-.5) [epsilon] (e2) {}
+    node at (-.5,-1) (end) {};
+    \draw [] (starty) to[out=270,in=55] (n1);
+    \draw [] (eta1) to[out=270,in=125] (n1);
+    \draw [] (n1) to (d1);
+    \draw [] (d1) to[out=305,in=90] (e1);
+    \draw [] (d1) to[out=235,in=90] (f);
+    \draw [] (f) to[out=270,in=55] (n2);
+    \draw [] (eta2) to[out=270,in=125] (n2);
+    \draw [-] (n2) to (d2);
+    \draw [] (d2) to[out=305,in=125] (e2);
+    \draw [] (d2) to[out=235,in=90] (end);
+  \end{tikzpicture}
+  \ \raisebox{50pt}{\text{=}}
+  \begin{tikzpicture}
+    \path node at (.5,4) (starty) {}
+    node at (0,1.5) [map] (f) {$\scriptstyle f$}
+    node at (-.5,-1) (end) {};
+    \draw [] (starty) to[out=270,in=90] (f);
+    \draw [] (f) to[out=270,in=90] (end);
+  \end{tikzpicture}
+  \ \raisebox{50pt}{\text{= }$f$.}
+  \]
   Proof of Equation~\ref{eq:ffinvf_is_f}:
   \begin{align*}
     f\inv{f}f &= f(1\*\eta)(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1)f\\

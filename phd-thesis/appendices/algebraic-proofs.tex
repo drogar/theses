@@ -155,6 +155,66 @@
   \end{align*}
 \end{proof}
 
+\section{Algebraic proof for Theorem~\ref{thm:cfrob_is_a_discrete_inverse_category}}
+\begin{theorem}
+  When \X is a symmetric monoidal category, CFrob(\X) is a discrete inverse category.
+\end{theorem}
+\begin{proof}
+  For $f:X \to Y$, define $\inv{f}$ as
+  \[
+    Y \xrightarrow{1\*\eta} Y\*X \xrightarrow{1\*\Delta}
+      Y\*X\*X \xrightarrow{1\*f\*1} Y\*Y\*X \xrightarrow{\nabla\*1}
+      Y\*X \xrightarrow{\epsilon\*1}X.
+  \]
+  Using a result from \cite{cockett2002:restcategories1}, we need only show:
+  \begin{align}
+    \inv{(\inv{f})} &= f\label{eq:finvinv_is_f}\\
+    f\inv{f}f &= f\label{eq:ffinvf_is_f}\\
+    f\inv{f}g\inv{g} &=g\inv{g} f\inv{f}.\label{eq:ffinv_commutes_gginv}
+  \end{align}
+  We also use the following two identities from \cite{kock04}:
+  \begin{align}
+    (1\*\eta)\nabla &= id\\
+    \Delta(1\*\epsilon) &= id.
+  \end{align}
+  Proof of Equation~\ref{eq:finvinv_is_f}:
+  \begin{align*}
+    \inv{\inv{f}} &=(1\*\eta)(1\*\Delta)(1\*(\inv{f})\*1)(\nabla\*1)(\epsilon\*1) \\
+    &=(1\*\eta)(1\*\Delta)(1\*((1\*\eta)(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1))\*1)\\
+    &\qquad\qquad(\nabla\*1)(\epsilon\*1) \\
+    &=(1\*\eta)(1\*\Delta)(1\*1\*\eta\* 1)(1\*1\*\Delta\*1)(1\*1\*f\*1\*1)(1\*\nabla\*1\*1)\\
+    &\qquad\qquad(1\*\epsilon\*1\*1) (\nabla\*1)(\epsilon\*1)\\
+    &=(\eta\*1)(\Delta\*1)(1\*\nabla)(f\*1)(((\eta)(\Delta\*1)(1\*\nabla)(1\*\epsilon))\*1)
+      ((1\*\epsilon)\\
+    &=(1\*\eta)\nabla \Delta(1\*\epsilon)f(\eta\*1)\nabla\Delta(1\*\epsilon)\\
+    &=id_{x}id_{x}\  f \ id_{y} id_{y}\\
+    &=f.
+  \end{align*}
+  Proof of Equation~\ref{eq:ffinvf_is_f}:
+  \begin{align*}
+    f\inv{f}f &= f(1\*\eta)(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1)f\\
+    &=(1\*\eta)(1\*\Delta)(f\*f\*1)(\nabla\*1)(1\*f)(\epsilon\*1)\\
+    &=(1\*\eta)(1\*\Delta)(\nabla\*1)(f\*f)(\epsilon\*1)\\
+    &=(1\*\eta)\nabla\Delta(f\*f)(\epsilon\*1)\\
+    &=\Delta(f\*f)(\epsilon\*1)\\
+    &=f\Delta(\epsilon\*1)\\
+    &=f.
+  \end{align*}
+  Proof of Equation~\ref{eq:ffinv_commutes_gginv}:
+  \begin{align*}
+    f(1\*\eta)&(1\*\Delta)(1\*f\*1)(\nabla\*1)(\epsilon\*1)g(1\*\eta)(1\*\Delta)(1\*g\*1)
+      (\nabla\*1)(\epsilon\*1)\\
+    &=(1\*\eta)(1\*\Delta)(\nabla\*1)(f\*1)(\epsilon\*1)(1\*\eta)(1\*\Delta)(\nabla\*1)(g\*1)
+      (\epsilon\*1)\\
+    &=(1\*\eta)\nabla\Delta(f\*1)(\epsilon\*1)(1\*\eta)\nabla\Delta(g\*1)(\epsilon\*1)\\
+    &=\Delta(f\*1)(\epsilon\*1)\Delta(g\*1)(\epsilon\*1)\\
+    &=\Delta(1\*\Delta)(f\*g\*1)(\epsilon\*\epsilon\*1)\\
+    &=\Delta(1\*\Delta)(g\*f\*1)(\epsilon\*\epsilon\*1)\qquad\qquad\qquad\text{co-commutativity}\\
+    &=g\inv{g}f\inv{f}.
+  \end{align*}
+
+\end{proof}
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: ../phd-thesis.tex
