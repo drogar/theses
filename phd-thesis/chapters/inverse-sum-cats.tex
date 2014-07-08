@@ -570,7 +570,7 @@ show that \imatx is an inverse category and that $\X$ embeds within this categor
 \end{proof}
 
 Note that when $\X$ is an inverse category with a disjoint join, \imatx is also an inverse
-category. The inverse of the map $f = [f_{i\jay}]$ is the map $\inv{f}:=[\inv{f_\jay i}]$. Recalling
+category. The inverse of the map $f = [f_{i\jay}]$ is the map $\inv{f}:=[\inv{f_{\jay i}}]$. Recalling
 that the rows and columns of $f$ are each disjoint, we see that the composition
 $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
 
@@ -836,45 +836,28 @@ equivalence between these two categories.
   object $[A_1,\ldots,A_n]$.
 \end{proof}
 % subsection equivalence_between_an_inverse_sum_category_and_its_matrix_category (end)
-\begin{lemma}\label{lem:inverse_sum_category_maps_are_matrices}
-  In an inverse sum tensor category, any map $f:A\+B \to C\+D$ may be represented in a matrix form.
-  Composition of maps may be computed by multiplication of the matrices, with composition taking
-  the place of base level multiplication and $\djoin$ in the place of addition.
-\end{lemma}
-\begin{proof}
-  Recall from Lemma~\ref{lem:an_inverse_sum_tensor_gives_inverse_sums} that $A\+B$ and $C\+D$ are
-  inverse sums. Referencing Definition~\ref{def:inverse_sum}, define $e_0 = \inv{i_1}i_1$ and $e_1
-  = \inv{i_2}i_2$ and note that $e_0 \cdperp e_1$, $e_0 \djoin e_1 = 1$. Then given a function
-  $f:A\+B \to C\+D$ define
+\begin{example}\label{ex:inverse_sum_category_maps_are_matrices}
+  We may obtain a matrix representative of any map $f:A\+B\to C\+D$ by applying the construction of
+  Definition~\ref{def:functor_from_imatx_to_x} in reverse.
+
+  Then given a function   $f:A\+B \to C\+D$ define
   \[ f_M =
      \begin{bmatrix}
-       e_0 f e_0 & e_0 f e_1 \\
-       e_1 f e_0 & e_1 f e_1
+       \cpa f \icpa & \cpa f \icpb \\
+       \cpb f \icpa & \cpb f \icpb
       \end{bmatrix}.
   \]
-  Since $e_0 \cdperp e_1$, the maps in the rows of $f_M$ are disjoint by the
-  stability of the disjointness relation. Similarly, the maps in the columns are disjoint by
-  universality. We have $e_0 f e_0 \djoin e_0 f e_1 = e_0 f$ and $e_1 f e_0 \djoin e_1 f e_1 = e_1
-  f$. Once again, each of these maps are disjoint by universality. Finally,
-  $e_0 f \djoin e_1 f = (e_0 \djoin  e_1) f = f$ and hence we may recover the initial map whenever
-  we have a matrix of this form. We will call this computation the distinct join of $f_M$.
 
-  Next, consider $f_M \times g_M$. As each $e_i$ is idempotent, this is
-  \[ f_M \times g_M =
-     \begin{bmatrix}
-       e_0 f e_0 g e_0 \djoin e_0 f e_1 g e_0 & e_0 f e_0 g e_1 \djoin e_0 f e_1 g e_1 \\
-       e_1 f e_0 g e_0 \djoin e_1 f e_1 g e_0 & e_1 f e_0 g e_1 \djoin e_1 f e_1 g e_1
-      \end{bmatrix}
-      =
-     \begin{bmatrix}
-       e_0 f g e_0  & e_0 f  g e_1  \\
-       e_1 f  g e_0 & e_1  g f e_1
-      \end{bmatrix}
-  \]
-  where the distinct joins are well defined due to the stability and universality of the join.
-  We can see that the distinct join of $f_M \times g_M = f g$ and as such we have composition.
-
-\end{proof}
+  Thus, applying the functor $S$ from Definition~\ref{lem:s_is_a_functor}, we have
+  \begin{align*}
+     S(f_M) &= \icpa (\cpa f \icpa \cpa \djoin \cpa f \icpb \cpb) \djoin \icpb( \cpb f \icpa\cpa
+     \djoin \cpb f \icpb \cpb) \\
+     & = \icpa \cpa f (\icpa \cpa \djoin \icpb \cpb) \djoin \icpb \cpb f ( \icpa \cpa \djoin
+     \icpb\cpb) \\
+     & = \icpa \cpa f \djoin \icpb \cpb f \\
+     & = (\icpa \cpa \djoin \icpb \cpb) f \\
+     & = f.
+  \end{align*}
 
 In particular, we note that we may represent $f:A\to B$ by the matrix
 \[
@@ -887,62 +870,39 @@ In particular, we note that we may represent $f:A\to B$ by the matrix
   \end{bmatrix}
 \]
 as $A \cong A\+0$ and $B \cong B\+0$.
+\end{example}
 
-We now turn to examining a category of specialized matrices over an inverse sum category. In
-general, the
-matrix category $\imat{(\X)}$ will have objects that are lists of objects in $\X$,
-$X=(X_1,\ldots,X_m)$. Maps between lists will be matrices $[f_{i j}]: (X_1,\ldots,X_m) \to
-(Y_1,\ldots,Y_n)$. We will only consider maps whose matrices have disjoint rows, i.e., if
-$[f_{i j}]$ is a matrix, it must have $f_{i j} \cdperp f_{i k}$ for all $i$ whenever $j \ne k$.
+\begin{corollary}\label{cor:inverse_sum_category_is_udc}
+A unique decomposition category\cite{haghverdi:2000phd} is a category where any
+\[
+  h:A\+B \to C\+D
+\]
+is uniquely determined by:
+\begin{alignat*}{2}
+  \cpa  h  \icpa &: A \to C & \quad \cpa  h  \icpb &: A \to D\\
+  \cpb  h  \icpa &: B \to C & \quad \cpb  h  \icpb &: B \to D
+\end{alignat*}
+i.e., is writable as the matrix:
+\[
+  \begin{bmatrix}
+    \cpa  h  \cpa^{(-1)} & \cpa  h  \cpb^{(-1)}\\
+    \cpb  h  \cpa^{(-1)} &\quad \cpb  h  \cpb^{(-1)}
+  \end{bmatrix}:
+  A\+B \to C\+D.
+\]
 
-
-
-
-% sub-subsection matrix_representation (end)
-
-
-
-
-
-
-
-% A unique decomposition category is a category where any
-% \[
-%   h:A\+B \to C\+D
-% \]
-% is uniquely determined by:
-% \begin{alignat*}{2}
-%   \cpa  h  \cpa^{(-1)} &: A \to C & \quad \cpa  h  \cpb^{(-1)} &: A \to D\\
-%   \cpb  h  \cpa^{(-1)} &: B \to C & \quad \cpb  h  \cpb^{(-1)} &: B \to D
-% \end{alignat*}
-% i.e., is writable as the matrix:
-% \[
-%   \begin{bmatrix}
-%     \cpa  h  \cpa^{(-1)} & \cpa  h  \cpb^{(-1)}\\
-%     \cpb  h  \cpa^{(-1)} &\quad \cpb  h  \cpb^{(-1)}
-%   \end{bmatrix}:
-%   A\+B \to C\+D.
-% \]
-% See \cite{haghverdi:2000phd}.
-%
-% The $0$ map in the category corresponds to the $0$-dimensional matrix,
-% \[
-%   0\xrightarrow{[]}B.
-% \]
-%
-% Note also that as $\cpa$ and $\cpb$ are restriction maps, the following diagram commutes:
-% \[
-%   \xymatrix @C+10pt{
-%     A \ar@{=}[d] \ar[r]^{\cpa} & A\+B \\
-%     A \ar[r]_{\cpa} & A\+0 \ar[u]_{1+0}
-%   }
-% \]
-%
-% The co-diagonal does not exist, except at the $0$ object. To see this, recall this is an inverse
-% category and the co-diagonal is a total map. Therefore, given $\nabla: A \+ A \to A$, then
-% $\nabla^{(-1)} : A \to A \+ A$ and $\nabla \nabla^{(-1)} = 1_{A\+A}, \nabla^{(-1)} \nabla = 1_{A}$.
-
-% subsection inverse_sum_tensor (end)
+The $0$ map in the category corresponds to the $0$-dimensional matrix,
+\[
+  0\xrightarrow{[]}B.
+\]
+%Note also that as $\cpa$ and $\cpb$ are restriction maps, the following diagram commutes:
+%\[
+%  \xymatrix @C+10pt{
+%    A \ar@{=}[d] \ar[r]^{\cpa} & A\+B \\
+%    A \ar[r]_{\cpa} & A\+0 \ar[u]_{1+0}
+%  }
+%\]
+\end{corollary}
 
 % section inverse_sums_categories (end)
 \section{Completing a distributive inverse category} % (fold)
