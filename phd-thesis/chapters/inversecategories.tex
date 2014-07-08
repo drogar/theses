@@ -183,9 +183,11 @@ category. To create an inverse product on a discrete category, add a commutative
 idempotent multiplication, with a unit.
 
 Let $\D$ be the discrete category of four objects and label them as $a,b,c$ and $d$. Then, define
-two different inverse product tensors, $\*$ and $\odot$ by:
-\begin{quote}
-  \qquad\qquad
+two different inverse product tensors, $\*$ and $\odot$ as shown in
+Table~\ref{tab:two_different_inverse_products}.
+
+\begin{table}[h!]
+  \begin{center}
   \begin{tabular}{|l||c|c|c|c|}
     \hline
     $\*$&a&b&c&d\\ \hline \hline
@@ -194,17 +196,18 @@ two different inverse product tensors, $\*$ and $\odot$ by:
     c&a&\textbf{b}&c&c \\ \hline
     d&a&b&c&d \\ \hline
   \end{tabular}
-  \hfil
-  \begin{tabular}{|l||c|c|c|c|}
-    \hline
+  \qquad
+  \begin{tabular}{|l||c|c|c|c|} \hline
     $\odot$&a&b&c&d\\ \hline \hline
     a&a&a&a&a\\ \hline
     b&a&b&\textbf{a}&b\\ \hline
     c&a&\textbf{a}&c&c \\ \hline
     d&a&b&c&d \\ \hline
   \end{tabular}
-  \qquad \qquad
-\end{quote}
+  \end{center}
+  \caption{Two different inverse products on the same category.}
+  \label{tab:two_different_inverse_products}
+\end{table}
 
 As $\D$ is discrete, $\Delta$ is forced to be the identity. By inspection, we can see each of
 the conditions for $\Delta$ are satisfied by $\*$ and by $\odot$.
@@ -2253,7 +2256,7 @@ result.
 \begin{proof}
   From the above lemmas, we have shown that we have an adjoint:
   \begin{equation}
-    (\eta,\varepsilon):\wtf \vdash \Invf :D_{i c} \to D_{r c} \label{eq:inv_and_wtf_are_adjoint_pair}
+    (\eta,\varepsilon):\wtf \vdash \Invf :D_{i c} \to D_{r c}. \label{eq:inv_and_wtf_are_adjoint_pair}
   \end{equation}
   By Lemma~\ref{lem:the_functor_eta_is_an_isomorphism} we know $\eta$ is an isomorphism. But this
   means the functor $\wtf$ is full and faithful, as shown in, e.g., Proposition 2.2.6 of
@@ -2274,8 +2277,8 @@ elements with two different tensors. Completing these gives two different lattic
 the straight line lattice, or the diamond semi-lattice. Below are the details of these constructions.
 
 Recall $\D$ has four elements $a,b,c$ and $d$, and there are two possible inverse product tensors,
-given in Table~\ref{tab:two_different_inverse_products}.
-\begin{table}[h!]
+given in Table~\ref{tab:two_different_inverse_products}. (Repeated here for your convenience).
+\begin{table*}[h!]
   \begin{center}
   \begin{tabular}{|l||c|c|c|c|}
     \hline
@@ -2294,9 +2297,8 @@ given in Table~\ref{tab:two_different_inverse_products}.
     d&a&b&c&d \\ \hline
   \end{tabular}
   \end{center}
-  \caption{Two different inverse products on the same category.}
-  \label{tab:two_different_inverse_products}
-\end{table}
+  \caption[]{Two different inverse products on the same category.} %[] option removes from LOT
+\end{table*}
 
 
 Define $\Delta$ as the identity map. Then, for the first tensor, $\*$ of
