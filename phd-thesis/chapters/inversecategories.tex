@@ -1348,6 +1348,47 @@ v        \draw (g) to (f-inverse);
     &= h f \cap h g&\text{Definition of }\cap.
   \end{align*}
 \end{proof}
+
+\begin{example}[\pinj is a discrete inverse category]\label{ex:pinj_is_a_discrete_inverse_category}
+  In the inverse category \pinj (see Example~\ref{ex:pinj_is_an_inverse_category}), suppose we add
+  the tensor given by the Cartesian product of sets. In detail, this means:
+  \begin{align*}
+    A \* B &= \{(a,b)| a\in A, b\in B\}\\
+    f \* g &= \{((a,c),(b,d)) | (a,b) \in f, (c,d) \in g\}\\
+    1 & = \{*\}\text{, a single element set.}
+  \end{align*}
+  The symmetric monoid isomorphisms are:
+    \begin{align*}
+      \usl &: \{(*,a)\} \mapsto \{a\}
+      &\usr &: \{(a,*)\} \mapsto \{a\}\\
+      a_{\*} &: \{((a,b),c)\} \mapsto \{(a,(b,c))\}
+      &c_{\*} &: \{(a,b)\} \mapsto \{(b,a)\}
+    \end{align*}
+
+  Define $\Delta_A = \{(a,(a,a)) | a\in A\}$. Then \pinj is a discrete inverse category with the
+  inverse product of $\*$. The required properties of co-commutativity, co-associativity and
+  exchange are immediately obvious. To show the Frobenius rule for $\Delta$, first note that
+  $\inv{\Delta}$ is defined only on the elements of $A\*A$ which agree in the first and second
+  co-ordinate. We show the upper triangle of the Frobenius diagram in
+  detail. Equation~\ref{eq:delta_inverse_delta} shows the result of applying $\Delta$ followed by
+  $\inv{\Delta}$.
+  \begin{equation}
+    \Delta(\inv{\Delta}(A\*A)) = \Delta(\{a | (a,a) \in A\*A\})
+    = \{(a,a) | (a,a) \in A\* A\}.\label{eq:delta_inverse_delta}
+  \end{equation}
+  Applying $(\Delta \* 1)a_{\*}$ to $A\*A$ is shown in Equation~\ref{eq:delta_tensor_one}.
+  \begin{equation}
+    a_{\*}(\Delta\*1(A\*A)) = a_{\*}(\{((a,a),a') | (a,a') \in A\*A\} = \{(a,(a,a')) | (a,a') \in
+    A\* A\}.\label{eq:delta_tensor_one}
+  \end{equation}
+  Finally, applying $1 \* \inv{\Delta}$ to the result of Equation~\ref{eq:delta_tensor_one} gives us
+  Equation~\ref{eq:one_tensor_delta_inverse}.
+  \begin{equation}
+    (1\*\inv{\Delta})(\{(a,(a,a')) | (a,a') \in  A\* A\} = \{(a,a) | (a,a) \in A\* A\} \label{eq:one_tensor_delta_inverse}.
+  \end{equation}
+  Thus, we have $\inv{\Delta}\Delta = (\Delta \* 1) a_{\*} (1\*\inv{\Delta})$ and the Frobenius
+  condition is satisfied.
+\end{example}
 % subsection discrete_inverse_categories (end)
 
 

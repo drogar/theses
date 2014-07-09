@@ -124,19 +124,23 @@ $p_{1},p_{2}$, then the following are equivalent:
 \end{definition}
 \subsection{Examples of dagger categories}
 
-\paragraph{\fdh{}:} The category of finite dimensional Hilbert spaces is the motivating example for
+\begin{example}[\fdh]\label{ex:fdhilbert_is_dagger_category}
+The category of finite dimensional Hilbert spaces is the motivating example for
 the creation of the dagger and is, in fact, a biproduct dagger compact closed category. The
 biproduct is the direct sum of Hilbert spaces and the tensor for compact closure is the standard
 tensor of Hilbert spaces. The dual $H^{*}$ of a space $H$ is the space of all continuous linear
 functions from $H$ to the base field. The dagger is defined via the adjoint as being the unique map
 $\dgr{f}:B\to A$ such that $\<f a|b\> = \<a | \dgr{f} b\>$ for all $a\in A, b\in B$.
+\end{example}
 
-\paragraph{\rel{}:} The category \rel of sets and relations has the tensor $S\*T = S\times T$, the
+\begin{example}[\rel]\label{ex:rel_is_dagger_category}
+The category \rel of sets and relations has the tensor $S\*T = S\times T$, the
 Cartesian product and the biproduct $S\+T = S+T$, the disjoint union. This is compact closed under
 $A^{*} = A$ and the dagger is the relational converse. That is, if the relation $R=\{(s,t)|s\in S,
 t\in T\}:S\to T$, then $\dgr{R}=\{(t,s)|(s,t)\in R\}(=R^{*})$.
+\end{example}
 
-\paragraph{Inverse categories:}
+\begin{example}[Inverse categories]\label{ex:inverse_category_is_dagger_category}
 An inverse category \X is also a dagger category when the dagger is defined as the partial inverse.
 The unitary maps are the total restriction idempotents. However, if the inverse category \X is also a
 symmetric monoidal category where the monoid $\*$ is actually a restriction bi-functor, then \X is
@@ -150,7 +154,7 @@ and since the partial inverse of $f\*g$ is unique, $\inv{(f\*g)} = \inv{f} \* \i
 requirement is that the structure isomorphisms are unitary. This is, of course, not the case
 \emph{unless \X is a strict symmetric monoidal category}. In general,
 therefore \X is not a dagger symmetric monoidal restriction category.
-
+\end{example}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../../phd-thesis"

@@ -69,40 +69,54 @@ enriched in sets of cardinality of 0 or 1, then $\X$ must be a pre-order.
 \label{sub:examples_of_categories}
 In this section, we will offer a few examples of categories.
 
-\subsubsection{Categories based on sets} % (fold)
-\label{ssub:categories_based_on_sets}
-There are three primary categories of interest to us where the objects are the collection of sets.
-The first is \sets, where the maps are given by all set functions. The second is \Par, where the
-maps are all partial maps. In each case, the standard definition of functions suffices to ensure
-identities, compositions and associativity are all satisfied. Domain and co-domain are given by the
-domain and range respectively.
+We present four categories where the objects are the collection of sets.
+\begin{example}\label{ex:category_sets}
+The first is \sets, where the maps are given by all set functions.
+\category{Sets}{Set functions}{The identity function}{Standard composition of functions}
+\end{example}
 
+\begin{example}\label{ex:category_par}
+Our next example is \Par, where the maps are all partial set functions.
+\category{Sets}{Partial set functions}{The identity function}{Standard composition of functions}
+\end{example}
+
+\begin{example}\label{ex:category_rel}
 A third example, often of interest in quantum programming language semantics is \rel:
-\category{All sets}{Relations: $R:X \to Y$}{$1_X = \{(x,x) | x \in X\}$}{$RS = \{(x,z) |
-\exists y, (x,y) \in R$ and $(y,z)\in S\}$}
+\category{All sets}{Relations: $R:X \to Y$}{$1_X = \{(x,x) | x \in X\}$}{$RS = \{(x,z) |\,
+\exists y. (x,y) \in R$ and $(y,z)\in S\}$}
+\end{example}
 
 Note that \rel is enriched in posets, via set inclusion. \Par can be viewed as a sub-category of
 \rel, with the same objects, but only allowing maps which are functions, i.e., if $(x,y), (x,y')
-\in R$, then $y = y'$. \Par is also enriched in posets, via the same inclusion ordering as in \rel.
+\in f$, then $y = y'$. \Par is also enriched in posets, via the same inclusion ordering as in \rel.
 
-% sub-subsection categories_based_on_sets (end)
-\subsubsection{Matrix categories} % (fold)
-\label{ssub:matrix_categories}
+\begin{example}\label{ex:category_pinj}
+Our final example based on sets is one that will be used throughout this thesis. The category \pinj consists of
+the partial injective functions over sets. Similarly to \Par, it may be considered as a subcategory
+of \rel. The maps $f,g$ (relations in \rel) in \pinj are defined as follows:
+\begin{align}
+   (x,y)\in f\text{ and }(x,y')\in f & \text{ implies } y = y',\label{eq:pinj_relation_is_a_function}\\
+   (x,y)\in f\text{ and }(x',y)\in f & \text{ implies } x = x'.\label{eq:pinj_converse_relation_is_a_function}
+\end{align}
+\category{All sets}{Relations: $f:X \to Y$ which satisfy Equation~\ref{eq:pinj_relation_is_a_function} and
+Equation~\ref{eq:pinj_converse_relation_is_a_function}.}{$1_X = \{(x,x) | x \in X\}$}{$f g = \{(x,z) |\,
+\exists y. (x,y) \in f$ and $(y,z)\in g\}$}
+\end{example}
+
+\begin{example}[Matrix Category]\label{ex:matrix_category}
 Given a rig $R$ (i.e., a ring minus negatives, e.g., the positive rationals), one may form the
-category \textsc{Mat}($R$).
+category \textsc{Mat}($R$). For example, the category of matrices of natural numbers is:
 \category{\nat}{$[r_{i j}]: n \to m$ where $[r_{i j}]$ is an $n \times m$ matrix over $R$}{
 $I_n$}{Matrix multiplication}
-% sub-subsection matrix_categories (end)
+\end{example}
 
-\subsubsection{Dual categories} % (fold)
-\label{ssub:dual_categories}
-
+\begin{example}[Dual Category]\label{ex:dual_category}
 Given a category $\C$, we may form the \emph{dual} of $C$, written $C^{op}$ as the following
 category:
 \category{The objects of $\C$}{$f^{op}:B\to A$ in $\C^{op}$ when $f:A\to B$ in $\C$.}{
 The identity maps of $\C$}{If $f g = h$ in $\C$, $g^{op} f^{op} = h^{op}$}
+\end{example}
 
-% sub-subsection dual_categories (end)
 % subsection examples_of_categories (end)
 \subsection{Properties of maps} % (fold)
 \label{sub:properties_of_maps}
@@ -488,9 +502,8 @@ as $\rst{f}=\rst{\rst{f}}$.
   $Total(\X) \subseteq \X$.
 \end{definition}
 
-
-An example of a restriction category is \Par, as defined in
-Sub-Section~\ref{ssub:categories_based_on_sets}. The restriction of $f:A\to B$ is:
+\begin{example}[\Par]\label{ex:par_is_a_restriction_category}
+Continuing from Example~\ref{ex:category_par}, \Par is a restriction category. The restriction of $f:A\to B$ is:
 \[
   \rst{f}(x) =
   \begin{cases}
@@ -500,7 +513,29 @@ Sub-Section~\ref{ssub:categories_based_on_sets}. The restriction of $f:A\to B$ i
 \]
 In \Par, the
 total maps correspond precisely to the functions that are defined on all elements of the domain.
+\end{example}
 
+\begin{example}[\rel]\label{ex:rel_is_a_restriction_category}
+The category \rel from Example~\ref{ex:category_rel} is a restriction category with the restriction
+of $R=\{(a,b)\}$ being $\rst{R} = \{(a,a) | \exists b. (a,b) \in R\}$.
+\end{example}
+
+\begin{example}[\pinj]\label{ex:pinj_is_a_restriction_category}
+From Example~\ref{ex:category_pinj}, we see \pinj is a restriction category and in fact is a
+sub-restriction category of \rel. We will show the four restriction axioms:
+\begin{align*}
+  \rone\ & \rst{f}f = \{(x,z) | \exists x. (x,x) \in \rst{f} \text{ and } (x,z) \in f\} = \{(x,z) |
+  (x,z) \in f\} = f,\\
+  \rtwo\ & \rst{f}\rst{g} = \{(x,z) | \exists y. (x,y) \in \rst{f} \text{ and } (y,z) \in \rst{g}\} =
+  \{(x,x) | (x,x) \in \rst{f} \text{ and } (x,x) \in \rst{g}\} = \rst{g}\rst{f},\\
+  \rthree\ & \rst{\rst{f} g} = \rst{\{(x,y) | (x,x) \in \rst{f}, (x,y) \in g\}} = \{(x,x) | (x,x) in
+  \rst{f}, (x,x) \in \rst{g} \} = \rst{f} \rst{g},\\
+  \rfour\ & f \rst{g} = \{(x,y) | (x,y) \in f, (y,y) \in \rst{g}\} =  \{(x,y) | (x,y) \in f, \exists
+  z. (y,z) \in g\} \\
+  &=  \{(x,y) | (x,y) \in f, \exists z. (x,z) \in f g\} =  \{(x,y) | (x,y) \in f,
+  (x,x) \in \rst{f g}\} = \rst{f g} f.
+\end{align*}
+\end{example}
 
 \subsection{Enrichment and meets} % (fold)
 \label{sub:enrichment_and_meets}
@@ -673,6 +708,24 @@ The following are basic results on meets:
     \item As $e$ is idempotent, $e (e\cap 1) = (e e \cap e) = e$.
   \end{enumerate}
 \end{proof}
+
+\begin{example}[Meets in \pinj]\label{ex:pinj_has_meets}
+The restriction category \pinj has meets given by the intersection of the sets defining the
+maps. First, we note that the hom-set ordering for \pinj is given by set inclusion. Denoting
+intersection by $\Cap$, we immediately have
+\begin{align*}
+  f\Cap g &\subseteq f \\
+  f\Cap g &\subseteq g\\
+  f\Cap f & = f
+\end{align*}
+by the properties of sets and intersections. For the final requirement,
+\begin{align*}
+  h(f\Cap g) &= \{(x,z) | \exists y. (x,y) \in h, (y,z) \in f\Cap g\}\\
+  &=   \{(x,z) | \exists y. (x,y)  \in h, (y,z) \in f, (y,z) \in g\}\\
+  & = \{(x,z) | (x,z) \in h f, (x,z) \in h g\} = h f \Cap h g.
+\end{align*}
+Thus, intersection is a meet in \pinj.
+\end{example}
 % subsection enrichment_and_meets (end)
 \subsection{Partial monics, sections and isomorphisms} % (fold)
 \label{sub:restricted_monics_sections_and_partial_isomorphisms}
@@ -787,6 +840,16 @@ $r m = \rst{r m}$ when $m$ is simply monic.
     \rst{e} = e\inv{e} = e e \inv{e} = e \rst{e} = \rst{e e} e = \rst{e} e = e.
   \]
 \end{proof}
+
+\begin{example}\label{ex:pinj_is_an_inverse_category}
+  The category \pinj is an inverse category. For any map $f$, $\inv{f} = \{(y,x) | (x,y) \in
+  f\}$. Note that $\inv{f}$ is a map in $\pinj$ due to the two dual conditions on maps as given in
+  Example~\ref{ex:category_pinj}.
+
+  On the other hand, \Par is not an inverse category. For example, let $A=\{1,2\},\ B=\{1\}$ and
+  $f=\{(1,1),(2,1)\}$ in \Par. The restriction of $f$ is $\rst{f} = \{(1,1),(2,2)\} = 1_A$. There is
+  no partial function $g:B\to A$ such that $f g = 1_A$.
+\end{example}
 % subsection restricted_monics_sections_and_partial_isomorphisms (end)
 
 \subsection{Range categories} % (fold)
@@ -875,6 +938,9 @@ which algebraically axiomatize the concept of the range for a function.
 \end{proof}
 % subsection range_categories (end)
 
+\begin{example}\label{ex:ranges}
+   In \pinj, $\rg{f} = \{(y,y) | \exists x. (x,y) \in f\}$.
+\end{example}
 \subsection{Split restriction categories} % (fold)
 \label{sub:split_restriction_categories}
 
