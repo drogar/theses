@@ -315,14 +315,16 @@
 
 %------------------------------------------------------------------------------------
 % General notation for categories
-\newcommand{\category}[4]{%
+\newcommand{\categoryns}[4]{%
 \begin{description}%
-\item{\textbf{Objects: }}{#1};%
-\item{\textbf{Maps: }}{#2};%
-\item{\textbf{Identity: }}{#3};%
-\item{\textbf{Composition: }}{#4}.%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
 \end{description}%
 }
+\newcommand{\category}[4]{\categoryns{{#1};}{{#2};}{{#3};}{{#4}.}}
+
 
 \newcommand{\natto}{\Rightarrow}
 \newcommand{\specialcat}[1]{\textsc{#1}\xspace}
@@ -341,7 +343,7 @@
 
 \newcommand{\Lat}{\ltrcatbb{L}}
 \newcommand{\Mstab}{\ensuremath{\mathcal{M}}\xspace}
-\newcommand{\inj}{\specialcat{Inj}}
+%\newcommand{\inj}{\specialcat{Inj}}
 \newcommand{\pinj}{\specialcat{PInj}}
 
 \newcommand{\sets}{\specialcat{Sets}}

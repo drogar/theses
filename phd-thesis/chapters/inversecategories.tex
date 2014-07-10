@@ -1645,19 +1645,19 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
 
 \begin{definition}\label{def:xt}
   When \X is an inverse category, define \Xt\ as:
-  \category{objects as in \X}
+  \categoryns{objects as in \X;}
   {
     equivalence classes of maps as in Definition~\ref{defn:xequivalence} with the following
     structure in \X: %
     \[
-      \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
-      \]
+      \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt};
+    \]
   }
   {% identity
     by
     \[
       \infer{A\xrightarrow{\inv{u_{\*}^r}}A\* 1}
-            {A \xrightarrow{(\inv{u_{\*}^r}, 1)} A}
+            {A \xrightarrow{(\inv{u_{\*}^r}, 1)} A};
     \]
   }
   {% composition
@@ -1667,7 +1667,7 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
         \infer{A\xrightarrow{(f (g\*1) a_{\*},C' \* B')} C}
               {A\xrightarrow{f (g\*1) a_{\*}} C \* (C' \* B')}
             }
-            {A \xrightarrow{\ (f,B')\ } B \xrightarrow{\ (g,C')\ } C}
+            {A \xrightarrow{\ (f,B')\ } B \xrightarrow{\ (g,C')\ } C}.
     \]
   }
 
@@ -2379,7 +2379,7 @@ $
   }
 $}. Once again, the tensor in \D becomes the meet.
 
-\begin{example}{Lattice completion.}\label{example:lattice_completion}
+\begin{example}[Lattice completion.]\label{example:lattice_completion}
   Suppose we have a set together with an idempotent, commutative, associative operation $\wedge$ on
   the set, giving us a lattice, \Lat. Further suppose the set is partially ordered via $\le$ with
   the order being compatible with $\wedge$.
@@ -2397,6 +2397,20 @@ $}. Once again, the tensor in \D becomes the meet.
   partial map category $\text{Par}(\Lat,\Mstab)$ where the stable system of monics are all the maps.
 
   Then $\widetilde{\text{Par}(\Lat,\Mstab)}$ becomes the completion of the lattice over $\wedge$.
+\end{example}
+\begin{example}[$\widetilde{\text{\pinj}}$ is \Par]\label{ex:tilde_pinj_is_par}
+  Noting that the objects of both \pinj and \Par are sets, we simply need to show that any partial
+  function is in the equivalence class of some $f$, a map in \pinj.
+
+  Suppose we are given $g : A \to B = \{(a,b) | a \in A, b\in B\}$, a partial function in sets. Of
+  course, if it is a partial injective function, then $g$ is in the equivalence class of $(g,\{*\})$
+  and we are done.  If it is not injective, that means there are one or more elements of $B$ which
+  appear in the left hand element of $g$ multiple times. Construct a new function $h$ as follows:
+  \begin{equation}
+     h \doteq \{(a,(b,a)) | (a,b) \in g\} \label{eq:new_partial_injective}
+  \end{equation}
+  By its definition, $h : A \to B \*A$ is injective, $(h,A): A \to B$ coincides with $g$ and therefore
+  we see that using the \wtc construction on \pinj results in \Par.
 \end{example}
 % subsection examples_of_the_wtf_construction (end)
 

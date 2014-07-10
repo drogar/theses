@@ -411,24 +411,25 @@ $\cdperp [f_1,f_2,\ldots,f_n]$ if and only if $f_i \cdperp f_k$ whenever $i \ne 
 
 Disjointness is additional structure on a restriction category, i.e., it is possible to have more
 than one disjointness relation on the category.
-\begin{example}\label{ex:disjointness_is_a_structure_not_a_property}
-  Consider the restriction category \inj. Here, the objects are sets and maps are
-  the partial injective set functions, where $\rst{f}=id_{|\dom(f)}$. The restriction zero is the
-  empty map (i.e., $\dom(0) = \rng(0) = \emptyset$).
+\begin{example}[\pinj has a disjointness relation]\label{ex:pinj_has_a_disjointness_relation}
+  Consider the inverse category \pinj, introduced in Example~\ref{ex:pinj_is_a_restriction_category}
+  and Example~\ref{ex:pinj_is_a_discrete_inverse_category}.
+  We note the restriction zero is the empty set, $\emptyset$ with initial and terminal maps being
+  $\emptyset$ and therefore $0_{A,B} = \emptyset$.
 
   We may define the disjointness relation $\perp$ by $f \perp g$ if and only if
-  $\dom(f)\intersect\dom(g)=\emptyset$ and $\rng(f)\intersect\rng(g) = \emptyset$. It is reasonably
+  $\rst{f}\intersect\rst{g}=\emptyset$ and $\rg{f}\intersect\rg{g} = \emptyset$. It is reasonably
   straightforward to verify \axiom{Dis}{1} through \axiom{Dis}{7}. For example, take \axiom{Dis}{7}:
   \begin{proof}
     We are given $\rst{f}\cdperp\rst{g}$ and $\rg{h}\cdperp\rg{k}$. This means
     \[
-      \dom f\intersect\dom g=\emptyset \text{ and }\rng h\intersect\rng k = \emptyset.
+      \rst{f}\intersect\rst{g}=\emptyset \text{ and }\rg{h}\intersect\rg{k} = \emptyset.
     \]
-    Note that in    general for partial injective functions $m$ and $n$ we have
-    $\dom{m n} \subseteq \dom{m}$ and that $\rng{m n} \subseteq \rng{n}$. Hence we have
+    As discussed in Example~\ref{ex:pinj_has_meets}, we have
+    $\rst{m n} \subseteq \rst{m}$ and that $\wrg{m n} \subseteq \rg{n}$. Hence we have
     \begin{align*}
-      \dom{f h}\intersect\dom{g k}&\subseteq \dom{f}\intersect \dom{g}= \emptyset\\
-      \rng{f h}\intersect\rng{g k}&\subseteq \rng{h}\intersect \rng{k}= \emptyset.
+      \rst{f h}\intersect\rst{g k}&\subseteq \rst{f}\intersect \rst{g}= \emptyset\\
+      \wrg{f h}\intersect\wrg{g k}&\subseteq \rg{h}\intersect \rg{k}= \emptyset.
     \end{align*}
     Therefore, $f h \cdperp g k$.
   \end{proof}
@@ -641,6 +642,38 @@ inverse categories with disjoint joins has a disjoint join.
   \end{itemize}
 \end{proof}
 
+\begin{example}[\pinj has a disjoint join]\label{ex:pinj_has_a_disjoint_join}
+  Continuing from Example~\ref{ex:pinj_has_a_disjointness_relation}, we show that \pinj has disjoint
+  joins. If $f = \{(a,b)\}$ and $g=\{(a',b'\}$ are disjoint parallel maps in \pinj from $A$ to $B$,
+  define $f\djoin g \doteq \{(a'',b'') | (a'',b'') \in f\text{ or }(a'',b'') \in g\}$, i.e., the
+  union of $f$ and $g$.
+
+  This is still a partial injective map, due to the requirement of disjointness. Recall that $f\perp
+  g$ means that $\rst{f}\intersect\rst{g} = \emptyset$ and $\rg{f}\intersect\rg{g} =
+  \emptyset$. The empty meet of the restrictions means that $f\djoin g$ is still a partial function,
+  as each $a''$ will appear only once. The empty meet of the ranges gives us that $f\djoin g$ is injective,
+  because each $b''$ is unique.
+
+  The axioms for disjoint joins all hold:
+  \begin{enumerate}
+    \item[\axiom{DJ}{1}] By construction, both $f$ and $g$ are less than $f\djoin g$.
+    \item[\axiom{DJ}{2}] $f \le h,\ g \le h$ means that $h$ must contain all of the $(a,b)\in f$ and
+      $(a',b') \in g$ and therefore $f\djoin g \le h$.
+    \item[\axiom{DJ}{3}] Suppose $h:C\to A = \{(c,\dot{a})\}$. Then
+      \begin{align*}
+        h(f \djoin g) &= \{(c,\dot{b}) |(\exists a,\dot{a}.\dot{a} = a, (a,\dot{b}) \in f,
+        (c,\dot{a}) \in h) \\
+        & \qquad\qquad \text{ or }(\exists a',\dot{a}.\dot{a} = a', (a',\dot{b}) \in g, (c,\dot{a}) \in h)\}\\
+        & = \{(c,\dot{b}) |\exists a, \dot{a}.\dot{a} = a, (a,\dot{b}) \in f, (c,\dot{a}) \in h\} \bigcup\\
+        & \qquad\qquad\{(c,\dot{b}) | \exists a',\dot{a}.\dot{a} = a', (a',\dot{b}) \in g, (c,\dot{a}) \in h\}\\
+        &= h f \djoin hg
+      \end{align*}
+    \item[\axiom{DJ}{4}] Suppose $\cdperp [f, f', f'']$, $f=\{(a,b)\}, f'=\{(a',b')\},
+      f''=\{(a'',b'')\}$. Then the set $\{a\}$ does not intersect either $\{a'\}$ nor $\{a''\}$ and
+      similarly for the sets $\{b\}, \{b'\}$ and $\{b''\}'$. Thus we have $f \perp (g\djoin h)$. The
+      reverse direction is argued similarly.
+  \end{enumerate}
+\end{example}
 % section disjoint_joins (end)
 
 \section{Monoidal Tensors for disjointness} % (fold)
