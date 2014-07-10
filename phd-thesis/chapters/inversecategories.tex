@@ -1244,12 +1244,12 @@ v        \draw (g) to (f-inverse);
 \end{proof}
 
 \begin{proposition}\label{prop:discrete_inverse_category_has_meets}
-  A discrete inverse category has meets, where $f\cap g =\Delta (f\* g) \inv{\Delta}$.
+  A discrete inverse category has meets, where $f\meet g =\Delta (f\* g) \inv{\Delta}$.
 \end{proposition}
 \begin{proof}
-  $f\cap g \le f$:
+  $f\meet g \le f$:
   \[
-  \raisebox{45pt}{$f\cap g =$}
+  \raisebox{45pt}{$f\meet g =$}
       \raisebox{15pt}{
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
@@ -1332,20 +1332,20 @@ v        \draw (g) to (f-inverse);
         \draw (n1) to (f);
         \draw (f) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$= \rst{f\cap g}f.$}
+      \ \raisebox{45pt}{$= \rst{f\meet g}f.$}
   \]
 
-  $f\cap f = f$:
+  $f\meet f = f$:
   \begin{equation*}
-    f\cap f = \Delta(f\* f) \inv{\Delta} =f \Delta \inv{\Delta} = f\Delta.
+    f\meet f = \Delta(f\* f) \inv{\Delta} =f \Delta \inv{\Delta} = f\Delta.
   \end{equation*}
 
-  $h(f\cap g) = h f \cap h g$:
+  $h(f\meet g) = h f \meet h g$:
   \begin{align*}
-    h(f\cap g) &= h \Delta(f\* g) \inv{\Delta}& \text{Definition of }\cap\\
+    h(f\meet g) &= h \Delta(f\* g) \inv{\Delta}& \text{Definition of }\meet\\
     &= \Delta(h \* h) (f \* g) \inv{\Delta} &\Delta\text{ natural}\\
     &= \Delta(h f\* h g) \inv{\Delta} &\text{compose maps}\\
-    &= h f \cap h g&\text{Definition of }\cap.
+    &= h f \meet h g&\text{Definition of }\meet.
   \end{align*}
 \end{proof}
 

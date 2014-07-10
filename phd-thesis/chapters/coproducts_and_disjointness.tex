@@ -708,6 +708,17 @@ We also require the tensor isomorphisms above be natural.
 
 \end{definition}
 
+\begin{example}[\pinj has a disjointness tensor]\label{ex:pinj_has_disjointness_tensor}
+  In \pinj, the disjoint union, $\uplus$, is a disjointness tensor. Setting $\+$ as $\uplus$, we
+  have the identity for the tensor is $\emptyset.
+\begin{align*}
+   \upl &: 0 \+ A \to A\\
+   \upr &: A \+ 0 \to A\\
+   a_\+ &: (A \+ B) \+ C \to A \+ (B \+ C) \\
+   c_\+ &: A \+ B \to B \+ A.
+ \end{align*}
+
+\end{example}
 \begin{lemma}\label{lem:zero_plus_zero_is_zero}
   Given an inverse category \X with restriction zero and disjointness tensor $\+$, then the map
   $0\+0: A\+B \to C\+D$ is the map $0: A\+B \to C\+D$.

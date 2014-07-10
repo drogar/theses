@@ -147,7 +147,7 @@ maps in a category $C$ with $e:A \to A$ and $f,g:A \to B$.
       \hline
     \end{tabular}
   \end{center}
-  \caption{Properties of Maps In Categories}
+  \meettion{Properties of Maps In Categories}
   \label{tab:properties_of_maps_in_categories}
 \end{table}
 
@@ -548,7 +548,6 @@ will bring precision to the above intuition.
 \begin{definition}\label{def:restriction_category_hom_set_ordering}
   In a restriction category, for any two parallel maps  $f,g:A\to B$, define $f \le g$ iff
   $\restr{f} g = f$.
-
 \end{definition}
 
 
@@ -620,13 +619,13 @@ to be suggestive of open sets.
   The join of any two idempotents is given by their composition.
 \end{proof}
 
-\begin{definition}
-  A restriction category has \emph{meets} if there is an operation $\cap$ on parallel maps:
+\begin{definition}\label{def:meet_in_a_restriction_category}
+  A restriction category has \emph{meets} if there is an operation $\meet$ on parallel maps:
   \[
-    \infer{A\xrightarrow{f\cap g} B}
+    \infer{A\xrightarrow{f\meet g} B}
       {A\overset{f}{\underset{g}{\rightrightarrows}}B}
   \]
-  such that $f\cap g \le f, f\cap g \le g, f\cap f = f, h (f\cap g) = h f \cap h g$.
+  such that $f\meet g \le f, f\meet g \le g, f\meet f = f, h (f\meet g) = h f \meet h g$.
 \end{definition}
 
 Meets were introduced in \cite{cockett-guo-hofstra-2012:range2}.
@@ -638,17 +637,17 @@ The following are basic results on meets:
   \X, the following are true:
   \setlist[enumerate,1]{leftmargin=1.2cm}
   \begin{enumerate}[{(}i{)}]
-    \item $f\le g \text{ and } f \le h \iff f \le g\cap h$;
+    \item $f\le g \text{ and } f \le h \iff f \le g\meet h$;
         \label{lemsub:properties_of_meets_one}
-    \item $f\cap g = g \cap f$;\label{lemsub:properties_of_meets_two}
-    \item $\restr{f\cap 1} = f \cap 1$;\label{lemsub:properties_of_meets_three}
-    \item $(f \cap g) \cap h = f \cap (g \cap h)$;
-    \item $r(f\cap g) = r f \cap g$ where $r=\rst{r}$ is a restriction idempotent;
-    \item $(f\cap g)r = f r \cap g$ where $r=\rst{r}$ is a restriction idempotent;
-    \item $\restr{f\cap g} \le \restr{f}$ (and therefore $\restr{f\cap g} \le \restr{g}$);
-    \item $ (f \cap 1) f = f \cap 1$;
-    \item $ e(e \cap 1) = e$ where $e$ is idempotent.
-  %\item $ e \cap e' = e e'$
+    \item $f\meet g = g \meet f$;\label{lemsub:properties_of_meets_two}
+    \item $\restr{f\meet 1} = f \meet 1$;\label{lemsub:properties_of_meets_three}
+    \item $(f \meet g) \meet h = f \meet (g \meet h)$;
+    \item $r(f\meet g) = r f \meet g$ where $r=\rst{r}$ is a restriction idempotent;
+    \item $(f\meet g)r = f r \meet g$ where $r=\rst{r}$ is a restriction idempotent;
+    \item $\restr{f\meet g} \le \restr{f}$ (and therefore $\restr{f\meet g} \le \restr{g}$);
+    \item $ (f \meet 1) f = f \meet 1$;
+    \item $ e(e \meet 1) = e$ where $e$ is idempotent.
+  %\item $ e \meet e' = e e'$
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -658,71 +657,71 @@ The following are basic results on meets:
     \item $f\le g \text{ and } f \le h$ means precisely $f = \restr{f} g$ and $f = \restr{f} h$.
       Therefore,
       \[
-        \restr{f} (g\cap h) =  \restr{f} g \cap \restr{f} h =  f\cap f = f
+        \restr{f} (g\meet h) =  \restr{f} g \meet \restr{f} h =  f\meet f = f
       \]
-      and so $f \le g \cap h$. Conversely, given $f \le g\cap h$, we have
-      $f = \restr{f} (g\cap h) = \restr{f} g \cap \restr{f} h \le \restr{f} g $. But
+      and so $f \le g \meet h$. Conversely, given $f \le g\meet h$, we have
+      $f = \restr{f} (g\meet h) = \restr{f} g \meet \restr{f} h \le \restr{f} g $. But
       $f \le \restr{f} g$ means $f = \restr{f}\,\restr{f} g = \restr{f}g$ and therefore
       $f \le g$. Similarly, $f \le h$.
-    \item From \ref{lemsub:properties_of_meets_one}, as by definition, $f\cap g \le g$ and
-      $f \cap g \le f$.
-    \item $f\cap 1 = \restr{f\cap 1} (f \cap 1)= (\restr{f \cap 1} f ) \cap (\restr{f \cap 1})
-      \le \restr{f \cap 1}$ from which the result follows. %def of $\le$, \rthree and \rone
-    \item By definition and transitivity, $(f\cap g)\cap h \le f, g, h$ therefore by
-      \ref{lemsub:properties_of_meets_one} $(f \cap g) \cap h \le f \cap (g \cap h)$. Similarly,
-      $f \cap (g \cap h) \le(f \cap g) \cap h$ giving the equality.
-    \item Given  $r f \cap g \le r f$, calculate:
+    \item From \ref{lemsub:properties_of_meets_one}, as by definition, $f\meet g \le g$ and
+      $f \meet g \le f$.
+    \item $f\meet 1 = \restr{f\meet 1} (f \meet 1)= (\restr{f \meet 1} f ) \meet (\restr{f \meet 1})
+      \le \restr{f \meet 1}$ from which the result follows. %def of $\le$, \rthree and \rone
+    \item By definition and transitivity, $(f\meet g)\meet h \le f, g, h$ therefore by
+      \ref{lemsub:properties_of_meets_one} $(f \meet g) \meet h \le f \meet (g \meet h)$. Similarly,
+      $f \meet (g \meet h) \le(f \meet g) \meet h$ giving the equality.
+    \item Given  $r f \meet g \le r f$, calculate:
       \[
-        r f\cap g
-        = \restr{r f\cap g} r f
-        = \restr{r (r f\cap g)} f
-        = \restr{r r f\cap r g} f
-        = \restr{r (f\cap g)} f
-        = r \restr{f\cap g} f
-        = r (f\cap g).
+        r f\meet g
+        = \restr{r f\meet g} r f
+        = \restr{r (r f\meet g)} f
+        = \restr{r r f\meet r g} f
+        = \restr{r (f\meet g)} f
+        = r \restr{f\meet g} f
+        = r (f\meet g).
       \]
     \item Using the previous point with the restriction idempotent $\restr{f r}$,
       \begin{equation*}
         \begin{split}
-          f r \cap g
-          = f \restr{r} \cap g   %%r rest id
-          = \restr{f r }f \cap g  %% R.4
-          = \restr{f r}(f\cap g)   %Pre
-          = \restr{f r}\, \restr{f\cap g} f \\ % meet <=
-          = \restr{f\cap g}\, \restr{f r} f % R2
-          = \restr{f\cap g} f \restr{r}  %R4
-          = (f\cap g) r. % meet, r rest id
+          f r \meet g
+          = f \restr{r} \meet g   %%r rest id
+          = \restr{f r }f \meet g  %% R.4
+          = \restr{f r}(f\meet g)   %Pre
+          = \restr{f r}\, \restr{f\meet g} f \\ % meet <=
+          = \restr{f\meet g}\, \restr{f r} f % R2
+          = \restr{f\meet g} f \restr{r}  %R4
+          = (f\meet g) r. % meet, r rest id
         \end{split}
       \end{equation*}
     \item For the first claim,
       \[
-        \restr{f\cap g}\, \restr{f} =\restr{\restr{f}(f\cap g)}\\
-        =\restr{(\restr{f}f)\cap g} =\restr{f\cap g}.
+        \restr{f\meet g}\, \restr{f} =\restr{\restr{f}(f\meet g)}\\
+        =\restr{(\restr{f}f)\meet g} =\restr{f\meet g}.
       \]
       The second claim then follows by \ref{lemsub:properties_of_meets_two}.
-    \item Given $ f \cap 1 \leq f$:
+    \item Given $ f \meet 1 \leq f$:
       \[
-        f \cap 1 \leq f \iff  \restr{f \cap 1} f = f \cap 1 \iff  (f \cap 1) f = f \cap 1
+        f \meet 1 \leq f \iff  \restr{f \meet 1} f = f \meet 1 \iff  (f \meet 1) f = f \meet 1
       \]
       where the last step is by item \ref{lemsub:properties_of_meets_three} of this lemma.
-    \item As $e$ is idempotent, $e (e\cap 1) = (e e \cap e) = e$.
+    \item As $e$ is idempotent, $e (e\meet 1) = (e e \meet e) = e$.
   \end{enumerate}
 \end{proof}
 
 \begin{example}[Meets in \pinj]\label{ex:pinj_has_meets}
 The restriction category \pinj has meets given by the intersection of the sets defining the
 maps. First, we note that the hom-set ordering for \pinj is given by set inclusion. Denoting
-intersection by $\Cap$, we immediately have
+intersection by $\intersection$, we immediately have
 \begin{align*}
-  f\Cap g &\subseteq f \\
-  f\Cap g &\subseteq g\\
-  f\Cap f & = f
+  f\intersection g &\subseteq f \\
+  f\intersection g &\subseteq g\\
+  f\intersection f & = f
 \end{align*}
 by the properties of sets and intersections. For the final requirement,
 \begin{align*}
-  h(f\Cap g) &= \{(x,z) | \exists y. (x,y) \in h, (y,z) \in f\Cap g\}\\
+  h(f\intersection g) &= \{(x,z) | \exists y. (x,y) \in h, (y,z) \in f\intersection g\}\\
   &=   \{(x,z) | \exists y. (x,y)  \in h, (y,z) \in f, (y,z) \in g\}\\
-  & = \{(x,z) | (x,z) \in h f, (x,z) \in h g\} = h f \Cap h g.
+  & = \{(x,z) | (x,z) \in h f, (x,z) \in h g\} = h f \intersection h g.
 \end{align*}
 Thus, intersection is a meet in \pinj.
 \end{example}
@@ -1057,45 +1056,45 @@ preserved by splitting.
 
 
   $U$ is the standard inclusion functor. $V$ will take the object $(A,e)$ to
-  $(A,e\cap 1)$ and the map $f:(A,e_1)\to (B,e_2)$ to $(e_1\cap 1)f $.
+  $(A,e\meet 1)$ and the map $f:(A,e_1)\to (B,e_2)$ to $(e_1\meet 1)f $.
 
   $V$ is a functor as:
   \begin{description}
     \itembf{Well Defined:} If  $f:(A,e_1) \to (B,e_2)$, then
-      $(e_1\cap 1) f $ is a map in \X from $A$ to $B$ and
-      $ (e_1\cap 1)(e_1\cap 1) f  (e_2 \cap 1) =
-      (e_1\cap 1) (f  e_2 \cap f ) = (e_1\cap 1) (f \cap f)= (e_1\cap 1) f$, therefore,
+      $(e_1\meet 1) f $ is a map in \X from $A$ to $B$ and
+      $ (e_1\meet 1)(e_1\meet 1) f  (e_2 \meet 1) =
+      (e_1\meet 1) (f  e_2 \meet f ) = (e_1\meet 1) (f \meet f)= (e_1\meet 1) f$, therefore,
       $V(f):V((A,e_1)) \to V((B,e_2))$.
-    \itembf{Identities:} $V(e) = (e\cap 1 ) e = e \cap 1$ by
+    \itembf{Identities:} $V(e) = (e\meet 1 ) e = e \meet 1$ by
       lemma \ref{lem:properties_of_meets_in_restriction_categories}.
     \itembf{Composition:} $V(f) V(g)
-      = (e_1\cap 1 ) f (e_2 \cap 1) g
-      = (e_1\cap 1 ) f e_2 (e_2 \cap 1) g
-      = (e_1\cap 1 ) f  (e_2 \cap e_{2}) g
-      = (e_1\cap 1 ) f e_2 g
-      = (e_1\cap 1 ) f g
+      = (e_1\meet 1 ) f (e_2 \meet 1) g
+      = (e_1\meet 1 ) f e_2 (e_2 \meet 1) g
+      = (e_1\meet 1 ) f  (e_2 \meet e_{2}) g
+      = (e_1\meet 1 ) f e_2 g
+      = (e_1\meet 1 ) f g
       = V(f g)$.
   \end{description}
 
-  Recalling from Lemma \ref{lem:properties_of_meets_in_restriction_categories}, $(e\cap 1)$
+  Recalling from Lemma \ref{lem:properties_of_meets_in_restriction_categories}, $(e\meet 1)$
   is a restriction idempotent. Using this fact, the commutativity of restriction idempotents
   and the general idempotent identities from
   \ref{lem:properties_of_meets_in_restriction_categories}, the composite functor $U V$ is
   the identity on $\spl{r}{\X}$ as when $e$ is a restriction idempotent,
-  $e = e (e\cap 1) = (e\cap 1) e = (e\cap 1)$.
+  $e = e (e\meet 1) = (e\meet 1) e = (e\meet 1)$.
 
   For the other direction,  note that for a particular idempotent $e:A\to A$,  this gives the
-  maps $e:(A,e)\to(A,e\cap 1)$ and $e\cap 1 : (A,e\cap 1) \to (A,e)$, again by
+  maps $e:(A,e)\to(A,e\meet 1)$ and $e\meet 1 : (A,e\meet 1) \to (A,e)$, again by
   \ref{lem:properties_of_meets_in_restriction_categories}. These maps give the natural
   isomorphism between $I$ and $V U$ as
   \[
     \xymatrix{
-      (A,e)\ar[r]^e \ar[dr]_{e} &(A,e\cap 1)\ar[d]^{e\cap 1}\\
+      (A,e)\ar[r]^e \ar[dr]_{e} &(A,e\meet 1)\ar[d]^{e\meet 1}\\
       &(A,e)
     }\qquad \text{ and  }\qquad
     \xymatrix{
-      (A,e\cap 1)\ar[r]^{e\cap 1} \ar[dr]_{e\cap 1} &(A,e)\ar[d]^{e}\\
-      &(A,e\cap 1)
+      (A,e\meet 1)\ar[r]^{e\meet 1} \ar[dr]_{e\meet 1} &(A,e)\ar[d]^{e}\\
+      &(A,e\meet 1)
     }
   \]
   both commute. Therefore, $U V = I$ and $V U \cong I$, giving an equivalence of the categories.
@@ -1103,39 +1102,39 @@ preserved by splitting.
   For the rest of this proof, functions in bold type, e.g., $\mbf$, are in $\spl{R}{\X}$.
   Functions in normal slanted type, e.g., $f$ are in \X.
 
-  To show that $\spl{R}{\X}$ has meets,  designate the meet in $\spl{R}{\X}$ as \capspl
-  and define $\mbf \capspl \mbg$ as the map given by the \X map $f \cap g$, where
+  To show that $\spl{R}{\X}$ has meets,  designate the meet in $\spl{R}{\X}$ as \meetspl
+  and define $\mbf \meetspl \mbg$ as the map given by the \X map $f \meet g$, where
   $\mbf,\mbg:(A,d)\to(B,e)$ in $\spl{R}{\X}$ and $f,g:A\to B$ in \X . This is
   a map in $\spl{R}{\X}$ as
-  $d(f \cap g)e = (d\uts f \cap d\uts g) e = (f \cap g) e = (f e \cap g) = f\cap g$
+  $d(f \meet g)e = (d\uts f \meet d\uts g) e = (f \meet g) e = (f e \meet g) = f\meet g$
   where the penultimate equality is by
   \ref{lem:properties_of_meets_in_restriction_categories}.
-  By definition $\restr{\mbf \capspl \mbg }$ is $d\restr{f\cap g}$.
+  By definition $\restr{\mbf \meetspl \mbg }$ is $d\restr{f\meet g}$.
 
-  It is necessary to show \capspl satisfies the four meet properties.
+  It is necessary to show \meetspl satisfies the four meet properties.
   \begin{itemize}
-    \item{$\mbf\capspl \mbg \le \mbf$: } We need to show
-      $\rst{\mbf \capspl \mbg} \mbf =  \mbf \capspl \mbg$.  Calculating now in \X:
+    \item{$\mbf\meetspl \mbg \le \mbf$: } We need to show
+      $\rst{\mbf \meetspl \mbg} \mbf =  \mbf \meetspl \mbg$.  Calculating now in \X:
       \begin{align*}
-        d \rst{f \cap g} f&= \rst{d(f\cap g)} d f\\
-        & = \rst{d f \cap d g} d f \\
-        & = \rst{f \cap g} f \\
-        & = f \cap g
+        d \rst{f \meet g} f&= \rst{d(f\meet g)} d f\\
+        & = \rst{d f \meet d g} d f \\
+        & = \rst{f \meet g} f \\
+        & = f \meet g
       \end{align*}
-      which is the definition of $\mbf \capspl \mbg$.
-    \item{$\mbf\capspl \mbg \le \mbg$: } Similarly and once again calculating in \X,
+      which is the definition of $\mbf \meetspl \mbg$.
+    \item{$\mbf\meetspl \mbg \le \mbg$: } Similarly and once again calculating in \X,
       \begin{align*}
-        d \rst{f \cap g} g&= \rst{d(f\cap g)} d g\\
-        & = \rst{d f \cap d g} d g \\
-        & = \rst{f \cap g} g \\
-        & = f \cap g
+        d \rst{f \meet g} g&= \rst{d(f\meet g)} d g\\
+        & = \rst{d f \meet d g} d g \\
+        & = \rst{f \meet g} g \\
+        & = f \meet g
       \end{align*}
-      which is the definition of $\mbf \capspl \mbg$.
-    \item{$\mbf\capspl \mbf = \mbf$: } From the definition, this is $f \cap f = f$ which
+      which is the definition of $\mbf \meetspl \mbg$.
+    \item{$\mbf\meetspl \mbf = \mbf$: } From the definition, this is $f \meet f = f$ which
       is just $ \mbf$.
-    \item{$\mbh(\mbf\capspl \mbg) = \mbh\mbf \capspl \mbh\mbg$: }
-      From the definition, this is given in \X by $ h (f \cap g) =
-      h f \cap h g$ which in $\spl{R}{\X}$ is $\mbh\mbf \capspl \mbh\mbg$.
+    \item{$\mbh(\mbf\meetspl \mbg) = \mbh\mbf \meetspl \mbh\mbg$: }
+      From the definition, this is given in \X by $ h (f \meet g) =
+      h f \meet h g$ which in $\spl{R}{\X}$ is $\mbh\mbf \meetspl \mbh\mbg$.
   \end{itemize}
 \end{proof}
 % subsection split_restriction_categories (end)
@@ -1274,34 +1273,34 @@ Restriction categories have analogues of products and terminal objects.
 \begin{proof}
   If \X has meets, then
   \[
-    \Delta(\pi_0 \cap \pi_1) = \Delta\pi_0 \cap \Delta\pi_1 = 1\cap 1 = 1.
+    \Delta(\pi_0 \meet \pi_1) = \Delta\pi_0 \meet \Delta\pi_1 = 1\meet 1 = 1.
   \]
   As $\<\pi_0,\pi_1\>$ is identity,
   \begin{align*}
-    \restr{\pi_0 \cap \pi_1} &= \restr{\pi_0 \cap \pi_1} \<\pi_0, \pi_1\> \\
-    &=\<\rst{\pi_0 \cap \pi_1}\pi_0, \rst{\pi_0 \cap \pi_1}\pi_1\>\\
-    &=\<\pi_0 \cap \pi_1,\pi_0 \cap \pi_1\>\\
-    &=(\pi_0 \cap \pi_1 )\Delta
+    \restr{\pi_0 \meet \pi_1} &= \restr{\pi_0 \meet \pi_1} \<\pi_0, \pi_1\> \\
+    &=\<\rst{\pi_0 \meet \pi_1}\pi_0, \rst{\pi_0 \meet \pi_1}\pi_1\>\\
+    &=\<\pi_0 \meet \pi_1,\pi_0 \meet \pi_1\>\\
+    &=(\pi_0 \meet \pi_1 )\Delta
   \end{align*}
-  and therefore, $\pi_0 \cap \pi_1$ is $\inv{\Delta}$.
+  and therefore, $\pi_0 \meet \pi_1$ is $\inv{\Delta}$.
 
-  To show the other direction, we set $f\cap g = \<f,g\>\inv{\Delta}$.
+  To show the other direction, we set $f\meet g = \<f,g\>\inv{\Delta}$.
   By the definition of the restriction product:
   \[
-    f \cap g =  \<f,g\>\inv{\Delta} =\<f,g\>\inv{\Delta} \Delta \pi_0 =
+    f \meet g =  \<f,g\>\inv{\Delta} =\<f,g\>\inv{\Delta} \Delta \pi_0 =
       \<f,g\>\restr{\inv{\Delta}}\pi_0 \le \<f,g\>\pi_0 \le f.
   \]
-  Then, substituting $\pi_1$ for $\pi_0$ above, this gives us $f \cap g \le g$.
+  Then, substituting $\pi_1$ for $\pi_0$ above, this gives us $f \meet g \le g$.
 
   For the left distributive law,
   \[
-    h(f \cap g) = h \<f,g\>\inv{\Delta} =  \<h f,h g\>\inv{\Delta} = h f \cap h g.
+    h(f \meet g) = h \<f,g\>\inv{\Delta} =  \<h f,h g\>\inv{\Delta} = h f \meet h g.
   \]
   The intersection of a map with itself is
   \[
-    f\cap f = \<f,f\> \inv{\Delta} = (f \Delta) \inv{\Delta} = f \restr{\Delta} = f
+    f\meet f = \<f,f\> \inv{\Delta} = (f \Delta) \inv{\Delta} = f \restr{\Delta} = f
   \]
-  as $\Delta$ is total. This shows that $\cap$ as defined above is a meet for the
+  as $\Delta$ is total. This shows that $\meet$ as defined above is a meet for the
   Cartesian restriction category \X.
 
 \end{proof}
