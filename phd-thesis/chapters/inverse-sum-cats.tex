@@ -960,6 +960,15 @@ and
   \end{itemize}
 \end{definition}
 
+\begin{example}[\pinj is a distributive inverse category]
+  The isomorphism $d$ of Diagram~\ref{eq:inverse_distributive_laws} is given by the following:
+  \begin{equation}
+    d((a,(x,n)) = \begin{cases}
+      ((a,x),1) & n = 1\\
+      ((a,x),2) & n = 2.
+      \end{cases}\label{eq:pinj_distributive_isomporphism}
+    \end{equation}
+\end{example}
 Note that as we are operating in an inverse category, we also have the inverse of
 diagram~\ref{eq:inverse_distributive_laws} available to us. That is,
 \begin{equation}
@@ -983,7 +992,7 @@ is also a commuting diagram in \D.
   \begin{itemize}
     \item a disjoint join tensor $\+$,
     \item a restriction zero, and
-    \item an inverse  product tensor $\*$ which distributes over disjoint joins, (i.e.,
+    \item an inverse  product tensor $\*$ which distributes over disjoint joins, (that is,
       $f\*(g\djoin h) = (f\*g) \djoin (f\* h)$).
   \end{itemize}
   Then, \X is an inverse distributive  category.
