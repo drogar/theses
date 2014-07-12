@@ -3,8 +3,10 @@
 \begin{example}[Commutative Frobenius algebras]\label{example:commfrob}
   Let \X be a symmetric monoidal category and form CFrob(\X) as follows: \paragraph{Objects:}
   Commutative Frobenius algebras\cite{kock04}: A quintuple $(A,\nabla,\eta,\Delta,\epsilon)$ where
-  $A$ is a $k$-algebra for some field $k$, and $\nabla :A\*A \to A$, $\eta:k\to A$, $\Delta : A \to
-  A\*A$, $\epsilon : A \to k$ are natural maps in the algebra. Additionally, these satisfy
+  $A$ is an object of \X with the following maps:
+  $\nabla :A\*A \to A$, $\eta:I\to A$, $\Delta : A \to A\*A$, $\epsilon : A \to I$ which are natural
+  maps in \X, with $(A,\nabla,\eta)$ a monoid and $(A,\Delta,\epsilon)$ a co-monoid. Additionally, these
+  satisfy
   \[
     \xymatrix @C=10pt @R=20pt{
       A \* A \ar[dd]_{1\*\Delta} \ar[dr]^{\nabla}
@@ -26,8 +28,8 @@
   \]
   together with the additional property that $\Delta \nabla = 1$.
 
-  \paragraph{Maps:} Multiplication ($\nabla$) and co-multiplication ($\Delta$) preserving
-  homomorphisms which do not necessarily preserve the unit.
+  \paragraph{Maps:} The maps of \X between the objects of \X which preserve multiplication ($\nabla$)
+  and co-multiplication ($\Delta$) but do not necessarily preserve the units.
 \end{example}
 
 \begin{lemma}\label{lem:cfrobx_is_an_inverse_category}
@@ -102,7 +104,7 @@
   \end{tikzpicture}
   \ \raisebox{15pt}{.}
   \]
-  Proof of Equation~\ref{eq:finvinv_is_f}:
+  Proof of Equation~\ref{eq:finvinv_is_f}: $\inv{(\inv{f})} =$
   \[
   \begin{tikzpicture}
     \path node at (-.75,4) (starty) {}
@@ -127,7 +129,7 @@
     \draw [-] (n1) to (e1);
     \draw [-] (n2) to (e2);
   \end{tikzpicture}
-  \ \raisebox{50pt}{\text{=}}
+  \ \raisebox{70pt}{\text{=}}
   \begin{tikzpicture}
     \path node at (.25,4) (starty) {}
     node at (-.5,3.5) [eta] (eta2) {}
@@ -151,7 +153,7 @@
     \draw [-] (n1) to (e1);
     \draw [-] (n2) to (e2);
   \end{tikzpicture}
-  \ \raisebox{50pt}{\text{= }}
+  \ \raisebox{70pt}{\text{= }}
   \begin{tikzpicture}
     \path node at (.25,4) (starty) {}
     node at (-.5,1) [eta] (eta2) {}
@@ -175,7 +177,7 @@
     \draw [-] (n1) to (e1);
     \draw [-] (n2) to (e2);
   \end{tikzpicture}
-  \ \raisebox{50pt}{\text{= }}
+  \ \raisebox{70pt}{\text{= }}
   \begin{tikzpicture}
     \path node at (.5,4) (starty) {}
     node at (0,3.5) [eta] (eta1) {}
@@ -199,7 +201,7 @@
     \draw [] (d2) to[out=305,in=125] (e2);
     \draw [] (d2) to[out=235,in=90] (end);
   \end{tikzpicture}
-  \ \raisebox{50pt}{\text{=}}
+  \ \raisebox{70pt}{\text{=}}
   \begin{tikzpicture}
     \path node at (.5,4) (starty) {}
     node at (0,1.5) [map] (f) {$\scriptstyle f$}
@@ -207,9 +209,9 @@
     \draw [] (starty) to[out=270,in=90] (f);
     \draw [] (f) to[out=270,in=90] (end);
   \end{tikzpicture}
-  \ \raisebox{50pt}{\text{= }$f$.}
+  \ \raisebox{70pt}{\text{= }$f$.}
   \]
-  Proof of Equation~\ref{eq:ffinvf_is_f}:
+  Proof of Equation~\ref{eq:ffinvf_is_f}: $f \inv{f} f =$
   \[
   \begin{tikzpicture}
     \path node at (-.5,3) (starty) {}
@@ -230,7 +232,7 @@
     \draw [] (f2) to[out=270,in=55] (n1);
     \draw [-] (n1) to (e1);
   \end{tikzpicture}
-  \ \raisebox{45pt}{$=$ }
+  \ \raisebox{40pt}{$=$ }
   \begin{tikzpicture}
     \path node at (-.5,3) (starty) {}
     node at (0,2.5) [eta] (eta1) {}
@@ -248,7 +250,7 @@
     \draw [] (f3) to[out=270,in=90] (end);
     \draw [] (d) to[out=235,in=55] (n1);
   \end{tikzpicture}
-  \ \raisebox{45pt}{$=$ }
+  \ \raisebox{40pt}{$=$ }
   \begin{tikzpicture}
     \path node at (-.5,3) (starty) {}
     node at (0,2.5) [eta] (eta1) {}
@@ -266,7 +268,7 @@
     \draw (f2) to (e1);
     \draw [] (f3) to[out=270,in=90] (end);
   \end{tikzpicture}
-  \ \raisebox{45pt}{\text{= }}
+  \ \raisebox{40pt}{\text{= }}
   \begin{tikzpicture}
     \path node at (-.5,3) (starty) {}
     node at (-.25,1.5) [map] (f3) {$\scriptstyle f$}
@@ -278,7 +280,7 @@
     \draw [] (d) to[out=305,in=90] (end);
     \draw [] (d) to[out=235,in=90] (e1);
   \end{tikzpicture}
-  \ \raisebox{45pt}{\text{= }}
+  \ \raisebox{40pt}{\text{= }}
   \begin{tikzpicture}
     \path node at (-.5,3) (starty) {}
     node at (-.25,1.5) [map] (f3) {$\scriptstyle f$}
@@ -286,7 +288,7 @@
     \draw [] (starty) to[out=270,in=90] (f3);
     \draw [] (f3) to[out=270,in=90] (end);
   \end{tikzpicture}
-  \ \raisebox{45pt}{$= f$}
+  \ \raisebox{40pt}{$= f$}
   \]
   Proof of Equation~\ref{eq:ffinv_commutes_gginv}:  $f\inv{f}g\inv{g} =$
 
@@ -320,7 +322,7 @@
     \draw [-] (n1) to (e1);
     \draw [-] (n2) to (e2);
   \end{tikzpicture}
-  \ \raisebox{45pt}{$=$ }
+  \ \raisebox{40pt}{$=$ }
   \begin{tikzpicture}
     \path node at (-.5,3) (starty) {}
     node at (0,2.5) [eta] (eta1) {}
@@ -346,7 +348,7 @@
     \draw [] (f1) to (e1);
     \draw [] (g1) to (e2);
   \end{tikzpicture}
-  \ \raisebox{45pt}{$=$ }
+  \ \raisebox{40pt}{$=$ }
   \begin{tikzpicture}
     \path node at (-.25,3) (starty) {}
     node at (0,2.5) [eta] (eta1) {}
@@ -372,7 +374,7 @@
     \draw [] (d2) to[out=305,in=90] (end);
     \draw [] (g1) to (e2);
   \end{tikzpicture}
-  \ \raisebox{45pt}{$=$ }
+  \ \raisebox{40pt}{$=$ }
   \begin{tikzpicture}
     \path node at (-.25,2.5) (starty) {}
     node at (-.25,1.5) [delta] (d1) {}
@@ -390,7 +392,7 @@
     \draw [] (d2) to[out=305,in=90] (end);
     \draw [] (g1) to (e2);
   \end{tikzpicture}
-  \ \raisebox{45pt}{$=$ }
+  \ \raisebox{40pt}{$=$ }
   \begin{tikzpicture}
     \path node at (-.25,2.5) (starty) {}
     node at (.25,2) [delta] (d2) {}
@@ -408,7 +410,7 @@
     \draw [] (f1) to (e1);
     \draw [] (g1) to (e2);
   \end{tikzpicture}
-  \ \raisebox{45pt}{$=$ }
+  \ \raisebox{40pt}{$=$ }
   \begin{tikzpicture}
     \path node at (-.25,2.5) (starty) {}
     node at (.25,2) [delta] (d2) {}
@@ -426,7 +428,7 @@
     \draw [] (f1) to (e1);
     \draw [] (g1) to (e2);
   \end{tikzpicture}
-  \ \raisebox{45pt}{$= g\inv{g}f\inv{f}$ }
+  \ \raisebox{40pt}{$= g\inv{g}f\inv{f}$ }
 \]
 where the last step is accomplished by reversing all the previous diagrammatic steps.
 Hence, CFrob(\X) is an inverse category.
