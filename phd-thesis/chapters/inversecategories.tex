@@ -17,7 +17,7 @@ We start by showing that an inverse category with restriction products is a rest
 
 \begin{definition}\label{def:compatible_maps}
   Two parallel maps $f,g:A \to B$ in a restriction category are \emph{compatible}, written as $f
-  \smile g$, when $\rst{f} g = \rst{g} f$.
+  \compatible g$, when $\rst{f} g = \rst{g} f$.
 \end{definition}
 \begin{definition}\label{def:restrictionpreorder}
   A restriction category \X is a \emph{restriction pre-order} when all parallel pairs of maps are
@@ -30,7 +30,7 @@ We start by showing that an inverse category with restriction products is a rest
     \xymatrix {
       A  \ar@<1ex>[r]^{f} \ar@<-1ex>[r]_{g} &B
     }
-    \implies f \smile g.
+    \implies f \compatible g.
   \]
 \end{proposition}
 \begin{proof}
@@ -1531,7 +1531,7 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
 \label{sub:equivalence_classes_of_maps_in_hypx}
 
 
-\begin{definition}\label{defn:xequivalence}
+\begin{definition}\label{def:xequivalence}
   In a discrete inverse category \X as defined above, the map $f$ is equivalent to $f'$ in \X when
   $\restr{f} = \restr{f'}$ in \X and the below diagram commutes for some map $h$:
   \[
@@ -1545,15 +1545,16 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
   \]
 \end{definition}
 
-\begin{notation}
-  When $f$ is equivalent to $g$ via the mediating map $h$, this is written as:
+\begin{notation}\label{notn:xequivalence}
+  When $f$ is equivalent to $g$ as in Definition~\ref{def:xequivalence} via the mediating map $h$,
+  this is written as:
   \[
     f\xequiv{h}g.
   \]
 \end{notation}
 
 \begin{lemma}\label{lem:mediating_map_equivalence_is_symmetric_reflexive_and_transitive}
-  Definition~\ref{defn:xequivalence} gives a symmetric, reflexive equivalence class of maps in \X.
+  Definition~\ref{def:xequivalence} gives a symmetric, reflexive equivalence class of maps in \X.
 \end{lemma}
 \begin{proof}
   \prepprooflist
@@ -1648,8 +1649,8 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
   When \X is an inverse category, define \Xt\ as:
   \categoryns{objects as in \X;}
   {
-    equivalence classes of maps as in Definition~\ref{defn:xequivalence} with the following
-    structure in \X: %
+    A map $(f,C):A\to B$ in \Xt is the equivalence class of the map $f:A\to B\*C$ as in
+    Definition~\ref{def:xequivalence} with the following relationship between maps in \Xt and \X: %
     \[
       \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt};
     \]
@@ -2131,15 +2132,15 @@ leads us to the following theorem:
 This section will show that the category of discrete inverse categories (maps being restriction
 functors that preserve the inverse tensor) is equivalent to the category of discrete restriction
 categories (maps being the restriction functors which preserve the product). In the following, $\X$
-will always be a discrete inverse category, $\D$ and $\C$ will be discrete restriction categories.
+will always be a discrete inverse category, $\D$ and $\B$ will be discrete restriction categories.
 
 We approach the equivalence proof by exhibiting the universal property for discrete inverse
 categories for the functor $\Invf$ from discrete restriction categories to discrete inverse
 categories. The functor $\Invf$ maps a discrete restriction category to its inverse subcategory and
 maps functors between discrete restriction categories to a functor having the same action on the
-partial inverses. That is, given $G:\C \to \D$, then:
+partial inverses. That is, given $G:\B \to \D$, then:
 \begin{align*}
-  &\Inv{G}: \Inv{\C} \to \Inv{\D}\\
+  &\Inv{G}: \Inv{\B} \to \Inv{\D}\\
   &\Inv{G}(A) = G{A}&\text{(all objects of $\D$ are in $Inv(\D)$)}\\
   &\Inv{G}(f) = G(f)&\text{(restriction functors preserve partial inverse)}.
 \end{align*}
@@ -2225,8 +2226,8 @@ result.
 \end{lemma}
 \begin{proof}
   To show fullness, we must show $\Invf$ is surjective on hom-sets. Given a functor between two
-  categories in the image of $\Invf$, i.e., $G:\Inv{\C}\to \Inv{\D}$, construct a functor
-  $H:\C\to\D$ as follows:
+  categories in the image of $\Invf$, i.e., $G:\Inv{\B}\to \Inv{\D}$, construct a functor
+  $H:\B\to\D$ as follows:
   \begin{description}
     \item{Action on objects:} $H(A) = G(A),$
     \item{Objects on maps:} $H(f) = G(\<f,1\>)\pi_0.$
@@ -2240,7 +2241,7 @@ result.
   But on any invertible map, $H(f) = G(\<f,1\>)\pi_0 = \<G(f),1\>\pi_0 = G(f)$ and therefore
   $\Inv{H} = G$, so $\Invf$ is full.
 
-  Next, assume we have $F,G:\C\to\D$ with $\Inv{F} = \Inv{G}$. Considering $F(f)$ and $F(g)$, we
+  Next, assume we have $F,G:\B\to\D$ with $\Inv{F} = \Inv{G}$. Considering $F(f)$ and $F(g)$, we
   know $F(\<f,1\>) = G(\<f,1\>) $ as $\<f,1\>$ is invertible. Thus, as the functors preserve the
   product structure, we have
   \[

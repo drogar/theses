@@ -156,7 +156,7 @@ For example, in the restriction category $\Par$, the join is given by:
 \]
 
 \begin{theorem}[Cockett-Guo]\label{lem:join_determines_coproduct}
-  Given a restriction category $\C$ with joins, then
+  Given a restriction category $\R$ with joins, then
   \[
     A \xrightarrow{\cpa} C \xleftarrow{\cpb} B
   \]
@@ -418,18 +418,18 @@ than one disjointness relation on the category.
   $\emptyset$ and therefore $0_{A,B} = \emptyset$.
 
   We may define the disjointness relation $\perp$ by $f \perp g$ if and only if
-  $\rst{f}\intersect\rst{g}=\emptyset$ and $\rg{f}\intersect\rg{g} = \emptyset$. It is reasonably
+  $\rst{f}\intersection\rst{g}=\emptyset$ and $\rg{f}\intersection\rg{g} = \emptyset$. It is reasonably
   straightforward to verify \axiom{Dis}{1} through \axiom{Dis}{7}. For example, take \axiom{Dis}{7}:
   \begin{proof}
     We are given $\rst{f}\cdperp\rst{g}$ and $\rg{h}\cdperp\rg{k}$. This means
     \[
-      \rst{f}\intersect\rst{g}=\emptyset \text{ and }\rg{h}\intersect\rg{k} = \emptyset.
+      \rst{f}\intersection\rst{g}=\emptyset \text{ and }\rg{h}\intersection\rg{k} = \emptyset.
     \]
     As discussed in Example~\ref{ex:pinj_has_meets}, we have
     $\rst{m n} \subseteq \rst{m}$ and that $\wrg{m n} \subseteq \rg{n}$. Hence we have
     \begin{align*}
-      \rst{f h}\intersect\rst{g k}&\subseteq \rst{f}\intersect \rst{g}= \emptyset\\
-      \wrg{f h}\intersect\wrg{g k}&\subseteq \rg{h}\intersect \rg{k}= \emptyset.
+      \rst{f h}\intersection\rst{g k}&\subseteq \rst{f}\intersection \rst{g}= \emptyset\\
+      \wrg{f h}\intersection\wrg{g k}&\subseteq \rg{h}\intersection \rg{k}= \emptyset.
     \end{align*}
     Therefore, $f h \cdperp g k$.
   \end{proof}
@@ -649,10 +649,11 @@ inverse categories with disjoint joins has a disjoint join.
   union of $f$ and $g$.
 
   This is still a partial injective map, due to the requirement of disjointness. Recall that $f\perp
-  g$ means that $\rst{f}\intersect\rst{g} = \emptyset$ and $\rg{f}\intersect\rg{g} =
-  \emptyset$. The empty meet of the restrictions means that $f\djoin g$ is still a partial function,
-  as each $a''$ will appear only once. The empty meet of the ranges gives us that $f\djoin g$ is injective,
-  because each $b''$ is unique.
+  g$ means that $\rst{f}\intersection \rst{g} = \emptyset$ and $\rg{f}\intersection\rg{g} =
+  \emptyset$ and that the respective meets will also be $\emptyset$. The empty meet of the
+  restrictions means that $f\djoin g$ is still a partial function,  as each $a''$ will appear only
+  once. The empty meet of the ranges gives us that $f\djoin g$ is injective, because each $b''$ is
+  unique.
 
   The axioms for disjoint joins all hold:
   \begin{enumerate}

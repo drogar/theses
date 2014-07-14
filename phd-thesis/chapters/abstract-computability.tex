@@ -36,12 +36,12 @@ section.
 We may also consider the notion of containment between categories.
 
 \begin{definition}\label{def:subcategories}
-  Given the categories $\C$ and $\D$, we may say the following:
+  Given the categories $\B$ and $\D$, we may say the following:
   \begin{enumerate}[{(}i{)}]
-    \item \C is a \emph{sub-category} of \D when each object of \C is an object of \D and when each map
-    of \C is a map of \D.
-    \item \C is a \emph{full sub-category} of \D when it is a sub-category and given $A, B$ objects
-      in $\C$ and $f:A \to B$ in \D, then $f$ is a map in $\C$.
+    \item \B is a \emph{sub-category} of \D when each object of \B is an object of \D and when each map
+    of \B is a map of \D.
+    \item \B is a \emph{full sub-category} of \D when it is a sub-category and given $A, B$ objects
+      in $\B$ and $f:A \to B$ in \D, then $f$ is a map in $\B$.
   \end{enumerate}
 \end{definition}
 
@@ -111,10 +111,10 @@ $I_n$}{Matrix multiplication}
 \end{example}
 
 \begin{example}[Dual Category]\label{ex:dual_category}
-Given a category $\C$, we may form the \emph{dual} of $C$, written $C^{op}$ as the following
+Given a category $\B$, we may form the \emph{dual} of $\B$, written $\B^{op}$ as the following
 category:
-\category{The objects of $\C$}{$f^{op}:B\to A$ in $\C^{op}$ when $f:A\to B$ in $\C$.}{
-The identity maps of $\C$}{If $f g = h$ in $\C$, $g^{op} f^{op} = h^{op}$}
+\category{The objects of $\B$}{$f^{op}:B\to A$ in $\B^{op}$ when $f:A\to B$ in $\B$.}{
+The identity maps of $\B$}{If $f g = h$ in $\B$, $g^{op} f^{op} = h^{op}$}
 \end{example}
 
 % subsection examples_of_categories (end)
@@ -154,7 +154,7 @@ maps in a category $C$ with $e:A \to A$ and $f,g:A \to B$.
 We state without proof a number of properties about maps.
 
 \begin{lemma}\label{lem:categorical_properties_of_maps}
-  In a category \C,
+  In a category \B,
   \begin{enumerate}[{(}i{)}]
     \item If $f,g$ are monic, then $f g$ is monic.
     \item If $f g$ is monic, then $f$ is monic.
@@ -186,28 +186,28 @@ In general, not all idempotents in a category will split. The following construc
 create a category based on the original one in which all idempotents do split.
 
 \begin{definition}\label{def:split_category}
-  Given a category $\C$ and a set of idempotents $E$ of $\C$, we define \emph{Split${}_E$($\C$)},
-  written as $\spl{E}{\C}$, as the following category:
-  \category{$(A,e)$, where $A$ is an object of \C, $e:A\to A$ and $e\in E$.}
-    {$f_{d,e}:(A,d)\to(B,e)$ is given by $f:A\to B$ in \C, where $f = d\uts f e$.}
+  Given a category $\B$ and a set of idempotents $E$ of $\B$, we define \emph{Split${}_E$($\B$)},
+  written as $\spl{E}{\B}$, as the following category:
+  \category{$(A,e)$, where $A$ is an object of \B, $e:A\to A$ and $e\in E$.}
+    {$f_{d,e}:(A,d)\to(B,e)$ is given by $f:A\to B$ in \B, where $f = d\uts f e$.}
     {The map $e_{e,e}$ for $(A,e)$.}
-    {Inherited from \C.}
-  When $E$ is the set of all idempotents in $\C$, we write $\spl{}{\C}$.
+    {Inherited from \B.}
+  When $E$ is the set of all idempotents in $\B$, we write $\spl{}{\B}$.
 \end{definition}
 This is the standard idempotent splitting construction, also known as the Karoubi
 envelope.
 
 \begin{lemma}\label{lem:split_category_splits_and_has_category}
-  Given a category $\C$, then it is a full sub-category of $\spl{}{\C}$ and all idempotents split
-  in  $\spl{}{\C}$.
+  Given a category $\B$, then it is a full sub-category of $\spl{}{\B}$ and all idempotents split
+  in  $\spl{}{\B}$.
 \end{lemma}
 \begin{proof}
-  We identify each object $A$ in $\C$ with the object $(A,1)$ in $\spl{}{\C}$. The only maps between
-  $(A,1)$ and $(B,1)$ in $\spl{}{\C}$ are the maps between $A$ and $B$ in $\C$, hence we have a
+  We identify each object $A$ in $\B$ with the object $(A,1)$ in $\spl{}{\B}$. The only maps between
+  $(A,1)$ and $(B,1)$ in $\spl{}{\B}$ are the maps between $A$ and $B$ in $\B$, hence we have a
   full sub-category.
 
   Suppose we have the map $d_{e,e}: (A,e) \to (A,e)$ with $d d = d$, i.e., it is idempotent in $C$
-  and $\spl{}{\C}$. In $\spl{}{\C}$, we have the maps $d_{e,d}:(A,e) \to (A,d)$ and $d_{d,e}:(A,d) \to
+  and $\spl{}{\B}$. In $\spl{}{\B}$, we have the maps $d_{e,d}:(A,e) \to (A,d)$ and $d_{d,e}:(A,d) \to
   (A,e)$ where $d_{d,e} d_{e,d} = d_{d,d} = 1_{(A,d)}$ and $d_{e,d} d_{d,e} = d_{e,e}$. Hence,
   it is a splitting of the map  $d_{e,e}$.
 \end{proof}
@@ -220,14 +220,14 @@ We shall discuss only a few basic limits/colimits in categories. First we discus
 and terminal objects.
 
 \begin{definition}\label{def:initial_object}
-  An \emph{initial object} in a category $\C$ is an object which has exactly one map to each other
+  An \emph{initial object} in a category $\B$ is an object which has exactly one map to each other
   object in the category. The dual notion is \emph{terminal object} which has exactly one map from
   each other object in the category.
 \end{definition}
 
 
 \begin{lemma}\label{lem:initial_objects_are_unique}
-  Suppose $I,J$ are initial objects in $\C$. Then there is a unique isomorphism $i:I \to J$.
+  Suppose $I,J$ are initial objects in $\B$. Then there is a unique isomorphism $i:I \to J$.
 \end{lemma}
 \begin{proof}
   First, note that by definition there is only one map from $I$ to $I$ --- which must be the
@@ -244,7 +244,7 @@ In categories, we normally designate the initial object by $0$ and the terminal 
 We now turn to products and co-products.
 
 \begin{definition}\label{def:categorical_product}
-  Let $A,B$ be objects of the category $\C$. Then the object $A \times B$ is a \emph{product} of
+  Let $A,B$ be objects of the category $\B$. Then the object $A \times B$ is a \emph{product} of
   $A$ and $B$ when:
   \begin{itemize}
     \item There exist maps $\pi_0, \pi_1$ with $\pi_0:A\times B \to A$, $\pi_1:A\times B \to B$;
@@ -264,7 +264,7 @@ We now turn to products and co-products.
 A co-product is the dual of a product.
 
 \begin{definition}\label{def:categorical_coproduct}
-  Let $A,B$ be objects of the category $\C$. Then the object $A + B$ is a \emph{coproduct} of
+  Let $A,B$ be objects of the category $\B$. Then the object $A + B$ is a \emph{coproduct} of
   $A$ and $B$ when:
   \begin{itemize}
     \item There exist maps $\cpa, \cpb$ with $\cpa:A \to A + B$, $\cpb:B \to A+ B$;
@@ -282,7 +282,7 @@ A co-product is the dual of a product.
 
 It is possible for an object to both a limit and a co-limit at the same time.
 \begin{definition}\label{def:categorical_zero}
-  Given a category $\C$, any object that is both a terminal and initial object is called a
+  Given a category $\B$, any object that is both a terminal and initial object is called a
   \emph{zero object}. This object is labelled $\zeroob$.
 \end{definition}
 
@@ -290,17 +290,17 @@ Note that any category with a zero object has a special map, $\zeroob_{A,B}$
 between any two objects $A,B$ of the category given by: $\zeroob_{A,B} : A \to \mathbf{0} \to B$.
 
 \begin{definition}\label{def:categorical_biproduct}
-  In a category \C, given any two objects, $A,B$, if $A\times B$ is isomorphic to $A+B$,  it is
+  In a category \B, given any two objects, $A,B$, if $A\times B$ is isomorphic to $A+B$,  it is
   referred to as the \emph{biproduct}.
 \end{definition}
 
 \begin{definition}\label{def:finite_biproducts}
 A category \cD{} is said to have \emph{finite biproducts} when it has a zero object $\mathbf{0}$
-and when each pair of objects $A,B$ have a biproduct $A\+B$.
+and when each pair of objects $A,B$ have a biproduct $A\biproduct B$.
 \end{definition}
 
 Note that a category with finite biproducts is enriched in commutative monoids. If $f,g:A\to
-B$, define $f+g:A\to B$ as $\<id_{A}, id_{A}\>\, (f\+g)\, [id_{B},id_{B}]$. The unit for the
+B$, define $f+g:A\to B$ as $\<id_{A}, id_{A}\>\, (f\biproduct g)\, [id_{B},id_{B}]$. The unit for the
 addition is $\zeroob_{A,B}$. Throughout this thesis, when working in a category with finite
 biproducts, $\<id, id\>$ will be designated by $\Delta$ and $[id,id]$ will be designated by
 $\nabla$.
@@ -339,7 +339,7 @@ precise, we provide some definitions.
 \begin{definition}\label{def:diagram_in_a_category}
   A \emph{diagram} in a category is a collection of objects and maps between those objects
   which satisfy categorical composition rules. More precisely: Given a category $\S$, a diagram
-  in a category $\C$ of \emph{shape} $\S$ is a functor $D:\S \to \C$.
+  in a category $\B$ of \emph{shape} $\S$ is a functor $D:\S \to \B$.
 \end{definition}
 
 In practice, diagrams are pictorially represented by drawing the objects and the maps between them.
@@ -366,14 +366,14 @@ In practice, diagrams are pictorially represented by drawing the objects and the
 For example, all functors preserve the properties of being an idempotent or a retraction or section,
 but in general, not the property of being monic.
 
-A functor $F:\C \to \D$ induces a map between hom-objects in $\C$ and hom-objects in $\D$. For
-each object $A,B$ in $\C$ we have the map:
+A functor $F:\B \to \D$ induces a map between hom-objects in $\B$ and hom-objects in $\D$. For
+each object $A,B$ in $\B$ we have the map:
 \[
-  F_{AB} : \C(A,B) \to \D(F(A),F(B)).
+  F_{AB} : \B(A,B) \to \D(F(A),F(B)).
 \]
 
 \begin{definition}\label{def:full_functor_faithful_functor}
-  Given a functor $F:\C \to \D$, we say:
+  Given a functor $F:\B \to \D$, we say:
   \begin{itemize}
     \item $F$ is \emph{faithful} when for all $A,B$, $F_{AB}$ is an injective function;
     \item $F$ is \emph{full} when  for all $A,B$, $F_{AB}$ is an surjective function.
@@ -400,7 +400,7 @@ each object $A,B$ in $\C$ we have the map:
 \begin{definition}\label{symmetricmonoidalcat}
   A \emph{symmetric monoidal category} \cD{} is a category equipped with a monoid $\+$ (a bi-functor
   $\+:\cD \times \cD \to \cD$) together with three families of natural isomorphisms:
-  $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u_{A}:A\to A\+I$ and $c_{A,B}:A\+B \to B\+ A$, which satisfy
+  $a_{A,B,C}:A\+(B\+C) \to (A\+B)\+C$, $u_{A}:A\to A\+I$ and $c_{A,B}:A\+B \to B\+ A$, which satisfy
   specific coherence diagrams. The isomorphisms are referred to as the \emph{structure isomorphisms}
   for the symmetric monoidal category. $I$ is the unit of the monoid.
   A symmetric monoidal category where each of $a_{A,B,C}$, $u_{A}$ and $c_{A,B}$ are actually
@@ -732,12 +732,12 @@ Thus, intersection is a meet in \pinj.
 Partial isomorphisms play a central role in this thesis. Below we present
 some of their basic properties.
 
-\begin{definition}
+\begin{definition}\label{def:partial_inverse_etc}
   For maps $f$ in a restriction category \X:
   \begin{itemize}
     \item $f$ is a \emph{partial isomorphism} when there is a \emph{partial inverse}, written
       $\inv{f}$ with $f\inv{f} =\restr{f}$ and $\inv{f}f = \restr{\inv{f}}$;
-    \item $f$ is a \emph{partial monic} if $h f = k f \implies h \restr{f} = k \restr{f}$;
+    \item $f$ is a \emph{partial monic} if $h f = k f$ implies $h \restr{f} = k \restr{f}$;
     \item $f$ is a \emph{partial section} if there exists an  $h$ such that $f h = \restr{f}$;
     \item $f$ is a \emph{restriction monic} if it is a section $s$ with a retraction
       $r$ such that $r s = \restr{r s}$.
@@ -1183,10 +1183,10 @@ is referred to as an \Mstab-category.
   is a pullback.
 \end{proof}
 
-Given a category \C and a stable system of monics, the \emph{partial map category},
-$\text{Par}(\C,\Mstab)$ is:
-  \rcategoryequiv{$A\in\C$}
-    {$(m,f):A\to B$  with $m:A' \to A$ is in \Mstab and $f:A' \to B$ is a map in \C. i.e.,
+Given a category \B and a stable system of monics, the \emph{partial map category},
+$\text{Par}(\B,\Mstab)$ is:
+  \rcategoryequiv{$A\in\B$}
+    {$(m,f):A\to B$  with $m:A' \to A$ is in \Mstab and $f:A' \to B$ is a map in \B. i.e.,
       $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{f}\\A&&B}$.}
     {$1_A,1_A:A \to A$}
     {via a pullback, $(m,f)(m',g) = (m'' m, f' g)$ where
@@ -1214,12 +1214,12 @@ In \cite{cockettlack2003:restcategories2}, it is shown that:
 
 Restriction categories have analogues of products and terminal objects.
 
-\begin{definition}
+\begin{definition}\label{def:restriction_product}
   In a restriction category \X, a \emph{restriction product}  of two objects $X, Y$ is an
   object $X\times Y$ equipped with \emph{total} projections
   $\pi_0:X\times Y\to X, \pi_1:X\times Y\to Y $ where:
   \begin{quote}
-    $\forall f:Z\to X, g: Z\to Y,\quad \exists$ a unique $\<f,g\>:Z \to X\times Y$ such that
+    $\forall f:Z\to X, g: Z\to Y, \quad \exists$ a unique $\<f,g\>:Z \to X\times Y$ such that
     \begin{itemize}
       \item $\<f,g\> \pi_0 \le f$,
       \item $\<f,g\> \pi_1 \le g$ and
@@ -1228,7 +1228,7 @@ Restriction categories have analogues of products and terminal objects.
   \end{quote}
 \end{definition}
 
-\begin{definition}
+\begin{definition}\label{def:restriction_terminal_object}
   In a restriction category \X\, a \emph{restriction terminal object}
   is an object $\top$ such that for all objects $X$, there is a
   unique total map $!_X : X \to \top$ and the diagram
@@ -1242,12 +1242,12 @@ Restriction categories have analogues of products and terminal objects.
   that a restriction terminal object is unique up to a unique isomorphism.
 \end{definition}
 
-\begin{definition}
+\begin{definition}\label{def:cartesian_restriction_category}
   A restriction category \X\ is \emph{Cartesian} if it has all restriction products
   and a restriction terminal object.
 \end{definition}
 
-\begin{definition}
+\begin{definition}\label{def:discrete_object}
   An object $A$ in a Cartesian restriction category is \emph{discrete}
   when the diagonal map
   \[

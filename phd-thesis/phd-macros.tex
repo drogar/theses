@@ -195,8 +195,6 @@
 \DeclareMathOperator*{\rng}{range}
 
 
-\newcommand{\intersect}{\ensuremath{\bigcap}}
-
 %-----------------------------------------------------------------------------
 % Regular expressions, MA algo
 
@@ -230,6 +228,7 @@
 \let\>\rangle
 \let\.\cdot
 
+\newcommand{\biproduct}{\boxplus}
 \newcommand{\blank}{\ensuremath{\text{\textvisiblespace}}}
 \newcommand{\vc}[1]{\ensuremath{\mathbf{#1}}}
 
@@ -333,7 +332,7 @@
 
 \newcommand{\A}{\ltrcatbb{A}}
 \newcommand{\B}{\ltrcatbb{B}}
-\newcommand{\C}{\ltrcatbb{C}}
+%\newcommand{\C}{\ltrcatbb{C}}
 \newcommand{\R}{\ltrcatbb{R}}
 \newcommand{\T}{\ltrcatbb{T}}
 \newcommand{\X}{\ltrcatbb{X}}
@@ -365,6 +364,8 @@
 
 %------------------------------------------------------------------------------
 % Restriction categories
+
+\newcommand{\compatible}{\smile}
 
 \newcommand{\rcategoryequiv}[5]{%
 \begin{description}%

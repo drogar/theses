@@ -737,7 +737,7 @@ equivalence between these two categories.
 \begin{proof}
   From the definition of \imatx, we have
   \begin{align*}
-    &f: A\to B  \iff M(f):M(A)\to M(B)\quad ([f]: [A]\to [B])\\
+    &f: A\to B \text{ if and only if } M(f):M(A)\to M(B)\quad ([f]: [A]\to [B])\\
     &M(id_A)  = [id_{A}] = id_M(A)\\
     &M(f g) = [f g] = [f][g] = M(f) M(g)\\
     &M(\rst{f}) = [\rst{f}] = \rst{[f]} = \rst{M(f)}.
@@ -872,7 +872,8 @@ In particular, we note that we may represent $f:A\to B$ by the matrix
 as $A \cong A\+0$ and $B \cong B\+0$.
 \end{example}
 
-\begin{corollary}\label{cor:inverse_sum_category_is_udc}
+
+\begin{definition}\label{def:unique_decomposition_category}
 A unique decomposition category\cite{haghverdi:2000phd} is a category where any
 \[
   h:A\+B \to C\+D
@@ -902,6 +903,10 @@ The $0$ map in the category corresponds to the $0$-dimensional matrix,
 %    A \ar[r]_{\cpa} & A\+0 \ar[u]_{1+0}
 %  }
 %\]
+\end{definition}
+
+\begin{corollary}\label{cor:inverse_sum_category_is_udc}
+  If $\X$ is an inverse sum category, then it is a unique decomposition category.
 \end{corollary}
 
 % section inverse_sums_categories (end)
@@ -1099,7 +1104,7 @@ inverse distributive category. We now show the converse is true.
   \end{equation}
 
   Since $h\*(\rst{f}\tjdown\rst{g})(f\tjup g) =
-  (\rst{h}\*(\rst{f}\tjdown\rst{g}))(h\*(f\tjup g))$, Equation~(\ref{eq:distribute_over_left_right})
+  (\rst{h}\*(\rst{f}\tjdown\rst{g}))(h\*(f\tjup g))$, Equation~\ref{eq:distribute_over_left_right}
   follows directly from  Lemma~\ref{lem:distributive_means_distribute_over_triangles} and the fact
   that $\*$ is a  restriction functor.
 \end{proof}

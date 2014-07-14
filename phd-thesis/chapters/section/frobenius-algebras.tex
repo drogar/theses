@@ -30,7 +30,7 @@ that make this precise.
 \end{definition}
 For an example of a $\dagger$-Frobenius algebra, consider a finite dimensional Hilbert space $H$
 with an orthonormal basis $\{\ket{\phi_{i}}\}$ and define $\Delta:H\to H\*H: \ket{\phi_{i}}\mapsto
-\ket{\phi_{i}} \* \ket{\phi_{i}}$ and $\epsilon : H\to \C : \ket{\phi_{i}} \mapsto 1$. Then $(H,
+\ket{\phi_{i}} \* \ket{\phi_{i}}$ and $\epsilon : H\to \complex : \ket{\phi_{i}} \mapsto 1$. Then $(H,
 \nabla=\dgr{\Delta}, u=\dgr{\epsilon}, \Delta, \epsilon)$ forms a commutative special
 $\dagger$-Frobenius algebra.
 
@@ -43,7 +43,7 @@ finite dimensional Hilbert spaces. Additionally,  an orthonormal basis for such 
 a special commutative $\dagger$-Frobenius algebra. To show the other direction, given a commutative
 $\dagger$-Frobenius algebra, $(H,\nabla,u)$ and for each element $\alpha\in H$, define the right
 action of $\alpha$ as $R_{\alpha}:=(id\*\alpha)\, \nabla:H\to H$. Note the use of the fact that
-elements $\alpha\in H$ can be considered as linear maps $\alpha:\C \to H:1\mapsto \ket{\alpha}$.
+elements $\alpha\in H$ can be considered as linear maps $\alpha:\complex \to H:1\mapsto \ket{\alpha}$.
 The dagger of a right action is also a right action, $\dgr{R_{\alpha}} = R_{\alpha'}$ where
 $\alpha'= u\, \nabla\, (id\* \dgr{\alpha})$, which is a consequence of the Frobenius identities.
 
@@ -64,7 +64,7 @@ The $(\_)'$ construction is actually an involution:
 \begin{proof}
   The endomorphism monoid of \fdh(H,H) is a $C^{*}$-algebra. From the proceeding, we have
   \[
-    H \cong \fdh(\C,H) \cong R_{[\fdh(\C,H)]}\subseteq\fdh(H,H).
+    H \cong \fdh(\complex,H) \cong R_{[\fdh(\complex,H)]}\subseteq\fdh(H,H).
   \]
   This inherits the algebra structure from \fdh(H,H). Furthermore, since any finite dimensional
   involution-closed sub-algebra of a $C^{*}$-algebra is also a $C^{*}$-algebra, this shows the
@@ -72,8 +72,8 @@ The $(\_)'$ construction is actually an involution:
 \end{proof}
 
 Using the fact that the involution preserving homomorphisms from a finite dimensional commutative
-$C^{*}$-algebra to $\C$ form a basis for the dual of the underlying vector space, write these
-homomorphisms as $\dgr{\phi_{i}}:H \to \C$. Then their adjoints, $\phi_{i}:\C\to H$ will form a
+$C^{*}$-algebra to $\complex$ form a basis for the dual of the underlying vector space, write these
+homomorphisms as $\dgr{\phi_{i}}:H \to \complex$. Then their adjoints, $\phi_{i}:\complex\to H$ will form a
 basis for the space $H$. These are the copyable elements in $H$.
 
 This, together with continued applications of the Frobenius rules and linear algebra allow the
@@ -82,7 +82,7 @@ authors to prove the following Theorem.
   Every commutative $\dagger$-Frobenius algebra in \fdh determines an orthogonal basis consisting
   of its copyable elements. Conversely, every orthogonal basis $\{\ket{\phi_{i}}\}_{i}$ determines
   a commutative $\dagger$-Frobenius algebra via \[\Delta:H\to H\*H: \ket{\phi_{i}}\mapsto
-  \ket{\phi_{i}} \* \ket{\phi_{i}}\qquad\epsilon : H\to \C : \ket{\phi_{i}} \mapsto 1\] and these
+  \ket{\phi_{i}} \* \ket{\phi_{i}}\qquad\epsilon : H\to \complex : \ket{\phi_{i}} \mapsto 1\] and these
   constructions are inverse to each other.
 \end{theorem}
 
