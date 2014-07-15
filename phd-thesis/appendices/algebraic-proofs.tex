@@ -215,6 +215,97 @@
 
 \end{proof}
 
+\begin{lemma}
+  Algebraic proof of Lemma~\ref{lem:mediating_map_equivalence_is_symmetric_reflexive_and_transitive}.
+  Definition~\ref{def:xequivalence} gives a symmetric, reflexive equivalence class of maps in \X.
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{description}
+    \itembf{Reflexivity: } Choose $h$ as the identity map.
+    \itembf{Symmetry: } Suppose $f\xequiv{h}g$. Then, $\restr{f} = \restr{g}$ and $f k = g$ where
+      \[
+        k = (\Delta\* 1) \, a_{\*}\, (1\*h)\, \inv{a_{\*}}\,(\inv{\Delta}\* 1).
+      \] Applying $\inv{k}$,
+      which is
+      \[
+        (\Delta\* 1) \, a_{\*}\, (1\*\inv{h})\, \inv{a_{\*}}\,(\inv{\Delta}\* 1),
+      \]
+      we have
+      \[
+        g \inv{k} = f k \inv{k} = f \restr{k} = \restr{f k} f
+        = \restr{g} f = \restr{f} f = f.
+      \]
+
+      Thus, $g\xequiv{\inv{h}} f$.
+
+    \itembf{Transitivity: } Suppose $f\xequiv{h} f'$ and $f' \xequiv{k} f''$. Consider the
+      compositions of the mediating portions of the equivalences:
+      \[
+        \ell = ((\Delta \* 1)  a_{\*}  (1 \* h ) \inv{a_{\*}} (\inv{\Delta}\* 1))
+          ( (\Delta \* 1) a_{\*}  (1 \* k) \inv{a_{\*}} (\inv{\Delta}\* 1)).
+      \]
+      By pasting the diagrams which give the above equivalences, we see that $f \ell = f''$.
+      However, $\ell$ is not in the form of a mediating map as presented.
+
+      The claim is that $\ell$ is the actual mediating map for $f$ and $f''$. That is, that we have
+      $f(\Delta \* 1)a_{\*}(1 \* \ell)\inv{a_{\*}}(\inv{\Delta}\*1) = f''$. In the interest of some
+      brevity, this is shown below with the associativity maps elided from the equations.
+
+      We need to show that $(\Delta \* 1)(1 \* \ell)(\inv{\Delta}\*1) = \ell$.
+      \begin{align*}
+        (\Delta &\* 1)(1 \* \ell)(\inv{\Delta}\*1) \\
+        &=
+          (\Delta \* 1)(1\*\Delta \* 1)  (1\*1 \* h ) (1\*\inv{\Delta}\* 1))\\
+          &\qquad
+            (1\*\Delta \* 1) (1\* 1 \* k) (1\*\inv{\Delta}\* 1)(\inv{\Delta}\* 1)\\
+        &=
+          (\Delta \* 1)(\Delta \* 1\*1)  (1\*1 \* h ) (1\*\inv{\Delta}\* 1))\\
+          & \qquad
+            (1\*\Delta \* 1) (1\* 1 \* k) (\inv{\Delta}\*1\* 1)(\inv{\Delta}\* 1)
+              &\text{co-associativity}\\
+        &=
+          (\Delta \* 1)  (1 \* h ) (\Delta \* 1\*1)(1\*\inv{\Delta}\* 1)) \\
+          &\qquad
+            (1\*\Delta \* 1)  (\inv{\Delta}\*1\* 1)(1 \* k)(\inv{\Delta}\* 1)&\text{Naturality}\\
+        &=
+          (\Delta \* 1)  (1 \* h ) (\inv{\Delta} \*1)(\Delta\* 1)) \\
+          &\qquad
+            (\inv{\Delta} \* 1)  (\Delta \* 1)(1 \* k)(\inv{\Delta}\* 1)&\text{Frobenius}\\
+        &=
+          (\Delta \* 1)  (1 \* h ) (\inv{\Delta} \*1)
+          (\Delta \* 1)(1 \* k)(\inv{\Delta}\* 1)&\Delta\text{ Total}\\
+        &= \ell
+      \end{align*}
+  \end{description}
+  and therefore $f\xequiv{\ell}f''$.
+\end{proof}
+
+\begin{corollary}
+  Algebraic proof of Corollary~\ref{cor:equivalence_simplified_diagram}
+  If $\restr{f} = \restr{g}$ in \X, a discrete inverse category, and the diagram
+  \[
+    \xymatrix @C=40pt @R=15pt{
+      & & B \* C \ar@{.>}[dd]^{1\*h}\\
+      A \ar[urr]^f \ar[drr]_{g}\\
+      && B\* C'
+    }
+  \]
+  commutes for some $h$, then there is a $h'$ such that $f\xequiv{h'}g$.
+\end{corollary}
+\begin{proof}
+
+  Consider
+  \begin{align*}
+    (\Delta \*1)\,a_{\*}\,(1\*(1\*h))\,&\inv{a_{\*}}(\inv{\Delta}\*1)\\
+    & = (\Delta \*1)\,((1\*1)\*h)\,a_{\*}\inv{a_{\*}}(\inv{\Delta}\*1) & \text{Naturality}\\
+    &=(\Delta \*1)\,((1\*1)\*h)\,(\inv{\Delta}\*1) & \text{Isomorphism Inverse}\\
+    &=(\Delta (1\*1) \inv{\Delta})\* h & \text{Naturality of }\*\\
+    &=(1\* h) & \Delta  \inv{\Delta}=1\\
+  \end{align*}
+  and therefore we can set $h' = 1 \* h$.
+\end{proof}
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: ../phd-thesis.tex

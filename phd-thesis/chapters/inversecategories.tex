@@ -1582,6 +1582,35 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
         \ell = ((\Delta \* 1)  a_{\*}  (1 \* h ) \inv{a_{\*}} (\inv{\Delta}\* 1))
           ( (\Delta \* 1) a_{\*}  (1 \* k) \inv{a_{\*}} (\inv{\Delta}\* 1)).
       \]
+
+      In string diagram form, this is:
+      \[
+      \ \raisebox{45pt}{$\ell=$}\
+        \begin{tikzpicture}
+          \node at (0.5,4) (s1) {};
+          \node at (1,4) (s2) {};
+          \node at (0.5,3.5) [delta] (d2) {};
+          \node at (1,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.5, 2.5) [nabla] (n2) {};
+          \node at (0.5,2) [delta] (d3) {};
+          \node at (1,1.5) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.5, 1) [nabla] (n3) {};
+          \node at (0.5,.5) (end1) {};
+          \node at (1,.5) (end2) {};
+          \draw [] (s1) to (d2);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (h);
+          \draw [] (d2) to[out=235,in=125] (n2);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=125] (n3);
+          \draw (k) to[out=235,in=55] (n3);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to (end1);
+        \end{tikzpicture}
+      \]
       By pasting the diagrams which give the above equivalences, we see that $f \ell = f''$.
       However, $\ell$ is not in the form of a mediating map as presented.
 
@@ -1589,33 +1618,159 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
       $f(\Delta \* 1)a_{\*}(1 \* \ell)\inv{a_{\*}}(\inv{\Delta}\*1) = f''$. In the interest of some
       brevity, this is shown below with the associativity maps elided from the equations.
 
-      We need to show that $(\Delta \* 1)(1 \* \ell)(\inv{\Delta}\*1) = \ell$:
-      \begin{align*}
-        (\Delta &\* 1)(1 \* \ell)(\inv{\Delta}\*1) \\
-        &=
-          (\Delta \* 1)(1\*\Delta \* 1)  (1\*1 \* h ) (1\*\inv{\Delta}\* 1))\\
-          &\qquad
-            (1\*\Delta \* 1) (1\* 1 \* k) (1\*\inv{\Delta}\* 1)(\inv{\Delta}\* 1)\\
-        &=
-          (\Delta \* 1)(\Delta \* 1\*1)  (1\*1 \* h ) (1\*\inv{\Delta}\* 1))\\
-          & \qquad
-            (1\*\Delta \* 1) (1\* 1 \* k) (\inv{\Delta}\*1\* 1)(\inv{\Delta}\* 1)
-              &\text{co-associativity}\\
-        &=
-          (\Delta \* 1)  (1 \* h ) (\Delta \* 1\*1)(1\*\inv{\Delta}\* 1)) \\
-          &\qquad
-            (1\*\Delta \* 1)  (\inv{\Delta}\*1\* 1)(1 \* k)(\inv{\Delta}\* 1)&\text{Naturality}\\
-        &=
-          (\Delta \* 1)  (1 \* h ) (\inv{\Delta} \*1)(\Delta\* 1)) \\
-          &\qquad
-            (\inv{\Delta} \* 1)  (\Delta \* 1)(1 \* k)(\inv{\Delta}\* 1)&\text{Frobenius}\\
-        &=
-          (\Delta \* 1)  (1 \* h ) (\inv{\Delta} \*1)
-          (\Delta \* 1)(1 \* k)(\inv{\Delta}\* 1)&\Delta\text{ Total}\\
-        &= \ell
-      \end{align*}
-  \end{description}
-  and therefore $f\xequiv{\ell}f''$.
+      We need to show that $(\Delta \* 1)(1 \* \ell)(\inv{\Delta}\*1) = \ell$. Diagrammatically, the
+      left hand side $=$
+      \[
+        \begin{tikzpicture}
+          \node at (0,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0,4) [delta] (d1) {};
+          \node at (0.25,3.5) [delta] (d2) {};
+          \node at (.65,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.25, 2.5) [nabla] (n2) {};
+          \node at (0.25,2) [delta] (d3) {};
+          \node at (.65,1.5) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.25, 1) [nabla] (n3) {};
+          \node at (0, .5) [nabla] (n1) {};
+          \node at (0,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=305,in=90] (d2);
+          \draw (d1) to[out=235,in=125] (n1);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (h);
+          \draw [] (d2) to[out=235,in=125] (n2);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=125] (n3);
+          \draw (k) to[out=235,in=55] (n3);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to[out=270,in=55] (n1);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{65pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0.25,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0.25,4) [delta] (d1) {};
+          \node at (0,3.5) [delta] (d2) {};
+          \node at (.65,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.25, 2.5) [nabla] (n2) {};
+          \node at (0.25,2) [delta] (d3) {};
+          \node at (.65,1.5) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0, 1) [nabla] (n3) {};
+          \node at (0.25, .5) [nabla] (n1) {};
+          \node at (0.25,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=90] (d2);
+          \draw (d1) to[out=305,in=125] (h);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (n2);
+          \draw [] (d2) to[out=235,in=125] (n3);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=55] (n3);
+          \draw (k) to[out=235,in=55] (n1);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to[out=270,in=125] (n1);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{65pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0.25,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0.25,4) [delta] (d1) {};
+          \node at (.65,3.5) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0,3) [delta] (d2) {};
+          \node at (0.25, 2.5) [nabla] (n2) {};
+          \node at (0.25,2) [delta] (d3) {};
+          \node at (0, 1.5) [nabla] (n3) {};
+          \node at (.65,1) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.25, .5) [nabla] (n1) {};
+          \node at (0.25,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=90] (d2);
+          \draw (d1) to[out=305,in=125] (h);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (n2);
+          \draw [] (d2) to[out=235,in=125] (n3);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=55] (n3);
+          \draw (k) to[out=235,in=55] (n1);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to[out=270,in=125] (n1);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{65pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0.25,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0.25,4) [delta] (d1) {};
+          \node at (.65,3.5) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.25, 3) [nabla] (n2) {};
+          \node at (0.25,2.5) [delta] (d2) {};
+          \node at (0.25, 2) [nabla] (n3) {};
+          \node at (0.25,1.5) [delta] (d3) {};
+          \node at (.65,1) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.25, .5) [nabla] (n1) {};
+          \node at (0.25,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=125] (n2);
+          \draw (d1) to[out=305,in=125] (h);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw [] (d2) to[out=305,in=55] (n3);
+          \draw [] (d2) to[out=235,in=125] (n3);
+          \draw (n2) to (d2);
+          \draw (n3) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=125] (n1);
+          \draw (k) to[out=235,in=55] (n1);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{65pt}{$=$}\
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+          \node at (0.5,4) (s1) {};
+          \node at (1,4) (s2) {};
+          \node at (0.5,3.5) [delta] (d2) {};
+          \node at (1,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.5, 2.5) [nabla] (n2) {};
+          \node at (0.5,2) [delta] (d3) {};
+          \node at (1,1.5) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.5, 1) [nabla] (n3) {};
+          \node at (0.5,.5) (end1) {};
+          \node at (1,.5) (end2) {};
+          \draw [] (s1) to (d2);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (h);
+          \draw [] (d2) to[out=235,in=125] (n2);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=125] (n3);
+          \draw (k) to[out=235,in=55] (n3);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to (end1);
+        \end{tikzpicture}
+        }
+      \ \raisebox{65pt}{$=\ell.$}
+      \]
+    \end{description}
+    Thus,  $f\xequiv{\ell}f''$.
 \end{proof}
 
 \begin{corollary}\label{cor:equivalence_simplified_diagram}
@@ -1630,15 +1785,37 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
   commutes for some $h$, then there is a $h'$ such that $f\xequiv{h'}g$.
 \end{corollary}
 \begin{proof}
-  Consider
-  \begin{align*}
-    (\Delta \*1)\,a_{\*}\,(1\*(1\*h))\,&\inv{a_{\*}}(\inv{\Delta}\*1)\\
-    & = (\Delta \*1)\,((1\*1)\*h)\,a_{\*}\inv{a_{\*}}(\inv{\Delta}\*1) & \text{Naturality}\\
-    &=(\Delta \*1)\,((1\*1)\*h)\,(\inv{\Delta}\*1) & \text{Isomorphism Inverse}\\
-    &=(\Delta (1\*1) \inv{\Delta})\* h & \text{Naturality of }\*\\
-    &=(1\* h) & \Delta  \inv{\Delta}=1\\
-  \end{align*}
-  and therefore we can set $h' = 1 \* h$.
+  This follows immediately from
+  \[
+    \begin{tikzpicture}
+      \node at (0,2) (s1) {};
+      \node at (.5,2) (s2) {};
+      \node at (0,1.5) [delta] (d1) {};
+      \node at (.5,1) [map] (h) {$\scriptstyle h$};
+      \node at (0,.5) [nabla] (n1) {};
+      \node at (0,0) (end1) {};
+      \node at (.5,0) (end2) {};
+      \draw [] (s1) to (d1);
+      \draw [] (s2) to (h);
+      \draw [] (d1) to[out=305,in=55] (n1);
+      \draw [] (d1) to[out=235,in=125] (n1);
+      \draw (h) to (end2);
+      \draw (n1) to (end1);
+    \end{tikzpicture}
+    \ \raisebox{28pt}{$=\ $}
+    \begin{tikzpicture}
+      \node at (0.25,2) (s1) {};
+      \node at (.5,2) (s2) {};
+      \node at (.5,1) [map] (h) {$\scriptstyle h$};
+       \node at (0.25,0) (end1) {};
+      \node at (.5,0) (end2) {};
+      \draw [] (s1) to (end1);
+      \draw [] (s2) to (h);
+      \draw (h) to (end2);
+    \end{tikzpicture}
+    \ \raisebox{28pt}{$= 1\* h$.}
+  \]
+  Therefore we can set $h' = 1 \* h$.
 \end{proof}
 % end_fold sub:equivalence_classes_of_maps_in_hypx
 

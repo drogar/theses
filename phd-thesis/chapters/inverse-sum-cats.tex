@@ -915,23 +915,28 @@ The $0$ map in the category corresponds to the $0$-dimensional matrix,
 \subsection{Distributive restriction categories} % (fold)
 \label{sub:distributive_restriction_categories}
 
+\begin{definition}\label{def:distributive_category}
+  A Cartesian category $\B$ with coproducts is called a
+  \emph{distributive}\cite{cockett1993-introduction-distributive} category when
+  \[
+    (A\times B) + (A\times C) \cong A \times (B+ C).
+  \]
+\end{definition}
 
-\begin{definition}
-  A Cartesian restriction category with a restriction zero and coproducts is called
-  \emph{distributive} when there is an isomorphism $\rho$ such that
+\begin{definition}\label{def:distributive_restriction_category}
+  A Cartesian restriction category $\D$ with a restriction zero and coproducts is called a
+  \emph{distributive restriction category}\cite{cockettlack2004:restcategories3}
+  when there is an isomorphism $\rho$ such that
   \[
     A\times (B+C) \xrightarrow{\rho} (A\times B) +(A\times C).
   \]
 \end{definition}
 
-In a distributive inverse category, we lack:
-\[
-  A  \xrightarrow{!} 1
-\]
-and
-\[
-  A+A \xrightarrow{\nabla} A.
-\]
+If $\D$ is a distributive restriction category, then Total($\D$) is a distributive
+category as in Definition~\ref{def:distributive_category}.
+
+In the following, we will present distributivity in inverse categories.
+
 % subsection distributive_restriction_categories (end)
 
 \subsection{Distributive inverse categories} % (fold)
