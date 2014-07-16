@@ -7,21 +7,19 @@
 \section{Categories}
 \label{sec:categories}
 
-The information in this section is presented to introduce categories and fix notation for them. More
-details of the definitions and lemmas presented here can be found in various books or online
+This section introduces categories and fixs notation for them. More
+details can be found in various books or online
 resources for category theory, e.g., \cite{maclan97:categorieswrkmath}, \cite{cockett2009:ctcs},
 \cite{barr:ctcs} and \cite{various:nlab}.
 
-A category as a mathematical object can be defined in a variety of equivalent ways. As much of our
-work will involve the exploration of partial and reversible maps, their domains and ranges, we
-choose a definition that highlights the algebraic nature of these. Note that ranges are normally
-referred to as co-domains in category theory and we will use the co-domain terminology in this
-section.
+A category may be defined in a variety of equivalent ways. As much of our
+work will involve the exploration of partial and reversible maps, their domains and codomains, we
+choose a definition that highlights the algebraic nature of these.
 
 \begin{definition}\label{def:category}
   A \emph{category} $\A$ is a directed graph consisting of objects $A_o$ and maps $A_m$. Each $f\in
-  A_m$ has two associated objects in $A_o$, called the domain and co-domain. When $f$ has domain $X$
-  and co-domain $Y$ we will write $f:X \to Y$. For $f, g \in A_m$, if $f:X\to Y$ and $g:Y \to Z$,
+  A_m$ has two associated objects in $A_o$, called the domain and codomain. When $f$ has domain $X$
+  and codomain $Y$ we will write $f:X \to Y$. For $f, g \in A_m$, if $f:X\to Y$ and $g:Y \to Z$,
   there is a map called the \emph{composite} of $f$ and $g$, written $f g$,\footnote{Note that
     composition is written in diagrammatic order throughout this paper.} such that $f g:X \to Z$.
   For any $W \in A_o$ there is an \emph{identity} map $1_W:W \to W$. Additionally, these two axioms
@@ -31,18 +29,6 @@ section.
     \item[\cattwo] given $f:X \to Y,\ g:Y \to Z$ and $h: Z\to W$, then $f (g h) = (f g) h$.
   \end{itemize}
 
-\end{definition}
-
-We may also consider the notion of containment between categories.
-
-\begin{definition}\label{def:subcategories}
-  Given the categories $\B$ and $\D$, we may say the following:
-  \begin{enumerate}[{(}i{)}]
-    \item \B is a \emph{sub-category} of \D when each object of \B is an object of \D and when each map
-    of \B is a map of \D.
-    \item \B is a \emph{full sub-category} of \D when it is a sub-category and given $A, B$ objects
-      in $\B$ and $f:A \to B$ in \D, then $f$ is a map in $\B$.
-  \end{enumerate}
 \end{definition}
 
 \subsection{Enrichment of categories} % (fold)
@@ -323,9 +309,21 @@ $\nabla$.
   The collection of categories and functors form the category \cat.
 \end{lemma}
 \begin{proof}
-  \category{Categories.}{Functors.}{The identity functor which takes a map to the same map.}{
+  \categoryns{Categories.}{Functors.}{The identity functor which takes a map to the same map.}{
   $F G(x) = F(G(x))$ which is clearly associative.}
 \end{proof}
+
+We may also consider the notion of containment between categories, via functors.
+
+\begin{definition}\label{def:subcategories}
+  Given the categories $\B$ and $\D$, we may say the following:
+  \begin{enumerate}[{(}i{)}]
+    \item \B is a \emph{sub-category} of \D when each object of \B is an object of \D and when each map
+    of \B is a map of \D.
+    \item \B is a \emph{full sub-category} of \D when it is a sub-category and given $A, B$ objects
+      in $\B$ and $f:A \to B$ in \D, then $f$ is a map in $\B$.
+  \end{enumerate}
+\end{definition}
 
 
 Functors with two arguments, e.g., $F:\sets \times \sets \to \sets$ which satisfy \axiom{F}{1} and
@@ -333,7 +331,7 @@ Functors with two arguments, e.g., $F:\sets \times \sets \to \sets$ which satisf
 
 
 We will often restrict ourselves to specific classes of functors which either \emph{preserve} or
-\emph{reflect} certain characteristics of the domain category or co-domain category. To be more
+\emph{reflect} certain characteristics of the domain category or codomain category. To be more
 precise, we provide some definitions.
 
 \begin{definition}\label{def:diagram_in_a_category}
@@ -1159,7 +1157,7 @@ partial map categories are given below.
 \end{definition}
 
 \emph{Stable} in this definition means that if $m:A\to B$ is in \Mstab, then for arbitrary
-$b$ with co-domain $B$, the pullback
+$b$ with codomain $B$, the pullback
 \[
   \xymatrix{
     A'\ar[r]^a \ar[d]_{m'} &A\ar[d]^{m}\\
