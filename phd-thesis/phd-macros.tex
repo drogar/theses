@@ -132,6 +132,7 @@
 \newcommand{\axiom}[2]{\ensuremath{[\text{\bfseries {#1}.{#2}}]}\xspace}
 
 \newcommand{\cataxiom}[1]{\axiom{C}{#1}}
+\newcommand{\cataltaxiom}[1]{\axiom{C'}{#1}}
 
 \newcommand{\rstaxiom}[1]{\axiom{R}{#1}}
 
@@ -139,9 +140,12 @@
 
 \newcommand{\catone}{\cataxiom{1}}
 \newcommand{\cattwo}{\cataxiom{2}}
-\newcommand{\catthree}{\cataxiom{3}}
-\newcommand{\catfour}{\cataxiom{4}}
-\newcommand{\catfive}{\cataxiom{5}}
+
+\newcommand{\cataltone}{\cataltaxiom{1}}
+\newcommand{\catalttwo}{\cataltaxiom{2}}
+\newcommand{\cataltthree}{\cataltaxiom{3}}
+\newcommand{\cataltfour}{\cataltaxiom{4}}
+\newcommand{\cataltfive}{\cataltaxiom{5}}
 
 \newcommand{\rone}{\rstaxiom{1}}
 \newcommand{\rtwo}{\rstaxiom{2}}
@@ -177,10 +181,10 @@
 \newcommand{\mbh}{\ensuremath{\mathbf{h}}}
 
 \newcommand{\nothing}{\phi}
-\newcommand{\capspl}{\ensuremath{\cap_{\text{K}}}\xspace}
+\newcommand{\meetspl}{\ensuremath{\meet_{\text{K}}}\xspace}
 
 
-
+\newcommand{\conjugate}[1]{{#1}^{*}}
 
 \newcommand{\norm}[1]{\|#1\|}
 \newcommand{\weight}[1]{\norm{#1}_{\rm weight}}
@@ -190,8 +194,6 @@
 \DeclareMathOperator*{\dom}{dom}
 \DeclareMathOperator*{\rng}{range}
 
-
-\newcommand{\intersect}{\ensuremath{\bigcap}}
 
 %-----------------------------------------------------------------------------
 % Regular expressions, MA algo
@@ -226,6 +228,7 @@
 \let\>\rangle
 \let\.\cdot
 
+\newcommand{\biproduct}{\boxplus}
 \newcommand{\blank}{\ensuremath{\text{\textvisiblespace}}}
 \newcommand{\vc}[1]{\ensuremath{\mathbf{#1}}}
 
@@ -311,7 +314,7 @@
 
 %------------------------------------------------------------------------------------
 % General notation for categories
-\newcommand{\category}[4]{%
+\newcommand{\categoryns}[4]{%
 \begin{description}%
 \item{\textbf{Objects: }}{#1}%
 \item{\textbf{Maps: }}{#2}%
@@ -319,6 +322,8 @@
 \item{\textbf{Composition: }}{#4}%
 \end{description}%
 }
+\newcommand{\category}[4]{\categoryns{{#1};}{{#2};}{{#3};}{{#4}.}}
+
 
 \newcommand{\natto}{\Rightarrow}
 \newcommand{\specialcat}[1]{\textsc{#1}\xspace}
@@ -327,7 +332,7 @@
 
 \newcommand{\A}{\ltrcatbb{A}}
 \newcommand{\B}{\ltrcatbb{B}}
-\newcommand{\C}{\ltrcatbb{C}}
+%\newcommand{\C}{\ltrcatbb{C}}
 \newcommand{\R}{\ltrcatbb{R}}
 \newcommand{\T}{\ltrcatbb{T}}
 \newcommand{\X}{\ltrcatbb{X}}
@@ -337,7 +342,8 @@
 
 \newcommand{\Lat}{\ltrcatbb{L}}
 \newcommand{\Mstab}{\ensuremath{\mathcal{M}}\xspace}
-\newcommand{\inj}{\specialcat{Inj}}
+%\newcommand{\inj}{\specialcat{Inj}}
+\newcommand{\pinj}{\specialcat{PInj}}
 
 \newcommand{\sets}{\specialcat{Sets}}
 \newcommand{\cat}{\specialcat{Cat}}
@@ -359,13 +365,15 @@
 %------------------------------------------------------------------------------
 % Restriction categories
 
+\newcommand{\compatible}{\smile}
+
 \newcommand{\rcategoryequiv}[5]{%
 \begin{description}%
-\item{\textbf{Objects: }}{#1}%
-\item{\textbf{Equivalence Classes of Maps: }}{#2}%
-\item{\textbf{Identity: }}{#3}%
-\item{\textbf{Composition: }}{#4}%
-\item{\textbf{Restriction: }}{#5}%
+\item{\textbf{Objects: }}{#1};%
+\item{\textbf{Equivalence Classes of Maps: }}{#2};%
+\item{\textbf{Identity: }}{#3};%
+\item{\textbf{Composition: }}{#4};%
+\item{\textbf{Restriction: }}{#5}.%
 \end{description}%
 %
 }
@@ -373,11 +381,11 @@
 
 \newcommand{\rcategory}[5]{%
 \begin{description}%
-\item{\textbf{Objects: }}{#1}%
-\item{\textbf{Maps: }}{#2}%
-\item{\textbf{Identity: }}{#3}%
-\item{\textbf{Composition: }}{#4}%
-\item{\textbf{Restriction: }}{#5}%
+\item{\textbf{Objects: }}{#1};%
+\item{\textbf{Maps: }}{#2};%
+\item{\textbf{Identity: }}{#3};%
+\item{\textbf{Composition: }}{#4};%
+\item{\textbf{Restriction: }}{#5}.%
 \end{description}%
 %
 }
@@ -390,7 +398,7 @@
 
 \newcommand{\tur}[2]{\ensuremath{\tau_{{#1},{#2}}}}
 \newcommand{\txy}{\tur{X}{Y}}
-
+\newcommand{\why}{\ensuremath{\mathbf{?}}}
 %--------------------------------------------------------------------------------------
 % Notation for inverse categories
 
@@ -451,6 +459,11 @@
 \newcommand{\compat}{\smile}
 \newcommand{\join}{\vee}
 \newcommand{\meet}{\cap}
+\newcommand{\intersection}{\Cap}
+\newcommand{\union}{\cup}
+\newcommand{\disjointunion}{\uplus}
+
+\newcommand{\undefined}{\uparrow}
 
 \newcommand{\djoin}{\sqcup}
 \newcommand{\djoinbig}{\bigsqcup}
@@ -574,3 +587,8 @@
 
 %------------------------------------------------------------------------------------
 %  Notation for describing syntax of language (lqpl primarily)
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "phd-thesis"
+%%% End:

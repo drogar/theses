@@ -1,40 +1,38 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
 \chapter{Inverse categories} % (fold)
 \label{cha:inverse_categories}
-\section{Inverse products} % (fold)
-\label{sec:inverse_products}
 
-This chapter is focussed on adding ``products'' to an inverse category.
+This chapter will focus on adding ``products'' to an inverse category.
 
-We will show below that inverse category that has a
-restriction product is a restriction preorder. Given this, by ``product'', we mean a construction
-that behaves in a product-like manner in an inverse category. We call \emph{inverse products}, which
-will be defined below in sub-section~\ref{sub:inverse_products}.
+We will show below an inverse category which has a
+restriction product is a restriction pre-order. Given this, by ``product'', we mean a construction
+that behaves in a product-like manner in an inverse category. We call these \emph{inverse products}, which
+will be defined below in Sub-Section~\ref{sub:inverse_product_tensor}.
 Inverse products are given by a tensor product which supports a diagonal but lacks projections. The
 diagonal map is required to give a natural Frobenius structure to each object.
 
-\subsection{Inverse categories with restriction products} % (fold)
-\label{sub:inverse_categories_with_restriction_products}
-We start by showing that an inverse category with restriction products is a restriction preorder.
+\section{Inverse categories with restriction products} % (fold)
+\label{sec:inverse_categories_with_restriction_products}
+We start by showing that an inverse category with restriction products is a restriction pre-order.
 
 \begin{definition}\label{def:compatible_maps}
   Two parallel maps $f,g:A \to B$ in a restriction category are \emph{compatible}, written as $f
-  \smile g$, when $\rst{f} g = \rst{g} f$.
+  \compatible g$, when $\rst{f} g = \rst{g} f$.
 \end{definition}
 \begin{definition}\label{def:restrictionpreorder}
-  A restriction category \X is a \emph{restriction preorder} when all parallel pairs of maps are
+  A restriction category \X is a \emph{restriction pre-order} when all parallel pairs of maps are
   compatible.
 \end{definition}
-\begin{lemma}\label{lem:an_inverse_category_with_products_is_a_restriction_preorder}
-  Given an inverse category \X, if it has restriction products, it is a restriction preorder. That
+\begin{proposition}\label{prop:an_inverse_category_with_products_is_a_restriction_preorder}
+  Given an inverse category \X, if it has restriction products, it is a restriction pre-order. That
   is,
   \[
     \xymatrix {
       A  \ar@<1ex>[r]^{f} \ar@<-1ex>[r]_{g} &B
     }
-    \implies f \smile g.
+    \implies f \compatible g.
   \]
-\end{lemma}
+\end{proposition}
 \begin{proof}
   Notice,
   \begin{align*}
@@ -57,19 +55,19 @@ We start by showing that an inverse category with restriction products is a rest
 \end{proof}
 
 \begin{corollary}
-  \X\ is a Cartesian inverse category if and only if Total($\spl{r}{\X}$) is a meet preorder.
+  \X\ is a Cartesian inverse category if and only if Total($\spl{r}{\X}$) is a meet pre-order.
 \end{corollary}
 
 \begin{proof}
   Total(\X), the subcategory of total maps on \X, has products and therefore every pair of parallel
   maps is compatible. As total compatible maps are equal, there is at most
-  one map between any two objects. Hence, Total(\X) is a preorder with the meet being the product.
+  one map between any two objects. Hence, Total(\X) is a pre-order with the meet being the product.
 
   Similarly, from \cite{cockett2002:restcategories1} and \cite{cockettlack2004:restcategories3},
   Total($\spl{r}{\X}$) is an inverse category and has products and is therefore also a meet
-  preorder. This shows the ``only if'' side of the corollary.
+  pre-order. This shows the ``only if'' side of the corollary.
 
-  For the other direction, if Total($\spl{r}{\X}$) is a meet preorder, define the product as the
+  For the other direction, if Total($\spl{r}{\X}$) is a meet pre-order, define the product as the
   meet of the maps and the terminal object as the supremum of all maps.
 \end{proof}
 
@@ -79,10 +77,12 @@ We start by showing that an inverse category with restriction products is a rest
 \end{corollary}
 
 
-% subsection inverse_categories_with_restriction_products (end)
+% section inverse_categories_with_restriction_products (end)
+\section{Inverse products} % (fold)
+\label{sec:inverse_products}
 
-\subsection{Inverse products} % (fold)
-\label{sub:inverse_products}
+\subsection{Inverse product tensor} % (fold)
+\label{sub:inverse_product_tensor}
 
 \begin{definition}\label{def:inverse_product_tensor}
   Given a restriction category \X, a tensor $\*$ is called an \emph{inverse product tensor}
@@ -100,11 +100,11 @@ We start by showing that an inverse category with restriction products is a rest
       &c_{\*} &: A \* B \xrightarrow{\cong} B \* A.
     \end{align*}
   \end{itemize}
-  Note that as all the coherence maps are isomorphisms, they are total.
+  Note that since all the coherence maps are isomorphisms, they are total.
 \end{definition}
 
 \begin{definition}\label{def:inverse_product}
-  An \emph{inverse product} on an invese category \X is given by an inverse product tensor $\*$
+  An \emph{inverse product} on an inverse category \X is given by an inverse product tensor $\*$
   together with a  natural ``Frobenius'' diagonal map, $\Delta$. Additionally, we define the
   map $\excs: (A\*B)\*(C\*D) \to (A\*C) \* (B\*D)$:
   \[
@@ -151,7 +151,7 @@ We start by showing that an inverse category with restriction products is a rest
       &*!<0pc,-25pt>{\text{\textbf{Frobenius}}}
     }
   \]
-  Thus, $\Delta$ is a co-commutative, coassociative map which together with $\inv{\Delta}$ forms a
+  Thus, $\Delta$ is a co-commutative, co-associative map which together with $\inv{\Delta}$ forms a
   Frobenius algebra.
 \end{definition}
 
@@ -170,23 +170,6 @@ We start by showing that an inverse category with restriction products is a rest
   Similarly, one can show that $(\inv{\Delta}\* 1)\inv{\Delta} =
   a_{\*}(\inv{\Delta}\* 1)\inv{\Delta}$.
 \end{remark}
-% \subsubsection{Diagrammatic language} % (fold)
-% \label{ssub:diagrammatic_language}
-
-% \begin{tikzpicture}[scale=.3]
-%   \draw (2,1) -- (2,0);
-%   \draw (2,0) -- (1.25,-1.2) -- (2.75,-1.2) -- cycle;
-%   \draw (1.5,-1.2) -- (1.5,-2.5);
-%   \draw (2.5,-1.2) -- (2.5,-2.5);
-
-%   \node at (3.3,-1.3) {$=$};
-
-%   \draw (5,1) -- (5,0);
-%   \draw (5,0) -- (4.25,-1.2) -- (5.75,-1.2) -- cycle;
-%   \draw (4.5,-1.2) .. controls (4.9,-2.5) and (5.1, -1.2) .. (5.5,-2.5);
-%   \draw (5.5,-1.2)  .. controls (5.1,-2.5) and (4.9, -1.2) .. (4.5,-2.5);
-% \end{tikzpicture}
-% % subsubsection diagrammatic_language (end)
 
 
 Inverse products are extra structure on an inverse category, rather than a property. A concrete
@@ -200,9 +183,11 @@ category. To create an inverse product on a discrete category, add a commutative
 idempotent multiplication, with a unit.
 
 Let $\D$ be the discrete category of four objects and label them as $a,b,c$ and $d$. Then, define
-two different inverse product tensors, $\*$ and $\odot$ by:
-\begin{quote}
-  \qquad\qquad
+two different inverse product tensors, $\*$ and $\odot$ as shown in
+Table~\ref{tab:two_different_inverse_products}.
+
+\begin{table}[h!]
+  \begin{center}
   \begin{tabular}{|l||c|c|c|c|}
     \hline
     $\*$&a&b&c&d\\ \hline \hline
@@ -211,17 +196,18 @@ two different inverse product tensors, $\*$ and $\odot$ by:
     c&a&\textbf{b}&c&c \\ \hline
     d&a&b&c&d \\ \hline
   \end{tabular}
-  \hfil
-  \begin{tabular}{|l||c|c|c|c|}
-    \hline
+  \qquad
+  \begin{tabular}{|l||c|c|c|c|} \hline
     $\odot$&a&b&c&d\\ \hline \hline
     a&a&a&a&a\\ \hline
     b&a&b&\textbf{a}&b\\ \hline
     c&a&\textbf{a}&c&c \\ \hline
     d&a&b&c&d \\ \hline
   \end{tabular}
-  \qquad \qquad
-\end{quote}
+  \end{center}
+  \caption{Two different inverse products on the same category.}
+  \label{tab:two_different_inverse_products}
+\end{table}
 
 As $\D$ is discrete, $\Delta$ is forced to be the identity. By inspection, we can see each of
 the conditions for $\Delta$ are satisfied by $\*$ and by $\odot$.
@@ -231,9 +217,11 @@ the conditions for $\Delta$ are satisfied by $\*$ and by $\odot$.
 \label{sub:diagrammatic_language}
 
 While it is certainly possible to prove results about inverse products using direct algebraic
-manipulation, it is much more succinct to proceed with string diagrams. As shown in
-\cite{street-ross-1991-GTC-I} this is equivalent to reasoning algebraically for symmetric monoidal
-categories.
+manipulation, it is much more succinct to proceed with string diagrams. See
+\cite{selinger11:graphical} for a comparison of various graphical languages for monoidal categories.
+As shown in
+\cite{street-ross-1991-GTC-I}, diagrammatic reasoning is equivalent to reasoning algebraically for
+symmetric monoidal categories.
 
 In the diagrams, we will use the following representations:
 \begin{itemize}
@@ -242,13 +230,147 @@ In the diagrams, we will use the following representations:
   \item $\inv{\Delta}$ by a downward triangle: \begin{tikzpicture}
       \path node [nabla] at (0,0) {}; \end{tikzpicture}.
   \item maps by a rectangle with the map inside: \begin{tikzpicture}
-      \path node [map] at (0,0) {$f$}; \end{tikzpicture}.
+      \path node [map] at (0,0) {$\scriptstyle f$}; \end{tikzpicture}.
   \item unit introduction (often referred to as an $\eta$ map): \begin{tikzpicture}
       \path node [eta] at (0,0) {}; \end{tikzpicture}.
-  \item unit removaln (often referred to as an $\epsilon$ map): \begin{tikzpicture}
+  \item unit removal (often referred to as an $\epsilon$ map): \begin{tikzpicture}
       \path node [epsilon] at (0,0) {}; \end{tikzpicture}.
 \end{itemize}
+String diagrams in this thesis are to be read from top to bottom.
 
+The axioms of Definition~\ref{def:inverse_product} then become:\\
+\begin{tikzpicture}
+  \begin{pgfonlayer}{nodelayer}
+    \node [style=nothing] (0) at (-3.75, 5.5) {};
+    \node [style=delta] (1) at (-3.75, 5) {};
+    \node [style=nothing] (2) at (-4, 4.25) {};
+    \node [style=nothing] (3) at (-3.5, 4.25) {};
+    \node [style=nothing] (4) at (-3, 5) {$=$};
+    \node [style=nothing] (5) at (-2.25, 5.5) {};
+    \node [style=delta] (6) at (-2.25, 5) {};
+    \node [style=nothing] (7) at (-2.5, 4.25) {};
+    \node [style=nothing] (8) at (-2, 4.25) {};
+    \node [style=nothing] (9) at (-3, 4) {Co-commutativity};
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{edgelayer}
+      \draw [] (0) to (1);
+      \draw [] (1) to[out=305,in=90] (2);
+      \draw [] (1) to[out=235,in=90] (3);
+      \draw [] (5) to (6);
+      \draw [] (6) to[out=235,in=90] (7);
+      \draw [] (6) to[out=305,in=90] (8);
+      \end{pgfonlayer}
+\end{tikzpicture}
+\hspace{15pt}
+\begin{tikzpicture}
+  \begin{pgfonlayer}{nodelayer}
+    \node [style=nothing] (0) at (-3.75, 5.5) {};
+    \node [style=delta] (1) at (-3.75, 5) {};
+    \node [style=delta] (2) at (-4, 4.5) {};
+    \node [style=nothing] (3a) at (-4.25, 4) {};
+    \node [style=nothing] (3b) at (-3.75, 4) {};
+    \node [style=nothing] (3c) at (-3.5, 4) {};
+    \node [style=nothing] (4) at (-3, 5) {$=$};
+    \node [style=nothing] (5) at (-2.25, 5.5) {};
+    \node [style=delta] (6) at (-2.25, 5) {};
+    \node [style=delta] (8) at (-2, 4.5) {};
+    \node [style=nothing] (7a) at (-2.5, 4) {};
+    \node [style=nothing] (7b) at (-2.25, 4) {};
+    \node [style=nothing] (7c) at (-1.75, 4) {};
+    \node [style=nothing] (9) at (-3, 3.5) {Co-associativity};
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{edgelayer}
+      \draw [] (0) to (1);
+      \draw [] (1) to[out=305,in=90] (3c);
+      \draw [] (1) to[out=235,in=90] (2);
+      \draw [] (2) to[out=305,in=90] (3b);
+      \draw [] (2) to[out=235,in=90] (3a);
+      \draw [] (5) to (6);
+      \draw [] (6) to[out=235,in=90] (7a);
+      \draw [] (6) to[out=305,in=90] (8);
+      \draw [] (8) to[out=305,in=90] (7c);
+      \draw [] (8) to[out=235,in=90] (7b);
+      \end{pgfonlayer}
+\end{tikzpicture}
+\hspace{15pt}
+\begin{tikzpicture}
+  \begin{pgfonlayer}{nodelayer}
+    \node [style=nothing] (0) at (-2.55, 3.75) {};
+    \node [style=nothing] (1) at (-2.45, 3.75) {};
+    \node [style=delta] (2) at (-2.5, 3.25) {};
+    \node [style=nothing] (3) at (-3, 2.5) {};
+    \node [style=nothing] (4) at (-2.75, 2.5) {};
+    \node [style=nothing] (5) at (-2.25, 2.5) {};
+    \node [style=nothing] (6) at (-2, 2.5) {};
+    \node [style=nothing] (7) at (-1.75, 3.25) {$=$};
+    \node [style=nothing] (8) at (-.675, 3.75) {};
+    \node [style=nothing] (9) at (-0.575, 3.75) {};
+    \node [style=delta] (10) at (-1, 3.25) {};
+    \node [style=delta] (11) at (-0.25, 3.25) {};
+    \node [style=nothing] (12) at (-1.25, 2.5) {};
+    \node [style=nothing] (13) at (-1, 2.5) {};
+    \node [style=nothing] (14) at (-0.25, 2.5) {};
+    \node [style=nothing] (15) at (0, 2.5) {};
+    \node [style=nothing] (16) at (-1.5, 2) {Exchange};
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{edgelayer}
+      \draw [] (0) to (2);
+      \draw [] (1) to (2);
+      \draw [] (2) to (3);
+      \draw [] (2) to (4);
+      \draw [] (2) to (5);
+      \draw [] (2) to (6);
+      \draw [] (8) to[out=270,in=90] (10);
+      \draw [] (9) to[out=270,in=90] (11);
+      \draw [] (10) to (12);
+      \draw [] (10) to (14);
+      \draw [] (11) to (13);
+      \draw [] (11) to (15);
+      \end{pgfonlayer}
+\end{tikzpicture}
+\hspace{15pt}
+\begin{tikzpicture}
+  \begin{pgfonlayer}{nodelayer}
+    \node [style=nothing] (0) at (-2.75, 3.75) {};
+    \node [style=nothing] (1) at (-2.25, 3.75) {};
+    \node [style=delta] (2) at (-2.75, 3.25) {};
+    \node [style=nothing] (3) at (-2.75, 2) {};
+    \node [style=nothing] (4) at (-2.25, 2) {};
+    \node [style=nothing] (5) at (-0.5, 3) {$=$};
+    \node [style=nothing] (6) at (0, 3.75) {};
+    \node [style=nothing] (7) at (0.5, 3.75) {};
+    \node [style=delta] (8) at (-1, 2.5) {};
+    \node [style=delta] (9) at (0.5, 3.25) {};
+    \node [style=nothing] (10) at (0, 2) {};
+    \node [style=nothing] (11) at (0.5, 2) {};
+    \node [style=nabla] (12) at (-2.25, 2.5) {};
+    \node [style=nabla] (13) at (-1, 3.25) {};
+    \node [style=nabla] (14) at (0, 2.5) {};
+    \node [style=nothing] (15) at (-1.75, 3) {$=$};
+    \node [style=nothing] (16) at (-1.25, 3.75) {};
+    \node [style=nothing] (17) at (-0.75, 3.75) {};
+    \node [style=nothing] (18) at (-1.25, 2) {};
+    \node [style=nothing] (19) at (-0.75, 2) {};
+    \node [style=nothing] (20) at (-1, 1.75) {Frobenius};
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{edgelayer}
+      \draw [] (0) to (2);
+      \draw [] (2) to (3);
+      \draw [] (7) to (9);
+      \draw [] (9) to (11);
+      \draw (1) to (12);
+      \draw (2) to (12);
+      \draw (12) to (4);
+      \draw (13) to (8);
+      \draw (16) to (13);
+      \draw (17) to (13);
+      \draw (8) to (18);
+      \draw (8) to (19);
+      \draw (14) to (10);
+      \draw (9) to (14);
+      \draw (6) to (14);
+      \end{pgfonlayer}
+\end{tikzpicture}
 % end sub:diagrammatic_language
 
 
@@ -260,10 +382,10 @@ In the diagrams, we will use the following representations:
   a \emph{discrete inverse category}.
 \end{definition}
 
-This sub-section will present some properties of discrete inverse categories. This sub-section will
+In this Sub-Section we will present some properties of discrete inverse categories. This  will
 form the basis for our eventual goal, that of connecting discrete inverse categories to Cartesian
-restriction categories. This connection will be given as a functor that lifts an inverse category to
-a Cartesian restriction category.
+restriction categories. The connection between them will be given as a functor that lifts a discrete
+inverse category to a discrete Cartesian restriction category.
 
 \begin{lemma}\label{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}
   In a discrete inverse category \X with the inverse product $\*$ and $\Delta$, where
@@ -285,137 +407,989 @@ a Cartesian restriction category.
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item[\ref{le:eisde1}]This is shown by proving both sides
-      equal $\Delta (e\* 1) \inv{\Delta} \Delta (e\* 1) \inv{\Delta}$.
-      \begin{align*}
-        \Delta (e\* 1) &\inv{\Delta} \Delta (e\* 1) \inv{\Delta} \\
-        &= \Delta (e\* 1) \inv{\Delta} \Delta (1\* e) \inv{\Delta}&\text{co-commutativity}\\
-        &=\Delta(e \Delta \* 1) (1\*\inv{\Delta} e) \inv{\Delta} &\text{Frobenius}\\
-        &=\Delta(\Delta \* 1) (e\*e\*1) (1\*\inv{\Delta}e)\inv{\Delta}&\Delta\text{natural}\\
-        &=\Delta(\Delta \* 1) (e\*e\*1) \\
-          & \qquad(1\*e\*e)(1\*\inv{\Delta})\inv{\Delta}&\inv{\Delta}\text{ natural}\\
-        &=\Delta (\Delta \*1) (e\* e\* e)(1\* \inv{\Delta})\inv{\Delta}&e\text{ idempotent}\\
-        &=\Delta (\Delta \*1) (e\* \inv{\Delta}e)\inv{\Delta}&\inv{\Delta}\text{ natural}\\
-        &=\Delta (\Delta \*1) (1\* \inv{\Delta})\inv{\Delta}e&\inv{\Delta}\text{ natural}\\
-        &=\Delta \inv{\Delta}\Delta \inv{\Delta}e&\text{Frobenius}\\
-        &=e&\Delta\text{ total}.
-      \end{align*}
-      At the same time,
-      \begin{align*}
-        \Delta (e\* 1) &\inv{\Delta} \Delta (e\* 1) \inv{\Delta}
-        =\Delta(e \Delta \* 1) (e\*\inv{\Delta} 1) \inv{\Delta} &\text{Frobenius}\\
-        &=\Delta(\Delta \* 1) (e\*e\*1) (e\*\inv{\Delta})\inv{\Delta}&\Delta\text{natural}\\
-        &=\Delta(\Delta \* 1) (e\*e\*1) (e\*1\*1)(1\*\inv{\Delta})\inv{\Delta}&\inv{\Delta}\text{ natural}\\
-        &=\Delta (\Delta \*1) (e\* e\* 1)(1\* \inv{\Delta})\inv{\Delta}&e\text{ idempotent}\\
-        &=\Delta  (e\Delta\* 1)(1\*\inv{\Delta})\inv{\Delta}&\Delta\text{natural}\\
-        &=\Delta (e \* 1) \inv{\Delta}\Delta\inv{\Delta} &\text{Frobenius}\\
-        &=\Delta (e \* 1) \inv{\Delta} &\Delta\text{ total}\
-      \end{align*}
-      which gives $e = \Delta (e \* 1) \inv{\Delta}$.
-    \item[\ref{le:deltaefg}]This equality starts by using the previous equality:
-      \begin{align*}
-        e\Delta &(f \* g) = \Delta (e\* 1) \inv{\Delta} \Delta(f \* g)
-          &\text{by part \ref{le:eisde1}}\\
-        &=\Delta(e  \* 1) \rst{\inv{\Delta}}(f\*g)&\\
-        &=\Delta\rst{\inv{\Delta}}(e \*1)(f\*g)
-          & \text{\rtwo}\\
-        &=\Delta (e f \* g) &\text{ ($f\inv{f} = f$)}.
-      \end{align*}
-      The second and third equalities follow by co-commutativity and naturality of $\Delta$ and $e$
-      being a restriction idempotent.
-    \item[\ref{le:efginvdelta}] As in (\ref{le:deltaefg}), details are only given for the
-      first equality.
-      \begin{align*}
-        (f \* g)&\inv{\Delta} e \\
-        &= (f \* g) \inv{\Delta}\Delta (1\*e) \inv{\Delta}   &\text{part \ref{le:eisde1}}\\
-        &=(f\*g)\rst{\inv{\Delta}}(1\*e) \inv{\Delta}&\\
-        &=(f\*g)(1\*e) \rst{\inv{\Delta}}\inv{\Delta}&\rtwo\\
-        &=(f\*g e)\inv{\Delta}&\rone
-      \end{align*}
-      The other equalities follow from co-commutativity and naturality of $\Delta$ and $e$ being
-      a restriction idempotent.
-    \item[\ref{le:restfg}]Here, we start by using the fact all maps have a partial inverse:
-      \begin{align*}
-        ~&\restr{\Delta (f \* g) \inv{\Delta} } \\
-        &=\Delta (f \* g) \inv{\Delta} \Delta (\inv{f} \* \inv{g}) \inv{\Delta} \\
-        &=\Delta (g \* f) \inv{\Delta} \Delta (\inv{g} \* \inv{f}) \inv{\Delta}& \text{co-commutative} \\
-        &=\Delta(g\Delta \*f)(\inv{g}\*\inv{\Delta}\inv{f})\inv{\Delta}&\text{Frobenius}\\
-        &=\Delta (\Delta\*1)(g \* g \* f)(\inv{g}\*\inv{\Delta}\inv{f})\inv{\Delta}&\Delta \text{ natural}\\
-        &=\Delta (\Delta\*1)(g \* g \* f)\\
-          &\qquad(\inv{g} \* \inv{f}\* \inv{f})(1\* \inv{\Delta})\inv{\Delta}&\inv{\Delta} \text{ natural}\\
-        &=\Delta (\Delta\*1)(\restr{g} \* g \inv{f}\* \restr{f})(1\* \inv{\Delta})\inv{\Delta}&\text{combine maps}\\
-        &=\Delta (\Delta\*1)(\restr{g} \* \restr{g}\,g \inv{f}\restr{f}\* \restr{f})(1\* \inv{\Delta})\inv{\Delta}&\text{restriction axioms}\\
-        &=\Delta (\restr{g}\Delta\*1)(1\*g\inv{f}\restr{f}\* \restr{f})(1\*\inv{\Delta}) \inv{\Delta}&\Delta \text{ natural}\\
-        &=\Delta (\restr{g}\Delta\*1)(1\*g\inv{f}\*1)(1\*\inv{\Delta}\restr{f}) \inv{\Delta}&\inv{\Delta} \text{ natural}\\
-        &=\Delta (\Delta\*1)(1 \* \restr{g}g \inv{f}\*1)(1\*\inv{\Delta}\restr{f}) \inv{\Delta}&\text{This lemma(\ref{le:deltaefg})}\\
-        &=\Delta (\Delta\*1)(1 \* \restr{g}g \inv{f}\restr{f}\*1)(1\*\inv{\Delta}) \inv{\Delta}&\text{This lemma(\ref{le:efginvdelta})}\\
-        &=\Delta (\Delta\*1)(1 \*g \inv{f}\*1)(1\*\inv{\Delta}) \inv{\Delta}&\text{restriction axioms}\\
-        &=\Delta c_{A,A}(\Delta\*1)(1 \*g \inv{f}\*1)(1\*\inv{\Delta}) \inv{\Delta}&\text{co-commutative}\\
-        &=\Delta (1\*\Delta)c_{A,A\*A}(1 \*g \inv{f}\*1)(1\*\inv{\Delta}) \inv{\Delta}&c_{\*}\text{natural}\\
-        &=\Delta (1\*\Delta)(1\*1\*g \inv{f})c_{A,A\*A}(1\*\inv{\Delta}) \inv{\Delta}&c_{\*}\text{natural}\\
-        &=\Delta (1\*\Delta)(1\*1\*g \inv{f})(\inv{\Delta}\*1)c_{A,A} \inv{\Delta}&c_{\*}\text{natural}\\
-        &=\Delta (1\*\Delta)(1\*1\*g \inv{f})(\inv{\Delta}\*1) \inv{\Delta}&c_{\*}\text{co-commutative}\\
-        &=\Delta \inv{\Delta}\Delta (1 \* g \inv{f})\inv{\Delta}&\text{Frobenius}\\
-        &=\Delta(1 \* g \inv{f}) \inv{\Delta}&\Delta\text{ total}
-      \end{align*}
-      Note the pattern in the last few lines of using the co-commutativity of $\Delta$, the
-      naturality of the commutativity isomorphism and finishing with the co-commutativity of
-      $\inv{\Delta}$. In future proofs, these steps will be combined to a single line and referred to
-      as commutativity.
-    \item[\ref{le:hge}]Beginning with the assumption,
-      \begin{align*}
-        (\Delta &(h \* g)\inv{\Delta})h  = \rst{\Delta (h \* g) \inv{\Delta}}h&\\
-        &=\Delta(1 \* g \inv{h}) \inv{\Delta}h&\text{This lemma(\ref{le:restfg})}\\
-        &=\Delta(1 \* g \inv{h}) (h\*h)\inv{\Delta}&\inv{\Delta}\text{ natural}\\
-        &=\Delta(h \* g \rst{\inv{h}}) \inv{\Delta}&\\
-        &=\Delta(h\rst{\inv{h}} \* g) \inv{\Delta}&\text{part (\ref{le:deltaefg})}\\
-         &=\Delta(h\*g)\inv{\Delta}&\text{property of inverse}.
-      \end{align*}
+    \item[\ref{le:eisde1}]
+      \[
+      \raisebox{30pt}{
+      \begin{tikzpicture}
+        \node at (0,1) (start) {};
+        \node at (0,.5) [map] (e) {$\scriptstyle e$};
+        \node at (0,0) (end) {};
+        \draw (start) to (e);
+        \draw (e) to (end);
+      \end{tikzpicture}
+      }
+      \ \raisebox{45pt}{$=$}\
+      \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (0,2) [nabla] (n1) {};
+        \node at (0,1.5) [delta] (d2) {};
+        \node at (0,1) [nabla] (n2) {};
+        \node at (0,.5) [map] (e) {$\scriptstyle e$};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=125] (n1);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw [] (n1) to (d2);
+        \draw [] (d2) to[out=235,in=125] (n2);
+        \draw [] (d2) to[out=305,in=55] (n2);
+        \draw [] (n2) to (e);
+        \draw (e) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [delta] (d2) {};
+        \node at (.25,1.5) [nabla] (n1) {};
+        \node at (0,1) [nabla] (n2) {};
+        \node at (0,.5) [map] (e) {$\scriptstyle e$};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (d2);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw [] (d2) to[out=305,in=125] (n1);
+        \draw [] (d2) to[out=235,in=125] (n2);
+        \draw [] (n1) to[out=270,in=55] (n2);
+        \draw [] (n2) to (e);
+        \draw (e) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [delta] (d2) {};
+        \node at (-.5,1.5) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [map] (e2) {$\scriptstyle e$};
+        \node at (.5,1.5) [map] (e3) {$\scriptstyle e$};
+        \node at (.25,1) [nabla] (n1) {};
+        \node at (0,.5) [nabla] (n2) {};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (d2);
+        \draw [] (d1) to[out=305,in=90] (e3);
+        \draw [] (d2) to[out=305,in=90] (e2);
+        \draw [] (d2) to[out=235,in=90] (e1);
+        \draw (e1) to[out=270,in=125] (n2);
+        \draw (e2) to[out=270,in=125] (n1);
+        \draw (e3) to[out=270,in=55] (n1);
+        \draw [] (n1) to[out=270,in=55] (n2);
+        \draw [] (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (-.25,1.5) [delta] (d2) {};
+        \node at (.25,1) [nabla] (n1) {};
+        \node at (.25,.5) [map] (e2) {$\scriptstyle e$};
+        \node at (0,0) [nabla] (n2) {};
+        \node at (0,-.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (e1);
+        \draw (e1) to (d2);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw [] (d2) to[out=305,in=125] (n1);
+        \draw [] (d2) to[out=235,in=125] (n2);
+        \draw (n1) to (e2);
+        \draw [] (e2) to[out=270,in=55] (n2);
+        \draw [] (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [nabla] (n1) {};
+        \node at (0,1) [delta] (d2) {};
+        \node at (.25,.5) [map] (e2) {$\scriptstyle e$};
+        \node at (0,0) [nabla] (n2) {};
+        \node at (0,-.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (e1);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw (e1) to[out=270,in=125] (n1);
+        \draw [] (n1) to (d2);
+        \draw [] (d2) to[out=305,in=90] (e2);
+        \draw [] (d2) to[out=235,in=125] (n2);
+        \draw (e2) to[out=270,in=55] (n2);
+        \draw [] (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [nabla] (n1) {};
+        \node at (0,1) [delta] (d2) {};
+        \node at (-.25,.5) [map] (e2) {$\scriptstyle e$};
+        \node at (0,0) [nabla] (n2) {};
+        \node at (0,-.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (e1);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw (e1) to[out=270,in=125] (n1);
+        \draw [] (n1) to (d2);
+        \draw [] (d2) to[out=235,in=90] (e2);
+        \draw [] (d2) to[out=305,in=55] (n2);
+        \draw (e2) to[out=270,in=125] (n2);
+        \draw [] (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \]
+\[
+      \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (-.25,1.5) [delta] (d2) {};
+        \node at (.25,1) [nabla] (n1) {};
+        \node at (-.25,.5) [map] (e2) {$\scriptstyle e$};
+        \node at (0,0) [nabla] (n2) {};
+        \node at (0,-.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (e1);
+        \draw (e1) to (d2);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw [] (d2) to[out=305,in=125] (n1);
+        \draw [] (d2) to[out=235,in=90] (e2);
+        \draw (n1) to[out=270,in=55] (n2);
+        \draw [] (e2) to[out=270,in=125] (n2);
+        \draw [] (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \begin{tikzpicture}
+        \node at (0,2.5) (start) {};
+        \node at (0,2) [delta] (d1) {};
+        \node at (-.25,1.5) [delta] (d2) {};
+        \node at (-.5,1) [map] (e2) {$\scriptstyle e$};
+        \node at (0,1) [map] (e1) {$\scriptstyle e$};
+        \node at (.25,.5) [nabla] (n1) {};
+        \node at (-.25,0) [map] (e3) {$\scriptstyle e$};
+        \node at (0,-0.5) [nabla] (n2) {};
+        \node at (0,-1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (d2);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw [] (d2) to[out=305,in=90] (e1);
+        \draw [] (d2) to[out=235,in=90] (e2);
+        \draw (e1) to[out=270,in=125] (n1);
+        \draw (e2) to (e3);
+        \draw (n1) to[out=270,in=55] (n2);
+        \draw [] (e3) to[out=270,in=125] (n2);
+        \draw [] (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}
+      \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (-.25,1.5) [delta] (d2) {};
+        \node at (.25,1) [nabla] (n1) {};
+        \node at (0,.5) [nabla] (n2) {};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (e1);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw (e1) to[out=270,in=90] (d2);
+        \draw [] (d2) to[out=235,in=125] (n2);
+        \draw [] (d2) to[out=305,in=125] (n1);
+        \draw (n1) to[out=270,in=55] (n2);
+        \draw [] (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}
+      \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [nabla] (n1) {};
+        \node at (0,1) [delta] (d2) {};
+        \node at (0,.5) [nabla] (n2) {};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (e1);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw (e1) to[out=270,in=125] (n1);
+        \draw [] (n1) to (d2);
+        \draw [] (d2) to[out=235,in=125] (n2);
+        \draw [] (d2) to[out=305,in=55] (n2);
+        \draw [] (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (e1);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw (e1) to[out=270,in=125] (n1);
+        \draw [] (n1) to (end);
+      \end{tikzpicture}
+      }
+      \,\raisebox{45pt}{.}
+\]
+    \item[\ref{le:deltaefg}]This equality uses the previous equality, the commutativity
+      of restriction idempotents (\rtwo) and the identity $\Delta\rst{\inv{\Delta}} = \Delta$.
+      \[
+      \raisebox{10pt}{
+      \begin{tikzpicture}
+        \node at (0,2) (start) {};
+        \node at (0,1.5) [map] (e) {$\scriptstyle e$};
+        \node at (0,1) [delta] (d2) {};
+        \node at (-.25,.5) [map] (f) {$\scriptstyle f$};
+        \node at (.25,.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,0) (end1) {};
+        \node at (.25,0) (end2) {};
+        \draw (start) to (e);
+        \draw (e) to (d2);
+        \draw (d2) to[out=235,in=90] (f);
+        \draw (d2) to[out=305,in=90] (g);
+        \draw (f) to (end1);
+        \draw (g) to (end2);
+      \end{tikzpicture}
+      }
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [nabla] (n1) {};
+        \node at (0,1) [delta] (d2) {};
+        \node at (-.25,.5) [map] (f) {$\scriptstyle f$};
+        \node at (.25,.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,0) (end1) {};
+        \node at (.25,0) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (e1);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw (e1) to[out=270,in=125] (n1);
+        \draw [] (n1) to (d2);
+        \draw (d2) to[out=235,in=90] (f);
+        \draw (d2) to[out=305,in=90] (g);
+        \draw (f) to (end1);
+        \draw (g) to (end2);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.25) [map] (inverse-delta-r) {$\scriptstyle \rst{\inv{\Delta}}$};
+        \node at (-.25,.5) [map] (f) {$\scriptstyle f$};
+        \node at (.25,.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,0) (end1) {};
+        \node at (.25,0) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (e1);
+        \draw [] (d1) to[out=305,in=55] (inverse-delta-r);
+        \draw (e1) to[out=270,in=125] (inverse-delta-r);
+        \draw (inverse-delta-r) to[out=235,in=90] (f);
+        \draw (inverse-delta-r) to[out=305,in=90] (g);
+        \draw (f) to (end1);
+        \draw (g) to (end2);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (0,2) [map] (inverse-delta-r) {$\scriptstyle \rst{\inv{\Delta}}$};
+        \node at (-.25,1.25) [map] (e1) {$\scriptstyle e$};
+        \node at (-.25,.5) [map] (f) {$\scriptstyle f$};
+        \node at (.25,.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,0) (end1) {};
+        \node at (.25,0) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=125] (inverse-delta-r);
+        \draw [] (d1) to[out=305,in=55] (inverse-delta-r);
+        \draw (inverse-delta-r) to[out=235,in=90] (e1);
+        \draw (e1) to (f);
+        \draw (inverse-delta-r) to[out=305,in=90] (g);
+        \draw (f) to (end1);
+        \draw (g) to (end2);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \raisebox{20pt}{
+        \begin{tikzpicture}
+        \node at (0,1.5) (start) {};
+        \node at (0,1) [delta] (d1) {};
+        \node at (-.25,.5) [map] (f_e) {$\scriptstyle f e$};
+        \node at (.25,.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,0) (end1) {};
+        \node at (.25,0) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (f_e);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw (f_e) to (end1);
+        \draw (g) to (end2);
+      \end{tikzpicture}
+      }
+      \,\raisebox{45pt}{.}
+      \]
+      The second equality ($e\Delta(f\*g) = \Delta(f\*e g)$) follows by co-commutativity. The third
+      equality,  ($e\Delta(f\*g) = \Delta(e f\*e g)$) follows by naturality of $\Delta$.
 
-    \item[\ref{le:dfgisfg}]As $\Delta$ is total and natural, we start with:
-      \begin{align*}
-        f&=\Delta(f\*f)\inv{\Delta}  & \\
-        &= \Delta(f\*1)(1\*f)\inv{\Delta} &  \\
-        &= \Delta(g\*1)(1\*f)\inv{\Delta} &\text{assumption} \\
-        &= \Delta(1\*f)(g\*1)\inv{\Delta} &\text{Identities commute}\\
-        &= \Delta(1\*g)(g\*1)\inv{\Delta} &\text{assumption, co-commutative}\\
-        &= \Delta(g\*g)\inv{\Delta} \\
-        &= g\Delta\inv{\Delta} & \Delta \text{ natural}\\
-        &= g&\Delta\text{ total}.
-      \end{align*}
-    \item[\ref{le:fgisfg}] Immediate from part \ref{le:dfgisfg}.
+    \item[\ref{le:efginvdelta}] As in \ref{le:deltaefg}, details are only given for the
+      first equality. This proof is arrived at by reversing the diagrams of \ref{le:deltaefg}.
+      \[
+      \raisebox{10pt}{
+      \begin{tikzpicture}
+        \node at (0,0) (start) {};
+        \node at (0,.5) [map] (e) {$\scriptstyle e$};
+        \node at (0,1) [nabla] (d2) {};
+        \node at (-.25,1.5) [map] (f) {$\scriptstyle f$};
+        \node at (.25,1.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,2) (end1) {};
+        \node at (.25,2) (end2) {};
+        \draw (start) to (e);
+        \draw (e) to (d2);
+        \draw (d2) to[out=125,in=270] (f);
+        \draw (d2) to[out=55,in=270] (g);
+        \draw (f) to (end1);
+        \draw (g) to (end2);
+      \end{tikzpicture}
+      }
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,0) (start) {};
+        \node at (0,.5) [nabla] (d1) {};
+        \node at (-.25,1) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [delta] (n1) {};
+        \node at (0,2) [nabla] (d2) {};
+        \node at (-.25,2.5) [map] (f) {$\scriptstyle f$};
+        \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,3) (end1) {};
+        \node at (.25,3) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=125,in=270] (e1);
+        \draw [] (d1) to[out=55,in=305] (n1);
+        \draw (e1) to[out=90,in=235] (n1);
+        \draw [] (n1) to (d2);
+        \draw (d2) to[out=125,in=270] (f);
+        \draw (d2) to[out=55,in=270] (g);
+        \draw (f) to (end1);
+        \draw (g) to (end2);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,0) (start) {};
+        \node at (0,.5) [nabla] (d1) {};
+        \node at (-.25,1) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.75) [map] (inverse-delta-r) {$\scriptstyle \rst{\inv{\Delta}}$};
+        \node at (-.25,2.5) [map] (f) {$\scriptstyle f$};
+        \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,3) (end1) {};
+        \node at (.25,3) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=125,in=270] (e1);
+        \draw [] (d1) to[out=55,in=305] (inverse-delta-r);
+        \draw (e1) to[out=90,in=235] (inverse-delta-r);
+        \draw (inverse-delta-r) to[out=125,in=270] (f);
+        \draw (inverse-delta-r) to[out=55,in=270] (g);
+        \draw (f) to (end1);
+        \draw (g) to (end2);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \raisebox{20pt}{
+        \begin{tikzpicture}
+        \node at (0,0) (start) {};
+        \node at (0,.5) [nabla] (d1) {};
+        \node at (-.25,1) [map] (f e) {$\scriptstyle f e$};
+        \node at (.25,1) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,1.5) (end1) {};
+        \node at (.25,1.5) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=125,in=270] (f e);
+        \draw [] (d1) to[out=55,in=270] (g);
+        \draw (f e) to (end1);
+        \draw (g) to (end2);
+      \end{tikzpicture}
+      }
+      \,\raisebox{45pt}{.}
+      \]
+      The other equalities follow for the same reasons as in \ref{le:deltaefg}.
+
+    \item[\ref{le:restfg}]Here, we start by using the fact all maps have a partial inverse,
+      therefore we have:
+      \[
+        \restr{\Delta (f \* g) \inv{\Delta} } =\Delta (f \* g) \inv{\Delta} \Delta (\inv{f} \*
+        \inv{g}) \inv{\Delta}.
+     \]
+     Now, we proceed with showing the rest of the equality via diagrams.
+
+     \[
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (f) {$\scriptstyle f$};
+        \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) [delta] (d2) {};
+        \node at (-.5,1) [map] (f-inverse) {$\scriptstyle \inv{f}$};
+        \node at (.5,1) [map] (g-inverse) {$\scriptstyle \inv{g}$};
+        \node at (0, .5) [nabla] (n2) {};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (f);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw (f) to[out=270,in=125] (n1);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (n1) to (d2);
+        \draw [] (d2) to[out=235,in=90] (f-inverse);
+        \draw [] (d2) to[out=305,in=90] (g-inverse);
+        \draw (f-inverse) to[out=270,in=125] (n2);
+        \draw (g-inverse) to[out=270,in=55] (n2);
+        \draw (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.25,2.5) [map] (f) {$\scriptstyle f$};
+        \node at (-.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) [delta] (d2) {};
+        \node at (.5,1) [map] (f-inverse) {$\scriptstyle \inv{f}$};
+        \node at (-.5,1) [map] (g-inverse) {$\scriptstyle \inv{g}$};
+        \node at (0, .5) [nabla] (n2) {};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (g);
+        \draw [] (d1) to[out=305,in=90] (f);
+        \draw (g) to[out=270,in=125] (n1);
+        \draw (f) to[out=270,in=55] (n1);
+        \draw (n1) to (d2);
+        \draw [] (d2) to[out=235,in=90] (g-inverse);
+        \draw [] (d2) to[out=305,in=90] (f-inverse);
+        \draw (g-inverse) to[out=270,in=125] (n2);
+        \draw (f-inverse) to[out=270,in=55] (n2);
+        \draw (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.25,2.5) [map] (f) {$\scriptstyle f$};
+        \node at (-.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,2) [delta] (d2) {};
+        \node at (.25, 1.5) [nabla] (n1) {};
+        \node at (.5,1) [map] (f-inverse) {$\scriptstyle \inv{f}$};
+        \node at (-.5,1) [map] (g-inverse) {$\scriptstyle \inv{g}$};
+        \node at (0, .5) [nabla] (n2) {};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (g);
+        \draw [] (d1) to[out=305,in=90] (f);
+        \draw (g) to (d2);
+        \draw (d2) to[out=305,in=125] (n1);
+        \draw (f) to[out=270,in=55] (n1);
+        \draw (n1) to (f-inverse);
+        \draw [] (d2) to[out=235,in=90] (g-inverse);
+        \draw (g-inverse) to[out=270,in=125] (n2);
+        \draw (f-inverse) to[out=270,in=55] (n2);
+        \draw (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [delta] (d2) {};
+        \node at (-.5,2) [map] (rest-g) {$\scriptstyle \rst{g}$};
+        \node at (0,2) [map] (g) {$\scriptstyle g$};
+        \node at (.75,1.5) [map] (rest-f) {$\scriptstyle \rst{f}$};
+        \node at (0.1,1.5) [map] (f-inverse) {$\scriptstyle \inv{f}$};
+        \node at (.25, 1) [nabla] (n1) {};
+        \node at (0, .5) [nabla] (n2) {};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (d2);
+        \draw [] (d1) to[out=305,in=90] (rest-f);
+        \draw (d2) to[out=235,in=90] (rest-g);
+        \draw (d2) to[out=305,in=90] (g);
+        \draw (rest-g) to[out=270,in=125] (n2);
+v        \draw (g) to (f-inverse);
+        \draw (f-inverse) to[out=270,in=125] (n1);
+        \draw (rest-f) to[out=270,in=55] (n1);
+        \draw (n1) to[out=270,in=55] (n2);
+        \draw (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+     \]
+     \[
+      \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.35,2.5) [delta] (d2) {};
+        \node at (0,1.75) [map] (g-f-inverse) {$\scriptstyle g \inv{f}$};
+        \node at (.35, 1) [nabla] (n1) {};
+        \node at (0, .5) [nabla] (n2) {};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (d2);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw (d2) to[out=235,in=125] (n2);
+        \draw (d2) to[out=305,in=90] (g-f-inverse);
+        \draw (g-f-inverse) to[out=270,in=125] (n1);
+        \draw (n1) to[out=270,in=55] (n2);
+        \draw (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.35,2.5) [delta] (d2) {};
+        \node at (.35, 2) [nabla] (n1) {};
+        \node at (-.35,1.25) [map] (g-f-inverse) {$\scriptstyle g \inv{f}$};
+        \node at (0, .5) [nabla] (n2) {};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (d2);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw (d2) to[out=305,in=125] (n1);
+        \draw (d2) to[out=235,in=90] (g-f-inverse);
+        \draw (g-f-inverse) to[out=270,in=125] (n2);
+        \draw (n1) to[out=270,in=55] (n2);
+        \draw (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) [delta] (d2) {};
+        \node at (-.5,1) [map] (g-f-inverse) {$\scriptstyle g\inv{f}$};
+        \node at (0, .5) [nabla] (n2) {};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=125] (n1);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw (n1) to (d2);
+        \draw [] (d2) to[out=235,in=90] (g-f-inverse);
+        \draw [] (d2) to[out=305,in=55] (n2);
+        \draw (g-f-inverse) to[out=270,in=125] (n2);
+        \draw (n2) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \raisebox{15pt}{
+       \begin{tikzpicture}
+        \node at (0,2) (start) {};
+        \node at (0,1.5) [delta] (d2) {};
+        \node at (.5,1) [map] (g-f-inverse) {$\scriptstyle g\inv{f}$};
+        \node at (0, .5) [nabla] (n2) {};
+        \node at (0,0) (end) {};
+        \draw [] (start) to (d2);
+        \draw [] (d2) to[out=305,in=90] (g-f-inverse);
+        \draw [] (d2) to[out=235,in=125] (n2);
+        \draw (g-f-inverse) to[out=270,in=55] (n2);
+        \draw (n2) to (end);
+      \end{tikzpicture}
+      }
+      \,\raisebox{45pt}{.}
+     \]
+    \item[\ref{le:hge}]Beginning with the assumption that $\Delta (h \* g)\inv{\Delta}$ equals its
+      restriction and by item \ref{le:restfg}, we have:
+      \[
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (h1) {$\scriptstyle h$};
+        \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) [map] (h) {$\scriptstyle h$};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (h1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw (h1) to[out=270,in=125] (n1);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (n1) to (h);
+        \draw (h) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.5,2.5) [map] (g-h-inverse) {$\scriptstyle g\inv{h}$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) [map] (h) {$\scriptstyle h$};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=125] (n1);
+        \draw [] (d1) to[out=305,in=90] (g-h-inverse);
+        \draw (g-h-inverse) to[out=270,in=55] (n1);
+        \draw (n1) to (h);
+        \draw (h) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.5,2.25) [map] (g-h-inverse) {$\scriptstyle g\inv{h}$};
+        \node at (-.25,1.5) [map] (h1) {$\scriptstyle h$};
+        \node at (.25,1.5) [map] (h2) {$\scriptstyle h$};
+        \node at (0, 1) [nabla] (n1) {};
+        \node at (0,.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (h1);
+        \draw [] (d1) to[out=305,in=90] (g-h-inverse);
+        \draw (g-h-inverse) to[out=270,in=90] (h2);
+        \draw (h1) to[out=270,in=125] (n1);
+        \draw (h2) to[out=270,in=55] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.5,2.25) [map] (g-h-inverse) {$\scriptstyle g\rst{\inv{h}}$};
+        \node at (-.25,1.5) [map] (h1) {$\scriptstyle h$};
+        \node at (0, 1) [nabla] (n1) {};
+        \node at (0,.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (h1);
+        \draw [] (d1) to[out=305,in=90] (g-h-inverse);
+        \draw (h1) to[out=270,in=125] (n1);
+        \draw (g-h-inverse) to[out=270,in=55] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.25,2.25) [map] (g) {$\scriptstyle g$};
+        \node at (-.5,1.5) [map] (h1) {$\scriptstyle h\rst{\inv{h}}$};
+        \node at (0, 1) [nabla] (n1) {};
+        \node at (0,.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (h1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw (h1) to[out=270,in=125] (n1);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,2.5) [map] (h1) {$\scriptstyle h$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (h1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw (h1) to[out=270,in=125] (n1);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \ \raisebox{45pt}{$=$}\
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (.25,2.5) [map] (h1) {$\scriptstyle h$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (h1);
+        \draw [] (d1) to[out=235,in=90] (g);
+        \draw (h1) to[out=270,in=55] (n1);
+        \draw (g) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \,\raisebox{45pt}{.}
+      \]
+
+    \item[\ref{le:dfgisfg}] Our assumption is that:
+      \[
+        \begin{tikzpicture}
+        \node at (0,1.5) (start) {};
+        \node at (0,1) [delta] (d1) {};
+        \node at (-.25,.5) [map] (g) {$\scriptstyle g$};
+        \node at (-.25, 0) (end1) {};
+        \node at (.25,0) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (end2);
+        \draw [] (d1) to[out=235,in=90] (g);
+        \draw (g) to (end1);
+      \end{tikzpicture}
+      \ \raisebox{20pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,1.5) (start) {};
+        \node at (0,1) [delta] (d1) {};
+        \node at (-.25,.5) [map] (f) {$\scriptstyle f$};
+        \node at (-.25, 0) (end1) {};
+        \node at (.25,0) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (end2);
+        \draw [] (d1) to[out=235,in=90] (f);
+        \draw (f) to (end1);
+      \end{tikzpicture}
+      \raisebox{20pt}{ and by co-commutativity, }
+        \begin{tikzpicture}
+        \node at (0,1.5) (start) {};
+        \node at (0,1) [delta] (d1) {};
+        \node at (.25,.5) [map] (g) {$\scriptstyle g$};
+        \node at (.25, 0) (end1) {};
+        \node at (-.25,0) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (end2);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw (g) to (end1);
+      \end{tikzpicture}
+      \ \raisebox{20pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,1.5) (start) {};
+        \node at (0,1) [delta] (d1) {};
+        \node at (.25,.5) [map] (f) {$\scriptstyle f$};
+        \node at (.25, 0) (end1) {};
+        \node at (-.25,0) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (end2);
+        \draw [] (d1) to[out=305,in=90] (f);
+        \draw (f) to (end1);
+      \end{tikzpicture}
+      \,\raisebox{20pt}{.}
+      \]
+      Hence,
+      \[
+      \ \raisebox{45pt}{$f=$}\
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (f1) {$\scriptstyle f$};
+        \node at (.25,2.5) [map] (f2) {$\scriptstyle f$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (f2);
+        \draw [] (d1) to[out=235,in=90] (f1);
+        \draw (f2) to[out=270,in=55] (n1);
+        \draw (f1) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (f1) {$\scriptstyle f$};
+        \node at (.25,2) [map] (f2) {$\scriptstyle f$};
+        \node at (0, 1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (f2);
+        \draw [] (d1) to[out=235,in=90] (f1);
+        \draw (f2) to[out=270,in=55] (n1);
+        \draw (f1) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (g1) {$\scriptstyle g$};
+        \node at (.25,2) [map] (f2) {$\scriptstyle f$};
+        \node at (0, 1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (f2);
+        \draw [] (d1) to[out=235,in=90] (g1);
+        \draw (f2) to[out=270,in=55] (n1);
+        \draw (g1) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2) [map] (g1) {$\scriptstyle g$};
+        \node at (.25,2.5) [map] (f2) {$\scriptstyle f$};
+        \node at (0, 1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (f2);
+        \draw [] (d1) to[out=235,in=90] (g1);
+        \draw (f2) to[out=270,in=55] (n1);
+        \draw (g1) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2) [map] (g1) {$\scriptstyle g$};
+        \node at (.25,2.5) [map] (g2) {$\scriptstyle g$};
+        \node at (0, 1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (g2);
+        \draw [] (d1) to[out=235,in=90] (g1);
+        \draw (g2) to[out=270,in=55] (n1);
+        \draw (g1) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$= g.$}\
+      \]
+    \item[\ref{le:fgisfg}] Use the same diagrammatic argument as in item \ref{le:dfgisfg}.
   \end{enumerate}
 \end{proof}
 
-\begin{proposition}
-  A discrete inverse category has meets, where $f\cap g =\Delta (f\* g) \inv{\Delta}$.
+\begin{proposition}\label{prop:discrete_inverse_category_has_meets}
+  A discrete inverse category has meets, where $f\meet g =\Delta (f\* g) \inv{\Delta}$.
 \end{proposition}
 \begin{proof}
-  $f\cap g \le f$:
-  \begin{align*}
-    f\cap g&= \Delta (f\*g) \inv{\Delta}&\text{Definition of }\cap \\
-    &= \Delta (f\restr{\inv{f}}\*g) \inv{\Delta} &\text{property of inverse}\\
-    &= \Delta (f \* g\restr{\inv{f}}) \inv{\Delta} &\text{by lemma \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}(\ref{le:efginvdelta})}\\
-    &= \Delta (f \* g\inv{f}f) \inv{\Delta} &\text{definition of inverse}\\
-    &= \Delta (1 \* g\inv{f}) \inv{\Delta} f &\inv{\Delta}\text{ natural}\\
-    &=\restr{f \cap g} f &\text{by lemma \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}(\ref{le:restfg})}\\
-  \end{align*}
+  $f\meet g \le f$:
+  \[
+  \raisebox{45pt}{$f\meet g =$}
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (f) {$\scriptstyle f$};
+        \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw [] (d1) to[out=235,in=90] (f);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (f) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \raisebox{45pt}{$=$}
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.5,2.5) [map] (f) {$\scriptstyle f\rst{\inv{f}}$};
+        \node at (.25,2.5) [map] (g) {$\scriptstyle g$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw [] (d1) to[out=235,in=90] (f);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (f) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \raisebox{45pt}{$=$}
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2.5) [map] (f) {$\scriptstyle f$};
+        \node at (.5,2.5) [map] (g) {$\scriptstyle g\rst{\inv{f}}$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw [] (d1) to[out=235,in=90] (f);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (f) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \raisebox{45pt}{$=$}
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (-.25,2) [map] (f) {$\scriptstyle f$};
+        \node at (.5,2.5) [map] (g) {$\scriptstyle g\inv{f}$};
+        \node at (.25,2) [map] (f2) {$\scriptstyle f$};
+        \node at (0, 1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw [] (d1) to[out=235,in=90] (f);
+        \draw (g) to (f2);
+        \draw (f2) to[out=270,in=55] (n1);
+        \draw (f) to[out=270,in=125] (n1);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.5,2.5) [map] (g) {$\scriptstyle g\inv{f}$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) [map] (f) {$\scriptstyle f$};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=305,in=90] (g);
+        \draw [] (d1) to[out=235,in=125] (n1);
+        \draw (g) to[out=270,in=55] (n1);
+        \draw (n1) to (f);
+        \draw (f) to (end);
+      \end{tikzpicture}
+      \ \raisebox{45pt}{$= \rst{f\meet g}f.$}
+  \]
 
-  $f\cap f = f$:
-  \begin{align*}
-    f\cap f &= \Delta(f\* f) \inv{\Delta}\\
-    &=f \Delta \inv{\Delta} &\Delta\text{ natural}\\
-    &= f&\Delta\text{ total}.
-  \end{align*}
+  $f\meet f = f$:
+  \begin{equation*}
+    f\meet f = \Delta(f\* f) \inv{\Delta} =f \Delta \inv{\Delta} = f\Delta.
+  \end{equation*}
 
-  $h(f\cap g) = h f \cap hg$:
+  $h(f\meet g) = h f \meet h g$:
   \begin{align*}
-    h(f\cap g) &= h \Delta(f\* g) \inv{\Delta}& \text{Definition of }\cap\\
+    h(f\meet g) &= h \Delta(f\* g) \inv{\Delta}& \text{Definition of }\meet\\
     &= \Delta(h \* h) (f \* g) \inv{\Delta} &\Delta\text{ natural}\\
-    &= \Delta(h f\* hg) \inv{\Delta} &\text{compose maps}\\
-    &= h f \cap hg&\text{Definition of }\cap.
+    &= \Delta(h f\* h g) \inv{\Delta} &\text{compose maps}\\
+    &= h f \meet h g&\text{Definition of }\meet.
   \end{align*}
 \end{proof}
+
+\begin{example}[\pinj is a discrete inverse category]\label{ex:pinj_is_a_discrete_inverse_category}
+  In the inverse category \pinj (see Example~\ref{ex:pinj_is_an_inverse_category}), suppose we add
+  the tensor given by the Cartesian product of sets. In detail, this means:
+  \begin{align*}
+    A \* B &= \{(a,b)| a\in A, b\in B\}\\
+    f \* g &= \{((a,c),(b,d)) | (a,b) \in f, (c,d) \in g\}\\
+    1 & = \{*\}\text{, a single element set.}
+  \end{align*}
+  The symmetric monoid isomorphisms are:
+    \begin{align*}
+      \usl &: \{(*,a)\} \mapsto \{a\}
+      &\usr &: \{(a,*)\} \mapsto \{a\}\\
+      a_{\*} &: \{((a,b),c)\} \mapsto \{(a,(b,c))\}
+      &c_{\*} &: \{(a,b)\} \mapsto \{(b,a)\}
+    \end{align*}
+
+  Define $\Delta_A = \{(a,(a,a)) | a\in A\}$. Then \pinj is a discrete inverse category with the
+  inverse product of $\*$. The required properties of co-commutativity, co-associativity and
+  exchange are immediately obvious. To show the Frobenius rule for $\Delta$, first note that
+  $\inv{\Delta}$ is defined only on the elements of $A\*A$ which agree in the first and second
+  co-ordinate. We show the upper triangle of the Frobenius diagram in
+  detail. Equation~\ref{eq:delta_inverse_delta} shows the result of applying $\Delta$ followed by
+  $\inv{\Delta}$.
+  \begin{equation}
+    \Delta(\inv{\Delta}(A\*A)) = \Delta(\{a | (a,a) \in A\*A\})
+    = \{(a,a) | (a,a) \in A\* A\}.\label{eq:delta_inverse_delta}
+  \end{equation}
+  Applying $(\Delta \* 1)a_{\*}$ to $A\*A$ is shown in Equation~\ref{eq:delta_tensor_one}.
+  \begin{equation}
+    a_{\*}(\Delta\*1(A\*A)) = a_{\*}(\{((a,a),a') | (a,a') \in A\*A\} = \{(a,(a,a')) | (a,a') \in
+    A\* A\}.\label{eq:delta_tensor_one}
+  \end{equation}
+  Finally, applying $1 \* \inv{\Delta}$ to the result of Equation~\ref{eq:delta_tensor_one} gives us
+  Equation~\ref{eq:one_tensor_delta_inverse}.
+  \begin{equation}
+    (1\*\inv{\Delta})(\{(a,(a,a')) | (a,a') \in  A\* A\} = \{(a,a) | (a,a) \in A\* A\} \label{eq:one_tensor_delta_inverse}.
+  \end{equation}
+  Thus, we have $\inv{\Delta}\Delta = (\Delta \* 1) a_{\*} (1\*\inv{\Delta})$ and the Frobenius
+  condition is satisfied.
+\end{example}
 % subsection discrete_inverse_categories (end)
 
 
@@ -423,7 +1397,8 @@ a Cartesian restriction category.
 \label{sub:the_inverse_subcategory_of_a_discrete_restriction_category}
 
 Given a discrete restriction category, one can pick out the maps which are partial isomorphisms.
-Using results from the previous sub-section and from sub-section~\ref{sub:discrete_categories},
+Using results from Sub-Section~\ref{sub:discrete_inverse_categories} and from
+Sub-Section~\ref{sub:discrete_restriction_categories},
 this section will show that these maps form a restriction subcategory and in fact form a discrete
 inverse category.
 
@@ -556,7 +1531,7 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
 \label{sub:equivalence_classes_of_maps_in_hypx}
 
 
-\begin{definition}\label{defn:xequivalence}
+\begin{definition}\label{def:xequivalence}
   In a discrete inverse category \X as defined above, the map $f$ is equivalent to $f'$ in \X when
   $\restr{f} = \restr{f'}$ in \X and the below diagram commutes for some map $h$:
   \[
@@ -564,21 +1539,22 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
       & & B \* C \ar@{.>}[dr]^{(\Delta\* 1) \, a_{\*}}\\
       && & B \* (B\* C) \ar@{.>}[dd]^{1\* h} \\
       A \ar[uurr]^f \ar[ddrr]_{f'}&&&\\
-      && & B \* (B \* C') \ar@{.>}[dl]^(.4){\ \inv{a_{\*}}\,(\inv{\Delta}\* 1)}\\
+      && & B \* (B \* C'). \ar@{.>}[dl]^(.4){\ \inv{a_{\*}}\,(\inv{\Delta}\* 1)}\\
       && B\* C'
     }
   \]
 \end{definition}
 
-\begin{notation}
-  When $f$ is equivalent to $g$ via the mediating map $h$, this is written as:
+\begin{notation}\label{notn:xequivalence}
+  When $f$ is equivalent to $g$ as in Definition~\ref{def:xequivalence} via the mediating map $h$,
+  this is written as:
   \[
     f\xequiv{h}g.
   \]
 \end{notation}
 
 \begin{lemma}\label{lem:mediating_map_equivalence_is_symmetric_reflexive_and_transitive}
-  Definition~\ref{defn:xequivalence} gives a symmetric, reflexive equivalence class of maps in \X.
+  Definition~\ref{def:xequivalence} gives a symmetric, reflexive equivalence class of maps in \X.
 \end{lemma}
 \begin{proof}
   \prepprooflist
@@ -606,6 +1582,35 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
         \ell = ((\Delta \* 1)  a_{\*}  (1 \* h ) \inv{a_{\*}} (\inv{\Delta}\* 1))
           ( (\Delta \* 1) a_{\*}  (1 \* k) \inv{a_{\*}} (\inv{\Delta}\* 1)).
       \]
+
+      In string diagram form, this is:
+      \[
+      \ \raisebox{45pt}{$\ell=$}\
+        \begin{tikzpicture}
+          \node at (0.5,4) (s1) {};
+          \node at (1,4) (s2) {};
+          \node at (0.5,3.5) [delta] (d2) {};
+          \node at (1,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.5, 2.5) [nabla] (n2) {};
+          \node at (0.5,2) [delta] (d3) {};
+          \node at (1,1.5) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.5, 1) [nabla] (n3) {};
+          \node at (0.5,.5) (end1) {};
+          \node at (1,.5) (end2) {};
+          \draw [] (s1) to (d2);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (h);
+          \draw [] (d2) to[out=235,in=125] (n2);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=125] (n3);
+          \draw (k) to[out=235,in=55] (n3);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to (end1);
+        \end{tikzpicture}
+      \]
       By pasting the diagrams which give the above equivalences, we see that $f \ell = f''$.
       However, $\ell$ is not in the form of a mediating map as presented.
 
@@ -613,33 +1618,159 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
       $f(\Delta \* 1)a_{\*}(1 \* \ell)\inv{a_{\*}}(\inv{\Delta}\*1) = f''$. In the interest of some
       brevity, this is shown below with the associativity maps elided from the equations.
 
-      We need to show that $(\Delta \* 1)(1 \* \ell)(\inv{\Delta}\*1) = \ell$.
-      \begin{align*}
-        (\Delta &\* 1)(1 \* \ell)(\inv{\Delta}\*1) \\
-        &=
-          (\Delta \* 1)(1\*\Delta \* 1)  (1\*1 \* h ) (1\*\inv{\Delta}\* 1))\\
-          &\qquad
-            (1\*\Delta \* 1) (1\* 1 \* k) (1\*\inv{\Delta}\* 1)(\inv{\Delta}\* 1)\\
-        &=
-          (\Delta \* 1)(\Delta \* 1\*1)  (1\*1 \* h ) (1\*\inv{\Delta}\* 1))\\
-          & \qquad
-            (1\*\Delta \* 1) (1\* 1 \* k) (\inv{\Delta}\*1\* 1)(\inv{\Delta}\* 1)
-              &\text{co-associativity}\\
-        &=
-          (\Delta \* 1)  (1 \* h ) (\Delta \* 1\*1)(1\*\inv{\Delta}\* 1)) \\
-          &\qquad
-            (1\*\Delta \* 1)  (\inv{\Delta}\*1\* 1)(1 \* k)(\inv{\Delta}\* 1)&\text{Naturality}\\
-        &=
-          (\Delta \* 1)  (1 \* h ) (\inv{\Delta} \*1)(\Delta\* 1)) \\
-          &\qquad
-            (\inv{\Delta} \* 1)  (\Delta \* 1)(1 \* k)(\inv{\Delta}\* 1)&\text{Frobenius}\\
-        &=
-          (\Delta \* 1)  (1 \* h ) (\inv{\Delta} \*1)
-          (\Delta \* 1)(1 \* k)(\inv{\Delta}\* 1)&\Delta\text{ Total}\\
-        &= \ell
-      \end{align*}
-  \end{description}
-  and therefore $f\xequiv{\ell}f''$.
+      We need to show that $(\Delta \* 1)(1 \* \ell)(\inv{\Delta}\*1) = \ell$. Diagrammatically, the
+      left hand side $=$
+      \[
+        \begin{tikzpicture}
+          \node at (0,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0,4) [delta] (d1) {};
+          \node at (0.25,3.5) [delta] (d2) {};
+          \node at (.65,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.25, 2.5) [nabla] (n2) {};
+          \node at (0.25,2) [delta] (d3) {};
+          \node at (.65,1.5) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.25, 1) [nabla] (n3) {};
+          \node at (0, .5) [nabla] (n1) {};
+          \node at (0,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=305,in=90] (d2);
+          \draw (d1) to[out=235,in=125] (n1);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (h);
+          \draw [] (d2) to[out=235,in=125] (n2);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=125] (n3);
+          \draw (k) to[out=235,in=55] (n3);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to[out=270,in=55] (n1);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{65pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0.25,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0.25,4) [delta] (d1) {};
+          \node at (0,3.5) [delta] (d2) {};
+          \node at (.65,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.25, 2.5) [nabla] (n2) {};
+          \node at (0.25,2) [delta] (d3) {};
+          \node at (.65,1.5) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0, 1) [nabla] (n3) {};
+          \node at (0.25, .5) [nabla] (n1) {};
+          \node at (0.25,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=90] (d2);
+          \draw (d1) to[out=305,in=125] (h);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (n2);
+          \draw [] (d2) to[out=235,in=125] (n3);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=55] (n3);
+          \draw (k) to[out=235,in=55] (n1);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to[out=270,in=125] (n1);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{65pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0.25,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0.25,4) [delta] (d1) {};
+          \node at (.65,3.5) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0,3) [delta] (d2) {};
+          \node at (0.25, 2.5) [nabla] (n2) {};
+          \node at (0.25,2) [delta] (d3) {};
+          \node at (0, 1.5) [nabla] (n3) {};
+          \node at (.65,1) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.25, .5) [nabla] (n1) {};
+          \node at (0.25,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=90] (d2);
+          \draw (d1) to[out=305,in=125] (h);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (n2);
+          \draw [] (d2) to[out=235,in=125] (n3);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=55] (n3);
+          \draw (k) to[out=235,in=55] (n1);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to[out=270,in=125] (n1);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{65pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0.25,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0.25,4) [delta] (d1) {};
+          \node at (.65,3.5) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.25, 3) [nabla] (n2) {};
+          \node at (0.25,2.5) [delta] (d2) {};
+          \node at (0.25, 2) [nabla] (n3) {};
+          \node at (0.25,1.5) [delta] (d3) {};
+          \node at (.65,1) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.25, .5) [nabla] (n1) {};
+          \node at (0.25,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=125] (n2);
+          \draw (d1) to[out=305,in=125] (h);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw [] (d2) to[out=305,in=55] (n3);
+          \draw [] (d2) to[out=235,in=125] (n3);
+          \draw (n2) to (d2);
+          \draw (n3) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=125] (n1);
+          \draw (k) to[out=235,in=55] (n1);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{65pt}{$=$}\
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+          \node at (0.5,4) (s1) {};
+          \node at (1,4) (s2) {};
+          \node at (0.5,3.5) [delta] (d2) {};
+          \node at (1,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.5, 2.5) [nabla] (n2) {};
+          \node at (0.5,2) [delta] (d3) {};
+          \node at (1,1.5) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.5, 1) [nabla] (n3) {};
+          \node at (0.5,.5) (end1) {};
+          \node at (1,.5) (end2) {};
+          \draw [] (s1) to (d2);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (h);
+          \draw [] (d2) to[out=235,in=125] (n2);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=125] (n3);
+          \draw (k) to[out=235,in=55] (n3);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to (end1);
+        \end{tikzpicture}
+        }
+      \ \raisebox{65pt}{$=\ell.$}
+      \]
+    \end{description}
+    Thus,  $f\xequiv{\ell}f''$.
 \end{proof}
 
 \begin{corollary}\label{cor:equivalence_simplified_diagram}
@@ -654,15 +1785,37 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
   commutes for some $h$, then there is a $h'$ such that $f\xequiv{h'}g$.
 \end{corollary}
 \begin{proof}
-  Consider
-  \begin{align*}
-    (\Delta \*1)\,a_{\*}\,(1\*(1\*h))\,&\inv{a_{\*}}(\inv{\Delta}\*1)\\
-    & = (\Delta \*1)\,((1\*1)\*h)\,a_{\*}\inv{a_{\*}}(\inv{\Delta}\*1) & \text{Naturality}\\
-    &=(\Delta \*1)\,((1\*1)\*h)\,(\inv{\Delta}\*1) & \text{Isomorphism Inverse}\\
-    &=(\Delta (1\*1) \inv{\Delta})\* h & \text{Naturality of }\*\\
-    &=(1\* h) & \Delta  \inv{\Delta}=1\\
-  \end{align*}
-  and therefore we can set $h' = 1 \* h$.
+  This follows immediately from
+  \[
+    \begin{tikzpicture}
+      \node at (0,2) (s1) {};
+      \node at (.5,2) (s2) {};
+      \node at (0,1.5) [delta] (d1) {};
+      \node at (.5,1) [map] (h) {$\scriptstyle h$};
+      \node at (0,.5) [nabla] (n1) {};
+      \node at (0,0) (end1) {};
+      \node at (.5,0) (end2) {};
+      \draw [] (s1) to (d1);
+      \draw [] (s2) to (h);
+      \draw [] (d1) to[out=305,in=55] (n1);
+      \draw [] (d1) to[out=235,in=125] (n1);
+      \draw (h) to (end2);
+      \draw (n1) to (end1);
+    \end{tikzpicture}
+    \ \raisebox{28pt}{$=\ $}
+    \begin{tikzpicture}
+      \node at (0.25,2) (s1) {};
+      \node at (.5,2) (s2) {};
+      \node at (.5,1) [map] (h) {$\scriptstyle h$};
+       \node at (0.25,0) (end1) {};
+      \node at (.5,0) (end2) {};
+      \draw [] (s1) to (end1);
+      \draw [] (s2) to (h);
+      \draw (h) to (end2);
+    \end{tikzpicture}
+    \ \raisebox{28pt}{$= 1\* h$.}
+  \]
+  Therefore we can set $h' = 1 \* h$.
 \end{proof}
 % end_fold sub:equivalence_classes_of_maps_in_hypx
 
@@ -671,19 +1824,19 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
 
 \begin{definition}\label{def:xt}
   When \X is an inverse category, define \Xt\ as:
-  \category{objects as in \X}
+  \categoryns{objects as in \X;}
   {
-    equivalence classes of maps as in Definition~\ref{defn:xequivalence} with the following
-    structure in \X: %
+    A map $(f,C):A\to B$ in \Xt is the equivalence class of the map $f:A\to B\*C$ as in
+    Definition~\ref{def:xequivalence} with the following relationship between maps in \Xt and \X: %
     \[
-      \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
-      \]
+      \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt};
+    \]
   }
   {% identity
     by
     \[
       \infer{A\xrightarrow{\inv{u_{\*}^r}}A\* 1}
-            {A \xrightarrow{(\inv{u_{\*}^r}, 1)} A}
+            {A \xrightarrow{(\inv{u_{\*}^r}, 1)} A};
     \]
   }
   {% composition
@@ -693,7 +1846,7 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
         \infer{A\xrightarrow{(f (g\*1) a_{\*},C' \* B')} C}
               {A\xrightarrow{f (g\*1) a_{\*}} C \* (C' \* B')}
             }
-            {A \xrightarrow{\ (f,B')\ } B \xrightarrow{\ (g,C')\ } C}
+            {A \xrightarrow{\ (f,B')\ } B \xrightarrow{\ (g,C')\ } C}.
     \]
   }
 
@@ -736,11 +1889,11 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
     & = \restr{f(g\*1)a_{\*} (h\*1)} & \restr{a_{\*}}=1 \\
     & = \restr{f(g\*1) ((h\*1)\*1) a_{\*} } & a_{\*}\text{ natural} \\
     & = \restr{f(g\*1) ((h\*1)\*1) }
-      & a_{\*}   \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+      &  \text{Lemma \ref{lem:restrictionvarious}}\\
     & = \restr{f(g\*1) ((h\*1)\*1) (a_{\*}\*1)}
-      & a_{\*}\*1 \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+      & \text{Lemma \ref{lem:restrictionvarious}}\\
     & = \restr{f((g (h\*1)a )\*1)} & \text{ see above}\\
-    & = \restr{f((g (h\*1)a )\*1)a_{\*}} & a_{\*}   \text{ iso}
+    & = \restr{f((g (h\*1)a )\*1)a_{\*}} & a_{\*}.
   \end{align*}
 
   For the mediating map, see the diagram below, where the calculation is in \X. The path starting at
@@ -763,7 +1916,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
         \ar[u]_{a_\*} \ar[dll]_{a_{\*}\*1}
       \\
       \xtdmn{(\xtdmn{D}{D' \* C'})}{B'}  \ar[rrr]_{a_{\*}}
-        &&& \xtdmn{D}{(D' \* C') \* B'} %\ar @/^14pt/ [uu]^{1\*a_{\*}}
+        &&& \xtdmn{D}{(D' \* C') \* B'}. %\ar @/^14pt/ [uu]^{1\*a_{\*}}
     }
   \]
   From this, we can conclude
@@ -810,7 +1963,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
 
 Define the restriction in \Xt\ as follows:
 \[
-  \infer{A\xrightarrow{\restr{f}  \inv{u_{\*}^r}} A\*1 \text{ in }\X}
+  \infer{A\xrightarrow{\restr{f}  \inv{u_{\*}^r}} A\*1 \text{ in }\X.}
         {\infer{A\xrightarrow{\restr{(f,C)}}A}
                {A\xrightarrow{(f,C)}B}
         }
@@ -822,15 +1975,15 @@ Define the restriction in \Xt\ as follows:
 \begin{proof}
   Given the above definition the four restriction axioms must now be checked. For the remainder of
   this proof, all diagrams will be in $\X$.
-  \begin{description}
-    \item[\rone] ($\restr{f} f = f$) Calculating the restriction of the left hand side in
+
+  \rone ($\restr{f} f = f$). Calculating the restriction of the left hand side in
       \X, we have:
       \begin{align*}
         \restr{\rst{f}\inv{\usr} (f\*1) a_{\*}} & = \restr{\rst{f}\inv{\usr} (f\*1)}
-          & a_{\*}   \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+          & \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{\rst{f}f \inv{\usr}}  & \inv{\usr} \text{ natural}\\
         & = \restr{f \inv{\usr}}  & \text{ \rone in }\X\\
-        & = \restr{f } & \inv{\usr}   \text{ iso, Lemma \ref{lem:restrictionvarious}}.
+        & = \restr{f } & \text{Lemma \ref{lem:restrictionvarious}}.
       \end{align*}
 
       Then, the following diagram
@@ -848,8 +2001,7 @@ Define the restriction in \Xt\ as follows:
       shows $\rst{f}\inv{\usr} (f\*1) a_{\*} \xequiv{1 \* {\usr}} f$ in \X and therefore $\rst{f}f
       = f$ in \Xt.
 
-
-    \item[\rtwo] ($\restr{g} \restr{f} = \restr{f} \restr{g}$) We must show
+     \rtwo ($\restr{g} \restr{f} = \restr{f} \restr{g}$). We must show
       \begin{equation}
         \rst{f}\inv{\usr} ((\restr{g}\inv\usr)\*1)) a_{\*} \xequiv{}
         \rst{g}\inv{\usr}((\restr{f}\inv\usr)\*1) a_{\*}.
@@ -887,10 +2039,10 @@ Define the restriction in \Xt\ as follows:
       \]
       which allows us to conclude $\rst{f} \rst{g} = \rst{g} \rst{f}$ in \Xt.
 
-    \item[\textbf{R.3}] ($\restr{\restr{f} g} = \restr{f} \restr{g}$ ). We must show
+    \rthree ($\restr{\restr{f} g} = \restr{f} \restr{g}$ ). We must show
       \begin{equation}
         \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr} \xequiv{}
-        (\restr{f} \inv{\usr})(\rst{g} \inv{\usr}\* 1) a_{\*}
+        (\restr{f} \inv{\usr})(\rst{g} \inv{\usr}\* 1) a_{\*}.
         \label{eq:rthree_in_xt}
       \end{equation}
       As above, the first step is
@@ -899,30 +2051,26 @@ Define the restriction in \Xt\ as follows:
       hand side in \X:
       \begin{align*}
         \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr}}
-        & = \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}}} & \inv{\usr}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+        & = \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}}} & \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} &
           \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{\restr{f} g \inv{\usr} a_{\*}} & \inv{\usr} \text{ natural}\\
-        & = \restr{\restr{f} g } & \inv{\usr}, a_{\*}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+        & = \restr{\restr{f} g } & \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{f} \rst{g} & \text{\rthree in }\X.
       \end{align*}
       The restriction of the right hand side computes in \X as:
       \begin{align*}
         &\rst{(\restr{f} \inv{\usr})(\rst{g} \inv{\usr}\* 1) a_{\*}}\\
-        & = \rst{(\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) } &  a_{\*}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+        & = \rst{(\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) } &  \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \rst{\restr{f}  \rst{g} \inv{\usr}\inv{\usr} } &  \inv{\usr} \text{ natural}\\
-        & = \rst{\restr{f}  \rst{g} } &\inv{\usr}\inv{\usr}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+        & = \rst{\restr{f}  \rst{g} } &\text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{f} \rst{g} & \text{Lemma \ref{lem:restrictionvarious}}.
       \end{align*}
 
       Additionally, we see $\rst{\rst{f} g}$ in \Xt is expressed in \X as:
       \begin{align*}
         &\restr{(\restr{f} \inv{\usr})(g\* 1) a_{\*}} \inv{\usr} \\
-        & = \rst{f} \inv{\usr} \rst{g\* 1} & \text{\rthree, \rfour, }a_{\*} \text{ iso} \\
+        & = \rst{f} \inv{\usr} \rst{g\* 1} & \text{\rthree, \rfour} \\
         & = \rst{f} \rst{g} \inv{\usr} & \*
           \text{a restriction bi-functor, }\inv{\usr}\text{ natural.}
       \end{align*}
@@ -950,49 +2098,44 @@ Define the restriction in \Xt\ as follows:
           &&A \ar[dr]_{\restr{g}}\\
           &&&A \ar[dr]_{\inv\usr}\\
           &&&&A\*1 \ar@{=}[dr]\\
-          &&&&&A\*1
+          &&&&&A\*1.
         }
       \]
       Hence, in \X, $\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr} \xequiv{1\*\usr}
       (\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) a_{\*}$ and therefore $\restr{\restr{f} g} =
       \restr{f} \restr{g}$ in \Xt.
 
-
-
-    \item[\textbf{R.4}] $f \restr{g} = \restr{f g} f$ We must show
+      \rfour ($f \restr{g} = \restr{f g} f$). We must show
       \begin{equation}
         f (\restr{g} \inv{\usr}\* 1) a_{\*} \xequiv{}
-        \rst{f (g \* 1)} \inv{\usr} (f\* 1) a_{\*}
+        \rst{f (g \* 1)} \inv{\usr} (f\* 1) a_{\*}.
         \label{eq:rfour_in_xt}
       \end{equation}
       The restriction of the left hand side of Equation~\ref{eq:rfour_in_xt} is:
       \begin{align*}
         \rst{f (\restr{g} \inv{\usr}\* 1) a_{\*}}
-          & = \rst{f (\restr{g} \inv{\usr}\* 1)} & a_{\*}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}} \\
+          & = \rst{f (\restr{g} \inv{\usr}\* 1)} & \text{Lemma \ref{lem:restrictionvarious}} \\
         & = \rst{f \rst{g} \inv{\usr}} \* \rst{f} & \* \text{ restriction functor}\\
-        & = \rst{f \rst{g}} \* \rst{f} & \inv{\usr}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}} \\
+        & = \rst{f \rst{g}} \* \rst{f} & \text{Lemma \ref{lem:restrictionvarious}} \\
         & = \rst{f (\rst{g} \* 1)}
       \end{align*}
       and the restriction of the right hand side of Equation~\ref{eq:rfour_in_xt}  is:
       \begin{align*}
         \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) a_{\*}}
-          & = \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) } & a_{\*}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}}\\
+          & = \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) } &  \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \rst{\rst{f (g \* 1)} f \inv{\usr}  } & \inv{\usr} \text{ natural}\\
         & = \rst{f \rst{(g \* 1)}  \inv{\usr}  } & \text{ \rfour for }\X\\
-        & = \rst{f (\rst{g} \* 1)  \inv{\usr}  } & \* \text{ is a restriction functor}\\
-        & = \rst{f (\rst{g} \* 1)    } & \inv{\usr}
-          \text{ iso, Lemma \ref{lem:restrictionvarious}}
+        & = \rst{f (\rst{g} \* 1)  \inv{\usr}  } & \* \text{ a restriction functor}\\
+        & = \rst{f (\rst{g} \* 1)    } & \text{Lemma \ref{lem:restrictionvarious}.}
       \end{align*}
-
       Computing the right hand side of Equation~\ref{eq:rfour_in_xt} in \X,
       \begin{align*}
         \rst{f(g\* 1)a_{\*}} \inv{\usr} (f\* 1) a_{\*}
-          & = \rst{f(g\* 1)} f \inv{\usr} a_{\*} & a_{\*} \text{ iso, } \inv{\usr}\text{ natural.}\\
-        & = f (\rst{g} \* 1) \inv{\usr} a_{\*} & \rfour, \* \text{ a restriction functor.}
+          & = \rst{f(g\* 1)} f \inv{\usr} a_{\*} & \inv{\usr}\text{ natural,}\\
+        & = f (\rst{g} \* 1) \inv{\usr} a_{\*} & \rfour.
       \end{align*}
+
+      Thus,
       \[
         \xymatrix @C=40pt @R=35pt{
           A \ar[r]^f \ar[dr]_{f}
@@ -1006,8 +2149,6 @@ Define the restriction in \Xt\ as follows:
             & B \* (C\*1)
         }
       \]
-  \end{description}
-
   and hence, \Xt\ is a restriction category.
 \end{proof}
 % subsection the_restriction_category_hypxt (end)
@@ -1036,7 +2177,7 @@ Define the restriction in \Xt\ as follows:
       Y \*C\ar[rr]_{\inv{\usl}} & & 1 \*Y \* C
     }
   \]
-  commute, which is true by \rone and from the coherence diagrams for the inverse product tensor.
+  to commute, which is true by \rone and from the coherence diagrams for the inverse product tensor.
 \end{proof}
 
 Next,we show that the category \Xt\ has restriction products, given by the action of \wtc on
@@ -1044,8 +2185,8 @@ the $\*$ tensor in \X.
 
 First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
 \begin{align}
-  \pi_0:\qquad & A \* B \xrightarrow{(1,B)} A \label{eq:defn:pia}\\
-  \pi_1:\qquad & A \* B \xrightarrow{(c_{\*},A)} B \label{eq:defn:pib}
+  \pi_0:\qquad & A \* B \xrightarrow{(1,B)} A, \label{eq:defn:pia}\\
+  \pi_1:\qquad & A \* B \xrightarrow{(c_{\*},A)} B. \label{eq:defn:pib}
 \end{align}
 
 \begin{definition}\label{def:product_map_in_xt}
@@ -1057,7 +2198,7 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
   where associativity is assumed as needed. Note that with the associativity maps, this is actually:
   \begin{equation}
     Z\xrightarrow{(\Delta  ( f \* g )  a_{\*} (1\*\inv{a_{\*}})
-      (1\* (c_{\*} \* 1)) (1\*a_{\*}) \inv{a_{\*}}, C\* C')} A \* B\label{eq:defn:fg2}
+      (1\* (c_{\*} \* 1)) (1\*a_{\*}) \inv{a_{\*}}, C\* C')} A \* B.\label{eq:defn:fg2}
   \end{equation}
 \end{definition}
 
@@ -1073,7 +2214,7 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
   \begin{align*}
     \rst{\<f,g\>}
       &=\rst{\Delta(f\*g)(1\*c_{\*}\*1)}\inv{\usr}&\text{in }\X, \text{ definition of restriction}\\
-    &=\rst{\Delta(f\*g)}\inv{\usr} &c_{\*}\text{ is iso}\\
+    &=\rst{\Delta(f\*g)}\inv{\usr} &\\
     &=\rst{\Delta\rst{(f\*g)}}\inv{\usr} &\text{from Lemma \ref{lem:restrictionvarious}}\\
     &=\rst{\Delta(\rst{f}\*\rst{g})}\inv{\usr} &\*\text{ is a restriction functor}\\
     &=\rst{\rst{f}\,\rst{g}\,\Delta(1\*1)}\inv{\usr}
@@ -1121,7 +2262,7 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
     & = \rst{f} \rst{g}.
   \end{align*}
 
-  The diagram below, shows the required mediating map.
+  The diagram below shows the required mediating map.
   \[
     \xymatrix @C=27pt @R=25pt{
       & & & A \* C \ar[dr]^{\Delta\*1}\\
@@ -1130,7 +2271,7 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
       Z\ar[ur]^{\rst{g}}\ar[dr]_{\Delta}&& & &  A \* A \*C \* Z \ar@{.>}[d]^{1 \* 1 \* 1 \* g}\\
       &Z\*Z\ar[dr]_{f\* g}& & & A\*A\*C\*B\*C'\ar@{.>}[d]^{1\*1\*c_{\*}\*1}\\
       &&A\*C\*B\* C'\ar[dr]_{1\*c_{\*}\*1}&&A\*A\*B\*C\*C'\ar[dl]^{\inv{\Delta}\*1\*1\*1}\\
-      & & & A\*B\*C\*C'
+      & & & A\*B\*C\*C'.
     }
   \]
 \end{proof}
@@ -1168,17 +2309,17 @@ leads us to the following theorem:
 This section will show that the category of discrete inverse categories (maps being restriction
 functors that preserve the inverse tensor) is equivalent to the category of discrete restriction
 categories (maps being the restriction functors which preserve the product). In the following, $\X$
-will always be a discrete inverse category, $\D$ and $\C$ will be discrete restriction categories.
+will always be a discrete inverse category, $\D$ and $\B$ will be discrete restriction categories.
 
 We approach the equivalence proof by exhibiting the universal property for discrete inverse
 categories for the functor $\Invf$ from discrete restriction categories to discrete inverse
 categories. The functor $\Invf$ maps a discrete restriction category to its inverse subcategory and
 maps functors between discrete restriction categories to a functor having the same action on the
-partial inverses. That is, given $G:\C \to \D$, then:
+partial inverses. That is, given $G:\B \to \D$, then:
 \begin{align*}
-  &\Inv{G}: \Inv{\C} \to \Inv{\D}\\
+  &\Inv{G}: \Inv{\B} \to \Inv{\D}\\
   &\Inv{G}(A) = G{A}&\text{(all objects of $\D$ are in $Inv(\D)$)}\\
-  &\Inv{G}(f) = G(f)&\text{(restriction functors preserve partial inverse)}
+  &\Inv{G}(f) = G(f)&\text{(restriction functors preserve partial inverse)}.
 \end{align*}
 We continue by showing the $\eta$ and $\varepsilon$ of the universal property are isomorphisms.
 First, let $\eta:\X \to \Inv{\Xt}$ be an identity on objects functor. For maps $f$ in \X, $\eta(f)
@@ -1194,7 +2335,7 @@ This allows us to write the diagram:
 \begin{equation}
   \xymatrix @C=65pt @R=40pt{
     \X \ar[r]^{\eta} \ar[rd]_{F}& \Inv{\Xt} \ar[d]^{\Inv{F^{\#}}}\\
-    &\Inv{\D}
+    &\Inv{\D}.
   }
   \label{dia:universal_property_of_inverse_categories}
 \end{equation}
@@ -1206,9 +2347,9 @@ result.
   equivalence class of $(f \inv{\usr},1)$ for some $f:A\to B$.
 \end{lemma}
 \begin{proof}
-  As $(g,C)$ is invertible in \Xt, the map $\inv{(g,C)}: B \to A$ exists. $\inv{(g,C)}$ must be in
-  the equivalence class of some map $k:B \to A \* D$, and also note that $\rst{(g,C)}$ is by
-  construction the equivalence class of the map $\rst{g}\inv{\usr}:A \to A\*1$ in \X. This means,
+  As $(g,C)$ is invertible in \Xt, the map $\inv{(g,C)}: B \to A$ exists. The map $\inv{(g,C)}$ must be in
+  the equivalence class of some map $k:B \to A \* D$. By construction, the map  $\rst{(g,C)}$ is
+  in the equivalence class of the map $\rst{g}\inv{\usr}:A \to A\*1$ in \X. This means,
   diagramming in \X, there is an $n$ such that
   \[
     \xymatrix @C=45pt @R=25pt{
@@ -1232,7 +2373,7 @@ result.
       &B\*B\*C\*C\*D \ar[d]^{1\*1\*\inv{\Delta}\*1}\\
       &B\*B\*C\*D \ar[d]^{1\*n}\\
       &B\*B\*1 \ar[d]^{(\inv{\Delta}\* 1) \usl }\\
-      &B
+      &B.
     }
   \]
   By its construction, $f:A\to B$ in \X and $(f\inv{\usr},1)$ are in the same equivalence class as
@@ -1249,7 +2390,7 @@ result.
   \[
     \xymatrix @C=35pt @R=40pt{
       f \ar@{|->}[rr]^{\eta} \ar@{|->}[rd]_{F}&& (f\inv{\usr},1) \ar@{|->}[d]^{\Inv{F^{\#}}}\\
-      &F(f) \ar@{=}[r] & F(f\inv{\usr})\pi_0
+      &F(f) \ar@{=}[r] & F(f\inv{\usr})\pi_0.
     }
   \]
   As $\eta$ is identity on the objects, Diagram~\ref{dia:universal_property_of_inverse_categories}
@@ -1262,8 +2403,8 @@ result.
 \end{lemma}
 \begin{proof}
   To show fullness, we must show $\Invf$ is surjective on hom-sets. Given a functor between two
-  categories in the image of $\Invf$, i.e., $G:\Inv{\C}\to \Inv{\D}$, construct a functor
-  $H:\C\to\D$ as follows:
+  categories in the image of $\Invf$, i.e., $G:\Inv{\B}\to \Inv{\D}$, construct a functor
+  $H:\B\to\D$ as follows:
   \begin{description}
     \item{Action on objects:} $H(A) = G(A),$
     \item{Objects on maps:} $H(f) = G(\<f,1\>)\pi_0.$
@@ -1271,13 +2412,13 @@ result.
   $H$ is well defined as we know $\<f,1\>$ is an invertible map and therefore in the domain of $G$.
   To see $H$ is a functor:
   \begin{align*}
-    H(1) &= G(\<1,1\>)\pi_0 = \Delta_{\D}\pi_0 = 1\\
-    H(fg) &= G(\<fg,1\>)\pi_0 = G(\<f,1\>)\pi_0G(\<g,1\>)\pi_0 = H(f)H(g)
+    H(1) &= G(\<1,1\>)\pi_0 = \Delta_{\D}\pi_0 = 1,\\
+    H(f g) &= G(\<f g,1\>)\pi_0 = G(\<f,1\>)\pi_0G(\<g,1\>)\pi_0 = H(f)H(g).
   \end{align*}
   But on any invertible map, $H(f) = G(\<f,1\>)\pi_0 = \<G(f),1\>\pi_0 = G(f)$ and therefore
-  $\Inv(H) = G$, so $\Invf$ is full.
+  $\Inv{H} = G$, so $\Invf$ is full.
 
-  Next, assume we have $F,G:\C\to\D$ with $\Inv{F} = \Inv{G}$. Considering $F(f)$ and $F(g)$, we
+  Next, assume we have $F,G:\B\to\D$ with $\Inv{F} = \Inv{G}$. Considering $F(f)$ and $F(g)$, we
   know $F(\<f,1\>) = G(\<f,1\>) $ as $\<f,1\>$ is invertible. Thus, as the functors preserve the
   product structure, we have
   \[
@@ -1335,7 +2476,7 @@ result.
 \begin{proof}
   From the above lemmas, we have shown that we have an adjoint:
   \begin{equation}
-    (\eta,\varepsilon):\wtf \vdash \Invf :D_{ic} \to D_{rc} \label{eq:inv_and_wtf_are_adjoint_pair}
+    (\eta,\varepsilon):\wtf \vdash \Invf :D_{i c} \to D_{r c}. \label{eq:inv_and_wtf_are_adjoint_pair}
   \end{equation}
   By Lemma~\ref{lem:the_functor_eta_is_an_isomorphism} we know $\eta$ is an isomorphism. But this
   means the functor $\wtf$ is full and faithful, as shown in, e.g., Proposition 2.2.6 of
@@ -1353,10 +2494,12 @@ result.
 \end{example}
 Continuing from Example~\ref{example:invprodisstructure}, recall the discrete category of 4
 elements with two different tensors. Completing these gives two different lattices. They are either
-the straight line lattice, or the diamond semilattice. Below are the details of these constructions.
+the straight line lattice, or the diamond semi-lattice. Below are the details of these constructions.
 
-Recall $\D$ has four elements $a,b,c$ and $d$, and there are two possible inverse product tensors:
-\begin{quote}\qquad\qquad
+Recall $\D$ has four elements $a,b,c$ and $d$, and there are two possible inverse product tensors,
+given in Table~\ref{tab:two_different_inverse_products}. (Repeated here for your convenience).
+\begin{table*}[h!]
+  \begin{center}
   \begin{tabular}{|l||c|c|c|c|}
     \hline
     $\*$&a&b&c&d\\ \hline \hline
@@ -1365,19 +2508,21 @@ Recall $\D$ has four elements $a,b,c$ and $d$, and there are two possible invers
     c&a&\textbf{b}&c&c \\ \hline
     d&a&b&c&d \\ \hline
   \end{tabular}
-  \hfil
+  \qquad
   \begin{tabular}{|l||c|c|c|c|} \hline
-    $\*$&a&b&c&d\\ \hline \hline
+    $\odot$&a&b&c&d\\ \hline \hline
     a&a&a&a&a\\ \hline
     b&a&b&\textbf{a}&b\\ \hline
     c&a&\textbf{a}&c&c \\ \hline
     d&a&b&c&d \\ \hline
   \end{tabular}
-  \qquad \qquad
-\end{quote}
+  \end{center}
+  \caption[]{Two different inverse products on the same category.} %[] option removes from LOT
+\end{table*}
 
 
-Define $\Delta$ as the identity map. Then, for the first tensor, $\widetilde{\D}$ has the following
+Define $\Delta$ as the identity map. Then, for the first tensor, $\*$ of
+Table~\ref{tab:two_different_inverse_products}, $\widetilde{\D}$ has the following
 maps
 \begin{align*}
   %a \xrightarrow{(id,a)} a \ (\equiv a \xrightarrow{(id, b)} a \equiv a \xrightarrow{(id,c)} a
@@ -1396,7 +2541,7 @@ resulting in the straight-line ($a \to b \to c \to d$) lattice. The tensor in \D
 and hence is a categorical product in $\widetilde{\D}$. Note that the only partial inverses in
 $\widetilde{\D}$ are the identity functions and that for all maps $f$, $\<f,1\> = id$.
 
-With the second tensor table, we have:
+With the second tensor, $\odot$ from Table~\ref{tab:two_different_inverse_products}, we have:
 \begin{align*}
   a \xrightarrow{(id,a) \ (\equiv (id, b) \equiv (id,c) \equiv (id,d))} a, \qquad
     a \xrightarrow{(id,a)} b, \qquad a \xrightarrow{(id, a)} c , \qquad a \xrightarrow{(id, a)} d \\
@@ -1404,16 +2549,16 @@ With the second tensor table, we have:
   c \xrightarrow{(id, c) \ (\equiv (id, d))} c,   \qquad c \xrightarrow{(id,c)} d\\
   d \xrightarrow{(id,d)} d
 \end{align*}
-resulting in the ``diamond'' lattice,
+resulting in the ``diamond'' lattice, \raisebox{19pt}{
 $
   \xymatrix @R=3pt @C=8pt {
     & b \ar[dr]\\
     a \ar[ur] \ar[dr] & &d\\
     & c \ar[ur]
   }
-$. Once again, the tensor in \D is the meet.
+$}. Once again, the tensor in \D becomes the meet.
 
-\begin{example}{Lattice completion.}\label{example:lattice_completion}
+\begin{example}[Lattice completion.]\label{example:lattice_completion}
   Suppose we have a set together with an idempotent, commutative, associative operation $\wedge$ on
   the set, giving us a lattice, \Lat. Further suppose the set is partially ordered via $\le$ with
   the order being compatible with $\wedge$.
@@ -1423,7 +2568,7 @@ $. Once again, the tensor in \D is the meet.
     \xymatrix{
       &x\\
       x' \ar[ur]_{\le} & & y' \ar[ul]^{\le}\\
-      &x'\wedge y'  \ar[ul]_{\le} \ar[ur]^{\le}
+      &x'\wedge y'.  \ar[ul]_{\le} \ar[ur]^{\le}
     }
   \]
 
@@ -1431,6 +2576,20 @@ $. Once again, the tensor in \D is the meet.
   partial map category $\text{Par}(\Lat,\Mstab)$ where the stable system of monics are all the maps.
 
   Then $\widetilde{\text{Par}(\Lat,\Mstab)}$ becomes the completion of the lattice over $\wedge$.
+\end{example}
+\begin{example}[$\widetilde{\text{\pinj}}$ is \Par]\label{ex:tilde_pinj_is_par}
+  Noting that the objects of both \pinj and \Par are sets, we simply need to show that any partial
+  function is in the equivalence class of some $f$, a map in \pinj.
+
+  Suppose we are given $g : A \to B = \{(a,b) | a \in A, b\in B\}$, a partial function in sets. Of
+  course, if it is a partial injective function, then $g$ is in the equivalence class of $(g,\{*\})$
+  and we are done.  If it is not injective, that means there are one or more elements of $B$ which
+  appear in the left hand element of $g$ multiple times. Construct a new function $h$ as follows:
+  \begin{equation}
+     h \doteq \{(a,(b,a)) | (a,b) \in g\} \label{eq:new_partial_injective}
+  \end{equation}
+  By its definition, $h : A \to B \*A$ is injective, $(h,A): A \to B$ coincides with $g$ and therefore
+  we see that using the \wtc construction on \pinj results in \Par.
 \end{example}
 % subsection examples_of_the_wtf_construction (end)
 

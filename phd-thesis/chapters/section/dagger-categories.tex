@@ -9,63 +9,56 @@ closed categories}, an additional structure only on compact closed categories.
 
 Although dagger categories were introduced in the context of compact closed categories, the concept
 of a dagger is definable independently. This was first done in \cite{selinger05:dagger}.
-\begin{definition}[Dagger, dagger category]\label{def:daggercat}
-A dagger operator on a category $D$ is an involutive, identity on objects
-contravariant functor $\dagger:\cD\to \cD$. A dagger category
-is a category that has a dagger operator.
+
+\begin{definition}\label{def:daggercat}
+  A \emph{dagger operator} on a category $D$ is an involutive, contravariant functor $\dagger:\cD\to
+  \cD$, which is the identity on objects. A \emph{dagger category} is a category that has a dagger
+  operator.
 \end{definition}
 
 Typically, the dagger is written as a superscript on the morphism. So, if $f:A\to B$ is a map in
 \cD, then $\dgr{f}:B\to A$ is a map in \cD{} and is called the \emph{adjoint} of $f$. A map where
-$f^{-1} = \dgr{f}$ is called \emph{unitary} and a map $f:A\to A$ with $f=\dgr{f}$ is called
-\emph{self-adjoint} or \emph{hermitian}.
+$f^{-1} = \dgr{f}$ is called \emph{unitary}. A map $f:A\to A$ with $f=\dgr{f}$ is called
+\emph{self-adjoint} or \emph{Hermitian}.
 
-\begin{definition}[Dagger symmetric monoidal]\label{def:daggersmc}
+\begin{definition}\label{def:daggersmc}
   A \emph{dagger symmetric monoidal category} is a symmetric monoidal category \cD{} with a dagger
   operator such that the dagger interacts coherently with the monoid to preserve the symmetric
   monoidal structure.
 \end{definition}
 
 The coherence requirements in definition \ref{def:daggersmc} are in addition to the standard
-coherence diagrams for a symmetric monoidal category. The additional coherence requirements are for
-all maps $f:A\to B$ and $g:C\to D$, it is required that $\dgr{(f\*g)} = \dgr{f}\*\dgr{g}:B\*D \to
-A\* C$ and that the monoid structure isomporphisms $a_{A,B,C}:(A\*B)\to C$, $u_{A}:A\to I\*A$ and
-$c_{A,B}:A\*B \to B\*A$ are all unitary.
+coherence diagrams for a symmetric monoidal category. The additional coherence requirements are:
+\begin{itemize}
+  \item For all maps $f:A\to B$ and $g:C\to D$, $\dgr{(f\*g)} = \dgr{f}\*\dgr{g}:B\*D \to A\* C$;
+  \item The monoid structure isomorphisms $a_{A,B,C}:(A\*B)\* C\to A\*(B\*C)$, $u_{A}:A\to I\*A$ and
+    $c_{A,B}:A\*B \to B\*A$ are unitary.
+\end{itemize}
 
-
-\begin{definition}[Dagger compact closed]\label{def:daggercompact}
+\begin{definition}\label{def:daggercompact}
   A \emph{dagger compact closed category} \cD{} is a dagger symmetric monoidal category
   that is compact closed where the diagram
   \[
     \xymatrix @C+20pt @R+10pt{
-      I \ar[r]^{\epsilon^{\dagger}_{A}} \ar[dr]_{\eta_{A}} &A\*A^{*}\ar[d]^{\sigma_{A,A^{*}}}\\
+      I \ar[r]^{\epsilon^{\dagger}_{A}} \ar[dr]_{\eta_{A}} &A\*A^{*}\ar[d]^{c_{A,A^{*}}}\\
       &A^{*}\* A
     }
   \]
   commutes for all  objects $A$ in \cD.
 \end{definition}
 
-A category \cD{} is said to have \emph{finite biproducts} when it has a zero object $\mathbf{0}$
-(an object that is both initial and terminal) and when each pair of objects $A,B$ have a biproduct
-$A\+B$. In such a category the unique map $A\to \mathbf{0} \to B$ is designated as $\zeroob_{A,B}$.
-
-Note that a category with finite biproducts is enriched in commutative monoids, where if $f,g:A\to
-B$, define $f+g:A\to B$ as $\<id_{A}, id_{A}\>\, (f\+g)\, [id_{B},id_{B}]$. The unit for the
-addition is $\zeroob_{A,B}$. In the future, $\<id, id\>$ will be designated by $\Delta$ and
-$[id,id]$ will be designated by $\nabla$.
-
 \begin{lemma}\label{lemma:daggerbiproducts}
 If \cD{} is a dagger category with biproducts, with injections $in_{1},in_{2}$ and projections
-$p_{1},p_{2}$, then the following are equivalent.
+$p_{1},p_{2}$, then the following are equivalent:
 \begin{enumerate}
   \item $\dgr{p_{i}} = in_{i}, i=1,2$, \label{ldpdgrpisq}
-  \item $\dgr{(f\+g)} = \dgr{f}\+\dgr{g}$ and $\dgr{\Delta} = \nabla$,\label{ldpddeltisnab}
+  \item $\dgr{(f\biproduct g)} = \dgr{f}\biproduct \dgr{g}$ and $\dgr{\Delta} = \nabla$,\label{ldpddeltisnab}
   \item $\dgr{\<f,g\>} = [\dgr{f},\dgr{g}]$,\label{ldpdcopisprod}
-  \item the below diagram commutes.\label{ldpcommute}
+  \item the below diagram commutes:\label{ldpcommute}
   \[
     \xymatrix @C+20pt @R+10pt{
-      \dgr{A} \+ \dgr{B} \ar[d]_{id} \ar[dr]^{[\dgr{p_{1}},\dgr{p_{2}}]}\\
-      A\+B\ar[r]_{id}&\dgr{(A\+B)}
+      \dgr{A} \biproduct \dgr{B} \ar[d]_{id} \ar[dr]^{[\dgr{p_{1}},\dgr{p_{2}}]}\\
+      A\biproduct B\ar[r]_{id}&\dgr{(A\biproduct B)}.
     }
   \]
 \end{enumerate}
@@ -78,29 +71,29 @@ $p_{1},p_{2}$, then the following are equivalent.
       \xymatrix {
         &A \ar[d]^{\Delta} \ar[dr]^{id} \ar[dl]_{id}\\
         A
-         & A\+A \ar[l]^{p_{1}}  \ar[r]_{p_{2}}
+         & A\biproduct A \ar[l]^{p_{1}}  \ar[r]_{p_{2}}
          & A
       }
     \]
     and apply the dagger functor to it. As $\dgr{p_{i}} = in_{i}$, and $\dagger$ is identity on
     objects, this is now a coproduct diagram and therefore $\dgr{\Delta} = \nabla$.
 
-    For $\dgr{(f\+g)} = \dgr{f}\+\dgr{g}$, start with the diagram defining $f\+g$ as a product of
-    the arrows:
+    For $\dgr{(f\biproduct g)} = \dgr{f}\biproduct\dgr{g}$, start with the diagram defining
+    $f\biproduct g$ as a product of the arrows:
     \[
       \xymatrix{
-        A\ar[d]_{f}  & A\+B \ar[l]_{p_{1}} \ar[r]^{p_{2}} \ar[d]^{f\*g}&A \ar[d]^{g}\\
-        C & C\+D \ar[l]^{p_{1}} \ar[r]_{p_{2}}  & D
+        A\ar[d]_{f}  & A\biproduct B \ar[l]_{p_{1}} \ar[r]^{p_{2}} \ar[d]^{f\biproduct g}&A \ar[d]^{g}\\
+        C & C\biproduct D \ar[l]^{p_{1}} \ar[r]_{p_{2}}  & D.
       }
     \]
-    and once again apply the dagger functor. This is now the diagram defining the coproduct of maps
-    and therefore $\dgr{(f\+g)} = \dgr{f}\+\dgr{g}$.
+    Then, apply the dagger functor to this diagram. This is now the diagram defining the
+    co-product of maps and therefore $\dgr{(f\biproduct g)} = \dgr{f}\biproduct\dgr{g}$.
     \item[\ref{ldpddeltisnab}$\implies$\ref{ldpdcopisprod}] The calculation showing this is
       \begin{eqnarray*}
-        &[\dgr{f},\dgr{g}] & = \nabla; (\dgr{f}\+\dgr{g})\\
-        & &=\dgr{\Delta}; (\dgr{f}\+\dgr{g})\\
-        & &=\dgr{\Delta}; \dgr{(f\+g)}\\
-        & & = \dgr{((f\+g);\Delta)}\\
+        &[\dgr{f},\dgr{g}] & = \nabla; (\dgr{f}\biproduct \dgr{g})\\
+        & &=\dgr{\Delta}; (\dgr{f}\biproduct \dgr{g})\\
+        & &=\dgr{\Delta}; \dgr{(f\biproduct g)}\\
+        & & = \dgr{((f\biproduct g);\Delta)}\\
         & & = \dgr{\<f,g\>}
       \end{eqnarray*}
     \item[\ref{ldpdcopisprod}$\implies$\ref{ldpcommute}]
@@ -116,9 +109,9 @@ $p_{1},p_{2}$, then the following are equivalent.
     the assumption, the following diagram commutes:
       \[
         \xymatrix @C+20pt @R+10pt{
-          \dgr{A} \+ \dgr{B} \ar[d]_{id} \ar[dr]^{[\dgr{p_{1}},\dgr{p_{2}}]}\ar[r]^{[in_{1},in_{2}]}
-            & \dgr{A} \+ \dgr{B} \ar[d]^{id}\\
-          A\+B\ar[r]_{id}&\dgr{(A\+B)}
+          \dgr{A} \biproduct \dgr{B} \ar[d]_{id} \ar[dr]^{[\dgr{p_{1}},\dgr{p_{2}}]}\ar[r]^{[in_{1},in_{2}]}
+            & \dgr{A} \biproduct \dgr{B} \ar[d]^{id}\\
+          A\biproduct B\ar[r]_{id}&\dgr{(A\biproduct B)}
         }
       \]
       and therefore, $\dgr{p_{1}} = in_{1}$ and $\dgr{p_{2}} = in_{2}$.
@@ -131,30 +124,38 @@ $p_{1},p_{2}$, then the following are equivalent.
 \end{definition}
 \subsection{Examples of dagger categories}
 
-\paragraph{\fdh{}:} The category of finite dimensional Hilbert spaces is the motivating example for
+\begin{example}[\fdh]\label{ex:fdhilbert_is_dagger_category}
+The category of finite dimensional Hilbert spaces is the motivating example for
 the creation of the dagger and is, in fact, a biproduct dagger compact closed category. The
 biproduct is the direct sum of Hilbert spaces and the tensor for compact closure is the standard
 tensor of Hilbert spaces. The dual $H^{*}$ of a space $H$ is the space of all continuous linear
 functions from $H$ to the base field. The dagger is defined via the adjoint as being the unique map
 $\dgr{f}:B\to A$ such that $\<f a|b\> = \<a | \dgr{f} b\>$ for all $a\in A, b\in B$.
+\end{example}
 
-\paragraph{\rel{}:} The category \rel of sets and relations has the tensor $S\*T = S\times T$, the
-cartesian product and the biproduct $S\+T = S+T$, the disjoint union. This is compact closed under
-$A^{*} = A$ and the dagger is the relational converse, that is if the relation $R=\{(s,t)|s\in S,
+\begin{example}[\rel]\label{ex:rel_is_dagger_category}
+The category \rel of sets and relations has the tensor $S\*T = S\times T$, the
+Cartesian product and the biproduct $S\biproduct T = S+T$, the disjoint union. This is compact closed under
+$A^{*} = A$ and the dagger is the relational converse. That is, if the relation $R=\{(s,t)|s\in S,
 t\in T\}:S\to T$, then $\dgr{R}=\{(t,s)|(s,t)\in R\}(=R^{*})$.
+\end{example}
 
-\paragraph{Inverse categories:}
+\begin{example}[Inverse categories]\label{ex:inverse_category_is_dagger_category}
 An inverse category \X is also a dagger category when the dagger is defined as the partial inverse.
-The unitary maps are the total maps which are isomorphisms. If the inverse category \X is also a
+The unitary maps are the total restriction idempotents. However, if the inverse category \X is also a
 symmetric monoidal category where the monoid $\*$ is actually a restriction bi-functor, then \X is
-a dagger symmetric monoidal category. This follows from
+not a dagger symmetric monoidal category. The first requirement for being a dagger symmetric
+monoidal category is fulfilled, as
 \[
   (f\*g) \inv{(f\*g)} = \rst{f\*g}=\rst{f} \*\rst{g} =
    f\inv{f} \* g \inv{g} = (f\*g) (\inv{f} \* \inv{g})
 \]
-but since the partial inverse of $f\*g$ is unique, $\inv{f\*g} = \inv{f} \* \inv{g}$. Finally,
-since all the structure isomorphisms are total maps, they are unitary and \X is a dagger symmetric
-monoidal restriction category.
-
-
-
+and since the partial inverse of $f\*g$ is unique, $\inv{(f\*g)} = \inv{f} \* \inv{g}$. The other
+requirement is that the structure isomorphisms are unitary. This is, of course, not the case
+\emph{unless \X is a strict symmetric monoidal category}. In general,
+therefore \X is not a dagger symmetric monoidal restriction category.
+\end{example}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../phd-thesis"
+%%% End:

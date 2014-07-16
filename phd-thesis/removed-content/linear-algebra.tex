@@ -7,18 +7,17 @@ definitions of the terms used throughout this thesis.
 \label{sub:basic_definitions}
 
 
-The first definition needed is that of a \emph{vector space}.
+We start with the definition of a \emph{vector space}.
 
-\begin{definition}[Vector Space]
+\begin{definition}\label{def:vector_space}
   Given a field $F$, whose elements will be referred to as scalars, a \emph{vector space} over $F$
   is a non-empty set $V$ with two operations, \emph{vector addition} and \emph{scalar
-  multiplication}. \emph{Vector addition} is defined as ${+}:V\times V \to V$ and denoted as
-  $\vc{v}+\vc{w}$ where $\vc{v},\vc{w}\in V$. The set $V$ must be an abelian group under $+$.
-  \emph{Scalar multiplication} is defined as ${}:F\times V \to V$ and denoted as $c\vc{v}$ where
-  $c\in F, \vc{v} \in V$. Scalar multiplication distributes over both vector addition and scalar
-  addition and is associative. $F$'s multiplicative identity is an identity for scalar
-  multiplication.
-
+  multiplication}. \emph{Vector addition} is denoted by an infix $+$ and the set $V$ must be an
+  abelian group under $+$.
+  \emph{Scalar multiplication} is a function $F\times V \to V$ and denoted by juxtaposing the scalar
+  from $F$ and the vector from $V$, i.e., $c\vc{v}$. Scalar multiplication distributes over both
+  vector  addition and addition of scalars.  Scalar multiplication is associative. $F$'s multiplicative identity is an
+  identity for scalar  multiplication.
 \end{definition}
 The specific algebraic requirements are:
 \begin{enumerate}
@@ -40,32 +39,35 @@ The specific algebraic requirements are:
     1\vc{u} = \vc{u}$.
 \end{enumerate}
 
-Examples of vector spaces over $F$ are: $F^{n\times m}$ -- the set of $n\times m$ matrices over
-$F$; and $F^n$ -- the $n{-}$fold Cartesian product of $F$. $F^{n\times 1}$, the set of $n\times 1$
-matrices over $F$ is also called the space of column vectors, while $F^{1\times n}$, the set of row
-vectors. Often, $F^n$ is identified with $F^{n\times 1}$.
+Examples of vector spaces over $F$ are:
+\begin{itemize}
+  \item $F^{n\times m}$ -- the set of $n\times m$ matrices over $F$;
+  \item $F^n$ -- the $n{-}$fold Cartesian product of $F$.
+\end{itemize}
 
+$F^{n\times 1}$, the set of $n\times 1$
+matrices over $F$ is also called the space of column vectors, while $F^{1\times n}$ is called the
+space of row vectors. As is customary, we shall identify $F^n$ with $F^{n\times 1}$.
 
-This thesis  shall identify $F^n$ with the column vector space over $F$.
-
-\begin{definition}[Linearly independent]
-  A subset of vectors $\{\vc{v}_i\}$ of the vector space $V$ is said to be \emph{linearly
-  independent} when no finite linear combination of them, $\sum a_j\vc{v}_j$ equals \vc{0} unless
+\begin{definition}\label{def:linearly_independent}
+  A set of vectors $\{\vc{v}_i\}$ in the vector space $V$ is said to be \emph{linearly
+  independent} when no finite linear combination of them, $\sum a_j\vc{v}_j$, equals \vc{0} unless
   all the $a_j$ are zero.
 
 \end{definition}
 
-\begin{definition}[Basis]
+\begin{definition}\label{def:basis}
   A \emph{basis} of a vector space $V$ is a linearly independent subset of $V$ that generates $V$.
   That is, any vector $u \in V$ is a linear combination of the basis vectors.
 \end{definition}
 
 \begin{definition}\label{def:linear_map_of_vector_spaces}
-  Given $V, W$ are vector spaces over $F$ with $v \in V$ and $s \in F$, then
-  if $f:V \to W$ is a group homomorphism such that $f(v s) = f(v) s$, then we say $f$ is a
-  \emph{linear map}. Furthermore, a map $f:V\times W \to X$ is called \emph{bilinear} when the
-  map $f_v:W\to T$ and $f_w:V\to T$ are linear for each $v\in V$ and $w\in W$, where $f_v$ is the
-  map obtained from $f$ by fixing $v\in V$ and $f_w$ is obtained from $f$ by fixing  $w\in W$.
+  Suppose we have $V, W$ vector spaces over $F$ with $v \in V$ and $s \in F$. We say $f$ is a
+  \emph{linear map} when $f:V \to W$ is a group homomorphism such that $f(v s) = f(v)s$. Let
+  $f_v$ be the
+  map obtained from $f$ by fixing $v\in V$ and $f_w$ be the map obtained from $f$ by fixing  $w\in W$.
+  Then, a map $f:V\times W \to X$ is called \emph{bilinear} when the
+  map $f_v:W\to T$ and $f_w:V\to T$ are linear for each $v\in V$ and $w\in W$, where
 \end{definition}
 
 \begin{definition}\label{def:free_vector_space}
@@ -100,15 +102,15 @@ elements $\{v_i\*w_j\}$ form a basis for $V\*W$.
 As mentioned above, the set of $n\times m$ matrices over a field is a vector space. Additionally,
 matrices compose and the tensor product of matrices is defined.
 
-Matrix composition is defined as usual. That is, for $A = [a_{ij}] \in F^{m\times n}, B =
-[b_{jk}]\in F^{n \times p}$:
+Matrix composition is defined as usual. That is, for $A = [a_{i j}] \in F^{m\times n}, B =
+[b_{j k}]\in F^{n \times p}$:
   \[
-    A \, B = \left[\left(\sum_{j}a_{ij}b_{jk}\right)_{ik}\right] \in F^{m \times p}.
+    A \, B = \left[\left(\sum_{j}a_{i j}b_{j k}\right)_{i k}\right] \in F^{m \times p}.
   \]
 
 
 
-\begin{definition}[Diagonal matrix]
+\begin{definition}\label{def:diagonal_matrix}
   A \emph{diagonal matrix} is a matrix where the only non-zero entries are those where the column
   index equals the row index.
 \end{definition}
@@ -116,28 +118,30 @@ Matrix composition is defined as usual. That is, for $A = [a_{ij}] \in F^{m\time
 The diagonal matrix $n\times n$ with only $1$'s on the diagonal is the identity for matrix
 multiplication, and is designated by $I_n$.
 
-\begin{definition}[Transpose]
-  The \emph{transpose} of an $n\times m$ matrix $A=[a_{ij}]$ is an $m\times n$ matrix $A^{t}$ with
-  the $i,j$ entry being $a_{ji}$.
+\begin{definition}\label{def:transpose}
+  The \emph{transpose} of a $n\times m$ matrix, $A=[a_{i j}]$, is a $m\times n$ matrix $A^{t}$ with
+  the $i,j$ entry being $a_{j i}$.
 \end{definition}
 
-When the base field of a matrix is \complex, the complex numbers, the \emph{conjugate transpose}
-(also called the \emph{adjoint}) of an $n\times m$ matrix $A=[a_{ij}]$ is defined as the $m\times
-n$ matrix $A^{*}$ with the $i,j$ entry being $\overline{a}_{ji}$, where $\overline{a}$ is the
-complex conjugate of $a\in\complex$.
+\begin{definition}\label{def:conjugate_transpose}
+  When the base field of a matrix is \complex, the complex numbers, the \emph{conjugate transpose}
+  of an $n\times m$ matrix $A=[a_{i j}]$ is defined as the $m\times
+  n$ matrix $A^{*}$ with the $i,j$ entry being $\conjugate{a}_{j i}$. The conjugate transpose is
+  also referred to as the \emph{adjoint} of the matrix.
+\end{definition}
 
 When working with column vectors over \complex, note that $\vc{u} \in \complex^n \implies
 \vc{u}^{*} \in \complex^{1\times n}$ and that $\vc{u}^{*}\times \vc{u} \in \complex^{1\times 1}$.
-This thesis will use the usual identification of \complex{} with $\complex^{1\times1}$. A column
-vector \vc{u} is called a \emph{unit vector} when $\vc{u}^{*}\times \vc{u} = 1$.
+This thesis will use the usual identification of \complex{} with $\complex^{1\times1}$.
 
-\begin{definition}[Trace]
-  The \emph{trace}, $Tr(A)$ of a square matrix $A=[a_{ij}]$ is $\sum a_{ii}$.
+\begin{definition}\label{def:unit_vector}
+  If \vc{u} is a \complex column vector, \vc{u} is called a \emph{unit vector} when
+  $\vc{u}^{*}\times \vc{u} = 1$.
 \end{definition}
 
-\subsubsection{Tensor Product} % (fold)
-\label{ssub:tensor_product}
-
+\begin{definition}\label{def:trace}
+  The \emph{trace}, $Tr(A)$, of a square matrix $A=[a_{i j}]$ is $\sum a_{ii}$.
+\end{definition}
 
 The tensor product of two matrices is the usual Kronecker product:
   \[
@@ -146,20 +150,17 @@ The tensor product of two matrices is the usual Kronecker product:
       u_{11}V&u_{12}V & \cdots &u_{1m}V\\
       u_{21}V&u_{22}V & \cdots &u_{2m}V \\
       \vdots&\vdots&\ddots\\
-      u_{n1}V&u_{n2}V & \cdots &u_{nm}V
+      u_{n1}V&u_{n2}V & \cdots &u_{n m}V
     \end{bmatrix}
     =
     \begin{bmatrix}
       u_{11}v_{11}&\cdots&u_{12}v_{11} & \cdots& u_{1m}v_{1q} \\
       u_{11}v_{21}&\cdots&u_{12}v_{21} & \cdots& u_{1m}v_{2q} \\
       \vdots&\vdots&\vdots&\ddots \\
-      u_{n1}v_{p1}&\cdots&u_{n2}v_{p1} & \cdots& u_{nm}v_{pq} \\
+      u_{n1}v_{p1}&\cdots&u_{n2}v_{p1} & \cdots& u_{n m}v_{p q} \\
     \end{bmatrix}
   \]
 % subsubsection tensor_product (end)
-
-\subsubsection{Special matrices} % (fold)
-\label{ssub:special_matrices}
 
 When working with quantum values certain types of matrices over the complex numbers are of special
 interest. These are:
