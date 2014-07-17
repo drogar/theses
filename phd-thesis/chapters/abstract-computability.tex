@@ -196,7 +196,7 @@ For example,   $P(f:A \to B) = \exists h : B \to A. h f = 1_A$ expresses that $f
 For example, all functors preserve the properties of being an idempotent or a retraction or section,
 but in general, not the property of being monic.
 
-A functor $F:\B \to \D$ induces a map between hom-objects in $\B$ and hom-objects in $\D$. For
+A functor $F:\B \to \D$ induces a map between hom-sets in $\B$ and hom-sets in $\D$. For
 each object $A,B$ in $\B$ we have the map:
 \[
   F_{AB} : \B(A,B) \to \D(F(A),F(B)).
@@ -400,16 +400,21 @@ $\nabla$.
 \label{sub:categories_with_additional_structure}
 
 \begin{definition}\label{symmetricmonoidalcat}
-  A \emph{symmetric monoidal category} \cD{} is a category equipped with a monoid $\*$ (a bi-functor
-  $\*:\cD \times \cD \to \cD$) together with four families of natural isomorphisms:
-  $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u^r_{A}:A\*I\to A$, $u^l_{A}:I\*A \to A$ and $c_{A,B}:A\*B
-  \to B\* A$, which satisfy specific coherence diagrams and equations. The isomorphisms are referred
-  to as the \emph{structure isomorphisms}  for the symmetric monoidal category. $I$ is the unit of
-  the monoid. A symmetric monoidal category where each of $a_{A,B,C}$, $u^r_{A}$, $u^l_{A}$ and
-  $c_{A,B}$ are identity maps is called a \emph{strict symmetric monoidal category}.
+  A \emph{symmetric monoidal category}\cite{barr:ctcs,maclan97:categorieswrkmath} \cD{} is a
+  category equipped with a monoid $\*$ (a bi-functor $\*:\cD \times \cD \to \cD$) together with
+  four families of natural isomorphisms:  $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u^r_{A}:A\*I\to A$,
+  $u^l_{A}:I\*A \to A$ and $c_{A,B}:A\*B \to B\* A$, which satisfy specific coherence diagrams and
+  equations. The isomorphisms are referred to as the \emph{structure isomorphisms}  for the
+  symmetric monoidal category. $I$ is the unit of the monoid. A symmetric monoidal category where
+  each of $a_{A,B,C}$, $u^r_{A}$, $u^l_{A}$ and $c_{A,B}$ are identity maps is called a \emph{strict
+    symmetric monoidal category}.
 \end{definition}
 
-The coherence diagrams for a symmetric monoidal category are as follows:
+The coherence diagrams for a symmetric monoidal category are given in
+Figures~\ref{fig:SMC_pentagon}, \ref{fig:SMC_unit}, \ref{fig:SMC_commutes},
+\ref{fig:SMC_unit_symmettry} and \ref{fig:SMC_associativity_symmetry}.
+
+\begin{figure}[h!]
 \[
   \xymatrix@C+25pt{
     A\*(B\*(C\*D) \ar[r]^{a_{A,B,(C\*D)}} \ar[d]_{1\*a_{B,C,D}}
@@ -417,23 +422,67 @@ The coherence diagrams for a symmetric monoidal category are as follows:
       & ((A\*B)\*C)\*D \ar[d]^{a_{A,B,C}\*1}\\
     A\*((B\*C)\*D) \ar[rr]_{a_{A,(B\*C),D}}
       && (A\*(B\*C))\*D
-      &*!<0pc,-25pt>{\text{\textbf{Pentagonal associativity}}}
   }
 \]
+\caption{Pentagon diagram for associativity in an SMC.}\label{fig:SMC_pentagon}
+\end{figure}
+\begin{figure}[h!]
 \[
-  \xymatrix@C+25pt{
+  \xymatrix@C+5pt@R+10pt{
     A\*(I\*B) \ar[rr]^{a_{A,I,B}} \ar[dr]_{1\*u^l_B}
-      & (A\*I)\*B \ar[dl]^{u^r_A \* 1}\\
-
-      &*!<0pc,-25pt>{\text{\textbf{Unit laws}}}
+      && (A\*I)\*B \ar[dl]^{u^r_A \* 1}\\
+      &A\*B
   }
 \]
-For details on the coherence diagrams, please see e.g., \cite{barr:ctcs} or
-\cite{maclan97:categorieswrkmath}. The essence of the coherence diagrams is that any diagram
-composed solely of the structure isomorphisms will commute.
+\[\text{ and } u^r_I = u^l_i: I\* I \to I\]
+\caption{Unit diagram and equation in an SMC.}\label{fig:SMC_unit}
+\end{figure}
+\begin{figure}[h!]
+\[
+  \xymatrix@C+5pt@R+10pt{
+    A\*B \ar[r]^{c_{A,B}} \ar@{=}[dr]
+      & B\*A \ar[d]^{c_{B,A}}\\
+      &A\*B
+  }
+\]
+\caption{Symmetry in an SMC.}\label{fig:SMC_commutes}
+\end{figure}
+\begin{figure}[h!]
+\[
+  \xymatrix@C+5pt@R+10pt{
+    A\*I \ar[rr]^{c_{A,I}} \ar[dr]_{u^r_A}
+      && I\*A \ar[dl]^{u^l_A}\\
+      &A
+  }
+\]
+\caption{Unit symmetry in an SMC.}\label{fig:SMC_unit_symmettry}
+\end{figure}
+\begin{figure}[h!]
+\[
+  \xymatrix@C+15pt@R+10pt{
+    (A\*B)\*C \ar[r]^{c_{(A\*B),C}} \ar[d]_{a^{-1}_{A,B,C}}
+      & C\*(A\*B) \ar[d]^{a_{C,A,B}}\\
+    A\*(B\*C) \ar[d]_{1\*c_{B,C}}
+      & (C\*A)\*B \ar[d]^{c_{C,A}\*1}\\
+    A\*(C\*B) \ar[r]^{a_{A,C,B}}
+      & C\*(A\*B)\text{ ,}
+  }\qquad
+  \xymatrix@C+15pt@R+10pt{
+    A\*(B\*C) \ar[r]^{c_{A,(B\*C)}} \ar[d]_{a^_{A,B,C}}
+      & (B\*C)\*A \ar[d]^{a^{-1}_{B,C,A}}\\
+    (A\*B)\*C \ar[d]_{c_{A,B}\*1}
+      & B\*(C\*A) \ar[d]^{1\*c_{C,A}}\\
+    (B\*A)\*C \ar[r]^{a^{-1}_{B,A,C}}
+      & B\*(A\*C)
+  }
+\]
+\caption{Associativity symmetry in an SMC.}\label{fig:SMC_associativity_symmetry}
+\end{figure}
+The essence of the coherence diagrams is that any diagram composed solely of the structure
+isomorphisms will commute.
 
 \begin{definition}\label{def:compactclosedcat}
-A \emph{compact closed category} \cD{} is a symmetric monoidal category with monoid $\*$ where each
+A \emph{compact closed category} \cD{} is a symmetric monoidal category with tensor $\*$ where each
 object $A$ has a dual $A^{*}$. Additionally, there must exist families of maps $\eta_{A}: I \to
 A^{*} \* A$ (the \emph{unit}) and $\epsilon_{A}: A\*A^{*}\to I$ (the \emph{counit}) such that
 \[
@@ -491,13 +540,12 @@ Restriction categories were introduced in
   \]
 \end{definition}
 
-\begin{definition}\label{def:restriction_idempotent}
 Note that any map such that $r=\restr{r}$ is an idempotent, as $r r = \rst{r} r = r$.
 Such a map is called a \emph{restriction idempotent}.
-\end{definition}
 
-Here are some basic facts for restriction categories. The proof may be found in
-\cite{cockett2002:restcategories1} and \cite{cockett-manes09-boolean-classical-rest-cats}.
+Here are some basic facts (\cite{cockett2002:restcategories1} and
+\cite{cockett-manes09-boolean-classical-rest-cats}) for restriction categories.
+
 \begin{lemma}\label{lem:restrictionvarious}
   In a restriction category \X,
   \begin{multicols}{2}
@@ -513,6 +561,20 @@ Here are some basic facts for restriction categories. The proof may be found in
     \end{enumerate}
   \end{multicols}
 \end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item Using \rthree and then \rone, we see $\rst{f}\,\rst{f} = \rst{\rst{f} f} = \rst{f}$.
+    \item Using \rone, \rthree and then \rtwo, $\rst{f g} = \rst{\rst{f} f g} = \rst{f}\,\rst{f g} =
+      \rst{f g}\, f$.
+    \item Using \ref{lemitem:rv_2}, \rthree and then \rfour, $\rst{f g} = \rst{f g}\,\rst{f} =
+      \rst{\rst{f g} f} = \rst{f\rst{g}}$.
+    \item By \ref{lemitem:rv_3}, $\rst{f} = \rst{1 f} = \rst{1 \rst{f}} = \rst{\rst{f}}$.
+    \item Using \rthree, $\rst{\rst{f}\,\rst{g}} = \rst{f}\rst{\rst{g}} = \rst{f}\,\rst{g}$.
+    \item By \rone $\rst{f} f = 1 f$, hence when $f$ is monic, $\rst{f} = 1$.
+    \item $\rst{g}\rst{f} = \rst{\rst{g} f} = \rst{f}$.
+  \end{enumerate}
+\end{proof}
 
 Note that by Lemma~\ref{lem:restrictionvarious}, all maps $\restr{f}$ are restriction idempotents
 as $\rst{f}=\rst{\rst{f}}$.
@@ -520,10 +582,18 @@ as $\rst{f}=\rst{\rst{f}}$.
 
 \begin{definition}\label{def:total_map}
   A map $f:A\to B$ in a restriction category is said to be \emph{total} when
-  $\rst{f} = 1_A$. The total maps in a restriction category form a sub-category
-  $Total(\X) \subseteq \X$.
+  $\rst{f} = 1_A$.
 \end{definition}
 
+\begin{lemma}\label{lem:total_maps_form_sub_category}
+   The total maps in a restriction category form a sub-category  $Total(\X) \subseteq \X$.
+\end{lemma}
+\begin{proof}
+  First, as the identity map $1$ is monic, by Lemma~\ref{lem:restrictionvarious}, we have $\rst{1} =
+  1$ and therefore the identity map is in $Total(\X)$. If $f,g$ are composable maps in $Total(\X)$,
+  then $\rst{f\,g} = \rst{f\rst{g}} = \rst{f} = 1$ and hence $f g$ is in $\Total(\X)$. Therefore,
+  $Total(\X)$ is a sub-category of $\X$.
+\end{proof}
 \begin{example}[\Par]\label{ex:par_is_a_restriction_category}
 Continuing from Example~\ref{ex:category_par}, \Par is a restriction category. The restriction of $f:A\to B$ is:
 \[
@@ -559,8 +629,8 @@ sub-restriction category of \rel. We will show the four restriction axioms:
 \end{align*}
 \end{example}
 
-\subsection{Enrichment and meets} % (fold)
-\label{sub:enrichment_and_meets}
+\subsection{Enrichment} % (fold)
+\label{sub:enrichment_in_restriction_categories}
 
 We may use the restriction to define a partial order on the hom-sets of a restriction
 category. Intuitively, we would think of a map $f$ being less than a map $g$ if $f$ is
@@ -574,11 +644,10 @@ will bring precision to the above intuition.
 
 
 \begin{lemma}\label{lem:restriction_cats_are_partial_order_enriched}
-  In a restriction category \X:
+  For any restriction category \X, it is enriched in partial orders under the ordering $\le$ from
+  Definition~\ref{def:restriction_category_hom_set_ordering} and the following hold:
   \begin{multicols}{2}
     \begin{enumerate}[{(}i{)}]
-      \item  $\le$ from Definition~\ref{def:restriction_category_hom_set_ordering}
-        is a partial order on each hom-set;
       \item $f \le g \implies \restr{f} \le \restr{g}$;\label{lemitem:rst_ordering_2}
       \item $\rst{f g} \le \rst{f}$; \label{lemitem:rst_ordering_3}
       \item $f \le g \implies h f \le h g$;
@@ -590,24 +659,26 @@ will bring precision to the above intuition.
   \end{multicols}
 \end{lemma}
 \begin{proof}
-  \prepprooflist
+  First, we show the enrichment by showing $\le$ is a partial order on $\X(A,B)$. With
+  $f,g,h:A\to  B$ parallel maps in \X, each of the requirements for a partial order is
+  verified below:
+  \begin{description}
+    \itembf{Reflexivity:} $\restr{f} f = f$ and therefore, $ f \le f$.
+    \itembf{Anti-Symmetry:} Given $\restr{f}g = f$ and $\restr{g}f = g$, it follows:
+    \[
+      f = \restr{f} f = \restr{\restr{f} g} f = \restr{f}\, \restr{g} f
+      = \restr{g}\restr{f} f =  \restr{g} f = g.
+    \]
+    \itembf{Transitivity:} Given $f \le g$ and $g\le h$,
+      \[
+        \restr{f} h = \restr{\restr{f} g} h = \restr{f}\, \restr{g} h = \restr{f} g = f
+      \]
+    showing that $f \le h$.
+  \end{description}
+
+  We now show the rest of the claims.
   \setlist[enumerate,1]{leftmargin=1.2cm}
   \begin{enumerate}[{(}i{)}]
-    \item With $f,g,h$ parallel maps in \X, each of the requirements for a partial order is
-    verified below:
-    \begin{description}
-      \itembf{Reflexivity:} $\restr{f} f = f$ and therefore, $ f \le f$.
-      \itembf{Anti-Symmetry:} Given $\restr{f}g = f$ and $\restr{g}f = g$, it follows:
-        \[
-          f = \restr{f} f = \restr{\restr{f} g} f = \restr{f}\, \restr{g} f
-          = \restr{g}\restr{f} f =  \restr{g} f = g.
-        \]
-      \itembf{Transitivity:} Given $f \le g$ and $g\le h$,
-        \[
-          \restr{f} h = \restr{\restr{f} g} h = \restr{f}\, \restr{g} h = \restr{f} g = f
-        \]
-        showing that $f \le h$.
-    \end{description}
     \item The premise is that $\restr{f} g = f$. From this, $ \restr{f}\, \restr{g} =
       \restr{\restr{f} g} = \restr{f}$, showing $\restr{f} \le \restr{g}$.
     \item $\restr{h f} h g = h \restr{f} g = h f$  and therefore $h f \le h g$.
@@ -615,12 +686,8 @@ will bring precision to the above intuition.
       = \restr{f}\, \restr{g h} g h = \restr{f} g h = f h$ and therefore $f h \le g h$.
     \item $g = \rst{g} g = \rst{f} g = f$.
     \item As $f \le 1$ means precisely $\restr{f}1 = f$.
-    \item Assuming $\rst{g} f = f$, we need to show $\rst{f}\, \rst{g} = \rst{f}$.
-      \begin{align*}
-        \rst{f}\,\rst{g} &= \rst{g}\rst{f} & \rtwo \\
-        & = \rst{\rst{g} f} & \rthree \\
-        & = \rst{f} & \text{Assumption}.
-      \end{align*}
+    \item Assuming $\rst{g} f = f$, we need to show $\rst{f}\, \rst{g} = \rst{f}$. Using \rtwo and
+      then \rthree we have $\rst{f}\,\rst{g} = \rst{g}\rst{f}  = \rst{\rst{g} f}  = \rst{f}$.
       Hence, $\rst{f} \le \rst{g}$.
   \end{enumerate}
 \end{proof}
@@ -640,6 +707,9 @@ to be suggestive of open sets.
   Definition~\ref{def:restriction_category_hom_set_ordering}.
   The join of any two idempotents is given by their composition.
 \end{proof}
+
+\subsection{Meets} % (fold)
+\label{sub:meets_in_restriction_categories}
 
 \begin{definition}\label{def:meet_in_a_restriction_category}
   A restriction category has \emph{meets} if there is an operation $\meet$ on parallel maps:
@@ -748,8 +818,8 @@ by the properties of sets and intersections. For the final requirement,
 Thus, intersection is a meet in \pinj.
 \end{example}
 % subsection enrichment_and_meets (end)
-\subsection{Partial monics, sections and isomorphisms} % (fold)
-\label{sub:restricted_monics_sections_and_partial_isomorphisms}
+\subsection{Partial monics and isomorphisms} % (fold)
+\label{sub:restricted_monics_and_partial_isomorphisms}
 
 Partial isomorphisms play a central role in this thesis. Below we present
 some of their basic properties.
@@ -965,8 +1035,8 @@ which algebraically axiomatize the concept of the range for a function.
 \subsection{Split restriction categories} % (fold)
 \label{sub:split_restriction_categories}
 
-The Karoubi envelope, $\spl{E}{\X}$ as defined in Definition~\ref{def:split_category}
-is also a restriction category when $\X$ is a restriction category.
+The Karoubi envelope of a restriction category, $\spl{E}{\X}$ as defined in
+Definition~\ref{def:split_category} is a restriction category.
 
 Note that for $f:(A,d)\to(B,e)$, by definition, in \X we have $f=d\uts f e$, giving
 \[

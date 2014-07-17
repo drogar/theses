@@ -111,35 +111,44 @@ We start by showing that an inverse category with restriction products is a rest
     \excs =  a_{\*}(1\*\inv{a_{\*}})(1\*(c_{\*}\*1))(1\* a_{\*})\inv{a_{\*}}).
   \]
 
-  The diagonal map $\Delta_A:A \to A\*A$ must be total and satisfy the following:
+  The diagonal map $\Delta_A:A \to A\*A$ must be total and satisfy the diagrams in
+  Figures~\ref{fig:inverse_product_cocommutativity}, \ref{fig:inverse_product_coassociativity},
+  \ref{fig:inverse_product_exchange}, and \ref{fig:inverse_product_frobenius}.
+\begin{figure}[h!]
   \[
     \xymatrix @!0 @C=90pt @R=35pt{
       A \ar[dr]_{\Delta} \ar[r]^{\Delta} &
       A \* A \ar[d]^{c_{\*}}\\
-      & A \* A\\
-      &*!<3pc,-15pt>{\text{\textbf{Co-commutative}}}
+      & A \* A
     }
   \]
+
+\caption{Co-commutativity for an inverse product.}\label{fig:inverse_product_cocommutativity}
+\end{figure}
+\begin{figure}[h!]
   \[
     \xymatrix @C=30pt @R=30pt{
       A \ar[rr]^{\Delta} \ar[d]_{\Delta} & &
       A \* A \ar[d]^{1\*\Delta}\\
       A\*A \ar[dr]_{\Delta \* 1}& & A \* ( A \* A) \\
-      &   (A \* A) \* A \ar[ur]_{a_{\*}}\\
-      &*!<0pc,-35pt>{\text{\textbf{Co-associative}}}
+      &   (A \* A) \* A \ar[ur]_{a_{\*}}
     }
   \]
+\caption{Co-associativity for an inverse product.}\label{fig:inverse_product_coassociativity}
+\end{figure}
+\begin{figure}[h!]
   \[
     \xymatrix @C=40pt @R=35pt{
       A \* B \ar[d]_{\Delta}
       \ar[rr]^{\Delta \* \Delta} & &
       (A \* A) \* (B \* B) \ar[d]^{\excs}\\
       (A \* B) \* (A \* B) \ar@{=}[rr] & &
-      (A \* B) \* (A \* B)\\
-      &*!<0pc,-25pt>{\text{\textbf{Exchange}}}
+      (A \* B) \* (A \* B)
     }
   \]
-
+\caption{Exchange in an inverse product.}\label{fig:inverse_product_exchange}
+\end{figure}
+\begin{figure}[h!]
   \[
     \xymatrix @C=40pt @R=25pt{
       A \* A \ar[dd]_{(1\*\Delta) \inv{a_{\*}}} \ar[dr]^{\inv{\Delta}}
@@ -147,10 +156,12 @@ We start by showing that an inverse category with restriction products is a rest
       A \* (A \* A) \ar[dd]^{1 \* \inv{\Delta}}\\
       & A \ar[dr]^{\Delta} & \\
       (A \* A) \* A \ar[rr]_{\inv{\Delta} \* 1} & &
-      A \* A\\
-      &*!<0pc,-25pt>{\text{\textbf{Frobenius}}}
+      A \* A
     }
   \]
+\caption{Frobenius law in an inverse product.}\label{fig:inverse_product_frobenius}
+\end{figure}
+
   Thus, $\Delta$ is a co-commutative, co-associative map which together with $\inv{\Delta}$ forms a
   Frobenius algebra.
 \end{definition}
