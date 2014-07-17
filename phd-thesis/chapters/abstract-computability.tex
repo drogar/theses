@@ -31,79 +31,6 @@ choose a definition that highlights the algebraic nature of these.
 
 \end{definition}
 
-\subsection{Enrichment of categories} % (fold)
-\label{sub:enrichement_of_categories}
-\begin{definition}\label{def:hom-collection}
-  If $\X$ is a category, then $\X(A,B)$ is called a \emph{hom-collection} of $\X$ and consists
-  of all arrows $f$ with $D(f) = A$ and $C(f) = B$.
-\end{definition}
-
-In the case where the objects of a hom-collection of a category $\X$ are all sets, we call them
-hom-sets. Alternatively, we say $\X$ is \emph{enriched} in sets. In general, categories may be enriched in a
-variety of algebraic structures. For example a category may be enriched in groups, vector spaces or
-monoids.
-
-Specific types of enrichment may force a specific structure on a category. For example, if $\X$ is
-enriched in sets of cardinality of 0 or 1, then $\X$ must be a pre-order.
-
-\begin{example}
-  A group $G$ may be considered as a one-object category $\mathbb{G}$, where the elements of the
-  group are all the  maps between the single element. This category is (trivially) enriched in groups.
-\end{example}
-% subsection enrichment_of_categories (end)
-\subsection{Examples of categories} % (fold)
-\label{sub:examples_of_categories}
-In this section, we will offer a few examples of categories.
-
-We present four categories where the objects are the collection of sets.
-\begin{example}\label{ex:category_sets}
-The first is \sets, where the maps are given by all set functions.
-\category{Sets}{Set functions}{The identity function}{Standard composition of functions}
-\end{example}
-
-\begin{example}\label{ex:category_par}
-Our next example is \Par, where the maps are all partial set functions.
-\category{Sets}{Partial set functions}{The identity function}{Standard composition of functions}
-\end{example}
-
-\begin{example}\label{ex:category_rel}
-A third example, often of interest in quantum programming language semantics is \rel:
-\category{All sets}{Relations: $R:X \to Y$}{$1_X = \{(x,x) | x \in X\}$}{$RS = \{(x,z) |\,
-\exists y. (x,y) \in R$ and $(y,z)\in S\}$}
-\end{example}
-
-Note that \rel is enriched in posets, via set inclusion. \Par can be viewed as a sub-category of
-\rel, with the same objects, but only allowing maps which are functions, i.e., if $(x,y), (x,y')
-\in f$, then $y = y'$. \Par is also enriched in posets, via the same inclusion ordering as in \rel.
-
-\begin{example}\label{ex:category_pinj}
-Our final example based on sets is one that will be used throughout this thesis. The category \pinj consists of
-the partial injective functions over sets. Similarly to \Par, it may be considered as a subcategory
-of \rel. The maps $f,g$ (relations in \rel) in \pinj are defined as follows:
-\begin{align}
-   (x,y)\in f\text{ and }(x,y')\in f & \text{ implies } y = y',\label{eq:pinj_relation_is_a_function}\\
-   (x,y)\in f\text{ and }(x',y)\in f & \text{ implies } x = x'.\label{eq:pinj_converse_relation_is_a_function}
-\end{align}
-\category{All sets}{Relations: $f:X \to Y$ which satisfy Equation~\ref{eq:pinj_relation_is_a_function} and
-Equation~\ref{eq:pinj_converse_relation_is_a_function}.}{$1_X = \{(x,x) | x \in X\}$}{$f g = \{(x,z) |\,
-\exists y. (x,y) \in f$ and $(y,z)\in g\}$}
-\end{example}
-
-\begin{example}[Matrix Category]\label{ex:matrix_category}
-Given a rig $R$ (i.e., a ring minus negatives, e.g., the positive rationals), one may form the
-category \textsc{Mat}($R$). For example, the category of matrices of natural numbers is:
-\category{\nat}{$[r_{i j}]: n \to m$ where $[r_{i j}]$ is an $n \times m$ matrix over $R$}{
-$I_n$}{Matrix multiplication}
-\end{example}
-
-\begin{example}[Dual Category]\label{ex:dual_category}
-Given a category $\B$, we may form the \emph{dual} of $\B$, written $\B^{op}$ as the following
-category:
-\category{The objects of $\B$}{$f^{op}:B\to A$ in $\B^{op}$ when $f:A\to B$ in $\B$.}{
-The identity maps of $\B$}{If $f g = h$ in $\B$, $g^{op} f^{op} = h^{op}$}
-\end{example}
-
-% subsection examples_of_categories (end)
 \subsection{Properties of maps} % (fold)
 \label{sub:properties_of_maps}
 Many interesting properties of maps are generalizations of notions that have been found useful in
@@ -137,7 +64,7 @@ maps in a category $C$ with $e:A \to A$ and $f,g:A \to B$.
   \label{tab:properties_of_maps_in_categories}
 \end{table}
 
-We state without proof a number of properties about maps.
+We state without proof a number of properties of maps.
 
 \begin{lemma}\label{lem:categorical_properties_of_maps}
   In a category \B,
@@ -172,16 +99,16 @@ In general, not all idempotents in a category will split. The following construc
 create a category based on the original one in which all idempotents do split.
 
 \begin{definition}\label{def:split_category}
-  Given a category $\B$ and a set of idempotents $E$ of $\B$, we define \emph{Split${}_E$($\B$)},
-  written as $\spl{E}{\B}$, as the following category:
+  Given a category $\B$ and a set of idempotents $E$ of $\B$, we may create \emph{Split${}_E$($\B$)}.
+  As this is called the Karoubi envelope, this is normally written as $\spl{E}{\B}$, and defined as:
   \category{$(A,e)$, where $A$ is an object of \B, $e:A\to A$ and $e\in E$.}
     {$f_{d,e}:(A,d)\to(B,e)$ is given by $f:A\to B$ in \B, where $f = d\uts f e$.}
     {The map $e_{e,e}$ for $(A,e)$.}
     {Inherited from \B.}
   When $E$ is the set of all idempotents in $\B$, we write $\spl{}{\B}$.
 \end{definition}
-This is the standard idempotent splitting construction, also known as the Karoubi
-envelope.
+This is the standard idempotent splitting construction, variously known as the Karoubi
+envelope or Cauchy completion.
 
 \begin{lemma}\label{lem:split_category_splits_and_has_category}
   Given a category $\B$, then it is a full sub-category of $\spl{}{\B}$ and all idempotents split
@@ -198,6 +125,174 @@ envelope.
   it is a splitting of the map  $d_{e,e}$.
 \end{proof}
 % subsection properties_of_maps (end)
+
+\subsection{Functors and natural transformations} % (fold)
+\label{ssub:functors_and_natural_transformations}
+
+\begin{definition}\label{def:functor}
+  A map $F:\X \to \Y$ between categories, as in Definition~\ref{def:category}, is called a
+  \emph{functor}, provided it satisfies the following:
+  \begin{itemize}
+    \item[\axiom{F}{1}] $F(D(f)) = D(F(f))$ and $F(C(f)) = C(F(f))$;
+    \item[\axiom{F}{2}] $F(f g) = F(f)F(g)$;
+  \end{itemize}
+\end{definition}
+
+\begin{lemma}\label{lem:cat_is_a_category}
+  The collection of categories and functors form the category \cat.
+\end{lemma}
+\begin{proof}
+  \categoryns{Categories.}{Functors.}{The identity functor which takes an object to the same object
+    and a map to the same map.}{
+  $F G(x) = F(G(x))$ which is clearly associative.}
+\end{proof}
+
+\begin{definition}\label{def:faithful_functor}
+  A functor $F:\X\to\Y$ is \emph{faithful} when for each pair of objects $A,B$ in $\X$, and map
+  $g:FA \to FB$ in $\Y$, there is a map $f:A\to B$ in $\X$ such that $F f = g$.
+\end{definition}
+
+\begin{definition}\label{def:full_functor}
+  A functor $F:\X\to\Y$ is \emph{full} when for parallel maps $f, f'$, if $Ff = Ff'$ then $f = f'$.
+\end{definition}
+We may also consider the notion of containment between categories/
+
+\begin{definition}\label{def:subcategories}
+  Given the categories $\B$ and $\D$, we say that \B is a \emph{sub-category} of \D when each object
+  of \B is an object of \D and when each map of \B is a map of \D.
+\end{definition}
+
+When $\B$ is a subcategory of $\D$, the functor $J:\B \to \D$ which takes each object to itself in
+$\D$ and each map to itself in $\D$ is called the inclusion functor. When $J$ is a full functor, we
+say $\B$ is a full subcategory of $\D$.
+
+Functors with two arguments, e.g., $F:\sets \times \sets \to \sets$ which satisfy \axiom{F}{1} and
+\axiom{F}{2} for each argument independently are called \emph{bi-functors}.
+
+
+We will often restrict ourselves to specific classes of functors which either \emph{preserve} or
+\emph{reflect} certain characteristics of the domain category or codomain category. To be more
+precise, we provide some definitions.
+
+\begin{definition}\label{def:diagram_in_a_category}
+  Given a category $\S$, a \emph{diagram}
+  in a category $\B$ of \emph{shape} $\S$ is a functor $D:\S \to \B$.
+\end{definition}
+
+\begin{definition}\label{def:property_of_a_diagram}
+  A \emph{property} of a diagram $D$, written $P(D)$ is a logical relation expressed using the
+  objects and maps of the diagram $D$.
+\end{definition}
+
+For example,   $P(f:A \to B) = \exists h : B \to A. h f = 1_A$ expresses that $f$ is a retraction.
+
+\begin{definition}\label{def:functor_preserving_and_reflecting_a_property}
+  A functor $F$ \emph{preserves} the property $P$ over maps $f_i$ and objects $A_j$ when
+  $P(f_1,\ldots,f_n, A_1,\ldots,A_m)$ implies $P(F(f_1),\ldots,F(f_n), F(A_1),\ldots,F(A_m))$.
+  A functor $F$ \emph{reflects} the property $P$ over maps $f_i$ and objects $A_j$ when
+  $P(F(f_1),\ldots,F(f_n), F(A_1),\ldots,F(A_m))$ implies $P(f_1,\ldots,f_n, A_1,\ldots,A_m)$.
+\end{definition}
+
+For example, all functors preserve the properties of being an idempotent or a retraction or section,
+but in general, not the property of being monic.
+
+A functor $F:\B \to \D$ induces a map between hom-objects in $\B$ and hom-objects in $\D$. For
+each object $A,B$ in $\B$ we have the map:
+\[
+  F_{AB} : \B(A,B) \to \D(F(A),F(B)).
+\]
+
+\begin{definition}\label{def:natural_transformation}
+  Given functors $F,G:\X \to \Y$, a \emph{natural transformation} $\alpha:F \natto G$ is a collection
+  of maps in $\Y$, $\alpha_X : F(X) \to G(X)$, indexed by the objects of $\X$ such that for all
+  $f:X_1 \to X_2$ in $\X$ the following diagram in $\Y$ commutes:
+  \[\xymatrix @R+10pt @C+10pt{
+      F(X_1) \ar[r]^{F(f)} \ar[d]_{\alpha_{X_1}} & F(X_2) \ar[d]^{\alpha_{X_2}}\\
+      G(X_1) \ar[r]_{G(f)} &  G(X_2)
+    }
+  \]
+\end{definition}
+% subsection functors_and_natural_transformations (end)
+
+\subsection{Enrichment of categories} % (fold)
+\label{sub:enrichement_of_categories}
+\begin{notation}\label{notn:hom-set}
+  If $\X$ is a category, then the maps from $A$ to $B$ in $\X$ are represented as $\X(A,B)$.
+\end{notation}
+
+If $\X(A,B)$ is a set for all objects in $\X$, we say $\X$ is \emph{enriched} in sets. In general,
+categories may be enriched in a variety of algebraic structures. For example a category may be
+enriched in groups, vector spaces or monoids.
+
+Specific types of enrichment may force a structure on a category. For example, if $\X$ is
+enriched in sets of cardinality of 0 or 1, then $\X$ must be a pre-order.
+
+\begin{example}
+  A group $G$ may be considered as a one-object category $\mathbb{G}$, with object $\{*\}$. The elements of the
+  group are the maps between $\{*\}$. As $G$ is a group, there is an identity, composition is given
+  by the group multiplication and additionally, each map has an inverse. As $\mathbb{G}(\{*\},\{*\})
+  = G$, this category is enriched in groups.
+\end{example}
+% subsection enrichment_of_categories (end)
+\subsection{Examples of categories} % (fold)
+\label{sub:examples_of_categories}
+In this section, we will offer a few examples of categories.
+Four categories derived from sets are:
+
+\begin{example}[\sets]\label{ex:category_sets}
+In this category, the maps are given by all set functions.
+\category{Sets}{Set functions}{The identity function}{Standard composition of functions}
+\end{example}
+
+\begin{example}[\Par]\label{ex:category_par}
+For this example, the maps are all partial set functions.
+\category{Sets}{Partial set functions}{The identity function}{Standard composition of functions}
+\end{example}
+
+\begin{example}[\rel]\label{ex:category_rel}
+\rel is often of interest in quantum programming language semantics:
+\category{All sets}{Relations: $R:X \to Y$}{$1_X = \{(x,x) | x \in X\}$}{$RS = \{(x,z) |\,
+\exists y. (x,y) \in R$ and $(y,z)\in S\}$}
+\end{example}
+
+Note that \rel is enriched in posets, via set inclusion. \Par can be viewed as a sub-category of
+\rel, with the same objects, but only allowing maps which are partial functions, i.e., deterministic
+relation where if $(x,y), (x,y') \in f$, then $y = y'$. \Par is also enriched in posets, via the
+same inclusion ordering as in \rel.
+
+\begin{example}[\pinj]\label{ex:category_pinj}
+Our final example based on sets is one that will be used throughout this thesis. The category \pinj consists of
+the partial injective functions over sets. Similarly to \Par, it may be considered as a subcategory
+of \rel. The maps $f,g$ (relations in \rel) in \pinj are defined as follows:
+\begin{align}
+   (x,y)\in f\text{ and }(x,y')\in f & \text{ implies } y = y',\label{eq:pinj_relation_is_a_function}\\
+   (x,y)\in f\text{ and }(x',y)\in f & \text{ implies } x = x'.\label{eq:pinj_converse_relation_is_a_function}
+\end{align}
+\category{All sets}{Relations: $f:X \to Y$ which satisfy Equation~\ref{eq:pinj_relation_is_a_function} and
+Equation~\ref{eq:pinj_converse_relation_is_a_function}.}{$1_X = \{(x,x) | x \in X\}$}{$f g = \{(x,z) |\,
+\exists y. (x,y) \in f$ and $(y,z)\in g\}$}
+\end{example}
+
+Our next example shows maps in categories need not always be something normally thought of as a
+function or relation.
+
+\begin{example}[Matrix Category]\label{ex:matrix_category}
+Given a rig $R$ (i.e., a ri\textbf{n}g minus \textbf{n}egatives, e.g., the natural numbers), one may
+form the category \textsc{Mat}($R$). For example, the category of matrices of natural numbers is:
+\category{\nat}{$[r_{i j}]: n \to m$ where $[r_{i j}]$ is an $n \times m$ matrix over $R$}{
+$I_n$}{Matrix multiplication}
+\end{example}
+
+Our last example describes a construction on a category.
+
+\begin{example}[Dual Category]\label{ex:dual_category}
+Given a category $\B$, we may form the \emph{dual} of $\B$, written $\B^{op}$ as the following
+category:
+\category{The objects of $\B$}{$f^{op}:B\to A$ in $\B^{op}$ when $f:A\to B$ in $\B$.}{
+The identity maps of $\B$}{If $f g = h$ in $\B$, $g^{op} f^{op} = h^{op}$}
+\end{example}
+
+% subsection examples_of_categories (end)
 
 \subsection{Limits and colimits in categories} % (fold)
 \label{sub:limits_and_colimits_in_categories}
@@ -222,10 +317,11 @@ and terminal objects.
   unique isomorphism from $I$ to $J$.
 \end{proof}
 
-Dually, we have the corresponding result of Lemma~\ref{lem:initial_objects_are_unique} for terminal
+Dually, we have the corresponding result to Lemma~\ref{lem:initial_objects_are_unique} for terminal
 objects --- they are also unique up to a unique isomorphism.
 
-In categories, we normally designate the initial object by $0$ and the terminal object by $1$.
+In categories, following the terminology in sets, we normally designate the initial object by $0$
+and the terminal object by $1$.
 
 We now turn to products and co-products.
 
@@ -276,8 +372,15 @@ Note that any category with a zero object has a special map, $\zeroob_{A,B}$
 between any two objects $A,B$ of the category given by: $\zeroob_{A,B} : A \to \mathbf{0} \to B$.
 
 \begin{definition}\label{def:categorical_biproduct}
-  In a category \B, given any two objects, $A,B$, if $A\times B$ is isomorphic to $A+B$,  it is
-  referred to as the \emph{biproduct}.
+  In a category \B, with products and coproducts, where:
+  \[
+    \cp{i}\Pi_j = \begin{cases}
+      1 & i = j\\
+      0 & i \neq j
+      \end{cases}
+  \]
+  and given any two objects, $A,B$, $A\times B$ is isomorphic to $A+B$ , then $A\times B$ is
+  referred to as the \emph{biproduct} and designated as $A\biproduct B$.
 \end{definition}
 
 \begin{definition}\label{def:finite_biproducts}
@@ -293,117 +396,38 @@ $\nabla$.
 
 % subsection limits_and_colimits_in_categories (end)
 
-\subsection{Functors and natural transformations} % (fold)
-\label{ssub:functors_and_natural_transformations}
-
-\begin{definition}\label{def:functor}
-  A map $F:\X \to \Y$ between categories, as in Definition~\ref{def:category}, is called a
-  \emph{functor}, provided it satisfies the following:
-  \begin{itemize}
-    \item[\axiom{F}{1}] $F(D(f)) = D(F(f))$ and $F(C(f)) = C(F(f))$;
-    \item[\axiom{F}{2}] $F(f g) = F(f)F(g)$;
-  \end{itemize}
-\end{definition}
-
-\begin{lemma}\label{lem:cat_is_a_category}
-  The collection of categories and functors form the category \cat.
-\end{lemma}
-\begin{proof}
-  \categoryns{Categories.}{Functors.}{The identity functor which takes a map to the same map.}{
-  $F G(x) = F(G(x))$ which is clearly associative.}
-\end{proof}
-
-We may also consider the notion of containment between categories, via functors.
-
-\begin{definition}\label{def:subcategories}
-  Given the categories $\B$ and $\D$, we may say the following:
-  \begin{enumerate}[{(}i{)}]
-    \item \B is a \emph{sub-category} of \D when each object of \B is an object of \D and when each map
-    of \B is a map of \D.
-    \item \B is a \emph{full sub-category} of \D when it is a sub-category and given $A, B$ objects
-      in $\B$ and $f:A \to B$ in \D, then $f$ is a map in $\B$.
-  \end{enumerate}
-\end{definition}
-
-
-Functors with two arguments, e.g., $F:\sets \times \sets \to \sets$ which satisfy \axiom{F}{1} and
-\axiom{F}{2} for each argument independently are called \emph{bi-functors}.
-
-
-We will often restrict ourselves to specific classes of functors which either \emph{preserve} or
-\emph{reflect} certain characteristics of the domain category or codomain category. To be more
-precise, we provide some definitions.
-
-\begin{definition}\label{def:diagram_in_a_category}
-  A \emph{diagram} in a category is a collection of objects and maps between those objects
-  which satisfy categorical composition rules. More precisely: Given a category $\S$, a diagram
-  in a category $\B$ of \emph{shape} $\S$ is a functor $D:\S \to \B$.
-\end{definition}
-
-In practice, diagrams are pictorially represented by drawing the objects and the maps between them.
-
-\begin{definition}\label{def:property_of_a_diagram}
-  A \emph{property} of a diagram $D$, written $P(D)$ is a logical relation expressed using the
-  objects and maps of the diagram $D$.
-\end{definition}
-
-\begin{example}
-  $P(f:A \to B) = \exists h : B \to A. h f = 1_A$ expresses that $f$ is a retraction.
-\end{example}
-
-\begin{definition}\label{def:functor_preserving_a_property}
-  A functor $F$ \emph{preserves} the property $P$ over maps $f_i$ and objects $A_j$ when
-  $P(f_1,\ldots,f_n, A_1,\ldots,A_m)$ implies $P(F(f_1),\ldots,F(f_n), F(A_1),\ldots,F(A_m))$.
-\end{definition}
-
-\begin{definition}\label{def:functor_reflects_a_property}
-  A functor $F$ \emph{reflects} the property $P$ over maps $f_i$ and objects $A_j$ when
-  $P(F(f_1),\ldots,F(f_n), F(A_1),\ldots,F(A_m))$ implies $P(f_1,\ldots,f_n, A_1,\ldots,A_m)$.
-\end{definition}
-
-For example, all functors preserve the properties of being an idempotent or a retraction or section,
-but in general, not the property of being monic.
-
-A functor $F:\B \to \D$ induces a map between hom-objects in $\B$ and hom-objects in $\D$. For
-each object $A,B$ in $\B$ we have the map:
-\[
-  F_{AB} : \B(A,B) \to \D(F(A),F(B)).
-\]
-
-\begin{definition}\label{def:full_functor_faithful_functor}
-  Given a functor $F:\B \to \D$, we say:
-  \begin{itemize}
-    \item $F$ is \emph{faithful} when for all $A,B$, $F_{AB}$ is an injective function;
-    \item $F$ is \emph{full} when  for all $A,B$, $F_{AB}$ is an surjective function.
-  \end{itemize}
-\end{definition}
-
-
-
-\begin{definition}\label{def:natural_transformation}
-  Given functors $F,G:\X \to \Y$, a \emph{natural transformation} $\alpha:F \natto G$ is a collection
-  of maps in $\Y$, $\alpha_X : F(X) \to G(X)$, indexed by the objects of $\X$ such that for all
-  $f:X_1 \to X_2$ in $\X$ the following diagram in $\Y$ commutes:
-  \[\xymatrix @R+10pt @C+10pt{
-      F(X_1) \ar[r]^{F(f)} \ar[d]_{\alpha_{X_1}} & F(X_2) \ar[d]^{\alpha_{X_2}}\\
-      G(X_1) \ar[r]_{G(f)} &  G(X_2)
-    }
-  \]
-\end{definition}
-% subsection functors_and_natural_transformations (end)
-
 \subsection{Categories with additional structure} % (fold)
 \label{sub:categories_with_additional_structure}
 
 \begin{definition}\label{symmetricmonoidalcat}
-  A \emph{symmetric monoidal category} \cD{} is a category equipped with a monoid $\+$ (a bi-functor
-  $\+:\cD \times \cD \to \cD$) together with three families of natural isomorphisms:
-  $a_{A,B,C}:A\+(B\+C) \to (A\+B)\+C$, $u_{A}:A\to A\+I$ and $c_{A,B}:A\+B \to B\+ A$, which satisfy
-  specific coherence diagrams. The isomorphisms are referred to as the \emph{structure isomorphisms}
-  for the symmetric monoidal category. $I$ is the unit of the monoid.
-  A symmetric monoidal category where each of $a_{A,B,C}$, $u_{A}$ and $c_{A,B}$ are actually
-  identity maps is called a \emph{strict symmetric monoidal category}.
+  A \emph{symmetric monoidal category} \cD{} is a category equipped with a monoid $\*$ (a bi-functor
+  $\*:\cD \times \cD \to \cD$) together with four families of natural isomorphisms:
+  $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u^r_{A}:A\*I\to A$, $u^l_{A}:I\*A \to A$ and $c_{A,B}:A\*B
+  \to B\* A$, which satisfy specific coherence diagrams and equations. The isomorphisms are referred
+  to as the \emph{structure isomorphisms}  for the symmetric monoidal category. $I$ is the unit of
+  the monoid. A symmetric monoidal category where each of $a_{A,B,C}$, $u^r_{A}$, $u^l_{A}$ and
+  $c_{A,B}$ are identity maps is called a \emph{strict symmetric monoidal category}.
 \end{definition}
+
+The coherence diagrams for a symmetric monoidal category are as follows:
+\[
+  \xymatrix@C+25pt{
+    A\*(B\*(C\*D) \ar[r]^{a_{A,B,(C\*D)}} \ar[d]_{1\*a_{B,C,D}}
+      & (A\*B)\*(C\*D) \ar[r]^{a_{(A\*B),C,D}}
+      & ((A\*B)\*C)\*D \ar[d]^{a_{A,B,C}\*1}\\
+    A\*((B\*C)\*D) \ar[rr]_{a_{A,(B\*C),D}}
+      && (A\*(B\*C))\*D
+      &*!<0pc,-25pt>{\text{\textbf{Pentagonal associativity}}}
+  }
+\]
+\[
+  \xymatrix@C+25pt{
+    A\*(I\*B) \ar[rr]^{a_{A,I,B}} \ar[dr]_{1\*u^l_B}
+      & (A\*I)\*B \ar[dl]^{u^r_A \* 1}\\
+
+      &*!<0pc,-25pt>{\text{\textbf{Unit laws}}}
+  }
+\]
 For details on the coherence diagrams, please see e.g., \cite{barr:ctcs} or
 \cite{maclan97:categorieswrkmath}. The essence of the coherence diagrams is that any diagram
 composed solely of the structure isomorphisms will commute.
