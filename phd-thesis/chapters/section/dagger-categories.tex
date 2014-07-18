@@ -15,16 +15,13 @@ categories.
   A \emph{symmetric monoidal category}\cite{barr:ctcs,maclan97:categorieswrkmath} \cD{} is a
   category equipped with a monoid $\*$ (a bi-functor $\*:\cD \times \cD \to \cD$) together with
   four families of natural isomorphisms:  $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u^r_{A}:A\*I\to A$,
-  $u^l_{A}:I\*A \to A$ and $c_{A,B}:A\*B \to B\* A$, which satisfy specific coherence diagrams and
-  equations. The isomorphisms are referred to as the \emph{structure isomorphisms}  for the
-  symmetric monoidal category. $I$ is the unit of the monoid. A symmetric monoidal category where
-  each of $a_{A,B,C}$, $u^r_{A}$, $u^l_{A}$ and $c_{A,B}$ are identity maps is called a \emph{strict
-    symmetric monoidal category}.
+  $u^l_{A}:I\*A \to A$ and $c_{A,B}:A\*B \to B\* A$, which satisfy coherence diagrams and
+  equations shown in Figures~\ref{fig:SMC_pentagon}, \ref{fig:SMC_unit}, \ref{fig:SMC_commutes},
+  \ref{fig:SMC_unit_symmettry} and \ref{fig:SMC_associativity_symmetry}. The isomorphisms are
+  referred to as the \emph{structure isomorphisms}  for the symmetric monoidal category. $I$ is the
+  unit of the monoid. A symmetric monoidal category where each of $a_{A,B,C}$, $u^r_{A}$, $u^l_{A}$
+  and $c_{A,B}$ are identity maps is called a \emph{strict symmetric monoidal category}.
 \end{definition}
-
-The coherence diagrams for a symmetric monoidal category are given in
-Figures~\ref{fig:SMC_pentagon}, \ref{fig:SMC_unit}, \ref{fig:SMC_commutes},
-\ref{fig:SMC_unit_symmettry} and \ref{fig:SMC_associativity_symmetry}.
 
 \begin{figure}[!htbp]
 \[
@@ -46,7 +43,7 @@ Figures~\ref{fig:SMC_pentagon}, \ref{fig:SMC_unit}, \ref{fig:SMC_commutes},
       &A\*B
   }
 \]
-\[\text{ and } u^r_I = u^l_i: I\* I \to I\]
+\[\text{ and } u^r_I = u^l_I: I\* I \to I\]
 \caption{Unit diagram and equation in an SMC.}\label{fig:SMC_unit}
 \end{figure}
 \begin{figure}[!htbp]
@@ -138,11 +135,11 @@ $f^{-1} = \dgr{f}$ is called \emph{unitary}. A map $f:A\to A$ with $f=\dgr{f}$ i
 \begin{definition}\label{def:daggersmc}
   A \emph{dagger symmetric monoidal category} is a symmetric monoidal category \cD{} with a dagger
   operator such that:
-  \begin{itemize}
-    \item For all maps $f:A\to B$ and $g:C\to D$, $\dgr{(f\*g)} = \dgr{f}\*\dgr{g}:B\*D \to A\* C$;
-    \item The monoid structure isomorphisms $a_{A,B,C}:(A\*B)\* C\to A\*(B\*C)$, $u_{A}:A\to I\*A$ and
-      $c_{A,B}:A\*B \to B\*A$ are unitary.
-  \end{itemize}
+  \begin{enumerate}
+    \item For all maps $f:A\to B$ and $g:C\to D$, $\dgr{(f\*g)} = \dgr{f}\*\dgr{g}:B\*D \to A\* C$;\label{defitem:dagger_smc_one}
+    \item The monoid structure isomorphisms $a_{A,B,C}:(A\*B)\* C\to A\*(B\*C)$, $u^l_{A}:I\*A\to
+      A$, $u^r_{A}:A\*I \to A$ and  $c_{A,B}:A\*B \to B\*A$ are unitary.\label{defitem:dagger_smc_two}
+  \end{enumerate}
 \end{definition}
 
 
@@ -248,25 +245,25 @@ $\dgr{f}:B\to A$ such that $\<f a|b\> = \<a | \dgr{f} b\>$ for all $a\in A, b\in
 
 \begin{example}[\rel]\label{ex:rel_is_dagger_category}
 The category \rel of sets and relations has the tensor $S\*T = S\times T$, the
-Cartesian product and the biproduct $S\biproduct T = S+T$, the disjoint union. This is compact closed under
-$A^{*} = A$ and the dagger is the relational converse. That is, if the relation $R=\{(s,t)|s\in S,
-t\in T\}:S\to T$, then $\dgr{R}=\{(t,s)|(s,t)\in R\}(=R^{*})$.
+Cartesian product and the biproduct $S\biproduct T = S+T$, the disjoint union. This is compact
+closed under $A^{*} = A$ and the dagger is the ${}^*$ operation, the relational converse. That is,
+if the relation $R=\{(s,t)|s\in S, t\in T\}:S\to T$, then $\dgr{R}=R^*=\{(t,s)|(s,t)\in R\}$.
 \end{example}
 
 \begin{example}[Inverse categories]\label{ex:inverse_category_is_dagger_category}
 An inverse category \X is also a dagger category when the dagger is defined as the partial inverse.
-The unitary maps are the total restriction idempotents. However, if the inverse category \X is also a
+The unitary maps are the total maps. When the inverse category \X is also a
 symmetric monoidal category where the monoid $\*$ is actually a restriction bi-functor, then \X is
-not a dagger symmetric monoidal category. The first requirement for being a dagger symmetric
-monoidal category is fulfilled, as
+a dagger symmetric monoidal category.
+
+Requirement \ref{defitem:dagger_smc_one} of Definition~\ref{def:daggersmc}  is fulfilled, as
 \[
   (f\*g) \inv{(f\*g)} = \rst{f\*g}=\rst{f} \*\rst{g} =
    f\inv{f} \* g \inv{g} = (f\*g) (\inv{f} \* \inv{g})
 \]
-and since the partial inverse of $f\*g$ is unique, $\inv{(f\*g)} = \inv{f} \* \inv{g}$. The other
-requirement is that the structure isomorphisms are unitary. This is, of course, not the case
-\emph{unless \X is a strict symmetric monoidal category}. In general,
-therefore \X is not a dagger symmetric monoidal restriction category.
+and since the partial inverse of $f\*g$ is unique, $\inv{(f\*g)} = \inv{f} \* \inv{g}$.
+Requirement \ref{defitem:dagger_smc_two} is that the structure isomorphisms are unitary. This is, of
+course, true as each of them are isomorphisms, hence total and therefore unitary.
 \end{example}
 %%% Local Variables:
 %%% mode: latex
