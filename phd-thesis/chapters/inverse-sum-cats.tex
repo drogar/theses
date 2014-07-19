@@ -2,9 +2,19 @@
 \chapter{Inverse sum categories} % (fold)
 \label{cha:inverse_sum_categories}
 
-\input{chapters/section/sums-in-frobenius}
+In this chapter we define inverse sum categories, an inverse category with a construction that
+behaves as a coproduct, but without the requirement for a coproduct map. We will show these are
+given by inverse categories with a disjointness tensor.
 
-% section disjointness_in_an_inverse_category (end)
+We then show inverse sum categories are equivalent to their matrix categories and are, in fact
+Unique Decomposition Categories\cite{haghverdi:2000phd}.
+
+In the final part of the chapter, we consider inverse categories with both an inverse sum and
+inverse product, where the inverse product distributes overs the inverse sum in a specific way. We
+show that completing such a category, in the sense of
+Section~\ref{sec:completing_a_discrete_inverse_category}, produces a distributive restriction
+category where the product distributes over the coproduct.
+
 \section{Inverse sum categories} % (fold)
 \label{sec:inverse_sum_categories}
 
@@ -84,10 +94,9 @@
 %\end{proof}
 
 \begin{definition}\label{def:inverse_sum_category}
-  Suppose \X is an inverse category with disjoint joins $\djoin$ based on a disjointness
-  relation $\cdperp$ and a restriction zero. If every pair of objects has an inverse sum as in
-  Definition~\ref{def:inverse_sum}, we call the category an \emph{inverse sum} category. For any
-  two objects $A,B$ in \X, we write their inverse sum as $\invsum{A}{B}$.
+  Suppose \X is an inverse category with disjoint joins. If every pair of objects has an inverse
+  sum, we call the category an \emph{inverse sum} category. For any two objects $A,B$ in \X, we
+  write their inverse sum as $\invsum{A}{B}$.
 \end{definition}
 
 \begin{lemma}\label{lem:tensor_disjoint_sum_cats_are_inverse_sum_categories}
@@ -313,9 +322,9 @@
   Suppose we have $f \tperp g$ and $\ h \tperp k$.
   From Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item~\ref{lemitem:l_r_preserve_tensor}, we
   know both $(f\+h)\tjdown(g\+k)$ and $(f\+h)\tjup(g\+k)$ exist, hence $(f\+h)\tperp(g\+k)$.
-  This shows condition~\eqref{eq:invsum_preserve_perp}.
+  This shows Condition~\ref{eq:invsum_preserve_perp}.
 
-  For condition~\eqref{eq:invsum_preserve_join}, we compute from the right hand side:
+  For Condition~\ref{eq:invsum_preserve_join}, we compute from the right hand side:
   \begin{align*}
     (f\+h)\tjoin(g\+k) &= (f\+h)\tjdown (g\+k) \wrg{(f\+h)}\tjup \wrg{(g\+k)}\\
     &= \left( (f\tjdown g)\+ (h \tjdown k) \right)
@@ -955,7 +964,7 @@ In the following, we will present distributivity in inverse categories.
   A \emph{distributive inverse category} \D consists of the following:
   \begin{itemize}
     \item \D is an inverse category;
-    \item \D has an inverse product tensor, $\*$, per Definition~\ref{def:inverse_product_tensor};
+    \item \D has an inverse product with tensor $\*$, per Definition~\ref{def:inverse_product};
     \item \D has an inverse sum tensor, $\+$, per Definition~\ref{def:inverse_sum_tensor} and
     \item There is a family of isomorphisms, $d$, such that
     \begin{equation}

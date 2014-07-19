@@ -1,8 +1,10 @@
 \section{Disjointness in Frobenius Algebras}
 \label{sec:disjointness_in_frobenius_algebras}
-\begin{definition}\label{def:perp_in_cfrob}
-  As shown in ..., $CFrob(\X)$ is a discrete inverse category. For $f,g:A\to B$, define $f\perp g$
-  when
+An important example of a disjointness system arises naturally from Frobenius Algebras.
+
+\begin{lemma}\label{lem:cfrobperp_is_a_disjointness_relation}
+  As shown in Lemma~\ref{lem:cfrobx_is_an_inverse_category} $CFrob(\X)$ is a discrete inverse
+  category. For $f,g:A\to B$, define $f\perp g$  when
 \[
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
@@ -19,14 +21,12 @@ node at (0,2) [delta] (d) {};
 \end{tikzpicture}
 \ \raisebox{45pt}{$= 0.$}\
 \]
-\end{definition}
 
-\begin{lemma}\label{lem:cfrobperp_is_a_disjointness_relation}
-  The relation $\perp$ of Definition~\ref{def:perp_in_cfrob} is a disjointness relation.
+  The relation $\perp$ is a disjointness relation.
 \end{lemma}
 \begin{proof}
 We need to show the seven axioms of the disjointness relation hold. Note that we will show
-\axiom{Dis}{6} early on as its result will be used in some of the other axiom proofs.\\
+\axiom{Dis}{6} early on as its result will be used to establish some of the other axioms.\\
 \axiom{Dis}{1}: For all $f:A\to B,\ f\cdperp 0$.\\
 \[
 \begin{tikzpicture}

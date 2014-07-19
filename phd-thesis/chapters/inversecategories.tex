@@ -7,7 +7,7 @@ This chapter will focus on adding ``products'' to an inverse category.
 We will show below an inverse category which has restriction products is a restriction
 pre-order. Given this, by ``product'', we mean a structure that behaves in a product-like manner in
 an inverse category which we call these \emph{inverse products}. These will be defined below in
-Sub-Section~\ref{sub:inverse_product_tensor}: Inverse products are given by a natural structure on a
+Sub-Section~\ref{sub:inverse_product_definition}: Inverse products are given by a natural structure on a
 tensor product which includes a diagonal but lacks projections. The diagonal map is required to give
 a natural Frobenius structure on each object.
 
@@ -35,12 +35,7 @@ and thus, is too restrictive a notion.
   \]
 \end{proposition}
 \begin{proof}
-  Notice,
-  \begin{align*}
-    \inv{\pi_1} & = \Delta \pi_1 \inv{\pi_1}\\
-    &=\Delta \restr{\pi_1}\\
-    &=\Delta.
-  \end{align*}
+  Notice that $ \inv{\pi_1}  = \Delta \pi_1 \inv{\pi_1} =\Delta \restr{\pi_1} = \Delta$.
   This gives $\restr{\inv{\pi_1}} = 1$ and therefore $\pi_1$ (and similarly, $\pi_0$) is an
   isomorphism.
 
@@ -82,39 +77,41 @@ and thus, is too restrictive a notion.
 \section{Inverse products} % (fold)
 \label{sec:inverse_products}
 
-\subsection{Inverse product tensor} % (fold)
-\label{sub:inverse_product_tensor}
+\subsection{Inverse product definition} % (fold)
+\label{sub:inverse_product_definition}
 
-\begin{definition}\label{def:inverse_product_tensor}
-  Given a restriction category \X, a tensor $\*$ is called an \emph{inverse product tensor}
-  when:
-\begin{itemize}
-  \item $\*$ is a restriction functor, $\_ \* \_ : \X \times \X \to \X$.
-  \item $\*$ is a symmetric monoidal tensor satisfying the standard symmetric monoidal equations and
-    coherence diagrams hold (see, e.g., \cite{maclan97:categorieswrkmath}) and has the following
-    natural isomorphisms:
-    \begin{align*}
-      1 &: \boldsymbol{1}\to \X \\
-      \usl &: 1 \* A \xrightarrow{\cong} A
-      &\usr &: A \* 1 \xrightarrow{\cong} A\\
-      a_{\*} &: (A \* B) \* C \xrightarrow{\cong} A \* (B \* C)
-      &c_{\*} &: A \* B \xrightarrow{\cong} B \* A.
-    \end{align*}
-  \end{itemize}
-  Note that since all the coherence maps are isomorphisms, they are total.
-\end{definition}
+%\begin{definition}\label{def:inverse_product_tensor}
+%  Given a restriction category \X, a tensor $\*$ is called an \emph{inverse product tensor}
+%   when:
+% \begin{itemize}
+%   \item $\*$ is a restriction functor, $\_ \* \_ : \X \times \X \to \X$.
+%   \item $\*$ is a symmetric monoidal tensor satisfying the standard symmetric monoidal equations and
+%     coherence diagrams hold (see, e.g., \cite{maclan97:categorieswrkmath}) and has the following
+%     natural isomorphisms:
+%     \begin{align*}
+%       1 &: \boldsymbol{1}\to \X \\
+%       \usl &: 1 \* A \xrightarrow{\cong} A
+%       &\usr &: A \* 1 \xrightarrow{\cong} A\\
+%       a_{\*} &: (A \* B) \* C \xrightarrow{\cong} A \* (B \* C)
+%       &c_{\*} &: A \* B \xrightarrow{\cong} B \* A.
+%     \end{align*}
+%   \end{itemize}
+%   Note that since all the coherence maps are isomorphisms, they are total.
+% \end{definition}
 
 \begin{definition}\label{def:inverse_product}
-  An \emph{inverse product} on an inverse category \X is given by an inverse product tensor $\*$
-  together with a  natural ``Frobenius'' diagonal map, $\Delta$. Additionally, we define the
+  An \emph{inverse product} on an inverse category \X is given by an tensor $\*$, a restriction
+  bi-functor. The tensor makes \X a  symmetric monoidal category and there is a natural
+  ``semi-Frobenius'' diagonal map, $\Delta$. Additionally, we define the
   map $\excs: (A\*B)\*(C\*D) \to (A\*C) \* (B\*D)$:
   \[
     \excs =  a_{\*}(1\*\inv{a_{\*}})(1\*(c_{\*}\*1))(1\* a_{\*})\inv{a_{\*}}).
   \]
 
-  The diagonal map $\Delta_A:A \to A\*A$ must be total and satisfy the diagrams in
-  Figures~\ref{fig:inverse_product_cocommutativity}, \ref{fig:inverse_product_coassociativity},
-  \ref{fig:inverse_product_exchange}, and \ref{fig:inverse_product_frobenius}.
+  The diagonal map $\Delta_A:A \to A\*A$ must be total and create a co-semigroup without units. It
+  must satisfy the diagrams in Figures~\ref{fig:inverse_product_cocommutativity},
+  \ref{fig:inverse_product_coassociativity}, \ref{fig:inverse_product_exchange}, and
+  \ref{fig:inverse_product_frobenius}.
 \begin{figure}[!htbp]
   \[
     \xymatrix @!0 @C=90pt @R=35pt{
@@ -140,11 +137,10 @@ and thus, is too restrictive a notion.
 \begin{figure}[!htbp]
   \[
     \xymatrix @C=40pt @R=35pt{
-      A \* B \ar[d]_{\Delta}
-      \ar[rr]^{\Delta \* \Delta} & &
-      (A \* A) \* (B \* B) \ar[d]^{\excs}\\
-      (A \* B) \* (A \* B) \ar@{=}[rr] & &
-      (A \* B) \* (A \* B)
+      A \* B \ar[dr]_{\Delta}
+      \ar[rr]^{\Delta \* \Delta} &&
+      (A \* A) \* (B \* B) \ar[dl]^{\excs}\\
+      &(A \* B) \* (A \* B)
     }
   \]
 \caption{Exchange in an inverse product.}\label{fig:inverse_product_exchange}
@@ -164,7 +160,8 @@ and thus, is too restrictive a notion.
 \end{figure}
 
   Thus, $\Delta$ is a co-commutative, co-associative map which together with $\inv{\Delta}$ forms a
-  Frobenius algebra.
+  special semi-Frobenius algebra. We use the prefix ``semi-'' as we are not requiring the unit laws
+  of a Frobenius algebra as per Definition~\ref{def:frobeniusalgebra}.
 \end{definition}
 
 \begin{remark}
@@ -180,22 +177,28 @@ and thus, is too restrictive a notion.
   and are therefore equal.
 
   Similarly, one can show that $(\inv{\Delta}\* 1)\inv{\Delta} =
-  a_{\*}(\inv{\Delta}\* 1)\inv{\Delta}$.
+  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
+  \begin{align*}
+    \Delta(\Delta\*1)\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} &=
+    \Delta(1\*\Delta)a_{\*}\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} \\
+    & =\Delta(1\*\Delta)(\inv{\Delta}\* 1)\inv{\Delta} \\
+    & =\Delta\inv{\Delta}\Delta\inv{\Delta} = 1.
+  \end{align*}
 \end{remark}
 
 
-Inverse products are extra structure on an inverse category, rather than a property. A concrete
-category showing this is given in the following example.
+Inverse products are extra structure on an inverse category, rather than a property. An example to
+demonstrate this is given next.
 
-\begin{example}[Showing that inverse product is additional structure]
+\begin{example}[Inverse products are additional structure]
   \label{example:invprodisstructure}
 \end{example}
 Any discrete category (i.e., a category with only the identity arrows) is a trivial inverse
 category. To create an inverse product on a discrete category, add a commutative, associative,
 idempotent multiplication, with a unit.
 
-Let $\D$ be the discrete category of four objects and label them as $a,b,c$ and $d$. Then, define
-two different inverse product tensors, $\*$ and $\odot$ as shown in
+Let $\D$ be the discrete category with four objects $a,b,c$ and $d$. Then, define
+two different inverse product tensors, $\*$ and $\odot$, with $d$ the unit of each as shown in
 Table~\ref{tab:two_different_inverse_products}.
 
 \begin{table}[!htbp]
@@ -221,15 +224,15 @@ Table~\ref{tab:two_different_inverse_products}.
   \label{tab:two_different_inverse_products}
 \end{table}
 
-As $\D$ is discrete, $\Delta$ is forced to be the identity. By inspection, we can see each of
-the conditions for $\Delta$ are satisfied by $\*$ and by $\odot$.
+As $\D$ is discrete, $\Delta$ is forced to be the identity. One can check easily that each of the
+the conditions for being an inverse product are satisfied by $\*$ and by $\odot$ with the trivial diagonal.
 
 % subsection inverse_products (end)
 \subsection{Diagrammatic Language} % (fold)
 \label{sub:diagrammatic_language}
 
 While it is certainly possible to prove results about inverse products using direct algebraic
-manipulation, it is much more succinct to proceed with string diagrams. See
+manipulation, it is much more convenient to understanding to proceed with string diagram circuits. See
 \cite{selinger11:graphical} for a comparison of various graphical languages for monoidal categories.
 As shown in
 \cite{street-ross-1991-GTC-I}, diagrammatic reasoning is equivalent to reasoning algebraically for
@@ -241,7 +244,7 @@ In the diagrams, we will use the following representations:
       \path node [delta] at (0,0) {}; \end{tikzpicture}.
   \item $\inv{\Delta}$ by a downward triangle: \begin{tikzpicture}
       \path node [nabla] at (0,0) {}; \end{tikzpicture}.
-  \item maps by a rectangle with the map inside: \begin{tikzpicture}
+  \item maps by a rectangle with the name of the map inside: \begin{tikzpicture}
       \path node [map] at (0,0) {$\scriptstyle f$}; \end{tikzpicture}.
   \item unit introduction (often referred to as an $\eta$ map): \begin{tikzpicture}
       \path node [eta] at (0,0) {}; \end{tikzpicture}.
@@ -729,7 +732,7 @@ inverse category to a discrete Cartesian restriction category.
         \begin{tikzpicture}
         \node at (0,1.5) (start) {};
         \node at (0,1) [delta] (d1) {};
-        \node at (-.25,.5) [map] (f_e) {$\scriptstyle f e$};
+        \node at (-.25,.5) [map] (f_e) {$\scriptstyle e f$};
         \node at (.25,.5) [map] (g) {$\scriptstyle g$};
         \node at (-.25,0) (end1) {};
         \node at (.25,0) (end2) {};
@@ -746,7 +749,7 @@ inverse category to a discrete Cartesian restriction category.
       equality,  ($e\Delta(f\*g) = \Delta(e f\*e g)$) follows by naturality of $\Delta$.
 
     \item[\ref{le:efginvdelta}] As in \ref{le:deltaefg}, details are only given for the
-      first equality. This proof is arrived at by reversing the diagrams of \ref{le:deltaefg}.
+      first equality. This proof is obtained by reversing the diagrams of \ref{le:deltaefg}.
       \[
       \raisebox{10pt}{
       \begin{tikzpicture}
@@ -1410,12 +1413,11 @@ v        \draw (g) to (f-inverse);
 
 Given a discrete restriction category, one can pick out the maps which are partial isomorphisms.
 Using results from Sub-Section~\ref{sub:discrete_inverse_categories} and from
-Sub-Section~\ref{sub:discrete_restriction_categories},
-this section will show that these maps form a restriction subcategory and in fact form a discrete
-inverse category.
+Sub-Section~\ref{sub:discrete_restriction_categories}, we will show that these maps form a
+subcategory which is a discrete inverse category.
 
 \begin{proposition}\label{lem:inv_x_is_a_discrete_inverse_category}
-  Given \X is a discrete restriction category, the invertible maps of \X, together with the objects
+  Given \X is a discrete restriction category, the partial isomorphisms of \X, together with the objects
   of \X form a sub-restriction category which is a discrete inverse category. For the restriction
   category $\X$, we denote this sub-category by \Invc{\X}.
 \end{proposition}
@@ -1444,11 +1446,11 @@ inverse category.
         \hline
         $\scriptstyle \pi_0:A\times\top \to A$ & $\scriptstyle \usr:A\*1 \to A$& $\scriptstyle \<1,!\>$\\
         \hline
-        ${\scriptstyle \<\pi_0 \pi_0,\<\pi_0 \pi_1,\pi_1\>\>:(A\times B)\times C \to A\times(B\times C)}$
+        ${\scriptstyle a_{\X} = \<\pi_0 \pi_0,\<\pi_0 \pi_1,\pi_1\>\>:(A\times B)\times C \to A\times(B\times C)}$
           & $\scriptstyle a_{\*}:(A\*B)\*C \to A\*(B\*C)$
           & $\scriptstyle \<\<\pi_0, \pi_1 \pi_0\>,\pi_1 \pi_1\>$\\
         \hline
-        $\scriptstyle \< \pi_1,\pi_0\>:A\times B \to B\times A$ & $\scriptstyle c_{\*}:A\*B \to B \* A$ & $\scriptstyle \< \pi_1,\pi_0\>$\\
+        $\scriptstyle c_{\X}=\< \pi_1,\pi_0\>:A\times B \to B\times A$ & $\scriptstyle c_{\*}:A\*B \to B \* A$ & $\scriptstyle \< \pi_1,\pi_0\>$\\
         \hline
         $\scriptstyle \Delta_{\X}:A\to A\times A$ & $\scriptstyle \Delta:A \to A\* A$ & $\scriptstyle  \inv{\Delta_{\X}} $\\
         \hline
@@ -1468,19 +1470,19 @@ inverse category.
   definition of the restriction product.
 
   Co-associativity requires $\Delta (1 \* \Delta) = \Delta (\Delta \* 1) a_{\*}$. Expressing this
-  in \X, we require
+  in \X, is the requirement that
   \[
     \Delta_{\X} (1 \times \Delta_{\X}) =
-      \Delta_{\X}(\Delta_{\X} \times 1) (\<\pi_0 \pi_0,\<\pi_0 \pi_1,\pi_1\>\>).
+      \Delta_{\X}(\Delta_{\X} \times 1) a_{\X}
   \]
-  Again each is equal based on the properties of the restriction product.
+  which follows from the properties of the restriction product.
 
-  The Frobenius requirement is two-fold:
+  The semi-Frobenius requirement is two-fold:
   \begin{align}
     \inv{\Delta} \Delta &= (\Delta \*1) a_{\*}(1\*\inv{\Delta}) \label{eq:frobenius_righths_need_in_invx}\\
     \inv{\Delta} \Delta &= (1 \* \Delta) \inv{a_{\*}}(\inv{\Delta}\* 1), \label{eq:frobenius_lefths_need_in_invx}.
   \end{align}
-  In \X, this becomes:
+  In \X, these become:
   \begin{align}
     \inv{\Delta_{\X}} \Delta_{\X}
       &= (\Delta_{\X} \times 1) \<\pi_0 \pi_0,\<\pi_0 \pi_1,\pi_1\>\>(1\times\inv{\Delta_{\X}})
@@ -1489,15 +1491,15 @@ inverse category.
       &= (1 \times \Delta_{\X}) \<\<\pi_0, \pi_1 \pi_0\>,\pi_1 \pi_1\>(\inv{\Delta_{\X}}\times 1).
       \label{eq:frobenius_lefths_expressed_in_x}
   \end{align}
-  We will detail the proof of Equation~\ref{eq:frobenius_righths_expressed_in_x}.
+  We will give the details of the proof for Equation~\ref{eq:frobenius_righths_expressed_in_x}.
   Equation~\ref{eq:frobenius_lefths_expressed_in_x} may be proven similarly.
 
   Note first that $\Delta(1 \times !)$ (and $\Delta(!\times 1)$) is the identity. Second, we see
-  that maps to a product of objects may be split into a product map --- i.e.  if
+  that maps to a product of objects may be expressed as a pairing --- i.e.  if
   $f:A \to B \times B$, then $f = \<f(1\times !), f(!\times 1)\>$.
 
-  Using this we see that the left hand side of Equation~\eqref{eq:frobenius_righths_expressed_in_x}
-  computes as follows:
+  Using this we see that the left hand side of Equation~\ref{eq:frobenius_righths_expressed_in_x}
+  may be computed as follows:
   \begin{align*}
     \inv{\Delta_{\X}} \Delta_{\X}
       & = \<\inv{\Delta_{\X}} \Delta_{\X}(1\times !), \inv{\Delta_{\X}} \Delta_{\X} (! \times 1)\>\\
@@ -1536,16 +1538,55 @@ inverse category.
 \label{sec:completing_a_discrete_inverse_category}
 
 The purpose of this section is to prove that the category of discrete inverse categories is
-equivalent to the the category of discrete restriction categories. In order to prove this, we show
-how to construct a discrete restriction category, \Xt, from a discrete inverse category, \X.
+equivalent to the the category of discrete Cartesian restriction categories. In order to prove this,
+we show how to construct a discrete Cartesian restriction category, \Xt, from a discrete inverse
+category, \X.
+
+We begin by giving the construction of $\Xt$. This is followed by the details of the equivalence
+relation and then the proof that $\Xt$ is a discrete Cartesian restriction category.
+
+\begin{definition}\label{def:xt}
+  When \X is an inverse category, define \Xt\ as:
+  \categoryns{objects as in \X;}
+  {
+    A map $(f,C):A\to B$ in \Xt is the equivalence class of the map $f:A\to B\*C$ in \X (detailed below in
+    Definition~\ref{def:xequivalence}). We have the following relationship between maps in \Xt and \X: %
+    \[
+      \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt};
+    \]
+  }
+  {% identity
+    by
+    \[
+      \infer{A\xrightarrow{\inv{u_{\*}^r}}A\* 1}
+            {A \xrightarrow{(\inv{u_{\*}^r}, 1)} A};
+    \]
+  }
+  {% composition
+    given by
+    \[
+      \infer{
+        \infer{A\xrightarrow{(f (g\*1) a_{\*},C' \* B')} C}
+              {A\xrightarrow{f (g\*1) a_{\*}} C \* (C' \* B')}
+            }
+            {A \xrightarrow{\ (f,B')\ } B \xrightarrow{\ (g,C')\ } C}.
+    \]
+  }
+
+\end{definition}
+
+When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notation $f:A\to
+\xtdmn{B}{C}$ ($\equiv f:A\to B\* C$).
 
 \subsection{Equivalence classes of maps in \hypX} % (fold)
 \label{sub:equivalence_classes_of_maps_in_hypx}
 
 
 \begin{definition}\label{def:xequivalence}
-  In a discrete inverse category \X as defined above, the map $f$ is equivalent to $f'$ in \X when
-  $\restr{f} = \restr{f'}$ in \X and the below diagram commutes for some map $h$:
+  In a discrete inverse category \X, the map $f$ is equivalent to $f'$ in \X when
+  $\restr{f} = \restr{f'}$ in \X and Diagram~\ref{fig:xt_map_equivalence_diagram} commutes for some
+  map $h$.
+\begin{figure}[H]
   \[
     \xymatrix @C=40pt @R=15pt{
       & & B \* C \ar@{.>}[dr]^{(\Delta\* 1) \, a_{\*}}\\
@@ -1555,6 +1596,9 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
       && B\* C'
     }
   \]
+\caption{Equivalence diagram for constructing maps in \Xt.}
+\label{fig:xt_map_equivalence_diagram}
+\end{figure}
 \end{definition}
 
 \begin{notation}\label{notn:xequivalence}
@@ -1834,38 +1878,6 @@ how to construct a discrete restriction category, \Xt, from a discrete inverse c
 \subsection{The restriction category \hypXt} % (fold)
 \label{sub:the_restriction_category_hypxt}
 
-\begin{definition}\label{def:xt}
-  When \X is an inverse category, define \Xt\ as:
-  \categoryns{objects as in \X;}
-  {
-    A map $(f,C):A\to B$ in \Xt is the equivalence class of the map $f:A\to B\*C$ as in
-    Definition~\ref{def:xequivalence} with the following relationship between maps in \Xt and \X: %
-    \[
-      \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt};
-    \]
-  }
-  {% identity
-    by
-    \[
-      \infer{A\xrightarrow{\inv{u_{\*}^r}}A\* 1}
-            {A \xrightarrow{(\inv{u_{\*}^r}, 1)} A};
-    \]
-  }
-  {% composition
-    given by
-    \[
-      \infer{
-        \infer{A\xrightarrow{(f (g\*1) a_{\*},C' \* B')} C}
-              {A\xrightarrow{f (g\*1) a_{\*}} C \* (C' \* B')}
-            }
-            {A \xrightarrow{\ (f,B')\ } B \xrightarrow{\ (g,C')\ } C}.
-    \]
-  }
-
-\end{definition}
-
-When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notation $f:A\to
-\xtdmn{B}{C}$ ($\equiv f:A\to B\* C$).
 
 \begin{lemma}\label{lem:xt_is_a_category}
   \Xt\ as defined above is a category.
@@ -2318,9 +2330,9 @@ leads us to the following theorem:
 \subsection{Equivalence of categories} % (fold)
 \label{sub:equivalence_of_categories}
 
-This section will show that the category of discrete inverse categories (maps being restriction
-functors that preserve the inverse tensor) is equivalent to the category of discrete restriction
-categories (maps being the restriction functors which preserve the product). In the following, $\X$
+This section will show that the category of discrete inverse categories (with functors that preserve
+the inverse tensor) is equivalent to the category of discrete restriction categories (with
+restriction functors which preserve the product). In the following, $\X$
 will always be a discrete inverse category, $\D$ and $\B$ will be discrete restriction categories.
 
 We approach the equivalence proof by exhibiting the universal property for discrete inverse
@@ -2362,7 +2374,7 @@ result.
   As $(g,C)$ is invertible in \Xt, the map $\inv{(g,C)}: B \to A$ exists. The map $\inv{(g,C)}$ must be in
   the equivalence class of some map $k:B \to A \* D$. By construction, the map  $\rst{(g,C)}$ is
   in the equivalence class of the map $\rst{g}\inv{\usr}:A \to A\*1$ in \X. This means,
-  diagramming in \X, there is an $n$ such that
+  in \X, there is an $n$ such that
   \[
     \xymatrix @C=45pt @R=25pt{
       B \ar[r]^{k} \ar[rrddd]_{\rst{k}\inv{\usr}}
@@ -2394,8 +2406,7 @@ result.
 \end{proof}
 
 \begin{lemma}\label{lem:universal_diagram_is_a_commutative_diagram}
-  Diagram~\ref{dia:universal_property_of_inverse_categories} above is a commutative diagram.
-
+  $\eta\Inv{F^{\#}} = F$.
 \end{lemma}
 \begin{proof}
   Chasing maps around the diagram, we have:
