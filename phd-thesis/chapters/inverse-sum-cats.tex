@@ -474,16 +474,16 @@ The types of matrices allowed in the matrix category are subject to certain cons
 \begin{definition}\label{def:inverse_matrix_category}
   Given an inverse category \X with a disjoint sum tensor, we define the \emph{inverse
   matrix category} of \X, \imatx, as follows:
-  \rcategory{Non-empty lists of the objects of $\X$.}{
+  \rcategory{Non-empty lists of the objects of $\X$}{
     Inverse sum matrices $[f_{i\jay}]: [A_i] \to [B_\jay]$. In such a matrix each individual map
     $f_{i\jay}:A_i \to B_{\jay}$ is a map in $\X$. For each $j$, $B_\jay$ is given by
     applying the map $\djoin_i \icp{i} f_{i\jay}$ to the object $\+_i A_i$}{
-    The inverse sum matrix $I$.}{
+    The inverse sum matrix $I$}{
     Given $[f_{i\jay}]: [A_i] \to [B_\jay]$ and $[g_{j k}] : [B_\jay] \to [C_k]$, then
     $[h_{i k}] = [f_{i\jay}][g_{\jay k}]: [A_i] \to [C_k]$ is defined as
-    $h_{i k} = \djoinbig_\jay f_{i \jay}g_{\jay k}$.}{
+    $h_{i k} = \djoinbig_\jay f_{i \jay}g_{\jay k}$}{
     We set $\rst{[f_{i\jay}]}$ to be $[f'_{i\jay}]$ where $f'_{i\jay} = 0$ when $i\neq \jay$
-    and $f'_{i i} = \djoin_\jay \rst{f_{i\jay}}$.}
+    and $f'_{i i} = \djoin_\jay \rst{f_{i\jay}}$}
   In the following, we will use the notation $\diag[d_j]$ for diagonal matrices where the
   $j,j$ entry is $d_j$.
   %TODO: Get the notation better
@@ -740,7 +740,7 @@ equivalence between these two categories. That is,
 \[
    \xymatrix@R+10pt@C+20pt{
      \text{Inverse Sum Cats} \ar@{^{(}->}[r]
-     & \text{disjoint join Cats.} \ar@/^1.5pc/[l]_{\raisebox{2pt}{\top}}^{\text{Matrix}}
+     & \text{Disjoint Join Cats.} \ar@/^1.5pc/[l]_{\raisebox{2pt}{$\top$}}^{\text{Matrix}}
    }
 \]
 \begin{definition}\label{def:functor_from_x_to_imatx}
