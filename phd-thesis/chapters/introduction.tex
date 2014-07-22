@@ -193,13 +193,10 @@ We assume a knowledge of basic algebra including definitions and properties of g
 fields, vector spaces and matrices. The reader may consult \cite{lang:algebra} if further details
 are needed.
 
-Chapter~\ref{chap:abstract_computability} introduces the various concepts that will be used
+Chapter~\ref{chap:semantics_in_categories} introduces the various concepts that will be used
 throughout this thesis. The basics of category theory are reviewed in Section~\ref{sec:categories}
 followed by an introduction to restriction categories in
-Section~\ref{sec:restriction_categories}. Section~\ref{sec:daggercategories} and
-Section~\ref{sec:frobenius_algebras}  introduce dagger categories and Frobenius
-algebras respectively. These constructs are of particular interest in the study of quantum semantics
-and will provide a source of examples for us.
+Section~\ref{sec:restriction_categories}.
 
 Chapter~\ref{cha:inverse_categories} starts with showing that inverse categories with a restriction
 product collapses to a restriction pre-order, that is, all parallel maps agree wherever they are
@@ -208,11 +205,19 @@ explores the properties of the inverse product. We call inverse categories with
 inverse products \emph{discrete inverse categories}. A major example of discrete inverse
 categories, commutative Frobenius algebras, is then introduced in
 Section~\ref{sec:the_category_of_commutative_frobenius_algebras}.
-Section~\ref{sec:completing_a_discrete_inverse_category} then presents how to construct a Cartesian
-restriction category based on a discrete inverse category. This culminates in
+
+Chapter~\ref{chap:completing_a_discrete_inverse_category} then presents how to construct a Cartesian
+restriction category based on a discrete inverse category.
+Section~\ref{sec:equivalence_classes_of_maps_in_hypx} presents the details of the equivalence
+relation which gives the maps for the Cartesian restriction category, while
+Section~\ref{sec:the_restriction_category_hypxt} and
+Section~\ref{sec:the_category_hypxt_is_cartesian} give the proof that it is a Cartesian restriction
+category. Section~\ref{sec:equivalence_of_categories} culminates in
 Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories}
 giving an equivalence adjunction between discrete inverse categories and discrete Cartesian
-restriction categories, which were introduced in Sub-Section~\ref{sub:discrete_restriction_categories}.
+restriction categories, which were introduced in
+Sub-Section~\ref{sub:discrete_restriction_categories}. We conclude the chapter with a series of
+examples of the construction.
 
 Having explored how to introduce a product-like construction in an inverse category,
 Chapter~\ref{cha:disjointness_in_inverse_categories} begins the exploration of how to add a
@@ -224,20 +229,20 @@ equal. Section~\ref{sec:disjointness_in_an_inverse_category} starts with a quick
 restriction categories, followed by defining a disjointness relation in an inverse category. We show
 that disjointness may be defined on all maps or equivalently only on the restriction idempotents of
 the inverse category. This allows us to now define the disjoint join in
-Section~\ref{sec:disjoint_joins}. We then conclude this chapter with
+Section~\ref{sec:disjoint_joins}. Then,
 Section~\ref{sec:tensors_for_disjointness} showing how specific conditions on a symmetric monoidal
 tensor in an inverse category allow us to define both a disjointness relation and a disjoint join
-from that tensor.
+from that tensor. We conclude this chapter with Section~\ref{sec:disjointness_in_frobenius_algebras}
+which expands the example of commutative Frobenius algebras, giving a disjointness relation.
 
 Chapter~\ref{cha:inverse_sum_categories} builds upon the previous chapters to introduce
 coproduct-like constructions into the inverse
-category. Section~\ref{sec:disjointness_in_frobenius_algebras} starts by expanding the example of
-commutative Frobenius algebras, showing there is a disjointness relation in them. In
+category.  In
 Section~\ref{sec:inverse_sum_categories} we explore the relationship between disjoint joins and
 inverse sums. This culminates in showing that an inverse category \X with a tensor generating disjoint
 joins gives rise to a matrix category over \X and that \X is equivalent to its matrix
 category. Finally, in Section~\ref{sec:completing_a_distributive_inverse_category} we show that the
-construction introduced in Section~\ref{sec:completing_a_discrete_inverse_category} also lifts an
+construction introduced in Chapter~\ref{chap:completing_a_discrete_inverse_category} also lifts an
 inverse sum up to a coproduct and in fact will create a distributive restriction category when the
 inverse product distributes over the disjoint join.
 

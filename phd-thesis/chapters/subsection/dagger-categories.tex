@@ -1,94 +1,13 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\section{Dagger categories}\label{sec:daggercategories}
+\subsection{Dagger categories}\label{ssec:daggercategories}
 Dagger categories generalize the concepts of Hilbert spaces that are required to model quantum
 computation. These were introduced in \cite{abramsky04:catsemquantprot} as \emph{strongly compact
 closed categories}, an additional structure only on compact closed categories.
 
-Before introducing dagger categories, we define symmetric monoidal categories and compact closed
+Before introducing dagger categories, we define compact closed
 categories.
 
 
-\subsection{Symmetric Monoidal Categories} % (fold)
-\label{sub:categories_with_additional_structure}
-
-\begin{definition}\label{symmetricmonoidalcat}
-  A \emph{symmetric monoidal category}\cite{barr:ctcs,maclan97:categorieswrkmath} \cD{} is a
-  category equipped with a monoid $\*$ (a bi-functor $\*:\cD \times \cD \to \cD$) together with
-  four families of natural isomorphisms:  $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u^r_{A}:A\*I\to A$,
-  $u^l_{A}:I\*A \to A$ and $c_{A,B}:A\*B \to B\* A$, which satisfy coherence diagrams and
-  equations shown in Figures~\ref{fig:SMC_pentagon}, \ref{fig:SMC_unit}, \ref{fig:SMC_commutes},
-  \ref{fig:SMC_unit_symmettry} and \ref{fig:SMC_associativity_symmetry}. The isomorphisms are
-  referred to as the \emph{structure isomorphisms}  for the symmetric monoidal category. $I$ is the
-  unit of the monoid. A symmetric monoidal category where each of $a_{A,B,C}$, $u^r_{A}$, $u^l_{A}$
-  and $c_{A,B}$ are identity maps is called a \emph{strict symmetric monoidal category}.
-\end{definition}
-
-\begin{figure}[!htbp]
-\[
-  \xymatrix@C+25pt{
-    A\*(B\*(C\*D) \ar[r]^{a_{A,B,(C\*D)}} \ar[d]_{1\*a_{B,C,D}}
-      & (A\*B)\*(C\*D) \ar[r]^{a_{(A\*B),C,D}}
-      & ((A\*B)\*C)\*D \ar[d]^{a_{A,B,C}\*1}\\
-    A\*((B\*C)\*D) \ar[rr]_{a_{A,(B\*C),D}}
-      && (A\*(B\*C))\*D
-  }
-\]
-\caption{Pentagon diagram for associativity in an SMC.}\label{fig:SMC_pentagon}
-\end{figure}
-\begin{figure}[!htbp]
-\[
-  \xymatrix@C+5pt@R+10pt{
-    A\*(I\*B) \ar[rr]^{a_{A,I,B}} \ar[dr]_{1\*u^l_B}
-      && (A\*I)\*B \ar[dl]^{u^r_A \* 1}\\
-      &A\*B
-  }
-\]
-\[\text{ and } u^r_I = u^l_I: I\* I \to I\]
-\caption{Unit diagram and equation in an SMC.}\label{fig:SMC_unit}
-\end{figure}
-\begin{figure}[!htbp]
-\[
-  \xymatrix@C+5pt@R+10pt{
-    A\*B \ar[r]^{c_{A,B}} \ar@{=}[dr]
-      & B\*A \ar[d]^{c_{B,A}}\\
-      &A\*B
-  }
-\]
-\caption{Symmetry in an SMC.}\label{fig:SMC_commutes}
-\end{figure}
-\begin{figure}[!htbp]
-\[
-  \xymatrix@C+5pt@R+10pt{
-    A\*I \ar[rr]^{c_{A,I}} \ar[dr]_{u^r_A}
-      && I\*A \ar[dl]^{u^l_A}\\
-      &A
-  }
-\]
-\caption{Unit symmetry in an SMC.}\label{fig:SMC_unit_symmettry}
-\end{figure}
-\begin{figure}[!htbp]
-\[
-  \xymatrix@C+15pt@R+10pt{
-    (A\*B)\*C \ar[r]^{c_{(A\*B),C}} \ar[d]_{a^{-1}_{A,B,C}}
-      & C\*(A\*B) \ar[d]^{a_{C,A,B}}\\
-    A\*(B\*C) \ar[d]_{1\*c_{B,C}}
-      & (C\*A)\*B \ar[d]^{c_{C,A}\*1}\\
-    A\*(C\*B) \ar[r]^{a_{A,C,B}}
-      & C\*(A\*B)\text{ ,}
-  }\qquad
-  \xymatrix@C+15pt@R+10pt{
-    A\*(B\*C) \ar[r]^{c_{A,(B\*C)}} \ar[d]_{a_{A,B,C}}
-      & (B\*C)\*A \ar[d]^{a^{-1}_{B,C,A}}\\
-    (A\*B)\*C \ar[d]_{c_{A,B}\*1}
-      & B\*(C\*A) \ar[d]^{1\*c_{C,A}}\\
-    (B\*A)\*C \ar[r]^{a^{-1}_{B,A,C}}
-      & B\*(A\*C)
-  }
-\]
-\caption{Associativity symmetry in an SMC.}\label{fig:SMC_associativity_symmetry}
-\end{figure}
-The essence of the coherence diagrams is that any diagram composed solely of the structure
-isomorphisms will commute.
 
 \begin{definition}\label{def:compactclosedcat}
 A \emph{compact closed category} \cD{} is a symmetric monoidal category with tensor $\*$ where each
@@ -112,11 +31,6 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
     A^{*}&    A^{*}\*I\ar[l]^{u_{A^{*}}^{-1}}  &   A^{*}\*B\*B^{*}\ar[l]^{1\*\epsilon_{B}}.
   }
 \]
-
-
-% subsection categories_with_additional_structure (end)
-
-\subsection{Definitions}\label{sec:daggerdefinitions}
 
 Although dagger categories were introduced in the context of compact closed categories, the concept
 of a dagger is definable independently. This was first done in \cite{selinger05:dagger}.

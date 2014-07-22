@@ -1,0 +1,1094 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+\chapter{Completing a discrete inverse category} % (fold)
+\label{chap:completing_a_discrete_inverse_category}
+
+The purpose of this chapter is to prove that the category of discrete inverse categories is
+equivalent to the the category of discrete Cartesian restriction categories. We will show
+how to construct a discrete Cartesian restriction category, \Xt, from a discrete inverse
+category, \X. Then, we will give the equivalence functors between \X and \Xt.
+
+We begin by giving the construction of $\Xt$. This is followed by the details of the equivalence
+relation and then the proof that $\Xt$ is a discrete Cartesian restriction category.
+
+\begin{definition}\label{def:xt}
+  When \X is an inverse category, define \Xt\ as:
+  \categoryns{objects as in \X;}
+  {
+    A map $(f,C):A\to B$ in \Xt is the equivalence class of the map $f:A\to B\*C$ in \X (detailed below in
+    Definition~\ref{def:xequivalence}). We have the following relationship between maps in \Xt and \X: %
+    \[
+      \infer{A\xrightarrow{f} B\*C \text{ in }\X}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt};
+    \]
+  }
+  {% identity
+    by
+    \[
+      \infer{A\xrightarrow{\inv{u_{\*}^r}}A\* 1}
+            {A \xrightarrow{(\inv{u_{\*}^r}, 1)} A};
+    \]
+  }
+  {% composition
+    given by
+    \[
+      \infer{
+        \infer{A\xrightarrow{(f (g\*1) a_{\*},C' \* B')} C}
+              {A\xrightarrow{f (g\*1) a_{\*}} C \* (C' \* B')}
+            }
+            {A \xrightarrow{\ (f,B')\ } B \xrightarrow{\ (g,C')\ } C}.
+    \]
+  }
+
+\end{definition}
+
+When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notation $f:A\to
+\xtdmn{B}{C}$ ($\equiv f:A\to B\* C$).
+
+\section{Equivalence classes of maps in \hypX} % (fold)
+\label{sec:equivalence_classes_of_maps_in_hypx}
+
+
+\begin{definition}\label{def:xequivalence}
+  In a discrete inverse category \X, the map $f$ is equivalent to $f'$ in \X when
+  $\restr{f} = \restr{f'}$ in \X and Diagram~\ref{fig:xt_map_equivalence_diagram} commutes for some
+  map $h$.
+\begin{figure}[H]
+  \[
+    \xymatrix @C=40pt @R=15pt{
+      & & B \* C \ar@{.>}[dr]^{(\Delta\* 1) \, a_{\*}}\\
+      && & B \* (B\* C) \ar@{.>}[dd]^{1\* h} \\
+      A \ar[uurr]^f \ar[ddrr]_{f'}&&&\\
+      && & B \* (B \* C'). \ar@{.>}[dl]^(.4){\ \inv{a_{\*}}\,(\inv{\Delta}\* 1)}\\
+      && B\* C'
+    }
+  \]
+\caption{Equivalence diagram for constructing maps in \Xt.}
+\label{fig:xt_map_equivalence_diagram}
+\end{figure}
+\end{definition}
+
+\begin{notation}\label{notn:xequivalence}
+  When $f$ is equivalent to $g$ as in Definition~\ref{def:xequivalence} via the mediating map $h$,
+  this is written as:
+  \[
+    f\xequiv{h}g.
+  \]
+\end{notation}
+
+\begin{lemma}\label{lem:mediating_map_equivalence_is_symmetric_reflexive_and_transitive}
+  Definition~\ref{def:xequivalence} gives a symmetric, reflexive equivalence class of maps in \X.
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{description}
+    \itembf{Reflexivity: } Choose $h$ as the identity map.
+    \itembf{Symmetry: } Suppose $f\xequiv{h}g$. Then, $\restr{f} = \restr{g}$ and $f k = g$ where
+      \[
+        k = (\Delta\* 1) \, a_{\*}\, (1\*h)\, \inv{a_{\*}}\,(\inv{\Delta}\* 1).
+      \] Applying $\inv{k}$,
+      which is
+      \[
+        (\Delta\* 1) \, a_{\*}\, (1\*\inv{h})\, \inv{a_{\*}}\,(\inv{\Delta}\* 1),
+      \]
+      we have
+      \[
+        g \inv{k} = f k \inv{k} = f \restr{k} = \restr{f k} f
+        = \restr{g} f = \restr{f} f = f.
+      \]
+
+      Thus, $g\xequiv{\inv{h}} f$.
+
+    \itembf{Transitivity: } Suppose $f\xequiv{h} f'$ and $f' \xequiv{k} f''$. Consider the
+      compositions of the mediating portions of the equivalences:
+      \[
+        \ell = ((\Delta \* 1)  a_{\*}  (1 \* h ) \inv{a_{\*}} (\inv{\Delta}\* 1))
+          ( (\Delta \* 1) a_{\*}  (1 \* k) \inv{a_{\*}} (\inv{\Delta}\* 1)).
+      \]
+
+      In string diagram form, this is:
+      \[
+      \ \raisebox{45pt}{$\ell=$}\
+        \begin{tikzpicture}
+          \node at (0.5,4) (s1) {};
+          \node at (1,4) (s2) {};
+          \node at (0.5,3.5) [delta] (d2) {};
+          \node at (1,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.5, 2.5) [nabla] (n2) {};
+          \node at (0.5,2) [delta] (d3) {};
+          \node at (1,1.5) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.5, 1) [nabla] (n3) {};
+          \node at (0.5,.5) (end1) {};
+          \node at (1,.5) (end2) {};
+          \draw [] (s1) to (d2);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (h);
+          \draw [] (d2) to[out=235,in=125] (n2);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=125] (n3);
+          \draw (k) to[out=235,in=55] (n3);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to (end1);
+        \end{tikzpicture}
+      \]
+      By pasting the diagrams which give the above equivalences, we see that $f \ell = f''$.
+      However, $\ell$ is not in the form of a mediating map as presented.
+
+      The claim is that $\ell$ is the actual mediating map for $f$ and $f''$. That is, that we have
+      $f(\Delta \* 1)a_{\*}(1 \* \ell)\inv{a_{\*}}(\inv{\Delta}\*1) = f''$. In the interest of some
+      brevity, this is shown below with the associativity maps elided from the equations.
+
+      We need to show that $(\Delta \* 1)(1 \* \ell)(\inv{\Delta}\*1) = \ell$. Diagrammatically, the
+      left hand side $=$
+      \[
+        \begin{tikzpicture}
+          \node at (0,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0,4) [delta] (d1) {};
+          \node at (0.25,3.5) [delta] (d2) {};
+          \node at (.65,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.25, 2.5) [nabla] (n2) {};
+          \node at (0.25,2) [delta] (d3) {};
+          \node at (.65,1.5) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.25, 1) [nabla] (n3) {};
+          \node at (0, .5) [nabla] (n1) {};
+          \node at (0,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=305,in=90] (d2);
+          \draw (d1) to[out=235,in=125] (n1);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (h);
+          \draw [] (d2) to[out=235,in=125] (n2);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=125] (n3);
+          \draw (k) to[out=235,in=55] (n3);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to[out=270,in=55] (n1);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{65pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0.25,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0.25,4) [delta] (d1) {};
+          \node at (0,3.5) [delta] (d2) {};
+          \node at (.65,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.25, 2.5) [nabla] (n2) {};
+          \node at (0.25,2) [delta] (d3) {};
+          \node at (.65,1.5) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0, 1) [nabla] (n3) {};
+          \node at (0.25, .5) [nabla] (n1) {};
+          \node at (0.25,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=90] (d2);
+          \draw (d1) to[out=305,in=125] (h);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (n2);
+          \draw [] (d2) to[out=235,in=125] (n3);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=55] (n3);
+          \draw (k) to[out=235,in=55] (n1);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to[out=270,in=125] (n1);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{65pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0.25,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0.25,4) [delta] (d1) {};
+          \node at (.65,3.5) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0,3) [delta] (d2) {};
+          \node at (0.25, 2.5) [nabla] (n2) {};
+          \node at (0.25,2) [delta] (d3) {};
+          \node at (0, 1.5) [nabla] (n3) {};
+          \node at (.65,1) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.25, .5) [nabla] (n1) {};
+          \node at (0.25,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=90] (d2);
+          \draw (d1) to[out=305,in=125] (h);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (n2);
+          \draw [] (d2) to[out=235,in=125] (n3);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=55] (n3);
+          \draw (k) to[out=235,in=55] (n1);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to[out=270,in=125] (n1);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{65pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0.25,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0.25,4) [delta] (d1) {};
+          \node at (.65,3.5) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.25, 3) [nabla] (n2) {};
+          \node at (0.25,2.5) [delta] (d2) {};
+          \node at (0.25, 2) [nabla] (n3) {};
+          \node at (0.25,1.5) [delta] (d3) {};
+          \node at (.65,1) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.25, .5) [nabla] (n1) {};
+          \node at (0.25,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=125] (n2);
+          \draw (d1) to[out=305,in=125] (h);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw [] (d2) to[out=305,in=55] (n3);
+          \draw [] (d2) to[out=235,in=125] (n3);
+          \draw (n2) to (d2);
+          \draw (n3) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=125] (n1);
+          \draw (k) to[out=235,in=55] (n1);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{65pt}{$=$}\
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+          \node at (0.5,4) (s1) {};
+          \node at (1,4) (s2) {};
+          \node at (0.5,3.5) [delta] (d2) {};
+          \node at (1,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.5, 2.5) [nabla] (n2) {};
+          \node at (0.5,2) [delta] (d3) {};
+          \node at (1,1.5) [map] (k) {$\scriptstyle \ k\ $};
+          \node at (0.5, 1) [nabla] (n3) {};
+          \node at (0.5,.5) (end1) {};
+          \node at (1,.5) (end2) {};
+          \draw [] (s1) to (d2);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (h);
+          \draw [] (d2) to[out=235,in=125] (n2);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (k);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (k);
+          \draw [] (d3) to[out=235,in=125] (n3);
+          \draw (k) to[out=235,in=55] (n3);
+          \draw (k) to[out=305,in=90] (end2);
+          \draw (n3) to (end1);
+        \end{tikzpicture}
+        }
+      \ \raisebox{65pt}{$=\ell.$}
+      \]
+    \end{description}
+    Thus,  $f\xequiv{\ell}f''$.
+\end{proof}
+
+\begin{corollary}\label{cor:equivalence_simplified_diagram}
+  If $\restr{f} = \restr{g}$ in \X, a discrete inverse category, and the diagram
+  \[
+    \xymatrix @C=40pt @R=15pt{
+      & & B \* C \ar@{.>}[dd]^{1\*h}\\
+      A \ar[urr]^f \ar[drr]_{g}\\
+      && B\* C'
+    }
+  \]
+  commutes for some $h$, then there is a $h'$ such that $f\xequiv{h'}g$.
+\end{corollary}
+\begin{proof}
+  This follows immediately from
+  \[
+    \begin{tikzpicture}
+      \node at (0,2) (s1) {};
+      \node at (.5,2) (s2) {};
+      \node at (0,1.5) [delta] (d1) {};
+      \node at (.5,1) [map] (h) {$\scriptstyle h$};
+      \node at (0,.5) [nabla] (n1) {};
+      \node at (0,0) (end1) {};
+      \node at (.5,0) (end2) {};
+      \draw [] (s1) to (d1);
+      \draw [] (s2) to (h);
+      \draw [] (d1) to[out=305,in=55] (n1);
+      \draw [] (d1) to[out=235,in=125] (n1);
+      \draw (h) to (end2);
+      \draw (n1) to (end1);
+    \end{tikzpicture}
+    \ \raisebox{28pt}{$=\ $}
+    \begin{tikzpicture}
+      \node at (0.25,2) (s1) {};
+      \node at (.5,2) (s2) {};
+      \node at (.5,1) [map] (h) {$\scriptstyle h$};
+       \node at (0.25,0) (end1) {};
+      \node at (.5,0) (end2) {};
+      \draw [] (s1) to (end1);
+      \draw [] (s2) to (h);
+      \draw (h) to (end2);
+    \end{tikzpicture}
+    \ \raisebox{28pt}{$= 1\* h$.}
+  \]
+  Therefore we can set $h' = 1 \* h$.
+\end{proof}
+% end_fold sec:equivalence_classes_of_maps_in_hypx
+
+\section{The restriction category \hypXt} % (fold)
+\label{sec:the_restriction_category_hypxt}
+
+
+\begin{lemma}\label{lem:xt_is_a_category}
+  \Xt\ as defined above is a category.
+\end{lemma}
+\begin{proof}
+  The maps are well defined, as shown in
+  Lemma~\ref{lem:mediating_map_equivalence_is_symmetric_reflexive_and_transitive}. The existence of
+  the identity map is due to the tensor $\*$ being defined on \X, an inverse category, hence
+  $\inv{\usr}$ is defined.
+
+  It remains to show the composition is associative and that $(\inv{\usr}, 1)$ acts as an identity
+  in \Xt.
+
+  \textbf{Associativity:}
+  Consider
+  \[
+    A\xrightarrow{(f,B')}B\xrightarrow{(g,C')} C \xrightarrow{(h,D')}D.
+  \]
+
+  To show the associativity of this in \Xt, we need to show in \X that
+  \[
+    \restr{(f(g\*1)a_{\*}) (h\*1)a_{\*}} = \restr{f (((g(h\*1)a_{\*})\*1) a_{\*})}
+  \]
+  and that there exists a mediating map between the two of them.
+
+  To see that the restrictions are equal, first note that by the functorality of $\*$, for any two
+  maps $u$ and $v$, we have $u v \* 1 = (u\*1) (v\*1)$. Second, the naturality of $a_{\*}$ gives us
+  that $a_{\*} (h \* 1) = ((h\*1)\*1) a_{\*}$. Thus,
+  \begin{align*}
+    \restr{f(g\*1)a_{\*} (h\*1)a_{\*}}
+      & = \restr{f(g\*1)a_{\*} (h\*1)\restr{a_{\*}}}
+    & \text{Lemma \ref{lem:restrictionvarious}} \\
+    & = \restr{f(g\*1)a_{\*} (h\*1)} & \restr{a_{\*}}=1 \\
+    & = \restr{f(g\*1) ((h\*1)\*1) a_{\*} } & a_{\*}\text{ natural} \\
+    & = \restr{f(g\*1) ((h\*1)\*1) }
+      &  \text{Lemma \ref{lem:restrictionvarious}}\\
+    & = \restr{f(g\*1) ((h\*1)\*1) (a_{\*}\*1)}
+      & \text{Lemma \ref{lem:restrictionvarious}}\\
+    & = \restr{f((g (h\*1)a )\*1)} & \text{ see above}\\
+    & = \restr{f((g (h\*1)a )\*1)a_{\*}} & a_{\*}.
+  \end{align*}
+
+  For the mediating map, see the diagram below, where the calculation is in \X. The path starting at
+  the top left at $A$ and going right to \xtdmn{D}{D' \* (C' \* B')} is grouping parentheses to the
+  left. Starting at $A$ and then going down to $\xtdmn{(\xtdmn{D}{D' \* C'})}{B'}$ followed by
+  right to $ \xtdmn{D}{(D' \* C') \* B'}$ is grouping parentheses to the right. The
+  commutativity of the diagram is shown by the commutativity of the internal portions, which all
+  follow from the standard coherence diagrams for the tensor and naturality of association.
+
+  \[
+    \xymatrix @C=35pt @R=35pt{
+      A \ar[d]_f \ar[r]^(.4){f (g\*1) a_{\*}} \ar[dr]^(.4){f(g\*1)} &
+        \xtdmn{C}{C' \* B'} \ar[r]^{h\*1}
+        & \xtdmn{(\xtdmn{D}{D'})}{C' \* B'} \ar[r]^{a_{\*}}
+        & \xtdmn{D}{D' \* (C' \* B')}
+        \ar@{.>}[dd]^{1\*\inv{a_{\*}}}\\
+      \xtdmn{B}{B'} \ar[d]_{(g (h\*1) a_{\*})\*1} \ar[r]^{g\*1}
+        &\xtdmn{(\xtdmn{C}{C'})}{B'} \ar[u]_{a_{\*}} \ar[r]^(.4){(h\*1)\*1}
+        & \xtdmn{(\xtdmn{(\xtdmn{D}{D'})}{C'})}{B'}
+        \ar[u]_{a_\*} \ar[dll]_{a_{\*}\*1}
+      \\
+      \xtdmn{(\xtdmn{D}{D' \* C'})}{B'}  \ar[rrr]_{a_{\*}}
+        &&& \xtdmn{D}{(D' \* C') \* B'}. %\ar @/^14pt/ [uu]^{1\*a_{\*}}
+    }
+  \]
+  From this, we can conclude
+  \[
+    (f(g\*1)a_{\*}) (h\*1)a_{\*} \xequiv{1\*\inv{a_{\*}}} f (((g(h\*1)a_{\*})\*1) a_{\*})
+  \]
+  which gives us that composition in \Xt is associative.
+
+  \textbf{Identity:} This requires:
+  \[
+    (f,C) (\inv{\usr}, 1) = (f,C) = (\inv{\usr}, 1) (f,C)
+  \]
+  for all maps $A\xrightarrow{(f,C)}B$ in \Xt.
+  By Lemma~\ref{lem:restrictionvarious} we have
+  $\restr{f (\inv{\usr}\*1) a_{\*}} = \restr{f}$. Then, calculating in \X, we have a mediating map
+  of $1 \* \usl$ as shown below.
+  \[
+    \xymatrix @C=50pt @R=45pt{
+      A \ar[r]^f \ar[ddrrr]_f&
+        B \* C \ar[r]^(.4){\inv{\usr}\*1}
+        \ar@/_20pt/[rr]_{1 \* \inv{\usl}}
+        \ar@{=}[ddrr]
+        & (B \* 1) \* C \ar[r]^{a_{\*}}
+        & B \* (1 \* C) \ar@{.>}[dd]^{1 \* \usl} \\
+      \\
+      &&& B \* C.
+    }
+  \]
+  $\restr{\inv{\usr} (f \*1)  a_{\*}} = \restr{f}$ by the naturality of $\inv{\usr}$ and
+  Lemma~\ref{lem:restrictionvarious}. The diagram
+  \[
+    \xymatrix @C=50pt @R=45pt{
+      A \ar@{=}[dd] \ar[r]^{\inv{\usr}} \ar[dr]_{f}
+        &      A \* 1 \ar[r]^{f \* 1}
+        & (B \* C) \* 1 \ar[r]^{a_{\*}}
+        & B \* (C \* 1)\ar@{.>}[dd]^{1 \* \usr} \\
+      &B\*C \ar[ur]^{\inv{\usr}} \ar[urr]_{1\*\inv{\usr}} \ar@{=}[drr]\\
+      A \ar[rrr]^f &&& B \* C
+    }
+  \]
+  shows our mediating map is $1 \* \usr$.
+\end{proof}
+
+
+Define the restriction in \Xt\ as follows:
+\[
+  \infer{A\xrightarrow{\restr{f}  \inv{u_{\*}^r}} A\*1 \text{ in }\X.}
+        {\infer{A\xrightarrow{\restr{(f,C)}}A}
+               {A\xrightarrow{(f,C)}B}
+        }
+\]
+
+\begin{lemma}\label{lem:xt_is_a_restriction_category}
+  The category \Xt with restriction defined as above is a restriction category.
+\end{lemma}
+\begin{proof}
+  Given the above definition the four restriction axioms must now be checked. For the remainder of
+  this proof, all diagrams will be in $\X$.
+
+  \rone ($\restr{f} f = f$). Calculating the restriction of the left hand side in
+      \X, we have:
+      \begin{align*}
+        \restr{\rst{f}\inv{\usr} (f\*1) a_{\*}} & = \restr{\rst{f}\inv{\usr} (f\*1)}
+          & \text{Lemma \ref{lem:restrictionvarious}}\\
+        & = \restr{\rst{f}f \inv{\usr}}  & \inv{\usr} \text{ natural}\\
+        & = \restr{f \inv{\usr}}  & \text{ \rone in }\X\\
+        & = \restr{f } & \text{Lemma \ref{lem:restrictionvarious}}.
+      \end{align*}
+
+      Then, the following diagram
+      \[
+        \xymatrix @C=40pt @R=25pt{
+          A \ar[r]^{\restr{f} \inv{\usr}}
+          \ar @/_25pt/[ddrrr]_f  \ar[drr]^{\restr{f}f}
+          &A \* 1 \ar[r]^{f\* 1}
+          &(A \* B) \* 1 \ar[r]^{a_{\*}} \ar[ddr]^{\usr}
+          &A \* (B \* 1) \ar@{.>}[dd]^{1 \* {\usr}}\\
+          &&A\*B \ar[u]^{\inv{\usr}} \ar@{=} [dr]\\
+          && &A \* B
+        }
+      \]
+      shows $\rst{f}\inv{\usr} (f\*1) a_{\*} \xequiv{1 \* {\usr}} f$ in \X and therefore $\rst{f}f
+      = f$ in \Xt.
+
+     \rtwo ($\restr{g} \restr{f} = \restr{f} \restr{g}$). We must show
+      \begin{equation}
+        \rst{f}\inv{\usr} ((\restr{g}\inv\usr)\*1)) a_{\*} \xequiv{}
+        \rst{g}\inv{\usr}((\restr{f}\inv\usr)\*1) a_{\*}.
+        \label{eq:rtwo_in_xt}
+      \end{equation}
+      The restriction of the left hand
+      side equals the restriction of the right hand side as seen below:
+      \begin{align*}
+        \restr{\rst{f}\inv{\usr} ((\restr{g}\inv\usr)\*1)) a_{\*}}
+        & = \restr{\rst{f}(\restr{g}\inv\usr)\inv{\usr} a_{\*}} & \inv{\usr}   \text{ natural}\\
+        & = \restr{\rst{g}\restr{f}\inv\usr\inv{\usr} a_{\*}} &  \text{\rtwo in }\X\\
+        & = \restr{\rst{g}\inv{\usr}((\restr{f}\inv\usr)\*1) a_{\*}} & \inv{\usr}   \text{natural}.
+      \end{align*}
+
+      %\note{!!!!! Above calc works without being under restr, therefore have we not just shown
+      %that $\restr{g}  \restr{f} = \restr{f}  \restr{g}$ ????
+      %Note that the mediating map is $id$!!!!!!!!!}
+
+      The below diagram commutes by the naturality of $\usr$ and the tensor coherence,
+      \[
+        \xymatrix @C=48pt @R=55pt{
+          A \ar[r]^{\restr{g} \inv{\usr}}
+            \ar[dr]_{\restr{f}\restr{g}}^{\restr{g}\restr{f}}
+            \ar[d]_{\restr{f}\inv{\usr}}
+            &A\*1 \ar[r]^(.4){(\rst{f}\inv{\usr})\*1}
+            & (A \*1) \* 1
+            \ar[r]^{a_{\*}}  \ar[dl]_{\usr \usr}
+            & A \* (1\*1) \ar@{.>}[dd]_{1\*id}\\ %\ar @/^25pt/ @{=}[dd]
+          A\*1 \ar[d]_{(\rst{g}\inv{\usr})\*1}
+            &A \ar@/_25pt/[ur]_{\inv{\usr}\inv{\usr}} \\
+             %\ar@/^25pt/[dl]^(.3){\inv{\usr}\inv{\usr}}\\
+          (A\*1)\*1 \ar[rrr]_{a_\*} \ar[ur]^{\usr \usr}
+            &&& A \* (1\*1)
+        }
+      \]
+      which allows us to conclude $\rst{f} \rst{g} = \rst{g} \rst{f}$ in \Xt.
+
+    \rthree ($\restr{\restr{f} g} = \restr{f} \restr{g}$ ). We must show
+      \begin{equation}
+        \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr} \xequiv{}
+        (\restr{f} \inv{\usr})(\rst{g} \inv{\usr}\* 1) a_{\*}.
+        \label{eq:rthree_in_xt}
+      \end{equation}
+      As above, the first step is
+      to show that the restrictions of each side of Equation~\ref{eq:rthree_in_xt} are the same.
+      Computing the restriction of the left
+      hand side in \X:
+      \begin{align*}
+        \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr}}
+        & = \rst{\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}}} & \text{Lemma \ref{lem:restrictionvarious}}\\
+        & = \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} &
+          \text{Lemma \ref{lem:restrictionvarious}}\\
+        & = \restr{\restr{f} g \inv{\usr} a_{\*}} & \inv{\usr} \text{ natural}\\
+        & = \restr{\restr{f} g } & \text{Lemma \ref{lem:restrictionvarious}}\\
+        & = \restr{f} \rst{g} & \text{\rthree in }\X.
+      \end{align*}
+      The restriction of the right hand side computes in \X as:
+      \begin{align*}
+        &\rst{(\restr{f} \inv{\usr})(\rst{g} \inv{\usr}\* 1) a_{\*}}\\
+        & = \rst{(\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) } &  \text{Lemma \ref{lem:restrictionvarious}}\\
+        & = \rst{\restr{f}  \rst{g} \inv{\usr}\inv{\usr} } &  \inv{\usr} \text{ natural}\\
+        & = \rst{\restr{f}  \rst{g} } &\text{Lemma \ref{lem:restrictionvarious}}\\
+        & = \restr{f} \rst{g} & \text{Lemma \ref{lem:restrictionvarious}}.
+      \end{align*}
+
+      Additionally, we see $\rst{\rst{f} g}$ in \Xt is expressed in \X as:
+      \begin{align*}
+        &\restr{(\restr{f} \inv{\usr})(g\* 1) a_{\*}} \inv{\usr} \\
+        & = \rst{f} \inv{\usr} \rst{g\* 1} & \text{\rthree, \rfour} \\
+        & = \rst{f} \rst{g} \inv{\usr} & \*
+          \text{a restriction bi-functor, }\inv{\usr}\text{ natural.}
+      \end{align*}
+
+      The following diagram in \X follows the right hand side of Equation~\ref{eq:rthree_in_xt}
+      with the top curved arrow and the left hand side of Equation~\ref{eq:rthree_in_xt} with the
+      bottom curved arrow. Note that we are using that
+      $\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} = \restr{f}\rst{g}$ as shown above.
+      \[
+        \xymatrix @C=33pt @R=20pt{
+          A \ar@/^45pt/[rrrrr]^{\restr{f} \inv{\usr}(\restr{g} \inv{\usr} \* 1)a_{\*}}
+            \ar@/_65pt/[dddddrrrrr]_{\restr{f}\, \restr{g}\inv{\usr}}
+            \ar[r]^(.7){\restr{f}}
+            \ar[dr]_(.7){\restr{f}}
+            &A \ar[r]^{\inv{\usr}}
+            \ar@{=}[d]
+            &A \* 1 \ar[r]^{\restr{g}\*1}
+            \ar[dd]_{\usr}
+            &A \* 1 \ar[r]^(.41){\inv{\usr}\* 1}
+            \ar[ddd]_{\usr}
+            &(A \* 1) \* 1 \ar[r]^{a_{\*}}
+            \ar[dddd]_{\usr}
+            & A \* (1\*1) \ar@{.>}[ddddd]^{1\*\usr}\\
+          &A\ar@{=}[dr]\\
+          &&A \ar[dr]_{\restr{g}}\\
+          &&&A \ar[dr]_{\inv\usr}\\
+          &&&&A\*1 \ar@{=}[dr]\\
+          &&&&&A\*1.
+        }
+      \]
+      Hence, in \X, $\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr} \xequiv{1\*\usr}
+      (\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) a_{\*}$ and therefore $\restr{\restr{f} g} =
+      \restr{f} \restr{g}$ in \Xt.
+
+      \rfour ($f \restr{g} = \restr{f g} f$). We must show
+      \begin{equation}
+        f (\restr{g} \inv{\usr}\* 1) a_{\*} \xequiv{}
+        \rst{f (g \* 1)} \inv{\usr} (f\* 1) a_{\*}.
+        \label{eq:rfour_in_xt}
+      \end{equation}
+      The restriction of the left hand side of Equation~\ref{eq:rfour_in_xt} is:
+      \begin{align*}
+        \rst{f (\restr{g} \inv{\usr}\* 1) a_{\*}}
+          & = \rst{f (\restr{g} \inv{\usr}\* 1)} & \text{Lemma \ref{lem:restrictionvarious}} \\
+        & = \rst{f \rst{g} \inv{\usr}} \* \rst{f} & \* \text{ restriction functor}\\
+        & = \rst{f \rst{g}} \* \rst{f} & \text{Lemma \ref{lem:restrictionvarious}} \\
+        & = \rst{f (\rst{g} \* 1)}
+      \end{align*}
+      and the restriction of the right hand side of Equation~\ref{eq:rfour_in_xt}  is:
+      \begin{align*}
+        \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) a_{\*}}
+          & = \rst{\rst{f (g \* 1)} \inv{\usr} (f\* 1) } &  \text{Lemma \ref{lem:restrictionvarious}}\\
+        & = \rst{\rst{f (g \* 1)} f \inv{\usr}  } & \inv{\usr} \text{ natural}\\
+        & = \rst{f \rst{(g \* 1)}  \inv{\usr}  } & \text{ \rfour for }\X\\
+        & = \rst{f (\rst{g} \* 1)  \inv{\usr}  } & \* \text{ a restriction functor}\\
+        & = \rst{f (\rst{g} \* 1)    } & \text{Lemma \ref{lem:restrictionvarious}.}
+      \end{align*}
+      Computing the right hand side of Equation~\ref{eq:rfour_in_xt} in \X,
+      \begin{align*}
+        \rst{f(g\* 1)a_{\*}} \inv{\usr} (f\* 1) a_{\*}
+          & = \rst{f(g\* 1)} f \inv{\usr} a_{\*} & \inv{\usr}\text{ natural,}\\
+        & = f (\rst{g} \* 1) \inv{\usr} a_{\*} & \rfour.
+      \end{align*}
+
+      Thus,
+      \[
+        \xymatrix @C=40pt @R=35pt{
+          A \ar[r]^f \ar[dr]_{f}
+            & B\* C \ar[rr]^{\restr{g} \inv{\usr}\* 1}
+            &
+            & (B\* 1) \* C \ar[r]^{a_{\*}}
+            & B \* (1 \* C)\ar@{.>}[d]^{1\*c_{\*}}\\
+          & B\*C \ar[r]_{\rst{g}\*1}
+            & B \* C \ar[r]_{\inv{\usr}}
+            & (B \* C) \* 1 \ar[r]_{a_{\*}}
+            & B \* (C\*1)
+        }
+      \]
+  and hence, \Xt\ is a restriction category.
+\end{proof}
+% subsection the_restriction_category_hypxt (end)
+\section{The category \hypXt is a discrete restriction category} % (fold)
+\label{sec:the_category_hypxt_is_cartesian}
+
+
+
+\begin{lemma}\label{lem:tensor_unit_of_x_is_terminal_object_of_xt}
+  The unit of the inverse product in \X is the terminal object in \Xt.
+\end{lemma}
+\begin{proof}
+  The unique map to the terminal object for any object $A$ in \Xt is the equivalence class of maps
+  represented by $(\inv{\usl},A)$. For this to be a terminal object, the diagram
+  \[
+    \xymatrix @C=40pt @R=25pt{
+      X \ar[r]^{\restr{(f,C)}} \ar[d]^{(f,C)} & X \ar[r]^{!_X}  &\top  \\
+      Y \ar[urr]_{!_Y}
+    }
+  \]
+  must commute for all choices of $f$. Translating this to \X, this is the same as requiring
+  \[
+    \xymatrix @C=40pt @R=25pt{
+      X \ar[r]^{\restr{f}} \ar[d]^{f} & X \ar[r]^{\inv{\usr} }
+      & X\*1 \ar[r]^{\inv{\usl}}  &1\*X\*1 \ar@{.>}[dl]_{1\*(\usr f)}  \\
+      Y \*C\ar[rr]_{\inv{\usl}} & & 1 \*Y \* C
+    }
+  \]
+  to commute, which is true by \rone and from the coherence diagrams for the inverse product tensor.
+\end{proof}
+
+Next,we show that the category \Xt\ has restriction products, given by the action of \wtc on
+the $\*$ tensor in \X.
+
+First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
+\begin{align}
+  \pi_0:\qquad & A \* B \xrightarrow{(1,B)} A, \label{eq:defn:pia}\\
+  \pi_1:\qquad & A \* B \xrightarrow{(c_{\*},A)} B. \label{eq:defn:pib}
+\end{align}
+
+\begin{definition}\label{def:product_map_in_xt}
+  Given a discrete inverse category $\X$, suppose we are given the maps $ Z \xrightarrow{(f,C)} A$
+  and $Z \xrightarrow{(g,C')} B$ in $\Xt$. Then define $\<(f,C),(g,C')\>$as
+  \begin{equation}
+    Z\xrightarrow{(\Delta  ( f \* g )  (1\* c_{\*} \* 1), C\* C')} A \* B\label{eq:defn:fg}
+  \end{equation}
+  where associativity is assumed as needed. Note that with the associativity maps, this is actually:
+  \begin{equation}
+    Z\xrightarrow{(\Delta  ( f \* g )  a_{\*} (1\*\inv{a_{\*}})
+      (1\* (c_{\*} \* 1)) (1\*a_{\*}) \inv{a_{\*}}, C\* C')} A \* B.\label{eq:defn:fg2}
+  \end{equation}
+\end{definition}
+
+\begin{lemma}\label{lem:tensor_on_x_is_the_restriction_product_on_xt}
+  On \Xt, $\*$ is a restriction product with projections $\pi_0, \pi_1$ and the product of maps
+  $f, g$ being $\<f,g\>$.
+\end{lemma}
+\begin{proof}
+  From the definition above, as $1$ and $c_{\*}$ are isomorphisms, the maps $\pi_0, \pi_1$ are
+  total.
+
+  In order to show that $\rst{\<f,g\>} = \rst{f}\,\rst{g}$, first reduce the left hand side:
+  \begin{align*}
+    \rst{\<f,g\>}
+      &=\rst{\Delta(f\*g)(1\*c_{\*}\*1)}\inv{\usr}&\text{in }\X, \text{ definition of restriction}\\
+    &=\rst{\Delta(f\*g)}\inv{\usr} &\\
+    &=\rst{\Delta\rst{(f\*g)}}\inv{\usr} &\text{from Lemma \ref{lem:restrictionvarious}}\\
+    &=\rst{\Delta(\rst{f}\*\rst{g})}\inv{\usr} &\*\text{ is a restriction functor}\\
+    &=\rst{\rst{f}\,\rst{g}\,\Delta(1\*1)}\inv{\usr}
+      &\text{Lemma  \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}(\ref{le:deltaefg}) twice}\\
+    &=\rst{\rst{f}\,\rst{g}}\inv{\usr} &\text{Lemma  \ref{lem:restrictionvarious}}\\
+    &=\rst{f}\,\rst{g}\inv{\usr}  &\text{Lemma  \ref{lem:restrictionvarious}.}\\
+  \end{align*}
+
+  Then, the right hand side reduces as:
+  \begin{align*}
+    \rst{f} \rst{g}
+    &= \rst{f}\inv{\usr}(\rst{g}\inv{\usr} \* 1) a_{\*} & \text{in \X by definitions}\\
+    &= \rst{f} \rst{g}\inv{\usr}\inv{\usr} a_{\*} &  \inv{\usr}\text{ natural.}
+  \end{align*}
+  The restriction of the left hand side and the right hand side, in \X, is $\rst{\rst{f} \rst{g}}$.
+  This is done by applying Lemma~\ref{lem:restrictionvarious} once on the left and
+  thrice on the right.
+
+  Thus, this shows $\rst{\<f,g\>}=\rst{f} \rst{g}$ in \Xt where the mediating map in \X is
+  $1\*\usr$.
+
+  Next, to show $\<f,g\> \pi_0 \le f$ (and $\<f,g\> \pi_1 \le g$), it is required to show
+  $\rst{\<f,g\>\pi_{0}} f = \<f,g\> \pi_{0}$. Calculating the left side, we see:
+  \begin{align*}
+    \rst{\<f,g\>\pi_{0}} f &=\rst{\<f,g\>\rst{\pi_{0}}} f &\text{Lemma \ref{lem:restrictionvarious}}\\
+    &=\rst{\<f,g\>} f &\pi_{0}\text{ is total}\\
+    &=\rst{f}\,\rst{g}\, f&\text{ by above}\\
+    &=\rst{g} \rst{f} f & \rtwo\\
+    &=\rst{g} f& \rone.
+  \end{align*}
+  Now, turning to the right hand side:
+  \begin{align*}
+    \<f,g\>\pi_{0} &= \Delta(f\*g)(1\*c_{\*}\*1) 1 &\text{in \X, by definition.}
+  \end{align*}
+  To show these are equal in \Xt, we need to first show the restrictions are the same in \X and
+  then show there is a mediating map between the images in \X. The restriction of $\rst{g} f$ is
+  $\rst{f} \rst{g}$ immediately by \rthree and \rtwo. For the right hand side, calculate in \X:
+  \begin{align*}
+    \rst{\Delta(f\*g)(1\*c_{\*}\*1)}
+      & = \rst{\Delta(f\*g)} & \text{Lemma  \ref{lem:restrictionvarious}}\\
+    & = \Delta(f\*g)(\inv{f} \* \inv{g})\inv{\Delta} & \X \text{ is an inverse category}\\
+    & = \Delta(\rst{f} \* \rst{g})\inv{\Delta} & \\
+    & = \rst{f} \rst{g} \Delta\inv{\Delta}
+      & \text{Lemma \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}(\ref{le:deltaefg}) twice}\\
+    & = \rst{f} \rst{g}.
+  \end{align*}
+
+  The diagram below shows the required mediating map.
+  \[
+    \xymatrix @C=27pt @R=25pt{
+      & & & A \* C \ar[dr]^{\Delta\*1}\\
+      & & & & A \* A \* C \ar@{.>}[d]^{1\*\Delta}\\
+      &Z\ar[uurr]^{f}& & & A \* A\* C \* A \* C\ar@{.>}[d]^{1\*1\*\inv{f}}\\
+      Z\ar[ur]^{\rst{g}}\ar[dr]_{\Delta}&& & &  A \* A \*C \* Z \ar@{.>}[d]^{1 \* 1 \* 1 \* g}\\
+      &Z\*Z\ar[dr]_{f\* g}& & & A\*A\*C\*B\*C'\ar@{.>}[d]^{1\*1\*c_{\*}\*1}\\
+      &&A\*C\*B\* C'\ar[dr]_{1\*c_{\*}\*1}&&A\*A\*B\*C\*C'\ar[dl]^{\inv{\Delta}\*1\*1\*1}\\
+      & & & A\*B\*C\*C'.
+    }
+  \]
+\end{proof}
+
+% subsection the_category_hypxt_is_cartesian (end)
+
+At this point, we have shown that \Xt is a restriction category with restriction products. This
+leads us to the following theorem:
+
+\begin{theorem}\label{thm:xt_is_a_discrete_crc_when_x_is_an_inverse_category}
+  For any inverse category \X, the category \Xt is a discrete restriction category.
+\end{theorem}
+\begin{proof}
+  The fact that \Xt is a Cartesian restriction category is immediate from
+  Lemmas~\ref{lem:xt_is_a_category}, \ref{lem:xt_is_a_restriction_category},
+  \ref{lem:tensor_unit_of_x_is_terminal_object_of_xt} and
+  \ref{lem:tensor_on_x_is_the_restriction_product_on_xt}.
+
+  To show that it is discrete, we need only show that the map $(\Delta \inv{\usr},1)$ is in the
+  same equivalence class as $\Xt$'s $\Delta(= \<1,1\> = \<(\inv{\usr},1),(\inv{\usr},1))$. As both
+  $\Delta$ and $\inv{\usr}$ are total, the restriction of each side is the same, namely $1$. The
+  diagram below uses Corollary \ref{cor:equivalence_simplified_diagram} and shows that the two maps
+  are in the same equivalence class.
+  \[
+    \xymatrix @C=190pt @R=40pt{
+      & A \* A \* 1 \ar@{.>}[d]^{\inv{\usr}}\\
+      A \ar[ur]^{\Delta\inv{\usr}}
+        \ar[r]_{\Delta(\inv{\usr}\*\inv{\usr})(1\*c_{\*}\*1)}& A\*A\*1\*1
+    }
+  \]
+\end{proof}
+\section{Equivalence of categories} % (fold)
+\label{sec:equivalence_of_categories}
+
+This section will show that the category of discrete inverse categories (with functors that preserve
+the inverse tensor) is equivalent to the category of discrete restriction categories (with
+restriction functors which preserve the product). In the following, $\X$
+will always be a discrete inverse category, $\D$ and $\B$ will be discrete restriction categories.
+
+We approach the equivalence proof by exhibiting the universal property for discrete inverse
+categories for the functor $\Invf$ from discrete restriction categories to discrete inverse
+categories. The functor $\Invf$ maps a discrete restriction category to its inverse subcategory and
+maps functors between discrete restriction categories to a functor having the same action on the
+partial inverses. That is, given $G:\B \to \D$, then:
+\begin{align*}
+  &\Inv{G}: \Inv{\B} \to \Inv{\D}\\
+  &\Inv{G}(A) = G{A}&\text{(all objects of $\D$ are in $Inv(\D)$)}\\
+  &\Inv{G}(f) = G(f)&\text{(restriction functors preserve partial inverse)}.
+\end{align*}
+We continue by showing the $\eta$ and $\varepsilon$ of the universal property are isomorphisms.
+First, let $\eta:\X \to \Inv{\Xt}$ be an identity on objects functor. For maps $f$ in \X, $\eta(f)
+= (f\inv{\usr},1)$.
+
+Next, consider a functor $F:\X \to \Inv{\D}$ defined as follows:
+\begin{description}
+  \item{Objects:} $F^{\#}:A \mapsto F(A)$
+  \item{Arrows:} $F^{\#}:(f,C) \mapsto F(f)\pi_0$
+\end{description}
+
+This allows us to write the diagram:
+\begin{equation}
+  \xymatrix @C=65pt @R=40pt{
+    \X \ar[r]^{\eta} \ar[rd]_{F}& \Inv{\Xt} \ar[d]^{\Inv{F^{\#}}}\\
+    &\Inv{\D}.
+  }
+  \label{dia:universal_property_of_inverse_categories}
+\end{equation}
+In order to show this is a universal diagram, we proceed with a series of lemmas building to the
+result.
+
+\begin{lemma}\label{lem:all_invertible_maps_in_xt_are_of_the_form_f_inv_usr}
+  For any discrete inverse category $\X$, all invertible maps $(g,C):A\to B$ in $\Xt$ are in the
+  equivalence class of $(f \inv{\usr},1)$ for some $f:A\to B$.
+\end{lemma}
+\begin{proof}
+  As $(g,C)$ is invertible in \Xt, the map $\inv{(g,C)}: B \to A$ exists. The map $\inv{(g,C)}$ must be in
+  the equivalence class of some map $k:B \to A \* D$. By construction, the map  $\rst{(g,C)}$ is
+  in the equivalence class of the map $\rst{g}\inv{\usr}:A \to A\*1$ in \X. This means,
+  in \X, there is an $n$ such that
+  \[
+    \xymatrix @C=45pt @R=25pt{
+      B \ar[r]^{k} \ar[rrddd]_{\rst{k}\inv{\usr}}
+        & A \*D \ar[r]^{f\*1}&B\*C\*D \ar[d]^{\Delta\*1}\\
+      & &  B\*B\*C\*D \ar@{.>}[d]^{1\* n} \\
+      & &  B\*B\*1 \ar[d]^{\inv{\Delta}\* 1}\\
+      && B\* 1
+    }
+  \]
+  commutes.
+
+  Starting with $g:A\to B\*C$, construct the map $f$ in \X with the following diagram:
+  \[
+    \xymatrix @C=225pt @R=20pt{
+      A \ar[r]^{g} \ar@{.>}[rdddddddd]_{f}& B \*C \ar[d]^{\Delta\*1}\\
+      &B\*B\*C \ar[d]^{1\*\Delta\*1}\\
+      &B\*B\*B\*C \ar[d]^{1\*1\*k\*1}\\
+      &B\*B\*A\*D\*C \ar[d]^{1\*1\*g\*1\*1}\\
+      &B\*B\*B\*C\*D\*C \ar[d]^{1\*\inv{\Delta}\*1\*c_{\*}}\\
+      &B\*B\*C\*C\*D \ar[d]^{1\*1\*\inv{\Delta}\*1}\\
+      &B\*B\*C\*D \ar[d]^{1\*n}\\
+      &B\*B\*1 \ar[d]^{(\inv{\Delta}\* 1) \usl }\\
+      &B.
+    }
+  \]
+  By its construction, $f:A\to B$ in \X and $(f\inv{\usr},1)$ are in the same equivalence class as
+  $(g,C)$.
+
+\end{proof}
+
+\begin{lemma}\label{lem:universal_diagram_is_a_commutative_diagram}
+  $\eta\Inv{F^{\#}} = F$.
+\end{lemma}
+\begin{proof}
+  Chasing maps around the diagram, we have:
+  \[
+    \xymatrix @C=35pt @R=40pt{
+      f \ar@{|->}[rr]^{\eta} \ar@{|->}[rd]_{F}&& (f\inv{\usr},1) \ar@{|->}[d]^{\Inv{F^{\#}}}\\
+      &F(f) \ar@{=}[r] & F(f\inv{\usr})\pi_0.
+    }
+  \]
+  As $\eta$ is identity on the objects, Diagram~\ref{dia:universal_property_of_inverse_categories}
+  commutes.
+\end{proof}
+
+\begin{lemma}\label{lem:inv_is_full_and_faithful}
+  The functor $\Invf$ from the category of discrete restriction categories to the category of
+  discrete inverse categories is full and faithful.
+\end{lemma}
+\begin{proof}
+  To show fullness, we must show $\Invf$ is surjective on hom-sets. Given a functor between two
+  categories in the image of $\Invf$, i.e., $G:\Inv{\B}\to \Inv{\D}$, construct a functor
+  $H:\B\to\D$ as follows:
+  \begin{description}
+    \item{Action on objects:} $H(A) = G(A),$
+    \item{Objects on maps:} $H(f) = G(\<f,1\>)\pi_0.$
+  \end{description}
+  $H$ is well defined as we know $\<f,1\>$ is an invertible map and therefore in the domain of $G$.
+  To see $H$ is a functor:
+  \begin{align*}
+    H(1) &= G(\<1,1\>)\pi_0 = \Delta_{\D}\pi_0 = 1,\\
+    H(f g) &= G(\<f g,1\>)\pi_0 = G(\<f,1\>)\pi_0G(\<g,1\>)\pi_0 = H(f)H(g).
+  \end{align*}
+  But on any invertible map, $H(f) = G(\<f,1\>)\pi_0 = \<G(f),1\>\pi_0 = G(f)$ and therefore
+  $\Inv{H} = G$, so $\Invf$ is full.
+
+  Next, assume we have $F,G:\B\to\D$ with $\Inv{F} = \Inv{G}$. Considering $F(f)$ and $F(g)$, we
+  know $F(\<f,1\>) = G(\<f,1\>) $ as $\<f,1\>$ is invertible. Thus, as the functors preserve the
+  product structure, we have
+  \[
+    F(f) = F(\<f,1\>)F(\pi_0)= G(\<f,1\>)G(\pi_0)= G(f).
+  \]
+  Thus, $\Invf$ is faithful.
+\end{proof}
+
+\begin{corollary}\label{cor:f_sharp_is_unique}
+  The functor $F^{\#}$ in Diagram~\ref{dia:universal_property_of_inverse_categories} is unique.
+\end{corollary}
+\begin{proof}
+  This follows immediately from Lemma~\ref{lem:inv_is_full_and_faithful}, $\Invf$ is faithful.
+\end{proof}
+\begin{corollary}\label{cor:eta_and_xt_are_universal_for_inv}
+  The category \Xt and functor $\eta:\X\to \Inv{\Xt}$ is a universal pair for the functor $\Invf$.
+\end{corollary}
+\begin{proof}
+  Immediate from Corollary~\ref{cor:f_sharp_is_unique} and Lemma~\ref{lem:universal_diagram_is_a_commutative_diagram}.
+\end{proof}
+
+\begin{lemma}\label{lem:the_functor_eta_is_an_isomorphism}
+  The functor $\eta:\X \to \Inv{\Xt}$ is an isomorphism.
+\end{lemma}
+\begin{proof}
+  As $\eta$ is an identity on objects functor, we need only show that it is full and faithful.
+  Referring to Lemma~\ref{lem:all_invertible_maps_in_xt_are_of_the_form_f_inv_usr} above, we
+  immediately see that $\eta$ is full. For faithful, if we assume $(f\inv{\usr},1)$ is equal in \Xt
+  to $(g\inv{\usr},1)$. This means in \X, that $\rst{f} = \rst{g}$ and there is a $h$ such that
+  \[
+    \xymatrix @C=40pt @R=15pt{
+      & & B \* 1 \ar@{.>}[dr]^{(\Delta\* 1) \, a_{\*}}\\
+      && & B \* (B\* 1) \ar@{.>}[dd]^{1\* h} \\
+      A \ar[uurr]^{f\inv{\usr}} \ar[ddrr]_{g\inv{\usr}}&&&\\
+      && & B \* (B \* 1). \ar@{.>}[dl]^(.4){\ \inv{a_{\*}}\,(\inv{\Delta}\* 1)}\\
+      && B\* 1
+    }
+  \]
+  This simplifies out to $g = f \Delta (1\* h) \inv{\Delta}$. But by
+  Lemma~\ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}, part \ref{le:restfg},
+  $\Delta (1\* h) \inv{\Delta} = \rst{\Delta (1\* h) \inv{\Delta}}$. Setting $\Delta (1\* h)
+  \inv{\Delta}$ as $k$, we have $g = f \rst{k}$. This gives us:
+  \[
+    g = f \rst{k} = \rst{f k} f = \rst{f \rst{k}} f = \rst{g} f = \rst{f} f = f.
+  \]
+  This shows $\eta$ is faithful and hence an isomorphism between $\X$ and $\Inv{\Xt}$.
+\end{proof}
+
+\begin{theorem}\label{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories}
+  The category of discrete inverse categories (objects are discrete inverse categories, maps are
+  inverse tensor preserving functors) is equivalent to the category of discrete restriction
+  categories (objects are discrete restriction categories, maps are the Cartesian restriction
+  functors).
+\end{theorem}
+\begin{proof}
+  From the above lemmas, we have shown that we have an adjoint:
+  \begin{equation}
+    (\eta,\varepsilon):\wtf \vdash \Invf :D_{i c} \to D_{r c}. \label{eq:inv_and_wtf_are_adjoint_pair}
+  \end{equation}
+  By Lemma~\ref{lem:the_functor_eta_is_an_isomorphism} we know $\eta$ is an isomorphism. But this
+  means the functor $\wtf$ is full and faithful, as shown in, e.g., Proposition 2.2.6 of
+  \cite{cockett2009:ctcs}. From lemma \ref{lem:inv_is_full_and_faithful} we know that $\Invf$ is
+  full and faithful. But again by the previous reference, this means $\varepsilon$ is an
+  isomorphism. Thus, by Corollary \ref{cor:eta_and_xt_are_universal_for_inv} and Proposition 2.2.7
+  of \cite{cockett2009:ctcs} we have the equivalence of the two categories.
+\end{proof}
+% subsection equivalence_of_categories (end)
+\section{Examples of the \texorpdfstring{\wtc}{tilde} construction} % (fold)
+\label{sec:examples_of_the_wtf_construction}
+
+\begin{example}[Completing a finite discrete inverse category]
+  \label{example:completing_a_finite_discrete_inverse_category}
+\end{example}
+Continuing from Example~\ref{example:invprodisstructure}, recall the discrete category of 4
+elements with two different tensors. Completing these gives two different lattices. They are either
+the straight line lattice, or the diamond semi-lattice. Below are the details of these constructions.
+
+Recall $\D$ has four elements $a,b,c$ and $d$, and there are two possible inverse product tensors,
+given in Table~\ref{tab:two_different_inverse_products}. (Repeated here for your convenience).
+\begin{table*}[!htbp]
+  \begin{center}
+  \begin{tabular}{|l||c|c|c|c|}
+    \hline
+    $\*$&a&b&c&d\\ \hline \hline
+    a&a&a&a&a\\ \hline
+    b&a&b&\textbf{b}&b\\ \hline
+    c&a&\textbf{b}&c&c \\ \hline
+    d&a&b&c&d \\ \hline
+  \end{tabular}
+  \qquad
+  \begin{tabular}{|l||c|c|c|c|} \hline
+    $\odot$&a&b&c&d\\ \hline \hline
+    a&a&a&a&a\\ \hline
+    b&a&b&\textbf{a}&b\\ \hline
+    c&a&\textbf{a}&c&c \\ \hline
+    d&a&b&c&d \\ \hline
+  \end{tabular}
+  \end{center}
+  \caption[]{Two different inverse products on the same category.} %[] option removes from LOT
+\end{table*}
+
+
+Define $\Delta$ as the identity map. Then, for the first tensor, $\*$ of
+Table~\ref{tab:two_different_inverse_products}, $\widetilde{\D}$ has the following
+maps
+\begin{align*}
+  %a \xrightarrow{(id,a)} a \ (\equiv a \xrightarrow{(id, b)} a \equiv a \xrightarrow{(id,c)} a
+  %\equiv a \xrightarrow{(id,d)} a), \qquad a \xrightarrow{(id,a)} b, \qquad a \xrightarrow{(id, a)}
+  %c , \qquad a \xrightarrow{(id, a)} d \\
+  a \xrightarrow{(id,a)\ (\equiv (id, b) \equiv (id,c) \equiv (id,d))} a, \qquad a
+    \xrightarrow{(id,a)} b, \qquad a \xrightarrow{(id, a)} c , \qquad a \xrightarrow{(id, a)} d \\
+  %b \xrightarrow{(id,b)} b \ (\equiv b \xrightarrow{(id, c)} b \equiv b \xrightarrow{(id, d)} b ),
+  %\qquad b \xrightarrow{(id,b)} c, \qquad b \xrightarrow{(id,b)} d\\
+  b \xrightarrow{(id,b) \ (\equiv (id, c) \equiv (id, d))} b , \qquad b \xrightarrow{(id,b)} c,
+    \qquad b \xrightarrow{(id,b)} d\\
+  c \xrightarrow{(id, c) \ (\equiv (id, d))} c ,   \qquad c \xrightarrow{(id,c)} d\\
+  d \xrightarrow{(id,d)} d
+\end{align*}
+resulting in the straight-line ($a \to b \to c \to d$) lattice. The tensor in \D becomes the meet
+and hence is a categorical product in $\widetilde{\D}$. Note that the only partial inverses in
+$\widetilde{\D}$ are the identity functions and that for all maps $f$, $\<f,1\> = id$.
+
+With the second tensor, $\odot$ from Table~\ref{tab:two_different_inverse_products}, we have:
+\begin{align*}
+  a \xrightarrow{(id,a) \ (\equiv (id, b) \equiv (id,c) \equiv (id,d))} a, \qquad
+    a \xrightarrow{(id,a)} b, \qquad a \xrightarrow{(id, a)} c , \qquad a \xrightarrow{(id, a)} d \\
+  b \xrightarrow{(id,b) \ (\equiv (id, d))} b ,  \qquad b \xrightarrow{(id,b)} d\\
+  c \xrightarrow{(id, c) \ (\equiv (id, d))} c,   \qquad c \xrightarrow{(id,c)} d\\
+  d \xrightarrow{(id,d)} d
+\end{align*}
+resulting in the ``diamond'' lattice, \raisebox{19pt}{
+$
+  \xymatrix @R=3pt @C=8pt {
+    & b \ar[dr]\\
+    a \ar[ur] \ar[dr] & &d\\
+    & c \ar[ur]
+  }
+$}. Once again, the tensor in \D becomes the meet.
+
+\begin{example}[Lattice completion.]\label{example:lattice_completion}
+  Suppose we have a set together with an idempotent, commutative, associative operation $\wedge$ on
+  the set, giving us a lattice, \Lat. Further suppose the set is partially ordered via $\le$ with
+  the order being compatible with $\wedge$.
+
+  Then, we may create a pullback square for any $x' \le x,\ y' \le x$ with
+  \[
+    \xymatrix{
+      &x\\
+      x' \ar[ur]_{\le} & & y' \ar[ul]^{\le}\\
+      &x'\wedge y'.  \ar[ul]_{\le} \ar[ur]^{\le}
+    }
+  \]
+
+  Considering \Lat as a category, we see that all maps are monic and therefore, we may create a
+  partial map category $\text{Par}(\Lat,\Mstab)$ where the stable system of monics are all the maps.
+
+  Then $\widetilde{\text{Par}(\Lat,\Mstab)}$ becomes the completion of the lattice over $\wedge$.
+\end{example}
+\begin{example}[$\widetilde{\text{\pinj}}$ is \Par]\label{ex:tilde_pinj_is_par}
+  Noting that the objects of both \pinj and \Par are sets, we simply need to show that any partial
+  function is in the equivalence class of some $f$, a map in \pinj.
+
+  Suppose we are given $g : A \to B = \{(a,b) | a \in A, b\in B\}$, a partial function in sets. Of
+  course, if it is a partial injective function, then $g$ is in the equivalence class of $(g,\{*\})$
+  and we are done.  If it is not injective, that means there are one or more elements of $B$ which
+  appear in the left hand element of $g$ multiple times. Construct a new function $h$ as follows:
+  \begin{equation}
+     h \doteq \{(a,(b,a)) | (a,b) \in g\} \label{eq:new_partial_injective}
+  \end{equation}
+  By its definition, $h : A \to B \*A$ is injective, $(h,A): A \to B$ coincides with $g$ and therefore
+  we see that using the \wtc construction on \pinj results in \Par.
+\end{example}
+% subsection examples_of_the_wtf_construction (end)
+
+
+% chapter inverse_categories (end)
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:
