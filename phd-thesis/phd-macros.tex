@@ -314,6 +314,12 @@
 
 %------------------------------------------------------------------------------------
 % General notation for categories
+\newcommand{\catdomain}{\partial_0}
+\newcommand{\catcodomain}{\partial_1}
+
+\newcommand{\categorysection}[1]{{#1}^\diamond}
+\newcommand{\retraction}[1]{{#1}_\diamond}
+
 \newcommand{\categoryns}[4]{%
 \begin{description}%
 \item{\textbf{Objects: }}{#1}%
@@ -339,6 +345,7 @@
 \newcommand{\Y}{\ltrcatbb{Y}}
 
 \newcommand{\cD}{\ltrcatbb{D}}
+\newcommand{\cS}{\ltrcatbb{S}}
 
 \newcommand{\Lat}{\ltrcatbb{L}}
 \newcommand{\Mstab}{\ensuremath{\mathcal{M}}\xspace}
@@ -348,6 +355,9 @@
 \newcommand{\sets}{\specialcat{Sets}}
 \newcommand{\cat}{\specialcat{Cat}}
 \newcommand{\Par}{\specialcat{Par}}
+
+\newcommand{\topcat}{\specialcat{Top}}
+\newcommand{\topcatp}{\ensuremath{\textsc{Top}_p}}
 
 \newcommand{\rel}{\specialcat{Rel}}
 
@@ -379,16 +389,19 @@
 }
 
 
-\newcommand{\rcategory}[5]{%
+\newcommand{\rcategoryns}[5]{%
 \begin{description}%
-\item{\textbf{Objects: }}{#1};%
-\item{\textbf{Maps: }}{#2};%
-\item{\textbf{Identity: }}{#3};%
-\item{\textbf{Composition: }}{#4};%
-\item{\textbf{Restriction: }}{#5}.%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
+\item{\textbf{Restriction: }}{#5}%
 \end{description}%
 %
 }
+
+
+\newcommand{\rcategory}[5]{\rcategoryns{{#1};}{{#2};}{{#3};}{{#4};}{{#5}.}}
 
 \newcommand{\restr}[1]{\overline{#1}}
 \newcommand{\rst}[1]{\restr{#1}}
@@ -411,6 +424,7 @@
 \newcommand{\exchange}[1]{\ensuremath{e\!x_{#1}}}
 \newcommand{\excs}{\exchange{\*}}
 
+\newcommand{\idelta}{\ensuremath{\inv{\Delta}}}
 \newcommand{\Invc}[1]{\ensuremath{Inv(#1)}\xspace}
 \newcommand{\Invf}{\ensuremath{\mathbf{INV}}\xspace}
 \newcommand{\Inv}[1]{\ensuremath{\mathbf{INV}({#1})}\xspace}

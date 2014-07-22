@@ -2,11 +2,11 @@
 \chapter{Inverse categories} % (fold)
 \label{cha:inverse_categories}
 
-This chapter will focus on adding ``products'' to an inverse category.
+This chapter will focus on adding ``products'' to an inverse category, from Definition~\ref{def:inverse_category}.
 
 We will show below an inverse category which has restriction products is a restriction
 pre-order. Given this, by ``product'', we mean a structure that behaves in a product-like manner in
-an inverse category which we call these \emph{inverse products}. These will be defined below in
+an inverse category which we call \emph{inverse products}. These will be defined below in
 Sub-Section~\ref{sub:inverse_product_definition}: Inverse products are given by a natural structure on a
 tensor product which includes a diagonal but lacks projections. The diagonal map is required to give
 a natural Frobenius structure on each object.
@@ -14,19 +14,10 @@ a natural Frobenius structure on each object.
 \section{Inverse categories with restriction products} % (fold)
 \label{sec:inverse_categories_with_restriction_products}
 We start by showing that an inverse category with restriction products is a restriction pre-order
-and thus, is too restrictive a notion.
-
-\begin{definition}\label{def:compatible_maps}
-  Two parallel maps $f,g:A \to B$ in a restriction category are \emph{compatible}, written as $f
-  \compatible g$, when $\rst{f} g = \rst{g} f$.
-\end{definition}
-\begin{definition}\label{def:restrictionpreorder}
-  A restriction category \X is a \emph{restriction pre-order} when all parallel pairs of maps are
-  compatible.
-\end{definition}
+and thus, is a very restrictive notion.
 \begin{proposition}\label{prop:an_inverse_category_with_products_is_a_restriction_preorder}
-  Given an inverse category \X, if it has restriction products, it is a restriction pre-order. That
-  is,
+  Given an inverse category \X, if it has restriction products, it is a restriction pre-order as in
+  Definition~\ref{def:compatible_maps}. That is,
   \[
     \xymatrix {
       A  \ar@<1ex>[r]^{f} \ar@<-1ex>[r]_{g} &B
@@ -51,7 +42,7 @@ and thus, is too restrictive a notion.
 \end{proof}
 
 \begin{corollary}
-  \X\ is a Cartesian inverse category if and only if Total($\spl{r}{\X}$) is a meet pre-order.
+  \X\ is a inverse category with restriction products if and only if Total($\spl{r}{\X}$) is a meet pre-order.
 \end{corollary}
 
 \begin{proof}
@@ -68,8 +59,8 @@ and thus, is too restrictive a notion.
 \end{proof}
 
 \begin{corollary}
-  Every Cartesian inverse category is a full subcategory of a partial map category of a meet
-  semi-lattice.
+  Every inverse category with restriction products is a full subcategory of a partial map category
+  of a meet semi-lattice.
 \end{corollary}
 
 
@@ -100,52 +91,61 @@ and thus, is too restrictive a notion.
 % \end{definition}
 
 \begin{definition}\label{def:inverse_product}
-  An \emph{inverse product} on an inverse category \X is given by an tensor $\*$, a restriction
-  bi-functor. The tensor makes \X a  symmetric monoidal category and there is a natural
-  ``semi-Frobenius'' diagonal map, $\Delta$. Additionally, we define the
-  map $\excs: (A\*B)\*(C\*D) \to (A\*C) \* (B\*D)$:
-  \[
-    \excs =  a_{\*}(1\*\inv{a_{\*}})(1\*(c_{\*}\*1))(1\* a_{\*})\inv{a_{\*}}).
-  \]
+  An \emph{inverse product} on an inverse category \X is given by a symmetric tensor product, based
+  on a restriction  bi-functor, $\_\*\_:\X\times\X \to \X$. The tensor makes \X a  symmetric
+  monoidal category and there is a natural  ``semi-Frobenius'' diagonal map, $\Delta$.   If an
+  inverse category has inverse products, it is called  a \emph{discrete inverse category}.
 
-  The diagonal map $\Delta_A:A \to A\*A$ must be total and create a co-semigroup without units. It
-  must satisfy the diagrams in Figures~\ref{fig:inverse_product_cocommutativity},
-  \ref{fig:inverse_product_coassociativity}, \ref{fig:inverse_product_exchange}, and
-  \ref{fig:inverse_product_frobenius}.
-\begin{figure}[!htbp]
+
+  The diagonal map $\Delta_A:A \to A\*A$ must be total and create a co-semigroup. It
+  must satisfy the following diagrams:
+ % in Figures~\ref{fig:inverse_product_cocommutativity},
+ %  \ref{fig:inverse_product_coassociativity}, \ref{fig:inverse_product_exchange}, and
+ %  \ref{fig:inverse_product_frobenius}.
   \[
     \xymatrix @!0 @C=90pt @R=35pt{
       A \ar[dr]_{\Delta} \ar[r]^{\Delta} &
       A \* A \ar[d]^{c_{\*}}\\
       & A \* A
+    }\qquad
+    \xymatrix @!0 @C=90pt @R=35pt{
+      A \* A \ar[d]^{c_{\*}} \ar[r]^{\inv{\Delta}}  & A\\
+      A \* A  \ar[ur]_{\inv{\Delta}}
     }
   \]
+\begin{center}Cocommutative and Commutative\end{center}
+%\caption*{Cocommutative}\label{fig:inverse_product_cocommutativity}
 
-\caption{Co-commutativity for an inverse product.}\label{fig:inverse_product_cocommutativity}
-\end{figure}
-\begin{figure}[!htbp]
   \[
-    \xymatrix @C=30pt @R=30pt{
+    \xymatrix @C=20pt @R=30pt{
       A \ar[rr]^{\Delta} \ar[d]_{\Delta} & &
       A \* A \ar[d]^{1\*\Delta}\\
-      A\*A \ar[dr]_{\Delta \* 1}& & A \* ( A \* A) \\
+      A\*A \ar[dr]_{\Delta \* 1}& &
+      A \* ( A \* A) \\
       &   (A \* A) \* A \ar[ur]_{a_{\*}}
+    }\qquad
+    \xymatrix @C=20pt @R=30pt{
+      A\*(A\*A) \ar[rr]^{1\*\idelta} \ar[d]_{\inv{a_\*}} && A\*A \ar[d]^{\idelta}\\
+      (A\*A)\*A \ar[dr]_{\idelta\*1}&&A\\
+     & A\*A \ar[ur]_{\idelta}
     }
   \]
-\caption{Co-associativity for an inverse product.}\label{fig:inverse_product_coassociativity}
-\end{figure}
-\begin{figure}[!htbp]
+\begin{center}Coassociative and Associative\end{center}
+%\caption*{Coassociative and Associative}\label{fig:inverse_product_coassociativity}
+If we define the map:
   \[
-    \xymatrix @C=40pt @R=35pt{
+    \excs =  a_{\*}(1\*\inv{a_{\*}})(1\*(c_{\*}\*1))(1\* a_{\*})\inv{a_{\*}}): (A\*B)\*(C\*D) \to (A\*C) \* (B\*D).
+  \]
+  \[
+    \xymatrix @C=25pt @R=35pt{
       A \* B \ar[dr]_{\Delta}
-      \ar[rr]^{\Delta \* \Delta} &&
-      (A \* A) \* (B \* B) \ar[dl]^{\excs}\\
+      \ar[rr]^{\Delta \* \Delta} && (A \* A) \* (B \* B) \ar[dl]^{\excs}\\
       &(A \* B) \* (A \* B)
     }
   \]
-\caption{Exchange in an inverse product.}\label{fig:inverse_product_exchange}
-\end{figure}
-\begin{figure}[!htbp]
+\begin{center}Exchange\end{center}
+%\caption{Exchange}\label{fig:inverse_product_exchange}
+
   \[
     \xymatrix @C=40pt @R=25pt{
       A \* A \ar[dd]_{(1\*\Delta) \inv{a_{\*}}} \ar[dr]^{\inv{\Delta}}
@@ -156,16 +156,17 @@ and thus, is too restrictive a notion.
       A \* A
     }
   \]
-\caption{Frobenius law in an inverse product.}\label{fig:inverse_product_frobenius}
-\end{figure}
+\begin{center}Frobenius\end{center}
+%\caption{Frobenius}\label{fig:inverse_product_frobenius}
 
-  Thus, $\Delta$ is a co-commutative, co-associative map which together with $\inv{\Delta}$ forms a
+
+  Thus, $\Delta$ is a cocommutative, coassociative map which together with $\inv{\Delta}$ forms a
   special semi-Frobenius algebra. We use the prefix ``semi-'' as we are not requiring the unit laws
   of a Frobenius algebra as per Definition~\ref{def:frobeniusalgebra}.
 \end{definition}
 
 \begin{remark}
-  Note also, co-commutativity implies that $c_{\*}\inv{\Delta} = \inv{\Delta}$.
+  Note also, cocommutativity implies commutativity, i.e., that $c_{\*}\inv{\Delta} = \inv{\Delta}$.
   One can see this as:
   \begin{align*}
     \Delta(c_{\*}\inv{\Delta})
@@ -176,13 +177,13 @@ and thus, is too restrictive a notion.
   This means that both $\inv{\Delta}$ and $c_{\*}\inv{\Delta}$ are partial inverses for $\Delta$
   and are therefore equal.
 
-  Similarly, one can show that $(\inv{\Delta}\* 1)\inv{\Delta} =
-  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
+  Similarly, coassociativity implies associativity as one can show that
+  $(1\*\inv{\Delta})\inv{\Delta} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
   \begin{align*}
-    \Delta(\Delta\*1)\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} &=
-    \Delta(1\*\Delta)a_{\*}\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} \\
-    & =\Delta(1\*\Delta)(\inv{\Delta}\* 1)\inv{\Delta} \\
-    & =\Delta\inv{\Delta}\Delta\inv{\Delta} = 1.
+    \Delta(1\*\Delta)\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} &=
+    \Delta(\Delta\*1)a_{\*}\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} \\
+    & =\Delta(\Delta\*1)(\inv{\Delta}\* 1)\inv{\Delta} \\
+    & =\Delta 1\inv{\Delta} = 1.
   \end{align*}
 \end{remark}
 
@@ -232,7 +233,7 @@ the conditions for being an inverse product are satisfied by $\*$ and by $\odot$
 \label{sub:diagrammatic_language}
 
 While it is certainly possible to prove results about inverse products using direct algebraic
-manipulation, it is much more convenient to understanding to proceed with string diagram circuits. See
+manipulation, it is much more understandable to use circuits or string diagrams. See
 \cite{selinger11:graphical} for a comparison of various graphical languages for monoidal categories.
 As shown in
 \cite{street-ross-1991-GTC-I}, diagrammatic reasoning is equivalent to reasoning algebraically for
@@ -244,11 +245,13 @@ In the diagrams, we will use the following representations:
       \path node [delta] at (0,0) {}; \end{tikzpicture}.
   \item $\inv{\Delta}$ by a downward triangle: \begin{tikzpicture}
       \path node [nabla] at (0,0) {}; \end{tikzpicture}.
-  \item maps by a rectangle with the name of the map inside: \begin{tikzpicture}
+  \item Maps by a rectangle with the name of the map inside: \begin{tikzpicture}
       \path node [map] at (0,0) {$\scriptstyle f$}; \end{tikzpicture}.
-  \item unit introduction (often referred to as an $\eta$ map): \begin{tikzpicture}
+  \item Use of the tensor: \begin{tikzpicture}
+      \node [style=tensor] (t1) at (0,0) {$\scriptstyle \*$}; \end{tikzpicture}.
+  \item Unit introduction (often referred to as an $\eta$ map): \begin{tikzpicture}
       \path node [eta] at (0,0) {}; \end{tikzpicture}.
-  \item unit removal (often referred to as an $\epsilon$ map): \begin{tikzpicture}
+  \item Unit removal (often referred to as an $\epsilon$ map): \begin{tikzpicture}
       \path node [epsilon] at (0,0) {}; \end{tikzpicture}.
 \end{itemize}
 String diagrams in this thesis are to be read from top to bottom.
@@ -265,7 +268,7 @@ The axioms of Definition~\ref{def:inverse_product} then become:\\
     \node [style=delta] (6) at (-2.25, 5) {};
     \node [style=nothing] (7) at (-2.5, 4.25) {};
     \node [style=nothing] (8) at (-2, 4.25) {};
-    \node [style=nothing] (9) at (-3, 4) {Co-commutativity};
+    \node [style=nothing] (9) at (-3, 4) {Cocommutativity};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
       \draw [] (0) to (1);
@@ -292,7 +295,7 @@ The axioms of Definition~\ref{def:inverse_product} then become:\\
     \node [style=nothing] (7a) at (-2.5, 4) {};
     \node [style=nothing] (7b) at (-2.25, 4) {};
     \node [style=nothing] (7c) at (-1.75, 4) {};
-    \node [style=nothing] (9) at (-3, 3.5) {Co-associativity};
+    \node [style=nothing] (9) at (-3, 3.5) {Coassociativity};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
       \draw [] (0) to (1);
@@ -310,37 +313,34 @@ The axioms of Definition~\ref{def:inverse_product} then become:\\
 \hspace{15pt}
 \begin{tikzpicture}
   \begin{pgfonlayer}{nodelayer}
-    \node [style=nothing] (0) at (-2.55, 3.75) {};
-    \node [style=nothing] (1) at (-2.45, 3.75) {};
-    \node [style=delta] (2) at (-2.5, 3.25) {};
-    \node [style=nothing] (3) at (-3, 2.5) {};
-    \node [style=nothing] (4) at (-2.75, 2.5) {};
-    \node [style=nothing] (5) at (-2.25, 2.5) {};
-    \node [style=nothing] (6) at (-2, 2.5) {};
+    \node [style=nothing] (s0) at (-2.5, 3.75) {};
+    \node [style=delta] (d0) at (-2.5, 3.25) {};
+    \node [style=nothing] (e01) at (-3, 2.5) {};
+    \node [style=nothing] (e02) at (-2, 2.5) {};
     \node [style=nothing] (7) at (-1.75, 3.25) {$=$};
-    \node [style=nothing] (8) at (-.675, 3.75) {};
-    \node [style=nothing] (9) at (-0.575, 3.75) {};
-    \node [style=delta] (10) at (-1, 3.25) {};
-    \node [style=delta] (11) at (-0.25, 3.25) {};
-    \node [style=nothing] (12) at (-1.25, 2.5) {};
-    \node [style=nothing] (13) at (-1, 2.5) {};
-    \node [style=nothing] (14) at (-0.25, 2.5) {};
-    \node [style=nothing] (15) at (0, 2.5) {};
-    \node [style=nothing] (16) at (-1.5, 2) {Exchange};
+    \node [style=nothing] (s2) at (-.625, 4.25) {};
+    \node [style=tensor] (t1) at (-.625, 3.875) {$\scriptstyle \*$};
+    \node [style=delta] (d1) at (-1, 3.25) {};
+    \node [style=delta] (d2) at (-0.25, 3.25) {};
+    \node [style=tensor] (t2) at (-1.125, 2.5) {$\scriptstyle \*$};
+    \node [style=nothing] (e2) at (-1.125, 2) {};
+    \node [style=tensor] (t3) at (-.125, 2.5) {$\scriptstyle \*$};
+    \node [style=nothing] (e3) at (-0.125, 2) {};
+    \node [style=nothing] (16) at (-1.5, 1.5) {Exchange};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
-      \draw [] (0) to (2);
-      \draw [] (1) to (2);
-      \draw [] (2) to (3);
-      \draw [] (2) to (4);
-      \draw [] (2) to (5);
-      \draw [] (2) to (6);
-      \draw [] (8) to[out=270,in=90] (10);
-      \draw [] (9) to[out=270,in=90] (11);
-      \draw [] (10) to (12);
-      \draw [] (10) to (14);
-      \draw [] (11) to (13);
-      \draw [] (11) to (15);
+      \draw [] (s0) to (d0);
+      \draw [] (d0) to[out=235,in=90] (e01);
+      \draw [] (d0) to[out=305,in=90] (e02);
+      \draw [] (s2) to (t1);
+      \draw [] (t1) to[out=235,in=90] (d1);
+      \draw [] (t1) to[out=305,in=90] (d2);
+      \draw [] (d1) to[out=235,in=90] (t2);
+      \draw [] (d1) to[out=305,in=135] (t3);
+      \draw [] (d2) to[out=235,in=45] (t2);
+      \draw [] (d2) to[out=305,in=90] (t3);
+      \draw [] (t2) to (e2);
+      \draw [] (t3) to (e3);
       \end{pgfonlayer}
 \end{tikzpicture}
 \hspace{15pt}
@@ -392,15 +392,8 @@ The axioms of Definition~\ref{def:inverse_product} then become:\\
 \subsection{Discrete inverse categories} % (fold)
 \label{sub:discrete_inverse_categories}
 
-\begin{definition}\label{def:discrete_inverse_category}
-  If an inverse category has inverse products as in Definition~\ref{def:inverse_product}, we call it
-  a \emph{discrete inverse category}.
-\end{definition}
 
-In this Sub-Section we will present some properties of discrete inverse categories. This  will
-form the basis for our eventual goal, that of connecting discrete inverse categories to Cartesian
-restriction categories. The connection between them will be given as a functor that lifts a discrete
-inverse category to a discrete Cartesian restriction category.
+We now present some properties of discrete inverse categories.
 
 \begin{lemma}\label{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}
   In a discrete inverse category \X with the inverse product $\*$ and $\Delta$, where
@@ -553,7 +546,7 @@ inverse category to a discrete Cartesian restriction category.
       \end{tikzpicture}
       \ \raisebox{45pt}{$=$}\
       \]
-\[
+      \[
       \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -647,7 +640,7 @@ inverse category to a discrete Cartesian restriction category.
       \end{tikzpicture}
       }
       \,\raisebox{45pt}{.}
-\]
+      \]
     \item[\ref{le:deltaefg}]This equality uses the previous equality, the commutativity
       of restriction idempotents (\rtwo) and the identity $\Delta\rst{\inv{\Delta}} = \Delta$.
       \[
@@ -745,7 +738,7 @@ inverse category to a discrete Cartesian restriction category.
       }
       \,\raisebox{45pt}{.}
       \]
-      The second equality ($e\Delta(f\*g) = \Delta(f\*e g)$) follows by co-commutativity. The third
+      The second equality ($e\Delta(f\*g) = \Delta(f\*e g)$) follows by cocommutativity. The third
       equality,  ($e\Delta(f\*g) = \Delta(e f\*e g)$) follows by naturality of $\Delta$.
 
     \item[\ref{le:efginvdelta}] As in \ref{le:deltaefg}, details are only given for the
@@ -1148,7 +1141,7 @@ v        \draw (g) to (f-inverse);
         \draw [] (d1) to[out=235,in=90] (f);
         \draw (f) to (end1);
       \end{tikzpicture}
-      \raisebox{20pt}{ and by co-commutativity, }
+      \raisebox{20pt}{ and by cocommutativity, }
         \begin{tikzpicture}
         \node at (0,1.5) (start) {};
         \node at (0,1) [delta] (d1) {};
@@ -1382,7 +1375,7 @@ v        \draw (g) to (f-inverse);
     \end{align*}
 
   Define $\Delta_A = \{(a,(a,a)) | a\in A\}$. Then \pinj is a discrete inverse category with the
-  inverse product of $\*$. The required properties of co-commutativity, co-associativity and
+  inverse product of $\*$. The required properties of cocommutativity, coassociativity and
   exchange are immediately obvious. To show the Frobenius rule for $\Delta$, first note that
   $\inv{\Delta}$ is defined only on the elements of $A\*A$ which agree in the first and second
   co-ordinate. We show the upper triangle of the Frobenius diagram in
@@ -1462,20 +1455,31 @@ subcategory which is a discrete inverse category.
   \end{table}
 
   The monoid coherence diagrams follow directly from the characteristics of the product in
-  \X. Similarly, $\Delta$ is total as it is total in $\X$. It remains to show co-commutativity,
-  co-associativity and the Frobenius condition.
+  \X. Similarly, $\Delta$ is total as it is total in $\X$. It remains to show cocommutativity,
+  coassociativity and the Frobenius condition.
 
-  Co-commutativity requires $\Delta c_{\*} = c_{\*}$. This means we need
-  \[\Delta_{\X} \< \pi_1,\pi_0\> = \Delta_{\X}.\] Once again, this follows immediately from the
-  definition of the restriction product.
+  Cocommutativity requires $\Delta c_{\*} = c_{\*}$. We have
+  \[
+     \Delta_{\X} \< \pi_1,\pi_0\> = \<\Delta_{\X}\pi_1, \Delta_{\X}\pi_0\> = \<1,1\> =
+     \Delta_{\X},
+  \]
+  giving us the required cocommutativity.
 
-  Co-associativity requires $\Delta (1 \* \Delta) = \Delta (\Delta \* 1) a_{\*}$. Expressing this
-  in \X, is the requirement that
+  Coassociativity requires $\Delta (1 \* \Delta) = \Delta (\Delta \* 1) a_{\*}$. Expressing this
+  in \X, it is the requirement that
   \[
     \Delta_{\X} (1 \times \Delta_{\X}) =
-      \Delta_{\X}(\Delta_{\X} \times 1) a_{\X}
+      \Delta_{\X}(\Delta_{\X} \times 1) a_{\X}.
   \]
-  which follows from the properties of the restriction product.
+  Recalling that $f\times g \pi_0 = \pi_0 f$ and $f\times g \pi_1 = \pi_1 g$, we have:
+  \begin{align*}
+    \Delta_{\X}(\Delta_{\X} \times 1) a_{\X} &=\Delta_{\X}(\Delta_{\X} \times 1)
+    \<\pi_0\pi_0,\<\pi_0\pi_1,\pi_1\>\>\\
+    &= \<\Delta_{\X}(\Delta_{\X} \times 1)\pi_0\pi_0,\<\Delta_{\X}(\Delta_{\X} \times 1)\pi_0\pi_1,\Delta_{\X}(\Delta_{\X} \times 1)\pi_1\>\>\\
+    &= \<\Delta_{\X}\pi_0\Delta_{\X}\pi_0,\<\Delta_{\X}\pi_0\Delta_{\X}\pi_1,\Delta_{\X}\pi_1 1\>\>\\
+    &= \<1, \<1,1\>\> = \Delta_{\X}(1\times\Delta_{\X})
+  \end{align*}
+  and shows that we have coassociativity.
 
   The semi-Frobenius requirement is two-fold:
   \begin{align}
@@ -1491,7 +1495,7 @@ subcategory which is a discrete inverse category.
       &= (1 \times \Delta_{\X}) \<\<\pi_0, \pi_1 \pi_0\>,\pi_1 \pi_1\>(\inv{\Delta_{\X}}\times 1).
       \label{eq:frobenius_lefths_expressed_in_x}
   \end{align}
-  We will give the details of the proof for Equation~\ref{eq:frobenius_righths_expressed_in_x}.
+  We will give the details of the proof for Equation~\ref{eq:frobenius_riinghths_expressed_in_x}.
   Equation~\ref{eq:frobenius_lefths_expressed_in_x} may be proven similarly.
 
   Note first that $\Delta(1 \times !)$ (and $\Delta(!\times 1)$) is the identity. Second, we see

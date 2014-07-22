@@ -5,9 +5,8 @@
 \section{Categories}
 \label{sec:categories}
 
-This section introduces categories and fixs notation for them. More
-details can be found in various books or online
-resources for category theory, e.g., \cite{maclan97:categorieswrkmath}, \cite{cockett2009:ctcs},
+This section introduces categories and fixes notation for them. More
+details for category theory can be found from, e.g., \cite{maclan97:categorieswrkmath}, \cite{cockett2009:ctcs},
 \cite{barr:ctcs} and \cite{various:nlab}.
 
 A category may be defined in a variety of equivalent ways. As much of our
@@ -16,23 +15,27 @@ choose a definition that highlights the algebraic nature of these.
 
 \begin{definition}\label{def:category}
   A \emph{category} $\A$ is a directed graph consisting of objects $A_o$ and maps $A_m$. Each $f\in
-  A_m$ has two associated objects in $A_o$, called the domain and codomain. When $f$ has domain $X$
-  and codomain $Y$ we will write $f:X \to Y$. For $f, g \in A_m$, if $f:X\to Y$ and $g:Y \to Z$,
-  there is a map called the \emph{composite} of $f$ and $g$, written $f g$,\footnote{Note that
-    composition is written in diagrammatic order throughout this paper.} such that $f g:X \to Z$.
-  For any $W \in A_o$ there is an \emph{identity} map $1_W:W \to W$. Additionally, these two axioms
-  must hold:
-  \begin{itemize}
-    \item[\catone] for $f:X \to Y$, $1_X f = f = f 1_Y$,
-    \item[\cattwo] given $f:X \to Y,\ g:Y \to Z$ and $h: Z\to W$, then $f (g h) = (f g) h$.
-  \end{itemize}
-
+  A_m$ has two associated objects in $A_o$, called the domain, $\catdomain f$, and codomain,
+  $\catcodomain f$. When $\catdomain f$ is the object $X$  and $\catcodomain f$ is the object $Y$, we
+  will write $f:X \to Y$. For $f, g \in A_m$, if $f:X\to Y$ and $g:Y \to Z$, there is a map called
+  the \emph{composite} of $f$ and $g$, written $f g$,\footnote{Note that composition is written in
+    diagrammatic order throughout this paper.} such that $f g:X \to Z$. For any $W \in A_o$ there is
+  an \emph{identity} map $1_W:W \to W$. Additionally, these two axioms must hold:
+  \begin{align*}
+    \catone &\text{ for }f:X \to Y,\ 1_X f = f = f 1_Y,&\text{(Unit laws)}\\
+    \cattwo &\text{ given }f:X \to Y,\ g:Y \to Z\text{ and }h: Z\to W\text{, then }f (g h) = (f g) h.&\text{( Associativity)}
+  \end{align*}
 \end{definition}
+
+Throughout   this thesis, we will be working with \emph{small} categories, that is, those categories
+whose collection of maps and collection of objects is, in fact, a set. We will give categories of
+``all'' sets as an example, and the reader should take that to mean all sets contained within a
+sufficiently large set.
 
 \subsection{Properties of maps} % (fold)
 \label{sub:properties_of_maps}
-Many interesting properties of maps are generalizations of notions that have been found useful in
-considering sets and functions. We present a few of these in a tabular format, together with their
+Many interesting properties of maps are generalizations of notions used for sets and functions. We
+present a few of these in Table~\ref{tab:properties_of_maps_in_categories}, together with their
 categorical definition. Throughout Table~\ref{tab:properties_of_maps_in_categories}, $e,f,g$ are
 maps in a category $C$ with $e:A \to A$ and $f,g:A \to B$.
 \begin{table}[!htbp]
@@ -47,11 +50,11 @@ maps in a category $C$ with $e:A \to A$ and $f,g:A \to B$.
       Surjective & Epic & The dual notion to monic, $g$ is epic whenever $g h = g k$ means that $h = k$.
       A map that is both monic and epic is called \emph{bijic}.\\
       \hline
-      Left~Inverse & Section & $f$ is a section when there is a map $f^*$ such that $f f^* = 1_A$. $f$
-      is also referred to as the \emph{left inverse} of $f^*$.\\
+      Left~Inverse & Section & $f$ is a section when there is a map $\categorysection{f}$ such that $f \categorysection{f} = 1_A$. $f$
+      is also referred to as the \emph{left inverse} of $\categorysection{f}$.\\
       \hline
-      Right Inverse & Retraction & $f$ is a retraction when there is a map $f_*$ such that $f_* f = 1_B$.
-      $f$ is also referred to as the \emph{right inverse} of $f_*$. A map that is both a section and a
+      Right Inverse & Retraction & $f$ is a retraction when there is a map $\retraction{f}$ such that $\retraction{f} f = 1_B$.
+      $f$ is also referred to as the \emph{right inverse} of $\retraction{f}$. A map that is both a section and a
       retraction is called an \emph{isomorphism}.\\
       \hline
       Idempotent & Idempotent & An endomorphism $e$ is idempotent whenever $e e = e$.\\
@@ -62,7 +65,7 @@ maps in a category $C$ with $e:A \to A$ and $f,g:A \to B$.
   \label{tab:properties_of_maps_in_categories}
 \end{table}
 
-We state without proof a number of properties of maps.
+There are number of basic properties of maps enumerated in this lemma:
 
 \begin{lemma}\label{lem:categorical_properties_of_maps}
   In a category \B,
@@ -72,26 +75,36 @@ We state without proof a number of properties of maps.
     \item $f$ being a section means it is monic.
     \item $f, g$ sections implies that $f g$ is a section.
     \item $f g$ a section means $f$ is a section.
+    \item If $f:A \to B$ is both a section and a retraction, then $\categorysection{f} = \retraction{f}$, where $\categorysection{f}$ and $\retraction{f}$ are as
+      defined in Table~\ref{tab:properties_of_maps_in_categories}.
+    \item  $f$ is an isomorphism if and only if it is an epic section.
   \end{enumerate}
 \end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item Suppose $h f g = k f g$. As $g$ is monic, $h f = k f$. As $f$ is monic, this gives us $h =
+      k$ and therefore $f g$ is monic.
+    \item See \cite{barr:ctcs}, chapter 2.
+    \item Suppose $h f = k f$. Then $h f \categorysection{f} = k f \categorysection{f}$ giving us $h
+      1 = k 1$ and therefore $h = k$  and $f$ is monic.
+    \item We are given $f\categorysection{f} =1$ and $g\categorysection{g} =1 $. But then $fg
+      \categorysection{g}\categorysection{f} = f \categorysection{f} = 1$ and $f g$ is a section.
+    \item We are given there is some $h$ such that $(f g) h = 1$. This means $f (gh) =1$ and $f$ is
+      a section.
+    \item See \cite{cockett2009:ctcs}, Lemma 1.2.2.
+    \item See \cite{cockett2009:ctcs}, Lemma 1.2.3.
+  \end{enumerate}
 
-
-\begin{lemma}\label{lem:categorical_inverses_are_unique}
-  If $f:A \to B$ is both a section and a retraction, then $f^* = f_*$, where $f^*$ and $f_*$ are as
-  defined in Table~\ref{tab:properties_of_maps_in_categories}.
-\end{lemma}
-
-\begin{lemma}\label{lem:categorical_iso_is_epic_section}
-  $f$ is an isomorphism if and only if it is an epic section.
-\end{lemma}
+\end{proof}
 
 Note there are corresponding properties for epics and retractions, obtained by dualizing the
-statements of Lemma~\ref{lem:categorical_properties_of_maps} and
-Lemma~\ref{lem:categorical_iso_is_epic_section}.
+statements of Lemma~\ref{lem:categorical_properties_of_maps}.
 
-Suppose $f:A \to B$ is a retraction with left inverse $f_*:B \to A$. Note that $f f_*$ is idempotent
-as $f f_* f f_* = f 1_B f_* = f f_*$. If we are given an idempotent $e$, we say $e$ is \emph{split}
-if there is a retraction $f$ with $e = f f_*$.
+Suppose $f:A \to B$ is a retraction with left inverse $\retraction{f}:B \to A$. Note that $f
+\retraction{f}$ is idempotent as $f \retraction{f} f \retraction{f} = f 1_B \retraction{f} = f
+\retraction{f}$. If we are given an idempotent $e$, we say $e$ is \emph{split} if there is a
+retraction $f$ with $e = f \retraction{f}$.
 
 In general, not all idempotents in a category will split. The following construction allows us to
 create a category based on the original one in which all idempotents do split.
@@ -131,18 +144,20 @@ envelope or Cauchy completion.
   A map $F:\X \to \Y$ between categories, as in Definition~\ref{def:category}, is called a
   \emph{functor}, provided it satisfies the following:
   \begin{itemize}
-    \item[\axiom{F}{1}] $F(D(f)) = D(F(f))$ and $F(C(f)) = C(F(f))$;
+    \item[\axiom{F}{1}] $F(\catdomain(f)) = \catdomain(F(f))$ and $F(\catcodomain(f)) = \catcodomain(F(f))$;
     \item[\axiom{F}{2}] $F(f g) = F(f)F(g)$;
   \end{itemize}
 \end{definition}
 
 \begin{lemma}\label{lem:cat_is_a_category}
-  The collection of categories and functors form the category \cat.
+  Categories and functors form a category \cat.
 \end{lemma}
 \begin{proof}
+  \prepprooflist
   \categoryns{Categories.}{Functors.}{The identity functor which takes an object to the same object
-    and a map to the same map.}{
-  $F G(x) = F(G(x))$ which is clearly associative.}
+    and a map to the same map.}{Given $F:\A\to\B$, $G:\B\to\D$, define the functor  $F G:\A\to\D$ such that
+    $F G(x) = G(F(x))$ which is clearly associative.}
+  Note this would be a \emph{large} category, as its collection of objects would not be a set.
 \end{proof}
 
 \begin{definition}\label{def:faithful_functor}
@@ -153,7 +168,7 @@ envelope or Cauchy completion.
 \begin{definition}\label{def:full_functor}
   A functor $F:\X\to\Y$ is \emph{full} when for parallel maps $f, f'$, if $Ff = Ff'$ then $f = f'$.
 \end{definition}
-We may also consider the notion of containment between categories/
+We may also consider the notion of containment between categories:
 
 \begin{definition}\label{def:subcategories}
   Given the categories $\B$ and $\D$, we say that \B is a \emph{sub-category} of \D when each object
@@ -173,8 +188,8 @@ We will often restrict ourselves to specific classes of functors which either \e
 precise, we provide some definitions.
 
 \begin{definition}\label{def:diagram_in_a_category}
-  Given a category $\S$, a \emph{diagram}
-  in a category $\B$ of \emph{shape} $\S$ is a functor $D:\S \to \B$.
+  Given a category $\cS$, a \emph{diagram}
+  in a category $\B$ of \emph{shape} $\cS$ is a functor $D:\cS \to \B$.
 \end{definition}
 
 \begin{definition}\label{def:property_of_a_diagram}
@@ -215,15 +230,19 @@ each object $A,B$ in $\B$ we have the map:
 \subsection{Enrichment of categories} % (fold)
 \label{sub:enrichement_of_categories}
 \begin{notation}\label{notn:hom-set}
-  If $\X$ is a category, then the maps from $A$ to $B$ in $\X$ are represented as $\X(A,B)$.
+  If $\X$ is a category, then the maps from $A$ to $B$ in $\X$ are written $\X(A,B)$.
+  If $\X(A,B)$ is a set for all objects in $\X$, we say $\X$ is \emph{enriched} in sets. In general,
+  categories may be enriched in a variety of algebraic structures. For example a category may be
+  enriched in abelian groups, vector spaces, posets, categories or commutative monoids.
 \end{notation}
-
-If $\X(A,B)$ is a set for all objects in $\X$, we say $\X$ is \emph{enriched} in sets. In general,
-categories may be enriched in a variety of algebraic structures. For example a category may be
-enriched in groups, vector spaces or monoids.
 
 Specific types of enrichment may force a structure on a category. For example, if $\X$ is
 enriched in sets of cardinality of 0 or 1, then $\X$ must be a pre-order.
+
+% subsection enrichment_of_categories (end)
+\subsection{Examples of categories} % (fold)
+\label{sub:examples_of_categories}
+In this section, we will offer a few examples of categories.
 
 \begin{example}
   A group $G$ may be considered as a one-object category $\mathbb{G}$, with object $\{*\}$. The elements of the
@@ -231,11 +250,8 @@ enriched in sets of cardinality of 0 or 1, then $\X$ must be a pre-order.
   by the group multiplication and additionally, each map has an inverse. As $\mathbb{G}(\{*\},\{*\})
   = G$, this category is enriched in groups.
 \end{example}
-% subsection enrichment_of_categories (end)
-\subsection{Examples of categories} % (fold)
-\label{sub:examples_of_categories}
-In this section, we will offer a few examples of categories.
-Four categories derived from sets are:
+
+Four categories derived from sets are \sets, \Par, \rel and \pinj:
 
 \begin{example}[\sets]\label{ex:category_sets}
 In this category, the maps are given by all set functions.
@@ -255,7 +271,7 @@ For this example, the maps are all partial set functions.
 
 Note that \rel is enriched in posets, via set inclusion. \Par can be viewed as a sub-category of
 \rel, with the same objects, but only allowing maps which are partial functions, i.e., deterministic
-relation where if $(x,y), (x,y') \in f$, then $y = y'$. \Par is also enriched in posets, via the
+relations where if $(x,y), (x,y') \in f$, then $y = y'$. \Par is also enriched in posets, via the
 same inclusion ordering as in \rel.
 
 \begin{example}[\pinj]\label{ex:category_pinj}
@@ -267,8 +283,14 @@ of \rel. The maps $f,g$ (relations in \rel) in \pinj are defined as follows:
    (x,y)\in f\text{ and }(x',y)\in f & \text{ implies } x = x'.\label{eq:pinj_converse_relation_is_a_function}
 \end{align}
 \category{All sets}{Relations: $f:X \to Y$ which satisfy Equation~\ref{eq:pinj_relation_is_a_function} and
-Equation~\ref{eq:pinj_converse_relation_is_a_function}.}{$1_X = \{(x,x) | x \in X\}$}{$f g = \{(x,z) |\,
+Equation~\ref{eq:pinj_converse_relation_is_a_function}}{$1_X = \{(x,x) | x \in X\}$}{$f g = \{(x,z) |\,
 \exists y. (x,y) \in f$ and $(y,z)\in g\}$}
+\end{example}
+
+\begin{example}[\topcat]\label{ex:category_top}
+  This is the category of topological spaces.
+  \category{Topological spaces}{Continuous functions}{The identity function}{Function composition}
+  As the composition of continuous maps is also continuous, this is a category.
 \end{example}
 
 Our next example shows maps in categories need not always be something normally thought of as a
@@ -277,7 +299,7 @@ function or relation.
 \begin{example}[Matrix Category]\label{ex:matrix_category}
 Given a rig $R$ (i.e., a ri\textbf{n}g minus \textbf{n}egatives, e.g., the natural numbers), one may
 form the category \textsc{Mat}($R$). For example, the category of matrices of natural numbers is:
-\category{\nat}{$[r_{i j}]: n \to m$ where $[r_{i j}]$ is an $n \times m$ matrix over $R$}{
+\category{\nat}{$[r_{i j}]: n \to m$ where $[r_{i j}]$ is an $n \times m$ matrix over \nat}{
 $I_n$}{Matrix multiplication}
 \end{example}
 
@@ -295,8 +317,8 @@ The identity maps of $\B$}{If $f g = h$ in $\B$, $g^{op} f^{op} = h^{op}$}
 \subsection{Limits and colimits in categories} % (fold)
 \label{sub:limits_and_colimits_in_categories}
 
-We shall discuss only a few basic limits/colimits in categories. First we discuss initial
-and terminal objects.
+We shall review only a few basic limits/colimits in categories, in order to set up notation and
+terminology. First we discuss initial and terminal objects.
 
 \begin{definition}\label{def:initial_object}
   An \emph{initial object} in a category $\B$ is an object which has exactly one map to each other
@@ -360,7 +382,7 @@ A co-product is the dual of a product.
   \end{itemize}
 \end{definition}
 
-It is possible for an object to both a limit and a co-limit at the same time.
+It is possible for an object to both a limit and a co-limit at the same time:
 \begin{definition}\label{def:categorical_zero}
   Given a category $\B$, any object that is both a terminal and initial object is called a
   \emph{zero object}. This object is labelled $\zeroob$.
@@ -378,7 +400,9 @@ between any two objects $A,B$ of the category given by: $\zeroob_{A,B} : A \to \
       \end{cases}
   \]
   and given any two objects, $A,B$, $A\times B$ is isomorphic to $A+B$ , then $A\times B$ is
-  referred to as the \emph{biproduct} and designated as $A\biproduct B$.
+  referred to as the \emph{biproduct} and designated as $A\biproduct B$. Note this is often written
+  as $\+$. As we will be using $\+$ frequently in this thesis where it is not a biproduct, this
+  alternate notation of $\biproduct$ will be used instead.
 \end{definition}
 
 \begin{definition}\label{def:finite_biproducts}
@@ -579,14 +603,16 @@ In \Par, the
 total maps correspond precisely to the functions that are defined on all elements of the domain.
 \end{example}
 
-\begin{example}[\rel]\label{ex:rel_is_a_restriction_category}
-The category \rel from Example~\ref{ex:category_rel} is a restriction category with the restriction
-of $R=\{(a,b)\}$ being $\rst{R} = \{(a,a) | \exists b. (a,b) \in R\}$.
+\begin{example}[\rel]\label{ex:rel_is_not_a_restriction_category}
+The category \rel from Example~\ref{ex:category_rel} is a \emph{not} a restriction category with the
+candidate restriction of $R=\{(a,b)\}$ being $\rst{R} = \{(a,a) | \exists b. (a,b) \in R\}$. The
+axiom that fails is \rfour, as can be seen by setting $R=\{(1,1),(1,2)\}, S=\{(2,3)\}$. Then we
+have $\rst{RS} = \{(1,1)\}$ and therefore $\rst{RS} R = R$. However, $R\rst{S} = R\{(2,2)\} = \{(1,2)\}$.
 \end{example}
 
 \begin{example}[\pinj]\label{ex:pinj_is_a_restriction_category}
 From Example~\ref{ex:category_pinj}, we see \pinj is a restriction category and in fact is a
-sub-restriction category of \rel. We will show the four restriction axioms:
+sub-restriction category of \Par. We will show the four restriction axioms:
 \begin{align*}
   \rone\ & \rst{f}f = \{(x,z) | \exists x. (x,x) \in \rst{f} \text{ and } (x,z) \in f\} = \{(x,z) |
   (x,z) \in f\} = f,\\
@@ -601,19 +627,34 @@ sub-restriction category of \rel. We will show the four restriction axioms:
 \end{align*}
 \end{example}
 
-\subsection{Enrichment} % (fold)
+
+\begin{example}[\topcatp]\label{ex:restriction_category_top}
+  This is the category of topological spaces with partial functions.
+  \rcategoryns{Topological spaces;}{Any partial function $f$, where $f$ is defined on some open subset
+    of $\catdomain f$;}{The identity function;}{Function composition;}{The restriction of $f:A\to B$ is:
+\[
+  \rst{f}(x) =
+  \begin{cases}
+    x&\text{if $f(x)$ is defined,}\\
+    \uparrow&\text{if }f(x)\text{ is }\uparrow.
+  \end{cases}
+\]
+}
+\end{example}
+
+\subsection{Partial order enrichment} % (fold)
 \label{sub:enrichment_in_restriction_categories}
 
 We may use the restriction to define a partial order on the hom-sets of a restriction
 category. Intuitively, we would think of a map $f$ being less than a map $g$ if $f$ is
-defined on fewer elements than $g$ \emph{and} they agree where they are defined. This Sub-Section
+defined on fewer elements than $g$ \emph{and} they agree where they are defined. This sub-section
 will bring precision to the above intuition.
+
 
 \begin{definition}\label{def:restriction_category_hom_set_ordering}
   In a restriction category, for any two parallel maps  $f,g:A\to B$, define $f \le g$ iff
   $\restr{f} g = f$.
 \end{definition}
-
 
 \begin{lemma}\label{lem:restriction_cats_are_partial_order_enriched}
   For any restriction category \X, it is enriched in partial orders under the ordering $\le$ from
@@ -669,7 +710,7 @@ categories are enriched in partial orders.
 
 In a restriction category \X, we will use the notation $\open{A}$ for the restriction idempotents
 of $A\in \ob{\X}$. $\open{A} = \{x:A\to A| x = \rst{x}\}$. The notation $\open{A}$ was chosen
-to be suggestive of open sets.
+to be suggestive of open sets, as in \topcatp, see Example~\ref{ex:restriction_category_top}.
 
 \begin{lemma}\label{lem:open_a_is_a_meet_semilattice}
   In a restriction category \X, $\open{A}$ is a meet semi-lattice.
@@ -677,8 +718,56 @@ to be suggestive of open sets.
 \begin{proof}
   The top of the meet semi-lattice is $1_A$, under the ordering from
   Definition~\ref{def:restriction_category_hom_set_ordering}.
-  The join of any two idempotents is given by their composition.
+  The meet of any two idempotents is given by their composition.
 \end{proof}
+
+\subsection{Joins} % (fold)
+\label{sub:joins_in_restriction_categories}
+
+\begin{definition}\label{def:compatible_maps}
+  Two parallel maps $f,g:A \to B$ in a restriction category are \emph{compatible}, written as $f
+  \compatible g$, when $\rst{f} g = \rst{g} f$.  A restriction category \X is a \emph{restriction
+    pre-order} when all parallel pairs of maps are compatible.
+\end{definition}
+
+\begin{definition}\label{def:joins}
+  Given \R is a restriction category with zero maps, then \R is said to have
+  \emph{joins}\cite{guox:thesis} whenever there is an operator $\join$ defined between compatible
+  maps such that:
+  \begin{itemize}
+    \item $f \le f \join g$ and $g \le f \join g$,
+    \item $\rst{f\join g} = \rst{f}\join \rst{g}$,
+    \item $f,g \le h$ implies that $f\join g \le h$ and
+    \item $h(f\join g) = h f \join h g$.
+  \end{itemize}
+\end{definition}
+
+For example, in the restriction category $\Par$, the join is given by:
+\[(f \join g) (x) = \begin{cases}
+  f(x)( = g(x))& \text{ when both $f$ and $g$ are defined;}\\
+  f(x)& \text{ when only $f$ is defined;}\\
+  g(x)& \text{ when only $g$ is defined;}\\
+  \uparrow & \text{ when both $f$ and $g$ are undefined.}
+\end{cases}
+\]
+
+\begin{theorem}[Cockett-Guo]\label{lem:join_determines_coproduct}
+  Given a restriction category $\R$ with joins, then
+  \[
+    A \xrightarrow{\cpa} C \xleftarrow{\cpb} B
+  \]
+  is a coproduct if and only iff:
+  \begin{itemize}
+    \item $\cpa$ and $\cpb$ are restriction monics;
+    \item $\rst{\icpa}\,\rst{\icpb} = 0$ and
+    \item $\rst{\icpa} \join \rst{\icpb} = 1_C$.
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  See \cite{cockett-guo2007:joinrestrictioncats}.
+\end{proof}
+% subsection joins_in_restriction_categories (end)
+
 
 \subsection{Meets} % (fold)
 \label{sub:meets_in_restriction_categories}
@@ -770,6 +859,23 @@ The following are basic results on meets:
       where the last step is by item \ref{lemsub:properties_of_meets_three} of this lemma.
     \item As $e$ is idempotent, $e (e\meet 1) = (e e \meet e) = e$.
   \end{enumerate}
+\end{proof}
+
+Additionally, when a restriction category has both meets and joins, we have:
+\begin{lemma}\label{lem:meet_distributes_over_join}
+  If \R is a meet restriction category with joins, then the meet distributes over the join, i.e.,
+  \[
+    h\meet(f\join g) = (h\meet f)\join (h\meet g).
+  \]
+\end{lemma}
+\begin{proof}
+  \begin{align*}
+    h\meet(f\join g) &= \rst{(f\join g)} h\meet (f\join g)\\
+    &= (\rst{f}\join \rst{g}) h\meet (f\join g)\\
+    &= (\rst{f}(h\meet (f\join g))) \join (\rst{g}(h\meet (f\join g)))\\
+    &= (h\meet \rst{f}(f\join g)) \join (h\meet \rst{g}(f\join g)))\\
+    &= (h\meet (f\join g)) \join (h\meet (f\join g))).
+  \end{align*}
 \end{proof}
 
 \begin{example}[Meets in \pinj]\label{ex:pinj_has_meets}

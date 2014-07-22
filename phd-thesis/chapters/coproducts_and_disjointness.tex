@@ -131,63 +131,6 @@ In the following, we will add two related structures to an inverse category with
 zero and zero maps. This structure is meant to be evocative of the \emph{join}\cite{guox:thesis}
 in a  restriction category. We will first re-iterate some of the basic definitions and
 lemmas about joins.
-\subsection{Joins in restriction categories} % (fold)
-\label{sub:joins_in_restriction_categories}
-
-\begin{definition}\label{def:joins}
-  Given \R is a restriction category with zero maps, then \R is said to have \emph{joins}
-  whenever there is an operator $\join$ defined between compatible maps (from
-  Definition~\vref{def:compatible_maps}) such that:
-  \begin{itemize}
-    \item $f \le f \join g$ and $g \le f \join g$,
-    \item $\rst{f\join g} = \rst{f}\join \rst{g}$,
-    \item $f,g \le h$ implies that $f\join g \le h$ and
-    \item $h(f\join g) = h f \join h g$.
-  \end{itemize}
-\end{definition}
-
-For example, in the restriction category $\Par$, the join is given by:
-\[(f \join g) (x) = \begin{cases}
-  f(x)( = g(x))& \text{ when both $f$ and $g$ are defined;}\\
-  f(x)& \text{ when only $f$ is defined;}\\
-  g(x)& \text{ when only $g$ is defined;}\\
-  \uparrow & \text{ when both $f$ and $g$ are undefined.}
-\end{cases}
-\]
-
-\begin{theorem}[Cockett-Guo]\label{lem:join_determines_coproduct}
-  Given a restriction category $\R$ with joins, then
-  \[
-    A \xrightarrow{\cpa} C \xleftarrow{\cpb} B
-  \]
-  is a coproduct if and only iff:
-  \begin{itemize}
-    \item $\cpa$ and $\cpb$ are restriction monics;
-    \item $\rst{\icpa}\,\rst{\icpb} = 0$ and
-    \item $\rst{\icpa} \join \rst{\icpb} = 1_C$.
-  \end{itemize}
-\end{theorem}
-\begin{proof}
-  See \cite{cockett-guo2007:joinrestrictioncats}.
-\end{proof}
-
-\begin{lemma}\label{lem:meet_distributes_over_join}
-  If \R is a meet restriction category with joins, then the meet distributes over the join, i.e.,
-  \[
-    h\meet(f\join g) = (h\meet f)\join (h\meet g).
-  \]
-\end{lemma}
-\begin{proof}
-  \begin{align*}
-    h\meet(f\join g) &= \rst{(f\join g)} h\meet (f\join g)\\
-    &= (\rst{f}\join \rst{g}) h\meet (f\join g)\\
-    &= (\rst{f}(h\meet (f\join g))) \join (\rst{g}(h\meet (f\join g)))\\
-    &= (h\meet \rst{f}(f\join g)) \join (h\meet \rst{g}(f\join g)))\\
-    &= (h\meet (f\join g)) \join (h\meet (f\join g))).
-  \end{align*}
-\end{proof}
-% subsection joins_in_restriction_categories (end)
-
 
 \subsection{Disjointness relations} % (fold)
 \label{sub:disjointness_relations}
