@@ -371,12 +371,12 @@ A co-product is the dual of a product.
   \begin{itemize}
     \item There exist maps $\cpa, \cpb$ with $\cpa:A \to A + B$, $\cpb:B \to A+ B$;
     \item Given an object $C$ with maps $h:A\to C$ and $k:B \to C$ there is a unique map
-    $[f,g]$ such that the following diagram commutes:
+    $[h,k]$ such that the following diagram commutes:
     \[
       \xymatrix@C+15pt@R+25pt{
-        A \ar[drr]^h \ar[d]_{\cpa} \\
-        A +B \ar@{.>}[rr]^{[f,g]} && C\\
-        B \ar[urr]_k \ar[u]^{\cpb}
+        A \ar[drrr]^h \ar[dr]_{\cpa} \\
+        &A +B \ar@{.>}[rr]^{[h,k]} && C\\
+        B \ar[urrr]_k \ar[ur]^{\cpb}
       }
     \]
   \end{itemize}

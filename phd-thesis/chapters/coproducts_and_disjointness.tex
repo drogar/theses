@@ -2,28 +2,27 @@
 \chapter{Disjointness in Inverse Categories} % (fold)
 \label{cha:disjointness_in_inverse_categories}
 
-In this chapter we will first explore coproducts in restrictions categories, showing, similar to
-product that this is too restrictive a notion for inverse categories. We will then turn our
-attention to defining a ``disjointness'' relation between parallel maps in an inverse category and a
-``disjoint join'' of disjoint maps. We will conclude the chapter showing how a tensor with specific
-conditions can give rise to both a disjointness relation and a disjoint join.
+In this chapter we will explore coproduct like structure in inverse categories. We start by showing,
+as for the product that having coproducts is too restrictive a notion for inverse categories: An
+inverse category with a coproduct is a preorder.
+Nonetheless it is possible to define coproduct like structures in an inverse category. To introduce
+this structure we define a ``disjointness'' relation between parallel maps of an inverse category
+and whence a ``disjoint join'' of disjoint maps. We will then show how a tensor product satisfying
+some specific conditions gives rise to both a disjointness relation and a disjoint join. Such a
+tensor product provides the proposed replacement for ``coproducts'' in an inverse category.
 
 
 
-\section{Coproducts in restriction categories} % (fold)
-\label{sec:coproducts_in_restriction_categories}
-\subsection{Restriction Coproducts} % (fold)
-\label{sub:restriction_coproducts}
+\section{Coproducts in inverse categories} % (fold)
+\label{sec:coproducts_in_inverse_categories}
 
-Restriction categories may also have coproducts and initial objects.
-\begin{definition}
-  In a restriction category \X, a coproduct is a \emph{restriction coproduct} when the embeddings
-  $\cpa$ and $\cpb$ are total.
-\end{definition}
+A restriction category can have coproducts and an initial object. For example, \Par (sets and
+partial functions) have coproducts.
 
 \begin{lemma}\label{lem:restriction_coproduct_is_restriction_functor}
-  The  coproduct in a restriction category satisfies:
+  The  coproduct in a restriction category $\R$ satisfies:
   \begin{enumerate}[{(}i{)}]
+    \item The embeddings $\cpa$ and $\cpb$ are total.
     \item $\restr{f+g} = \restr{f} + \restr{g}$ which means $+$ is a restriction functor.
     \item $\nabla:A+A\to A$ is total.
     \item $?:0 \to A$ is total, where $0$ is the initial object in the restriction category.
@@ -32,6 +31,7 @@ Restriction categories may also have coproducts and initial objects.
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
+    \item Totality of $\cpa$ and $\cpb$.
     \item \textbf{$+$ is a restriction functor.}
       Consider the diagram:
       \[
@@ -88,7 +88,7 @@ denoted as $0$. This gives rise to the zero map $0_{A,B}: A \to 0 \to B$ between
   for each object $A$ in \X we have $\restr{0_{A,A}} = 0_{A,A}$.
 \end{definition}
 
-\begin{lemma}[Cockett-Lack]\label{lem:restriction_zero_equivalences}
+\begin{lemma}[Cockett-Lack\cite{cockettlack2004:restcategories3}, Lemma 2.7]\label{lem:restriction_zero_equivalences}
   For a restriction category \X, the following are equivalent:
   \begin{enumerate}[{(}i{)}]
     \item \X has a restriction zero;
@@ -127,15 +127,12 @@ denoted as $0$. This gives rise to the zero map $0_{A,B}: A \to 0 \to B$ between
 
 \section{Disjointness in an inverse category} % (fold)
 \label{sec:disjointness_in_an_inverse_category}
-In the following, we will add two related structures to an inverse category with a restriction
-zero and zero maps. This structure is meant to be evocative of the \emph{join}\cite{guox:thesis}
-in a  restriction category. We will first re-iterate some of the basic definitions and
-lemmas about joins.
-
-\subsection{Disjointness relations} % (fold)
-\label{sub:disjointness_relations}
-In this subsection, we will define a disjointness relationship between maps and
-explore alternate characterizations of this relation on the restriction idempotents of objects.
+In the following, we will add a relation, \emph{disjointness} and a construction, \emph{disjoint
+  join} on parallel maps in  an inverse category with a restriction
+zero and zero maps. The disjoint join is evocative of the join as defined in
+Sub-Section~\ref{sub:joins_in_restriction_categories}. We will begin by defining disjointness on
+parallel maps and then show this is equivalent to a definition of disjointness on the restriction
+idempotents.
 
 From this point forward in the thesis, we will work with a number of relations and operations on
 parallel pairs of maps. Suppose we have a relation $\lozenge$ between maps $f,g:B\to C$, i.e., $f
@@ -149,21 +146,22 @@ k \lozenge g k$.
   maps $f, g:A \to B$ is called a \emph{disjointness relation} when it satisfies the following
   properties:
   \begin{align*}
-    \axiom{Dis}{1}\quad &\text{ For all }f:A\to B,\ f\cdperp 0;\\
-    \axiom{Dis}{2}\quad &f\cdperp g\text{ implies }\rst{f} g = 0; \\
-    \axiom{Dis}{3}\quad &f\cdperp g,\ f' \le f,\ g' \le g\text{ implies }f' \cdperp g';\\
-    \axiom{Dis}{4}\quad &f\cdperp g\text{ implies }g \cdperp f; \text{ (Symmetric)}\\
-    \axiom{Dis}{5}\quad &f\cdperp g\text{ implies }h f \cdperp h g; \text{ (Stable)}\\
+    \axiom{Dis}{1}\quad &\text{ For all }f:A\to B,\ f\cdperp 0;&\text{(Zero is disjoint to all maps)}\\
+    \axiom{Dis}{2}\quad &f\cdperp g\text{ implies }\rst{f} g = 0; &\text{(Disjoint maps have no intersection)}\\
+    \axiom{Dis}{3}\quad &f\cdperp g,\ f' \le f,\ g' \le g\text{ implies }f' \cdperp
+    g';&\text{(Disjointness is down closed)}\\
+    \axiom{Dis}{4}\quad &f\cdperp g\text{ implies }g \cdperp f; &\text{(Symmetric)}\\
+    \axiom{Dis}{5}\quad &f\cdperp g\text{ implies }h f \cdperp h g; &\text{(Stable)}\\
     \axiom{Dis}{6}\quad &f\cdperp g\text{ implies }\rst{f} \cdperp \rst{g}
-      \text{ and }\rg{f}\cdperp\rg{g}; \text{ (Closed under range and restriction)}\\
+      \text{ and }\rg{f}\cdperp\rg{g}; &\text{(Closed under range and restriction)}\\
     \axiom{Dis}{7}\quad &\rst{f}\cdperp \rst{g},\ \rg{h}\cdperp \rg{k}\text{ implies }f h
-      \cdperp g k.\text{ (Determined by restriction/range.)}
+      \cdperp g k &\text{(Determined by restriction/range).}
   \end{align*}
   When $f\cdperp g$, we will say $f$ is \emph{disjoint} from $g$.
 \end{definition}
 
 \begin{lemma}\label{lem:disjointness_equivalent_axioms}
-  In Definition~\ref{def:disjointness_relation}, provided we retain $\axiom{Dis}{1-5}$, we may
+  In \ref{def:disjointness_relation}, given $\axiom{Dis}{1-5}$, we may
   replace $\axiom{Dis}{6}$ and $\axiom{Dis}{7}$ by:
   \begin{align*}
     \axiom{Dis}{6'}\quad &f\cdperp g\text{ if and only if }\rst{f} \cdperp \rst{g}
@@ -219,29 +217,32 @@ k \lozenge g k$.
   \end{enumerate}
 \end{proof}
 
-We may define the disjointness relation via its action in \open{a}.
+We may equivalently define a disjointness relation by a releation on the restriction idempotents, \open{A}.
 
 \begin{definition}\label{def:disjointness_in_open_x}
-  Given an inverse category \X, a relation $\ocdperpsub{A} \subseteq \open{A}^2$ for each $
-  A \in \mathrm{ob}(\X)$, is an \emph{open disjointness} relation when for all $e, e' \in \open{A}$
+  Given an inverse category \X, a relation $\ocdperpsub{A} \subseteq \open{A}\times\open{A}$ for
+  each $A \in \mathrm{ob}(\X)$, is an \emph{open disjointness} relation when for all $e, e' \in
+  \open{A}$
   \begin{align*}
-    \axiom{$\mathcal{O}$dis}{1}\quad &1 \ocdperpsub{A} 0; \\
-    \axiom{$\mathcal{O}$dis}{2}\quad &e \ocdperpsub{A} e' \text{ implies }e' \ocdperpsub{A} e;\\
-    \axiom{$\mathcal{O}$dis}{3}\quad &e \ocdperpsub{A} e' \text{ implies }e e' = 0;\\
+    \axiom{$\mathcal{O}$dis}{1}\quad &1 \ocdperpsub{A} 0; &\text{(Zero disjoint to all idempotents)}\\
+    \axiom{$\mathcal{O}$dis}{2}\quad &e \ocdperpsub{A} e' \text{ implies }e' \ocdperpsub{A} e;
+    &\text{(Symmetric)}\\
+    \axiom{$\mathcal{O}$dis}{3}\quad &e \ocdperpsub{A} e' \text{ implies }e e' = 0; &\text{(Disjoint implies no intersection)}\\
     \axiom{$\mathcal{O}$dis}{4}\quad &e \ocdperpsub{A} e' \text{ implies }\rst{f e} \ocdperpsub{B}
-      \rst{f e'}\text{ for all }f:B \to A;\\
+      \rst{f e'}\text{ for all }f:B \to A; &\text{(Stable)}\\
     \axiom{$\mathcal{O}$dis}{5}\quad &e \ocdperpsub{A} e' \text{ implies }\wrg{e g} \ocdperpsub{C}
-      \wrg{e' g}\text{ for all }g:A \to C; \\
+      \wrg{e' g}\text{ for all }g:A \to C; &\text{(Universal)}\\
     \axiom{$\mathcal{O}$dis}{6}\quad &e \ocdperpsub{A} e',\ e_1 \le e,\ e_1' \le e'
-      \text{ implies }e_1 \ocdperpsub{A} e_1'.
+      \text{ implies }e_1 \ocdperpsub{A} e_1' &\text{(Down closed)}.
   \end{align*}
 \end{definition}
 
 We will normally write $\ocdperp$ rather than $\ocdperpsub{A}$ where the object is clear.
 
 \begin{proposition}\label{prop:disjointness_is_open_disjointness}
-  If $\cdperp$ is a disjointness relation in $\X$, it is an open disjointness
-  relation on the restriction idempotents.
+  If $\cdperp$ is a disjointness relation in $\X$, then $\ocdperp = \cdperp \intersection
+  (\union_{A\in\X} \open{A}\times \open{A})$, the restriction of $\cdperp$ to the restriction
+  idempotents is an open disjointness relation.
 \end{proposition}
 \begin{proof}
   \prepprooflist
@@ -261,22 +262,24 @@ We will normally write $\ocdperp$ rather than $\ocdperpsub{A}$ where the object 
     \item[\axiom{$\mathcal{O}$dis}{6}] Assuming $e \cdperp e'$ and $e_1 \le e,\ e'_1 \le e'$, by
       \axiom{Dis}{3}, $e_1 \cdperp e'_1$.
   \end{enumerate}
-  Therefore, $\cdperp$ acts as an open disjointness relation on $\open{A}^2$.
+  Therefore, $\ocdperp = \cdperp \intersection (\union_{A\in\X} \open{A}\times \open{A})$ acts as an
+  open disjointness relation on $\open{A}^2$.
 
 \end{proof}
 
-\begin{definition}\label{def:extended_open_disjointness}
-  If $\ocdperp$ is an open disjointness relation in $\X$, then we may define a relation
-  $\perpab \in \X(A,B)^2$ by
-  \[
-    \infer{f\perpab g}{f,g:A\to B,\ \rst{f}\ocdperp\rst{g},\ \rg{f}\ocdperp\rg{g}}.
-  \]
-  We call $\perpab$ the disjointness relation generated by $\ocdperp$.
-\end{definition}
+For the converse, if $\ocdperp$ is an open disjointness relation in $\X$, then we may define a relation
+$\perpab \subseteq \union_{A,B\in\X} \X(A,B)\times \X(A,B)$ on parallel maps by
+\[
+  f\perpab g \iff  \rst{f}\ocdperp\rst{g} \wedge \rg{f}\ocdperp\rg{g}.
+\]
+Note the use of the $\rg{f}\ocdperp\rg{g}$. By \rrone, we know $\rst{\rg{f}} = \rg{f}$ and
+therefore it is a restriction idempotent in $\open{B}$.
+
+We then have:
 
 \begin{proposition}\label{prop:extended_disjointness_is_a_disjointness_relation}
-  If $\cdperp$ is the disjointness relation generated by $\ocdperp$ in \X, then
-  $\cdperp$ is a disjointness relation in \X.
+  If $\ocdperp$ is an open disjointness relation in \X, then
+  $f\perpab g \iff  \rst{f}\ocdperp\rst{g} \wedge \rg{f}\ocdperp\rg{g}$ is a disjointness relation in \X.
 \end{proposition}
 \begin{proof}
   \prepprooflist
@@ -301,11 +304,16 @@ We will normally write $\ocdperp$ rather than $\ocdperpsub{A}$ where the object 
       Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1} we have $\wrg{h f}
       \le \rg{f}$ and $\wrg{h g} \le \rg{g}$. Therefore we have $\wrg{h f}\ocdperp \wrg{h g}$ by
       \axiom{$\mathcal{O}$dis}{6} and therefore $h f \cdperp h g$.
-    \item[\axiom{Dis}{6}] This follows directly from definition
-      \ref{def:extended_open_disjointness}.
-    \item[\axiom{Dis}{7}] We assume $\rst{f} \cdperp \rst{g}$ and $\rg{h} \cdperp \rg{k}$. By
-      definition \ref{def:extended_open_disjointness} we have $\rst{f} \ocdperp \rst{g}$ and
-      $\rg{h} \ocdperp \rg{k}$. By
+    \item[\axiom{Dis}{6}] Assume $f\perpab g$. Then both $\rst{f}\ocdperp\rst{g}$ and
+      $\rg{f}\ocdperp\rg{g}$. By Lemma~\ref{lem:basic_range_category_properties} we know for any map
+      $h$, $\rg{\rst{h}} = \rst{h}$ and by Lemma~\ref{lem:restrictionvarious} we have $\rst{\rst{h}}
+      = \rst{h}$. Thus, we have both $\rst{\rst{f}} \ocdperp \rst{\rst{g}}$ and $\rg{\rst{f}}
+      \ocdperp \rg{\rst{g}}$ and therefore $\rst{f} \perpaa \rst{g}$. Similarly for any map $h$,
+      \rrone gives $\rst{\rg{h}} = \rg{h}$ and Lemma~\ref{lem:basic_range_category_properties} gives
+      $\rg{\rg{h}} = \rg{h}$. Thus, we have $\rst{\rg{f}} \ocdperp \rst{\rg{g}}$ and $\rg{\rg{f}}
+      \ocdperp \rg{\rg{g}}$ giving us $\rg{f} \perpvv{B}{B} \rg{g}$.
+    \item[\axiom{Dis}{7}] We assume $\rst{f} \cdperp \rst{g}$ and $\rg{h} \cdperp \rg{k}$. This means
+      we have $\rst{f} \ocdperp \rst{g}$ and $\rg{h} \ocdperp \rg{k}$. By
       Lemma~\refitem{lem:restriction_cats_are_partial_order_enriched}{lemitem:rst_ordering_3}, we
       have $\rst{f h} \le \rst{f}$ and $\rst{g k} \le \rst{g}$. Therefore, $\rst{f h} \ocdperp
       \rst{g k}$ by \axiom{$\mathcal{O}$dis}{6}. By
