@@ -596,7 +596,7 @@ Continuing from Example~\ref{ex:category_par}, \Par is a restriction category. T
   \rst{f}(x) =
   \begin{cases}
     x&\text{if $f(x)$ is defined,}\\
-    \uparrow&\text{if }f(x)\text{ is }\uparrow.
+    \undef&\text{if }f(x)\text{ is }\undef.
   \end{cases}
 \]
 In \Par, the
@@ -636,7 +636,7 @@ sub-restriction category of \Par. We will show the four restriction axioms:
   \rst{f}(x) =
   \begin{cases}
     x&\text{if $f(x)$ is defined,}\\
-    \uparrow&\text{if }f(x)\text{ is }\uparrow.
+    \undef&\text{if }f(x)\text{ is }\undef.
   \end{cases}
 \]
 }
@@ -734,22 +734,14 @@ to be suggestive of open sets, as in \topcatp, see Example~\ref{ex:restriction_c
   Given \R is a restriction category with zero maps, then \R is said to have
   \emph{joins}\cite{guox:thesis} whenever there is an operator $\join$ defined between compatible
   maps such that:
-  \begin{itemize}
-    \item $f \le f \join g$ and $g \le f \join g$,
-    \item $\rst{f\join g} = \rst{f}\join \rst{g}$,
-    \item $f,g \le h$ implies that $f\join g \le h$ and
-    \item $h(f\join g) = h f \join h g$.
-  \end{itemize}
+  \begin{enumerate}[{(}i{)}]
+    \item $f \le f \join g$ and $g \le f \join g$,\label{defitem:join1}
+    \item $\rst{f\join g} = \rst{f}\join \rst{g}$,\label{defitem:join2}
+    \item $f,g \le h$ implies that $f\join g \le h$ and\label{defitem:join3}
+    \item $h(f\join g) = h f \join h g$.\label{defitem:join4}
+  \end{enumerate}
 \end{definition}
 
-For example, in the restriction category $\Par$, the join is given by:
-\[(f \join g) (x) = \begin{cases}
-  f(x)( = g(x))& \text{ when both $f$ and $g$ are defined;}\\
-  f(x)& \text{ when only $f$ is defined;}\\
-  g(x)& \text{ when only $g$ is defined;}\\
-  \uparrow & \text{ when both $f$ and $g$ are undefined.}
-\end{cases}
-\]
 
 \begin{theorem}[Cockett-Guo]\label{lem:join_determines_coproduct}
   Given a restriction category $\R$ with joins, then
@@ -757,15 +749,75 @@ For example, in the restriction category $\Par$, the join is given by:
     A \xrightarrow{\cpa} C \xleftarrow{\cpb} B
   \]
   is a coproduct if and only iff:
-  \begin{itemize}
+  \begin{enumerate}[{(}i{)}]
     \item $\cpa$ and $\cpb$ are restriction monics;
     \item $\rst{\icpa}\,\rst{\icpb} = 0$ and
     \item $\rst{\icpa} \join \rst{\icpb} = 1_C$.
-  \end{itemize}
+  \end{enumerate}
 \end{theorem}
 \begin{proof}
   See \cite{cockett-guo2007:joinrestrictioncats}.
 \end{proof}
+\begin{example}[Joins in \Par]\label{ex:joins_in_par}
+In the restriction category $\Par$, the join is given by:
+\[(f \join g) (x) = \begin{cases}
+  f(x)( = g(x))& \text{ when both $f$ and $g$ are defined;}\\
+  f(x)& \text{ when only $f$ is defined;}\\
+  g(x)& \text{ when only $g$ is defined;}\\
+  \undef & \text{ when both $f$ and $g$ are undefined.}
+\end{cases}
+\]
+We now must show each of the items in Definition~\ref{def:joins} hold:
+  \begin{enumerate}[{(}i{)}]
+    \item From its definition, we see the
+      \[
+        \rst{f}f\join g = \begin{cases}
+          f(x) & \text{when $f$ is defined,}\\
+          \undef & \text{otherwise.}
+          \end{cases}
+       \]
+       giving us $f \le f\join g$. Similarly, $g \le f\join g$.
+    \item $\rst{f\join g}(x) = x$ wherever $f$ or $g$ is defined, but that is the same as $\rst{f}\join \rst{g}$.
+    \item We are given $f,g \le h$. Calculating
+      \[
+        \rst{f\join g} h
+          = \begin{cases}
+            h(x) &\text{when $f$ or $g$ are defined,}\\
+            \undef &\text{otherwise.}
+            \end{cases}
+      \]
+      But since $\rst{f}h = f$ and $\rst{g}h = g$, this is the same as $f\join g$ giving $f\join g \le h$.
+    \item Calculating,
+      \[
+         h(f\join g) = \begin{cases}
+           hf(x)( = hg(x))& \text{ when $h$ is defined and both $f$ and $g$ are defined;}\\
+           hf(x)& \text{ when only $h$ and $f$ are defined;}\\
+           hg(x)& \text{ when only $h$ and $g$ are defined;}\\
+           \undef & \text{ when $h$ or both $f$ and $g$ are undefined.}
+         \end{cases}
+       \]
+       This is the same as the definition of $h f \join h g$.
+  \end{enumerate}
+
+\end{example}
+\begin{example}[Joins in \topcatp]\label{ex:joins_in_top}
+   Recall from Example~\ref{ex:restriction_category_top} that the map $f:A\to B$ is a continuous
+   partial function on some open subset of $A$. $\rst{f}$ is the identity map on the open subset of
+   $A$ where $f$ is defined, and as such, may be identified with that open subset.
+   As the intersection of open subsets of $A$ is again
+   an open subset of $A$, given $f,g:A\to B$, define
+   \[
+      f\join g(x) = \begin{cases}
+        f(x) &\text{when }x\in  \rst{f}\intersection\rst{g},\\
+        f(x) &\text{when }x\in  \rst{f}\setminus\rst{g},\\
+        g(x) &\text{when }x\in  \rst{g}\setminus\rst{f},\\
+        \undef &\text{otherwise.}
+      \end{cases}
+   \]
+   Note this is similar to the definition of $\join$ in \Par and similar reasoning may be used to
+   show it is a join.
+\end{example}
+
 % subsection joins_in_restriction_categories (end)
 
 
@@ -878,10 +930,9 @@ Additionally, when a restriction category has both meets and joins, we have:
   \end{align*}
 \end{proof}
 
-\begin{example}[Meets in \pinj]\label{ex:pinj_has_meets}
+\begin{example}[Meets in \pinj and \Par]\label{ex:pinj_has_meets}
 The restriction category \pinj has meets given by the intersection of the sets defining the
-maps. First, we note that the hom-set ordering for \pinj is given by set inclusion. Denoting
-intersection by $\intersection$, we immediately have
+maps. First, we note that the hom-set ordering for \pinj is given by set inclusion. We immediately have
 \begin{align*}
   f\intersection g &\subseteq f \\
   f\intersection g &\subseteq g\\
@@ -894,6 +945,10 @@ by the properties of sets and intersections. For the final requirement,
   & = \{(x,z) | (x,z) \in h f, (x,z) \in h g\} = h f \intersection h g.
 \end{align*}
 Thus, intersection is a meet in \pinj.
+
+Note that the calculations above apply immediately to \Par as well and therefore intersection is a
+meet in \Par.
+
 \end{example}
 % subsection enrichment_and_meets (end)
 \subsection{Partial monics and isomorphisms} % (fold)
