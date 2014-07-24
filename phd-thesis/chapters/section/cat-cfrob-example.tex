@@ -20,17 +20,9 @@
       (A \* A) \* A \ar[rr]_{\nabla \* 1} & &
         A \* A\\
       &*!<0pc,-25pt>{\text{\textbf{Frobenius}}}
-    }\text{ and }
-    \xymatrix @C=10pt @R=35pt{
-      A \* B \ar[d]_{\Delta}
-      \ar[r]^(.35){\Delta \* \Delta} &
-      (A \* A) \* (B \* B) \ar[d]^{\excs}\\
-      (A \* B) \* (A \* B) \ar@{=}[r] &
-      (A \* B) \* (A \* B)\\
-      &*!<0pc,-25pt>{\text{\textbf{Exchange}}}
     }
   \]
-  together with the additional property that $\Delta \nabla = 1$.
+  together with the additional property that $\Delta \nabla = 1$ (separable).
 
   \paragraph{Maps:} The maps of \X between the objects of \X which preserve multiplication ($\nabla$)
   and co-multiplication ($\Delta$) but do not necessarily preserve the units.
@@ -446,9 +438,9 @@ Hence, CFrob(\X) is an inverse category.
   need only show the conditions of Definition~\ref{def:inverse_product} are met.
 
   By assumption, as we are working with Frobenius algebras over a symmetric tensor $\*$, we
-  immediately have the Frobenius rule, co-commutativity and co-associativity. We also assume the
-  Exchange rule, hence the tensor fulfills the conditions of being an inverse product and therefore
-  CFrob(\X) is a discrete inverse category.
+  immediately have the Frobenius rule, co-commutativity, co-associativity and that $\Delta$ is
+  canonical with respect to the tensor. Hence the tensor fulfills the conditions of being an inverse
+  product and therefore CFrob(\X) is a discrete inverse category.
 \end{proof}
 
 % section the_category_of_commutative_frobenius_algebras (end)

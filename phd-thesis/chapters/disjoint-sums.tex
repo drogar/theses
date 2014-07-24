@@ -129,43 +129,30 @@ isomorphisms:
   \[
     \icpb = \inv{(\inv{\upl}(0\+1))} = (0\+1)\upl = \scpb.
   \]
-
   Hence, we may calculate the restriction of $\cpa$,
   \begin{equation*}
     \cpa \scpa   = \inv{\upr}(1\+0) (1\+0)\upr
       = (\inv{\upr}(1\+0))\upr = 1 \inv{\upr}\upr= 1.
   \end{equation*}
   The calculation for $\scpb$ and $\cpb$ is analogous.
-
   For \ref{lemitem:disjointness_tensor_identities_2}, to show $\rst{\scpa} \scpb = 0$ and
   $\rst{\scpb} \scpa = 0$,
-  \begin{align*}
-    \rst{\scpa} \scpb  &= \rst{(1\+0)\upr}(0\+1)\upl\\
-      &= \rst{1\+0} (0 \+ 1)\upl\\
-      &= (1\+0) (0\+1)\upl\\
-      &= (0\+0)\upl  = 0,
-  \end{align*}
+  \[
+    \rst{\scpa} \scpb  = \rst{(1\+0)\upr}(0\+1)\upl = \rst{1\+0} (0 \+ 1)\upl = (1\+0) (0\+1)\upl= (0\+0)\upl  = 0,
+  \]
   and
-  \begin{align*}
-    \rst{\scpb} \scpa  &= \rst{(0\+1)\upl}(1\+0)\upr \\
-     &= (0\+1) (1\+0)\upr\\
-     &= (0\+0)\upr\\
-     &= 0.
- \end{align*}
-
+  \[
+    \rst{\scpb} \scpa  = \rst{(0\+1)\upl}(1\+0)\upr = (0\+1) (1\+0)\upr= (0\+0)\upr= 0.
+ \]
   We show \ref{lemitem:disjointness_tensor_identities_3}, $\cp{i} \scp{j} = 0$, $\cp{i}
   \rst{\scp{j}} = 0$ when $i\ne j$,
-  \begin{align*}
-    \cpa \scpb &= (\inv{\upr}(1\+0))(0\+1) \upl\\
-       &= \inv{\upr}(0\+0)\upl\\
-       &= 0
-  \end{align*}
+  \[
+    \cpa \scpb = (\inv{\upr}(1\+0))(0\+1) \upl= \inv{\upr}(0\+0)\upl= 0
+  \]
   and
-  \begin{align*}
-    \cpb \scpa &= (\inv{\upl}(0\+1))(1\+0) \upr\\
-      &= \inv{\upl}(0\+0)\upr\\
-       &= 0.
-  \end{align*}
+  \[
+    \cpb \scpa = (\inv{\upl}(0\+1))(1\+0) \upr= \inv{\upl}(0\+0)\upr= 0.
+  \]
   As $\rst{\scpa} = 1\+0$ and $\rst{\scpb} = 0 \+1$, we see the other two identities hold as well.
 
   Finally, to prove \ref{lemitem:disjointness_tensor_identities_4}, we first show $\cpa$ is
@@ -177,7 +164,7 @@ isomorphisms:
 \end{proof}
 
 As we have shown that $\scp{i} = \icp{i}$, we will prefer the explicit notation of $\icp{i}$ for the
-remainder of this chapter and in Chapter~\ref{cha:inverse_sum_categories}.
+remainder of this thesis.
 
 \begin{corollary}\label{cor:split_plus_tensor}
   In an inverse category \X with a restriction zero and disjointness tensor, the following
@@ -201,7 +188,7 @@ remainder of this chapter and in Chapter~\ref{cha:inverse_sum_categories}.
   then $t = t_1 \+ t_2$.
 \end{corollary}
 \begin{proof}
-  The calculations for $f\+g$ follow from Lemma~\ref{lem:disjointness_tensor_has_injections} and
+  The calculations for $f\+g$ follow from
   Lemma~\ref{lem:tensor_identities}. For example, $\cpa (f\+g) \icpa = f \cpa \icpa = f$.
 
   For the second claim, note that we have $\cpa (t \icpa) = t_1 = \cpa ( t_1 \+ t_2)\icpa$ and

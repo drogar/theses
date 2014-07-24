@@ -19,10 +19,13 @@ tensor product provides the proposed replacement for ``coproducts'' in an invers
 A restriction category can have coproducts and an initial object. For example, \Par (sets and
 partial functions) have coproducts.
 
+\begin{definition}\label{def:restriction_coproduct}
+  In a restriction category \R, a coproduct is a \emph{restriction coproduct} when the embeddings
+  $\cpa$ and $\cpb$ are total.
+\end{definition}
 \begin{lemma}\label{lem:restriction_coproduct_is_restriction_functor}
-  The  coproduct in a restriction category $\R$ satisfies:
+  A restriction coproduct in $\R$ satisfies:
   \begin{enumerate}[{(}i{)}]
-    \item The embeddings $\cpa$ and $\cpb$ are total.
     \item $\restr{f+g} = \restr{f} + \restr{g}$ which means $+$ is a restriction functor.
     \item $\nabla:A+A\to A$ is total.
     \item $?:0 \to A$ is total, where $0$ is the initial object in the restriction category.

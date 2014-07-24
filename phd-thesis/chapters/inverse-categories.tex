@@ -10,6 +10,52 @@ an inverse category which we call \emph{inverse products}. These will be defined
 Sub-Section~\ref{sub:inverse_product_definition}: Inverse products are given by a natural structure on a
 tensor product which includes a diagonal but lacks projections. The diagonal map is required to give
 a natural Frobenius structure on each object.
+\section{Inverse Categories}
+\label{sec:inverse_categories}
+
+\begin{definition}\label{def:inverse_category}
+  A restriction category in which every map is a partial
+  isomorphism is called an \emph{inverse category}.
+\end{definition}
+
+\begin{lemma}
+  \label{lem:inverse_idempotents_are_restriction_idempotents}
+  In an inverse category, all idempotents are restriction idempotents.
+\end{lemma}
+\begin{proof}
+  Given an idempotent $e$,
+  \[
+    \rst{e} = e\inv{e} = e e \inv{e} = e \rst{e} = \rst{e e} e = \rst{e} e = e.
+  \]
+\end{proof}
+
+\begin{example}[\pinj is an inverse category]\label{ex:pinj_is_an_inverse_category}
+  For any map $f$, $\inv{f} = \{(y,x) | (x,y) \in
+  f\}$. Note that $\inv{f}$ is a map in $\pinj$ due to the two dual conditions on maps as given in
+  Example~\ref{ex:category_pinj}.
+\end{example}
+\begin{example}[\Par is not an inverse category]\label{ex:par_is_not_an_inverse_category}
+  \Par, while it is a restriction category, is not an inverse category. For example, let
+  $A=\{1,2\},\ B=\{1\}$ and $f=\{(1,1),(2,1)\}$ in \Par. The restriction of $f$ is $\rst{f} =
+  \{(1,1),(2,2)\} = 1_A$. There is no partial function $g:B\to A$ such that $f g = 1_A$.
+\end{example}
+\begin{example}\label{ex:partial_isos_are_inverse_category}
+  Generally, let \R be a restriction category, and \X the sub-category of \R having the same objects
+  as \R and only the partial isomorphisms as maps. Then, \X is an inverse category.
+\end{example}
+\begin{example}\label{ex:groupoid_is_inverse_category}
+  A groupoid, which is a category in which every map is an isomorphism, is an inverse category. Note
+  that all maps in the groupoid are total, hence the partial isomorphisms are all isomorphisms.
+\end{example}
+\begin{example}\label{ex:partial_map_monics_is_inverse_category}
+  Given a category $\cP$, create a partial map category as in
+  Section~\ref{sub:partial_map_categories}, where the stable system of monics are all isomorphisms
+  in $\cP$. Then the partial isomorphisms are the maps of the form
+  $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{m'}\\A&&B}$, with inverse
+  $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m'} \ar[dr]^{m}\\B&&A}$. The composition is
+  $\xymatrix @R-15pt @C-15pt{&A\ar[dl]_{m^{-1}m} \ar[dr]^{m^{-1}m}\\A&&A}$ which is the
+  identity. Taking just the partial isomorphisms gives us an inverse category.
+\end{example}
 
 \section{Inverse categories with restriction products} % (fold)
 \label{sec:inverse_categories_with_restriction_products}
@@ -93,7 +139,7 @@ and thus, is a very restrictive notion.
 \begin{definition}\label{def:inverse_product}
   An \emph{inverse product} on an inverse category \X is given by a symmetric tensor product, based
   on a restriction  bi-functor, $\_\*\_:\X\times\X \to \X$. The tensor makes \X a  symmetric
-  monoidal category and there is a natural  ``semi-Frobenius'' diagonal map, $\Delta$.   If an
+  monoidal category and there is a natural  ``semi-Frobenius'' diagonal map, $\Delta$ which is canonical.   If an
   inverse category has inverse products, it is called  a \emph{discrete inverse category}.
 
 
@@ -136,6 +182,7 @@ If we define the map:
   \[
     \excs =  a_{\*}(1\*\inv{a_{\*}})(1\*(c_{\*}\*1))(1\* a_{\*})\inv{a_{\*}}): (A\*B)\*(C\*D) \to (A\*C) \* (B\*D).
   \]
+
   \[
     \xymatrix @C=25pt @R=35pt{
       A \* B \ar[dr]_{\Delta}
@@ -143,7 +190,7 @@ If we define the map:
       &(A \* B) \* (A \* B)
     }
   \]
-\begin{center}Exchange\end{center}
+\begin{center}$\Delta$ is canonical\end{center}
 %\caption{Exchange}\label{fig:inverse_product_exchange}
 
   \[
@@ -187,6 +234,54 @@ If we define the map:
   \end{align*}
 \end{remark}
 
+\begin{example}[\pinj is a discrete inverse category]\label{ex:pinj_is_a_discrete_inverse_category}
+  In the inverse category \pinj (see Example~\ref{ex:pinj_is_an_inverse_category}), suppose we add
+  the tensor given by the Cartesian product of sets. In detail, this means:
+  \begin{align*}
+    A \* B &= \{(a,b)| a\in A, b\in B\}\\
+    f \* g &= \{((a,c),(b,d)) | (a,b) \in f, (c,d) \in g\}\\
+    1 & = \{*\}\text{, a single element set.}
+  \end{align*}
+  The symmetric monoid isomorphisms are:
+    \begin{align*}
+      \usl &: \{(*,a)\} \mapsto \{a\}
+      &\usr &: \{(a,*)\} \mapsto \{a\}\\
+      a_{\*} &: \{((a,b),c)\} \mapsto \{(a,(b,c))\}
+      &c_{\*} &: \{(a,b)\} \mapsto \{(b,a)\}
+    \end{align*}
+
+  Define $\Delta_A = \{(a,(a,a)) | a\in A\}$. Then \pinj is a discrete inverse category with the
+  inverse product of $\*$. The required properties of cocommutativity, coassociativity and
+  exchange are immediately obvious. To show the Frobenius rule for $\Delta$, first note that
+  $\inv{\Delta}$ is defined only on the elements of $A\*A$ which agree in the first and second
+  co-ordinate. We show the upper triangle of the Frobenius diagram in
+  detail. Equation~\ref{eq:delta_inverse_delta} shows the result of applying $\Delta$ followed by
+  $\inv{\Delta}$.
+  \begin{equation}
+    \Delta(\inv{\Delta}(A\*A)) = \Delta(\{a | (a,a) \in A\*A\})
+    = \{(a,a) | (a,a) \in A\* A\}.\label{eq:delta_inverse_delta}
+  \end{equation}
+  Applying $(\Delta \* 1)a_{\*}$ to $A\*A$ is shown in Equation~\ref{eq:delta_tensor_one}.
+  \begin{equation}
+    a_{\*}(\Delta\*1(A\*A)) = a_{\*}(\{((a,a),a') | (a,a') \in A\*A\} = \{(a,(a,a')) | (a,a') \in
+    A\* A\}.\label{eq:delta_tensor_one}
+  \end{equation}
+  Finally, applying $1 \* \inv{\Delta}$ to the result of Equation~\ref{eq:delta_tensor_one} gives us
+  Equation~\ref{eq:one_tensor_delta_inverse}.
+  \begin{equation}
+    (1\*\inv{\Delta})(\{(a,(a,a')) | (a,a') \in  A\* A\} = \{(a,a) | (a,a) \in A\* A\} \label{eq:one_tensor_delta_inverse}.
+  \end{equation}
+  Thus, we have $\inv{\Delta}\Delta = (\Delta \* 1) a_{\*} (1\*\inv{\Delta})$ and the Frobenius
+  condition is satisfied.
+\end{example}
+
+\begin{example}[\topcatp does not give a discrete inverse category]\label{ex:topcat_does_not_give_a_discrete_inverse_category}
+  Recalling \topcatp from Example~\ref{ex:restriction_category_top}, we know that the partial
+  isomorphisms of \topcatp form an inverse category --- \Inv{\topcatp}. Additionally, \topcatp has a
+  product, given by the standard Cartesian product. This product does work as a tensor in
+  \Inv{\topcatp}, but $\Delta$  is not a map in \Inv{\topcat} and hence it is not a discrete inverse
+  category.
+\end{example}
 
 Inverse products are extra structure on an inverse category, rather than a property. An example to
 demonstrate this is given next.
@@ -389,9 +484,8 @@ The axioms of Definition~\ref{def:inverse_product} then become:\\
 % end sub:diagrammatic_language
 
 
-\subsection{Discrete inverse categories} % (fold)
+\subsection{Properties of discrete inverse categories} % (fold)
 \label{sub:discrete_inverse_categories}
-
 
 We now present some properties of discrete inverse categories.
 
@@ -1358,46 +1452,6 @@ v        \draw (g) to (f-inverse);
   \end{align*}
 \end{proof}
 
-\begin{example}[\pinj is a discrete inverse category]\label{ex:pinj_is_a_discrete_inverse_category}
-  In the inverse category \pinj (see Example~\ref{ex:pinj_is_an_inverse_category}), suppose we add
-  the tensor given by the Cartesian product of sets. In detail, this means:
-  \begin{align*}
-    A \* B &= \{(a,b)| a\in A, b\in B\}\\
-    f \* g &= \{((a,c),(b,d)) | (a,b) \in f, (c,d) \in g\}\\
-    1 & = \{*\}\text{, a single element set.}
-  \end{align*}
-  The symmetric monoid isomorphisms are:
-    \begin{align*}
-      \usl &: \{(*,a)\} \mapsto \{a\}
-      &\usr &: \{(a,*)\} \mapsto \{a\}\\
-      a_{\*} &: \{((a,b),c)\} \mapsto \{(a,(b,c))\}
-      &c_{\*} &: \{(a,b)\} \mapsto \{(b,a)\}
-    \end{align*}
-
-  Define $\Delta_A = \{(a,(a,a)) | a\in A\}$. Then \pinj is a discrete inverse category with the
-  inverse product of $\*$. The required properties of cocommutativity, coassociativity and
-  exchange are immediately obvious. To show the Frobenius rule for $\Delta$, first note that
-  $\inv{\Delta}$ is defined only on the elements of $A\*A$ which agree in the first and second
-  co-ordinate. We show the upper triangle of the Frobenius diagram in
-  detail. Equation~\ref{eq:delta_inverse_delta} shows the result of applying $\Delta$ followed by
-  $\inv{\Delta}$.
-  \begin{equation}
-    \Delta(\inv{\Delta}(A\*A)) = \Delta(\{a | (a,a) \in A\*A\})
-    = \{(a,a) | (a,a) \in A\* A\}.\label{eq:delta_inverse_delta}
-  \end{equation}
-  Applying $(\Delta \* 1)a_{\*}$ to $A\*A$ is shown in Equation~\ref{eq:delta_tensor_one}.
-  \begin{equation}
-    a_{\*}(\Delta\*1(A\*A)) = a_{\*}(\{((a,a),a') | (a,a') \in A\*A\} = \{(a,(a,a')) | (a,a') \in
-    A\* A\}.\label{eq:delta_tensor_one}
-  \end{equation}
-  Finally, applying $1 \* \inv{\Delta}$ to the result of Equation~\ref{eq:delta_tensor_one} gives us
-  Equation~\ref{eq:one_tensor_delta_inverse}.
-  \begin{equation}
-    (1\*\inv{\Delta})(\{(a,(a,a')) | (a,a') \in  A\* A\} = \{(a,a) | (a,a) \in A\* A\} \label{eq:one_tensor_delta_inverse}.
-  \end{equation}
-  Thus, we have $\inv{\Delta}\Delta = (\Delta \* 1) a_{\*} (1\*\inv{\Delta})$ and the Frobenius
-  condition is satisfied.
-\end{example}
 % subsection discrete_inverse_categories (end)
 
 

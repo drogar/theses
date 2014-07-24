@@ -230,14 +230,19 @@ each object $A,B$ in $\B$ we have the map:
 \subsection{Enrichment of categories} % (fold)
 \label{sub:enrichement_of_categories}
 \begin{notation}\label{notn:hom-set}
-  If $\X$ is a category, then the maps from $A$ to $B$ in $\X$ are written $\X(A,B)$.
-  If $\X(A,B)$ is a set for all objects in $\X$, we say $\X$ is \emph{enriched} in sets. In general,
-  categories may be enriched in a variety of algebraic structures. For example a category may be
+  If $\X$ is a category, then the maps from $A$ to $B$ in $\X$ are denoted $\X(A,B)$.
+  If $\X(A,B)$ is a set for all objects in $\X$, we say $\X$ is \emph{enriched} in sets. More generally,
+  categories may be enriched in any monoidal category. For example a category may be
   enriched in abelian groups, vector spaces, posets, categories or commutative monoids.
 \end{notation}
 
-Specific types of enrichment may force a structure on a category. For example, if $\X$ is
-enriched in sets of cardinality of 0 or 1, then $\X$ must be a pre-order.
+Specific types of enrichment may force a structure on a category. Examples:
+\begin{enumerate}
+ \item If $\X$ is enriched in sets of cardinality of 0 or 1, then $\X$ is a pre-order.
+ \item If $\X$ is enriched in pointed sets with the monoid of smash product, the $\X$ has zero morphisms.
+ \item If $\X$ is enriched in abelian groups, then $\X$ is a preadditive category (has zero
+   morphisms and finite products are the same as the coproduct).
+\end{enumerate}
 
 % subsection enrichment_of_categories (end)
 \subsection{Examples of categories} % (fold)
@@ -399,15 +404,13 @@ between any two objects $A,B$ of the category given by: $\zeroob_{A,B} : A \to \
       0 & i \neq j
       \end{cases}
   \]
-  and given any two objects, $A,B$, $A\times B$ is isomorphic to $A+B$ , then $A\times B$ is
-  referred to as the \emph{biproduct} and designated as $A\biproduct B$. Note this is often written
-  as $\+$. As we will be using $\+$ frequently in this thesis where it is not a biproduct, this
-  alternate notation of $\biproduct$ will be used instead.
-\end{definition}
+  and given any two objects, $A,B$, $A\times B$ is the same as to $A+B$ , then $A\times B$ is
+  referred to as the \emph{biproduct} and designated as $A\biproduct B$. A category \cD{} is said to
+  have \emph{finite biproducts} when it has a zero object $\mathbf{0}$ and when each pair of objects
+  $A,B$ have a biproduct $A\biproduct B$.
 
-\begin{definition}\label{def:finite_biproducts}
-A category \cD{} is said to have \emph{finite biproducts} when it has a zero object $\mathbf{0}$
-and when each pair of objects $A,B$ have a biproduct $A\biproduct B$.
+  Note the biproduct is often written  as $\+$. As we will be using $\+$ frequently in this thesis
+  where it is not a biproduct, this alternate notation for $\biproduct$ will be used instead.
 \end{definition}
 
 Note that a category with finite biproducts is enriched in commutative monoids. If $f,g:A\to
@@ -1049,31 +1052,6 @@ $r m = \rst{r m}$ when $m$ is simply monic.
   \end{enumerate}
 \end{proof}
 
-\begin{definition}\label{def:inverse_category}
-  A restriction category in which every map is a partial
-  isomorphism is called an \emph{inverse category}.
-\end{definition}
-
-\begin{lemma}
-  \label{lem:inverse_idempotents_are_restriction_idempotents}
-  In an inverse category, all idempotents are restriction idempotents.
-\end{lemma}
-\begin{proof}
-  Given an idempotent $e$,
-  \[
-    \rst{e} = e\inv{e} = e e \inv{e} = e \rst{e} = \rst{e e} e = \rst{e} e = e.
-  \]
-\end{proof}
-
-\begin{example}\label{ex:pinj_is_an_inverse_category}
-  The category \pinj is an inverse category. For any map $f$, $\inv{f} = \{(y,x) | (x,y) \in
-  f\}$. Note that $\inv{f}$ is a map in $\pinj$ due to the two dual conditions on maps as given in
-  Example~\ref{ex:category_pinj}.
-
-  On the other hand, \Par is not an inverse category. For example, let $A=\{1,2\},\ B=\{1\}$ and
-  $f=\{(1,1),(2,1)\}$ in \Par. The restriction of $f$ is $\rst{f} = \{(1,1),(2,2)\} = 1_A$. There is
-  no partial function $g:B\to A$ such that $f g = 1_A$.
-\end{example}
 % subsection restricted_monics_sections_and_partial_isomorphisms (end)
 
 \subsection{Range categories} % (fold)
@@ -1367,7 +1345,7 @@ preserved by splitting.
 
 
 
-\subsection{Partial Map Categories} % (fold)
+\subsection{Partial map categories} % (fold)
 \label{sub:partial_map_categories}
 
 In \cite{cockett2002:restcategories1}, it is shown that split restriction categories are
@@ -1413,7 +1391,7 @@ Given a category \B and a stable system of monics, the \emph{partial map categor
 $\text{Par}(\B,\Mstab)$ is:
   \rcategoryequiv{$A\in\B$}
     {$(m,f):A\to B$  with $m:A' \to A$ is in \Mstab and $f:A' \to B$ is a map in \B. i.e.,
-      $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{f}\\A&&B}$.}
+      $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{f}\\A&&B}$}
     {$1_A,1_A:A \to A$}
     {via a pullback, $(m,f)(m',g) = (m'' m, f' g)$ where
       \[
@@ -1473,7 +1451,7 @@ Restriction categories have analogues of products and terminal objects.
   and a restriction terminal object.
 \end{definition}
 
-\subsection{Discrete Cartesian Restriction Categories}\label{sub:discrete_restriction_categories}
+\subsection{Discrete Cartesian restriction categories}\label{sub:discrete_restriction_categories}
 
 \begin{definition}\label{def:discrete_object_and_discrete_cartesian}
   An object $A$ in a Cartesian restriction category is \emph{discrete}

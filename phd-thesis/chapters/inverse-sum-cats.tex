@@ -2,12 +2,13 @@
 \chapter{Inverse sum categories} % (fold)
 \label{cha:inverse_sum_categories}
 
-In this chapter we define inverse sum categories, an inverse category with a construction that
-behaves as a coproduct, but without the requirement for a coproduct map. We will show these are
-given by inverse categories with a disjointness tensor.
+In this chapter we define the inverse sum of two objects $A,B$ in an inverse category with a
+disjoint join. An inverse sum is an object together with two monic maps which interact in a specific
+way with the disjoint join. We will show these are given by inverse categories with a disjoint sum
+tensor.
 
-We then show inverse sum categories are equivalent to their matrix categories and are, in fact
-Unique Decomposition Categories\cite{haghverdi:2000phd}.
+Inverse categories with enough inverse sums are equivalent to their matrix categories and are, in
+fact, Unique Decomposition Categories\cite{haghverdi:2000phd}.
 
 In the final part of the chapter, we consider inverse categories with both an inverse sum and
 inverse product, where the inverse product distributes overs the inverse sum in a specific way. We
@@ -93,15 +94,9 @@ category where the product distributes over the coproduct.
 %  \inv{i_2} i_2$.
 %\end{proof}
 
-\begin{definition}\label{def:inverse_sum_category}
-  Suppose \X is an inverse category with disjoint joins. If every pair of objects has an inverse
-  sum, we call the category an \emph{inverse sum} category. For any two objects $A,B$ in \X, we
-  write their inverse sum as $\invsum{A}{B}$.
-\end{definition}
-
 \begin{lemma}\label{lem:tensor_disjoint_sum_cats_are_inverse_sum_categories}
-  Let \X be an inverse category with a restriction 0 and a disjoint sum tensor $\+$. Then $\X$ is
-  an inverse sum category.
+  Let \X be an inverse category with a restriction 0 and a disjoint sum tensor $\+$. Then $A\+B$ is
+  an inverse sum.
 \end{lemma}
 \begin{proof}
   We claim that setting $i_i = \cp{i}$ and $x_i = \icp{i}$ and setting $X = A\+B$ produces inverse
@@ -117,24 +112,24 @@ category where the product distributes over the coproduct.
       \inv{\upr}\icpa \+ \inv{\upl}\icpb = 1\+1 = 1$.
   \end{enumerate}
 \end{proof}
+% Following is really a consequence of the above....
+% \begin{lemma}\label{lem:inverse_sums_have_identity_zero}
+%   If $A$ is an object in \X, an inverse sum category, then $A+0$ is isomorphic to $A$.
+% \end{lemma}
+% \begin{proof}
+%   We write the inverse sum diagram:
+%   \[
+%     \xymatrix{
+%       A\ar[r]^{1} &A\ar@/^9pt/[l]^{1} \ar@/_9pt/[r]_{0} & 0 \ar[l]_{0}.
+%     }
+%   \]
+% \end{proof}
 
-\begin{lemma}\label{lem:inverse_sums_have_identity_zero}
-  If $A$ is an object in \X, an inverse sum category, then $A+0$ is isomorphic to $A$.
-\end{lemma}
-\begin{proof}
-  We write the inverse sum diagram:
-  \[
-    \xymatrix{
-      A\ar[r]^{1} &A\ar@/^9pt/[l]^{1} \ar@/_9pt/[r]_{0} & 0 \ar[l]_{0}.
-    }
-  \]
-\end{proof}
 \begin{lemma}\label{lem:functor_preserving_joins_preserves_inverse_sums}
-  Suppose $\X$ is an inverse sum category and $\Y$ is an inverse category with a restriction zero.
-  Further, suppose $F:\X \to \Y$ is a restriction functor which preserves disjoint joins. Then,
-  $F$ preserves inverse sums.
+  Inverse sums are absolute with respect to functors which preserve disjoint joins.
 \end{lemma}
 \begin{proof}
+  Suppose we are given \X is an inverse category with inverse sums.
   In \X, consider the inverse sum over $A$ and $B$,
   \[
     \xymatrix{
