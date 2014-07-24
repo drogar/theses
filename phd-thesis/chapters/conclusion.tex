@@ -4,7 +4,7 @@
 
 This thesis has studied inverse categories \cite{cockett2002:restcategories1}, providing conditions
 for a tensor to act like a product --- the inverse product --- and similarly for a second
-tensor to behave like a sum --- the inverse sum.
+tensor to behave like a sum --- the disjoint sum.
 
 The following are the main results of this thesis.
 
@@ -49,20 +49,20 @@ equivalent, allowing us to define disjointness in whichever way is most convenie
 Disjoint joins are introduced with Definition~\ref{def:disjoint_join}, providing a correspondence to
 joins in a restriction category.
 
-In Chapter~\ref{chap:disjoint_sums} we explore the properties a symmetric monoidal tensor
+In Chapter~\ref{chap:disjoint_sum_tensors} we explore the properties a symmetric monoidal tensor
 on an inverse category requires in order to generate a disjointness relation and a disjoint
 join. These are referred to as disjoint join tensors.
 
 We show that in the category of commutative Frobenius algebras that $\Delta(f\* g)\inv{\Delta} = 0$
 gives a disjointness relation.
 
-\item \textbf{Inverse Sum Categories}
+\item \textbf{Disjoint Sum Categories}
 
-Inverse sum categories are given by inverse categories that have a disjoint join tensor. We define
-$\imatx$, a matrix category over the inverse sum category \X in
-Definition~\ref{def:inverse_matrix_category} and show that it is an inverse sum category in
-Theorem~\ref{thm:imatx_is_an_inverse_sum_category}. Furthermore, we show
-that an inverse sum category \X is equivalent to a $\imatx$ in
+disjoint sum categories are given by inverse categories that have a disjoint join tensor. We define
+$\imatx$, a matrix category over the disjoint sum category \X in
+Definition~\ref{def:inverse_matrix_category} and show that it is an disjoint sum category in
+Theorem~\ref{thm:imatx_is_an_disjoint_sum_category}. Furthermore, we show
+that an disjoint sum category \X is equivalent to a $\imatx$ in
 Proposition~\ref{pro:x_and_imatx_are_equivalent}.
 
 
@@ -70,10 +70,10 @@ Proposition~\ref{pro:x_and_imatx_are_equivalent}.
 
 We define distributive inverse categories in Definition~\ref{def:distributive_inverse_category} and
 show that distributivity of the inverse product over the disjoint join is equivalent to distributing
-over an inverse sum tensor in Lemma~\ref{lem:distributive_means_distribute_over_join}.
+over an disjoint sum tensor in Lemma~\ref{lem:distributive_means_distribute_over_join}.
 
 Then, in Theorem~\ref{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category} we show that
-the $\wtf$ construction of Chapter~\ref{chap:completing_a_discrete_inverse_category} lifts an inverse sum
+the $\wtf$ construction of Chapter~\ref{chap:completing_a_discrete_inverse_category} lifts an disjoint sum
 tensor into a coproduct. From this we conclude that $\Xt$ is a distributive restriction category in
 Corollary~\ref{cor:xt_is_a_distributive_restriction_category}.
 \end{enumerate}
@@ -93,7 +93,7 @@ processes and generalize that to a series of reversible processes.
 
 A third direction would be to formalize types in reversible languages using the results of this
 thesis as a basis. The obvious correspondences are from product types to the inverse product and
-between sum types and the inverse sum. From there, one would study the trace and explore infinite
+between sum types and the disjoint sum. From there, one would study the trace and explore infinite
 and recursive types. Note that some of this work would follow naturally from exploring the semantics
 of $\Pi^0$ and $\Pi$ from \cite{james2013isomorphic,james2012information}.
 

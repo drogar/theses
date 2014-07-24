@@ -146,7 +146,7 @@ reversible operations. Our first example is LQPL \cite{giles2007}, a compiled la
 semantics of \cite{selinger04:qpl}. The language includes a variety of reversible operations
 (unitary transforms) as primitives, a linear type system and an operational semantics. More recently
 Quipper \cite{green2013introduction,green2013quipper}, which focuses on methods to handle very large
-circuits is a language embedded in Haskell \cite{peyton2003:haskell98}. Quipper uses quantum
+circuits, is a language embedded in Haskell \cite{peyton2003:haskell98}. Quipper uses quantum
 \emph{and} classical circuits as an underlying model. An interesting aspect of reversibility in
 Quipper is the inclusion of an operator to compute the reverse of a given circuit.
 
@@ -191,9 +191,9 @@ The main contributions of this thesis are:
 \item The development of disjointness relations and disjoint joins in inverse categories and how
   they arise from suitable tensors on the inverse category in
   Proposition~\ref{prop:disjointness_tensor_gives_disjoint_join}.
-\item Showing that inverse categories with disjoint joins and restriction zeroes (called inverse sum
-  categories) give rise to a matrix category and that the original inverse sum category is
-  equivalent to the matrix category in Proposition~\ref{pro:x_and_imatx_are_equivalent}
+\item Showing that inverse categories with disjoint joins and restriction zeroes give rise to a
+  matrix category and that the original disjoint sum category is equivalent to the matrix category
+  in Proposition~\ref{pro:x_and_imatx_are_equivalent}.
 \item The proof that a distributive inverse category (one with inverse products and disjoint joins
   where the inverse product distributes over the disjoint join) gives a distributive restriction
   category when factoring out the equivalence relation from Item~\ref{item:contribution-2} above in
@@ -241,20 +241,21 @@ that disjointness may be defined on all maps or equivalently only on the restric
 the inverse category. This allows us to now define the disjoint join in
 Section~\ref{sec:disjoint_joins}.
 
-Chapter~\ref{chap:disjoint_sums} shows how specific conditions on a symmetric monoidal
+Chapter~\ref{chap:disjoint_sum_tensors} shows how specific conditions on a symmetric monoidal
 tensor in an inverse category allow us to define both a disjointness relation and a disjoint join
 from that tensor. We conclude this chapter with Section~\ref{sec:disjointness_in_frobenius_algebras}
 which expands the example of commutative Frobenius algebras, giving a disjointness relation.
 
-Chapter~\ref{cha:inverse_sum_categories} builds upon the previous chapters to introduce
+Chapter~\ref{cha:matrix_categories} builds upon the previous chapters to introduce
 coproduct-like constructions into the inverse
-category.  In
-Section~\ref{sec:inverse_sum_categories} we explore the relationship between disjoint joins and
-inverse sums. This culminates in showing that an inverse category \X with a tensor generating disjoint
+category. We explore the relationship between disjoint joins and
+disjoint sums. This culminates in showing that an inverse category \X with a tensor generating disjoint
 joins gives rise to a matrix category over \X and that \X is equivalent to its matrix
-category. Finally, in Section~\ref{sec:completing_a_distributive_inverse_category} we show that the
+category.
+
+In Chapter~\ref{sec:distributive_inverse_categories} we show that the
 construction introduced in Chapter~\ref{chap:completing_a_discrete_inverse_category} also lifts an
-inverse sum up to a coproduct and in fact will create a distributive restriction category when the
+disjoint sum up to a coproduct and in fact will create a distributive restriction category when the
 inverse product distributes over the disjoint join.
 
 Our conclusions and thoughts for potentially interesting areas to explore further are then given in

@@ -2,14 +2,17 @@
 \chapter{Inverse categories} % (fold)
 \label{cha:inverse_categories}
 
-This chapter will focus on adding ``products'' to an inverse category, from Definition~\ref{def:inverse_category}.
+This chapter will introduce inverse categories. We first give
+a few results about inverse categories and then proceed to show an inverse category which has
+restriction products is a restriction pre-order.
 
-We will show below an inverse category which has restriction products is a restriction
-pre-order. Given this, by ``product'', we mean a structure that behaves in a product-like manner in
-an inverse category which we call \emph{inverse products}. These will be defined below in
-Sub-Section~\ref{sub:inverse_product_definition}: Inverse products are given by a natural structure on a
-tensor product which includes a diagonal but lacks projections. The diagonal map is required to give
-a natural Frobenius structure on each object.
+Given this, the chapter then turns to focus on adding ``products'' to an inverse category, by which
+we mean a structure that behaves in a product-like manner in the inverse category, which we call
+\emph{inverse products}. These will be defined below in
+Sub-Section~\ref{sub:inverse_product_definition}: Inverse products are given by a natural structure
+on a tensor product which includes a diagonal but lacks projections. The diagonal map is required to
+give a natural Frobenius structure on each object.
+
 \section{Inverse Categories}
 \label{sec:inverse_categories}
 
@@ -27,6 +30,53 @@ a natural Frobenius structure on each object.
   \[
     \rst{e} = e\inv{e} = e e \inv{e} = e \rst{e} = \rst{e e} e = \rst{e} e = e.
   \]
+\end{proof}
+
+\begin{lemma}\label{lem:inverse_categories_are_range_categories}
+  An inverse category \X is a range category, where $\rg{f} = \inv{f}f = \rst{\inv{f}}$.
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \setlist[enumerate,1]{leftmargin=1.5cm}
+  \begin{enumerate}
+    \item[\rrone] $\restr{\rg{f}} = \rst{\rst{\inv{f}}} = \rst{\inv{f}} = \rg{f}$;
+    \item[\rrtwo] $f \rg{f} = f \rst{\inv{f}} = f \inv{f} f = \rst{f} f = f$;
+    \item[\rrthree] $\wrg{f\rst{g}} = \rst{\inv{(f\rst{g})}} = \rst{\inv{\rst{g}} \inv{f}} =
+      \rst{\rst{g} \inv{f}} =
+      \rst{g} \rst{\inv{f}} = \rst{\inv{f}} \rst{g} =\rg{f} \rst{g}$;
+    \item[\rrfour]  $\wrg{\rg{f}g} = \rst{\inv{(\rst{\inv{f}} g)}} =
+      \rst{\inv{g}\inv{\rst{\inv{f}}}} = \rst{\inv{g} \rst{\inv{f}}} =
+      \rst{\inv{g} \inv{f}} = \rst{\inv{(f g)}} = \wrg{f g}$
+  \end{enumerate}
+\end{proof}
+
+The property of being an inverse category is
+preserved by splitting.
+
+\begin{lemma}\label{lem:the_idempotent_splitting_of_an_inverse_category_is_an_inverse_category}
+  When \X is an inverse category, $\spl{E}{X}$ is an inverse category.
+\end{lemma}
+\begin{proof}
+  The inverse of $f:(A,e_1)\to(B,e_2)$   in \spl{E}{\X} is $e_2\inv{f}e_1$ as
+  \[
+    \llbracket f \inv{f} \rrbracket = e_1 f e_2 e_2 \inv{f} e_1
+    = e_1 e_1 f e_2 \inv{f} e_1
+    = e_1 f  \inv{f} e_1
+    = e_1 e_1 \restr{f} e_1
+    = e_1 \restr{f}
+    = \llbracket\restr{f}\rrbracket
+  \]
+  and
+  \begin{multline*}
+    \llbracket \inv{f} f\rrbracket=
+    e_2 \inv{f} e_1 e_1 f e_2
+    = e_2 \inv{f} e_1 f e_2 e_2
+    = e_2 \inv{f} f  e_2\\
+    = e_2 e_2 \restr{\inv{f}}  e_2
+    = e_2 \restr{\inv{f}}
+    = \llbracket\restr{\inv{f}}\rrbracket.
+  \end{multline*}
+
 \end{proof}
 
 \begin{example}[\pinj is an inverse category]\label{ex:pinj_is_an_inverse_category}

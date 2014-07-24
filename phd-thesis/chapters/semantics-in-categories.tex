@@ -1121,23 +1121,6 @@ which algebraically axiomatize the concept of the range for a function.
   this, assume we have two ranges $\wrg{(\_)}$ and $\widetilde{(\_)}$. Then,
   \[\rg{f}=\wrg{f \tilde{f}}=\rg{f} \tilde{f}=\tilde{f} \rg{f}=\widetilde{f \rg{f}}=\tilde{f}.\]
 \end{remark}
-\begin{lemma}\label{lem:inverse_categories_are_range_categories}
-  An inverse category \X is a range category, where $\rg{f} = \inv{f}f = \rst{\inv{f}}$.
-\end{lemma}
-\begin{proof}
-  \prepprooflist
-  \setlist[enumerate,1]{leftmargin=1.5cm}
-  \begin{enumerate}
-    \item[\rrone] $\restr{\rg{f}} = \rst{\rst{\inv{f}}} = \rst{\inv{f}} = \rg{f}$;
-    \item[\rrtwo] $f \rg{f} = f \rst{\inv{f}} = f \inv{f} f = \rst{f} f = f$;
-    \item[\rrthree] $\wrg{f\rst{g}} = \rst{\inv{(f\rst{g})}} = \rst{\inv{\rst{g}} \inv{f}} =
-      \rst{\rst{g} \inv{f}} =
-      \rst{g} \rst{\inv{f}} = \rst{\inv{f}} \rst{g} =\rg{f} \rst{g}$;
-    \item[\rrfour]  $\wrg{\rg{f}g} = \rst{\inv{(\rst{\inv{f}} g)}} =
-      \rst{\inv{g}\inv{\rst{\inv{f}}}} = \rst{\inv{g} \rst{\inv{f}}} =
-      \rst{\inv{g} \inv{f}} = \rst{\inv{(f g)}} = \wrg{f g}$
-  \end{enumerate}
-\end{proof}
 % subsection range_categories (end)
 
 \begin{example}\label{ex:ranges}
@@ -1209,34 +1192,8 @@ given by $e_1 \restr{f}$ in \X. Note that for $f:(A,d)\to(B,e)$, in \X we have:
 Given this, provided all identity maps are in $E$, $\spl{E}{\X}$ is a
 restriction category with $\X$ as a full sub-restriction category, via
 the embedding defined by taking an object $A$ in \X to  the object $(A,1)$
-in $\spl{E}{\X}$.  Furthermore, the property of being an inverse category is
-preserved by splitting.
+in $\spl{E}{\X}$.
 
-\begin{lemma}\label{lem:the_idempotent_splitting_of_an_inverse_category_is_an_inverse_category}
-  When \X is an inverse category, $\spl{E}{X}$ is an inverse category.
-\end{lemma}
-\begin{proof}
-  The inverse of $f:(A,e_1)\to(B,e_2)$   in \spl{E}{\X} is $e_2\inv{f}e_1$ as
-  \[
-    \llbracket f \inv{f} \rrbracket = e_1 f e_2 e_2 \inv{f} e_1
-    = e_1 e_1 f e_2 \inv{f} e_1
-    = e_1 f  \inv{f} e_1
-    = e_1 e_1 \restr{f} e_1
-    = e_1 \restr{f}
-    = \llbracket\restr{f}\rrbracket
-  \]
-  and
-  \begin{multline*}
-    \llbracket \inv{f} f\rrbracket=
-    e_2 \inv{f} e_1 e_1 f e_2
-    = e_2 \inv{f} e_1 f e_2 e_2
-    = e_2 \inv{f} f  e_2\\
-    = e_2 e_2 \restr{\inv{f}}  e_2
-    = e_2 \restr{\inv{f}}
-    = \llbracket\restr{\inv{f}}\rrbracket.
-  \end{multline*}
-
-\end{proof}
 
 \begin{proposition}\label{pro:in_rc_x_with_meets_split_x_is_cong_to_split_r_x}
   In a restriction category \X, with meets, let $R$ be the set of restriction idempotents.

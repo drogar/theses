@@ -1,29 +1,20 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\chapter{Inverse sum categories} % (fold)
-\label{cha:inverse_sum_categories}
+\chapter{Matrix categories} % (fold)
+\label{cha:matrix_categories}
 
-In this chapter we define the inverse sum of two objects $A,B$ in an inverse category with a
-disjoint join. An inverse sum is an object together with two monic maps which interact in a specific
+In this chapter we define the disjoint sum of two objects $A,B$ in an inverse category with a
+disjoint join. An disjoint sum is an object together with two monic maps which interact in a specific
 way with the disjoint join. We will show these are given by inverse categories with a disjoint sum
 tensor.
 
-Inverse categories with enough inverse sums are equivalent to their matrix categories and are, in
+Inverse categories with enough disjoint sums are equivalent to their matrix categories and are, in
 fact, Unique Decomposition Categories\cite{haghverdi:2000phd}.
 
-In the final part of the chapter, we consider inverse categories with both an inverse sum and
-inverse product, where the inverse product distributes overs the inverse sum in a specific way. We
-show that completing such a category, in the sense of
-Chapter~\ref{chap:completing_a_discrete_inverse_category}, produces a distributive restriction
-category where the product distributes over the coproduct.
+\section{Disjoint sums} % (fold)
+\label{sub:disjoint_sums}
 
-\section{Inverse sum categories} % (fold)
-\label{sec:inverse_sum_categories}
-
-\subsection{Inverse sums} % (fold)
-\label{sub:inverse_sums}
-
-\begin{definition}\label{def:inverse_sum}
-  In an inverse category with disjoint joins, an object $X$ is the \emph{inverse sum} of $A$ and
+\begin{definition}\label{def:disjoint_sum}
+  In an inverse category with disjoint joins, an object $X$ is the \emph{disjoint sum} of $A$ and
   $B$ when there exist maps $i_1,\ i_2,\ \xa,\ \xb$ such that:
   \begin{enumerate}[{(}i{)}]
     \item $i_1$ and $i_2$ are monic;
@@ -31,14 +22,14 @@ category where the product distributes over the coproduct.
     \item $\inv{i_1} = \xa$ and $\inv{i_2} = \xb$.
     \item $\inv{i_1}i_1 \perp \inv{i_2}i_2$ and $\inv{i_1}i_1 \djoin \inv{i_2}i_2 = 1_X$.
   \end{enumerate}
-  $i_1$ and $i_2$ will be referred to as the \emph{injection} maps of the inverse sum.
+  $i_1$ and $i_2$ will be referred to as the \emph{injection} maps of the disjoint sum.
 \end{definition}
 
-\begin{lemma}\label{lem:inverse_sum_is_unique}
-  The inverse sum $X$ of $A$ and $B$ is unique up to isomorphism.
+\begin{lemma}\label{lem:disjoint_sum_is_unique}
+  The disjoint sum $X$ of $A$ and $B$ is unique up to isomorphism.
 \end{lemma}
 \begin{proof}
-  Assume we have two inverse sums over $A$ and $B$:
+  Assume we have two disjoint sums over $A$ and $B$:
   \[
     \xymatrix{
       A\ar[r]^{i_1} &X\ar@/^9pt/[l]^{x_0} \ar@/_9pt/[r]_{x_1} & B \ar[l]_{i_2}
@@ -80,12 +71,12 @@ category where the product distributes over the coproduct.
       &= y_1\, 1\, \jay_1 \djoin y_1\, 0\, \jay_2 \djoin y_2\, 0\, \jay_1 \djoin y_2\, 1\, \jay_2\\
       &= y_1 \jay_1 \djoin y_2 \jay_2 = 1.\\
   \end{align*}
-  This shows that the map between any two inverse sums over the same two objects is an isomorphism.
+  This shows that the map between any two disjoint sums over the same two objects is an isomorphism.
 \end{proof}
 
 % TODO: Is this needed??? Where? Why?
-%\begin{lemma}\label{lem:all_maps_to_inverse_sum_are_disjoint}
-%  Suppose $X$ is the inverse sum of $A$ and $B$ in the inverse category \X. Then for all maps
+%\begin{lemma}\label{lem:all_maps_to_disjoint_sum_are_disjoint}
+%  Suppose $X$ is the disjoint sum of $A$ and $B$ in the inverse category \X. Then for all maps
 %  $f:C \to A$ and $g: C \to B$, the composition with the injections is disjoint, that is,
 %  $f i_1 \perp g i_2$. (This is not right - need further thought...)
 %\end{lemma}
@@ -94,13 +85,13 @@ category where the product distributes over the coproduct.
 %  \inv{i_2} i_2$.
 %\end{proof}
 
-\begin{lemma}\label{lem:tensor_disjoint_sum_cats_are_inverse_sum_categories}
+\begin{lemma}\label{lem:tensor_disjoint_sum_cats_are_disjoint_sum_categories}
   Let \X be an inverse category with a restriction 0 and a disjoint sum tensor $\+$. Then $A\+B$ is
-  an inverse sum.
+  an disjoint sum.
 \end{lemma}
 \begin{proof}
   We claim that setting $i_i = \cp{i}$ and $x_i = \icp{i}$ and setting $X = A\+B$ produces inverse
-  sums in \X and show this satisfies the four conditions of Definition~\ref{def:inverse_sum}.
+  sums in \X and show this satisfies the four conditions of Definition~\ref{def:disjoint_sum}.
   \begin{enumerate}[{(}i{)}]
     \item From Lemma~\ref{lem:tensor_identities}, we know that $\cpa$ and $\cpb$ are monic maps.
     \item $\cpa : A \to A\+B$, $\cpb: B \to A\+B$, $\icpa: A\+B \to A$ and $\icpb: A\+B \to B$.
@@ -113,11 +104,11 @@ category where the product distributes over the coproduct.
   \end{enumerate}
 \end{proof}
 % Following is really a consequence of the above....
-% \begin{lemma}\label{lem:inverse_sums_have_identity_zero}
-%   If $A$ is an object in \X, an inverse sum category, then $A+0$ is isomorphic to $A$.
+% \begin{lemma}\label{lem:disjoint_sums_have_identity_zero}
+%   If $A$ is an object in \X, an disjoint sum category, then $A+0$ is isomorphic to $A$.
 % \end{lemma}
 % \begin{proof}
-%   We write the inverse sum diagram:
+%   We write the disjoint sum diagram:
 %   \[
 %     \xymatrix{
 %       A\ar[r]^{1} &A\ar@/^9pt/[l]^{1} \ar@/_9pt/[r]_{0} & 0 \ar[l]_{0}.
@@ -125,12 +116,12 @@ category where the product distributes over the coproduct.
 %   \]
 % \end{proof}
 
-\begin{lemma}\label{lem:functor_preserving_joins_preserves_inverse_sums}
-  Inverse sums are absolute with respect to functors which preserve disjoint joins.
+\begin{lemma}\label{lem:functor_preserving_joins_preserves_disjoint_sums}
+  disjoint sums are absolute with respect to functors which preserve disjoint joins.
 \end{lemma}
 \begin{proof}
-  Suppose we are given \X is an inverse category with inverse sums.
-  In \X, consider the inverse sum over $A$ and $B$,
+  Suppose we are given \X is an inverse category with disjoint sums.
+  In \X, consider the disjoint sum over $A$ and $B$,
   \[
     \xymatrix{
       A\ar[r]^{i_1} &X\ar@/^9pt/[l]^{x_0} \ar@/_9pt/[r]_{x_1} & B \ar[l]_{i_2}
@@ -148,11 +139,11 @@ category where the product distributes over the coproduct.
   $\inv{F(i_1)}F(i_1) \djoin \inv{F(i_2)}F(i_2) = 1$.
 
   Finally, as $F$ is a restriction functor, it preserves monics, hence $F(i_1)$ and $F(i_2)$ are
-  both monic and therefore $F(X)$ is the inverse sum of $F(A)$ and $F(B)$.
+  both monic and therefore $F(X)$ is the disjoint sum of $F(A)$ and $F(B)$.
 
 \end{proof}
-\begin{lemma}\label{lem:inverse_sum_maps_are_perp}
-  Given \X an inverse sum category and maps $f:A \to C$ and $g:B\to D$ in \X. Then
+\begin{lemma}\label{lem:disjoint_sum_maps_are_perp}
+  Given \X an disjoint sum category and maps $f:A \to C$ and $g:B\to D$ in \X. Then
   $\inv{i_1} f i_1 \cdperp \inv{i_2} g i_2 : \invsum{A}{B}\to \invsum{A}{B}$.
 \end{lemma}
 \begin{proof}
@@ -165,8 +156,8 @@ category where the product distributes over the coproduct.
 \end{proof}
 
 
-\begin{lemma}\label{lem:inverse_sums_have_unique_maps_out}
-  Given $\X$ is an inverse sum category. Denote the inverse sum of objects $A,B$ of $\X$ by
+\begin{lemma}\label{lem:disjoint_sums_have_unique_maps_out}
+  Given $\X$ is an disjoint sum category. Denote the disjoint sum of objects $A,B$ of $\X$ by
   $\invsum{A}{B}$. Then for objects $A,B$ and $X$ with maps $f:A\to X$ and $g:B\to X$ such that
   $\rg{f} \cdperp \rg{g}$, there exists a unique map $h$ making the following diagram commute.
   \[
@@ -200,8 +191,8 @@ category where the product distributes over the coproduct.
   \end{align*}
 \end{proof}
 
-\begin{corollary}\label{cor:inverse_sums_have_unique_maps_in}
-  Given $\X$ is an inverse sum category. Then for objects $A,B$ and $X$ with maps $f:X\to A$
+\begin{corollary}\label{cor:disjoint_sums_have_unique_maps_in}
+  Given $\X$ is an disjoint sum category. Then for objects $A,B$ and $X$ with maps $f:X\to A$
   and $g:X\to B$ such that
   $\rst{f} \cdperp \rst{g}$, there exists a unique map $h$ making the following diagram commute.
   \[
@@ -215,12 +206,12 @@ category where the product distributes over the coproduct.
   We use the notation $f\rstp g$ for the unique map $h$.
 \end{corollary}
 \begin{proof}
-  This is simply the dual of Lemma~\ref{lem:inverse_sums_have_unique_maps_out}. The unique map $h$
+  This is simply the dual of Lemma~\ref{lem:disjoint_sums_have_unique_maps_out}. The unique map $h$
   in this case is $f i_1 \djoin g i_2$.
 \end{proof}
 
-\begin{corollary}\label{cor:inverse_sums_have_unique_maps}
-  Suppose $\X$ is an inverse sum category. Then for objects $A,B,C$ and $D$ with maps $f:A\to C$
+\begin{corollary}\label{cor:disjoint_sums_have_unique_maps}
+  Suppose $\X$ is an disjoint sum category. Then for objects $A,B,C$ and $D$ with maps $f:A\to C$
   and $g:B\to D$, there exists a unique map $h$ making the following diagram commute.
   \[
     \xymatrix@R+10pt@C+28pt {
@@ -235,32 +226,32 @@ category where the product distributes over the coproduct.
   We use the notation $\invsum{f}{g}$ for the map $h$.
 \end{corollary}
 \begin{proof}
-  This follows directly from Lemma~\ref{lem:inverse_sums_have_unique_maps_out} by setting
+  This follows directly from Lemma~\ref{lem:disjoint_sums_have_unique_maps_out} by setting
   $X = \invsum{C}{D}$. The unique map in this case is $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2$.
 \end{proof}
-\begin{lemma}\label{lem:functor_preserving_inverse_sums_preserves_joins}
-  Suppose $\X$ and $\Y$ are inverse sum categories and $F:\X \to \Y$ is a restriction functor which
-  preserves inverse sums. Then, $F$ preserves disjoint joins.
+\begin{lemma}\label{lem:functor_preserving_disjoint_sums_preserves_joins}
+  Suppose $\X$ and $\Y$ are disjoint sum categories and $F:\X \to \Y$ is a restriction functor which
+  preserves disjoint sums. Then, $F$ preserves disjoint joins.
 \end{lemma}
 \begin{proof}
-  By stating that $F$ preserves the inverse sum, we mean it preserves diagrams derived via the
-  properties of the inverse sum, and specifically, it will preserve the diagrams of
-  Lemma~\ref{lem:inverse_sums_have_unique_maps_out} and
-  Corollaries~\ref{cor:inverse_sums_have_unique_maps_in} and
-  \ref{cor:inverse_sums_have_unique_maps}.
+  By stating that $F$ preserves the disjoint sum, we mean it preserves diagrams derived via the
+  properties of the disjoint sum, and specifically, it will preserve the diagrams of
+  Lemma~\ref{lem:disjoint_sums_have_unique_maps_out} and
+  Corollaries~\ref{cor:disjoint_sums_have_unique_maps_in} and
+  \ref{cor:disjoint_sums_have_unique_maps}.
 
-  Suppose we are given $f, g: A \to B$ with $f \cdperp g$. In the inverse sum category, we know that
+  Suppose we are given $f, g: A \to B$ with $f \cdperp g$. In the disjoint sum category, we know that
   $f \djoin g = (\rst{f}i_1 \djoin \rst{g} i_2) (\inv{i_1} f i_1 \djoin \inv{i_2} g i_2)
   (\inv{i_1} \rg{f} \djoin \inv{i_2} \rg{g})$, as this follows by:
   \begin{enumerate}
-    \item Apply Corollary~\ref{cor:inverse_sums_have_unique_maps_in} to $\rst{f}$ and $\rst{g}$;
-    \item then apply Corollary~\ref{cor:inverse_sums_have_unique_maps} to $f, g$;
-    \item finally apply Lemma~\ref{lem:inverse_sums_have_unique_maps_out} to $\rg{f}, \rg{g}$.
+    \item Apply Corollary~\ref{cor:disjoint_sums_have_unique_maps_in} to $\rst{f}$ and $\rst{g}$;
+    \item then apply Corollary~\ref{cor:disjoint_sums_have_unique_maps} to $f, g$;
+    \item finally apply Lemma~\ref{lem:disjoint_sums_have_unique_maps_out} to $\rg{f}, \rg{g}$.
   \end{enumerate}
 
   Thus, we have that $f\djoin g =
   (\rst{f} \rstp \rst{g})(\invsum{f}{g})(\rg{f} \rgp \rg{g})$. As $F$ preserves
-  the inverse sum, this gives us:
+  the disjoint sum, this gives us:
   \begin{align*}
     F(f\djoin g) &= F(\rst{f}\rstp \rst{g})F(\invsum{f}{g})F(\rg{f} \rgp \rg{g})\\
     &=(F(\rst{f})\rstp F(\rst{g}))(\invsum{F(f)}{F(g)})(F(\rg{f}) \rgp F(\rg{g}))\\
@@ -268,17 +259,17 @@ category where the product distributes over the coproduct.
     &=F(f) \djoin F(g).
   \end{align*}
 
-  The last line is due to \Y being an inverse sum category as well.
+  The last line is due to \Y being an disjoint sum category as well.
 
 \end{proof}
 
 
-% subsection inverse_sums (end)
+% subsection disjoint_sums (end)
 
-\subsection{Inverse sum tensor} % (fold)
-\label{sub:inverse_sum_tensor}
-\begin{definition}\label{def:inverse_sum_tensor}
-  An \emph{inverse sum tensor} in an inverse category \X with disjoint joins $\djoin$ based
+\subsection{disjoint sum tensor} % (fold)
+\label{sub:disjoint_sum_tensor}
+\begin{definition}\label{def:disjoint_sum_tensor}
+  An \emph{disjoint sum tensor} in an inverse category \X with disjoint joins $\djoin$ based
   on a disjointness relation $\cdperp$ and a restriction zero
   is given by a tensor combined with two restriction monics, $\cpa$ and $\cpb$. The data for the
   tensor is:
@@ -306,9 +297,9 @@ category where the product distributes over the coproduct.
 \end{definition}
 
 
-\begin{lemma}\label{lem:a_disjoint_sum_tensor_is_an_inverse_sum_tensor}
+\begin{lemma}\label{lem:a_disjoint_sum_tensor_is_an_disjoint_sum_tensor}
   Given an inverse category \X with a disjoint sum tensor $\+$ as in
-  Definition~\ref{def:disjoint_sum_tensor}, then $\+$ is an inverse sum tensor.
+  Definition~\ref{def:disjoint_sum_tensor}, then $\+$ is an disjoint sum tensor.
 \end{lemma}
 \begin{proof}
   From the data of the disjoint sum tensor, the only thing remaining to show is that the tensor
@@ -335,16 +326,16 @@ category where the product distributes over the coproduct.
 
 \end{proof}
 
-\begin{lemma}\label{lem:an_inverse_sum_tensor_gives_inverse_sums}
-  If $\+$ is an inverse sum tensor in the inverse category \X, then $A\+B \cong A+B$, an inverse
+\begin{lemma}\label{lem:an_disjoint_sum_tensor_gives_disjoint_sums}
+  If $\+$ is an disjoint sum tensor in the inverse category \X, then $A\+B \cong A+B$, an inverse
   sum of $A$ and $B$.
 \end{lemma}
 \begin{proof}
   As $\+$ is a restriction functor from $\X\times\X$ to $\X$, this actually follows immediately
-  from Lemma~\ref{lem:functor_preserving_joins_preserves_inverse_sums}. It may also be proven
+  from Lemma~\ref{lem:functor_preserving_joins_preserves_disjoint_sums}. It may also be proven
   directly:
 
-  Consider the inverse sum diagram:
+  Consider the disjoint sum diagram:
   \[
     \xymatrix @C+60pt{
       A\ar[r]^{i_1=\inv{\upr} (1\+0)}
@@ -357,23 +348,23 @@ category where the product distributes over the coproduct.
   Since $0\cdperp 1$, we have $\inv{i_1}i_1 \cdperp \inv{i_2} i_2$.
 
   By the functorality of $\+$ and that it preserves disjoint joins, we have $(1\+0) \djoin (0 \+1)
-  = (1\djoin 0 ) \+ (0\djoin 1) = 1 \+ 1 = 1_{A\+B}$. Hence $A\+ B$ is an inverse sum of $A$ and
-  $B$ and by Lemma~\ref{lem:inverse_sum_is_unique} it is isomorphic to $A+B$.
+  = (1\djoin 0 ) \+ (0\djoin 1) = 1 \+ 1 = 1_{A\+B}$. Hence $A\+ B$ is an disjoint sum of $A$ and
+  $B$ and by Lemma~\ref{lem:disjoint_sum_is_unique} it is isomorphic to $A+B$.
 \end{proof}
 
-Conversely, we can show that given a tensor which produces inverse sums, that tensor will
-be an inverse sum tensor.
+Conversely, we can show that given a tensor which produces disjoint sums, that tensor will
+be an disjoint sum tensor.
 
-\begin{lemma}\label{lem:inverse_sums_give_inverse_sum_tensors}
+\begin{lemma}\label{lem:disjoint_sums_give_disjoint_sum_tensors}
   Suppose we have an inverse category $\X$ with restriction zero, a disjointness relation $\cdperp$, a
   disjoint join $\djoin$ and a symmetric monoidal tensor $\+$, with natural restriction monics
-  $\cpa: A\to A\+B$ and $\cpb: B \to A\+B$. Further suppose that $A\+B$ is an inverse sum under $\cpa$ and
+  $\cpa: A\to A\+B$ and $\cpb: B \to A\+B$. Further suppose that $A\+B$ is an disjoint sum under $\cpa$ and
   $\cpb$. When $f,g :A \to B$ and $h,k:C\to D$ with $f \cdperp g$ and $h \cdperp k$, then $f
   \+h \cdperp g\+k$ and $(f\+h)\djoin (g\+k) = (f\djoin g)\+ (h\djoin k)$.
 \end{lemma}
 \begin{proof}
   Similarly, this follows immediately from
-  Lemma~\ref{lem:functor_preserving_inverse_sums_preserves_joins}. We show it directly below:
+  Lemma~\ref{lem:functor_preserving_disjoint_sums_preserves_joins}. We show it directly below:
   \begin{equation}
     \xymatrix@R+10pt@C+28pt {
       A \ar[r]^{\rst{f}} \ar[d]_{\cpa} \ar@/^20pt/[rr]^f
@@ -389,11 +380,11 @@ be an inverse sum tensor.
   \wrg{\rst{f}\cpa}$. Similarly, $\inv{\cpb}\rst{h}\cpb = \wrg{\rst{h}\cpb}$. By \axiom{Dis}{5} and
   \axiom{Dis}{6}, we know that $\wrg{\rst{f}\cpa} \cdperp \wrg{\rst{g}\cpa}$ and $\wrg{\rst{h}\cpb}
   \cdperp \wrg{\rst{k}\cpb}$. As shown in the proof of
-  Lemma~\ref{lem:inverse_sum_is_unique}, we know $\wrg{\cpa}\cdperp \wrg{\cpb}$. Hence, by
+  Lemma~\ref{lem:disjoint_sum_is_unique}, we know $\wrg{\cpa}\cdperp \wrg{\cpb}$. Hence, by
   \axiom{Dis}{3}, we have $\wrg{\rst{x}\cpa} \cdperp \wrg{\rst{y}\cpb}$ for any maps $x,y$.
 
   Hence, we can form the map $\wrg{\rst{f}\cpa} \djoin \wrg{\rst{h}\cpb}$. Referring to the
-  Diagram~\ref{dia:sum_preserve_joins1}, by Corollary~\ref{cor:inverse_sums_have_unique_maps} there is
+  Diagram~\ref{dia:sum_preserve_joins1}, by Corollary~\ref{cor:disjoint_sums_have_unique_maps} there is
   a unique map at location $(1)$ which makes the diagram commute --- currently given as
   $\rst{f}\+\rst{h}$. The map $\wrg{\rst{f}\cpa} \djoin \wrg{\rst{h}\cpb}$ also makes the diagram commute.
   Hence, we have $\wrg{\rst{f}\cpa} \djoin \wrg{\rst{h}\cpb} = \rst{f}\+\rst{h}$. Similarly,
@@ -421,16 +412,16 @@ be an inverse sum tensor.
 \end{proof}
 
 
-\begin{definition}\label{def:inverse_sum_tensor_category}
+\begin{definition}\label{def:disjoint_sum_tensor_category}
   An inverse category $\X$ with restriction zero, a disjointness relation $\cdperp$, a disjoint
-  join $\djoin$ and an inverse sum tensor $\+$ is called an \emph{inverse sum tensor category}.
+  join $\djoin$ and an disjoint sum tensor $\+$ is called an \emph{disjoint sum tensor category}.
 \end{definition}
 
-\begin{corollary}\label{cor:inverse_sum_of_maps_is_disjoint_join}
-  In an inverse sum tensor category, $f \+g$ is given by $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2$.
+\begin{corollary}\label{cor:disjoint_sum_of_maps_is_disjoint_join}
+  In an disjoint sum tensor category, $f \+g$ is given by $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2$.
 \end{corollary}
 \begin{proof}
-  Recall that in the proof of Lemma~\ref{lem:inverse_sum_is_unique} that we showed $\rst{\inv{i_1}}
+  Recall that in the proof of Lemma~\ref{lem:disjoint_sum_is_unique} that we showed $\rst{\inv{i_1}}
   \cdperp \rst{\inv{i_2}}$ and $\wrg{i_1}\perp \wrg{i_2}$. Since $\rst{x f} \le \rst{x}$, by
   \axiom{Dis}{3} and \axiom{Dis}{7}, we know that $\inv{i_1} f i_1 \perp \inv{i_2} g i_2$ and we
   can therefore form the disjoint join.
@@ -444,17 +435,17 @@ can define a matrix category based on $\X$. We will call this category \imatx. F
 show that \imatx is an inverse category and that $\X$ embeds within this category.
 
 The types of matrices allowed in the matrix category are subject to certain constraints:
-\begin{definition}\label{def:inverse_sum_matrix}
-  Suppose we have \X is an inverse category with a disjoint sum. Then an \emph{inverse sum matrix}
+\begin{definition}\label{def:disjoint_sum_matrix}
+  Suppose we have \X is an inverse category with a disjoint sum. Then an \emph{disjoint sum matrix}
   in \X is a matrix of maps $[f_{i j}]$ where $i \in \{1,\ldots, n\}$ and $j \in \{1,\ldots, m\}$ with
   $f_{i\jay}:A_i \to B_\jay$ which satisfy the two conditions:
   \begin{align}
     &\text{For each }i,\ \cdperp[f_{i \jay} \cp{\jay}]_{\jay=1,\ldots,m}
     \text{ where } \cp{\jay}: B_\jay \to B_1\+B_2\+\cdots\+B_m.
-      \label{eq:inverse_sum_matrix_row_perp}\\
+      \label{eq:disjoint_sum_matrix_row_perp}\\
     &\text{For each }j,\ \cdperp[\inv{\cp{i}} f_{i \jay}]_{i=1,\ldots,n}
     \text{ where } \inv{\cp{i}} = \icp{i} : A_1\+A_2\+\cdots\+A_n \to A_i.
-    \label{eq:inverse_sum_matrix_column_perp}
+    \label{eq:disjoint_sum_matrix_column_perp}
   \end{align}
 \end{definition}
 
@@ -470,10 +461,10 @@ The types of matrices allowed in the matrix category are subject to certain cons
   Given an inverse category \X with a disjoint sum tensor, we define the \emph{inverse
   matrix category} of \X, \imatx, as follows:
   \rcategory{Non-empty lists of the objects of $\X$}{
-    Inverse sum matrices $[f_{i\jay}]: [A_i] \to [B_\jay]$. In such a matrix each individual map
+    disjoint sum matrices $[f_{i\jay}]: [A_i] \to [B_\jay]$. In such a matrix each individual map
     $f_{i\jay}:A_i \to B_{\jay}$ is a map in $\X$. For each $j$, $B_\jay$ is given by
     applying the map $\djoin_i \icp{i} f_{i\jay}$ to the object $\+_i A_i$}{
-    The inverse sum matrix $I$}{
+    The disjoint sum matrix $I$}{
     Given $[f_{i\jay}]: [A_i] \to [B_\jay]$ and $[g_{j k}] : [B_\jay] \to [C_k]$, then
     $[h_{i k}] = [f_{i\jay}][g_{\jay k}]: [A_i] \to [C_k]$ is defined as
     $h_{i k} = \djoinbig_\jay f_{i \jay}g_{\jay k}$}{
@@ -485,7 +476,7 @@ The types of matrices allowed in the matrix category are subject to certain cons
 \end{definition}
 
 \begin{lemma}\label{lem:inverse_matrix_category_is_a_restriction_category}
-  When $\X$ is an inverse sum category, \imatx is a restriction category.
+  When $\X$ is an disjoint sum category, \imatx is a restriction category.
 \end{lemma}
 \begin{proof}
   We need to show the following:
@@ -497,7 +488,7 @@ The types of matrices allowed in the matrix category are subject to certain cons
   \emph{Composition is well defined:} Consider $[h_{i k}] = [f_{i j}] [g_{j k}]$ where $[f_{i j}]:
   [A_1,\ldots, A_n] \to [B_1,\ldots, B_m]$ and $[g_{j k}]: [B_1,\ldots, B_m] \to [C_1,\ldots,
   C_\ell]$. By supposition, we know $h_{i k} = \djoinbig_\jay f_{i \jay} g_{\jay k}$. As each of
-  the maps are inverse sum matrices, we know that $\cdperp [f_{i \jay} \cp{j}]$ and
+  the maps are disjoint sum matrices, we know that $\cdperp [f_{i \jay} \cp{j}]$ and
   $\cdperp[\inv{\cp{j}}g_{\jay k}]$. Hence, for each $\jay$ we know the composition $f_{i \jay}
   \cp{j} \inv{\cp{j}}g_{\jay k} = f_{i \jay} g_{\jay k}$ is defined and from $A_i$ to $C_{k}$. By
   the stability and universality of $\djoin$, we know $h_{i k}$ exists and by the definition of
@@ -577,10 +568,10 @@ category. The inverse of the map $f = [f_{i\jay}]$ is the map $\inv{f}:=[\inv{f_
 Recalling that the rows and columns of $f$ are each disjoint, we see that the composition
 $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
 
-Furthermore, $\imatx$ is actually an inverse sum category:
-\begin{theorem}\label{thm:imatx_is_an_inverse_sum_category}
+Furthermore, $\imatx$ is actually an disjoint sum category:
+\begin{theorem}\label{thm:imatx_is_an_disjoint_sum_category}
   Given \X an inverse category with a disjoint sum tensor and restriction zero, \imatx is
-  an inverse sum category.
+  an disjoint sum category.
 \end{theorem}
 
 We will prove this in a series of lemmas.
@@ -715,31 +706,31 @@ We will prove this in a series of lemmas.
   \]
 \end{proof}
 
-We are now ready to prove Theorem~\ref{thm:imatx_is_an_inverse_sum_category}, that \imatx is an
-inverse sum category.
+We are now ready to prove Theorem~\ref{thm:imatx_is_an_disjoint_sum_category}, that \imatx is an
+disjoint sum category.
 
 \begin{proof}
   By Lemma~\ref{lem:imat_tensor_is_a_disjoint_sum_tensor}, we know $\imatx$ has a disjoint sum
   tensor and therefore by Proposition~\ref{prop:disjointness_tensor_gives_disjoint_join},
-  it has a disjoint join. By Lemmas~\ref{lem:an_inverse_sum_tensor_gives_inverse_sums} and
-  \ref{lem:a_disjoint_sum_tensor_is_an_inverse_sum_tensor}, we know that $[A,B] = A\+B$ is
-  an inverse sum of $A$ and $B$ for any two objects in \imatx, and hence, \imatx is an inverse
+  it has a disjoint join. By Lemmas~\ref{lem:an_disjoint_sum_tensor_gives_disjoint_sums} and
+  \ref{lem:a_disjoint_sum_tensor_is_an_disjoint_sum_tensor}, we know that $[A,B] = A\+B$ is
+  an disjoint sum of $A$ and $B$ for any two objects in \imatx, and hence, \imatx is an inverse
   sum category.
 \end{proof}
 
-\subsection{Equivalence between an inverse sum category and its matrix category} % (fold)
-\label{sub:equivalence_between_an_inverse_sum_category_and_its_matrix_category}
-In this Sub-Section we will provide restriction functors between an inverse sum category
+\subsection{Equivalence between an disjoint sum category and its matrix category} % (fold)
+\label{sub:equivalence_between_an_disjoint_sum_category_and_its_matrix_category}
+In this Sub-Section we will provide restriction functors between an disjoint sum category
 \X and its matrix category \imatx. Furthermore, we will show these functors form an
 equivalence between these two categories. That is,
 \[
    \xymatrix@R+10pt@C+20pt{
-     \text{Inverse Sum Cats} \ar@{^{(}->}[r]
+     \text{Disjoint Sum Cats} \ar@{^{(}->}[r]
      & \text{Disjoint Join Cats.} \ar@/^1.5pc/[l]_{\raisebox{2pt}{$\top$}}^{\text{Matrix}}
    }
 \]
 \begin{definition}\label{def:functor_from_x_to_imatx}
-  Given $\X$ is an inverse sum category with disjoint join $\cdperp$ and restriction zero,
+  Given $\X$ is an disjoint sum category with disjoint join $\cdperp$ and restriction zero,
   define $M:\X \to \imatx$ by:
   \begin{align*}
     \text{Objects:}\ &M(A) := [A]\\
@@ -760,8 +751,8 @@ equivalence between these two categories. That is,
 \end{proof}
 
 \begin{definition}\label{def:functor_from_imatx_to_x}
-  Given $\X$ is an inverse sum category with disjoint join $\cdperp$ and restriction zero $0$,
-  and inverse sum tensor $\+$ define $S:\imatx \to \X$ by:
+  Given $\X$ is an disjoint sum category with disjoint join $\cdperp$ and restriction zero $0$,
+  and disjoint sum tensor $\+$ define $S:\imatx \to \X$ by:
   \begin{align*}
     \text{Objects:}\ &S([A_1,A_2, \ldots, A_n]) := A_1\+A_2\+\cdots\+A_n\\
     \text{Maps:}\ &S([f_{i\jay}]) := \djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j}).
@@ -850,8 +841,8 @@ equivalence between these two categories. That is,
   and defines an isomorphism between any object of the form $[\+_i A_i]$ and the
   object $[A_1,\ldots,A_n]$.
 \end{proof}
-% subsection equivalence_between_an_inverse_sum_category_and_its_matrix_category (end)
-\begin{example}\label{ex:inverse_sum_category_maps_are_matrices}
+% subsection equivalence_between_an_disjoint_sum_category_and_its_matrix_category (end)
+\begin{example}\label{ex:disjoint_sum_category_maps_are_matrices}
   We may obtain a matrix representative of any map $f:A\+B\to C\+D$ by applying the construction of
   Definition~\ref{def:functor_from_imatx_to_x} in reverse.
 
@@ -920,434 +911,10 @@ The $0$ map in the category corresponds to the $0$-dimensional matrix,
 %\]
 \end{definition}
 
-\begin{corollary}\label{cor:inverse_sum_category_is_udc}
-  If $\X$ is an inverse sum category, then it is a unique decomposition category.
+\begin{corollary}\label{cor:disjoint_sum_category_is_udc}
+  If $\X$ is an disjoint sum category, then it is a unique decomposition category.
 \end{corollary}
 
-% section inverse_sums_categories (end)
-\section{Completing a distributive inverse category} % (fold)
-\label{sec:completing_a_distributive_inverse_category}
-\subsection{Distributive restriction categories} % (fold)
-\label{sub:distributive_restriction_categories}
-
-\begin{definition}\label{def:distributive_category}
-  A Cartesian category $\B$ with coproducts is called a
-  \emph{distributive}\cite{cockett1993-introduction-distributive} category when
-  \[
-    (A\times B) + (A\times C) \cong A \times (B+ C).
-  \]
-\end{definition}
-
-\begin{definition}\label{def:distributive_restriction_category}
-  A Cartesian restriction category $\D$ with a restriction zero and coproducts is called a
-  \emph{distributive restriction category}\cite{cockettlack2004:restcategories3}
-  when there is an isomorphism $\rho$ such that
-  \[
-    A\times (B+C) \xrightarrow{\rho} (A\times B) +(A\times C).
-  \]
-\end{definition}
-
-If $\D$ is a distributive restriction category, then Total($\D$) is a distributive
-category as in Definition~\ref{def:distributive_category}.
-
-In the following, we will present distributivity in inverse categories.
-
-% subsection distributive_restriction_categories (end)
-
-\subsection{Distributive inverse categories} % (fold)
-\label{sub:distributive_inverse_categories}
-% \note{
-% The following two \emph{should} be equivalent. Either
-% \begin{itemize}
-%   \item $\*$ preserves sums
-%   \item $\*$ preserves disjoint
-% \end{itemize}
-%
-% Break down the map into disjoint items, if equivalent on pieces, then they are
-% equivalent.
-% }
-\begin{definition}\label{def:distributive_inverse_category}
-  A \emph{distributive inverse category} \D consists of the following:
-  \begin{itemize}
-    \item \D is an inverse category;
-    \item \D has an inverse product with tensor $\*$, per Definition~\ref{def:inverse_product};
-    \item \D has an inverse sum tensor, $\+$, per Definition~\ref{def:inverse_sum_tensor} and
-    \item There is a family of isomorphisms, $d$, such that
-    \begin{equation}
-      \xymatrix{
-      && A\*B\\
-      A \* (B \+ C) \ar[rr]^{d} \ar[urr]^{1\*\icpa} \ar[drr]_{1\*\icpb}
-        && (A\*B) \+ (A \* C) \ar[u]_{\icpa} \ar[d]^{\icpb}\\
-      && A\*C,
-      }\label{eq:inverse_distributive_laws}
-    \end{equation}
-    commutes in \D for any choices of objects $A, B, C$.
-  \end{itemize}
-\end{definition}
-
-\begin{example}[\pinj is a distributive inverse category]
-  The isomorphism $d$ of Diagram~\ref{eq:inverse_distributive_laws} is given by the following:
-  \begin{equation}
-    d((a,(x,n)) = \begin{cases}
-      ((a,x),1) & n = 1\\
-      ((a,x),2) & n = 2.
-      \end{cases}\label{eq:pinj_distributive_isomporphism}
-    \end{equation}
-\end{example}
-Note that as we are operating in an inverse category, we also have the inverse of
-diagram~\ref{eq:inverse_distributive_laws} available to us. That is,
-\begin{equation}
-  \xymatrix{
-  A\*B \ar[d]_{\cpa} \ar[drr]^{1\*\cpa}\\
-  (A\*B) \+ (A \* C)  \ar[rr]^{\inv{d}}  &&A \* (B \+ C) \\
-  A\*C\ar[u]^{\cpb} \ar[urr]_{1\*\cpb}
-  }\label{eq:inverse_distributive_laws_reversed}
-\end{equation}
-is also a commuting diagram in \D.
-
-\begin{definition}\label{def:join_of_perp_rst_maps}
-  Suppose \X is an inverse category with a disjoint join tensor $\+$ and a restriction zero. Then
-  for maps $f:A \to B$ and $g:A \to C$ with $\rst{f} \perp \rst{g}$, define the map $[f,g]:A \to
-  B\+C$ as $(f \cpa) \djoin (g \cpb)$. This is well defined as $\wrg{\cpa} \perp \wrg{\cpb}$ and
-  therefore by \axiom{Dis}{7}, $f\cpa \perp g\cpb$.
-\end{definition}
-
-\begin{lemma}
-  Suppose \X is an inverse category \X\ with:
-  \begin{itemize}
-    \item a disjoint join tensor $\+$,
-    \item a restriction zero, and
-    \item an inverse  product tensor $\*$ which distributes over disjoint joins, (that is,
-      $f\*(g\djoin h) = (f\*g) \djoin (f\* h)$).
-  \end{itemize}
-  Then, \X is an inverse distributive  category.
-\end{lemma}
-\begin{proof}
-  By assumption, we have the first three items of
-  Definition~\ref{def:distributive_inverse_category}. Therefore, we need to construct an
-  isomorphism $d$ such that diagram~\ref{eq:inverse_distributive_laws} commutes. We claim that the
-  map $d = [1\* \icpa, 1\* \icpb]$ does this.
-
-  First, note that the typing of $d$ is correct. By Definition~\ref{def:join_of_perp_rst_maps},
-  \[
-    d = ((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb) : A \* (B \+ C) \to (A\*B)\+(A\*C)
-  \]
-  as
-  \begin{align*}
-      A \* (B \+ C) & \xrightarrow{(1\*\icpa)} A\* B \xrightarrow{\icpa} (A\*B)\+(A\*C),\\
-      A \* (B \+ C) & \xrightarrow{(1\*\icpb)} A\* C \xrightarrow{\icpb} (A\*B)\+(A\*C).
-  \end{align*}
-
-  Next, we need to show $d$ is an isomorphism. We will do this by showing both $\rst{d} = 1$ and
-  $\rst{\inv{d}} = 1$.
-  As a consequence of Lemma~\ref{lem:join_is_associative_and_commutative_monoid}, we know
-  the inverse of $d$ is
-  \[
-    \inv{((1 \* \icpa) \cpa )}\djoin \inv{((1\*\icpb) \cpb)} =
-      ( \icpa(1 \* \cpa) ) \djoin ( \icpb(1\*\cpb)).
-  \]
-
-  Having $\*$ distribute over the disjoint sum means that for any maps $f,h,k$ with $h\perp k$, we
-  have $f \* (h\djoin k) = (f\*h) \djoin (f\*k)$. We use this in the calculation of the restriction
-  of $f$:
-  \begin{align*}
-    \rst{((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb)}
-      &= \rst{((1 \* \icpa) \cpa )}\djoin \rst{((1\*\icpb) \cpb)} \\
-      &= (1\* \rst{\icpa}) \djoin (1\* \rst{\icpb}) \\
-      &= (1\* (\rst{\icpa} \djoin \rst{\icpb}) \\
-      &= 1\* ((1\+0) \djoin (0\+1) )\\
-      &=1 \* 1 = 1
-  \end{align*}
-  and for the inverse,
-  \begin{align*}
-    \rst{( \icpa(1 \* \cpa) ) \djoin ( \icpb(1\*\cpb))}
-      &= \rst{(\icpa(1 \* \cpa) )}\djoin \rst{(\icpb(1\*\cpb))} \\
-      &= \rst{(\icpa\rst{(1 \* \cpa)} )}\djoin \rst{(\icpb\rst{(1\*\cpb)})} \\
-      &= \rst{(\icpa)}\djoin \rst{(\icpb)}\\
-      &= (1\+0) \djoin (0\+1) \\
-      &= 1.
-  \end{align*}
-
-  Hence, $[1\* \icpa, 1\* \icpb]$ is an isomorphism.
-  Finally, we must show that diagram~\ref{eq:inverse_distributive_laws} commutes:
-  \begin{align*}
-    d \icpa & = \left( ((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb) \right)\icpa \\
-     & = \left(((1 \* \icpa) \cpa )\icpa \right) \djoin \left( ((1\*\icpb) \cpb) \icpa\right) \\
-     & = \left((1 \* \icpa) 1 \right) \djoin \left( (1\*\icpb) 0\right) \\
-     & = (1 \* \icpa) \djoin 0\\
-     & = 1 \* \icpa
-  \end{align*}
-  and
-  \begin{align*}
-    d \icpb & = \left( ((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb) \right)\icpb \\
-     & = \left(((1 \* \icpa) \cpa )\icpb \right) \djoin \left( ((1\*\icpb) \cpb) \icpb\right) \\
-     & = 0 \djoin (1 \* \icpb)\\
-     & = 1 \* \icpb.
-  \end{align*}
-  This shows the fourth condition is satisfied and $\X$ is a distributive inverse category.
-\end{proof}
-
-We have seen that a second tensor distributing over the disjoint joins implies that we have an
-inverse distributive category. We now show the converse is true.
-\begin{lemma}\label{lem:distributive_means_distribute_over_triangles}
-  Given an inverse distributive category \X, then $h\*(f\tjdown g) = (h\* f) \tjdown (h\* g)$
-  whenever $f\tjdown g$ exists and $h\*(f\tjup g) = (h\* f) \tjup (h\* g)$ whenever
-  $f\tjup g$ exists.
-\end{lemma}
-\begin{proof}
-  Let $h:A \to C$, $f:B \to D$ and $g: B \to E$. Consider the following diagram:
-  \[
-    \xymatrix@R+20pt@C+10pt{
-      & && B\*E\\
-      A\*C \ar[rr]^{h\*(f\tjdown g)} \ar[drrr]_{h\*g} \ar[urrr]^{h\*f}
-        && B \* (D \+ E) \ar[r]^{\cong} \ar[ur]_{1\*\icpa} \ar[dr]^{1\*\icpb}
-        & (B\*D) \+ (B \* E) \ar[d]^{\icpb} \ar[u]_{\icpa}\\
-      & && B\*D.
-    }
-  \]
-  The two leftmost  triangles commute by the diagram for $f\tjdown g$. The right hand triangles
-  commute as per Definition~\ref{def:distributive_inverse_category}. By the uniqueness of the
-  $\tjdown$ operation we see  $h\*(f\tjdown g) = (h\* f)\tjdown(h\* g)$,
-
-  The argument for showing $h\*(f\tjup g) = (h\* f)\tjup(h\* g)$ follows the same pattern.
-  %TODO: Is the isomorphism important? Do we need to do something with it?
-\end{proof}
-\begin{lemma}\label{lem:distributive_means_distribute_over_join}
-  Given an inverse distributive category \X, then $\*$ distributes over the disjoint join.
-\end{lemma}
-\begin{proof}
-  First recall the definition of $f\djoin g = (\rst{f}\tjdown\rst{g})(f\tjup g)$. In order
-  to show $h\*(f\djoin g) = (h\*f)\djoin (h\*g)$, we need to show that
-  \begin{equation}
-    h\*(\rst{f}\tjdown\rst{g})(f\tjup g) = (\rst{h\*f}\tjdown\rst{h\*g})(h\*f\tjup h\*g).
-    \label{eq:distribute_over_left_right}
-  \end{equation}
-
-  Since $h\*(\rst{f}\tjdown\rst{g})(f\tjup g) =
-  (\rst{h}\*(\rst{f}\tjdown\rst{g}))(h\*(f\tjup g))$, Equation~\ref{eq:distribute_over_left_right}
-  follows directly from  Lemma~\ref{lem:distributive_means_distribute_over_triangles} and the fact
-  that $\*$ is a  restriction functor.
-\end{proof}
-
-\begin{corollary}\label{cor:inverse_product_and_disjointness}
-  Suppose we have an inverse distributive category \X. Then,
-  \begin{enumerate}[{(}i{)}]
-    \item if $f \perp g$, then $h\*f \perp h\*  g$ for any $h$,
-    \item  if  $f\perp g : A\to B$ and $h \perp k: C\to D$, then $(f\*h)\perp (g\*k)$.
-   \end{enumerate}
-\end{corollary}
-\begin{proof}
-  \prepprooflist
-  \begin{enumerate}[{(}i{)}]
-    \item As $f\perp g$, we have $f\tjup g$ and $f\tjdown g$. By
-      Lemma~\ref{lem:distributive_means_distribute_over_triangles}, both $h\*f \tjup h\*g$ and
-      $h\*f \tjdown h\* g$ exist and therefore $h\*f \perp h\*g$.
-    \item By the previous item, we have that $((f\djoin g)\*h) \perp ((f\djoin g)\* k)$. Then, by
-      \axiom{DJ}{1} and \axiom{Dis}{3} we have $(f\*h)\perp (g\*k)$.
-  \end{enumerate}
-\end{proof}
-% subsection distributive_inverse_categories (end)
-
-\subsection{Discrete inverse categories with inverse sums} % (fold)
-\label{sub:discrete_inverse_categories_with_inverse_sums}
-
-We now consider the case where we have a discrete inverse category with inverse product
-tensor $\*$ and a disjoint join tensor $\+$, with the $\*$ tensor preserves the
-disjoint join.
-
-A map in \Xt is related to a map in \X in the following way:
-\[
-  \infer{A\xrightarrow{f} B\*C \text{ in }\X.}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
-\]
-
-Our goal is to show that an inverse sum in a distributive inverse category becomes a co-product
-in \Xt.
-
-\begin{lemma}\label{lem:x_tilde_has_a_restriction_zero}
-  Given $\X$ is a distributive inverse category, then $\Xt$, the discrete inverse category created
-  from $\X$, has a restriction zero.
-\end{lemma}
-\begin{proof}
-  Recall from Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories}
-  that $\X$ is equivalent as a category to $\Xt$ under the identity on objects
-  functor
-  \[
-    {\raisebox{-18pt}{$\wtf:\X \to \Xt;$}} \quad
-    \xymatrix{A\ar[d]^{f}\\B}\ \raisebox{-18pt}{$\mapsto$}\, \xymatrix{A\ar[d]^{(f\inv{\usr},1)}\\B}
-    \,\raisebox{-18pt}{.}
-  \]
-
-  In $\X$, we know $0$ is a terminal and initial object, with maps
-  $A \xrightarrow{t_A} 0 $ and $0 \xrightarrow{z_A} A$, where  $\rst{0_{A,A}} = 0_{A,A} = t_A z_A$.
-
-  First we note that $0$ is both initial and terminal in $\Xt$, with the terminal maps being
-  $\wtf(t_A)$ and initial maps being $\wtf(z_A)$.
-
-  As was also shown in
-  Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories},
-$\wtf$ is a restriction functor, so in $\Xt$ we have
-  \[
-    0_{A,A} = \wtf(t_A)\wtf(z_A) = \wtf(t_A z_A) = \wtf(0_{A,A}) = \wtf(\rst{0_{A,A}}) =
-    \rst{\wtf(0_{A,A})} = \rst{0_{A,A}}.
-  \]
-  Hence, $0_{A,A}$ is a restriction zero in $\Xt$.
-\end{proof}
-
-\begin{lemma}\label{lem:maps_from_inverse_sums_have_disjoint_equivalences}
-  In a distributive inverse category \X, the following hold:
-  \begin{enumerate}[{(}i{)}]
-    \item Given $f : A \to Y\*C$, we can construct $f' : A \to Y \* (C\+D)$ for some object $D$ such
-      that $f \xequiv{} f'$.\label{lemitem:construct_f_prime}
-    \item Given $g : B \to Y\*D$, we can construct $g'' : B \to Y \* (C\+D)$ for some object $C$ such
-      that $g \xequiv{} g''$.\label{lemitem:construct_g_doubleprime}
-    \item Given $f : A \to Y \* C$, $g : A\to Y \* D$, then the $f', g''$ as constructed in
-      \ref{lemitem:construct_f_prime} and \ref{lemitem:construct_g_doubleprime} satisfies $\icpa f'
-      \perp \icpb g''$, where $\icpa f',\,\icpb g'': A\+B \to Y\*(C\+D)$.
-  \end{enumerate}
-\end{lemma}
-\begin{proof}
-  \prepprooflist
-  \begin{enumerate}[{(}i{)}]
-  \item Set $f' = f(1\*\cpa)$.
-    To show $f\equiv f'$, we must first show their restriction is the same.
-    \begin{align*}
-      \rst{f(1\*\cpa)} &= \rst{f\rst{(1\*\cpa)}}\\
-      & = \rst{f 1}\\
-      &=  \rst{f}
-    \end{align*}
-    Now we detail the mediating map between $f$ and $f'$:
-    \[
-    \xymatrix @C=25pt @R=25pt{
-      & & Y \* C \ar@{.>}[dr]^{\Delta\* 1}\\
-      & & & Y \* (Y\* C) \ar@{.>}[dd]^{1\*1\*\cpa}\\
-      A \ar[uurr]^f \ar[ddrr]_{f'} \\
-      & & & Y \* Y\*(C\+ D) \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
-      && Y\*(C\+ D)\*X.
-    }
-    \]
-  To show this commutes, we primarily use that $\Delta\inv{\Delta} = 1$
-  \begin{align*}
-    f(\Delta\*1)&(1\*1\*\cpa)(\inv{\Delta}\*1) \\
-    &= f(\Delta\*1)(\inv{\Delta} \* \cpa)\\
-    &= f(1 \* \cpa)\\
-    &= f'
-  \end{align*}
-  and hence $f\xequiv{h}f'$ where $h = (1\*\cpa)$.
-  \item For this item, we set $g'' = g(1\*\cpb)$. The proof that $g\xequiv{k}g''$, where
-    $k = (1\*\cpb)$ is done in the same way as the previous point.
-  \item In order to show  $\icpa f' \perp \icpb g''$, we will proceed by showing their restrictions
-    and ranges are disjoint.
-    As $\rst{\inv{\cpa}} \perp \rst{\inv{\cpb}}$ and $\rst{\inv{\cpa}f'} \le \rst{\inv{\cpa}}$ and
-    $\rst{\inv{\cpb}g''} \le \rst{\inv{\cpb}}$, we immediately have
-    $\rst{\inv{\cpa}f'} \perp \rst{\inv{\cpb}g'}$.
-
-    For the ranges, we have
-    \begin{align*}
-      \wrg{\inv{\cpa} (f (1\*\cpa))} &=
-      \rst{((1\*\icpa)\inv{f})\cpa}\\
-      &= \rst{((1\*\icpa)\inv{f}}\\
-      &\le \rst{(1\*\icpa)}
-    \end{align*}
-    and similarly
-    \[
-      \wrg{\inv{\cpb} g''} \le \rst{(1\*\icpb)}.
-    \]
-
-    Using Lemma~\ref{lem:disjointness_various}
-    we know that $\rst{(\icpa)}\perp \rst{(\icpb)}$. From
-    Corollary~\ref{cor:inverse_product_and_disjointness}
-    we conclude that $\rst{(1\*\icpa)}\perp \rst{(1\*\icpb)}$ and giving us
-    $\wrg{\inv{\cpa}f'} \perp \wrg{\inv{\cpb}g''}$ and therefore $\inv{\cpa}f' \perp \inv{\cpb}g''$.
-  \end{enumerate}
-\end{proof}
-\begin{proposition}\label{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category}
-  Given \X is an distributive inverse category, then the category \Xt has co-products.
-\end{proposition}
-\begin{proof}
-  The tensor object, $A\+B$ in \X will become the co-product of $A, B$ in \Xt.
-
-  The injection maps of the co-product are $i_1 =(\cpa \usr, 1)$ and $i_2 = (\cpb \usr, 1)$.
-
-  Consider the following diagram in \Xt:
-  \[
-    \xymatrix{
-      A \ar[drrr]^{(f,C)} \ar[dr]_{i_1} \\
-      & A\+B \ar@{.>}[rr]^h & & Y. \\
-      B \ar[urrr]_{(g,D)} \ar[ur]^{i_2}
-    }
-  \]
-
-  In \X, this comes from the diagram:
-  \begin{equation}
-    \xymatrix{
-      A \ar[dr]_{\cpa} \ar[rr]^f && Y\*C\\
-      & A\+B\\
-      B \ar[ur]^{\cpb} \ar[rr]^g && Y\*D\\
-    }\label{diag:pre-coproduct}
-  \end{equation}
-  where the extraneous unit isomorphisms are removed.
-
-  This corresponds to the conditions of
-  Lemma~\ref{lem:maps_from_inverse_sums_have_disjoint_equivalences}. Hence by that lemma we may
-  revise Diagram~\ref{diag:pre-coproduct} as
-  \begin{equation}
-    \xymatrix@R+10pt {
-      A \ar[d]^{\cpa} \ar[drrr]^{f'}\\
-      A\+B \ar[rrr]^(.4){\icpa f' \djoin \icpb g''} &&& Y\*(C\+D)\\
-      B \ar[u]^{\cpb} \ar[urrr]_{g''}\\
-    }\label{diag:pre-coproduct-with-common-map}
-  \end{equation}
-  where $f'$ and $g''$ are respectively equivalent to $f,g$.
-
-  Lifting Diagram~\ref{diag:pre-coproduct-with-common-map} to \X, we see this corresponds to the
-  desired co-product diagram, where  $h$ in \Xt is the map $(\icpa f' \djoin \icpb g'', (C\+D))$.
-
-  By construction, in \X, we have
-  \[
-    \cpa (\icpa f' \djoin \cpa\icpb g'') = (\cpa\icpa f') \djoin (\cpa\icpb g'') = f' \djoin 0 = f'
-  \]
-  and
-  \[
-    \cpb (\icpa f' \djoin \cpa\icpb g'') = g''.
-  \]
-  Hence, in \Xt, we have  $(i_1 \usr, 1) h = f$ and $(i_2 \usr, 1) h = g$.
-
-  All that remains to be shown is that $h$ is unique.
-
-  Suppose there is another $(k,E)$ in \Xt such that it satisfies the coproduct properties, i.e.,
-  that $i_1 (k,E) = (f',C\+D)$ and $i_2 (k,E) = (g'',C\+D)$. In \X, $k:A\+B \to Y \* E$ and we have
-  \begin{align*}
-    \cpa k &\xequiv{x} f'\quad\text{and}\\
-    \cpb k &\xequiv{y} g''
-  \end{align*}
-  where the maps $x, y: Y\*E \to Y\*(C\+D)$ fulfill the respective equivalence diagrams.
-
-  The above gives us $\icpa\cpa k \xequiv{} \icpa f'$ and $\icpb\cpb k \xequiv{} \icpb g''$.
-  As we know that $\*$ preserves the disjoint join, and the equivalence diagrams consist of maps
-  under $\*$, we now have:
-  \begin{align*}
-    h&=\icpa f' \djoin \icpb g''\\
-    &\xequiv{} \icpa\cpa k \djoin \icpb\cpb k\\
-    &= (\icpa\cpa  \djoin \icpb\cpb) k\\
-    &= 1 k = k.
-  \end{align*}
-
-  Hence, $h \xequiv{} k$ in $\X$ and $(h, C\+D) = (k,E)$ in \Xt, meaning
- %TODO: Show that the joint epicness of cpa, cpb give us a unique item.
- $A\+B$ in \X is the co-product of $A$ and $B$ in \Xt.
-\end{proof}
-
-\begin{corollary}\label{cor:xt_is_a_distributive_restriction_category}
-  When \X is a distributive inverse category, $\Xt$ is a distributive restriction category.
-\end{corollary}
-\begin{proof}
-  As $\Xt$ has restriction products by Lemma~\ref{lem:tensor_on_x_is_the_restriction_product_on_xt},
-  restriction co-products by
-  Theorem~\ref{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category} and the equations
-  for distributivity follow directly from the distributivity of the base tensors, we see $\Xt$ is a
-  distributive restriction category.
-\end{proof}
-% chapter inverse_sum_categories (end)
 
 %%% Local Variables:
 %%% mode: latex
