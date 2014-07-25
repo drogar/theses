@@ -1,6 +1,11 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\chapter{Disjoint sum tensors} % (fold)
+\chapter{Disjoint sums and tensors} % (fold)
 \label{chap:disjoint_sum_tensors}
+
+In this chapter, we first show how a tensor may be used to create a disjointness relation and a
+disjoint join in an inverse category. Conversely, if one is given an inverse category with a
+disjoint join and a construction we shall call a disjoint sum, this is sufficient to define a tensor
+in the inverse category.
 
 Suppose \X is an inverse category  with a restriction zero, and $\+$ is a tensor product on $\X$.
 Given specific  conditions regarding the tensor it is possible to define disjointness based upon the
@@ -15,6 +20,11 @@ isomorphisms:
 
 \section{Disjointness via a tensor}
 \label{sec:disjointness_via_a_tensor}
+
+Our first section will show how a disjointness tensor, defined below, may be used to create a
+disjointness relation in an inverse category. We will do this by noting that when it is possible for
+maps to work separately on the components of the tensor, this essentially will allow us to define
+when the restriction and range of functions are disjoint, and therefore when the maps are disjoint.
 
 \begin{definition}\label{def:disjointness_tensor}
   Given we have an inverse category \X with restriction zero and a symmetric monoidal tensor
@@ -472,6 +482,8 @@ pairing and copairing maps:
   relation as $\perp$ in \pinj.
 \end{example}
 
+\section{Disjoint joins via a tensor}
+\label{sec:disjoint_joins_via_a_tensor}
 The operations $\tjdown$ and $\tjup$ are sufficient to define a disjointness relation
 on an inverse category. However, when we wish to extend this to a disjoint join, we need to prove
 $\axiom{DJ}{4}$, That is, we need to show that $\tperp [f,g,h]$ implies $f \tperp (g \tjoin h)$.
@@ -760,11 +772,7 @@ We may now complete the proof of Proposition~\ref{prop:disjointness_tensor_gives
 % section tensors_for_disjointness (end)
 
 \input{chapters/section/sums-in-frobenius}
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "../phd-thesis"
-%%% End:
+\input{chapters/section/disjoint-sums}
 
 %%% Local Variables:
 %%% mode: latex
