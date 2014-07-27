@@ -2,11 +2,6 @@
 \chapter{Matrix categories} % (fold)
 \label{cha:matrix_categories}
 
-In this chapter we define the disjoint sum of two objects $A,B$ in an inverse category with a
-disjoint join. An disjoint sum is an object together with two monic maps which interact in a specific
-way with the disjoint join. We will show these are given by inverse categories with a disjoint sum
-tensor.
-
 Inverse categories with enough disjoint sums are equivalent to their matrix categories and are, in
 fact, Unique Decomposition Categories\cite{haghverdi:2000phd}.
 
@@ -20,7 +15,7 @@ show that \imatx is an inverse category and that $\X$ embeds within this categor
 
 The types of matrices allowed in the matrix category are subject to certain constraints:
 \begin{definition}\label{def:disjoint_sum_matrix}
-  Suppose we have \X is an inverse category with a disjoint sum. Then an \emph{disjoint sum matrix}
+  Suppose we have \X is an inverse category with disjoint sums. Then an \emph{disjoint sum matrix}
   in \X is a matrix of maps $[f_{i j}]$ where $i \in \{1,\ldots, n\}$ and $j \in \{1,\ldots, m\}$ with
   $f_{i\jay}:A_i \to B_\jay$ which satisfy the two conditions:
   \begin{align}
@@ -42,7 +37,7 @@ The types of matrices allowed in the matrix category are subject to certain cons
   addition are replaced with composition in \X and the disjoint join respectively.
 
 \begin{definition}\label{def:inverse_matrix_category}
-  Given an inverse category \X with a disjoint sum tensor, we define the \emph{inverse
+  Given an inverse category \X with disjoint sums, we define the \emph{inverse
   matrix category} of \X, \imatx, as follows:
   \rcategory{Non-empty lists of the objects of $\X$}{
     disjoint sum matrices $[f_{i\jay}]: [A_i] \to [B_\jay]$. In such a matrix each individual map
@@ -60,7 +55,7 @@ The types of matrices allowed in the matrix category are subject to certain cons
 \end{definition}
 
 \begin{lemma}\label{lem:inverse_matrix_category_is_a_restriction_category}
-  When $\X$ is an inverse category with enough disjoint sums, \imatx is an inverse category.
+  When $\X$ is an inverse category with disjoint sums, \imatx is an inverse category.
 \end{lemma}
 \begin{proof}
   We need to show the following:
@@ -152,10 +147,10 @@ Recalling that the rows and columns of $f$ are each disjoint, we see that the co
 $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
 \end{proof}
 
-Furthermore, $\imatx$ is actually an disjoint sum category:
+Furthermore, $\imatx$ is actually a disjoint sum category:
 \begin{theorem}\label{thm:imatx_is_an_disjoint_sum_category}
-  Given \X an inverse category with a disjoint sum tensor and restriction zero, \imatx is
-  an disjoint sum category.
+  Given \X an inverse category with disjoint sums and restriction zero, \imatx has
+  disjoint sums.
 \end{theorem}
 
 We will prove this in a series of lemmas.
@@ -289,21 +284,20 @@ We will prove this in a series of lemmas.
   \]
 \end{proof}
 
-We are now ready to prove Theorem~\ref{thm:imatx_is_an_disjoint_sum_category}, that \imatx is an
-disjoint sum category.
+We are now ready to prove Theorem~\ref{thm:imatx_is_an_disjoint_sum_category}, that \imatx has
+disjoint sums.
 
 \begin{proof}
   By Lemma~\ref{lem:imat_tensor_is_a_disjoint_sum_tensor}, we know $\imatx$ has a disjoint sum
   tensor and therefore by Proposition~\ref{prop:disjointness_tensor_gives_disjoint_join},
-  it has a disjoint join. By Lemmas~\ref{lem:an_disjoint_sum_tensor_gives_disjoint_sums} and
-  \ref{lem:a_disjoint_sum_tensor_is_an_disjoint_sum_tensor}, we know that $[A,B] = A\+B$ is
-  an disjoint sum of $A$ and $B$ for any two objects in \imatx, and hence, \imatx is an disjoint
-  sum category.
+  it has a disjoint join. By Proposition~\ref{prop:a_disjoint_sum_tensor_gives_disjoint_sums}
+  we know that $[A,B] = A\+B$ is a disjoint sum of $A$ and $B$ for any two objects in \imatx, and
+  hence, \imatx has disjoint sums.
 \end{proof}
 
-\section{Equivalence between an disjoint sum category and its matrix category} % (fold)
+\section{Equivalence between a disjoint sum category and its matrix category} % (fold)
 \label{sec:equivalence_between_an_disjoint_sum_category_and_its_matrix_category}
-In this section we will provide restriction functors between an disjoint sum category
+In this section we will provide restriction functors between a disjoint sum category
 \X and its matrix category \imatx. Furthermore, we will show these functors form an
 equivalence between these two categories. That is,
 \[
@@ -313,7 +307,7 @@ equivalence between these two categories. That is,
    }
 \]
 \begin{definition}\label{def:functor_from_x_to_imatx}
-  Given $\X$ is an disjoint sum category with disjoint join $\cdperp$ and restriction zero,
+  Given $\X$ has disjoint sums with disjoint join $\cdperp$ and restriction zero,
   define $M:\X \to \imatx$ by:
   \begin{align*}
     \text{Objects:}\ &M(A) := [A]\\
@@ -334,7 +328,7 @@ equivalence between these two categories. That is,
 \end{proof}
 
 \begin{definition}\label{def:functor_from_imatx_to_x}
-  Given $\X$ is an disjoint sum category with disjoint join $\cdperp$ and restriction zero $0$,
+  Given $\X$ has disjoint sums with disjoint join $\cdperp$ and restriction zero $0$,
   and disjoint sum tensor $\+$ define $S:\imatx \to \X$ by:
   \begin{align*}
     \text{Objects:}\ &S([A_1,A_2, \ldots, A_n]) := A_1\+A_2\+\cdots\+A_n\\
@@ -496,7 +490,7 @@ The $0$ map in the category corresponds to the $0$-dimensional matrix,
 \end{definition}
 
 \begin{corollary}\label{cor:disjoint_sum_category_is_udc}
-  If $\X$ is an disjoint sum category, then it is a unique decomposition category.
+  If $\X$ is an inverse category with disjoint sums, then it is a unique decomposition category.
 \end{corollary}
 
 

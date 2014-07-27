@@ -528,7 +528,7 @@ Therefore, we add one more assumption regarding our tensor in order to define di
  \]
  Conversely, if $\alpha$ exists, $\alpha(a)$ must be one of $(x,1), (y,2)$ or $(z,3)$. As
  $f\icpb = \alpha\icp{1,2}\icpb$ and $g\icpb = \alpha\icp{1,3}\icpb$, we see this immediately
- requires that $\rst{f\icpb}\meet\rst{\icpb} =0$ and therefore $f \icpb  \tjdown g \icpb$ exists.
+ requires that $\rst{f\icpb}\meet\rst{g\icpb} =0$ and therefore $f \icpb  \tjdown g \icpb$ exists.
 
  The reasoning for Diagram~\ref{dia:tensor_complete_left} is similar.
 \end{example}
@@ -544,7 +544,7 @@ Therefore, we add one more assumption regarding our tensor in order to define di
     \xymatrix@C+5pt@R+10pt{
       A \ar@/_/[ddr]_{g\tjdown h} \ar@/^/[drr]^{g\tjdown f} \ar@{.>}[dr]|-{\alpha} \ar[rr]^{f}
         & & B \\
-        & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
+        & B\+B\+B \ar[d]^{\icp{1,2}} \ar[r]_{\icp{1,3}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
         & B\+B \ar[r]_{\icpa} & B
     }
   \]
@@ -574,7 +574,7 @@ Therefore, we add one more assumption regarding our tensor in order to define di
     \xymatrix@C+5pt@R+10pt{
       A \ar@/_/[ddr]_{f\tjdown g} \ar@/^/[drr]^{f\tjdown h} \ar@{.>}[dr]|-{\alpha} \ar[rr]^{h}
         & & B \\
-        & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
+        & B\+B\+B \ar[d]^{\icp{1,2}} \ar[r]_{\icp{1,3}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
         & B\+B \ar[r]_{\icpa} & B
     }\label{dia:alpha_plus_h}
   \end{equation}
@@ -584,7 +584,7 @@ Therefore, we add one more assumption regarding our tensor in order to define di
     \xymatrix@C+5pt@R+10pt{
       A \ar@/_/[ddr]_{g\tjdown h} \ar@/^/[drr]^{g\tjdown f} \ar@{.>}[dr]|-{\gamma} \ar[rr]^{f}
         & & B \\
-        & B\+B\+B \ar[d]^{\icp{0,1}} \ar[r]_{\icp{0,2}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
+        & B\+B\+B \ar[d]^{\icp{1,2}} \ar[r]_{\icp{1,3}} & B\+B \ar[d]^{\icpa} \ar[u]_{\icpb} \\
         & B\+B \ar[r]_{\icpa} & B
     }\label{dia:gamma_plus_f}
   \end{equation}

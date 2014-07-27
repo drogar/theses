@@ -3,10 +3,45 @@
 \label{sub:disjoint_sums}
 
 As noted at the beginning of this chapter, we now take the reverse direction and determine what
-conditions will allow us to define a disjoint join tensor in an inverse category which already has a
+conditions will allow us to define a disjoint sum tensor in an inverse category which already has a
 disjoint join. As we shall see, it is sufficient to have ``enough'' \emph{disjoint sum} objects, as
 defined below.
 
+First, we show that the disjoint sum tensor is universal with respect to the disjoint join.
+
+\begin{lemma}\label{lem:disjoint_sum_tensor_preserves_the_disjoint_join}
+  Given an inverse category \X with a disjoint sum tensor $\+$, then $\+$ preserves the disjoint
+  join. That is,
+  \begin{align}
+    f \cdperp g, \ h \cdperp k&\text{ implies } f\+ h \cdperp g \+ k
+    \label{eq:disjoint_sum_preserve_perp}\\
+    f \cdperp g, \ h \cdperp k &\text{ implies } (f\djoin g)\+(h\djoin k) = (f \+h )\djoin (g\+k).
+    \label{eq:disjoint_sum_preserve_join}
+  \end{align}
+\end{lemma}
+\begin{proof}
+  For Condition~\ref{eq:disjoint_sum_preserve_perp}, suppose we have $f \tperp g$ and $\ h \tperp k$.
+  From Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_preserve_tensor}, we
+  know both $(f\+h)\tjdown(g\+k)$ and $(f\+h)\tjup(g\+k)$ exist, hence $(f\+h)\tperp(g\+k)$.
+
+  For Condition~\ref{eq:disjoint_sum_preserve_join}, we compute from the right hand side:
+  \begin{align*}
+    (f\+h)\tjoin(g\+k) &= (f\+h)\tjdown (g\+k) \wrg{(f\+h)}\tjup \wrg{(g\+k)}\\
+    &= \left( (f\tjdown g)\+ (h \tjdown k) \right)
+       \left( (\rg{f}\+\rg{h}) \tjup (\rg{g}\+\rg{k}) \right) \\
+    &= \left( (f\tjdown g)\+ (h \tjdown k) \right)
+       \left( (\rg{f}\tjup \rg{g}) \+ (\rg{h}\tjup\rg{k}) \right) \\
+    &= \left( (f\tjdown g)(\rg{f}\tjup \rg{g})\right) \+
+       \left((h \tjdown k) (\rg{h}\tjup\rg{k}) \right) \\
+    &=  (f\tjoin g)\+(h \tjoin k).
+  \end{align*}
+  The second and third lines above again use
+  Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_preserve_tensor}.
+
+\end{proof}
+
+Now, we define an abstract ``disjoint sum'', which will be our candidate for creating a disjoint sum
+tensor.
 \begin{definition}\label{def:disjoint_sum}
   In an inverse category with disjoint joins, an object $X$ is the \emph{disjoint sum} of $A$ and
   $B$ when there exist maps $i_1,\ i_2,\ \xa,\ \xb$ such that:
@@ -26,7 +61,7 @@ defined below.
   Assume we have two disjoint sums over $A$ and $B$:
   \[
     \xymatrix{
-      A\ar[r]^{i_1} &X\ar@/^9pt/[l]^{x_0} \ar@/_9pt/[r]_{x_1} & B \ar[l]_{i_2}
+      A\ar[r]^{i_1} &X\ar@/^9pt/[l]^{x_1} \ar@/_9pt/[r]_{x_2} & B \ar[l]_{i_2}
     }
     \qquad  \text{ and  }\qquad
     \xymatrix{
@@ -79,13 +114,13 @@ defined below.
 %  \inv{i_2} i_2$.
 %\end{proof}
 
-\begin{lemma}\label{lem:tensor_disjoint_sum_cats_are_disjoint_sum_categories}
-  Let \X be an inverse category with a restriction 0 and a disjoint sum tensor $\+$. Then $A\+B$ is
-  an disjoint sum.
-\end{lemma}
+\begin{proposition}\label{prop:a_disjoint_sum_tensor_gives_disjoint_sums}
+  A disjoint sum tensor in an inverse category \X gives disjoint sums, i.e., for each pair of
+  objects $A,B$, $A\+B$ is a disjoint sum.
+\end{proposition}
 \begin{proof}
-  We claim that setting $i_i = \cp{i}$ and $x_i = \icp{i}$ and setting $X = A\+B$ produces inverse
-  sums in \X and show this satisfies the four conditions of Definition~\ref{def:disjoint_sum}.
+  We claim that setting $i_i = \cp{i}$ and $x_i = \icp{i}$ and setting $X = A\+B$ produces a disjoint
+  sum in \X. We show this satisfies the four conditions of Definition~\ref{def:disjoint_sum}.
   \begin{enumerate}[{(}i{)}]
     \item From Lemma~\ref{lem:tensor_identities}, we know that $\cpa$ and $\cpb$ are monic maps.
     \item $\cpa : A \to A\+B$, $\cpb: B \to A\+B$, $\icpa: A\+B \to A$ and $\icpb: A\+B \to B$.
@@ -97,48 +132,16 @@ defined below.
       \inv{\upr}\icpa \+ \inv{\upl}\icpb = 1\+1 = 1$.
   \end{enumerate}
 \end{proof}
-% Following is really a consequence of the above....
-% \begin{lemma}\label{lem:disjoint_sums_have_identity_zero}
-%   If $A$ is an object in \X, an disjoint sum category, then $A+0$ is isomorphic to $A$.
-% \end{lemma}
-% \begin{proof}
-%   We write the disjoint sum diagram:
-%   \[
-%     \xymatrix{
-%       A\ar[r]^{1} &A\ar@/^9pt/[l]^{1} \ar@/_9pt/[r]_{0} & 0 \ar[l]_{0}.
-%     }
-%   \]
-% \end{proof}
 
-\begin{lemma}\label{lem:functor_preserving_joins_preserves_disjoint_sums}
-  disjoint sums are absolute with respect to functors which preserve disjoint joins.
-\end{lemma}
-\begin{proof}
-  Suppose we are given \X is an inverse category with disjoint sums.
-  In \X, consider the disjoint sum over $A$ and $B$,
-  \[
-    \xymatrix{
-      A\ar[r]^{i_1} &X\ar@/^9pt/[l]^{x_0} \ar@/_9pt/[r]_{x_1} & B \ar[l]_{i_2}
-    }.
-  \]
-  The functor $F$ maps this as follows:
-  \[
-    \xymatrix@R+10pt@C+10pt{
-      F(A)\ar[r]^{F(i_1)} &F(X)\ar@/^13pt/[l]^{F(x_0)} \ar@/_13pt/[r]_{F(x_1)} & F(B)\ar[l]_{F(i_2)}
-    }.
-  \]
-  As $F$ is a restriction functor, we immediately have $F(x_0) = F(\inv{i_1}) = \inv{F(i_1)}$ and
-  $F(x_1) = \inv{F(i_2)}$. Since $F$ preserves the disjoint join, we also have
-  $\inv{F(i_1)}F(i_1) \cdperp\inv{F(i_2)}F(i_2)$ and
-  $\inv{F(i_1)}F(i_1) \djoin \inv{F(i_2)}F(i_2) = 1$.
+Now, we show the other direction, that is, when there are ``enough'' disjoint sums in a category, we
+may construct a disjoint sum tensor. In anticipation of the result, henceforth we will write $A\*B$
+for the disjoint sum of $A$ and $B$.
 
-  Finally, as $F$ is a restriction functor, it preserves monics, hence $F(i_1)$ and $F(i_2)$ are
-  both monic and therefore $F(X)$ is the disjoint sum of $F(A)$ and $F(B)$.
-
-\end{proof}
+We begin by showing that we may construct maps between the disjoint sums:
 \begin{lemma}\label{lem:disjoint_sum_maps_are_perp}
-  Given \X an disjoint sum category and maps $f:A \to C$ and $g:B\to D$ in \X. Then
-  $\inv{i_1} f i_1 \cdperp \inv{i_2} g i_2 : \invsum{A}{B}\to \invsum{A}{B}$.
+  Given \X an inverse category with all disjoint sums and suppose $f:A \to C$ and $g:B\to D$ in
+  \X. Then  $\inv{i_1} f i_1 \cdperp \inv{i_2} g i_2 : A\*B\to C\*D$ and therefore
+  $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2 : A\*B\to C\*D$.
 \end{lemma}
 \begin{proof}
   Note that $\rst{\inv{i_1} f i_1} = \rst{\inv{i_1} f} \le \rst{\inv{i_1}}$ and similarly
@@ -149,277 +152,89 @@ defined below.
   Lemma~\ref{lem:disjointness_various}, this means  $\inv{i_1} f i_1\cdperp \inv{i_2} g i_2$.
 \end{proof}
 
+Note that the argument in the above lemma is one we will make frequent use of in the
+following. Specifically, that $\rst{\inv{i_1} g} \cdperp \rst{\inv{i_2} h}$ for arbitrary $g,h$ and
+that $\wrg{h i_1} \cdperp \wrg{k i_2}$.
 
-\begin{lemma}\label{lem:disjoint_sums_have_unique_maps_out}
-  Given $\X$ is an disjoint sum category. Denote the disjoint sum of objects $A,B$ of $\X$ by
-  $\invsum{A}{B}$. Then for objects $A,B$ and $X$ with maps $f:A\to X$ and $g:B\to X$ such that
-  $\rg{f} \cdperp \rg{g}$, there exists a unique map $h$ making the following diagram commute.
+\begin{proposition}\label{prop:enough_disjoint_sums_make_a_disjoint_sum_tensor}
+  Given \X is an inverse category where every pair of objects has a disjoint sum, then the tensor
+  $\+$ where $A\+B$ is a disjoint sum of $A,B$ is a disjoint sum tensor.
+\end{proposition}
+\begin{proof}
+  We must first show, of course, that $\+$ is a symmetric monoidal tensor. We first note that $f\+g$ is
+  given by   $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2$ as shown in
+  Lemma~\ref{lem:disjoint_sum_maps_are_perp}. By the definition of the disjoint sum, identity maps
+  are taken to identity maps and by the stability and universality of the disjoint join, composition
+  is preserved and therefore $\*$ is a bi-functor as required.
+
+  We must now show the restriction zero is the unit of $\+$ and give the structural maps.
+
+  If we consider the disjoint sum $A\+0$, we see that $i_2 = 0$, the zero map. This gives us
+  $1_{A\+\zeroob}  = \inv{i_1}i_1 \djoin \inv{i_2}i_2 = \inv{i_1}i_1 \djoin 0 = \inv{i_1}i_1 =
+    \rst{\inv{i_1}}$, meaning $\inv{i_1}$ is total. Thus, $\inv{i_1}$ is an isomorphism and is
+  $\upr$. Similarly, $\inv{i_2} = \upl:\zeroob\+A \to A$ is an isomorphism.
+
+  For the symmetry map, we see that $c_\+ = \inv{i_1}i_2 \djoin \inv{i_2}i_1: A\+B \to B\+A$ is a symmetry
+  map and that
+  \begin{align*}
+    (\inv{i_1}i_2 \djoin \inv{i_2}i_1)&(\inv{i_1}i_2 \djoin \inv{i_2}i_1)=\inv{i_1}i_2(\inv{i_1}i_2
+    \djoin \inv{i_2}i_1) \djoin \inv{i_2}i_1(\inv{i_1}i_2 \djoin \inv{i_2}i_1)\\
+    &=\inv{i_1}i_2\inv{i_1}i_2 \djoin \inv{i_1}i_2\inv{i_2}i_1 \djoin \inv{i_2}i_1\inv{i_1}i_2
+    \djoin \inv{i_2}i_1\inv{i_2}i_1\\
+    & = 0 \djoin 1 \djoin 1 \djoin 0 \\
+    & = 1.
+  \end{align*}
+  Thus, we have $c_\+c_\+ =1$.
+
+  For associativity, we set $a_\+ = \inv{i_1}i_1i_1 \djoin \inv{i_2}\inv{i_1}i_2i_1 \djoin \inv{i_2}
+  \inv{i_2} i_2:A\+(B\+C) \to (A\+B)\+C$.
+  To visualize this, we have
   \[
-    \xymatrix@R+10pt@C+28pt {
-      A \ar[dr]^{f} \ar[d]_{i_1}
-        \\
-      \invsum{A}{B} \ar@{.>}[r]^{h}
-        & X\text{.}\\
-      B \ar[ur]_{g} \ar[u]_{i_2}
+    \xymatrix@C+5pt{
+      B\+C \ar[r]^{\inv{i_1}} \ar[dr]_{\inv{i_2}}
+        & B \ar[r]^{i_2}
+        & A\+B \ar[dd]^{i_1}\\
+      & C \ar[dr]^{i_2} & \\
+      A\+(B\+C)\ar[uu]^{\inv{i_2}} \ar[d]_{\inv{i_1}} \ar@{.>}[rr]^{a_{\+}} && (A\+B)\+C \\
+      A \ar[rr]_{i_1} & & A\+B \ar[u]_{i_1}
     }
   \]
-  We use the notation $f\rgp g$ for the unique map $h$.
-\end{lemma}
-\begin{proof}
-  As $\rg{f} \cdperp \rg{g}$ and $\rst{\inv{i_1}} \cdperp \rst{\inv{i_2}}$ we may form the map $h'
-  = \inv{i_1}f \djoin \inv{i_2}g$. By its construction, $h'$ is a map from $\invsum{A}{B}$ to $X$
-  which makes the diagram commute. Suppose now that both maps $v$ and $w$ are such maps. Then we
-  have
-  \[
-    (\inv{i_1}i_1) v = (\inv{i_1}i_1) w \quad\text{ and }\quad(\inv{i_2}i_2) v = (\inv{i_2}i_2) w.
-  \]
-  As $\inv{i_1}i_1 \cdperp \inv{i_2}i_2$, by Lemmas~\ref{lem:disjointness_various} and
-  \ref{lem:join_is_associative_and_commutative_monoid}, we know that $(\inv{i_1}i_1) v \cdperp
-  (\inv{i_2}i_2) v$ and $(\inv{i_1}i_1) w \cdperp (\inv{i_2}i_2) w$ allowing us to form their
-  respective disjoint joins. As the disjoint joins of equal maps remains equal, we have
-  \begin{align*}
-    (\inv{i_1}i_1) v \djoin (\inv{i_2}i_2) v &=     (\inv{i_1}i_1) w \djoin (\inv{i_2}i_2) w \\
-    (\inv{i_1}i_1 \djoin \inv{i_2}i_2 )v &=     (\inv{i_1}i_1 \djoin \inv{i_2}i_2) w \\
-    (1 )v &=     (1) w \\
-        v &=  w.
-  \end{align*}
+  The inverse of the $a_\+$ is obtained by taking the inverses of the arrows in the above diagram,
+  yielding $\inv{i_1}\inv{i_1}i_1 \djoin \inv{i_1}\inv{i_2}i_1i_1 \djoin \inv{i_2}i_2 i_2$.
+
+  Thus, $\+$ is a symmetric monoidal tensor on $\X$.
+
+  To show it is a disjoint sum tensor, we first note that we immediately have that it is a
+  disjointness tensor as:
+    \begin{enumerate}[{(}i{)}]
+      \item We have shown above it is a restriction functor.
+      \item We have shown above that the unit is the restriction zero.
+      \item From the above, we see $\cpa = i_1$ and $\cpb = i_2$. Assume we have $\cpa f = \cpa g$
+        and $\cpb f = \cpb g$. As $\icpa \cpa \djoin \icpb \cpb = 1$, we have
+        \[
+           f = (\icpa \cpa \djoin \icpb \cpb) f = \icpa \cpa f \djoin \icpb \cpb f = \icpa \cpa g
+           \djoin \icpb \cpb g =  (\icpa \cpa \djoin \icpb \cpb) g = g
+        \]
+        and therefore $\cpa$ and $\cpb$ are jointly monic.\label{pfitem:3}
+      \item $icpa$ and $\icpb$ are jointly epic by a similar argument as \ref{pfitem:3}.
+    \end{enumerate}
+
+  Note that we may also immediately conclude that the original disjointness relation on \X is the
+  same as the one generated by $\+$. This is because $f \tjdown g$ will be equal to $f\cpa \djoin
+  g\cpb$ and $f \tjup g$ will be equal to $\icpa f \djoin \icpb g$, therefore, $f\tjdown g$ and $f
+  \tjup g$ will exist if and only if $f\perp g$.
+
+  To show it is a disjoint sum tensor, we must show the existence of the maps $\alpha$ and $\beta$
+  from Definition~\ref{def:disjoint_sum_tensor}.
+
+  For Diagram~\ref{dia:tensor_complete_left}, assuming we have $f\icpb \tjdown g\icpb$ exists,
+  then $\alpha = (f\icpa)\cpa \djoin ((f\icpb \tjdown g \icpb)\cpb)$ satisfies the diagram. If
+  $\alpha$ does exist, then $\alpha \icpb$ satisfies the diagram for $f\icpb \tjdown g\icpb$. The
+  argument for satisfying Diagram~\ref{dia:tensor_complete_right} is analogous.
+
+  Therefore, $\+$ is a disjoint sum tensor.
 \end{proof}
 
-\begin{corollary}\label{cor:disjoint_sums_have_unique_maps_in}
-  Given $\X$ is an disjoint sum category. Then for objects $A,B$ and $X$ with maps $f:X\to A$
-  and $g:X\to B$ such that
-  $\rst{f} \cdperp \rst{g}$, there exists a unique map $h$ making the following diagram commute.
-  \[
-    \xymatrix@R+10pt@C+28pt {
-      &A \ar[d]_{i_1}
-        \\
-      X   \ar[dr]_{g} \ar[ur]^{f}  \ar@{.>}[r]^{h} & \invsum{A}{B}\\
-      & B \ar[u]_{i_2}\text{.}
-    }
-  \]
-  We use the notation $f\rstp g$ for the unique map $h$.
-\end{corollary}
-\begin{proof}
-  This is simply the dual of Lemma~\ref{lem:disjoint_sums_have_unique_maps_out}. The unique map $h$
-  in this case is $f i_1 \djoin g i_2$.
-\end{proof}
-
-\begin{corollary}\label{cor:disjoint_sums_have_unique_maps}
-  Suppose $\X$ is an disjoint sum category. Then for objects $A,B,C$ and $D$ with maps $f:A\to C$
-  and $g:B\to D$, there exists a unique map $h$ making the following diagram commute.
-  \[
-    \xymatrix@R+10pt@C+28pt {
-      A \ar[r]^{f} \ar[d]_{i_1}
-        & C \ar[d]_{i_1} \\
-      \invsum{A}{B} \ar@{.>}[r]^{h}
-        & \invsum{C}{D}\\
-      B \ar[r]_{g} \ar[u]_{i_2}
-        & D \ar[u]_{i_2}\text{.}
-    }
-  \]
-  We use the notation $\invsum{f}{g}$ for the map $h$.
-\end{corollary}
-\begin{proof}
-  This follows directly from Lemma~\ref{lem:disjoint_sums_have_unique_maps_out} by setting
-  $X = \invsum{C}{D}$. The unique map in this case is $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2$.
-\end{proof}
-\begin{lemma}\label{lem:functor_preserving_disjoint_sums_preserves_joins}
-  Suppose $\X$ and $\Y$ are disjoint sum categories and $F:\X \to \Y$ is a restriction functor which
-  preserves disjoint sums. Then, $F$ preserves disjoint joins.
-\end{lemma}
-\begin{proof}
-  By stating that $F$ preserves the disjoint sum, we mean it preserves diagrams derived via the
-  properties of the disjoint sum, and specifically, it will preserve the diagrams of
-  Lemma~\ref{lem:disjoint_sums_have_unique_maps_out} and
-  Corollaries~\ref{cor:disjoint_sums_have_unique_maps_in} and
-  \ref{cor:disjoint_sums_have_unique_maps}.
-
-  Suppose we are given $f, g: A \to B$ with $f \cdperp g$. In the disjoint sum category, we know that
-  $f \djoin g = (\rst{f}i_1 \djoin \rst{g} i_2) (\inv{i_1} f i_1 \djoin \inv{i_2} g i_2)
-  (\inv{i_1} \rg{f} \djoin \inv{i_2} \rg{g})$, as this follows by:
-  \begin{enumerate}
-    \item Apply Corollary~\ref{cor:disjoint_sums_have_unique_maps_in} to $\rst{f}$ and $\rst{g}$;
-    \item then apply Corollary~\ref{cor:disjoint_sums_have_unique_maps} to $f, g$;
-    \item finally apply Lemma~\ref{lem:disjoint_sums_have_unique_maps_out} to $\rg{f}, \rg{g}$.
-  \end{enumerate}
-
-  Thus, we have that $f\djoin g =
-  (\rst{f} \rstp \rst{g})(\invsum{f}{g})(\rg{f} \rgp \rg{g})$. As $F$ preserves
-  the disjoint sum, this gives us:
-  \begin{align*}
-    F(f\djoin g) &= F(\rst{f}\rstp \rst{g})F(\invsum{f}{g})F(\rg{f} \rgp \rg{g})\\
-    &=(F(\rst{f})\rstp F(\rst{g}))(\invsum{F(f)}{F(g)})(F(\rg{f}) \rgp F(\rg{g}))\\
-    &=(\rst{F(f)}\rstp \rst{F(g)})(\invsum{F(f)}{F(g)})(\wrg{F(f)} \rgp \wrg{F(g)})\\
-    &=F(f) \djoin F(g).
-  \end{align*}
-
-  The last line is due to \Y being an disjoint sum category as well.
-
-\end{proof}
-
-
-% subsection disjoint_sums (end)
-
-\subsection{disjoint sum tensor} % (fold)
-\label{sub:disjoint_sum_tensor}
-\begin{definition}\label{def:disjoint_sum_tensor}
-  An \emph{disjoint sum tensor} in an inverse category \X with disjoint joins $\djoin$ based
-  on a disjointness relation $\cdperp$ and a restriction zero
-  is given by a tensor combined with two restriction monics, $\cpa$ and $\cpb$. The data for the
-  tensor is:
- \begin{align*}
-    \_ \+ \_ &: \X \times \X \to \X\ \ \text{(a restriction functor preserving disjoint joins)}\\
-    0 &: \boldsymbol{1}\to \X \\
-    \upl &: 0 \+ A \to A\\
-    \upr &: A \+ 0 \to A\\
-    a_\+ &: (A \+ B) \+ C \to A \+ (B \+ C) \\
-    c_\+ &: A \+ B \to B \+ A\\
-    \cpa &: A \to A \+ B\\
-    \cpb &: B \to A \+ B
-  \end{align*}
-  where $\upl, \upr, a_\+, c_\+$ are all isomorphisms and the standard symmetric monoidal
-  equations and coherence diagrams hold. The unit of the tensor, $0: \boldsymbol{1}\to \X$, is the
-  restriction zero of the category. We specifically note that preserving disjoint joins means the
-  tensor obeys the following two equations:
-  \begin{align}
-    f \cdperp g, \ h \cdperp k&\text{ implies } f\+ h \cdperp g \+ k
-    \label{eq:invsum_preserve_perp}\\
-    f \cdperp g, \ h \cdperp k &\text{ implies } (f\djoin g)\+(h\djoin k) = (f \+h )\djoin (g\+k).
-    \label{eq:invsum_preserve_join}
-  \end{align}
-
-\end{definition}
-
-
-\begin{lemma}\label{lem:a_disjoint_sum_tensor_is_an_disjoint_sum_tensor}
-  Given an inverse category \X with a disjoint sum tensor $\+$ as in
-  Definition~\ref{def:disjoint_sum_tensor}, then $\+$ is an disjoint sum tensor.
-\end{lemma}
-\begin{proof}
-  From the data of the disjoint sum tensor, the only thing remaining to show is that the tensor
-  preserves the disjoint join.
-
-  Suppose we have $f \tperp g$ and $\ h \tperp k$.
-  From Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item~\ref{lemitem:l_r_preserve_tensor}, we
-  know both $(f\+h)\tjdown(g\+k)$ and $(f\+h)\tjup(g\+k)$ exist, hence $(f\+h)\tperp(g\+k)$.
-  This shows Condition~\ref{eq:invsum_preserve_perp}.
-
-  For Condition~\ref{eq:invsum_preserve_join}, we compute from the right hand side:
-  \begin{align*}
-    (f\+h)\tjoin(g\+k) &= (f\+h)\tjdown (g\+k) \wrg{(f\+h)}\tjup \wrg{(g\+k)}\\
-    &= \left( (f\tjdown g)\+ (h \tjdown k) \right)
-       \left( (\rg{f}\+\rg{h}) \tjup (\rg{g}\+\rg{k}) \right) \\
-    &= \left( (f\tjdown g)\+ (h \tjdown k) \right)
-       \left( (\rg{f}\tjup \rg{g}) \+ (\rg{h}\tjup\rg{k}) \right) \\
-    &= \left( (f\tjdown g)(\rg{f}\tjup \rg{g})\right) \+
-       \left((h \tjdown k) (\rg{h}\tjup\rg{k}) \right) \\
-    &=  (f\tjoin g)\+(h \tjoin k).
-  \end{align*}
-  The second and third lines above again use
-  Lemma~\ref{lem:properties_of_tjdown_and_tjup}~\ref{lemitem:l_r_preserve_tensor}.
-
-\end{proof}
-
-\begin{lemma}\label{lem:an_disjoint_sum_tensor_gives_disjoint_sums}
-  If $\+$ is an disjoint sum tensor in the inverse category \X, then $A\+B \cong A+B$, an inverse
-  sum of $A$ and $B$.
-\end{lemma}
-\begin{proof}
-  As $\+$ is a restriction functor from $\X\times\X$ to $\X$, this actually follows immediately
-  from Lemma~\ref{lem:functor_preserving_joins_preserves_disjoint_sums}. It may also be proven
-  directly:
-
-  Consider the disjoint sum diagram:
-  \[
-    \xymatrix @C+60pt{
-      A\ar[r]^{i_1=\inv{\upr} (1\+0)}
-        & A\+B \ar@/^15pt/[l]^{x_0=(1\+0)\upr} \ar@/_15pt/[r]_{x_1=(0\+1)\upl}
-          & B \ar[l]_{i_2=\inv{\upl} (0\+1)}
-    }.
-  \]
-  Therefore, we have $\inv{i_1}i_1 =
-  (1\+0)\upr \inv{\upr} (1\+0) = (1\+0)(1\+0) = (1\+0)$. Similarly, $\inv{i_2} i_2 = (0\+1)$.
-  Since $0\cdperp 1$, we have $\inv{i_1}i_1 \cdperp \inv{i_2} i_2$.
-
-  By the functorality of $\+$ and that it preserves disjoint joins, we have $(1\+0) \djoin (0 \+1)
-  = (1\djoin 0 ) \+ (0\djoin 1) = 1 \+ 1 = 1_{A\+B}$. Hence $A\+ B$ is an disjoint sum of $A$ and
-  $B$ and by Lemma~\ref{lem:disjoint_sum_is_unique} it is isomorphic to $A+B$.
-\end{proof}
-
-Conversely, we can show that given a tensor which produces disjoint sums, that tensor will
-be an disjoint sum tensor.
-
-\begin{lemma}\label{lem:disjoint_sums_give_disjoint_sum_tensors}
-  Suppose we have an inverse category $\X$ with restriction zero, a disjointness relation $\cdperp$, a
-  disjoint join $\djoin$ and a symmetric monoidal tensor $\+$, with natural restriction monics
-  $\cpa: A\to A\+B$ and $\cpb: B \to A\+B$. Further suppose that $A\+B$ is an disjoint sum under $\cpa$ and
-  $\cpb$. When $f,g :A \to B$ and $h,k:C\to D$ with $f \cdperp g$ and $h \cdperp k$, then $f
-  \+h \cdperp g\+k$ and $(f\+h)\djoin (g\+k) = (f\djoin g)\+ (h\djoin k)$.
-\end{lemma}
-\begin{proof}
-  Similarly, this follows immediately from
-  Lemma~\ref{lem:functor_preserving_disjoint_sums_preserves_joins}. We show it directly below:
-  \begin{equation}
-    \xymatrix@R+10pt@C+28pt {
-      A \ar[r]^{\rst{f}} \ar[d]_{\cpa} \ar@/^20pt/[rr]^f
-        & A \ar[d]_{\cpa} \ar[r]^{f\djoin g} & B \ar[d]_{\cpa}\\
-      A\+C \ar[r]^{\rst{f}\+\rst{h}}_{(1)}
-        & A\+C  \ar[r]^{f\djoin g \+ h\djoin k}_{(2)} & B \+D \\
-      C \ar[r]_{\rst{h}} \ar[u]_{\cpb} \ar@/_20pt/[rr]_h
-        & C \ar[u]_{\cpb} \ar[r]_{h\djoin k} & D \ar[u]_{\cpb}
-    }\label{dia:sum_preserve_joins1}
-  \end{equation}
-  Consider $\inv{\cpa} \rst{f}\cpa$. As this is idempotent and we are in an inverse category, we
-  know that $\inv{\cpa} \rst{f}\cpa = \rst{\inv{\cpa} \rst{f}\cpa} = \rst{\inv{\cpa}\rst{f}} =
-  \wrg{\rst{f}\cpa}$. Similarly, $\inv{\cpb}\rst{h}\cpb = \wrg{\rst{h}\cpb}$. By \axiom{Dis}{5} and
-  \axiom{Dis}{6}, we know that $\wrg{\rst{f}\cpa} \cdperp \wrg{\rst{g}\cpa}$ and $\wrg{\rst{h}\cpb}
-  \cdperp \wrg{\rst{k}\cpb}$. As shown in the proof of
-  Lemma~\ref{lem:disjoint_sum_is_unique}, we know $\wrg{\cpa}\cdperp \wrg{\cpb}$. Hence, by
-  \axiom{Dis}{3}, we have $\wrg{\rst{x}\cpa} \cdperp \wrg{\rst{y}\cpb}$ for any maps $x,y$.
-
-  Hence, we can form the map $\wrg{\rst{f}\cpa} \djoin \wrg{\rst{h}\cpb}$. Referring to the
-  Diagram~\ref{dia:sum_preserve_joins1}, by Corollary~\ref{cor:disjoint_sums_have_unique_maps} there is
-  a unique map at location $(1)$ which makes the diagram commute --- currently given as
-  $\rst{f}\+\rst{h}$. The map $\wrg{\rst{f}\cpa} \djoin \wrg{\rst{h}\cpb}$ also makes the diagram commute.
-  Hence, we have $\wrg{\rst{f}\cpa} \djoin \wrg{\rst{h}\cpb} = \rst{f}\+\rst{h}$. Similarly,
-  $\wrg{\rst{g}\cpa} \djoin \wrg{\rst{k}\cpb} = \rst{g}\+\rst{k}$. By
-  Lemma~\ref{lem:arbitrary_disjoint_joins}, this means $\rst{f\+h} \cdperp \rst{g\+k}$.
-
-  Using a similar argument based on the diagram
-
-  \begin{equation}
-    \xymatrix@R+10pt@C+28pt {
-      A \ar[r]^{f\djoin g} \ar[d]_{\cpa} \ar@/^20pt/[rr]^f
-        & B \ar[r]^{f} \ar[d]_{\cpa}  & B \ar[d]_{\cpa}\\
-      A\+C  \ar[r]^{f\djoin g \+ h\djoin k}_{(3)}
-        & B\+D \ar[r]^{\rg{f}\+\rg{h}}_{(4)}   & B \+D \\
-      C  \ar[r]_{h\djoin k} \ar[u]_{\cpb} \ar@/_20pt/[rr]_h
-        & D\ar[r]_{\rg{h}} \ar[u]_{\cpb}  & D \ar[u]_{\cpb}
-    }\label{dia:sum_preserve_joins2}
-  \end{equation}
-  we can show $\wrg{f\+h} \cdperp \wrg{g\+k}$ and therefore $f\+h \cdperp g\+k$.
-
-  This allows us to form the map $(f\+h) \djoin (g\+k)$. Once again, as the objects are inverse
-  sums, the map at $(3)$ in Diagram~\ref{dia:sum_preserve_joins2} is unique.
-  However, we see that both $f\djoin g \+ h\djoin k$ and $(f\+h) \djoin (g\+k)$ fulfill this
-  requirement and hence they are equal.
-\end{proof}
-
-
-\begin{definition}\label{def:disjoint_sum_tensor_category}
-  An inverse category $\X$ with restriction zero, a disjointness relation $\cdperp$, a disjoint
-  join $\djoin$ and an disjoint sum tensor $\+$ is called an \emph{disjoint sum tensor category}.
-\end{definition}
-
-\begin{corollary}\label{cor:disjoint_sum_of_maps_is_disjoint_join}
-  In an disjoint sum tensor category, $f \+g$ is given by $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2$.
-\end{corollary}
-\begin{proof}
-  Recall that in the proof of Lemma~\ref{lem:disjoint_sum_is_unique} that we showed $\rst{\inv{i_1}}
-  \cdperp \rst{\inv{i_2}}$ and $\wrg{i_1}\perp \wrg{i_2}$. Since $\rst{x f} \le \rst{x}$, by
-  \axiom{Dis}{3} and \axiom{Dis}{7}, we know that $\inv{i_1} f i_1 \perp \inv{i_2} g i_2$ and we
-  can therefore form the disjoint join.
-\end{proof}
 
 
 %%% Local Variables:
