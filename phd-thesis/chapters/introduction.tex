@@ -53,7 +53,7 @@ Partiality was shown to have an algebraic treatment, restriction categories, by 
 \cite{cockett2002:restcategories1,cockettlack2003:restcategories2,cockettlack2004:restcategories3}. The
 algebraic treatment consists of an operator on maps, denoted by a bar over the map, such that for a
 map $f:A\to B$ in a category, then $\rst{f}:A\to A$ is an idempotent map in the category. Full
-details are given here in Section~\ref{sec:restriction_categories}.
+details are given here in Chapter~\ref{chap:restriction_categories}.
 
 In much of the research on reversibility, specific conditions are placed on some aspect of the
 computational model or reversible language to ensure ``programs'' in this model are reversible.
@@ -207,19 +207,22 @@ We assume a knowledge of basic algebra including definitions and properties of g
 fields, vector spaces and matrices. The reader may consult \cite{lang:algebra} if further details
 are needed.
 
-Chapter~\ref{chap:semantics_in_categories} introduces the various concepts that will be used
-throughout this thesis. The basics of category theory are reviewed in Section~\ref{sec:categories}
-followed by an introduction to restriction categories in
-Section~\ref{sec:restriction_categories}.
+Chapter~\ref{chap:introduction_to_categories} introduces the various categorical concepts that will
+be used throughout this thesis.
+
+Chapter~\ref{chap:restriction_categories} describes restriction categories, an algebraic way to
+axiomatize partiality of maps in categories. After introducing restrictions, we discuss joins,
+meets, ranges and partial map categories. We describe the product in restriction categories, and
+describe discrete Cartesian restriction categories, which will be used through the rest of this
+thesis. Various examples of types of restriction categories are given throughout the chapter.
+
 
 Chapter~\ref{cha:inverse_categories} introduces inverse categories and provides examples of inverse
 categories and restriction categories which are not inverse categories. We show that inverse categories with a restriction
 product collapses to a restriction pre-order, that is, all parallel maps agree wherever they are
 both defined. Then, Section~\ref{sec:inverse_products} introduces the concept of inverse products and
 explores the properties of the inverse product. Inverse categories with
-inverse products are called \emph{discrete inverse categories}. A major source of examples of discrete inverse
-categories is commutative Frobenius algebras. These are discussed in
-Section~\ref{sec:the_category_of_commutative_frobenius_algebras}.
+inverse products are called \emph{discrete inverse categories}.
 
 Chapter~\ref{chap:completing_a_discrete_inverse_category} then presents the construction of a
 Cartesian restriction category from a discrete inverse category.
@@ -245,6 +248,13 @@ Chapter~\ref{chap:disjoint_sum_tensors} shows how specific conditions on a symme
 tensor in an inverse category allow us to define both a disjointness relation and a disjoint join
 from that tensor. We conclude this chapter with Section~\ref{sec:disjointness_in_frobenius_algebras}
 which expands the example of commutative Frobenius algebras, giving a disjointness relation.
+
+A major source of examples of discrete inverse
+categories is commutative Frobenius algebras. These are discussed in
+Chapter~\ref{chap:commutative_frobenius_algebras}. In the chapter, we first provide
+a background on dagger categories and frobenius algebras. We then introduce the category of
+commutative Frobenius algebras and show that it is a discrete inverse category. Next, we show this
+category has a disjointness relation.
 
 Chapter~\ref{cha:matrix_categories} builds upon the previous chapters to introduce
 coproduct-like constructions into the inverse
