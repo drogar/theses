@@ -1,6 +1,11 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\section{Turing Categories} % (fold)
-\label{sec:turing_categories}
+\chapter{Turing Categories} % (fold)
+\label{chap:turing_categories}
+
+In this chapter, we review the definition and properties of a Turing category\cite{cockett-hostra08-intro-to-turing}
+\section{Definitions}
+\label{sec:turing_category_definitions}
+
 
 \begin{definition}[Turing category]\label{def:turing_category}
   Given \X is a cartesian restriction category:
@@ -60,16 +65,16 @@ $h$ is referred to as a \emph{code} of $f$.
 This allows us to move to the primary recognition criteria for Turing categories.
 
 \begin{theorem}\label{thm:turing_recognition}
-  A cartesian restriction category \C is a Turing category if and only if $\C$ has an object $T$
-  which every other object of \C is a retract and $T$ has a universal self-application map
+  A Cartesian restriction category \D is a Turing category if and only if $\T$ has an object $T$
+  which every other object of \D is a retract and $T$ has a universal self-application map
   $\bullet$, written as $T\times T \xrightarrow{\ \bullet\ }T$.
 \end{theorem}
 \begin{proof}
-  The ``only if'' portion follows immediately from setting $T$ to be the Turing object of $\C$ and
+  The ``only if'' portion follows immediately from setting $T$ to be the Turing object of $\D$ and
   $\bullet = \tur{T}{T}$.
 
   For the ``if'' direction, we need to construct the family of universal applications
-  $\txy : T\times X \to Y$ for each pair of objects $X,Y$ in \C.
+  $\txy : T\times X \to Y$ for each pair of objects $X,Y$ in \D.
 
   Let us choose pairs of maps that witness the retractions of $X, Y$ of $T$, that is:
   \[
@@ -96,8 +101,9 @@ fact there is no requirement that this is the only way to create a universal app
 for $T$.
 
 
+% chapter turing_categories (end)
 
-
-
-
-% section turing_categories (end)
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:

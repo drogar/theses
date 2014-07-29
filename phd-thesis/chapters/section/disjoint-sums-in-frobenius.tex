@@ -1,0 +1,175 @@
+\section{Disjoint sums in Frobenius algebras}
+\label{sec:disjoint-sums-in-frobenius-algebras}
+
+In the previous sections, we have shown that CFrob(\X) is a discrete inverse category, with a
+disjointness relation whenever \X is a symmetric monoidal category.
+
+We now show that if \X is an additive category, i.e., a symmetric monoidal category where the
+hom-sets are enriched in additive monoids, then CFrob(\X) will have a disjoint join and moreover, a
+disjoint sum.
+
+We begin by showing that given an additive category, we may form an equivalent category which has
+biproducts.
+
+\begin{lemma}\label{lem:axb_is_a_biproduct}
+  Suppose $\X$ is an additive symmetric monoidal category. If we have the diagram
+  \[
+      \xymatrix{
+      A\ar[r]^{\sigma_1} &X\ar@/^9pt/[l]^{\pi_1} \ar@/_9pt/[r]_{\pi_2} & B \ar[l]_{\sigma_2}
+    }
+  \]
+  with
+  \[
+    \sigma_1\pi_1 = 1_A,\quad\sigma_2\pi_2 = 1_B,\qquad \sigma_1\pi_2 = 0 = \sigma_2\pi_2
+  \]
+  and $\pi_1\sigma_1 + \pi_2\sigma_2 = 1$, then $X$ is a biproduct of $A$ and $B$.
+\end{lemma}
+
+\begin{corollary}\label{cor:functor_preserves_biproducts}
+  If $F:\X\to\Y$ is an additively enriched functor, then $F$ preserves all biproducts.
+\end{corollary}
+
+\begin{corollary}\label{cor:tensor_preserves_biproducts}
+  The functor $A\*\_:\X \to \X$ preserves biproducts.
+\end{corollary}
+
+Thus, if $\X$ is additively enriched, we may add biproducts by moving to the matrix category of
+$\X$, defined as:
+\category{Lists of the objects $[A_i]$ of $\X$}{Matrices of maps in $\X$, $[f_{i,
+    j}]:[A_i]\to[B_j]$}{The diagonal matrix $I$ ($f_{i,i} = 1_{A_i}$ and $f_{i,j} = 0, i \ne
+  j$)}{Matrix multiplication}
+
+Now, let us consider CFrob(\X) where \X is an additive symmetric monoidal category with
+biproducts. We know from Lemma~\ref{lem:cfrobperp_is_a_disjointness_relation} that
+\[
+\raisebox{40pt}{$f\perp g \iff$}\
+\begin{tikzpicture}
+\path node at (0,0) [nabla] (n1) {}
+node at (0,2.5) (start) {}
+node at (-.5,1) [map] (f) {$\scriptstyle f$}
+node at (.5,1) [map] (g) {$\scriptstyle g$}
+node at (0,2) [delta] (d) {};
+\draw [] (d) to (start);
+\draw [] (n1) to (0,-0.5);
+\draw [] (d) to[out=305,in=90] (g);
+\draw [] (d) to[out=235,in=90] (f);
+\draw [-] (f) to[out=270,in=125] (n1);
+\draw [-] (g) to[out=270,in=55] (n1);
+\end{tikzpicture}
+\ \raisebox{40pt}{$= 0.$}\
+\]
+
+We will now show that the biproduct is the disjoint join of any two disjoint maps.
+
+\begin{lemma}\label{lem:biproduct_is_the_disjoint_join_in_cfrobx}
+  Given \X is an  additive symmetric monoidal category with
+biproducts, and $f\perp g$, then $f\djoin g \definedas f+g$ is a disjoint join.
+\end{lemma}
+\begin{proof}
+  We need to show the four axioms of disjoint join from Definition~\ref{def:disjoint_join}.
+
+  \axiom{DJ}{1} : $f \le f \djoin g$ and $g \le f \djoin g$.
+  As $f+g = g+f$, we need only show the first part of the axiom. As $f\perp g$, we know $\rst{f}g=0$
+  by the definition of disjointness and therefore we have:
+  \[
+    \rst{f}(f+g) = \rst{f}f + \rst{f} g = f + 0 = f
+  \]
+  and thus $f \le f \djoin g$ and \axiom{DJ}{1} is true.
+
+  \axiom{DJ}{2}: $f \le h,\ g \le h$ and $f\perp g$ implies $f \djoin g \le h$.  We calculate
+  \[
+    \rst{f+g}h = (\rst{f}+\rst{g}) h = \rst{f}h + \rst{g} h = f + g
+  \]
+  giving us the required inequality and \axiom{DJ}{1} is true.
+
+  \axiom{DJ}{3}: Disjoint join is stable, i.e., $h(f \djoin g) = h f \djoin h g$. This is immediate
+  as $h(f+g) = hf + hg$.
+
+  \axiom{DJ}{4}: $\cdperp \{f, g, h\} \iff f \perp (g\djoin h)$. Consider the $\Longleftarrow$
+  direction first. We immediately have $g\perp h$ as we are able to form the disjoint join. By
+  \axiom{DJ}{1}, we have both $g \le g \djoin h$ and $h \le g\djoin h$ and therefore by
+  \axiom{Dis}{3}, $f \perp g$ and $f\perp h$. Thus the $\Longleftarrow$ direction is true.
+
+  For the $\implies$ direction, we compute
+  \[
+  \begin{tikzpicture}
+    \path node at (0,0) [nabla] (n1) {}
+    node at (0,2.5) (start) {}
+    node at (-.5,1) [map] (f) {$\scriptstyle f$}
+    node at (.5,1) [map] (g) {$\scriptstyle g+h$}
+    node at (0,2) [delta] (d) {};
+    \draw [] (d) to (start);
+    \draw [] (n1) to (0,-0.5);
+    \draw [] (d) to[out=305,in=90] (g);
+    \draw [] (d) to[out=235,in=90] (f);
+    \draw [-] (f) to[out=270,in=125] (n1);
+    \draw [-] (g) to[out=270,in=55] (n1);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$=$}\
+  \begin{tikzpicture}
+    \path node at (0,0) [nabla] (n1) {}
+    node at (0,2.5) (start) {}
+    node at (-.5,1) [map] (f) {$\scriptstyle f$}
+    node at (.5,1) [map] (g) {$\scriptstyle g$}
+    node at (0,2) [delta] (d) {};
+    \draw [] (d) to (start);
+    \draw [] (n1) to (0,-0.5);
+    \draw [] (d) to[out=305,in=90] (g);
+    \draw [] (d) to[out=235,in=90] (f);
+    \draw [-] (f) to[out=270,in=125] (n1);
+    \draw [-] (g) to[out=270,in=55] (n1);
+  \end{tikzpicture}
+  \raisebox{40pt}{$\,+\,$}
+  \begin{tikzpicture}
+    \path node at (0,0) [nabla] (n1) {}
+    node at (0,2.5) (start) {}
+    node at (-.5,1) [map] (f) {$\scriptstyle f$}
+    node at (.5,1) [map] (g) {$\scriptstyle h$}
+    node at (0,2) [delta] (d) {};
+    \draw [] (d) to (start);
+    \draw [] (n1) to (0,-0.5);
+    \draw [] (d) to[out=305,in=90] (g);
+    \draw [] (d) to[out=235,in=90] (f);
+    \draw [-] (f) to[out=270,in=125] (n1);
+    \draw [-] (g) to[out=270,in=55] (n1);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$= 0.$}\
+  \]
+  This gives us both directions and all of the axioms have been shown to be true, hence, the
+  biproduct is a disjoint join.
+
+\end{proof}
+
+
+Now that we have shown we have a disjoint join, our last remaining task is to add a disjoint sum.
+
+\begin{proposition}\label{prop:cfrobx_has_disjoint_sums}
+  Suppose $A$ and $B$ are Frobenius algebras in CFrob(\X). Then we define $A\+B$ to be the Frobenius
+  algebra on $A+B$ with the following maps:
+  \begin{align*}
+    \epsilon_{A\+B} &\definedas [\epsilon_A,\epsilon_B]:A+B \to I,\\
+    \Delta_{A\+B} & \definedas (\Delta_A i_1 + \Delta_B i_2):A+B\to A\*A+A\*B+B\*A+B\*B,
+  \end{align*}
+  noting that $A+B\to A\*A+A\*B+B\*A+B\*B \cong (A+B)\*(A+B)$.
+  Then $A\+B$ is a disjoint sum in CFrob(\X).
+\end{proposition}
+\begin{proof}
+  First, we must prove that $A\+B$ is actually a Frobenius algebra and therefore in CFrob(\X).
+  To do this, we must show the unit laws and the Frobenius condition hold for $A\+B$.
+
+  To show the comultiplication unit law, consider
+  \[
+     \xymatrix@C+20pt{
+       A \ar[r]^{\Delta} \ar[d]_{i_1} & A\*A \ar[d]^{i_1\*i_1} \ar@{=}[dr] \\
+       A+B \ar[r]^(.35){\Delta} \ar@{=}[ddr] &(A+B)\*(A+B) \ar[d]^{1\*\epsilon}
+          & A\*A \ar[l]^(.35){i_1\*i_1}  \ar[d]^{1\*\epsilon}\\
+       & (A+B)\*I \ar[d]^{\usl} & A\*I \ar[d]^{\usl} \ar[l]^{i_1\*1}\\
+       & A+B & A \ar[l]^{i_1}
+     }
+  \]
+
+\end{proof}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../phd-thesis"
+%%% End:

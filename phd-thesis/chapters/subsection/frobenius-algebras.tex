@@ -6,17 +6,27 @@ non-degenerate pairing operation. We will continue with the definitions that mak
 \begin{definition}\label{def:frobeniusalgebra}
   Given a symmetric monoidal category \cD, a \emph{Frobenius algebra} is an object $X$ of \cD and
   four maps, $\nabla :X\*X \to X$, $\eta: I \to X$, $\Delta: X\to X\* X$ and $\epsilon:X\to I$, with
-  the conditions that $(X,\nabla,e)$ forms a commutative monoid, $(X,\Delta, \epsilon)$ forms a
-  commutative comonoid and the diagram
+  the conditions that $(X,\nabla,\eta)$ forms a commutative monoid, $(X,\Delta, \epsilon)$ forms a
+  commutative comonoid and the diagrams
   \[
-    \xymatrix{
-      X\*X \ar[rr]^{X\*\Delta} \ar[dd]_{\Delta \* X} \ar[dr]^{\nabla}
-        && X\*X\*X \ar[dd]^{\nabla\*X}\\
+    \xymatrix@C-10pt{
+      X\*X \ar[rr]^{1\*\Delta} \ar[dd]_{\Delta \* 1} \ar[dr]^{\nabla}
+        && X\*X\*X \ar[dd]^{\nabla\*1}\\
       & X\ar[dr]^{\Delta}\\
-      X\*X\*X\ar[rr]_{X\*\nabla}  && X\*X
+      X\*X\*X\ar[rr]_{1\*\nabla}  && X\*X
+    }\quad
+    \xymatrix{
+      A \ar[r]^{\Delta} \ar@{=}[ddr] & A\*A \ar[d]^{\epsilon\*1} \\
+      & I\*A \ar[d]^{\usl}\\
+      & A
+    }\quad
+    \xymatrix{
+      A \ar[r]^{\inv{\usr}} \ar@{=}[ddr] & A\*I \ar[d]^{1\*\eta}\\
+      & A\*A \ar[d]^{\nabla} \\
+      & A
     }
   \]
-  commutes. The Frobenius algebra is \emph{separable} when $\Delta \nabla = 1_{X}$ and
+  all commute. The Frobenius algebra is \emph{separable} when $\Delta \nabla = 1_{X}$ and
   \emph{commutative} when $\Delta c_{X,X} = \Delta$. Note that separable is sometimes referred to as
   \emph{special}.
 \end{definition}
