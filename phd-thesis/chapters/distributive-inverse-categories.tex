@@ -309,7 +309,7 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
     &= f(1 \* \cpa) = f'
   \end{align*}
   and hence $f\xequiv{h}f'$ where $h = (1\*\cpa)$. Note that by the same reasoning we may also
-  create $f':A\to Y\*(D\+C)$ by setting $f' = g(1\*\cpb)$.
+  create $f':A\to Y\*(D\+C)$ by setting $f' = f(1\*\cpb)$.
   \item First note we have $\icpa f',\,\icpb g': A\+B \to Y\*(C\+D)$. In order to show  $\icpa f'
     \perp \icpb g'$, we will proceed by showing their restrictions and ranges are disjoint.
     As $\rst{\inv{\cpa}} \perp \rst{\inv{\cpb}}$ and $\rst{\inv{\cpa}f'} \le \rst{\inv{\cpa}}$ and
@@ -339,9 +339,10 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   Given \X is an distributive inverse category, then the category \Xt has co-products.
 \end{proposition}
 \begin{proof}
-  The tensor object, $A\+B$ in \X will become the co-product of $A, B$ in \Xt.
+  The tensor object $A\+B$ in \X will become the co-product of $A, B$ in \Xt.
 
-  The injection maps of the co-product are $i_1 =(\cpa \usr, 1)$ and $i_2 = (\cpb \usr, 1)$.
+  The injection maps of the co-product are $i_1 =(\cpa \inv{\usr}, 1)$ and
+  $i_2 = (\cpb \inv{\usr}, 1)$.
 
   Consider the following diagram in \Xt:
   \[
@@ -366,10 +367,10 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   Lemma~\ref{lem:maps_from_disjoint_sums_have_disjoint_equivalences}. Hence by that lemma we may
   revise Diagram~\ref{diag:pre-coproduct} as
   \begin{equation}
-    \xymatrix@R+10pt {
-      A \ar[d]^{\cpa} \ar[drrr]^{f'}\\
-      A\+B \ar[rrr]^(.4){\icpa f' \djoin \icpb g'} &&& Y\*(C\+D)\\
-      B \ar[u]^{\cpb} \ar[urrr]_{g'}\\
+    \xymatrix@R+20pt {
+      A \ar[dr]^{\cpa} \ar[drrrrr]^{f'}\\
+      &A\+B \ar[rrrr]^(.4){\icpa f' \djoin \icpb g'} &&&& Y\*(C\+D)\\
+      B \ar[ur]^{\cpb} \ar[urrrrr]_{g'}\\
     }\label{diag:pre-coproduct-with-common-map}
   \end{equation}
   where $f'$ and $g'$ are respectively equivalent to $f,g$.
