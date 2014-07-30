@@ -277,13 +277,11 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
 \begin{lemma}\label{lem:maps_from_disjoint_sums_have_disjoint_equivalences}
   In a distributive inverse category \X, the following hold:
   \begin{enumerate}[{(}i{)}]
-    \item Given $f : A \to Y\*C$, we can construct $f' : A \to Y \* (C\+D)$ for some object $D$ such
+    \item Given $f : A \to Y\*C$, we can construct $f' : A \to Y \* (C\+D)$  for some object $D$ such
       that $f \xequiv{} f'$.\label{lemitem:construct_f_prime}
-    \item Given $g : B \to Y\*D$, we can construct $g'' : B \to Y \* (C\+D)$ for some object $C$ such
-      that $g \xequiv{} g''$.\label{lemitem:construct_g_doubleprime}
-    \item Given $f : A \to Y \* C$, $g : A\to Y \* D$, then the $f', g''$ as constructed in
-      \ref{lemitem:construct_f_prime} and \ref{lemitem:construct_g_doubleprime} satisfies $\icpa f'
-      \perp \icpb g''$, where $\icpa f',\,\icpb g'': A\+B \to Y\*(C\+D)$.
+    \item Given $f : A \to Y \* C$, $g : A\to Y \* D$, then the $f' : A \to Y \* (C\+D)$,
+      $g' : B \to Y \* (C\+D)$ as constructed in  \ref{lemitem:construct_f_prime} satisfies $\icpa f'
+      \perp \icpb g'$.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -291,11 +289,9 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   \begin{enumerate}[{(}i{)}]
   \item Set $f' = f(1\*\cpa)$.
     To show $f\equiv f'$, we must first show their restriction is the same.
-    \begin{align*}
-      \rst{f(1\*\cpa)} &= \rst{f\rst{(1\*\cpa)}}\\
-      & = \rst{f 1}\\
-      &=  \rst{f}
-    \end{align*}
+    \[
+      \rst{f(1\*\cpa)} = \rst{f\rst{(1\*\cpa)}} = \rst{f 1} =  \rst{f}
+    \]
     Now we detail the mediating map between $f$ and $f'$:
     \[
     \xymatrix @C=25pt @R=25pt{
@@ -303,23 +299,21 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
       & & & Y \* (Y\* C) \ar@{.>}[dd]^{1\*1\*\cpa}\\
       A \ar[uurr]^f \ar[ddrr]_{f'} \\
       & & & Y \* Y\*(C\+ D) \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
-      && Y\*(C\+ D)\*X.
+      && Y\*(C\+ D).
     }
     \]
   To show this commutes, we primarily use that $\Delta\inv{\Delta} = 1$
   \begin{align*}
     f(\Delta\*1)&(1\*1\*\cpa)(\inv{\Delta}\*1) \\
     &= f(\Delta\*1)(\inv{\Delta} \* \cpa)\\
-    &= f(1 \* \cpa)\\
-    &= f'
+    &= f(1 \* \cpa) = f'
   \end{align*}
-  and hence $f\xequiv{h}f'$ where $h = (1\*\cpa)$.
-  \item For this item, we set $g'' = g(1\*\cpb)$. The proof that $g\xequiv{k}g''$, where
-    $k = (1\*\cpb)$ is done in the same way as the previous point.
-  \item In order to show  $\icpa f' \perp \icpb g''$, we will proceed by showing their restrictions
-    and ranges are disjoint.
+  and hence $f\xequiv{h}f'$ where $h = (1\*\cpa)$. Note that by the same reasoning we may also
+  create $f':A\to Y\*(D\+C)$ by setting $f' = g(1\*\cpb)$.
+  \item First note we have $\icpa f',\,\icpb g': A\+B \to Y\*(C\+D)$. In order to show  $\icpa f'
+    \perp \icpb g'$, we will proceed by showing their restrictions and ranges are disjoint.
     As $\rst{\inv{\cpa}} \perp \rst{\inv{\cpb}}$ and $\rst{\inv{\cpa}f'} \le \rst{\inv{\cpa}}$ and
-    $\rst{\inv{\cpb}g''} \le \rst{\inv{\cpb}}$, we immediately have
+    $\rst{\inv{\cpb}g'} \le \rst{\inv{\cpb}}$, we immediately have
     $\rst{\inv{\cpa}f'} \perp \rst{\inv{\cpb}g'}$.
 
     For the ranges, we have
@@ -331,14 +325,14 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
     \end{align*}
     and similarly
     \[
-      \wrg{\inv{\cpb} g''} \le \rst{(1\*\icpb)}.
+      \wrg{\inv{\cpb} g'} \le \rst{(1\*\icpb)}.
     \]
 
     Using Lemma~\ref{lem:disjointness_various}
     we know that $\rst{(\icpa)}\perp \rst{(\icpb)}$. From
     Corollary~\ref{cor:inverse_product_and_disjointness}
     we conclude that $\rst{(1\*\icpa)}\perp \rst{(1\*\icpb)}$ and giving us
-    $\wrg{\inv{\cpa}f'} \perp \wrg{\inv{\cpb}g''}$ and therefore $\inv{\cpa}f' \perp \inv{\cpb}g''$.
+    $\wrg{\inv{\cpa}f'} \perp \wrg{\inv{\cpb}g'}$ and therefore $\inv{\cpa}f' \perp \inv{\cpb}g'$.
   \end{enumerate}
 \end{proof}
 \begin{proposition}\label{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category}
@@ -374,40 +368,40 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   \begin{equation}
     \xymatrix@R+10pt {
       A \ar[d]^{\cpa} \ar[drrr]^{f'}\\
-      A\+B \ar[rrr]^(.4){\icpa f' \djoin \icpb g''} &&& Y\*(C\+D)\\
-      B \ar[u]^{\cpb} \ar[urrr]_{g''}\\
+      A\+B \ar[rrr]^(.4){\icpa f' \djoin \icpb g'} &&& Y\*(C\+D)\\
+      B \ar[u]^{\cpb} \ar[urrr]_{g'}\\
     }\label{diag:pre-coproduct-with-common-map}
   \end{equation}
-  where $f'$ and $g''$ are respectively equivalent to $f,g$.
+  where $f'$ and $g'$ are respectively equivalent to $f,g$.
 
   Lifting Diagram~\ref{diag:pre-coproduct-with-common-map} to \X, we see this corresponds to the
-  desired co-product diagram, where  $h$ in \Xt is the map $(\icpa f' \djoin \icpb g'', (C\+D))$.
+  desired co-product diagram, where  $h$ in \Xt is the map $(\icpa f' \djoin \icpb g', (C\+D))$.
 
   By construction, in \X, we have
   \[
-    \cpa (\icpa f' \djoin \cpa\icpb g'') = (\cpa\icpa f') \djoin (\cpa\icpb g'') = f' \djoin 0 = f'
+    \cpa (\icpa f' \djoin \cpa\icpb g') = (\cpa\icpa f') \djoin (\cpa\icpb g') = f' \djoin 0 = f'
   \]
   and
   \[
-    \cpb (\icpa f' \djoin \cpa\icpb g'') = g''.
+    \cpb (\icpa f' \djoin \cpa\icpb g') = g'.
   \]
   Hence, in \Xt, we have  $(i_1 \usr, 1) h = f$ and $(i_2 \usr, 1) h = g$.
 
   All that remains to be shown is that $h$ is unique.
 
   Suppose there is another $(k,E)$ in \Xt such that it satisfies the coproduct properties, i.e.,
-  that $i_1 (k,E) = (f',C\+D)$ and $i_2 (k,E) = (g'',C\+D)$. In \X, $k:A\+B \to Y \* E$ and we have
+  that $i_1 (k,E) = (f',C\+D)$ and $i_2 (k,E) = (g',C\+D)$. In \X, $k:A\+B \to Y \* E$ and we have
   \begin{align*}
     \cpa k &\xequiv{x} f'\quad\text{and}\\
-    \cpb k &\xequiv{y} g''
+    \cpb k &\xequiv{y} g'
   \end{align*}
   where the maps $x, y: Y\*E \to Y\*(C\+D)$ fulfill the respective equivalence diagrams.
 
-  The above gives us $\icpa\cpa k \xequiv{} \icpa f'$ and $\icpb\cpb k \xequiv{} \icpb g''$.
+  The above gives us $\icpa\cpa k \xequiv{} \icpa f'$ and $\icpb\cpb k \xequiv{} \icpb g'$.
   As we know that $\*$ preserves the disjoint join, and the equivalence diagrams consist of maps
   under $\*$, we now have:
   \begin{align*}
-    h&=\icpa f' \djoin \icpb g''\\
+    h&=\icpa f' \djoin \icpb g'\\
     &\xequiv{} \icpa\cpa k \djoin \icpb\cpb k\\
     &= (\icpa\cpa  \djoin \icpb\cpb) k\\
     &= 1 k = k.
@@ -429,11 +423,6 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   distributive restriction category.
 \end{proof}
 % chapter disjoint_sum_categories (end)
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "../phd-thesis"
-%%% End:
 
 %%% Local Variables:
 %%% mode: latex
