@@ -148,29 +148,38 @@ Now that we have shown we have a disjoint join, our last remaining task is to ad
   \X has the biproduct $+$. Then we define $A\+B$ to be the Frobenius
   algebra on $A+B$ with the following maps:
   \begin{align*}
-    \epsilon_{A\+B} &\definedas [\epsilon_A,\epsilon_B]:A+B \to I,\\
-    \Delta_{A\+B} & \definedas (\Delta_A i_1 + \Delta_B i_2):A+B\to A\*A+A\*B+B\*A+B\*B,
+    \epsilon_{A+B} &\definedas [\epsilon_A,\epsilon_B]:A+B \to I,\\
+    \eta_{A+B}&\definedas \<\eta_A,\eta_B\>:I\to A+B,\\
+    \Delta_{A+B} & \definedas (\Delta_A i_1 + \Delta_B i_2):A+B\to A\*A+A\*B+B\*A+B\*B,\\
+    \nabla_{A+B} & \definedas (\pi_1 \nabla_A + \pi_2 \nabla_B): (A\*A+A\*B)+(B\*A+B\*B) \to A+B,
   \end{align*}
   noting that $A\*A+A\*B+B\*A+B\*B \cong (A+B)\*(A+B)$.
   Then $A\+B$ is a disjoint sum in CFrob(\X).
 \end{proposition}
 \begin{proof}
+
   First, we must prove that $A\+B$ is actually a Frobenius algebra and therefore in CFrob(\X).
   To do this, we must show it is separable, the unit laws hold and the Frobenius condition hold for $A\+B$.
 
   For the requirement that it is separable, we have
-  \[
-    \xymatrix{
-      A\ar[r]^{\Delta} \ar[d]_{i_1} & A\*A \ar[d]^{i_1\*i_1} \ar@{=}[dr] \\
-       A+B \ar[r]^(.35){\Delta} \ar@{=}[dr] &(A+B)\*(A+B) \ar[d]^{\nabla}
-       & A\*A \ar[l]^(.35){i_1\*i_1}  \ar[d]^{\nabla}\\
-       & A+B & A. \ar[l]^{i_1}
-    }
-  \]
-  The outer path shows the separability of the Frobenius algebra $A$ and is what happens to the $A$
-  component in the inner path. There is a similar diagram where the outer path $A$s are replaced
-  with a $B$ and the $i_1$ with $i_2$. As these outer paths commute, they show that the inner path
-  commutes as each component of it commutes.
+  \begin{align*}
+    \Delta_{A+B}\nabla_{A+B}&= (\Delta_A i_1 + \Delta_B i_2) (\pi_1 \nabla_A + \pi_2 \nabla_B)\\
+    &=  (\Delta_A i_1 \pi_1 \nabla_A + \Delta_B i_2\pi_2 \nabla_B)\\
+    &=  (\Delta_A \nabla_A + \Delta_B \nabla_B)\\
+    &=  (1_A + 1_B) = 1_{A+B}
+  \end{align*}
+  % \[
+  %   \xymatrix{
+  %     A\ar[r]^{\Delta} \ar[d]_{i_1} & A\*A \ar[d]^{i_1\*i_1} \ar@{=}[dr] \\
+  %      A+B \ar[r]^(.35){\Delta} \ar@{=}[dr] &(A+B)\*(A+B) \ar[d]^{\nabla}
+  %      & A\*A \ar[l]^(.35){i_1\*i_1}  \ar[d]^{\nabla}\\
+  %      & A+B & A. \ar[l]^{i_1}
+  %   }
+  % \]
+  % The outer path shows the separability of the Frobenius algebra $A$ and is what happens to the $A$
+  % component in the inner path. There is a similar diagram where the outer path $A$s are replaced
+  % with a $B$ and the $i_1$ with $i_2$. As these outer paths commute, they show that the inner path
+  % commutes as each component of it commutes.
 
 
   To show the comultiplication unit law, consider
@@ -201,8 +210,52 @@ Now that we have shown we have a disjoint join, our last remaining task is to ad
      & & & A\*A \ar[u]_{i_1\*i_1}
     }
   \]
-  By the same reasoning as the previous two arguments, the diagram commutes and $A+B$ is a Frobenius algebra.
+  By the same reasoning as the previous two arguments, the diagram commutes and $A+B$ is a Frobenius
+  algebra.
+
+  Next, we must give maps in CFrob(\X) $i_1,i_2,x_1,x_2$ that satisfy the disjoint sum diagram,
+  \[
+    \xymatrix@C+10pt{
+      A\ar[r]^{i_1} &A+B\ar@/^9pt/[l]^{x_1} \ar@/_9pt/[r]_{x_2} & B \ar[l]_{i_2}
+    }
+  \]
+  where
+  \begin{enumerate}[{(}i{)}]
+    \item $i_1$ and $i_2$ are monic,
+    \item $\inv{i_1} = \xa$ and $\inv{i_2} = \xb$, and
+    \item $\inv{i_1}i_1 \perp \inv{i_2}i_2$ and $\inv{i_1}i_1 \djoin \inv{i_2}i_2 = 1_X$.
+  \end{enumerate}
+
+  Since $A+B$ is a biproduct and we are in an inverse category, setting $i_1,i_2$ to be the
+  injections of the biproduct and $\xa,\xb$ to be the projections will immediately give us this
+  diagram, provided all those maps are in CFrob(\X). Therefore we must show each of the injections
+  and projections are in CFrob(\X), that is, they must preserve $\Delta$ and $\nabla$.
+
+  Consider
+  \[
+     \xymatrix@C+40pt@R+10pt{
+       A \ar[d]_{\Delta} \ar[rr]^{i_1} & &A+B \ar[d]^{\Delta_{A+B}(=\Delta_A i_1 + \Delta_B i_1)}\\
+       A\*A \ar[r]_(.425){i_1} &A\*A+A\*B \ar[r]_(.375){i_1} & A\*A+A\*B+B\*A+B\*B.
+     }
+  \]
+  This commutes as $i_1(f+g) = fi_1$. Similarly, $i_2$ preserves $\Delta$.
+  Conversely,
+  \[
+    \xymatrix@C+40pt@R+10pt{
+       {A\*A+A\*B+B\*A+B\*B}  \ar[d]_{(\pi_1\nabla_A + \pi_2\nabla_B=)\nabla_{A+B}} \ar[r]^(.625){\pi_1}
+         &A\*A+A\*B \ar[r]^(.575){\pi_1} &A\*A\ar[d]^{\nabla_A}\\
+       A+B \ar[rr]_{\pi_1}& & A
+    }
+  \]
+  which shows that $\nabla$ is preserved by $\pi_1$ and $\pi_2$.
+
+  For the three conditions, as $i_1$ and $i_2$ are total maps, they are monic in the inverse
+  category. We know from above that $i_j\pi_j = 1$ and therefore $\inv{i_j} = \pi_j$. Additionally
+  we know that $\pi_1i_1 + \pi_2i_2 = 1$, but as $+$ is the disjoint join, this shows the third
+  condition is true and $A\+B$ is a disjoint sum.
 \end{proof}
+
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../../phd-thesis"
