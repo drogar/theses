@@ -63,7 +63,7 @@ We will now show that the biproduct is the disjoint join of any two disjoint map
 
 \begin{lemma}\label{lem:biproduct_is_the_disjoint_join_in_cfrobx}
   Given \X is an  additive symmetric monoidal category with
-biproducts, and $f\perp g$, then $f\djoin g \definedas f+g$ is a disjoint join.
+biproduct $+$, and $f\perp g$, then $f\djoin g \definedas f+g$ is a disjoint join.
 \end{lemma}
 \begin{proof}
   We need to show the four axioms of disjoint join from Definition~\ref{def:disjoint_join}.
@@ -144,18 +144,34 @@ biproducts, and $f\perp g$, then $f\djoin g \definedas f+g$ is a disjoint join.
 Now that we have shown we have a disjoint join, our last remaining task is to add a disjoint sum.
 
 \begin{proposition}\label{prop:cfrobx_has_disjoint_sums}
-  Suppose $A$ and $B$ are Frobenius algebras in CFrob(\X). Then we define $A\+B$ to be the Frobenius
+  Suppose $A$ and $B$ are Frobenius algebras in CFrob(\X) where
+  \X has the biproduct $+$. Then we define $A\+B$ to be the Frobenius
   algebra on $A+B$ with the following maps:
   \begin{align*}
     \epsilon_{A\+B} &\definedas [\epsilon_A,\epsilon_B]:A+B \to I,\\
     \Delta_{A\+B} & \definedas (\Delta_A i_1 + \Delta_B i_2):A+B\to A\*A+A\*B+B\*A+B\*B,
   \end{align*}
-  noting that $A+B\to A\*A+A\*B+B\*A+B\*B \cong (A+B)\*(A+B)$.
+  noting that $A\*A+A\*B+B\*A+B\*B \cong (A+B)\*(A+B)$.
   Then $A\+B$ is a disjoint sum in CFrob(\X).
 \end{proposition}
 \begin{proof}
   First, we must prove that $A\+B$ is actually a Frobenius algebra and therefore in CFrob(\X).
-  To do this, we must show the unit laws and the Frobenius condition hold for $A\+B$.
+  To do this, we must show it is separable, the unit laws hold and the Frobenius condition hold for $A\+B$.
+
+  For the requirement that it is separable, we have
+  \[
+    \xymatrix{
+      A\ar[r]^{\Delta} \ar[d]_{i_1} & A\*A \ar[d]^{i_1\*i_1} \ar@{=}[dr] \\
+       A+B \ar[r]^(.35){\Delta} \ar@{=}[dr] &(A+B)\*(A+B) \ar[d]^{\nabla}
+       & A\*A \ar[l]^(.35){i_1\*i_1}  \ar[d]^{\nabla}\\
+       & A+B & A. \ar[l]^{i_1}
+    }
+  \]
+  The outer path shows the separability of the Frobenius algebra $A$ and is what happens to the $A$
+  component in the inner path. There is a similar diagram where the outer path $A$s are replaced
+  with a $B$ and the $i_1$ with $i_2$. As these outer paths commute, they show that the inner path
+  commutes as each component of it commutes.
+
 
   To show the comultiplication unit law, consider
   \[
@@ -164,10 +180,28 @@ Now that we have shown we have a disjoint join, our last remaining task is to ad
        A+B \ar[r]^(.35){\Delta} \ar@{=}[ddr] &(A+B)\*(A+B) \ar[d]^{1\*\epsilon}
           & A\*A \ar[l]^(.35){i_1\*i_1}  \ar[d]^{1\*\epsilon}\\
        & (A+B)\*I \ar[d]^{\usl} & A\*I \ar[d]^{\usl} \ar[l]^{i_1\*1}\\
-       & A+B & A \ar[l]^{i_1}
+       & A+B & A. \ar[l]^{i_1}
      }
   \]
+  The outer path shows the unit law for the Frobenius algebra $A$ and is what happens to the $A$
+  component in the inner path. There is a similar diagram where the outer path $A$s are replaced
+  with a $B$ and the $i_1$ with $i_2$. As these outer paths commute, they show that the inner path
+  commutes as each component of it commutes.
 
+  For the Frobenius law, as we are in a commutative world, we need only show
+  $\nabla \Delta = (1\*\Delta)(\nabla\*1)$.
+  \[
+    \xymatrix@C+18pt{
+      &A\*A \ar@{=}[ld] \ar[rr]^{1\*\Delta} \ar[d]^{i_1\*i_1} && A\*A\*A  \ar[d]_{i_1\*i_1\*i_1} \ar@{=}[dr] \\
+      A\*A \ar[r]^(.45){i_1\*i_1}  \ar[dr]_{\nabla}
+         &\scriptstyle{(A+B)\*(A+B)} \ar[rr]^{1\*\Delta} \ar[dr]^{\nabla}
+         &&\scriptstyle{(A+B)\*(A+B)\*(A+B)}  \ar[dd]^{\nabla\*1} & A\*A\*A  \ar[l]^(.4){i_1\*i_1\*i_1}  \ar[dd]^{\nabla\*1}\\
+     & A \ar[r]^{i_1} \ar[ddrr]_{\Delta} & A+B \ar[dr]^{\Delta} \\
+     & & & \scriptstyle{(A+B)\*(A+B)} & A\*A  \ar[l]_(.45){i_1\*i_1} \ar@{=}[dl]\\
+     & & & A\*A \ar[u]_{i_1\*i_1}
+    }
+  \]
+  By the same reasoning as the previous two arguments, the diagram commutes and $A+B$ is a Frobenius algebra.
 \end{proof}
 %%% Local Variables:
 %%% mode: latex
