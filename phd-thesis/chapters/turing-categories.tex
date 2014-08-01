@@ -11,11 +11,11 @@ In this chapter, we review the definition and properties of a Turing category\ci
   Given \X is a cartesian restriction category:
   \begin{enumerate}
     \item For a map $\txy: A \times X \to Y$, a map $f:B\times X \to Y$ \emph{admits a $\txy$-index}
-      when there is a total $h:B\to A$ such that
+      when there is a total $\code{f}:B\to A$ such that
       \[
         \xymatrix@C+10pt@R+10pt{
           A\times X \ar[r]^{\txy} & Y \\
-          B\times X \ar@{.>}[u]^{h\times 1_X} \ar[ur]_f
+          B\times X \ar@{.>}[u]^{\code{f}\times 1_X} \ar[ur]_f
         }
       \]
       commutes.\label{defitem:turing_admit_txy_index}
@@ -28,10 +28,10 @@ In this chapter, we review the definition and properties of a Turing category\ci
   \end{enumerate}
 \end{definition}
 
-Note there is no requirement in the definition for the map $h$ to be unique. When $h$ is unique
+Note there is no requirement in the definition for the map $\code{f}$ to be unique. When $\code{f}$ is unique
 for a specific $\txy$, then that $\txy$ is called \emph{extensional}. In the case where the object
-$B$ is the terminal object, then the map $h$ is a point of $A$ (with $f = (h \times 1)\txy$) and
-$h$ is referred to as a \emph{code} of $f$.
+$B$ is the terminal object, then the map $\code{f}$ is a point of $A$ (with $f = (\code{f} \times 1)\txy$) and
+$\code{f}$ is referred to as a \emph{code} of $f$.
 
 \begin{definition}\label{def:turing_structure}
   Given $\T$ is a Turing category and $A$ is an object of \T,
@@ -46,23 +46,23 @@ $h$ is referred to as a \emph{code} of $f$.
 \end{definition}
 
 \begin{lemma}\label{lem:turing_object_is_retractable}
-  If \T is a Turing category with Turing object $A$, then every object $B$ in \T is a retract of
-  $A$.
+  If \T is a Turing category with Turing object $T$, then every object $B$ in \T is a retract of
+  $T$.
 \end{lemma}
 \begin{proof}
-  As $A$ is a Turing object, we have a diagram for $\tur{1}{B}$ and $\pi_0:B\times 1 \to B$:
+  As $T$ is a Turing object, we have a diagram for $\tur{1}{B}$ and $\pi_0:B\times 1 \to B$:
   \[
     \xymatrix@C+10pt@R+10pt{
-      A\times 1 \ar[r]^{\tur{1}{B}} & B \\
-      B\times 1 \ar@{.>}[u]^{h\times 1_X} \ar[ur]_{\pi_0}
+      T\times 1 \ar[r]^{\tur{1}{B}} & B \\
+      B\times 1. \ar@{.>}[u]^{\code{\pi_0}\times 1_1} \ar[ur]_{\pi_0}
     }
   \]
-  where $h$ is the $\tur{1}{B}$ index for $\pi_0$. Note we also have $u_r:B\to B\times 1$ is an
-  isomorphism and therefore we have $1_X = u_r \pi_0 = (u_r (h\times 1)) \tur{1}{X}$. Hence, we
-  have $((u_r (h\times 1)), \tur{1}{X}):B \retract A$.
+  Note we also have $u_r:B\to B\times 1$ is an
+  isomorphism and therefore we have $1_X = u_r \pi_0 = (u_r (\code{\pi_0}\times 1)) \tur{1}{X}$. Hence, we
+  have $((u_r (\code{\pi_0}\times 1)), \tur{1}{X}):B \retract T$.
 \end{proof}
 
-This allows us to move to the primary recognition criteria for Turing categories.
+This allows us to move to the various recognition criteria for Turing categories.
 
 \begin{theorem}\label{thm:turing_recognition}
   A Cartesian restriction category \D is a Turing category if and only if $\T$ has an object $T$
@@ -100,7 +100,65 @@ Note that different splittings (choices of $(m,r)$ pairs) would lead to differen
 fact there is no requirement that this is the only way to create a universal applicative family
 for $T$.
 
+There is one remaining set of criteria that also give us a Turing category:
 
+\begin{lemma}\label{lem:t_t_to_t_gives_a_turing_category}
+  A Cartesian restriction category \T is a Turing category if:
+  \begin{enumerate}[{(}i{)}]
+  \item $\T$ has an object $T$ which every other object of \D is a retract;
+  \item $T\times T$ has a map  $\circ$, written as $T\times T \xrightarrow{\ \circ\ }T$ and for all
+    $f:T\to T$ there exists a map, $\name{f}$ with  $\rst{\name{f}} = 1$ such that
+      \[
+        \xymatrix{
+          T\times T \ar[r]^{\circ} & T \\
+          T \ar[ur]_{f} \ar[u]^{\<\name{f},1\>}
+        }
+      \]
+    is a commutative diagram.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  See ?
+\end{proof}
+\section{Turing inverse categories}
+\label{sec:turing_inverse_categories}
+Now, we define Turing inverse categories. Essentially, a Turing inverse category is a discrete
+inverse category \X where $\Xt$ is a Turing category. However, we wish to give a more concrete
+definition of this.
+
+\begin{definition}\label{def:turing_inverse_category}
+  A discrete inverse category \X is a \emph{Turing inverse category} when there is an object $T$ in
+  \X with a map $\diamond :T\*T \to T\*T$ such that for every map $f:T \to T\*T$ there is a total map
+  $\icode{f}: T\to T$ such that $f \xequiv{k} \Delta(\icode{f}\*1)\diamond$, i.e., the diagram
+  \[
+    \xymatrix @C=20pt @R=20pt{
+      T\*T \ar[rr]^{\diamond} & & T \* T \ar@{.>}[dr]^{\Delta\* 1}\\
+      & & & T \* (T\* T) \ar@{.>}[dd]^{1\*k}\\
+      T \ar[uu]^{\Delta(\icode{f}\*1)} \ar[ddrr]_{f} \\
+      & & & T \* T\*T \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
+      && T\*T
+    }
+  \]
+  commutes for some $k$.
+\end{definition}
+
+\begin{lemma}\label{lem:turing_inverse_category_gives_a_turing_category}
+  When $\X$ is a Turing inverse category, $\Xt$ is a Turing category.
+\end{lemma}
+\begin{proof}
+  We must show that $T$ is a universal object in $\Xt$ (i.e., everything is a retract of $T$ and
+  that the diagram of Lemma~\ref{lem:t_t_to_t_gives_a_turing_category} is satisfied.
+
+  We note that the diagram of Definition~\ref{def:turing_inverse_category}, when raised to $\Xt$
+  translates to:
+  \[
+    \xymatrix@C+25pt@R+10pt{
+      T \times T \ar[r]^{(\diamond, T)} &T \\
+      T \ar[u]^{\<\icode{f},1\>} \ar[ur]_{(f, T)}
+    }
+  \]
+
+\end{proof}
 % chapter turing_categories (end)
 
 %%% Local Variables:

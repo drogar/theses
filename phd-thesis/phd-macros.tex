@@ -413,8 +413,6 @@
 \newcommand{\rg}[1]{\hat{#1}}
 \newcommand{\wrg}[1]{\widehat{#1}}
 
-\newcommand{\tur}[2]{\ensuremath{\tau_{{#1},{#2}}}}
-\newcommand{\txy}{\tur{X}{Y}}
 \newcommand{\why}{\ensuremath{\mathbf{?}}}
 %--------------------------------------------------------------------------------------
 % Notation for inverse categories
@@ -580,6 +578,16 @@
 \newtheorem*{slexercise}{Exercise}
 \newtheorem*{sllemma}{Lemma}
 
+
+%--------------------------------------------------------------------------------
+% Macros for Turing categories
+
+\newcommand{\code}[1]{\ensuremath{{}^\ulcorner\!\!#1^\urcorner}}
+\newcommand{\icode}[1]{\ensuremath{{}_\llcorner#1_{\!\lrcorner}}}
+\newcommand{\name}[1]{\ensuremath{#1_{\bullet}}}
+
+\newcommand{\tur}[2]{\ensuremath{\tau_{{#1},{#2}}}}
+\newcommand{\txy}{\tur{X}{Y}}
 
 %-------------------------------------------------------------------------------
 % Code environments for Verbatim package

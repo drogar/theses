@@ -398,42 +398,94 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   \end{align*}
   Since equivalence is a transitive relation, this means we have
   \begin{align*}
-    \cpa k &\xequiv{q_1} f\quad\text{and}\\
-    \cpb k &\xequiv{q_2} g.
+    f &\xequiv{q_1} \cpa k\quad\text{and}\\
+    g &\xequiv{q_2} \cpb k.
   \end{align*}
-  where the maps $q_1: Y\*E \to Y\*C$ and $q_2:Y\*E \to Y\*D$ fulfill the respective equivalence diagrams.
+  where the maps $q_1: Y\*C \to Y\*E$ and $q_2:Y\*D \to Y\*C$ fulfill the respective equivalence diagrams.
 
   Drawing this explicitly for $k, f$ and $q_1$,
   \[
     \xymatrix @C=20pt @R=20pt{
-      & & Y \* E \ar@{.>}[dr]^{\Delta\* 1}\\
-      & & & Y \* (Y\* E) \ar@{.>}[dd]^{1\*q_1}\\
-      A \ar[uurr]^{\cpa k} \ar[ddrr]_{f} \\
-      & & & Y \* Y\*C \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
-      && Y\*C.
+      & & Y \* C \ar@{.>}[dr]^{\Delta\* 1}\\
+      & & & Y \* (Y\* C) \ar@{.>}[dd]^{1\*q_1}\\
+      A \ar[uurr]^{f} \ar[ddrr]_{\cpa k} \\
+      & & & Y \* Y\*E \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
+      && Y\*E.
     }
   \]
-  Additionally, as $f' = f(1\*\cpa)$, we have $\cpa k \xequiv{q_1(1\*\cpa)} f'$. Similarly,
-  $\cpb k \xequiv{q_2(1\*\cpb)} g'$.
+  % Additionally, as $f' = f(1\*\cpa)$, we have $\cpa k \xequiv{q_1(1\*\cpa)} f'$. Similarly,
+  % $\cpb k \xequiv{q_2(1\*\cpb)} g'$.
 
-  Furthermore, as we may prepend equivalences with the same map, we may conclude
-  $\icpa\cpa k \xequiv{q_1(1\*\cpa)} \icpa f'$ and $\icpb\cpb k \xequiv{q_2(1\*\cpb)} \icpb g'$.
+  % Furthermore, as we may prepend equivalences with the same map, we may conclude
+  % $\icpa\cpa k \xequiv{q_1(1\*\cpa)} \icpa f'$ and $\icpb\cpb k \xequiv{q_2(1\*\cpb)} \icpb g'$.
 
 
-  As we have $\icpa f' \perp \icpb g'$, we have $\rst{\icpa f'} \perp \rst{\icpb g'}$ by
-  \axiom{Dis}{6}. By the definition of our equivalence relation, we therefore have
-  $\rst{\icpa\cpa k} \perp \rst{\icpb \cpb k}$ as equivalent maps have the equal restrictions. As
-  $\Delta \* 1$ is total, $\rst{\icpa\cpa k} = \rst{\icpa \cpa k (\Delta \*1)}$ and we may further
-  conclude   $\rst{\icpa\cpa k (\Delta \*1)} \perp \rst{\icpb \cpb k (\Delta \*1)}$.
+  % As we have $\icpa f' \perp \icpb g'$, we have $\rst{\icpa f'} \perp \rst{\icpb g'}$ by
+  % \axiom{Dis}{6}. By the definition of our equivalence relation, we therefore have
+  % $\rst{\icpa\cpa k} \perp \rst{\icpb \cpb k}$ as equivalent maps have the equal restrictions. As
+  % $\Delta \* 1$ is total, $\rst{\icpa\cpa k} = \rst{\icpa \cpa k (\Delta \*1)}$ and we may further
+  % conclude   $\rst{\icpa\cpa k (\Delta \*1)} \perp \rst{\icpb \cpb k (\Delta \*1)}$.
 
-  Then, following the same reasoning as in
-  Lemma~\ref{lem:maps_from_disjoint_sums_have_disjoint_equivalences}\ref{lemitem:constructed_are_disjoint},
-  we know that \[\wrg{1\*\cpa}\perp \wrg{1\*\cpb}.\] By
-  Lemma~\ref{lem:ordering_of_restriction_and_range}~\ref{lemitem:ordering_1} ($\wrg{f h} \le
-  \rg{h}$) and \axiom{Dis}{3}, we have \[\wrg{q_1(1\*\cpa)} \perp \wrg{q_2(1\*\cpb)}.\]
+  % Then, following the same reasoning as in
+  % Lemma~\ref{lem:maps_from_disjoint_sums_have_disjoint_equivalences}\ref{lemitem:constructed_are_disjoint},
+  % we know that \[\wrg{1\*\cpa}\perp \wrg{1\*\cpb}.\] By
+  % Lemma~\ref{lem:ordering_of_restriction_and_range}~\ref{lemitem:ordering_1} ($\wrg{f h} \le
+  % \rg{h}$) and \axiom{Dis}{3}, we have \[\wrg{q_1(1\*\cpa)} \perp \wrg{q_2(1\*\cpb)}.\]
 
-  We may then form the map $q_1(1\*\cpa) \tjdown q_2(1\*\cpb): Y\*E \to Y\*(C\+D)$.  NOT TRUE, NEED
-  Rst TO BE  $\perp$, WORK THIS PART OUT.
+  Now, we turn out attention to showing that $k \xequiv{} h = \icpa f' \djoin \icpb g'$. Consider the
+  diagram
+  \[
+    \xymatrix @C=25pt @R=20pt{
+      & & Y \* (C\+D) \ar@{.>}[dr]^{\Delta\* 1}\\
+      & & & Y \* (Y\* (C\+D)) \ar@{.>}[dd]^{t}\\
+      A \ar[uurr]^{\icpa f' \djoin \icpb g'} \ar[ddrr]_{k} \\
+      & & & Y \* Y\*E \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
+      && Y\*E.
+    }
+  \]
+
+  As we are in an inverse category, we know there is a map $t$ that makes this diagram commute,
+  namely $t = (\inv{\Delta}\* 1) \inv{(\icpa f' \djoin \icpb g')}k(\Delta \* 1)$. However, as this is
+  not in the form $1\*q$, we can not immediately conclude there is an equivalence.
+
+  Next, recalling Definition~\ref{def:up_triangle_and_down_triangle} consider
+  \begin{equation}
+    \xymatrix@C+0pt @R+20pt{
+      Y\*Y\*C\ar[rr]^{1\*1\*\cpa} \ar[drr]_{1\*q_1} &&B\+C   \ar@{.>}[d]|-{1\*q_1\tjup 1\*q_2}
+        && Y\*Y\*(C\+D) \ar[ll]_{1\*1\*\cpb} \ar[dll]^{1\*q_2}\\
+      &&Y\*E
+      }\label{diag:q1_q2_tjup}
+  \end{equation}
+  We know the map $1\*q_1\tjup 1\*q_2$ exists iff $\wrg{1\*q_1} \perp \wrg{1\*q_2}$. But, the map
+  \[
+    t = (\inv{\Delta}\* 1) \inv{(\icpa f' \djoin \icpb g')}k(\Delta \* 1)
+  \]
+  does make the diagram commute. We can see this as
+  \begin{align*}
+    (1\*1\*\cpa)(\inv{\Delta}\* 1)& \inv{(\icpa f' \djoin \icpb g')}k(\Delta \* 1)\\
+    &= (\inv{\Delta}\* 1) (1\*\cpa)\inv{(\icpa f' \djoin \icpb g')}k(\Delta \* 1)\\
+    &= (\inv{\Delta}\* 1) (1\*\cpa)\inv{(\icpa f(1\*cpa) \djoin \icpb g(1\*cpb))}k(\Delta \* 1)\\
+    &= (\inv{\Delta}\* 1) (1\*\cpa)((1\*\icpa) \inv{f}\cpa \djoin (1\*\icpb) \inv{g}\cpb) k (\Delta \* 1)\\
+    &= (\inv{\Delta}\* 1) ((1\*1) \inv{f}\cpa \djoin (1\*0) \inv{g}\cpb) k (\Delta \* 1)\\ % as Y\*0
+                                % Y\*0 = 0
+    &= (\inv{\Delta}\* 1) \inv{f} \cpa k(\Delta \* 1)\\
+    &= 1\*q_1
+  \end{align*}
+  and similarly for the other direction $1\*q_2$. Therefore, we have
+  $\wrg{1\*q_1} \perp \wrg{1\*q_2}$. Then,
+  \begin{align*}
+    \wrg{1\*q_1} \perp \wrg{1\*q_2}&\implies 1\*\rg{q_1} \perp 1\*\rg{q_2}\\
+    &\implies \Delta(1\*\rg{q_1})\inv{\Delta} \perp \Delta(1\*\rg{q_2})\inv{\Delta}\\
+    &\implies \rg{q_1}\Delta\inv{\Delta} \perp \rg{q_2}\Delta\inv{\Delta}\\
+    &\implies \rg{q_1} \perp \rg{q_2}.
+  \end{align*}
+
+  This means we may form the map $q_1\tjup q_2:Y\*(C\+D) \to Y\*E$. But then the map
+  $1\*(q_1\tjup  q_2)$  makes Diagram~\ref{diag:q1_q2_tjup} commute and therefore provides an
+  equivalence between $k$ and $\icpa f' \djoin \icpb g'$, meaning the coproduct is unique.
+
+  % We may then form the map $q_1(1\*\cpa) \tjdown q_2(1\*\cpb): Y\*E \to Y\*(C\+D)$.  NOT TRUE, NEED
+  % Rst TO BE  $\perp$, WORK THIS PART OUT.
 
 % By the
 %   universal property of disjointness,
@@ -445,19 +497,6 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
 %   \[\wrg{q_1(1\*\cpa)(\inv{\Delta}\*1)} \perp \wrg{q_2(1\*\cpb)(\inv{\Delta}\*1)}.\]
 
 %   We are now in a situation where we may apply \axiom{Dis}{7} OH CRUD I WENT THE WRONG WAY AROUND!!!!
-
-
-
-  \begin{align*}
-    h&=\icpa f' \djoin \icpb g'\\
-    &\xequiv{} \icpa\cpa k \djoin \icpb\cpb k\\
-    &= (\icpa\cpa  \djoin \icpb\cpb) k\\
-    &= 1 k = k.
-  \end{align*}
-
-  Hence, $h \xequiv{} k$ in $\X$ and $(h, C\+D) = (k,E)$ in \Xt, meaning
- %TODO: Show that the joint epicness of cpa, cpb give us a unique item.
- $A\+B$ in \X is the co-product of $A$ and $B$ in \Xt.
 \end{proof}
 
 \begin{corollary}\label{cor:xt_is_a_distributive_restriction_category}
