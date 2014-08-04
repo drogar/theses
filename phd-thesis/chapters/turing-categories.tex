@@ -1,9 +1,13 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\chapter{Turing Categories} % (fold)
+\chapter{Turing Categories and PCAs} % (fold)
 \label{chap:turing_categories}
 
-In this chapter, we review the definition and properties of a Turing category\cite{cockett-hostra08-intro-to-turing}
-\section{Definitions}
+In this chapter, we review the definition and properties of a Turing
+category\cite{cockett-hostra08-intro-to-turing} and Partial Combinatory Algebras. We show what
+structures are needed in a discrete inverse category \X so that the constructed category, \Xt, is a
+Turing category or has a PCA.
+
+\section{Turing Categories}
 \label{sec:turing_category_definitions}
 
 
@@ -159,6 +163,98 @@ definition of this.
   \]
 
 \end{proof}
+
+\section{Partial combinatory algebras}
+\label{sec:partial_combinatory_algebras}
+
+\begin{definition}\label{def:multi-self-map}
+  In a Cartesian restriction category, for any map $f:A\times A\to A$ define $\multiapp{f}{n}$
+  recursively by:
+  \begin{enumerate}[{(}i{)}]
+  \item $\multiapp{f}{1} = f$
+  \item $\multiapp{f}{n+1} = (f\times 1) \multiapp{f}{n}$
+  \end{enumerate}
+\end{definition}
+\begin{definition}\label{def:partial_combinatory_algebra}
+  A Cartesian restriction category has a \emph{partial combinatory algebra} when it has an object
+  $A$ together with:
+  \begin{enumerate}[{(}i{)}]
+  \item A partial map $\bullet:A\times A \to A$,
+  \item two total elements $1\xrightarrow{k}A$ and $1\xrightarrow{s}{A}$ which satisfy
+    \[
+      \xymatrix@C+25pt{
+        A\times A\times A \ar[r]^(.6){(\bullet\times 1)\bullet} & A\\
+        A\times A \ar[u]^{k\times1\times1} \ar[ur]_{\pi_1}
+      }\quad
+      \xymatrix{
+        A\times A\times A\times A \ar[r]^(.6){\multibullet{3}}&A\\
+        &A\times A \ar[u]_{\bullet}\\
+        A\times A\times A \ar[uu]^{s\times1\times1\times1} \ar[r]_(.4){\theta_A'}
+          & (A\times A) \times (A\times A) \ar[u]_{\bullet\times\bullet}
+      }
+    \]
+    and $A\times A \xrightarrow{s\times1\times1} A\times A\times A \xrightarrow{\bullet^2} A$ is total.
+  \end{enumerate}
+  In the above $\theta' = (1\times1\times\Delta)(1\times c \times 1)a$ where $a$ sets the
+  parenthesis as in the diagram.
+\end{definition}
+
+Of course, this is more familiarly given equationally:
+\[
+   (k\bullet x)\bullet y = x \qquad ((s\bullet x)\bullet y) \bullet z = (x\bullet z) \bullet
+   (y\bullet z)
+\]
+which are the equations of a combinatory algebra where partiality is not considered. As we have
+partiality, we want to consider when maps are total, thus we add the requirement that
+$s\bullet x\bullet y$ is a
+total map for any $x,y$.
+
+Note that if we have a Turing object $T$ in a Cartesian restriction category, it is a partial
+combinatory algebra. All we need to do is to actually define the element $k$ and $s$ by using the
+commuting diagrams of Definition~\ref{def:partial_combinatory_algebra}.
+
+Now, we want to consider what are the conditions required for an inverse category \X such that $\Xt$
+has a partial combinatory algebra.
+
+\begin{definition}\label{def:inverse_partial_combinatory_algebra}
+  A discrete inverse category \X has a \emph{partial combinatory pre-algebra} when there is an
+  object $A$ in \X with the following:
+  \begin{enumerate}[{(}i{)}]
+  \item A partial map $A\*A \xrightarrow{\bullet} A\*A$;
+  \item two total elements two total elements $1\xrightarrow{k}A$ and $1\xrightarrow{s}{A}$ and maps
+    $h_k:A\*A\*A\to A\*A, h_s:A\*A\*A\*A\to A\*A\*A\*A$ which satisfy
+    \[
+      \xymatrix@C+25pt{
+         & A\*(A\*A) \ar[dr]^{\Delta\*1}\\
+        A\* A\* A \ar[ur]^{(\bullet\* 1)(1\*c_\*)(1\*\bullet)} & & A\*A\*A\*A\ar[d]^{1\*h_k}\\
+        A\* A \ar[u]^{\inv{\usl}(k\*1\*1)} \ar[dr]_{1} & & A\*A\*A \ar[dl]^{\inv{\Delta}\*1}\\
+        & A\*A &
+      }
+    \]
+    i.e. $\inv{\usl}{k\*1\*1}(\bullet\* 1)(1\*c_\*)(1\*\bullet) \xequiv{h_k}1$ and
+    \[
+      \xymatrix{
+        & A\* A\* A\* A \ar[dr]^{\Delta\*1} \\
+        A\* A\* A\* A
+          \ar[ur]|{\bullet\*1(1\*c\*1)(1\*c)\bullet\*1(1\*c\*1)(\bullet\*1)}&
+           & A\* A\* A\* A\* A \ar[d]^{1\*h_s}\\
+        A\* A\* A \ar[u]^{\inv{\usl}(s\*1)} \ar[d]_(.4){\theta_A'}
+           & &A\*A\*A\*A\*A \ar[d]^{\inv{\Delta}\*1}\\
+        (A\* A) \* (A\* A) \ar[dr]_{\bullet\*\bullet(1\*c\*1)} &&A\*A\*A\*A \\
+         &(A\* A)\* A\* A \ar[ur]_{\bullet\*1}
+      }
+    \]
+    i.e.,
+    \begin{multline*}
+      \inv{\usl}(s\*1)\bullet\*1(1\*c\*1)(1\*c)\bullet\*1(1\*c\*1)(\bullet\*1) \xequiv{h_s} \\
+      \theta_A'(\bullet\*\bullet(1\*c\*1))(\bullet\*1)
+    \end{multline*}
+    and $A\* A \xrightarrow{s\*1\*1} A\* A\* A \xrightarrow{(\bullet\* 1)(1\*c_\*)(\bullet\*1)} A$ is total.
+  \end{enumerate}
+\end{definition}
+
+
+
 % chapter turing_categories (end)
 
 %%% Local Variables:
