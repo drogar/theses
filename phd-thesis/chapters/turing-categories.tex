@@ -3,7 +3,9 @@
 \label{chap:turing_categories}
 
 In this chapter, we review the definition and properties of a Turing
-category\cite{cockett-hostra08-intro-to-turing} and Partial Combinatory Algebras. We show what
+category\cite{cockett-hostra08-intro-to-turing} and Partial Combinatory Algebras. Because of the
+theorems of the earlier chapters, we will be able to transfer these ideas in a straightforward way
+from Cartesian restriction categories over to discrete inverse categories. We will show which
 structures are needed in a discrete inverse category \X so that the constructed category, \Xt, is a
 Turing category or has a PCA.
 
@@ -124,36 +126,37 @@ There is one remaining set of criteria that also give us a Turing category:
 \begin{proof}
   See ?
 \end{proof}
-\section{Turing inverse categories}
-\label{sec:turing_inverse_categories}
-Now, we define Turing inverse categories. Essentially, a Turing inverse category is a discrete
-inverse category \X where $\Xt$ is a Turing category. However, we wish to give a more concrete
+\section{Inverse Turing categories}
+\label{sec:inverse_turing_categories}
+Now, we define inverse Turing categories. Essentially, an inverse Turing category is a discrete
+inverse category \X where $\Xt$ is a Turing category. Let us proceed with a more concrete
 definition of this.
 
-\begin{definition}\label{def:turing_inverse_category}
-  A discrete inverse category \X is a \emph{Turing inverse category} when there is an object $T$ in
+\begin{definition}\label{def:inverse_turing_category}
+  A discrete inverse category \X is an \emph{inverse Turing category} when there is an object $T$ in
   \X with a map $\diamond :T\*T \to T\*T$ such that for every map $f:T \to T\*T$ there is a total map
-  $\icode{f}: T\to T$ such that $f \xequiv{k} \Delta(\icode{f}\*1)\diamond$, i.e., the diagram
+  $\icode{f}: I\to T$ and a map $h_f:T\*T \to T\*T$ such that $f \xequiv{h_f}
+  \inv{\usl}(\icode{f}\*1)\diamond$, i.e., the diagram
   \[
     \xymatrix @C=20pt @R=20pt{
-      T\*T \ar[rr]^{\diamond} & & T \* T \ar@{.>}[dr]^{\Delta\* 1}\\
-      & & & T \* (T\* T) \ar@{.>}[dd]^{1\*k}\\
-      T \ar[uu]^{\Delta(\icode{f}\*1)} \ar[ddrr]_{f} \\
+      & & T \* T \ar@{.>}[dr]^{\Delta\* 1}\\
+      &T\*T \ar[ur]^{\diamond} & & T \* (T\* T) \ar@{.>}[dd]^{1\*h_f}\\
+      T \ar[ur]^{\inv{\usl}(\icode{f}\*1)} \ar[ddrr]_{f} \\
       & & & T \* T\*T \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
       && T\*T
     }
   \]
-  commutes for some $k$.
+  commutes.
 \end{definition}
 
-\begin{lemma}\label{lem:turing_inverse_category_gives_a_turing_category}
-  When $\X$ is a Turing inverse category, $\Xt$ is a Turing category.
-\end{lemma}
+\begin{theorem}\label{thm:inverse_turing_category_gives_a_turing_category}
+  When $\X$ is an inverse Turing category, $\Xt$ is a Turing category.
+\end{theorem}
 \begin{proof}
   We must show that $T$ is a universal object in $\Xt$ (i.e., everything is a retract of $T$ and
   that the diagram of Lemma~\ref{lem:t_t_to_t_gives_a_turing_category} is satisfied.
 
-  We note that the diagram of Definition~\ref{def:turing_inverse_category}, when raised to $\Xt$
+  We note that the diagram of Definition~\ref{def:inverse_turing_category}, when raised to $\Xt$
   translates to:
   \[
     \xymatrix@C+25pt@R+10pt{
@@ -167,14 +170,14 @@ definition of this.
 \section{Partial combinatory algebras}
 \label{sec:partial_combinatory_algebras}
 
-\begin{definition}\label{def:multi-self-map}
+\begin{notation}\label{not:multi-self-map}
   In a Cartesian restriction category, for any map $f:A\times A\to A$ define $\multiapp{f}{n}$
   recursively by:
   \begin{enumerate}[{(}i{)}]
   \item $\multiapp{f}{1} = f$
   \item $\multiapp{f}{n+1} = (f\times 1) \multiapp{f}{n}$
   \end{enumerate}
-\end{definition}
+\end{notation}
 \begin{definition}\label{def:partial_combinatory_algebra}
   A Cartesian restriction category has a \emph{partial combinatory algebra} when it has an object
   $A$ together with:
@@ -214,43 +217,96 @@ combinatory algebra. All we need to do is to actually define the element $k$ and
 commuting diagrams of Definition~\ref{def:partial_combinatory_algebra}.
 
 Now, we want to consider what are the conditions required for an inverse category \X such that $\Xt$
-has a partial combinatory algebra.
+has a partial combinatory algebra. First, we must alter the meaning of the notation
+$\multiapp{f}{n}$ when in a discrete inverse category.
+
+\begin{notation}\label{not:multi-self-map}
+  In a discrete inverse category, for any map $f:A\* A\to A\*A$ where $A$ is a universal object
+  (i.e., every object is a retract of $A$) define $\multiapp{f}{n}$
+  recursively by:
+  \begin{enumerate}[{(}i{)}]
+  \item
+    \[
+       \raisebox{12pt}{$\multiapp{f}{1}:A\*A \to A\*A =f =\ $}
+       \begin{tikzpicture}
+         \node [style=nothing] (s1) at (0,1) {};
+         \node [style=nothing] (s2) at (.5,1) {};
+         \node [style=map] (bullet1) at (.25,.5) {$\scriptstyle f$};
+         \node [style=nothing] (e1) at (0,0) {};
+         \node [style=nothing] (e2) at (.5,0) {};
+         \draw [] (s1) to[out=270,in=125] (bullet1);
+         \draw [] (s2) to[out=270,in=55] (bullet1);
+         \draw [] (bullet1) to[out=235,in=90] (e1);
+         \draw [] (bullet1) to[out=305,in=90] (e2);
+       \end{tikzpicture}
+    \]
+  \item
+    \[
+       \raisebox{35pt}{$\multiapp{f}{n+1}:\*_{n+2}A \to A\*A =\ $}
+       \begin{tikzpicture}
+         \node [style=nothing] (s1) at (0,2.5) {};
+         \node [style=nothing] (s2) at (.5,2.5) {};
+         \node [style=nothing] (s3) at (1,2.5) {};
+         \node [style=map] (bullet1) at (.25,1.75) {$\scriptstyle \multiapp{f}{n}$};
+         \node [style=map] (bullet2) at (.25,1) {$\scriptstyle f$};
+         \node [style=retract] (r1) at (.5,.4) {};
+         \node [style=nothing] (e1) at (0,0) {};
+         \node [style=nothing] (e2) at (.5,0) {};
+         \draw [] (s1) to[out=270,in=125] (bullet1);
+         \draw [] (s2) to[out=270,in=55] (bullet1);
+         \draw [] (s3) to[out=270,in=55] (bullet2);
+         \draw [] (bullet1) to[out=235,in=125] (bullet2);
+         \draw [] (bullet1) to[out=305,in=55] (r1);
+         \draw [] (bullet2) to[out=305,in=125] (r1);
+         \draw [] (bullet2) to[out=235,in=90] (e1);
+         \draw [] (r1) to[out=270,in=90] (e2);
+       \end{tikzpicture}
+    \]
+  \end{enumerate}
+  In the above, the left pointing triangle, \begin{tikzpicture}\node [style=retract] at
+    (0,0){};\end{tikzpicture}, signifies the section from $A\*A \to A$ such that $A\*A$ is a retract
+  of $A$.
+\end{notation}
+
+
 
 \begin{definition}\label{def:inverse_partial_combinatory_algebra}
-  A discrete inverse category \X has a \emph{partial combinatory pre-algebra} when there is an
-  object $A$ in \X with the following:
-  \begin{enumerate}[{(}i{)}]
-  \item A partial map $A\*A \xrightarrow{\bullet} A\*A$;
-  \item two total elements two total elements $1\xrightarrow{k}A$ and $1\xrightarrow{s}{A}$ and maps
-    $h_k:A\*A\*A\to A\*A, h_s:A\*A\*A\*A\to A\*A\*A\*A$ which satisfy
+  A discrete inverse category \X has a \emph{inverse partial combinatory algebra} when there is a
+  universal object $A$ in \X with a map $A\*A \xrightarrow{\bullet} A\*A$ and two total
+  elements:
+  \[
+      1\xrightarrow{k}A \qquad 1\xrightarrow{s}{A}
+  \]
+  and maps
+    $h_k:A\*A\to A\*A, h_s:A\*A\to A\*A$ which satisfy
     \[
-      \xymatrix@C+25pt{
-         & A\*(A\*A) \ar[dr]^{\Delta\*1}\\
-        A\* A\* A \ar[ur]^{(\bullet\* 1)(1\*c_\*)(1\*\bullet)} & & A\*A\*A\*A\ar[d]^{1\*h_k}\\
-        A\* A \ar[u]^{\inv{\usl}(k\*1\*1)} \ar[dr]_{1} & & A\*A\*A \ar[dl]^{\inv{\Delta}\*1}\\
-        & A\*A &
+      \xymatrix@C+15pt{
+         && A\*A \ar@{.>}[dr]^{\Delta\*1}\\
+        &A\* A\* A \ar[ur]^{\multibullet{2}} & & A\*A\*A\ar@{.>}[dd]^{1\*h_k}\\
+        A\* A \ar[ur]^{\inv{\usl}(k\*1\*1)} \ar[ddrr]_{1} && &\\
+         && & A\*A\*A \ar@{.>}[dl]^{\inv{\Delta}\*1}\\
+        && A\*A &
       }
     \]
-    i.e. $\inv{\usl}{k\*1\*1}(\bullet\* 1)(1\*c_\*)(1\*\bullet) \xequiv{h_k}1$ and
+    i.e. $\inv{\usl}(k\*1\*1)\multibullet{2} \xequiv{h_k}1$ and
     \[
       \xymatrix{
-        & A\* A\* A\* A \ar[dr]^{\Delta\*1} \\
-        A\* A\* A\* A
-          \ar[ur]|{\bullet\*1(1\*c\*1)(1\*c)\bullet\*1(1\*c\*1)(\bullet\*1)}&
-           & A\* A\* A\* A\* A \ar[d]^{1\*h_s}\\
-        A\* A\* A \ar[u]^{\inv{\usl}(s\*1)} \ar[d]_(.4){\theta_A'}
-           & &A\*A\*A\*A\*A \ar[d]^{\inv{\Delta}\*1}\\
-        (A\* A) \* (A\* A) \ar[dr]_{\bullet\*\bullet(1\*c\*1)} &&A\*A\*A\*A \\
-         &(A\* A)\* A\* A \ar[ur]_{\bullet\*1}
+        &&& A\* A \ar@{.>}[dr]^{\Delta\*1} \\
+        & &  && A\* A\* A \ar@{.>}[dddd]^{1\*h_s}\\
+        &A\* A\* A\* A
+          \ar[uurr]^{\multibullet{3}}\\
+        A\* A\* A \ar[ur]^{\inv{\usl}(s\*1)} \ar[dr]_(.4){\theta_A'}\\
+        &(A\* A) \* (A\* A) \ar[dr]|{(\bullet\*\bullet)(1\*c\*1)(1\*1\*\retract)} \\
+        & &A\* A\* A\ar[dr]_{(\bullet\*1)(1\*\retract)}& &A\*A\*A \ar@{.>}[dl]^{\inv{\Delta}\*1}\\
+        &&&A\*A \\
       }
     \]
     i.e.,
-    \begin{multline*}
-      \inv{\usl}(s\*1)\bullet\*1(1\*c\*1)(1\*c)\bullet\*1(1\*c\*1)(\bullet\*1) \xequiv{h_s} \\
-      \theta_A'(\bullet\*\bullet(1\*c\*1))(\bullet\*1)
-    \end{multline*}
-    and $A\* A \xrightarrow{s\*1\*1} A\* A\* A \xrightarrow{(\bullet\* 1)(1\*c_\*)(\bullet\*1)} A$ is total.
-  \end{enumerate}
+    \[
+      \inv{\usl}(s\*1)\multibullet{3} \xequiv{h_s}
+      \theta_A'(\bullet\*\bullet)(1\*c\*1)(1\*1\*\retract)(\bullet\*1)(1\*\retract)
+    \]
+    and $I\*A\* A \xrightarrow{s\*1\*1} A\* A\* A \xrightarrow{\multibullet{2}} A\*A$ is total.
 \end{definition}
 
 
