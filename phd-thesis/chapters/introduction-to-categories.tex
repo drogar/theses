@@ -201,10 +201,14 @@ precise, we provide some definitions.
 For example,   $P(f:A \to B) = \exists h : B \to A. h f = 1_A$ expresses that $f$ is a retraction.
 
 \begin{definition}\label{def:functor_preserving_and_reflecting_a_property}
-  A functor $F$ \emph{preserves} the property $P$ over maps $f_i$ and objects $A_j$ when
-  $P(f_1,\ldots,f_n, A_1,\ldots,A_m)$ implies $P(F(f_1),\ldots,F(f_n), F(A_1),\ldots,F(A_m))$.
-  A functor $F$ \emph{reflects} the property $P$ over maps $f_i$ and objects $A_j$ when
-  $P(F(f_1),\ldots,F(f_n), F(A_1),\ldots,F(A_m))$ implies $P(f_1,\ldots,f_n, A_1,\ldots,A_m)$.
+  A functor $F$ \emph{preserves} the property $P$ over maps $f_i$ and objects $A_j$ when:
+  \[
+     P(f_1,\ldots,f_n, A_1,\ldots,A_m) \implies P(F(f_1),\ldots,F(f_n), F(A_1),\ldots,F(A_m)).
+  \]
+  A functor $F$ \emph{reflects} the property $P$ over maps $f_i$ and objects $A_j$ when:
+  \[
+    P(F(f_1),\ldots,F(f_n), F(A_1),\ldots,F(A_m)) \implies P(f_1,\ldots,f_n, A_1,\ldots,A_m).
+  \]
 \end{definition}
 
 For example, all functors preserve the properties of being an idempotent or a retraction or section,
