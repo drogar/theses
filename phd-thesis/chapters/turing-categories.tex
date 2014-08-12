@@ -3,9 +3,10 @@
 \label{chap:turing_categories}
 
 In this chapter, we review the definition and properties of a Turing
-category\cite{cockett-hostra08-intro-to-turing} and Partial Combinatory Algebras. Because of the
-theorems of the earlier chapters, we will be able to transfer these ideas in a straightforward way
-from Cartesian restriction categories over to discrete inverse categories. We will show which
+category and Partial Combinatory
+Algebras\cite{cockett-hostra08-intro-to-turing,cockett2010:categories-and-computability}. Because of
+the theorems of the earlier chapters, we will be able to transfer these ideas in a straightforward
+way from Cartesian restriction categories over to discrete inverse categories. We will show which
 structures are needed in a discrete inverse category \X so that the constructed category, \Xt, is a
 Turing category or has a PCA.
 
@@ -68,11 +69,11 @@ $\name{f}$ is referred to as a \emph{code} of $f$.
   have $((u_r (\name{\pi_0}\times 1)), \tur{1}{X}):B \retract T$.
 \end{proof}
 
-This allows us to move to the various recognition criteria for Turing categories.
+This allows for various recognition criteria for Turing categories.
 
 \begin{theorem}\label{thm:turing_recognition}
   A Cartesian restriction category \D is a Turing category if and only if $\T$ has an object $T$
-  which every other object of \D is a retract and $T$ has a universal self-application map
+  for which every other object of \D is a retract and $T$ has a universal self-application map
   $\bullet$, written as $T\times T \xrightarrow{\ \bullet\ }T$.
 \end{theorem}
 \begin{proof}
@@ -106,18 +107,18 @@ Note that different splittings (choices of $(m,r)$ pairs) would lead to differen
 fact there is no requirement that this is the only way to create a universal applicative family
 for $T$.
 
-There is one remaining set of criteria that also give us a Turing category:
+There is another criteria that also gives a Turing category:
 
 \begin{lemma}\label{lem:t_t_to_t_gives_a_turing_category}
   A Cartesian restriction category \T is a Turing category if:
   \begin{enumerate}[{(}i{)}]
-  \item $\T$ has an object $T$ which every other object of \D is a retract;
-  \item $T\times T$ has a map  $\circ$, written as $T\times T \xrightarrow{\ \circ\ }T$ and for all
-    $f:T\to T$ there exists a map, $\code{f}$ with  $\rst{\code{f}} = 1$ such that
+  \item $\T$ has an object $T$ for which every other object of \D is a retract;
+  \item $T\times T$ has a map  $T\times T \xrightarrow{\ \circ\ }T$ and for all
+    $f:T\to T$ there exists an element, $\code{f}:1\to T$ (which is total) such that
       \[
         \xymatrix{
           T\times T \ar[r]^{\circ} & T \\
-          T \ar[ur]_{f} \ar[u]^{\<\code{f},1\>}
+          T \ar[ur]_{f} \ar[u]^{\<!\code{f},1\>}
         }
       \]
     is a commutative diagram.
@@ -137,19 +138,24 @@ There is one remaining set of criteria that also give us a Turing category:
   \]
   commutes.
 
-  Let $(m_B,r_B):B\retract T$. Then, consider
+  Let $(m,r):T\times T\retract T$. Then, consider
   \[
     \xymatrix@C+15pt{
-     T\times T & T\times T \ar[rr]^{\circ} && T \\
-      B\times T \ar[u]^{m_B\<\code{(r_Bf)},1\>} \ar[r]_{m_B\times ?}
-       & T \ar[r]_{r_B \times ?} \ar@{.>}[u]_{\<\code{(r_B f)},1\>}
-       & B\times T. \ar[ur]_{f}
+     T\times T \ar[r]^{r\times 1} & T\times T\times T \ar[r]^{1\times m} &T\times T \ar[rr]^{\circ}
+       && T \\
+     T\times T\times T \ar[u]^{m\times 1} \ar@{=}[ur]\\
+     T\times T \ar@{.>}[u]^{\<\code{(rf)},\pi_0,\pi_1\>} \ar@{.>}[uur]_{\<\code{(rf)},\pi_0,\pi_1\>}
+       \ar[rr]_{m} \ar@{=}@/_20pt/[rrr]
+       & & T \ar[r]_{r} \ar@{.>}[uu]_{\<\code{(rf)},1\>} &T\times T. \ar[uur]_{f}
     }
   \]
-  The rightmost quadrilateral bounded by $T\times T,\ T,\ B\times T$ and $T$ commutes by assumption
-  of this lemma. The leftmost triangle commutes as it is simple composition. As $m_Br_B$ is $1$, we
-  see that $\circ$ is a universal self application for $T$ and $\name{f} =
-  m_B\<\code{(r_Bf)},1\>$. NOT QUITE! DOES NOT HAVE RIGHT FORM!!!
+  The rightmost quadrilateral commutes by assumption of this lemma. The middle quadrilateral
+  commutes due to the properties of the product map and $\pi_0$ and $\pi_1$. The top left triangle
+  commutes as $m r = 1$ and the remaining triangle has the same map on both dotted lines.
+
+  Thus, we may conclude that $\bullet \definedas (r \times 1)(1\times m) \circ$ and
+  $\name{f}\definedas \<!\code{f},1\> m$ satisfy the requirements of
+  Theorem~\ref{thm:turing_recognition} and therefore $T$ is a Turing object in a Turing category.
 \end{proof}
 \section{Inverse Turing categories}
 \label{sec:inverse_turing_categories}
