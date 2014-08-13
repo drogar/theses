@@ -1637,8 +1637,338 @@ subcategory which is a discrete inverse category.
 % subsection the_inverse_subcategory_of_a_graphic_cartesian_restriction_category (end)
 
 % section inverse_products (end)
+\section{The ``slice'' construction on a discrete inverse category}
+\label{sec:slice_construction_on_discrete_inverse_category}
 
+In an inverse category, we will be interested in a specific class of maps, which will be used in
+future chapters to connect discrete inverse categories to discrete Cartesian restriction
+categories. Throughout this section, we will assume $\X$ is a discrete inverse category.
 
+In a discrete inverse category, suppose we are given a map $h:A\*B \to A\*C$. We define
+$\dmap{h}:A\*B \to A\*C$ as the composite $(\Delta\*1)(1\*h)(\inv{\Delta}\*1)$. We want to consider
+those maps where $h = \dmap{h}$. In our graphical language, this means
+\[
+      \ \raisebox{27pt}{$h=$ }
+        \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (.6,3.5) (start2) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.35,2.5) [map] (h) {$\scriptstyle h$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \node at (.6,1.5) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (start2) to[out=270,in=55] (h);
+        \draw [] (d1) to[out=305,in=125] (h);
+        \draw [] (d1) to[out=235,in=125] (n1);
+        \draw (h) to[out=235,in=55] (n1);
+        \draw (h) to[out=305,in=90] (end2);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      \ \raisebox{27pt}{.}
+\]
+
+\begin{lemma}\label{lem:delta_nabla_maps_are_closed}
+  In a discrete inverse category \X, for a fixed object $A$, the set of maps $h:A\*Y\to A\* Z$ where
+  $h=\dmap{h}$ is:
+  \begin{enumerate}[{(}i{)}]
+  \item Closed under partial inversion;\label{lemitem:delta_nabla_1}
+  \item closed under composition;\label{lemitem:delta_nabla_2}
+  \item contains all maps of the form $1\*k$ where $k:Y\to Z$;\label{lemitem:delta_nabla_3}
+  \item contains $\Delta:A\*B \to A\*B\*A\*B$.\label{lemitem:delta_nabla_4}
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  For~\ref{lemitem:delta_nabla_1}, if $h = \dmap{h}$, then
+  \begin{multline*}
+    \inv{h} = \inv{((\Delta\*1)(1\*h)(\inv{\Delta}\*1))} =\\
+      \inv{(\inv{\Delta}\*1)}\inv{(1\*h)}\inv{(\Delta\*1)} =
+        (\Delta\*1)(1\*\inv{h})(\inv{\Delta}\*1).
+  \end{multline*}
+
+  To show ~\ref{lemitem:delta_nabla_2}, we compose $h$ and $g$:
+  \[
+    \raisebox{45pt}{$hg=$ }
+        \begin{tikzpicture}
+          \node at (0.25,4) (s1) {};
+          \node at (.5,4) (s2) {};
+          \node at (0.25,3.5) [delta] (d2) {};
+          \node at (.65,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.25, 2.5) [nabla] (n2) {};
+          \node at (0.25,2) [delta] (d3) {};
+          \node at (.65,1.5) [map] (g) {$\scriptstyle \ g\ $};
+          \node at (0.25, 1) [nabla] (n3) {};
+          \node at (0.25,0.5) (end1) {};
+          \node at (.5,0.5) (end2) {};
+          \draw [] (s1) to (d2);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (h);
+          \draw [] (d2) to[out=235,in=125] (n2);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (g);
+          \draw (n2) to (d3);
+          \draw [] (d3) to[out=305,in=125] (g);
+          \draw [] (d3) to[out=235,in=125] (n3);
+          \draw (g) to[out=235,in=55] (n3);
+          \draw (g) to[out=305,in=90] (end2);
+          \draw (n3) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0.25,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0.25,4) [delta] (d1) {};
+          \node at (.65,3.5) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0,3) [delta] (d2) {};
+          \node at (0.25, 2.5) [nabla] (n2) {};
+          \node at (.65,2) [map] (g) {$\scriptstyle \ g\ $};
+          \node at (0.25, 1.5) [nabla] (n1) {};
+          \node at (0.25,1) (end1) {};
+          \node at (.5,1) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=90] (d2);
+          \draw (d1) to[out=305,in=125] (h);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (n2);
+          \draw [] (d2) to[out=235,in=125] (n1);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (g);
+          \draw (n2) to[out=270,in=125] (g);
+          \draw (g) to[out=235,in=55] (n1);
+          \draw (g) to[out=305,in=90] (end2);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0.25,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0.25,4) [delta] (d1) {};
+          \node at (0,3.5) [delta] (d2) {};
+          \node at (.65,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.25, 2.5) [nabla] (n2) {};
+          \node at (.65,2) [map] (g) {$\scriptstyle \ g\ $};
+          \node at (0.25, 1.5) [nabla] (n1) {};
+          \node at (0.25,1) (end1) {};
+          \node at (.5,1) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=90] (d2);
+          \draw (d1) to[out=305,in=125] (h);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (n2);
+          \draw [] (d2) to[out=235,in=125] (n1);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (g);
+          \draw (n2) to[out=270,in=125] (g);
+          \draw (g) to[out=235,in=55] (n1);
+          \draw (g) to[out=305,in=90] (end2);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0.25,4.5) (s1) {};
+          \node at (.5,4.5) (s2) {};
+          \node at (0.25,4) [delta] (d1) {};
+          \node at (0.5,3.5) [delta] (d2) {};
+          \node at (.85,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (0.5, 2.5) [nabla] (n2) {};
+          \node at (.65,2) [map] (g) {$\scriptstyle \ g\ $};
+          \node at (0.25, 1.5) [nabla] (n1) {};
+          \node at (0.25,1) (end1) {};
+          \node at (.5,1) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=125] (n1);
+          \draw (d1) to[out=305,in=90] (d2);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (d2) to[out=305,in=125] (h);
+          \draw [] (d2) to[out=235,in=125] (n2);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=55] (g);
+          \draw (n2) to[out=270,in=125] (g);
+          \draw (g) to[out=235,in=55] (n1);
+          \draw (g) to[out=305,in=90] (end2);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{45pt}{$=$}\
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+          \node at (0.25,4) (s1) {};
+          \node at (.5,4) (s2) {};
+          \node at (0.25,3.5) [delta] (d1) {};
+          \node at (.65,3) [map] (h) {$\scriptstyle \ h\ $};
+          \node at (.65,2.5) [map] (g) {$\scriptstyle \ g\ $};
+          \node at (0.25, 2) [nabla] (n1) {};
+          \node at (0.25,1.5) (end1) {};
+          \node at (.5,1.5) (end2) {};
+          \draw [] (s1) to (d1);
+          \draw (d1) to[out=235,in=125] (n1);
+          \draw (d1) to[out=305,in=125] (h);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw (h) to[out=235,in=125] (g);
+          \draw (h) to[out=305,in=55] (g);
+          \draw (g) to[out=235,in=55] (n1);
+          \draw (g) to[out=305,in=90] (end2);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+        }
+   \]
+
+   For~\ref{lemitem:delta_nabla_3}, this follows immediately from
+  \[
+    \begin{tikzpicture}
+      \node at (0,2) (s1) {};
+      \node at (.5,2) (s2) {};
+      \node at (0,1.5) [delta] (d1) {};
+      \node at (.5,1) [map] (h) {$\scriptstyle h$};
+      \node at (0,.5) [nabla] (n1) {};
+      \node at (0,0) (end1) {};
+      \node at (.5,0) (end2) {};
+      \draw [] (s1) to (d1);
+      \draw [] (s2) to (h);
+      \draw [] (d1) to[out=305,in=55] (n1);
+      \draw [] (d1) to[out=235,in=125] (n1);
+      \draw (h) to (end2);
+      \draw (n1) to (end1);
+    \end{tikzpicture}
+    \ \raisebox{28pt}{$=\ $}
+    \begin{tikzpicture}
+      \node at (0.25,2) (s1) {};
+      \node at (.5,2) (s2) {};
+      \node at (.5,1) [map] (h) {$\scriptstyle h$};
+       \node at (0.25,0) (end1) {};
+      \node at (.5,0) (end2) {};
+      \draw [] (s1) to (end1);
+      \draw [] (s2) to (h);
+      \draw (h) to (end2);
+    \end{tikzpicture}
+    \ \raisebox{28pt}{$= 1\* h$.}
+  \]
+
+  Finally, for~\ref{lemitem:delta_nabla_4}, recalling the exchange rule, we have
+\[
+  \raisebox{45pt}{$\dmap{\Delta} =$ }
+  \begin{tikzpicture}
+    \node [style=nothing] (s1) at (-1, 3) {};
+    \node [style=nothing] (s2) at (-0.25, 3) {};
+    \node [style=delta] (d1) at (-1,2.5) {};
+    \node [style=tensor] (t1) at (-0.5,2) {$\scriptstyle \*$};
+    \node [style=delta] (d2) at (-0.5,1.5) {};
+    \node [style=tensor] (t2) at (-0.75,1) {$\scriptstyle \*$};
+    \node [style=nabla] (n1) at (-1,0.5) {};
+    \node [style=tensor] (t3) at (-0.25,0.5) {$\scriptstyle \*$};
+    \node [style=nothing] (e1) at (-1,0) {};
+    \node [style=nothing] (e2) at (-0.25,0) {};
+    \draw (s1) to (d1);
+    \draw (s2) to[out=270,in=55] (t1);
+    \draw (d1) to[out=235,in=125] (n1);
+    \draw (d1) to[out=305,in=125] (t1);
+    \draw (t1) to (d2);
+    \draw (d2) to[out=235,in=90] (t2);
+    \draw (d2) to[out=305,in=55] (t3);
+    \draw (t2) to[out=235,in=55] (n1);
+    \draw (t2) to[out=305,in=125] (t3);
+    \draw (n1) to (e1);
+    \draw (t3) to (e2);
+  \end{tikzpicture}
+  \raisebox{45pt}{$ =$ }
+  \begin{tikzpicture}
+    \node [style=nothing] (s1) at (-1, 2.5) {};
+    \node [style=nothing] (s2) at (-0.25, 2.5) {};
+    \node [style=delta] (d1) at (-1,2) {};
+    \node [style=delta] (d2) at (-.75,1.25) {};
+    \node [style=delta] (d3) at (-0.25,1.25) {};
+    \node [style=nabla] (n1) at (-1,0.5) {};
+    \node [style=tensor] (t3) at (-0.25,0.5) {$\scriptstyle \*$};
+    \node [style=nothing] (e1) at (-1,0) {};
+    \node [style=nothing] (e2) at (-0.25,0) {};
+    \draw (s1) to (d1);
+    \draw (s2) to (d3);
+    \draw (d1) to[out=235,in=125] (n1);
+    \draw (d1) to[out=305,in=90] (d2);
+    \draw (d2) to[out=235,in=55] (n1);
+    \draw (d2) to[out=305,in=90] (t3);
+    \draw (d3) to[out=235,in=125] (t3);
+    \draw (d3) to[out=305,in=55] (t3);
+    \draw (n1) to (e1);
+    \draw (t3) to (e2);
+  \end{tikzpicture}
+  \raisebox{45pt}{$ =$ }
+  \begin{tikzpicture}
+    \node [style=nothing] (s1) at (-1, 2.5) {};
+    \node [style=nothing] (s2) at (-0.25, 2.5) {};
+    \node [style=delta] (d1) at (-1,2) {};
+    \node [style=delta] (d2) at (-1.25,1.25) {};
+    \node [style=delta] (d3) at (-0.25,1.75) {};
+    \node [style=nabla] (n1) at (-1,0.5) {};
+    \node [style=tensor] (t3) at (-0.25,0.5) {$\scriptstyle \*$};
+    \node [style=nothing] (e1) at (-1,0) {};
+    \node [style=nothing] (e2) at (-0.25,0) {};
+    \draw (s1) to (d1);
+    \draw (s2) to (d3);
+    \draw (d1) to[out=235,in=90] (d2);
+    \draw (d1) to[out=305,in=90] (t3);
+    \draw (d2) to[out=235,in=125] (n1);
+    \draw (d2) to[out=305,in=55] (n1);
+    \draw (d3) to[out=235,in=125] (t3);
+    \draw (d3) to[out=305,in=55] (t3);
+    \draw (n1) to (e1);
+    \draw (t3) to (e2);
+  \end{tikzpicture}
+  \raisebox{45pt}{$ =$ }
+  \begin{tikzpicture}
+    \node [style=nothing] (s1) at (-1, 2.5) {};
+    \node [style=nothing] (s2) at (-0.25, 2.5) {};
+    \node [style=delta] (d1) at (-1,2) {};
+    \node [style=delta] (d3) at (-0.25,2) {};
+    \node [style=tensor] (t3) at (-0.25,1) {$\scriptstyle \*$};
+    \node [style=nothing] (e1) at (-1,0.5) {};
+    \node [style=nothing] (e2) at (-0.25,0.5) {};
+    \draw (s1) to (d1);
+    \draw (s2) to (d3);
+    \draw (d1) to[out=235,in=90] (e1);
+    \draw (d1) to[out=305,in=90] (t3);
+    \draw (d3) to[out=235,in=125] (t3);
+    \draw (d3) to[out=305,in=55] (t3);
+    \draw (t3) to (e2);
+  \end{tikzpicture}
+  \raisebox{45pt}{$ =\Delta$ }
+\]
+\end{proof}
+
+From Lemma~\ref{lem:delta_nabla_maps_are_closed}, we see that we will be able to form a category
+based on maps $h$ such that $h=\dmap{h}$. Of course, this category is dependent upon the choice of
+the object $A$, hence we will label it $\X[A]$, as it is reminiscent of the simple slice category
+over an object $A$ in a category. We make this precise in the following proposition:
+
+\begin{proposition}\label{prop:slice-a-is-a-discrete-inverse-category}
+  Given a discrete inverse category $\X$, then the restriction category $\X[A]$ defined as:
+  \rcategory{The objects of $\X$}{A map $h=\dmap{h}:A\*X\to A\*Y$ in \X is a map from $X$ to $Y$ in
+    $\X[A]$}{Composition in \X}{$1\*1$ in \X}{$\rst{h}$ in \X is $\rst{h}$ in $\X[A]$}
+\end{proposition}
+\begin{proof}
+  Given Lemma~\ref{lem:delta_nabla_maps_are_closed}, the only remaining item to prove is that if
+  $h=\dmap{h}$ then $\rst{h} = \dmap{\rst{h}}$.
+
+  Recalling that $\rst{(1\*h)} = 1\* \rst{h}$ we have
+  \begin{multline*}
+    (\Delta\*1) \rst{(1\*h)} (\inv{\Delta}\*1) = \rst{(\Delta\*1)(1\*h)}(\Delta\*1)
+    (\inv{\Delta}\*1) = \rst{(\Delta\*1)(1\*h)} \\
+      \le \rst{(\Delta\*1)(1\*h)(\inv{\Delta}\*1)} = \rst{h}.
+  \end{multline*}
+  Note this means there is some $k$ such that
+  $\rst{k} = (\Delta\*1) \rst{(1\*h)}(\inv{\Delta}\*1)$. Next, computing $\rst{k}h$ we have:
+  \begin{align*}
+    \rst{k}h &= (\Delta\*1) \rst{(1\*h)} (\inv{\Delta}\*1) (\Delta\*1) (1\*h) (\inv{\Delta}\*1) \\
+    & = (\Delta\*1) \rst{(1\*h)}\, \rst{(\inv{\Delta}\*1)} (1\*h) (\inv{\Delta}\*1) \\
+    & = (\Delta\*1) \rst{(\inv{\Delta}\*1)}\,  \rst{(1\*h)}(1\*h) (\inv{\Delta}\*1) \\
+    & = (\Delta\*1) \wrg{(\Delta\*1)}  (1\*h) (\inv{\Delta}\*1) \\
+    & = (\Delta\*1) (1\*h) (\inv{\Delta}\*1) \\
+    & = h.
+  \end{align*}
+  But by Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}, if $\rst{k} h = h$, we have
+  $\rst{h} \le \rst{k}$. As we already have $\rst{k}\le\rst{h}$ this means they are equal and the
+  restriction is in $\X[A]$.
+
+\end{proof}
 
 % chapter inverse_categories (end)
 %%% Local Variables:
