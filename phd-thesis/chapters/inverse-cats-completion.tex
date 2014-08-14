@@ -54,15 +54,13 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
 \begin{definition}\label{def:xequivalence}
   In a discrete inverse category \X, the map $f$ is equivalent to $f'$ in \X when
   $\restr{f} = \restr{f'}$ in \X and Diagram~\ref{fig:xt_map_equivalence_diagram} commutes for some
-  map $h$.
+  map $h\in\dmap{B}$.
 \begin{figure}[H]
   \[
     \xymatrix @C=40pt @R=15pt{
-      & & B \* C \ar@{.>}[dr]^{(\Delta\* 1) \, a_{\*}}\\
-      && & B \* (B\* C) \ar@{.>}[dd]^{1\* h} \\
-      A \ar[uurr]^f \ar[ddrr]_{f'}&&&\\
-      && & B \* (B \* C'). \ar@{.>}[dl]^(.4){\ \inv{a_{\*}}\,(\inv{\Delta}\* 1)}\\
-      && B\* C'
+      & B \* C  \ar@{.>}[dd]^{h} \\
+      A \ar[ur]^f \ar[dr]_{f'}\\
+      & B\* C'
     }
   \]
 \caption{Equivalence diagram for constructing maps in \Xt.}
@@ -85,267 +83,26 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
   \prepprooflist
   \begin{description}
     \itembf{Reflexivity: } Choose $h$ as the identity map.
-    \itembf{Symmetry: } Suppose $f\xequiv{h}g$. Then, $\restr{f} = \restr{g}$ and $f k = g$ where
+    \itembf{Symmetry: } Suppose $f\xequiv{h}g$. Then, $\restr{f} = \restr{g}$ and $f h = g$.
+      Applying $\inv{h}$, we have
       \[
-        k = (\Delta\* 1) \, a_{\*}\, (1\*h)\, \inv{a_{\*}}\,(\inv{\Delta}\* 1).
-      \] Applying $\inv{k}$,
-      which is
-      \[
-        (\Delta\* 1) \, a_{\*}\, (1\*\inv{h})\, \inv{a_{\*}}\,(\inv{\Delta}\* 1),
-      \]
-      we have
-      \[
-        g \inv{k} = f k \inv{k} = f \restr{k} = \restr{f k} f
+        g \inv{h} = f h \inv{h} = f \restr{h} = \restr{f h} f
         = \restr{g} f = \restr{f} f = f.
       \]
 
       Thus, $g\xequiv{\inv{h}} f$.
 
-    \itembf{Transitivity: } Suppose $f\xequiv{h} f'$ and $f' \xequiv{k} f''$. Consider the
-      compositions of the mediating portions of the equivalences:
-      \[
-        \ell = ((\Delta \* 1)  a_{\*}  (1 \* h ) \inv{a_{\*}} (\inv{\Delta}\* 1))
-          ( (\Delta \* 1) a_{\*}  (1 \* k) \inv{a_{\*}} (\inv{\Delta}\* 1)).
-      \]
-
-      In string diagram form, this is:
-      \[
-      \ \raisebox{45pt}{$\ell=$}\
-        \begin{tikzpicture}
-          \node at (0.5,4) (s1) {};
-          \node at (1,4) (s2) {};
-          \node at (0.5,3.5) [delta] (d2) {};
-          \node at (1,3) [map] (h) {$\scriptstyle \ h\ $};
-          \node at (0.5, 2.5) [nabla] (n2) {};
-          \node at (0.5,2) [delta] (d3) {};
-          \node at (1,1.5) [map] (k) {$\scriptstyle \ k\ $};
-          \node at (0.5, 1) [nabla] (n3) {};
-          \node at (0.5,.5) (end1) {};
-          \node at (1,.5) (end2) {};
-          \draw [] (s1) to (d2);
-          \draw [] (s2) to[out=270,in=55] (h);
-          \draw [] (d2) to[out=305,in=125] (h);
-          \draw [] (d2) to[out=235,in=125] (n2);
-          \draw (h) to[out=235,in=55] (n2);
-          \draw (h) to[out=305,in=55] (k);
-          \draw (n2) to (d3);
-          \draw [] (d3) to[out=305,in=125] (k);
-          \draw [] (d3) to[out=235,in=125] (n3);
-          \draw (k) to[out=235,in=55] (n3);
-          \draw (k) to[out=305,in=90] (end2);
-          \draw (n3) to (end1);
-        \end{tikzpicture}
-      \]
-      By pasting the diagrams which give the above equivalences, we see that $f \ell = f''$.
-      However, $\ell$ is not in the form of a mediating map as presented.
-
-      The claim is that $\ell$ is the actual mediating map for $f$ and $f''$. That is, that we have
-      $f(\Delta \* 1)a_{\*}(1 \* \ell)\inv{a_{\*}}(\inv{\Delta}\*1) = f''$. In the interest of some
-      brevity, this is shown below with the associativity maps elided from the equations.
-
-      We need to show that $(\Delta \* 1)(1 \* \ell)(\inv{\Delta}\*1) = \ell$. Diagrammatically, the
-      left hand side $=$
-      \[
-        \begin{tikzpicture}
-          \node at (0,4.5) (s1) {};
-          \node at (.5,4.5) (s2) {};
-          \node at (0,4) [delta] (d1) {};
-          \node at (0.25,3.5) [delta] (d2) {};
-          \node at (.65,3) [map] (h) {$\scriptstyle \ h\ $};
-          \node at (0.25, 2.5) [nabla] (n2) {};
-          \node at (0.25,2) [delta] (d3) {};
-          \node at (.65,1.5) [map] (k) {$\scriptstyle \ k\ $};
-          \node at (0.25, 1) [nabla] (n3) {};
-          \node at (0, .5) [nabla] (n1) {};
-          \node at (0,0) (end1) {};
-          \node at (.5,0) (end2) {};
-          \draw [] (s1) to (d1);
-          \draw (d1) to[out=305,in=90] (d2);
-          \draw (d1) to[out=235,in=125] (n1);
-          \draw [] (s2) to[out=270,in=55] (h);
-          \draw [] (d2) to[out=305,in=125] (h);
-          \draw [] (d2) to[out=235,in=125] (n2);
-          \draw (h) to[out=235,in=55] (n2);
-          \draw (h) to[out=305,in=55] (k);
-          \draw (n2) to (d3);
-          \draw [] (d3) to[out=305,in=125] (k);
-          \draw [] (d3) to[out=235,in=125] (n3);
-          \draw (k) to[out=235,in=55] (n3);
-          \draw (k) to[out=305,in=90] (end2);
-          \draw (n3) to[out=270,in=55] (n1);
-          \draw (n1) to (end1);
-        \end{tikzpicture}
-      \ \raisebox{65pt}{$=$}\
-        \begin{tikzpicture}
-          \node at (0.25,4.5) (s1) {};
-          \node at (.5,4.5) (s2) {};
-          \node at (0.25,4) [delta] (d1) {};
-          \node at (0,3.5) [delta] (d2) {};
-          \node at (.65,3) [map] (h) {$\scriptstyle \ h\ $};
-          \node at (0.25, 2.5) [nabla] (n2) {};
-          \node at (0.25,2) [delta] (d3) {};
-          \node at (.65,1.5) [map] (k) {$\scriptstyle \ k\ $};
-          \node at (0, 1) [nabla] (n3) {};
-          \node at (0.25, .5) [nabla] (n1) {};
-          \node at (0.25,0) (end1) {};
-          \node at (.5,0) (end2) {};
-          \draw [] (s1) to (d1);
-          \draw (d1) to[out=235,in=90] (d2);
-          \draw (d1) to[out=305,in=125] (h);
-          \draw [] (s2) to[out=270,in=55] (h);
-          \draw [] (d2) to[out=305,in=125] (n2);
-          \draw [] (d2) to[out=235,in=125] (n3);
-          \draw (h) to[out=235,in=55] (n2);
-          \draw (h) to[out=305,in=55] (k);
-          \draw (n2) to (d3);
-          \draw [] (d3) to[out=305,in=125] (k);
-          \draw [] (d3) to[out=235,in=55] (n3);
-          \draw (k) to[out=235,in=55] (n1);
-          \draw (k) to[out=305,in=90] (end2);
-          \draw (n3) to[out=270,in=125] (n1);
-          \draw (n1) to (end1);
-        \end{tikzpicture}
-      \ \raisebox{65pt}{$=$}\
-        \begin{tikzpicture}
-          \node at (0.25,4.5) (s1) {};
-          \node at (.5,4.5) (s2) {};
-          \node at (0.25,4) [delta] (d1) {};
-          \node at (.65,3.5) [map] (h) {$\scriptstyle \ h\ $};
-          \node at (0,3) [delta] (d2) {};
-          \node at (0.25, 2.5) [nabla] (n2) {};
-          \node at (0.25,2) [delta] (d3) {};
-          \node at (0, 1.5) [nabla] (n3) {};
-          \node at (.65,1) [map] (k) {$\scriptstyle \ k\ $};
-          \node at (0.25, .5) [nabla] (n1) {};
-          \node at (0.25,0) (end1) {};
-          \node at (.5,0) (end2) {};
-          \draw [] (s1) to (d1);
-          \draw (d1) to[out=235,in=90] (d2);
-          \draw (d1) to[out=305,in=125] (h);
-          \draw [] (s2) to[out=270,in=55] (h);
-          \draw [] (d2) to[out=305,in=125] (n2);
-          \draw [] (d2) to[out=235,in=125] (n3);
-          \draw (h) to[out=235,in=55] (n2);
-          \draw (h) to[out=305,in=55] (k);
-          \draw (n2) to (d3);
-          \draw [] (d3) to[out=305,in=125] (k);
-          \draw [] (d3) to[out=235,in=55] (n3);
-          \draw (k) to[out=235,in=55] (n1);
-          \draw (k) to[out=305,in=90] (end2);
-          \draw (n3) to[out=270,in=125] (n1);
-          \draw (n1) to (end1);
-        \end{tikzpicture}
-      \ \raisebox{65pt}{$=$}\
-        \begin{tikzpicture}
-          \node at (0.25,4.5) (s1) {};
-          \node at (.5,4.5) (s2) {};
-          \node at (0.25,4) [delta] (d1) {};
-          \node at (.65,3.5) [map] (h) {$\scriptstyle \ h\ $};
-          \node at (0.25, 3) [nabla] (n2) {};
-          \node at (0.25,2.5) [delta] (d2) {};
-          \node at (0.25, 2) [nabla] (n3) {};
-          \node at (0.25,1.5) [delta] (d3) {};
-          \node at (.65,1) [map] (k) {$\scriptstyle \ k\ $};
-          \node at (0.25, .5) [nabla] (n1) {};
-          \node at (0.25,0) (end1) {};
-          \node at (.5,0) (end2) {};
-          \draw [] (s1) to (d1);
-          \draw (d1) to[out=235,in=125] (n2);
-          \draw (d1) to[out=305,in=125] (h);
-          \draw [] (s2) to[out=270,in=55] (h);
-          \draw (h) to[out=235,in=55] (n2);
-          \draw (h) to[out=305,in=55] (k);
-          \draw [] (d2) to[out=305,in=55] (n3);
-          \draw [] (d2) to[out=235,in=125] (n3);
-          \draw (n2) to (d2);
-          \draw (n3) to (d3);
-          \draw [] (d3) to[out=305,in=125] (k);
-          \draw [] (d3) to[out=235,in=125] (n1);
-          \draw (k) to[out=235,in=55] (n1);
-          \draw (k) to[out=305,in=90] (end2);
-          \draw (n1) to (end1);
-        \end{tikzpicture}
-      \ \raisebox{65pt}{$=$}\
-      \raisebox{15pt}{
-        \begin{tikzpicture}
-          \node at (0.5,4) (s1) {};
-          \node at (1,4) (s2) {};
-          \node at (0.5,3.5) [delta] (d2) {};
-          \node at (1,3) [map] (h) {$\scriptstyle \ h\ $};
-          \node at (0.5, 2.5) [nabla] (n2) {};
-          \node at (0.5,2) [delta] (d3) {};
-          \node at (1,1.5) [map] (k) {$\scriptstyle \ k\ $};
-          \node at (0.5, 1) [nabla] (n3) {};
-          \node at (0.5,.5) (end1) {};
-          \node at (1,.5) (end2) {};
-          \draw [] (s1) to (d2);
-          \draw [] (s2) to[out=270,in=55] (h);
-          \draw [] (d2) to[out=305,in=125] (h);
-          \draw [] (d2) to[out=235,in=125] (n2);
-          \draw (h) to[out=235,in=55] (n2);
-          \draw (h) to[out=305,in=55] (k);
-          \draw (n2) to (d3);
-          \draw [] (d3) to[out=305,in=125] (k);
-          \draw [] (d3) to[out=235,in=125] (n3);
-          \draw (k) to[out=235,in=55] (n3);
-          \draw (k) to[out=305,in=90] (end2);
-          \draw (n3) to (end1);
-        \end{tikzpicture}
-        }
-      \ \raisebox{65pt}{$=\ell.$}
-      \]
-    \end{description}
-    Thus,  $f\xequiv{\ell}f''$.
+    \itembf{Transitivity: } Suppose $f\xequiv{h} f'$ and $f' \xequiv{k} f''$, i.e., $fh = f'$ and
+    $f'k = f''$. We immediately have $f h k = f''$ and by
+    Lemma~\ref{lem:delta_nabla_maps_are_closed}, we know $h k = \dmap{(hk)}$ and therefore we have
+    an equivalence.
+  \end{description}
 \end{proof}
 
-\begin{corollary}\label{cor:equivalence_simplified_diagram}
-  If $\restr{f} = \restr{g}$ in \X, a discrete inverse category, and the diagram
-  \[
-    \xymatrix @C=40pt @R=15pt{
-      & & B \* C \ar@{.>}[dd]^{1\*h}\\
-      A \ar[urr]^f \ar[drr]_{g}\\
-      && B\* C'
-    }
-  \]
-  commutes for some $h$, then there is a $h'$ such that $f\xequiv{h'}g$.
-\end{corollary}
-\begin{proof}
-  This follows immediately from
-  \[
-    \begin{tikzpicture}
-      \node at (0,2) (s1) {};
-      \node at (.5,2) (s2) {};
-      \node at (0,1.5) [delta] (d1) {};
-      \node at (.5,1) [map] (h) {$\scriptstyle h$};
-      \node at (0,.5) [nabla] (n1) {};
-      \node at (0,0) (end1) {};
-      \node at (.5,0) (end2) {};
-      \draw [] (s1) to (d1);
-      \draw [] (s2) to (h);
-      \draw [] (d1) to[out=305,in=55] (n1);
-      \draw [] (d1) to[out=235,in=125] (n1);
-      \draw (h) to (end2);
-      \draw (n1) to (end1);
-    \end{tikzpicture}
-    \ \raisebox{28pt}{$=\ $}
-    \begin{tikzpicture}
-      \node at (0.25,2) (s1) {};
-      \node at (.5,2) (s2) {};
-      \node at (.5,1) [map] (h) {$\scriptstyle h$};
-       \node at (0.25,0) (end1) {};
-      \node at (.5,0) (end2) {};
-      \draw [] (s1) to (end1);
-      \draw [] (s2) to (h);
-      \draw (h) to (end2);
-    \end{tikzpicture}
-    \ \raisebox{28pt}{$= 1\* h$.}
-  \]
-  Therefore we can set $h' = 1 \* h$.
-\end{proof}
 % end_fold sec:equivalence_classes_of_maps_in_hypx
 
 \subsection{\hypXt is a restriction category} % (fold)
-\label{sec:the_restriction_category_hypxt}
+\label{subsec:the_restriction_category_hypxt}
 
 
 \begin{lemma}\label{lem:xt_is_a_category}
@@ -358,7 +115,9 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
   $\inv{\usr}$ is defined.
 
   It remains to show the composition is associative and that $(\inv{\usr}, 1)$ acts as an identity
-  in \Xt.
+  in \Xt. For all of these, we will make use of
+  Lemma~\ref{lem:delta_nabla_maps_are_closed}~\ref{lemitem:delta_nabla_3},  which states $1\*f \in
+  \dmap{A}$ for all $f$.
 
   \textbf{Associativity:}
   Consider
@@ -412,7 +171,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
         &&& \xtdmn{D}{(D' \* C') \* B'}. %\ar @/^14pt/ [uu]^{1\*a_{\*}}
     }
   \]
-  From this, we can conclude
+  Therefore, we can conclude
   \[
     (f(g\*1)a_{\*}) (h\*1)a_{\*} \xequiv{1\*\inv{a_{\*}}} f (((g(h\*1)a_{\*})\*1) a_{\*})
   \]
@@ -467,7 +226,9 @@ Define the restriction in \Xt\ as follows:
 \end{lemma}
 \begin{proof}
   Given the above definition the four restriction axioms must now be checked. For the remainder of
-  this proof, all diagrams will be in $\X$.
+  this proof, all diagrams will be in $\X$. Again, we will make use of
+  Lemma~\ref{lem:delta_nabla_maps_are_closed}~\ref{lemitem:delta_nabla_3},  which states $1\*f \in
+  \dmap{A}$ for all $f$.
 
   \rone ($\restr{f} f = f$). Calculating the restriction of the left hand side in
       \X, we have:
@@ -755,16 +516,16 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
     & = \rst{f} \rst{g}.
   \end{align*}
 
-  The diagram below shows the required mediating map.
+  The diagram below shows the required mediating map. By
+  Lemma~\ref{lem:delta_nabla_maps_are_closed}, $\Delta\in\dmap{A}$, $1\*k\in\dmap{A}$ and $\dmap{A}$
+  is closed under composition.
   \[
     \xymatrix @C=27pt @R=25pt{
-      & & & A \* C \ar[dr]^{\Delta\*1}\\
-      & & & & A \* A \* C \ar@{.>}[d]^{1\*\Delta}\\
-      &Z\ar[uurr]^{f}& & & A \* A\* C \* A \* C\ar@{.>}[d]^{1\*1\*\inv{f}}\\
-      Z\ar[ur]^{\rst{g}}\ar[dr]_{\Delta}&& & &  A \* A \*C \* Z \ar@{.>}[d]^{1 \* 1 \* 1 \* g}\\
-      &Z\*Z\ar[dr]_{f\* g}& & & A\*A\*C\*B\*C'\ar@{.>}[d]^{1\*1\*c_{\*}\*1}\\
-      &&A\*C\*B\* C'\ar[dr]_{1\*c_{\*}\*1}&&A\*A\*B\*C\*C'\ar[dl]^{\inv{\Delta}\*1\*1\*1}\\
-      & & & A\*B\*C\*C'.
+      & &  A \* C\ar@{.>}[d]^{\Delta}\\
+      &Z\ar[ur]^{f}&  A\* C \* A \* C\ar@{.>}[d]^{1\*\inv{f}}\\
+      Z\ar[ur]^{\rst{g}}\ar[dr]_{\Delta(f\*g)}& &  A \*C \* Z \ar@{.>}[d]^{1 \* 1 \* g}\\
+      &A\*C\*B\* C'\ar[dr]_{1\*c_{\*}\*1}&  A\*C\*B\*C'\ar@{.>}[d]^{1\*c_{\*}\*1}\\
+      & & A\*B\*C\*C'.
     }
   \]
 \end{proof}
@@ -786,11 +547,11 @@ leads us to the following theorem:
   To show that it is discrete, we need only show that the map $(\Delta \inv{\usr},1)$ is in the
   same equivalence class as $\Xt$'s $\Delta(= \<1,1\> = \<(\inv{\usr},1),(\inv{\usr},1))$. As both
   $\Delta$ and $\inv{\usr}$ are total, the restriction of each side is the same, namely $1$. The
-  diagram below uses Corollary \ref{cor:equivalence_simplified_diagram} and shows that the two maps
-  are in the same equivalence class.
+  diagram below uses Lemma~\ref{lem:delta_nabla_maps_are_closed}~\ref{lemitem:delta_nabla_3} and
+  shows that the two maps are in the same equivalence class.
   \[
     \xymatrix @C=190pt @R=40pt{
-      & A \* A \* 1 \ar@{.>}[d]^{\inv{\usr}}\\
+      & A \* A \* 1 \ar@{.>}[d]^{1\*\inv{\usr}}\\
       A \ar[ur]^{\Delta\inv{\usr}}
         \ar[r]_{\Delta(\inv{\usr}\*\inv{\usr})(1\*c_{\*}\*1)}& A\*A\*1\*1
     }
@@ -934,10 +695,8 @@ invertible maps in $\Xt$ are the equivalence class of the form  $(f \inv{\usr},1
   in \X, there is an $n$ such that
   \[
     \xymatrix @C=45pt @R=25pt{
-      B \ar[r]^{k} \ar[rrddd]_{\rst{k}\inv{\usr}}
-        & A \*D \ar[r]^{g\*1}&B\*C\*D \ar[d]^{\Delta\*1}\\
-      & &  B\*B\*C\*D \ar@{.>}[d]^{1\* n} \\
-      & &  B\*B\*1 \ar[d]^{\inv{\Delta}\* 1}\\
+      B \ar[r]^{k} \ar[rrd]_{\rst{k}\inv{\usr}}
+        & A \*D \ar[r]^{g\*1}&B\*C\*D  \ar@{.>}[d]^{n} \\
       && B\* 1
     }
   \]
@@ -946,14 +705,12 @@ invertible maps in $\Xt$ are the equivalence class of the form  $(f \inv{\usr},1
   Starting with $g:A\to B\*C$, construct the map $f$ in \X with the following diagram:
   \[
     \xymatrix @C=225pt @R=20pt{
-      A \ar[r]^{g} \ar@{.>}[rdddddddd]_{f}& B \*C \ar[d]^{\Delta\*1}\\
-      &B\*B\*C \ar[d]^{1\*\Delta\*1}\\
-      &B\*B\*B\*C \ar[d]^{1\*1\*k\*1}\\
-      &B\*B\*A\*D\*C \ar[d]^{1\*1\*g\*1\*1}\\
-      &B\*B\*B\*C\*D\*C \ar[d]^{1\*\inv{\Delta}\*1\*c_{\*}}\\
-      &B\*B\*C\*C\*D \ar[d]^{1\*1\*\inv{\Delta}\*1}\\
-      &B\*B\*C\*D \ar[d]^{1\*n}\\
-      &B\*B\*1 \ar[d]^{(\inv{\Delta}\* 1) \usl }\\
+      A \ar[r]^{g} \ar@{.>}[rdddddd]_{f}& B \*C \ar[d]^{\Delta\*1}\\
+      &B\*B\*C \ar[d]^{1\*k\*1}\\
+      &B\*A\*D\*C \ar[d]^{1\*g\*1\*1}\\
+      &B\*B\*C\*D\*C \ar[d]^{\inv{\Delta}\*1\*c_{\*}}\\
+      &B\*C\*C\*D \ar[d]^{1\*\inv{\Delta}\*1}\\
+      &B\*C\*D \ar[d]^{n \usl}\\
       &B.
     }
   \]
@@ -969,19 +726,18 @@ invertible maps in $\Xt$ are the equivalence class of the form  $(f \inv{\usr},1
   As $\eta$ is an identity on objects functor, we need only show that it is full and faithful.
   Referring to Lemma~\ref{lem:all_invertible_maps_in_xt_are_of_the_form_f_inv_usr} above, we
   immediately see that $\eta$ is full. For faithful, if we assume $(f\inv{\usr},1)$ is equal in \Xt
-  to $(g\inv{\usr},1)$. This means in \X, that $\rst{f} = \rst{g}$ and there is a $h$ such that
+  to $(g\inv{\usr},1)$. This means in \X, that $\rst{f} = \rst{g}$ and there is a $h\in\dmap{B}$ such that
   \[
     \xymatrix @C=40pt @R=15pt{
-      & & B \* 1 \ar@{.>}[dr]^{(\Delta\* 1) \, a_{\*}}\\
-      && & B \* (B\* 1) \ar@{.>}[dd]^{1\* h} \\
-      A \ar[uurr]^{f\inv{\usr}} \ar[ddrr]_{g\inv{\usr}}&&&\\
-      && & B \* (B \* 1). \ar@{.>}[dl]^(.4){\ \inv{a_{\*}}\,(\inv{\Delta}\* 1)}\\
-      && B\* 1
+      & B \* 1 \ar@{.>}[dd]^{h} \\
+      A \ar[ur]^{f\inv{\usr}} \ar[dr]_{g\inv{\usr}}\\
+      & B\* 1.
     }
   \]
-  This simplifies out to $g = f \Delta (1\* h) \inv{\Delta}$. But by
+  But as $h = (\Delta\*1)(1\*h)(\inv{\Delta}\*1)$, and letting $\ell =  \inv{\usr}h\usr$ this
+  simplifies to $g = f \Delta (1\*\ell) \inv{\Delta}$. But by
   Lemma~\ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}\ref{le:restfg},
-  $\Delta (1\* h) \inv{\Delta} = \rst{\Delta (1\* h) \inv{\Delta}}$. Setting $\Delta (1\* h)
+  $\Delta (1\* \ell) \inv{\Delta} = \rst{\Delta (1\* \ell) \inv{\Delta}}$. Setting $\Delta (1\* \ell)
   \inv{\Delta}$ as $k$, we have $g = f \rst{k}$. This gives us:
   \[
     g = f \rst{k} = \rst{f k} f = \rst{f \rst{k}} f = \rst{g} f = \rst{f} f = f.

@@ -549,7 +549,7 @@ We now present some properties of discrete inverse categories.
     \item{}$ (f \* g e) \inv{\Delta} =(f \* g) \inv{\Delta} e $ (and $= (f e\* g) \inv{\Delta}$ and
       $ = (f e\* g e)\inv{\Delta}$.)\label{le:efginvdelta}
     \item{}$\restr{\Delta (f \* g) \inv{\Delta}} =
-       \Delta(1\* g \inv{f})\inv{\Delta}$. \label{le:restfg}
+       \Delta(1\* g \inv{f})\inv{\Delta}$ when $f,g:A\to A$. \label{le:restfg}
     \item{} If $\Delta (h \* g) \inv{\Delta} = \restr{\Delta (h \* g) \inv{\Delta}}$ then
       $(\Delta (h \* g) \inv{\Delta}) h = \Delta (h \* g) \inv{\Delta}$.\label{le:hge}
     \item{}$\Delta (f\*1) = \Delta (g\*1) \implies f = g$.\label{le:dfgisfg}
@@ -1667,7 +1667,77 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
       \end{tikzpicture}
       \ \raisebox{27pt}{.}
 \]
-
+\begin{lemma}\label{lem:delta_nabla_is_idempotent}
+  For any map $h$ in a discrete inverse category, $\dmap{\dmap{h}} = \dmap{h}$.
+\end{lemma}
+\begin{proof}
+  \[
+    \raisebox{42pt}{$\dmap{\dmap{h}}=$ }
+    \begin{tikzpicture}
+      \node at (0,3) (start) {};
+      \node at (.6,3) (start2) {};
+      \node at (0,2.5) [delta] (d1) {};
+      \node at (.25,2) [delta] (d2) {};
+      \node at (.5,1.5) [map] (h) {$\scriptstyle \,h\,$};
+      \node at (.25, 1) [nabla] (n2) {};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.6,0) (end2) {};
+      \draw [] (start) to (d1);
+      \draw [] (start2) to[out=270,in=55] (h);
+      \draw [] (d1) to[out=305,in=90] (d2);
+      \draw [] (d1) to[out=235,in=125] (n1);
+      \draw [] (d2) to[out=305,in=125] (h);
+      \draw [] (d2) to[out=235,in=125] (n2);
+      \draw (h) to[out=235,in=55] (n2);
+      \draw (h) to[out=305,in=90] (end2);
+      \draw (n2) to[out=270,in=55] (n1);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \ \raisebox{42pt}{$=$}\
+    \begin{tikzpicture}
+      \node at (0,3) (start) {};
+      \node at (.6,3) (start2) {};
+      \node at (0,2.5) [delta] (d1) {};
+      \node at (-.25,2) [delta] (d2) {};
+      \node at (.35,1.5) [map] (h) {$\scriptstyle \,h\,$};
+      \node at (-.25, 1) [nabla] (n2) {};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.6,0) (end2) {};
+      \draw [] (start) to (d1);
+      \draw [] (start2) to[out=270,in=55] (h);
+      \draw [] (d1) to[out=235,in=90] (d2);
+      \draw [] (d1) to[out=305,in=125] (h);
+      \draw [] (d2) to[out=305,in=55] (n2);
+      \draw [] (d2) to[out=235,in=125] (n2);
+      \draw (h) to[out=235,in=55] (n1);
+      \draw (h) to[out=305,in=90] (end2);
+      \draw (n2) to[out=270,in=125] (n1);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \ \raisebox{42pt}{=}
+    \raisebox{15pt}{
+      \begin{tikzpicture}
+        \node at (0,3.5) (start) {};
+        \node at (.6,3.5) (start2) {};
+        \node at (0,3) [delta] (d1) {};
+        \node at (.35,2.5) [map] (h) {$\scriptstyle h$};
+        \node at (0, 2) [nabla] (n1) {};
+        \node at (0,1.5) (end) {};
+        \node at (.6,1.5) (end2) {};
+        \draw [] (start) to (d1);
+        \draw [] (start2) to[out=270,in=55] (h);
+        \draw [] (d1) to[out=305,in=125] (h);
+        \draw [] (d1) to[out=235,in=125] (n1);
+        \draw (h) to[out=235,in=55] (n1);
+        \draw (h) to[out=305,in=90] (end2);
+        \draw (n1) to (end);
+      \end{tikzpicture}
+      }
+      \raisebox{42pt}{$ = \dmap{h}$.}
+  \]
+\end{proof}
 \begin{lemma}\label{lem:delta_nabla_maps_are_closed}
   In a discrete inverse category \X, for a fixed object $A$, the set of maps $h:A\*Y\to A\* Z$ where
   $h=\dmap{h}$ is:
@@ -1933,6 +2003,9 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
   \raisebox{45pt}{$ =\Delta$ }
 \]
 \end{proof}
+
+Because of these closure rules, rather than stating $h = \dmap{h}$ we may equivalently say $h\in
+\dmap{A}$ when $h=\dmap{h}:A\*X \to A\*Y$.
 
 From Lemma~\ref{lem:delta_nabla_maps_are_closed}, we see that we will be able to form a category
 based on maps $h$ such that $h=\dmap{h}$. Of course, this category is dependent upon the choice of

@@ -288,28 +288,19 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
   \item Set $f' = f(1\*\cpa)$.
-    To show $f\equiv f'$, we must first show their restriction is the same.
+    To show $f\xequiv{} f'$, we must first show their restriction is the same.
     \[
       \rst{f(1\*\cpa)} = \rst{f\rst{(1\*\cpa)}} = \rst{f 1} =  \rst{f}
     \]
-    Now we detail the mediating map between $f$ and $f'$:
+    The mediating map between $f$ and $f'$ is, of course, $1\*\cpa$:
     \[
     \xymatrix @C=20pt @R=20pt{
-      & & Y \* C \ar@{.>}[dr]^{\Delta\* 1}\\
-      & & & Y \* (Y\* C) \ar@{.>}[dd]^{1\*1\*\cpa}\\
-      A \ar[uurr]^f \ar[ddrr]_{f'} \\
-      & & & Y \* Y\*(C\+ D) \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
-      && Y\*(C\+ D).
+      &  Y \* C \ar@{.>}[dd]^{1\*\cpa}\\
+      A \ar[ur]^f \ar[dr]_{f'} \\
+      & Y\*(C\+ D).
     }
     \]
-  To show this commutes, we primarily use that $\Delta\inv{\Delta} = 1$
-  \begin{align*}
-    f(\Delta\*1)&(1\*1\*\cpa)(\inv{\Delta}\*1) \\
-    &= f(\Delta\*1)(\inv{\Delta} \* \cpa)\\
-    &= f(1 \* \cpa) = f'
-  \end{align*}
-  and hence $f\xequiv{h}f'$ where $h = (1\*\cpa)$. Note that by the same reasoning we may also
-  create $f':A\to Y\*(D\+C)$ by setting $f' = f(1\*\cpb)$.
+  By the same reasoning we may also create $f':A\to Y\*(D\+C)$ by setting $f' = f(1\*\cpb)$.
   \item First note we have $\icpa f',\,\icpb g': A\+B \to Y\*(C\+D)$. In order to show  $\icpa f'
     \perp \icpb g'$, we will proceed by showing their restrictions and ranges are disjoint.
     As $\rst{\inv{\cpa}} \perp \rst{\inv{\cpb}}$ and $\rst{\inv{\cpa}f'} \le \rst{\inv{\cpa}}$ and
@@ -406,11 +397,9 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   Drawing this explicitly for $k, f$ and $q_1$,
   \[
     \xymatrix @C=20pt @R=20pt{
-      & & Y \* C \ar@{.>}[dr]^{\Delta\* 1}\\
-      & & & Y \* (Y\* C) \ar@{.>}[dd]^{1\*q_1}\\
-      A \ar[uurr]^{f} \ar[ddrr]_{\cpa k} \\
-      & & & Y \* Y\*E \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
-      && Y\*E.
+      & Y \* C \ar@{.>}[dd]^{1\*q_1}\\
+      A \ar[ur]^{f} \ar[dr]_{\cpa k} \\
+      & Y\*E.
     }
   \]
   % Additionally, as $f' = f(1\*\cpa)$, we have $\cpa k \xequiv{q_1(1\*\cpa)} f'$. Similarly,
@@ -434,69 +423,188 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
 
   Now, we turn out attention to showing that $k \xequiv{} h = \icpa f' \djoin \icpb g'$. Consider the
   diagram
-  \[
-    \xymatrix @C=25pt @R=20pt{
-      & & Y \* (C\+D) \ar@{.>}[dr]^{\Delta\* 1}\\
-      & & & Y \* (Y\* (C\+D)) \ar@{.>}[dd]^{t}\\
-      A \ar[uurr]^{\icpa f' \djoin \icpb g'} \ar[ddrr]_{k} \\
-      & & & Y \* Y\*E \ar@{.>}[dl]^(.4){\inv{\Delta}\* 1}\\
-      && Y\*E.
-    }
-  \]
+  \begin{equation}
+    \xymatrix @C=35pt @R=20pt{
+      & Y \* (C\+D)\ar@{.>}[dd]^{t}\\
+      A \ar[ur]^(.4){\icpa f' \djoin \icpb g'\ \ \,} \ar[dr]_{k} \\
+      & Y\*E.
+    }\label{diag:k-equiv-f-djoin-g}
+  \end{equation}
 
   As we are in an inverse category, we know there is a map $t$ that makes this diagram commute,
-  namely $t = (\inv{\Delta}\* 1) \inv{(\icpa f' \djoin \icpb g')}k(\Delta \* 1)$. However, as this is
-  not in the form $1\*q$, we can not immediately conclude there is an equivalence.
+  namely $t =  \inv{(\icpa f' \djoin \icpb g')}k$. However, we must show this is in $\dmap{Y}$.
 
   Next, recalling Definition~\ref{def:up_triangle_and_down_triangle} consider
-  \begin{equation}
+  \begin{equation*}
     \xymatrix@C+0pt @R+20pt{
-      Y\*Y\*C\ar[rr]^{1\*1\*\cpa} \ar[drr]_{1\*q_1} &&B\+C   \ar@{.>}[d]|-{1\*q_1\tjup 1\*q_2}
-        && Y\*Y\*(C\+D) \ar[ll]_{1\*1\*\cpb} \ar[dll]^{1\*q_2}\\
+      Y\*C\ar[rr]^{1\*\cpa} \ar[drr]_{q_1} &&Y\*(C\+D)   \ar@{.>}[d]|-{q_1\tjup q_2}
+        && Y\*D \ar[ll]_{1\*\cpb} \ar[dll]^{q_2}\\
       &&Y\*E
-      }\label{diag:q1_q2_tjup}
-  \end{equation}
-  We know the map $1\*q_1\tjup 1\*q_2$ exists iff $\wrg{1\*q_1} \perp \wrg{1\*q_2}$. But, the map
-  \[
-    t = (\inv{\Delta}\* 1) \inv{(\icpa f' \djoin \icpb g')}k(\Delta \* 1)
-  \]
+      }%\label{diag:q1_q2_tjup}
+  \end{equation*}
+  We know the map $q_1\tjup q_2$ exists iff $\wrg{q_1} \perp \wrg{q_2}$. But, the map $t$ from above
   does make the diagram commute. We can see this as
   \begin{align*}
-    (1\*1\*\cpa)&(\inv{\Delta}\* 1) \inv{(\icpa f' \djoin \icpb g')}k(\Delta \* 1)\\
-    &= (\inv{\Delta}\* 1) (1\*\cpa)\inv{(\icpa f' \djoin \icpb g')}k(\Delta \* 1)\\
-    &= (\inv{\Delta}\* 1) (1\*\cpa)\inv{(\icpa f(1\*cpa) \djoin \icpb g(1\*cpb))}k(\Delta \* 1)\\
-    &= (\inv{\Delta}\* 1) (1\*\cpa)((1\*\icpa) \inv{f}\cpa \djoin (1\*\icpb) \inv{g}\cpb) k (\Delta \* 1)\\
-    &= (\inv{\Delta}\* 1) ((1\*1) \inv{f}\cpa \djoin (1\*0) \inv{g}\cpb) k (\Delta \* 1)\\ % as Y\*0
+    (1\*\cpa)& \inv{(\icpa f' \djoin \icpb g')}k\\
+    &=  (1\*\cpa)\inv{(\icpa f(1\*\cpa) \djoin \icpb g(1\*\cpb))}k\\
+    &=  (1\*\cpa)((1\*\icpa) \inv{f}\cpa \djoin (1\*\icpb) \inv{g}\cpb) k \\
+    &=  ((1\*1) \inv{f}\cpa \djoin (1\*0) \inv{g}\cpb) k \\ % as Y\*0
                                 % Y\*0 = 0
-    &= (\inv{\Delta}\* 1) \inv{f} \cpa k(\Delta \* 1)\\
-    &= 1\*q_1
+    &=  \inv{f} \cpa k\\
+    &= q_1
   \end{align*}
-  and similarly for the other direction $1\*q_2$. Therefore, we have
-  $\wrg{1\*q_1} \perp \wrg{1\*q_2}$. Then,
-  \begin{align*}
-    \wrg{1\*q_1} \perp \wrg{1\*q_2}&\implies 1\*\rg{q_1} \perp 1\*\rg{q_2}\\
-    &\implies \Delta(1\*\rg{q_1})\inv{\Delta} \perp \Delta(1\*\rg{q_2})\inv{\Delta}\\
-    &\implies \rg{q_1}\Delta\inv{\Delta} \perp \rg{q_2}\Delta\inv{\Delta}\\
-    &\implies \rg{q_1} \perp \rg{q_2}.
-  \end{align*}
+  and similarly for the other direction $q_2$. Therefore, we have
+  $\wrg{q_1} \perp \wrg{q_2}$.
 
   This means we may form the map $q_1\tjup q_2:Y\*(C\+D) \to Y\*E$. But then the map
-  $1\*(q_1\tjup  q_2)$  makes Diagram~\ref{diag:q1_q2_tjup} commute and therefore provides an
+  $(q_1\tjup  q_2)$  makes Diagram~\ref{diag:k-equiv-f-djoin-g} commute. We also have
+  $q_1,q_2\in\dmap{Y}$, but this means $q_1\tjup q_2 \in \dmap{Y}$ as
+  \[
+    \raisebox{40pt}{$q_1=$ }
+    \begin{tikzpicture}
+      \node at (0,2.75) (s) {};
+      \node at (.75,2.75) (s2) {};
+      \node at (0,2.25) [delta] (d1) {};
+      \node at (.5,1.75) [map] (c) {$\scriptstyle 1\*\cpa$};
+      \node at (.5,1) [map] (q) {$\scriptstyle q_1\tjup q_2$};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.75,0) (end2) {};
+      \draw [] (s) to (d1);
+      \draw [] (s2) to[out=270,in=55] (c);
+      \draw [] (d1) to[out=305,in=125] (c);
+      \draw [] (d1) to[out=235,in=125] (n1);
+      \draw [] (c) to[out=305,in=55] (q);
+      \draw [] (c) to[out=235,in=125] (q);
+      \draw [] (q) to[out=235,in=55] (n1);
+      \draw [] (q) to[out=305,in=90] (end2);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \ \raisebox{40pt}{$=$}\
+    \begin{tikzpicture}
+      \node at (0,3.75) (s) {};
+      \node at (.75,3.75) (s2) {};
+      \node at (0,3.25) [delta] (d1) {};
+      \node at (0.25,2.75) [delta] (d2) {};
+      \node at (.75,2.25) [map] (c) {$\scriptstyle 1\*\cpa$};
+      \node at (0.25, 1.75) [nabla] (n2) {};
+      \node at (.5,1) [map] (q) {$\scriptstyle q_1\tjup q_2$};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.75,0) (end2) {};
+      \draw [] (s) to (d1);
+      \draw [] (s2) to[out=270,in=55] (c);
+      \draw [] (d1) to[out=305,in=90] (d2);
+      \draw [] (d1) to[out=235,in=125] (n1);
+      \draw [] (d2) to[out=305,in=125] (c);
+      \draw [] (d2) to[out=235,in=125] (n2);
+      \draw [] (c) to[out=305,in=55] (q);
+      \draw [] (c) to[out=235,in=55] (n2);
+      \draw (n2) to[out=270,in=125] (q);
+      \draw [] (q) to[out=235,in=55] (n1);
+      \draw [] (q) to[out=305,in=90] (end2);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \ \raisebox{40pt}{$=$}\
+    \begin{tikzpicture}
+      \node at (0,3.75) (s) {};
+      \node at (.75,3.75) (s2) {};
+      \node at (0,3.25) [delta] (d1) {};
+      \node at (-0.25,2.75) [delta] (d2) {};
+      \node at (.5,2.25) [map] (c) {$\scriptstyle 1\*\cpa$};
+      \node at (0, 1.75) [nabla] (n2) {};
+      \node at (.5,1) [map] (q) {$\scriptstyle q_1\tjup q_2$};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.75,0) (end2) {};
+      \draw [] (s) to (d1);
+      \draw [] (s2) to[out=270,in=55] (c);
+      \draw [] (d1) to[out=235,in=90] (d2);
+      \draw [] (d1) to[out=305,in=125] (c);
+      \draw [] (d2) to[out=305,in=125] (n2);
+      \draw [] (d2) to[out=235,in=125] (n1);
+      \draw [] (c) to[out=305,in=55] (q);
+      \draw [] (c) to[out=235,in=55] (n2);
+      \draw (n2) to[out=270,in=125] (q);
+      \draw [] (q) to[out=235,in=55] (n1);
+      \draw [] (q) to[out=305,in=90] (end2);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \ \raisebox{40pt}{$=$}\
+    \begin{tikzpicture}
+      \node at (0,3.75) (s) {};
+      \node at (.75,3.75) (s2) {};
+      \node at (0,3.25) [delta] (d1) {};
+      \node at (.5,2.75) [map] (c) {$\scriptstyle 1\*\cpa$};
+      \node at (-0.25,2.25) [delta] (d2) {};
+      \node at (0, 1.75) [nabla] (n2) {};
+      \node at (.5,1) [map] (q) {$\scriptstyle q_1\tjup q_2$};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.75,0) (end2) {};
+      \draw [] (s) to (d1);
+      \draw [] (s2) to[out=270,in=55] (c);
+      \draw [] (d1) to[out=235,in=90] (d2);
+      \draw [] (d1) to[out=305,in=125] (c);
+      \draw [] (d2) to[out=305,in=125] (n2);
+      \draw [] (d2) to[out=235,in=125] (n1);
+      \draw [] (c) to[out=305,in=55] (q);
+      \draw [] (c) to[out=235,in=55] (n2);
+      \draw (n2) to[out=270,in=125] (q);
+      \draw [] (q) to[out=235,in=55] (n1);
+      \draw [] (q) to[out=305,in=90] (end2);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \ \raisebox{40pt}{$=$}\
+    \begin{tikzpicture}
+      \node at (0,3.75) (s) {};
+      \node at (.75,3.75) (s2) {};
+      \node at (0,3.25) [delta] (d1) {};
+      \node at (.5,2.75) [map] (c) {$\scriptstyle 1\*\cpa$};
+      \node at (0, 2.25) [nabla] (n2) {};
+      \node at (0,1.5) [delta] (d2) {};
+      \node at (.5,1) [map] (q) {$\scriptstyle q_1\tjup q_2$};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.75,0) (end2) {};
+      \draw [] (s) to (d1);
+      \draw [] (s2) to[out=270,in=55] (c);
+      \draw [] (d1) to[out=235,in=125] (n2);
+      \draw [] (d1) to[out=305,in=125] (c);
+      \draw [] (c) to[out=305,in=55] (q);
+      \draw [] (c) to[out=235,in=55] (n2);
+      \draw (n2) to[out=270,in=90] (d2);
+      \draw [] (d2) to[out=305,in=125] (q);
+      \draw [] (d2) to[out=235,in=125] (n1);
+      \draw [] (q) to[out=235,in=55] (n1);
+      \draw [] (q) to[out=305,in=90] (end2);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \ \raisebox{40pt}{$=$}\
+    \begin{tikzpicture}
+      \node at (0,2.75) (s) {};
+      \node at (.75,2.75) (s2) {};
+      \node at (.5,2.25) [map] (c) {$\scriptstyle 1\*\cpa$};
+      \node at (0,1.5) [delta] (d2) {};
+      \node at (.5,1) [map] (q) {$\scriptstyle q_1\tjup q_2$};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.75,0) (end2) {};
+      \draw [] (s) to[out=270,in=125] (c);
+      \draw [] (s2) to[out=270,in=55] (c);
+      \draw [] (c) to[out=305,in=55] (q);
+      \draw [] (c) to[out=235,in=90] (d2);
+      \draw [] (d2) to[out=305,in=125] (q);
+      \draw [] (d2) to[out=235,in=125] (n1);
+      \draw [] (q) to[out=235,in=55] (n1);
+      \draw [] (q) to[out=305,in=90] (end2);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \ \raisebox{40pt}{$= (1\*\cpa)\dmap{(q_1\tjup q_2)}$.}
+  \]
+  and similarly $q_2 = (1\*\cpb)\dmap{(q_1\tjup q_2)}$ giving us $q_1\tjup q_2 \in \dmap{Y}$ by the
+  uniqueness of the $\tjup$ map. Therefore $q_1\tjup q_2$ provides an
   equivalence between $k$ and $\icpa f' \djoin \icpb g'$, meaning the coproduct is unique.
-
-  % We may then form the map $q_1(1\*\cpa) \tjdown q_2(1\*\cpb): Y\*E \to Y\*(C\+D)$.  NOT TRUE, NEED
-  % Rst TO BE  $\perp$, WORK THIS PART OUT.
-
-% By the
-%   universal property of disjointness,
-%   Lemma~\ref{lem:disjointness_various}~\ref{lemitem:djv_universal}, we have
-%   \[\wrg{q_1(1\*\cpa)}(\inv{\Delta}\*1) \perp \wrg{q_2(1\*\cpb)}(\inv{\Delta}\*1).\] By
-%   \axiom{Dis}{6}, we then have
-%   \[\wrg{\wrg{q_1(1\*\cpa)}(\inv{\Delta}\*1)} \perp \wrg{\wrg{q_2(1\*\cpb)}(\inv{\Delta}\*1)}.\] But
-%   by \rrfour ($\wrg{\rg{f}g} = \wrg{f g}$), we now have
-%   \[\wrg{q_1(1\*\cpa)(\inv{\Delta}\*1)} \perp \wrg{q_2(1\*\cpb)(\inv{\Delta}\*1)}.\]
-
-%   We are now in a situation where we may apply \axiom{Dis}{7} OH CRUD I WENT THE WRONG WAY AROUND!!!!
 \end{proof}
 
 \begin{corollary}\label{cor:xt_is_a_distributive_restriction_category}
