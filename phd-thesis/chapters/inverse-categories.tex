@@ -1940,13 +1940,15 @@ the object $A$, hence we will label it $\X[A]$, as it is reminiscent of the simp
 over an object $A$ in a category. We make this precise in the following proposition:
 
 \begin{proposition}\label{prop:slice-a-is-a-discrete-inverse-category}
-  Given a discrete inverse category $\X$, then the restriction category $\X[A]$ defined as:
+  Given a discrete inverse category $\X$, define $\X[A]$ as  the restriction category:
   \rcategory{The objects of $\X$}{A map $h=\dmap{h}:A\*X\to A\*Y$ in \X is a map from $X$ to $Y$ in
     $\X[A]$}{Composition in \X}{$1\*1$ in \X}{$\rst{h}$ in \X is $\rst{h}$ in $\X[A]$}
+  Then, $\X[A]$ is a discrete inverse category.
 \end{proposition}
 \begin{proof}
-  Given Lemma~\ref{lem:delta_nabla_maps_are_closed}, the only remaining item to prove is that if
-  $h=\dmap{h}$ then $\rst{h} = \dmap{\rst{h}}$.
+  Given Lemma~\ref{lem:delta_nabla_maps_are_closed}, we see immediately that $\X[A]$ is a
+  category. We must show the restriction is in $\X[A]$, i.e.,
+  $h=\dmap{h}$ then $\rst{h} = \dmap{\rst{h}}$ and that $\X[A]$ has a tensor and a Frobenius $\Delta$.
 
   Recalling that $\rst{(1\*h)} = 1\* \rst{h}$ we have
   \begin{multline*}
@@ -1966,9 +1968,117 @@ over an object $A$ in a category. We make this precise in the following proposit
   \end{align*}
   But by Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}, if $\rst{k} h = h$, we have
   $\rst{h} \le \rst{k}$. As we already have $\rst{k}\le\rst{h}$ this means they are equal and the
-  restriction is in $\X[A]$.
+  restriction is in $\X[A]$, thus, $\X[A]$ is a restriction category.
 
+  The tensor of objects in $\X[A]$ is given by the tensor of the objects in $\X$. For two maps $h,k$
+  in $\X[A]$, $h\*k$ is given by
+  $(\Delta\*1\*1)(1\*c_{\*}\*1)(h\*k)(1\*c_{\*}\*1)(\inv{\Delta}\*1\*1)$ in $\X$. This is a map in
+  $\X[A]$ as
+  \[
+    \raisebox{50pt}{$\dmap{(h\*g)}=$ }
+        \begin{tikzpicture}
+          \node at (0,3.5) (s1) {};
+          \node at (.5,3.5) (s2) {};
+          \node at (.75,3.5) (s3) {};
+          \node at (0,3) [delta] (d1) {};
+          \node at (.25,2.5) [delta] (d2) {};
+          \node at (.25,1.75) [map] (h) {$\scriptstyle \,h\,$};
+          \node at (.75,1.75) [map] (g) {$\scriptstyle \,g\,$};
+          \node at (0.25, 1) [nabla] (n2) {};
+          \node at (0, .5) [nabla] (n1) {};
+          \node at (0,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \node at (.75,0) (end3) {};
+          \draw [] (s1) to (d1);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (s3) to[out=270,in=55] (g);
+          \draw [] (d1) to[out=305,in=90] (d2);
+          \draw [] (d1) to[out=235,in=125] (n1);
+          \draw [] (d2) to[out=305,in=125] (g);
+          \draw [] (d2) to[out=235,in=125] (h);
+          \draw (h) to[out=235,in=125] (n2);
+          \draw (h) to[out=305,in=90] (end2);
+          \draw (g) to[out=235,in=55] (n2);
+          \draw (g) to[out=305,in=90] (end3);
+          \draw (n2) to[out=270,in=55] (n1);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{50pt}{$=$}\
+        \begin{tikzpicture}
+          \node at (0,3.5) (s1) {};
+          \node at (.5,3.5) (s2) {};
+          \node at (.75,3.5) (s3) {};
+          \node at (0,3) [delta] (d1) {};
+          \node at (-.25,2.5) [delta] (d2) {};
+          \node at (.25,1.75) [map] (h) {$\scriptstyle \,h\,$};
+          \node at (.75,1.75) [map] (g) {$\scriptstyle \,g\,$};
+          \node at (-0.25, 1) [nabla] (n2) {};
+          \node at (0, .5) [nabla] (n1) {};
+          \node at (0,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \node at (.75,0) (end3) {};
+          \draw [] (s1) to (d1);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (s3) to[out=270,in=55] (g);
+          \draw [] (d1) to[out=235,in=90] (d2);
+          \draw [] (d1) to[out=305,in=125] (g);
+          \draw [] (d2) to[out=305,in=125] (h);
+          \draw [] (d2) to[out=235,in=125] (n2);
+          \draw (h) to[out=235,in=55] (n2);
+          \draw (h) to[out=305,in=90] (end2);
+          \draw (g) to[out=235,in=55] (n1);
+          \draw (g) to[out=305,in=90] (end3);
+          \draw (n2) to[out=270,in=125] (n1);
+          \draw (n1) to (end1);
+        \end{tikzpicture}
+      \ \raisebox{50pt}{$=$}\
+      \raisebox{15pt}{
+        \begin{tikzpicture}
+          \node at (0,2.5) (s1) {};
+          \node at (.5,2.5) (s2) {};
+          \node at (.75,2.5) (s3) {};
+          \node at (0,2) [delta] (d1) {};
+          \node at (.25,1.25) [map] (h) {$\scriptstyle \,h\,$};
+          \node at (.75,1.25) [map] (g) {$\scriptstyle \,g\,$};
+          \node at (0, .5) [nabla] (n1) {};
+          \node at (0,0) (end1) {};
+          \node at (.5,0) (end2) {};
+          \node at (.75,0) (end3) {};
+          \draw [] (s1) to (d1);
+          \draw [] (s2) to[out=270,in=55] (h);
+          \draw [] (s3) to[out=270,in=55] (g);
+          \draw [] (d1) to[out=235,in=125] (h);
+          \draw [] (d1) to[out=305,in=125] (g);
+          \draw (h) to[out=235,in=125] (n1);
+          \draw (h) to[out=305,in=90] (end2);
+          \draw (g) to[out=235,in=55] (n1);
+          \draw (g) to[out=305,in=90] (end3);
+          \draw (n1) to (end1);
+        \end{tikzpicture}}
+      \ \raisebox{50pt}{$= h\*g$}\
+  \]
+
+  The $\Delta$ in $\X[A]$ is given by the map $1\*\Delta$ in \X. The various identities required of
+  $\Delta$ hold in $\X[A]$ as they hold in $\X$, therefore $\X[A]$ is a discrete inverse category.
 \end{proof}
+
+We note that there are functors between $\X$ and $\X[A]$, given by:
+\[
+  G:\X\to\X[A];\quad G:B\mapsto B;\quad G:f \mapsto 1\*f
+\]
+and
+\[
+  F:\X[A]\to\X; \quad F:B \mapsto A\*B; \quad F: f \mapsto f.
+\]
+However, these do not form an adjoint pair as the relation is
+\[
+  \infer{\X(A\*X,A\*Y)}{\X[A](X,Y)}\quad \left(\text{i.e.,}  \infer{\X(F(X),F(Y))}{\X[A](X,G(Y))}\right)
+\]
+rather than the required
+\[
+  \infer{\X(F(X),Y)}{\X[A](X,G(Y))}.
+\]
+
 
 % chapter inverse_categories (end)
 %%% Local Variables:
