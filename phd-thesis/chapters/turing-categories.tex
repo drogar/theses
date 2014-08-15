@@ -30,7 +30,7 @@ Turing category or has a PCA.
       $f:B\times X \to Y$ admit a $\txy$-index.\label{defitem:turing_universal_application}
     \item If $A$ is an object in $\X$ such that for every pair of objects $X,Y$ in \X there is
       a universal application, then $A$ is called a \emph{Turing object}.
-    \item A cartesian restriction category that contains a Turing object is called a
+    \item A Cartesian restriction category that contains a Turing object is called a
       \emph{Turing category}.
   \end{enumerate}
 \end{definition}
@@ -144,9 +144,9 @@ There is another criteria that also gives a Turing category:
      T\times T \ar[r]^{r\times 1} & T\times T\times T \ar[r]^{1\times m} &T\times T \ar[rr]^{\circ}
        && T \\
      T\times T\times T \ar[u]^{m\times 1} \ar@{=}[ur]\\
-     T\times T \ar@{.>}[u]^{\<\code{(rf)},\pi_0,\pi_1\>} \ar@{.>}[uur]_{\<\code{(rf)},\pi_0,\pi_1\>}
+     T\times T \ar@{.>}[u]^{\<\code{(r f)},\pi_0,\pi_1\>} \ar@{.>}[uur]_{\<\code{(r f)},\pi_0,\pi_1\>}
        \ar[rr]_{m} \ar@{=}@/_20pt/[rrr]
-       & & T \ar[r]_{r} \ar@{.>}[uu]_{\<\code{(rf)},1\>} &T\times T. \ar[uur]_{f}
+       & & T \ar[r]_{r} \ar@{.>}[uu]_{\<\code{(r f)},1\>} &T\times T. \ar[uur]_{f}
     }
   \]
   \\[10pt]
@@ -225,8 +225,8 @@ for $n\ge 1$  recursively by:
   A Cartesian restriction category has a \emph{partial combinatory algebra} when it has an object
   $A$ together with:
   \begin{enumerate}[{(}i{)}]
-  \item A partial map $\bullet:A\times A \to A$,
-  \item two total elements $1\xrightarrow{k}A$ and $1\xrightarrow{s}{A}$ which satisfy
+  \item A partial map $\bullet:A\times A \to A$,\label{defitem:pca-1}
+  \item two total elements $1\xrightarrow{k}A$ and $1\xrightarrow{s}{A}$ which satisfy\label{defitem:pca-2}
     \[
       \xymatrix@C+25pt{
         A\times A\times A \ar[r]^(.6){(\bullet\times 1)\bullet} & A\\
@@ -236,10 +236,10 @@ for $n\ge 1$  recursively by:
         A\times A\times A\times A \ar[r]^(.6){\multibullet{3}}&A\\
         &A\times A \ar[u]_{\bullet}\\
         A\times A\times A \ar[uu]^{s\times1\times1\times1} \ar[r]_(.4){\theta_A'}
-          & (A\times A) \times (A\times A) \ar[u]_{\bullet\times\bullet}
+          & (A\times A) \times (A\times A). \ar[u]_{\bullet\times\bullet}
       }
     \]
-    and $A\times A \xrightarrow{s\times1\times1} A\times A\times A \xrightarrow{\bullet^2} A$ is total.
+    \item $A\times A \xrightarrow{s\times1\times1} A\times A\times A \xrightarrow{\bullet^2} A$ is total.\label{defitem:pca-3}
   \end{enumerate}
   In the above $\theta' = (1\times1\times\Delta)(1\times c \times 1)a$ where $a$ sets the
   parenthesis as in the diagram.
@@ -258,12 +258,125 @@ combinatory algebra. All we need to do is to actually define the element $k$ and
 commuting diagrams of Definition~\ref{def:partial_combinatory_algebra}.
 
 Now, we want to consider what are the conditions required for an inverse category \X such that $\Xt$
+has a partial combinatory algebra.
+
+In a discrete inverse category, we define the notation $\imultiapp{f}{n}$. For any operation $f:A\* A\to A\*A$
+define $\imultiapp{f}{n}$ recursively by:
+\begin{enumerate}[{(}i{)}]
+\item
+  \[
+  \raisebox{12pt}{$\imultiapp{f}{1}:A\*A \to A\*A =f =\ $}
+  \begin{tikzpicture}
+    \node [style=nothing] (s1) at (0,1) {};
+    \node [style=nothing] (s2) at (.5,1) {};
+    \node [style=map] (bullet1) at (.25,.5) {$\scriptstyle f$};
+    \node [style=nothing] (e1) at (0,0) {};
+    \node [style=nothing] (e2) at (.5,0) {};
+    \draw [] (s1) to[out=270,in=125] (bullet1);
+    \draw [] (s2) to[out=270,in=55] (bullet1);
+    \draw [] (bullet1) to[out=235,in=90] (e1);
+    \draw [] (bullet1) to[out=305,in=90] (e2);
+  \end{tikzpicture}
+  \raisebox{12pt}{.}
+  \]
+\item
+  \[
+  \raisebox{45pt}{$\imultiapp{f}{n+1}:A\*(\*_{n}A)\*A \to A\*(\*_{n+1}A) =\ $}
+  \begin{tikzpicture}
+    \node [style=nothing] (s1) at (-0.25,3.5) {};
+    \node [style=nothing] (s1a) at (0.25,3.5) {};
+    \node [style=nothing] (topdots) at (.5,3.5) {$\scriptstyle \cdots$};
+    \node [style=nothing] (s2) at (.75,3.5) {};
+    \node [style=nothing] (s3) at (1,3.5) {};
+    \node [style=[tensor] (t0) at (.5,3) {$\scriptstyle \*$};
+    \node [style=map] (bullet1) at (.25,2.25) {$\scriptstyle \imultiapp{f}{n}$};
+    \node [style=map] (bullet2) at (.25,1) {$\scriptstyle f$};
+    \node [style=tensor] (t1) at (.75,.5) {$\scriptstyle \*$};
+    \node [style=nothing] (e1) at (0,0) {};
+    \node [style=nothing] (e2) at (.75,0) {};
+    \draw [] (s1) to[out=270,in=125] (bullet1);
+    \draw [] (s1a) to[out=270,in=125] (t0);
+    \draw [] (s2) to[out=270,in=55] (t0);
+    \draw [] (s3) to[out=270,in=55] (bullet2);
+    \draw (t0) to[out=270,in=55] (bullet1);
+    \draw [] (bullet1) to[out=235,in=125] (bullet2);
+    \draw [] (bullet1) to[out=305,in=55] (t1);
+    \draw [] (bullet2) to[out=305,in=125] (t1);
+    \draw [] (bullet2) to[out=235,in=90] (e1);
+    \draw (t1) to (e2);
+  \end{tikzpicture}
+  \raisebox{45pt}{.}
+  \]
+\end{enumerate}
+
+\begin{definition}\label{def:inverse_partial_combinatory_algebra}
+  A discrete inverse category \X has a \emph{inverse partial combinatory algebra} when there is an
+   object $A$ in \X with a map $A\*A  \xrightarrow{\bullet} A\*A$ and two total elements:
+  \[
+      1\xrightarrow{k}A \qquad 1\xrightarrow{s}{A}
+  \]
+  and maps
+    $h_k:A\*A\*A\to A\*A, h_s:A\*A\*A\*A\to A\*A\*A\*A$  in $\dmap{A}$ which satisfy the following
+    three axioms:\\
+    \axiom{iCPA}{1}
+    \[
+      \xymatrix@C+15pt@R-10pt{
+         && A\*A \ar@{.>}[dddd]^{h_k}\\
+        &A\* A\* A \ar[ur]^{\imultibullet{2}} \\
+        A\* A\*A \ar[ur]^{\inv{\usl}(k\*1\*1)\ \,} \ar[ddrr]_{1} \\
+         && & \\
+        && A\*A.
+      }
+    \]
+    \axiom{iCPA}{2}
+    \[
+      \xymatrix@R-10pt{
+        &&& A\* A \*A\*A\ar@{.>}[dddddd]^{h_s} \\
+        &&A\* A\* A\* A
+          \ar[ur]^{\imultibullet{3}}\\
+        && \\
+        A\* A\* A \ar[uurr]^{\inv{\usl}(s\*1)} \ar[dr]_(.4){\theta_A'}\\
+        &(A\* A) \* (A\* A) \ar[dr]_{(\bullet\*\bullet)(1\*c\*1)\ \,} \\
+        & &A\* A\* A\*A\ar[dr]_{(\bullet\*1)}\\
+        &&&A\*A\*A\*A.\\
+      }
+    \]
+    \axiom{iCPA}{3} $I\*A\* A \xrightarrow{s\*1\*1} A\* A\* A \xrightarrow{\imultibullet{2}} A\*A\*A$ is total.
+\end{definition}
+
+\begin{proposition}\label{prop:inverse-pca-iff-pca}
+  A discrete inverse category \X has an inverse partial combinatory algebra if and only if $\Xt$ has
+  a partial combinatory algebra.
+\end{proposition}
+\begin{proof}
+  When we have a discrete inverse category \X with an inverse partial combinatory algebra, we see
+  immediately the map $\bullet:A\*A\to A\*A$ in \X becomes the map $(\bullet,A):A\times A \to A$,
+  satisfying \ref{defitem:pca-1} of Definition~\ref{def:partial_combinatory_algebra}. The
+  commutative diagrams \axiom{iCPA}{1} and \axiom{iCPA}{2}, when lifted to \Xt, become the diagrams
+  for a partial combinatory algebra as given in \ref{defitem:pca-2}, where $(k,\inv{\usl})$ and
+  $(s,\inv{\usl})$ are the $k,s$ of the partial combinatory algebra. Finally, the totality
+  requirement, \axiom{iCPA}{3}, gives \ref{defitem:pca-3} of the partial combinatory algebra
+  definition.
+
+  Hence, we have shown that an inverse partial combinatory algebra in \X gives a partial combinatory
+  algebra in \Xt.
+
+  For the reverse, suppose ...
+
+
+\end{proof}
+
+
+
+
+
+Now, we want to consider what are the conditions required for an inverse category \X such that $\Xt$
 has a partial combinatory algebra. First, we must alter the meaning of the notation
 $\multiapp{f}{n}$ when in a discrete inverse category.
 
-In a discrete inverse category, we redefine the notation $\multiapp{f}{n}$. For any map $f:A\* A\to A\*A$ where $A$ is a universal object
-(i.e., every object is a retract of $A$) define $\multiapp{f}{n}$
-recursively by:
+In a discrete inverse category, we redefine the notation $\multiapp{f}{n}$. For any map $f:A\* A\to
+A\*A$ where $A$ is a universal object (i.e., every object is a retract of $A$) define
+$\multiapp{f}{n}$ recursively by:
 \begin{enumerate}[{(}i{)}]
 \item
   \[
@@ -346,7 +459,6 @@ of $A$.
     \]
     and $I\*A\* A \xrightarrow{s\*1\*1} A\* A\* A \xrightarrow{\multibullet{2}} A\*A$ is total.
 \end{definition}
-
 
 
 % chapter turing_categories (end)
