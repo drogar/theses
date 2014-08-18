@@ -1100,8 +1100,23 @@ discrete and non-discrete variety.
   In any Cartesian restriction category, the terminal object, $1$, is discrete as $1\times 1 \cong 1$.
 \end{example}
 \begin{example}[Semi-lattice is discrete]\label{ex:semi-lattice_is_discrete}
-
+  As the product is the meet of the semi-lattice and $A\wedge A = A$, we have $\Delta = 1$ and
+  therefore is always invertible. Note that a total Cartesian restriction category must equal a
+  semi-lattice. Also, we see that any Cartesian restriction category which is a restriction preorder
+  will also be discrete.
 \end{example}
+
+However, there are also numerous examples of non-discrete Cartesian restriction categories.
+\begin{example}[Non-discrete Cartesian restriction categories]\label{ex:various_not_discrete}
+We list a few categories which are not discrete:
+  \begin{enumerate}[{(}i{)}]
+  \item   \topcatp, the partial maps on open sets, is not discrete.
+  \item Any total non-trivial (i.e., not a semi-lattice) Cartesian category is not discrete.
+  \item $\text{Par}(\X,\Mstab)$ is not discrete unless $\Delta: X\to X\times X$ is in \Mstab.
+  \item $StabMeetSemiLat^{op}$ is not discrete.
+  \end{enumerate}
+\end{example}
+
 
 % section graphic_categories (end)
 

@@ -764,6 +764,21 @@ invertible maps in $\Xt$ are the equivalence class of the form  $(f \inv{\usr},1
   isomorphism. Thus, by Corollary \ref{cor:eta_and_xt_are_universal_for_inv} and Proposition 2.2.7
   of \cite{cockett2009:ctcs} we have the equivalence of the two categories.
 \end{proof}
+
+Thus, we may now draw out the relationship between Cartesian restriction categories, discrete
+Cartesian restriction categories and discrete inverse categories:
+
+\[
+  \xymatrix{
+    \text{DCartRest} \ar@{^{(}->}[r]^{\top} & \text{CartRest} \ar@/_/[l]\\
+    \text{DInv}\ar@{<->}[u]^{\cong}
+  }
+\]
+where the arrow from discrete Cartesian restriction categories to Cartesian restriction categories
+is the standard embedding and the reverse arrow picks out the discrete objects in the Cartesian
+restriction category. Of course, the terminal object is always discrete, as noted in
+Example~\ref{ex:terminal_object_is_discrete}.
+
 % subsection equivalence_of_categories (end)
 \section{Examples of the \texorpdfstring{\wtc}{tilde} construction} % (fold)
 \label{sec:examples_of_the_wtf_construction}
