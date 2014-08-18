@@ -5,8 +5,9 @@
 
 
 Restriction categories were introduced in
- \cite{cockett2002:restcategories1} as a way to give an algebraic axiomatization of partial maps.
-We will introduce restriction categories and provide a variety of results.
+\cite{cockett2002:restcategories1,cockettlack2003:restcategories2,cockettlack2004:restcategories3}
+as a way to give an algebraic axiomatization of partial maps. We will introduce restriction
+categories and provide a variety of results.
 
 \section{Definitions}
 \label{sec:definitions}
@@ -41,7 +42,7 @@ We will introduce restriction categories and provide a variety of results.
 Note that any map such that $r=\restr{r}$ is an idempotent, as $r r = \rst{r} r = r$.
 Such a map is called a \emph{restriction idempotent}.
 
-Here are some basic facts (\cite{cockett2002:restcategories1} and
+Here are some basic facts (see e.g., \cite{cockett2002:restcategories1} and
 \cite{cockett-manes09-boolean-classical-rest-cats}) for restriction categories.
 
 \begin{lemma}\label{lem:restrictionvarious}
@@ -273,7 +274,7 @@ We now must show each of the items in Definition~\ref{def:joins} hold:
   \begin{enumerate}[{(}i{)}]
     \item From its definition, we see the
       \[
-        \rst{f}f\join g = \begin{cases}
+        \rst{f}(f\join g) = \begin{cases}
           f(x) & \text{when $f$ is defined,}\\
           \undef & \text{otherwise.}
           \end{cases}
@@ -615,11 +616,10 @@ which algebraically axiomatize the concept of the range for a function.
   \end{enumerate}
 \end{proof}
 
-\begin{remark}
-  Note that unlike restrictions, a range is a \emph{property} of a restriction category. To see
-  this, assume we have two ranges $\wrg{(\_)}$ and $\widetilde{(\_)}$. Then,
-  \[\rg{f}=\wrg{f \tilde{f}}=\rg{f} \tilde{f}=\tilde{f} \rg{f}=\widetilde{f \rg{f}}=\tilde{f}.\]
-\end{remark}
+
+Note that unlike restrictions, a range is a \emph{property} of a restriction category. To see
+this, assume we have two ranges $\wrg{(\_)}$ and $\widetilde{(\_)}$. Then,
+\[\rg{f}=\wrg{f \tilde{f}}=\rg{f} \tilde{f}=\tilde{f} \rg{f}=\widetilde{f \rg{f}}=\tilde{f}.\]
 % section range_categories (end)
 
 \begin{example}\label{ex:ranges}
@@ -775,20 +775,16 @@ in $\spl{E}{\X}$.
   \begin{itemize}
     \item{$\mbf\meetspl \mbg \le \mbf$: } We need to show
       $\rst{\mbf \meetspl \mbg} \mbf =  \mbf \meetspl \mbg$.  Calculating now in \X:
-      \begin{align*}
-        d \rst{f \meet g} f&= \rst{d(f\meet g)} d f\\
-        & = \rst{d f \meet d g} d f \\
-        & = \rst{f \meet g} f \\
-        & = f \meet g
-      \end{align*}
+      \[
+        d \rst{f \meet g} f= \rst{d(f\meet g)} d f  = \rst{d f \meet d g} d f
+         = \rst{f \meet g} f  = f \meet g
+      \]
       which is the definition of $\mbf \meetspl \mbg$.
     \item{$\mbf\meetspl \mbg \le \mbg$: } Similarly and once again calculating in \X,
-      \begin{align*}
-        d \rst{f \meet g} g&= \rst{d(f\meet g)} d g\\
-        & = \rst{d f \meet d g} d g \\
-        & = \rst{f \meet g} g \\
-        & = f \meet g
-      \end{align*}
+      \[
+        d \rst{f \meet g} g = \rst{d(f\meet g)} d g  = \rst{d f \meet d g} d g
+         = \rst{f \meet g} g  = f \meet g
+      \]
       which is the definition of $\mbf \meetspl \mbg$.
     \item{$\mbf\meetspl \mbf = \mbf$: } From the definition, this is $f \meet f = f$ which
       is just $ \mbf$.
@@ -845,20 +841,20 @@ is referred to as an \Mstab-category.
 
 Given a category \B and a stable system of monics, the \emph{partial map category},
 $\text{Par}(\B,\Mstab)$ is:
-  \rcategoryequiv{$A\in\B$}
+  \rcategoryequivns{$A\in\B$;}
     {$(m,f):A\to B$  with $m:A' \to A$ is in \Mstab and $f:A' \to B$ is a map in \B. i.e.,
-      $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{f}\\A&&B}$}
-    {$1_A,1_A:A \to A$}
+      $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{f}\\A&&B}$;}
+    {$1_A,1_A:A \to A$;}
     {via a pullback, $(m,f)(m',g) = (m'' m, f' g)$ where
       \[
         \xymatrix @C-15pt @R-15pt{
           &&A''\ar[dl]_{m''}\ar[dr]^{f'}\\
           &A'\ar[dl]_{m}\ar[dr]_{f}&\text{{\tiny (pb)}}&B'\ar[dl]^{m'}\ar[dr]^{g}\\
-          A&&B&&C
+          A&&B&&C;
         }
       \]
     }
-    {$\restr{(m,f)} = (m,m)$}
+    {$\restr{(m,f)} = (m,m)$.}
 
 For the maps, $(m,f) \sim (m',f')$ when there is an isomorphism $\gamma : A'' \to A'$
 such that $\gamma m' = m$ and $\gamma f' = f$.

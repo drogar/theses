@@ -67,7 +67,9 @@ In \cite{abramsky05:reversible}, Abramsky considers linear logic as his computat
 done by producing a Linear Combinatory Algebra \cite{abramsky02:GOI} from the involutive maps over a
 term algebra and showing these are bi-orthogonal automata. (An automata is considered orthogonal if
 it is non-ambiguous and left-linear. It is bi-orthogonal when both the automata and its converse are
-both orthogonal).
+both orthogonal). While the paper does use structurally reversible term rewritings as its
+basis for computation, the greater emphasis is placed on how this leads to a linear combinatory
+algebra and the universality of that model.
 
 In \cite{danos2004reversible}, Danos and Krivine extend CCS (Calculus for Communicating Systems)
 \cite{milner1980calculus,milner1989communication} to produces RCCS, which adds reversible
@@ -164,6 +166,10 @@ computations in as general a way as possible. We will show this category admits 
 sum-like structures. We will also show this type of restriction category is equivalent to a specific
 type of Cartesian restriction category, showing there is a relation to standard computing models.
 
+Finally, we develop the structure of inverse Turing category and inverse partial combinatory
+algebras, directly based on Turing category and partial combinatory algebras in restriction
+categories from \cite{cockett-hostra08-intro-to-turing,cockett2010:categories-and-computability}.
+
 \section{Contributions}
 \label{sec:contributions}
 
@@ -198,6 +204,10 @@ The main contributions of this thesis are:
   where the inverse product distributes over the disjoint join) gives a distributive restriction
   category when factoring out the equivalence relation from Item~\ref{item:contribution-2} above in
   Corollary~\ref{cor:xt_is_a_distributive_restriction_category}.
+\item The proofs that an inverse Turing category produces a Turing category,
+  Theorem~\ref{thm:inverse_turing_category_gives_a_turing_category} and that an inverse partial
+  combinatory algebra results in a partial combinatory algebra in the equivalent discrete Cartesian
+  restriction category, Proposition~\ref{prop:inverse-pca-iff-pca}.
 \end{enumerate}
 
 \section{Outline} % (fold)
@@ -263,10 +273,15 @@ disjoint sums. This culminates in showing that an inverse category \X with a ten
 joins gives rise to a matrix category over \X and that \X is equivalent to its matrix
 category.
 
-In Chapter~\ref{sec:distributive_inverse_categories} we show that the
+In Chapter~\ref{chap:distributive_inverse_categories} we show that the
 construction introduced in Chapter~\ref{chap:completing_a_discrete_inverse_category} also lifts an
 disjoint sum up to a coproduct and in fact will create a distributive restriction category when the
 inverse product distributes over the disjoint join.
+
+In Chapter~\ref{chap:turing_categories}, we introduce Turing categories and partial combinatory
+algebras in a Cartesian restriction category. We then discuss the corresponding structures in
+inverse categories: Inverse Turing categories and inverse partial combinatory algebras, showing the
+equivalence of these structures to the ones in discrete Cartesian restriction categories.
 
 Our conclusions and thoughts for potentially interesting areas to explore further are then given in
 Chapter~\ref{cha:conclusions_and_future_work}.

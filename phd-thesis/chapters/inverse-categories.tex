@@ -99,12 +99,13 @@ preserved by splitting.
 \end{example}
 \begin{example}\label{ex:partial_map_monics_is_inverse_category}
   Given a category $\cP$, create a partial map category as in
-  Section~\ref{sub:partial_map_categories}, where the stable system of monics are all isomorphisms
-  in $\cP$. Then the partial isomorphisms are the maps of the form
-  $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{m'}\\A&&B}$, with inverse
+  Section~\ref{sub:partial_map_categories}, where the stable system of monics, $\Mstab$, consists of
+  all  isomorphisms in $\cP$. Then the partial isomorphisms are the maps of the form
+  $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{m'}\\A&&B}$, where $m'\in\Mstab$. Its inverse is
   $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m'} \ar[dr]^{m}\\B&&A}$. The composition is
   $\xymatrix @R-15pt @C-15pt{&A\ar[dl]_{m^{-1}m} \ar[dr]^{m^{-1}m}\\A&&A}$ which is the
-  identity. Taking just the partial isomorphisms gives us an inverse category.
+  identity. Taking just the partial isomorphisms gives us an inverse category.%TODO - What?? What
+                                %are the partial isos?
 \end{example}
 
 \section{Inverse categories with restriction products} % (fold)
@@ -262,27 +263,25 @@ If we define the map:
   of a Frobenius algebra as per Definition~\ref{def:frobeniusalgebra}.
 \end{definition}
 
-\begin{remark}
-  Note also, cocommutativity implies commutativity, i.e., that $c_{\*}\inv{\Delta} = \inv{\Delta}$.
-  One can see this as:
-  \begin{align*}
-    \Delta(c_{\*}\inv{\Delta})
-      &= (\Delta c_{\*})\inv{\Delta} = \Delta\inv{\Delta} = \rst{\Delta} \text{ and}\\
-    (c_{\*}\inv{\Delta})\Delta
-      & = (c_{\*}\inv{\Delta})(\Delta c_{\*}) = \rst{c_{\*}\inv{\Delta}}.
-  \end{align*}
-  This means that both $\inv{\Delta}$ and $c_{\*}\inv{\Delta}$ are partial inverses for $\Delta$
-  and are therefore equal.
+Note also, cocommutativity implies commutativity, i.e., that $c_{\*}\inv{\Delta} = \inv{\Delta}$.
+One can see this as:
+\begin{align*}
+  \Delta(c_{\*}\inv{\Delta})
+  &= (\Delta c_{\*})\inv{\Delta} = \Delta\inv{\Delta} = \rst{\Delta} \text{ and}\\
+  (c_{\*}\inv{\Delta})\Delta
+  & = (c_{\*}\inv{\Delta})(\Delta c_{\*}) = \rst{c_{\*}\inv{\Delta}}.
+\end{align*}
+This means that both $\inv{\Delta}$ and $c_{\*}\inv{\Delta}$ are partial inverses for $\Delta$
+and are therefore equal.
 
-  Similarly, coassociativity implies associativity as one can show that
-  $(1\*\inv{\Delta})\inv{\Delta} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
-  \begin{align*}
-    \Delta(1\*\Delta)\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} &=
-    \Delta(\Delta\*1)a_{\*}\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} \\
-    & =\Delta(\Delta\*1)(\inv{\Delta}\* 1)\inv{\Delta} \\
-    & =\Delta 1\inv{\Delta} = 1.
-  \end{align*}
-\end{remark}
+Similarly, coassociativity implies associativity as one can show that
+$(1\*\inv{\Delta})\inv{\Delta} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
+\begin{align*}
+  \Delta(1\*\Delta)\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} &=
+  \Delta(\Delta\*1)a_{\*}\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} \\
+  & =\Delta(\Delta\*1)(\inv{\Delta}\* 1)\inv{\Delta} \\
+  & =\Delta 1\inv{\Delta} = 1.
+\end{align*}
 
 \begin{example}[\pinj is a discrete inverse category]\label{ex:pinj_is_a_discrete_inverse_category}
   In the inverse category \pinj (see Example~\ref{ex:pinj_is_an_inverse_category}), suppose we add
@@ -305,8 +304,8 @@ If we define the map:
   exchange are immediately obvious. To show the Frobenius rule for $\Delta$, first note that
   $\inv{\Delta}$ is defined only on the elements of $A\*A$ which agree in the first and second
   co-ordinate. We show the upper triangle of the Frobenius diagram in
-  detail. Equation~\ref{eq:delta_inverse_delta} shows the result of applying $\Delta$ followed by
-  $\inv{\Delta}$.
+  detail. Equation~\ref{eq:delta_inverse_delta} shows the result of applying $\inv{\Delta}$ followed by
+  $\Delta$.
   \begin{equation}
     \Delta(\inv{\Delta}(A\*A)) = \Delta(\{a | (a,a) \in A\*A\})
     = \{(a,a) | (a,a) \in A\* A\}.\label{eq:delta_inverse_delta}
@@ -371,7 +370,7 @@ Table~\ref{tab:two_different_inverse_products}.
 \end{table}
 
 As $\D$ is discrete, $\Delta$ is forced to be the identity. One can check easily that each of the
-the conditions for being an inverse product are satisfied by $\*$ and by $\odot$ with the trivial diagonal.
+conditions for being an inverse product are satisfied by $\*$ and by $\odot$ with the trivial diagonal.
 
 % subsection inverse_products (end)
 \subsection{Diagrammatic Language} % (fold)

@@ -357,6 +357,8 @@
 \newcommand{\pinj}{\specialcat{Pinj}}
 
 \newcommand{\sets}{\specialcat{Sets}}
+\newcommand{\finsets}{\ensuremath{\text{\specialcat{Sets}}_f}}
+\newcommand{\ord}{\specialcat{Ord}}
 \newcommand{\cat}{\specialcat{Cat}}
 \newcommand{\Par}{\specialcat{Par}}
 
@@ -369,6 +371,8 @@
 
 \newcommand{\spl}[2]{\ensuremath{\text{K}_{#1}(#2)}}
 
+\newcommand{\leftadjoint}{\vdash}
+\newcommand{\rightadjoint}{\dashv}
 
 \newcommand{\zeroob}{\ensuremath{\mathbf{0}}}
 
@@ -381,17 +385,18 @@
 
 \newcommand{\compatible}{\smile}
 
-\newcommand{\rcategoryequiv}[5]{%
+\newcommand{\rcategoryequivns}[5]{%
 \begin{description}%
-\item{\textbf{Objects: }}{#1};%
-\item{\textbf{Equivalence Classes of Maps: }}{#2};%
-\item{\textbf{Identity: }}{#3};%
-\item{\textbf{Composition: }}{#4};%
-\item{\textbf{Restriction: }}{#5}.%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Equivalence Classes of Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
+\item{\textbf{Restriction: }}{#5}%
 \end{description}%
 %
 }
 
+\newcommand{\rcategoryequiv}[5]{\rcategoryequivns{{#1};}{{#2};}{{#3};}{{#4};}{{#5}.}}
 
 \newcommand{\rcategoryns}[5]{%
 \begin{description}%
