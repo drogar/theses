@@ -11,8 +11,7 @@ category, \X. Then, we will give the equivalence functors between \X and \Xt.
 \label{sec:the_restriction_category_hypxt}
 
 
-We begin by giving the construction of $\Xt$. This is followed by the details of the equivalence
-relation and then the proof that $\Xt$ is a discrete Cartesian restriction category.
+We begin by giving the construction of $\Xt$.
 
 \begin{definition}\label{def:xt}
   When \X is an inverse category, define \Xt\ as:
@@ -35,10 +34,10 @@ relation and then the proof that $\Xt$ is a discrete Cartesian restriction categ
     given by
     \[
       \infer{
-        \infer{A\xrightarrow{(f (g\*1) a_{\*},C' \* B')} C}
-              {A\xrightarrow{f (g\*1) a_{\*}} C \* (C' \* B')}
-            }
-            {A \xrightarrow{\ (f,B')\ } B \xrightarrow{\ (g,C')\ } C}.
+        \infer{
+          \infer{A\xrightarrow{(f (g\*1) a_{\*},C' \* B')} C.}{A\xrightarrow{f (g\*1) a_{\*}} C \* (C' \* B')}
+        }{A \xrightarrow{f} B\*B',\ B \xrightarrow{g} C\*C'}
+      }{A \xrightarrow{\ (f,B')\ } B \xrightarrow{\ (g,C')\ } C}
     \]
   }
 
@@ -53,7 +52,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
 
 \begin{definition}\label{def:xequivalence}
   In a discrete inverse category \X, the map $f$ is equivalent to $f'$ in \X when
-  $\restr{f} = \restr{f'}$ in \X and Diagram~\ref{fig:xt_map_equivalence_diagram} commutes for some
+  $\restr{f} = \restr{f'}$ in \X and Figure~\ref{fig:xt_map_equivalence_diagram} is a commutative diagram for some
   map $h\in\dmap{B}$.
 \begin{figure}[H]
   \[
@@ -92,9 +91,9 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
 
       Thus, $g\xequiv{\inv{h}} f$.
 
-    \itembf{Transitivity: } Suppose $f\xequiv{h} f'$ and $f' \xequiv{k} f''$, i.e., $fh = f'$ and
-    $f'k = f''$. We immediately have $f h k = f''$ and by
-    Lemma~\ref{lem:delta_nabla_maps_are_closed}, we know $h k = \dmap{(hk)}$ and therefore we have
+    \itembf{Transitivity: } Suppose $f\xequiv{h} f'$ and $f' \xequiv{k} f''$, i.e., $f h = f'$ and
+    $f' k = f''$. We immediately have $f h k = f''$ and by
+    Lemma~\ref{lem:delta_nabla_maps_are_closed}, we know $h k = \dmap{(h k)}$ and therefore we have
     an equivalence.
   \end{description}
 \end{proof}
@@ -144,8 +143,8 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
       &  \text{Lemma \ref{lem:restrictionvarious}}\\
     & = \restr{f(g\*1) ((h\*1)\*1) (a_{\*}\*1)}
       & \text{Lemma \ref{lem:restrictionvarious}}\\
-    & = \restr{f((g (h\*1)a )\*1)} & \text{ see above}\\
-    & = \restr{f((g (h\*1)a )\*1)a_{\*}} & a_{\*}.
+    & = \restr{f((g (h\*1)a_{\*} )\*1)} & \text{ see above}\\
+    & = \restr{f((g (h\*1)a_{\*} )\*1)a_{\*}} & \restr{a_{\*}}=1 .
   \end{align*}
 
   For the mediating map, see the diagram below, where the calculation is in \X. The path starting at
@@ -226,7 +225,7 @@ Define the restriction in \Xt\ as follows:
 \end{lemma}
 \begin{proof}
   Given the above definition the four restriction axioms must now be checked. For the remainder of
-  this proof, all diagrams will be in $\X$. Again, we will make use of
+  this proof, all diagrams will be in $\X$. We make use of
   Lemma~\ref{lem:delta_nabla_maps_are_closed}~\ref{lemitem:delta_nabla_3},  which states $1\*f \in
   \dmap{A}$ for all $f$.
 
@@ -393,9 +392,9 @@ Define the restriction in \Xt\ as follows:
       \[
         \xymatrix @C=40pt @R=35pt{
           A \ar[r]^f \ar[dr]_{f}
-            & B\* C \ar[rr]^{\restr{g} \inv{\usr}\* 1}
+            & B\* C \ar[rr]^{\restr{g} \inv{\usr}\* 1} \ar@{=}[d]
             &
-            & (B\* 1) \* C \ar[r]^{a_{\*}}
+            & (B\* 1) \* C \ar[r]^{a_{\*}} \ar[d]^{a_{\*}(1\*c_{\*})}
             & B \* (1 \* C)\ar@{.>}[d]^{1\*c_{\*}}\\
           & B\*C \ar[r]_{\rst{g}\*1}
             & B \* C \ar[r]_{\inv{\usr}}
@@ -484,8 +483,9 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
     &= \rst{f} \rst{g}\inv{\usr}\inv{\usr} a_{\*} &  \inv{\usr}\text{ natural.}
   \end{align*}
   The restriction of the left hand side and the right hand side, in \X, is $\rst{\rst{f} \rst{g}}$.
-  This is done by applying Lemma~\ref{lem:restrictionvarious} once on the left and
-  thrice on the right.
+  This is done by applying Lemma~\ref{lem:restrictionvarious} once to the left hand side,
+  $\rst{f}\,\rst{g}\inv{\usr}$ and thrice to the right hand side,
+  $\rst{f} \rst{g}\inv{\usr}\inv{\usr} a_{\*}$.
 
   Thus, this shows $\rst{\<f,g\>}=\rst{f} \rst{g}$ in \Xt where the mediating map in \X is
   $1\*\usr$.
@@ -611,7 +611,7 @@ partial inverses. That is, given $G:\B \to \D$, then:
   To see $H$ is a functor:
   \begin{align*}
     H(1) &= G(\<1,1\>)\pi_0 = \Delta_{\D}\pi_0 = 1,\\
-    H(f g) &= G(\<f g,1\>)\pi_0 = \<G(fg),1\>\pi_0 = G(f)\<G(g,1)\>\pi_0 \\
+    H(f g) &= G(\<f g,1\>)\pi_0 = \<G(f g),1\>\pi_0 = G(f)\<G(g,1)\>\pi_0 \\
     &= \<G(f),1\>\pi_0 \<G(g),1\>\pi_0 = G(\<f,1\>)\pi_0 G(\<g,1\>)\pi_0 = H(f)H(g).
   \end{align*}
   But on any invertible map, $H(f) = G(\<f,1\>)\pi_0 = \<G(f),1\>\pi_0 = G(f)$ and therefore
@@ -631,7 +631,7 @@ Next we define  $\eta:\X \to \Inv{\Xt}$ as the identity on objects functor where
 \X, $\eta: f \mapsto (f\inv{\usr},1)$. $\eta$ is a functor as
 \begin{align*}
   \eta(1) & = (\inv{\usr},1)\\
-  \eta(fg) &= (fg\inv{\usr},1) \xequiv{} (f\inv{\usr},1)(g\inv{\usr},1) = \eta{f}\eta{g}.
+  \eta(f g) &= (f g\inv{\usr},1) \xequiv{} (f\inv{\usr},1)(g\inv{\usr},1) = \eta{f}\eta{g}.
 \end{align*}
 
 Now, we may define the functor $F^{\#}:\Xt \to \D$. Recall that $\Inv{\D}$ is a sub-category of $\D$

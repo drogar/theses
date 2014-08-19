@@ -38,7 +38,7 @@ We give a few examples of categories:
 \begin{example}\label{ex:small_finite_categories}
   We set $\mathbf{1}$ to be the category consisting of a single object $A$ and the identity arrow
   $id:A\to A$. This  is obviously a category, with $\mathbf{1}_o = A$ and
-  $catdomain id = \catcodomain id = A$.
+  $\catdomain id = \catcodomain id = A$.
 
   There is also the category $\mathbf{2}$:
   \[
@@ -130,9 +130,9 @@ There are number of basic properties of maps enumerated in this lemma:
     \item See \cite{barr:ctcs}, chapter 2.
     \item Suppose $h f = k f$. Then $h f \categorysection{f} = k f \categorysection{f}$ giving us $h
       1 = k 1$ and therefore $h = k$  and $f$ is monic.
-    \item We are given $f\categorysection{f} =1$ and $g\categorysection{g} =1 $. But then $fg
+    \item We are given $f\categorysection{f} =1$ and $g\categorysection{g} =1 $. But then $f g
       \categorysection{g}\categorysection{f} = f \categorysection{f} = 1$ and $f g$ is a section.
-    \item We are given there is some $h$ such that $(f g) h = 1$. This means $f (gh) =1$ and $f$ is
+    \item We are given there is some $h$ such that $(f g) h = 1$. This means $f (g h) =1$ and $f$ is
       a section.
     \item See \cite{cockett2009:ctcs}, Lemma 1.2.2.
     \item See \cite{cockett2009:ctcs}, Lemma 1.2.3.
@@ -190,7 +190,7 @@ envelope or Cauchy completion.
 
 \begin{definition}\label{def:faithful_functor}
   A functor $F:\X\to\Y$ is \emph{faithful} when for each pair of objects $A,B$ in $\X$, and map
-  $g:FA \to FB$ in $\Y$, there is a map $f:A\to B$ in $\X$ such that $F f = g$.
+  $g:FA \to F B$ in $\Y$, there is a map $f:A\to B$ in $\X$ such that $F f = g$.
 \end{definition}
 
 \begin{definition}\label{def:full_functor}
@@ -586,8 +586,8 @@ adjointness.
 
 \begin{definition}\label{def:equivalence_of_categories}
   Given two categories $\A$ and $\B$, we say they are \emph{equivalent} when there exists two
-  functors, $F:\A \to \B$ and $G:\B \to \A$ and natural isomorphisms such that $FG \cong I:\A \to
-  \A$ and $GF \cong I:\B \to \B$.
+  functors, $F:\A \to \B$ and $G:\B \to \A$ and natural isomorphisms such that $F G \cong I:\A \to
+  \A$ and $G F \cong I:\B \to \B$.
 \end{definition}
 
 \begin{example}[Skeleton]\label{ex:skeleton}
@@ -595,8 +595,8 @@ adjointness.
    sets, \ord, ($0 = \nothing$, $1 =
    \{0\},\ldots,n=\{0,1,\ldots,n-1\},\ldots$)\cite{maclan97:categorieswrkmath}. Take $F:\ord\to
    \finsets$ as the inclusion functor. Set $G:\finsets \to \ord$ such that $G: S \mapsto |S|$. We
-   have immediately that $FG = I$ and as $\phi_S:|S|\to S$ in \finsets is an isomorphism, we have
-   $\phi:GF \to I$.
+   have immediately that $F G = I$ and as $\phi_S:|S|\to S$ in \finsets is an isomorphism, we have
+   $\phi:G F \to I$.
 
    This is a specific example of a the \emph{skeleton} of a category being equivalent to the
    original category. The skeleton $\A$ of a category $\B$ is any full subcategory of $\B$ such that
