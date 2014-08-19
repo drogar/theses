@@ -39,7 +39,8 @@
 \makeatother
 \input{Qcircuit}
 \input{phd-macros}
-\title{An investigation of some theoretical aspects of reversible computing \\
+\newcommand{\thesistitle}{An investigation of some theoretical aspects of reversible computing}
+\title{\thesistitle \\
 \bigskip  }
 %
 %            Insert the correct information between the {}
@@ -47,8 +48,7 @@
 \author{Brett Gordon Giles}
 \thesisyear{2014}
 \thesis{dissertation}    % the word dissertation can be inserted between {}
-\newcommand{\thesistitle}{An investigation of the theoretical aspects of reversible computing}
-\monthname{July}
+\monthname{August}
 \dept{COMPUTER SCIENCE}
 \degree{DOCTOR OF PHILOSOPHY}
 %
@@ -58,17 +58,13 @@
 \makethesistitle
 \pagenumbering{roman}     % resets page counter to one
 \setcounter{page}{1}
-%\chapter*{UNIVERSITY OF CALGARY \\ FACULTY OF GRADUATE STUDIES}
-%\thispagestyle{empty}
-%The undersigned certify that they have read, and recommend
-%to the Faculty of Graduate Studies for acceptance, a \Thesis\ entitled
-%``\thesistitle'' submitted by \Author\
-%in partial fulfillment of the requirements for the degree of
-%\Degree.\\
-
-%
-%                 Substitute  List of Examiners
-%
+\chapter*{UNIVERSITY OF CALGARY \\ FACULTY OF GRADUATE STUDIES}
+\thispagestyle{empty}
+The undersigned certify that they have read, and recommend
+to the Faculty of Graduate Studies for acceptance, a \Thesis\ entitled
+``\thesistitle'' submitted by \Author\
+in partial fulfillment of the requirements for the degree of
+\Degree.\\
 \begin{signing}{Department of Computer Science}
 \signline
 Dr.~J.R.B.~Cockett\\
@@ -82,38 +78,81 @@ Supervisory committee member  \\
 Dr.~Peter~S.~Høyer \\
 Associate Professor, Department of Computer Science \\
 Supervisory committee member  \\
+\newsigncolumn
 \signline
 Dr.~Gilad~Gour \\
 Associate Professor, Applied Mathematics\\
 Internal external examiner  \\
-%\signline
-%Chairman, Dr.~John D.~Doe \\
-%Department of Academic Computing \\
-%Services  \\
 %\newsigncolumn         use this command to start a new column if necessary
-%\newsigncolumn
-%\signline
-%Chairman, Dr.~John D.~Doe \\
-%Department of Academic Computing \\
-%Services  \\
-%\signline
-%Dr.~Jane Smith \\
-%Department of Academic Computing  \\
-
 \signline
 Dr. Bob Coecke\\
-Professor of Quantum Foundations, Logics and Structures
+Professor of Quantum Foundations, Logics and Structures\\
 Department of Computer Science,  Oxford University \\
 External Examiner
 \end{signing}
 %
 \newpage
 \phantomsection
-\altchapter{\bf{Abstract}}
+\altchapter[Abstract]{\bf{Abstract}}
+The categorical semantics of reversible computing must be a category which combines the concepts of
+partiality and the ability to, at least partially, reverse a map in the category. Inverse
+categories, restriction categories where each map is a partial isomorphism provide the necessary
+machinery for reversible computing. This thesis explores inverse categories and relates them to both
+quantum computing, by showing that commutative Frobenius algebras form an inverse category, and to
+standard non-reversible computing by showing the equivalence of discrete inverse categories to
+discrete Cartesian restriction categories.
+
+While restriction categories have products and coproducts, we show the direct application of these
+to inverse categories is not the right notion to consider. Therefore we introduce corresponding
+structures in inverse categories, including inverse products, inverse sums, meets and disjoint
+joins. We show that a commutative Frobenius algebra over a restriction category with a biproduct has
+both inverse sums and inverse products and disjoint joins.
+
+We provide an equivalence between a discrete inverse categories (an inverse category with an inverse
+product) and a discrete Cartesian restriction categories. Here, discrete means that the diagonal map
+$\Delta:A \to A\times A$ has a partial inverse. We also show the construction giving the equivalence
+translates inverse sums to coproducts in the Cartesian restriction category.
+
+Finally, we relate this directly to standard computing by giving the analogues for Turing objects
+and partial combinatory algebras in an inverse category and show these correspond directly with a
+Turing object and PCA in a Cartesian restriction category.
+
 
 \newpage
 \phantomsection
-\altchapter{\bf{Acknowledgements}}
+\altchapter[Acknowledgements]{\bf{Acknowledgements}}
+
+First and foremost, many thanks to my supervisor of the past many, many years, Dr. Robin
+Cockett. His indefatigable thirst for mathematical exploration of computer science has been an
+inspiration for both my master's degree and my doctoral studies.
+
+Secondly, thank you to Dr. Peter Selinger, both for his paper on the semantics of quantum computing
+which inspired me to write LQPL and the opportunity to work for him at MSRI in Berkeley for the fall
+of 2012. His clarity of exposition in his papers remains a target which I  aspire to.
+
+Thank you to Dr. Kristine Bauer and Dr. Peter Høyer for serving on my supervisory committee,
+partaking in my qualifying exam and my thesis defence. I always felt your doors were open to me.
+
+Thank you to Dr. Gilad Gour for being the internal examiner.
+
+Thank you to Dr. Bob Coecke for agreeing to be my external examiner.
+
+Thanks to my fellow graduate students (and post-docs) over the years for great conversations, people
+to hang with while at conferences and critiques of research. Thanks to Craig Pastro, Xiuzhan Guo,
+Dana Harrington, Ross Duncan, Jon Grattage, Sean Nichols, Ning Tang, Alexander Green, Neil Ross,
+Jonathan Gallagher, Chad Nester and Prashant Kumar.
+
+Finally, and most of all, thank you so much to all of my family. My wife, for being with me for all
+these years and proof-reading both my masters and this thesis --- learning more about math than she
+ever thought she would; my kids, who still remember me; and my grandkids --- who likely don't remember a time
+when Grandpa was not in school.
+\newpage
+\phantomsection
+\altchapter[Dedication]{\bf{Dedication}}
+\vspace{3in}
+\begin{flushright}
+To my wife, Marie ``Soliloquy'' Gelinas Giles.
+\end{flushright}
 
 
 \begin{singlespace}
