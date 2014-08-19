@@ -134,14 +134,14 @@ tensor.
 \end{proof}
 
 Now, we show the other direction, that is, when there are ``enough'' disjoint sums in a category, we
-may construct a disjoint sum tensor. In anticipation of the result, henceforth we will write $A\*B$
+may construct a disjoint sum tensor. In anticipation of the result, henceforth we will write $A\+B$
 for the disjoint sum of $A$ and $B$.
 
 We begin by showing that we may construct maps between the disjoint sums:
 \begin{lemma}\label{lem:disjoint_sum_maps_are_perp}
   Given \X an inverse category with all disjoint sums and suppose $f:A \to C$ and $g:B\to D$ in
-  \X. Then  $\inv{i_1} f i_1 \cdperp \inv{i_2} g i_2 : A\*B\to C\*D$ and therefore
-  $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2 : A\*B\to C\*D$.
+  \X. Then  $\inv{i_1} f i_1 \cdperp \inv{i_2} g i_2 : A\+B\to C\+D$ and therefore
+  $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2 : A\+B\to C\+D$.
 \end{lemma}
 \begin{proof}
   Note that $\rst{\inv{i_1} f i_1} = \rst{\inv{i_1} f} \le \rst{\inv{i_1}}$ and similarly
@@ -165,11 +165,11 @@ that $\wrg{h i_1} \cdperp \wrg{k i_2}$.
   given by   $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2$ as shown in
   Lemma~\ref{lem:disjoint_sum_maps_are_perp}. By the definition of the disjoint sum, identity maps
   are taken to identity maps and by the stability and universality of the disjoint join, composition
-  is preserved and therefore $\*$ is a bi-functor as required.
+  is preserved and therefore $\+$ is a bi-functor as required.
 
   We must now show the restriction zero is the unit of $\+$ and give the structural maps.
 
-  If we consider the disjoint sum $A\+0$, we see that $i_2 = 0$, the zero map. This gives us
+  If we consider the disjoint sum $A\+0$, we see that $i_2 = \zeroob$, the zero map. This gives us
   $1_{A\+\zeroob}  = \inv{i_1}i_1 \djoin \inv{i_2}i_2 = \inv{i_1}i_1 \djoin 0 = \inv{i_1}i_1 =
     \rst{\inv{i_1}}$, meaning $\inv{i_1}$ is total. Thus, $\inv{i_1}$ is an isomorphism and is
   $\upr$. Similarly, $\inv{i_2} = \upl:\zeroob\+A \to A$ is an isomorphism.
@@ -217,7 +217,7 @@ that $\wrg{h i_1} \cdperp \wrg{k i_2}$.
            \icpa \cpa g \djoin \icpb \cpb g =  (\icpa \cpa \djoin \icpb \cpb) g = g
         \end{multline*}
         and therefore $\cpa$ and $\cpb$ are jointly monic.\label{pfitem:3}
-      \item $icpa$ and $\icpb$ are jointly epic by a similar argument as \ref{pfitem:3}.
+      \item $\icpa$ and $\icpb$ are jointly epic by a similar argument as \ref{pfitem:3}.
     \end{enumerate}
 
   Note that we may also immediately conclude that the original disjointness relation on \X is the

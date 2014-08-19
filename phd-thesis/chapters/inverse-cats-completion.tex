@@ -642,8 +642,7 @@ $F^{\#}$ as follows:
   \item{Arrows:} $F^{\#}:(f,C) \mapsto F(f\pi_0)\in \D_{m}$
 \end{description}
 
-In order to show \ref{dia:universal_property_of_inverse_categories} is a universal diagram, we
-proceed with a series of lemmas building to the result.
+We will now  show \ref{dia:universal_property_of_inverse_categories} is a universal diagram.
 
 
 \begin{lemma}\label{lem:universal_diagram_is_a_commutative_diagram}
@@ -657,7 +656,7 @@ proceed with a series of lemmas building to the result.
 \begin{proof}
   Using our definitions above, given a map $f$ in \X, then:
   \begin{align*}
-    \Inv(F^{\#})(\eta(f) &= \Inv(F^{\#})((f\inv{\usr},1))\\
+    \Inv{F^{\#}}(\eta(f) &= \Inv{F^{\#}}((f\inv{\usr},1))\\
     &= F^{\#}((f\inv{\usr},1))\\
     &= F(f\inv{\usr}\pi_0)\\
     &= F(f)\\
@@ -727,15 +726,15 @@ invertible maps in $\Xt$ are the equivalence class of the form  $(f \inv{\usr},1
   Referring to Lemma~\ref{lem:all_invertible_maps_in_xt_are_of_the_form_f_inv_usr} above, we
   immediately see that $\eta$ is full. For faithful, if we assume $(f\inv{\usr},1)$ is equal in \Xt
   to $(g\inv{\usr},1)$. This means in \X, that $\rst{f} = \rst{g}$ and there is a $h\in\dmap{B}$ such that
-  \[
+  \begin{equation}
     \xymatrix @C=40pt @R=15pt{
       & B \* 1 \ar@{.>}[dd]^{h} \\
       A \ar[ur]^{f\inv{\usr}} \ar[dr]_{g\inv{\usr}}\\
       & B\* 1.
-    }
-  \]
-  But as $h = (\Delta\*1)(1\*h)(\inv{\Delta}\*1)$, and letting $\ell =  \inv{\usr}h\usr$ this
-  simplifies to $g = f \Delta (1\*\ell) \inv{\Delta}$. But by
+    }\label{eq:eta_iso_f_g}
+  \end{equation}
+  But as $h = (\Delta\*1)(1\*h)(\inv{\Delta}\*1)$, and letting $\ell =  \inv{\usr}h\usr$,
+  Diagram~(\ref{eq:eta_iso_f_g}) equates to $g = f \Delta (1\*\ell) \inv{\Delta}$. But by
   Lemma~\ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}\ref{le:restfg},
   $\Delta (1\* \ell) \inv{\Delta} = \rst{\Delta (1\* \ell) \inv{\Delta}}$. Setting $\Delta (1\* \ell)
   \inv{\Delta}$ as $k$, we have $g = f \rst{k}$. This gives us:
@@ -755,7 +754,7 @@ invertible maps in $\Xt$ are the equivalence class of the form  $(f \inv{\usr},1
   Letting $\wtf:\X \to \Xt$ be the functor that takes $X$ to its $\wtc$ completion, then from the
   above lemmas, we have shown that we have an adjoint:
   \begin{equation}
-    (\eta,\varepsilon):\wtf \vdash \Invf :D_{i c} \to D_{r c}. \label{eq:inv_and_wtf_are_adjoint_pair}
+    (\eta,\varepsilon):\wtf \vdash \Invf :\text{DInv} \to \text{DCartRest}. \label{eq:inv_and_wtf_are_adjoint_pair}
   \end{equation}
   By Lemma~\ref{lem:the_functor_eta_is_an_isomorphism} we know $\eta$ is an isomorphism. But this
   means the functor $\wtf$ is full and faithful, as shown in, e.g., Proposition 2.2.6 of
@@ -770,7 +769,7 @@ Cartesian restriction categories and discrete inverse categories:
 
 \[
   \xymatrix{
-    \text{DCartRest} \ar@{^{(}->}[r]^{\top} & \text{CartRest} \ar@/_/[l]\\
+    \text{DCartRest} \ar@{^{(}->}[rr]^{\top} && \text{CartRest} \ar@/_15pt/[ll]\\
     \text{DInv}\ar@{<->}[u]^{\cong}
   }
 \]
@@ -787,8 +786,8 @@ Example~\ref{ex:terminal_object_is_discrete}.
   \label{example:completing_a_finite_discrete_inverse_category}
 \end{example}
 Continuing from Example~\ref{example:invprodisstructure}, recall the discrete category of 4
-elements with two different tensors. Completing these gives two different lattices. They are either
-the straight line lattice, or the diamond semi-lattice. Below are the details of these constructions.
+elements with two different tensors. Completing these gives two different lattices:
+The straight line lattice and the diamond semi-lattice. Below are the details of these constructions.
 
 Recall $\D$ has four elements $a,b,c$ and $d$, and there are two possible inverse product tensors,
 given in Table~\ref{tab:two_different_inverse_products}. (Repeated here for your convenience).

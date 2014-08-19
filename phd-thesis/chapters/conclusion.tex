@@ -76,15 +76,29 @@ Then, in Theorem~\ref{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_ca
 the $\wtf$ construction of Chapter~\ref{chap:completing_a_discrete_inverse_category} lifts an disjoint sum
 tensor into a coproduct. From this we conclude that $\Xt$ is a distributive restriction category in
 Corollary~\ref{cor:xt_is_a_distributive_restriction_category}.
+
+\item \textbf{Inverse Turing Categories and Inverse PCAs}
+
+Inverse Turing categories and inverse partial combinatory algebras are defined in
+Definition~\ref{def:inverse_turing_category} and
+Definition~\ref{def:inverse_partial_combinatory_algebra} respectively. We show that an inverse
+Turing category gives a Turing category under the $\wtf$ construction in
+Theorem~\ref{thm:inverse_turing_category_gives_a_turing_category}. In
+Proposition~\ref{prop:inverse-pca-iff-pca} we show that a discrete inverse category \X has an inverse
+PCA if and only if \Xt has a PCA. Furthermore, we discuss the category of computable function based
+on a PCA in a Cartesian restriction category and show the conditions required for that to be a
+discrete Cartesian restriction category in Lemma~\ref{lem:comp_a_is_discrete_cart}.
 \end{enumerate}
 
 \section{Whither next?}
 \label{sec:whither-next}
 
 The obvious next step is to apply these results to existing reversible languages such as
-\textbf{Inv} \cite{muetal04:injreversible}, and the pair $\Pi^0$, \cite{james2013isomorphic} and $\Pi$,
-\cite{james2012information}. In each case, there do not appear to be any issues in doing this work,
-it simply requires careful attention to the language definitions.
+\textbf{Inv} \cite{muetal04:injreversible}, and Theseus
+\cite{james2013isomorphic,james2012information}. In each case, there do not appear to be any issues
+in doing this work, it simply requires careful attention to the language definitions. Note that our
+examples about the category of partial injective functions done throughout this thesis provide the
+basis for the semantics of \textbf{Inv}.
 
 A more interesting direction, in my opinion, would be to further investigate the work on reversible
 CCS as in \cite{danos2004reversible} and \cite{phillips2006operational}. This could be combined with

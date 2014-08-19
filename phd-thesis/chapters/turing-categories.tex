@@ -183,7 +183,7 @@ definition of this.
 \end{definition}
 
 We know from Chapter~\ref{chap:completing_a_discrete_inverse_category} that when \X is an inverse
-Turing category, that we know \Xt will be a discrete Cartesian restriction category. Moreover, if
+Turing category, we know \Xt is a discrete Cartesian restriction category. Moreover, if
 $(m_A,r_A):A\retract T$ in \X, then $(m_A\inv{\usr},r_A\inv{\usr})A \retract T$ in \Xt and hence $T$
 will remain universal in \Xt. Hence, we have the basic requirements for a Turing category as
 specified in Theorem~\ref{thm:turing_recognition} and
@@ -367,10 +367,10 @@ define $\imultiapp{f}{n}$ recursively by:
   therefore also in $\X$.
 
   Given this, the diagrams of the partial combinatory algebra in \Xt translate directly to the
-  \axiom{iCPA}{1} and \axiom{iCPA}{2} where $\bullet$ in \X is the invertible map $\<bullet,1\>$.
+  \axiom{iCPA}{1} and \axiom{iCPA}{2} where $\bullet$ in \X is the invertible map $\<\bullet,1\>$.
 
-  The totality  of $s \multibullet{2}$ in \X then immediately gives us \axiom{iCPA}{3}, the
-  totality of $s \multibullet{2}$ in \X.
+  The totality  of $s \multibullet{2}$ in \Xt then immediately gives us \axiom{iCPA}{3}, the
+  totality of $s \imultibullet{2}$ in \X.
 
 
 \end{proof}
@@ -378,7 +378,7 @@ define $\imultiapp{f}{n}$ recursively by:
 However, we can simplify the definition of an inverse partial combinatory algebra when $A$ is
 powerful in \X. (Here, powerful means that $1\retract A$, $A\*A\retract A$, $A\*A\*A\retract A$,
 $\ldots$). Note that if $A$ is a partial combinatory algebra in $\Xt$, that guarantees it is
-powerful in \Xt. Assuming the retractions are $(m_n,r_n): \times_n A \retract A$, we have $m_j r_j =
+powerful in \Xt. Assuming the retractions are $(m_n,r_n): A^n \retract A$, we have $m_j r_j =
 1$ and $r_j m_j = \rst{r_j m_j}$ for each $j$. Thus, each of the maps are partial inverses in
 $\Xt$ and therefore in $\X$. Hence we have $A$ is a powerful object in $\X$.
 
@@ -413,9 +413,9 @@ A\*A$ where $A$ is a powerful object define $\multiapp{f}{n}$ recursively by:
     \node [style=nothing] (s3) at (1,2.5) {};
     \node [style=map] (bullet1) at (.25,1.75) {$\scriptstyle \multiapp{f}{n}$};
     \node [style=map] (bullet2) at (.25,1) {$\scriptstyle f$};
-    \node [style=retract] (r1) at (.5,.4) {};
+    \node [style=map] (r1) at (.65,.4) {$\scriptstyle m_2$};
     \node [style=nothing] (e1) at (0,0) {};
-    \node [style=nothing] (e2) at (.5,0) {};
+    \node [style=nothing] (e2) at (.65,0) {};
     \draw [] (s1) to[out=270,in=125] (bullet1);
     \draw [] (s2) to[out=270,in=55] (bullet1);
     \draw [] (s3) to[out=270,in=55] (bullet2);
@@ -427,22 +427,17 @@ A\*A$ where $A$ is a powerful object define $\multiapp{f}{n}$ recursively by:
   \end{tikzpicture}
   \]
 \end{enumerate}
-In the above, the left pointing triangle, \begin{tikzpicture}\node [style=retract] at
-  (0,0){};\end{tikzpicture}, signifies the section from $A\*A \to A$ such that $A\*A$ is a retract
-of $A$.
-
 
 \begin{lemma}\label{lem:powerful_inverse_partial_combinatory_algebra}
   Suppose a discrete inverse category \X has a inverse partial combinatory algebra over $A$ and $A$
-  is  a powerful object in \X, with $(m_n,r_n)\*^n A \retract A$. If we set $k' = (1\*r_2)k$ and
-  $s'=(1\*r_3) s (1\*m_3)$ then \axiom{iCPA}{1}, \axiom{iCPA}{2} and \axiom{iCPA}{3} may be
-  simplified to:\\
+  is  a powerful object in \X, with $(m_n,r_n)\*^n A \retract A$. Then \axiom{iCPA}{1},
+  \axiom{iCPA}{2} and \axiom{iCPA}{3} may be simplified to:\\
   \axiom{iCPA$'$}{1}
     \[
       \xymatrix@C+15pt{
          && A\*A \ar@{.>}[dddd]^{h'_k}\\
         &A\* A\* A \ar[ur]^{\multibullet{2}} & & \\
-        A\* A \ar[ur]^{\inv{\usl}(k'\*1\*1)\ \,} \ar[ddrr]_{1} && &\\
+        A\* A \ar[ur]^{\inv{\usl}(k\*1\*1)\ \,} \ar[ddrr]_{1} && &\\
          && & \\
         && A\*A &
       }
@@ -454,18 +449,15 @@ of $A$.
         & &  && \\
         &A\* A\* A\* A
           \ar[uurr]^{\multibullet{3}}\\
-        A\* A\* A \ar[ur]^{\inv{\usl}(s'\*1)} \ar[dr]_(.4){\theta_A'}\\
+        A\* A\* A \ar[ur]^{\inv{\usl}(s\*1)} \ar[dr]_(.4){\theta_A'}\\
         &(A\* A) \* (A\* A) \ar[dr]|{(\bullet\*\bullet)(1\*c\*1)(1\*1\*m_2)} \\
         & &A\* A\* A\ar[dr]_{(\bullet\*1)(1\*m_2)}& &\\
         &&&A\*A \\
       }
     \]
-   \axiom{iCPA$'$}{3} $I\*A\* A \xrightarrow{s'\*1\*1} A\* A\* A \xrightarrow{\multibullet{2}} A\*A$
+   \axiom{iCPA$'$}{3} $I\*A\* A \xrightarrow{s\*1\*1} A\* A\* A \xrightarrow{\multibullet{2}} A\*A$
    is total.
 \end{lemma}
-\begin{proof}
-
-\end{proof}
 
 \section{Computable functions}
 \label{sec:computable_functions}

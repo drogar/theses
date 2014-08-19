@@ -74,25 +74,25 @@ when the restriction and range of functions are disjoint, and therefore when the
 
 \begin{lemma}\label{lem:zero_plus_zero_is_zero}
   Given an inverse category \X with restriction zero and disjointness tensor $\+$, then the map
-  $0\+0: A\+B \to C\+D$ is the map $0: A\+B \to C\+D$.
+  $\zeroob\+\zeroob: A\+B \to C\+D$ is the map $\zeroob: A\+B \to C\+D$.
 \end{lemma}
 \begin{proof}
-  Recall the zero map factors through the restriction zero, i.e. $0:A \to B$ is the same as
-  saying $A\xrightarrow{!} 0 \xrightarrow{\why}B$. Additionally, as objects, $0\+0 \cong 0$ ---
+  Recall the zero map factors through the restriction zero, i.e. $\zeroob:A \to B$ is the same as
+  saying $A\xrightarrow{!} \zeroob \xrightarrow{\why}B$. Additionally, as objects, $\zeroob\+\zeroob \cong \zeroob$ ---
   the restriction zero.
 
-  Therefore the map $0\+0: A\+B \to C\+D$ is writable as
+  Therefore the map $\zeroob\+\zeroob: A\+B \to C\+D$ is writable as
   \[
-    A\+B \xrightarrow{!\+!}0\+0  \xrightarrow{\why\+\why} C\+D,
+    A\+B \xrightarrow{!\+!}\zeroob\+\zeroob  \xrightarrow{\why\+\why} C\+D,
   \]
   which may then be rewritten as
   \[
-    A\+B \xrightarrow{!\+!}0\+0 \xrightarrow{\upl} 0
-      \xrightarrow{\inv{\upl}} 0\+0 \xrightarrow{\why\+\why} C\+D.
+    A\+B \xrightarrow{!\+!}\zeroob\+\zeroob \xrightarrow{\upl} \zeroob
+      \xrightarrow{\inv{\upl}} \zeroob\+\zeroob \xrightarrow{\why\+\why} C\+D.
   \]
 
   But by the properties of the restriction zero, $(!\+!) \upl = !$ and $\inv{\upl}(\why\+\why) = \why$
-  and therefore the map $0\+0: A\+B \to C\+D$ is the same as the map $0: A\+B \to C\+D$.
+  and therefore the map $\zeroob\+\zeroob: A\+B \to C\+D$ is the same as the map $\zeroob: A\+B \to C\+D$.
 \end{proof}
 
 %
@@ -123,9 +123,9 @@ when the restriction and range of functions are disjoint, and therefore when the
   $\scpa = \icpa$ and $\scpb = \icpb$ and the following identities hold:
   \begin{enumerate}[{(}i{)}]
     \item $\scp{i} \cp{i} = \rst{\scp{i}}$ and $\cp{i}\scp{i} = \rst{\cp{i}} = 1$;\label{lemitem:disjointness_tensor_identities_1}
-    \item $\rst{\scpa} \scpb = 0$ and $\rst{\scpb} \scpa = 0$;\label{lemitem:disjointness_tensor_identities_2}
-    \item $\cpb \scpa = 0$, $\cpb \rst{\scpa} = 0$,  $\cpa \scpb = 0$ and
-      $\cpa \rst{\scpb} = 0$;\label{lemitem:disjointness_tensor_identities_3}
+    \item $\rst{\scpa} \scpb = \zeroob$ and $\rst{\scpb} \scpa = \zeroob$;\label{lemitem:disjointness_tensor_identities_2}
+    \item $\cpb \scpa = \zeroob$, $\cpb \rst{\scpa} = \zeroob$,  $\cpa \scpb = \zeroob$ and
+      $\cpa \rst{\scpb} = \zeroob$;\label{lemitem:disjointness_tensor_identities_3}
     \item the maps $\cpa$ and $\cpb$ are monic.\label{lemitem:disjointness_tensor_identities_4}
   \end{enumerate}
 \end{lemma}
@@ -214,7 +214,7 @@ remainder of this thesis.
   \begin{equation}
     \xymatrix@C+0pt @R+20pt{
       &&A \ar[dll]_{f} \ar[drr]^{g} \ar@{.>}[d]|-{f\tjdown g}\\
-      B&&B\+C \ar[ll]^{\icpa} \ar[rr]_{\icpb} && C
+      B&&B\+C \ar[ll]^{\icpa} \ar[rr]_{\icpb} && C.
       }\label{eq:tjdowndefinition}
   \end{equation}
   Then for $h:B \to A$, $k: C \to A$, $h\tjup k$ is that map that makes
@@ -223,7 +223,7 @@ remainder of this thesis.
     \xymatrix@C+0pt @R+20pt{
       B\ar[rr]^{\cpa} \ar[drr]_{h} &&B\+C   \ar@{.>}[d]|-{h\tjup k}
         && C \ar[ll]_{\cpb} \ar[dll]^{k}\\
-      &&A
+      &&A.
       }\label{eq:tjupdefinition}
   \end{equation}
   Due to $\icpa$ and $\icpb$ being jointly monic, $f\tjdown g$ is unique when it exists.
@@ -237,10 +237,10 @@ remainder of this thesis.
   Similarly, $h\tjup k$ can only exist when $\rg{h} \meet \rg{k} = 0$.
 \end{example}
 
-The partial pairing and copairing will provide our mechanism for defining disjointness and
-eventually the disjoint join of maps. The existence of the pairing map $f\tjdown g$ allows us to
-ensure the restrictions of $f$ and $g$ are disjoint, while the copairing map $f\tjup d$ exists only
-when the ranges of $f$ and $g$ are disjoint.
+The partial pairing and copairing of Definition~\ref{def:up_triangle_and_down_triangle} will provide
+our mechanism for defining disjointness and eventually the disjoint join of maps. The existence of
+the pairing map $f\tjdown g$ allows us to ensure the restrictions of $f$ and $g$ are disjoint, while
+the copairing map $f\tjup d$ exists only when the ranges of $f$ and $g$ are disjoint.
 
 To arrive at the disjointness we first give the following lemma detailing properties of the two
 operations $\tjdown$ and $\tjup$:
@@ -460,10 +460,10 @@ pairing and copairing maps:
     diagrams, see Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
       \ref{lemitem:l_r_commute}.
     \item[\axiom{Dis}{5}] Show that if $f\tperp g$ then $h f \tperp h g$ for any map $h$.
-      By  Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
+      Assuming $f\tjdown g$ exists, by  Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
       \ref{lemitem:l_r_l_universal_r_stable}, we know that $h f \tjdown h g$ exists.
-      By item \ref{lemitem:l_r_r_pull_left},  $(h f)\tjup (h g) = (h \+ h) (f\tjup g)$
-      and therefore $h f \tperp h g$.
+      Assuming $f\tjup g$, by item \ref{lemitem:l_r_r_pull_left} of the same lemma,
+      $(h f)\tjup (h g)$ exists and equals $(h \+ h) (f\tjup g)$  and therefore $h f \tperp h g$.
     \item[\axiom{Dis}{6'}] We need to show $f\tperp g$ if and only if $\rst{f} \tperp \rst{g}$ and
       $\rg{f}\tperp \rg{g}$. This follows directly from
       Lemma~\ref{lem:properties_of_tjdown_and_tjup}, items
@@ -485,8 +485,9 @@ pairing and copairing maps:
 \section{Disjoint joins via a tensor}
 \label{sec:disjoint_joins_via_a_tensor}
 The operations $\tjdown$ and $\tjup$ are sufficient to define a disjointness relation
-on an inverse category. However, when we wish to extend this to a disjoint join, we need to prove
-$\axiom{DJ}{4}$, That is, we need to show that $\tperp [f,g,h]$ implies $f \tperp (g \tjoin h)$.
+on an inverse category. However, when we wish to extend this to a disjoint join, the two relations
+are insufficient to prove $\axiom{DJ}{4}$, That is, we need to show that $\tperp [f,g,h]$ implies $f
+\tperp (g \tjoin h)$.
 
 Therefore, we add one more assumption regarding our tensor in order to define disjointness.
 
@@ -497,12 +498,12 @@ Therefore, we add one more assumption regarding our tensor in order to define di
     &\xymatrix@C+5pt@R+10pt{
       A \ar@/_/[ddr]_f \ar@/^/[drr]^g \ar@{.>}[dr]|-{\alpha} \\
         & X\+Y\+Z \ar[d]^{\icp{1,2}} \ar[r]_{\icp{1,3}} & X\+Z \ar[d]^{\icpa} \\
-        & X\+Y \ar[r]_{\icpa} & X
+        & X\+Y \ar[r]_{\icpa} & X,
     } \label{dia:tensor_complete_left}\\
     &\xymatrix@C+5pt@R+10pt{
         &&A \\
          X\+Y \ar[r]_{\cp{1,2}} \ar@/^/[urr]^h &X\+Y\+Z \ar@{.>}[ur]|-{\beta} \\
-         X \ar[u]^{\cpa} \ar[r]_{\cpa} & X\+Z \ar[u]^{\cp{1,3}} \ar@/_/[uur]_k
+         X \ar[u]^{\cpa} \ar[r]_{\cpa} & X\+Z. \ar[u]^{\cp{1,3}} \ar@/_/[uur]_k
     } \label{dia:tensor_complete_right}
   \end{align}
   Then
@@ -530,7 +531,7 @@ Therefore, we add one more assumption regarding our tensor in order to define di
  $f\icpb = \alpha\icp{1,2}\icpb$ and $g\icpb = \alpha\icp{1,3}\icpb$, we see this immediately
  requires that $\rst{f\icpb}\meet\rst{g\icpb} =0$ and therefore $f \icpb  \tjdown g \icpb$ exists.
 
- The reasoning for Diagram~\ref{dia:tensor_complete_left} is similar.
+ The reasoning for Diagram~\ref{dia:tensor_complete_right} is similar.
 \end{example}
 \begin{lemma}\label{lem:complete_disjointness_means_multiple_disjoints}
   Let \X be an inverse category with a disjoint sum tensor as in
@@ -627,8 +628,8 @@ Using Lemma~\ref{lem:properties_of_tjdown_and_tjup}, we may rewrite this in a va
 equivalent ways:
 \begin{align*}
   f \tjoin g &= \rst{f}\tjdown\rst{g} (f\+g) \rg{f}\tjup\rg{g} \\
-  &= f \tjdown g \rg{f}\tjup\rg{g}\\
-  & = \rst{f}\tjdown\rst{g}  f\tjup g\\
+  &= f \tjdown g\, \rg{f}\tjup\rg{g}\\
+  & = \rst{f}\tjdown\rst{g}\,  f\tjup g\\
   & = f \tjdown g (\inv{f}\+\inv{g})f\tjup g.
 \end{align*}
 
@@ -636,8 +637,8 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 (\rst{f}\tjup\rst{g})$ as $\rg{\rst{g}} = \rst{g}$.
 
 \begin{example}[Tensor join in \pinj]\label{ex:tensor_join_in_pinj}
-  We will use the third equality of those above for $f\tjoin g$, i.e., $\rst{f}\tjdown\rst{g}
-  f\tjup g$.
+  We will use the third equality of those above for $f\tjoin g$, i.e.,
+  $\rst{f}\tjdown\rst{g}\,  f\tjup g$.
 
   We have:
   \begin{equation}
@@ -696,7 +697,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
              \left(\inv{(f\tjdown g)} \inv{(\rst{f}\tjdown \rst{g})}\right)\\
       & = \rst{f}\tjdown\rst{g}(f\tjdown g) \inv{(f\tjdown g)} \rst{f}\tjup \rst{g}\\
       & = \rst{f}\tjdown\rst{g}(\rst{f}\+ \rst{g})\rst{f}\tjup \rst{g}\\
-      & = \rst{f}\tjdown\rst{g}\rst{f}\tjup \rst{g}\\
+      & = \rst{f}\tjdown\rst{g}\,\rst{f}\tjup \rst{g}\\
       & = \rst{f}\tjoin\rst{g}.
     \end{align*}
   \end{enumerate}
@@ -746,8 +747,8 @@ We may now complete the proof of Proposition~\ref{prop:disjointness_tensor_gives
 
     \item [\axiom{DJ}{4}] We need to show $\tperp [f,g,h]$ if and only if $f \tperp (g \tjoin h)$.
       For the right to left implication, note that the existence of $g\tjoin h$ implies $g \tperp
-      h$. We also know $g, h \le g\tjoin h$ by item 1 of this lemma. This gives us that $f \tperp
-      g$ and $f \tperp h$, hence $\tperp [f,g,h]$.
+      h$. We also know $g, h \le g\tjoin h$ by \axiom{DJ}{4}, as shown in this lemma. This gives us
+      that $f \tperp g$ and $f \tperp h$, hence $\tperp [f,g,h]$.
 
       For the left to right implication, we use
       Lemma~\ref{lem:complete_disjointness_means_multiple_disjoints}. As we have $\tperp [f,g,h]$,

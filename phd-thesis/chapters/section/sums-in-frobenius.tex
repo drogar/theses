@@ -76,8 +76,8 @@ node at (0,2) [delta] (d) {};
 \]
 \axiom{Dis}{6}: $f\cdperp g$ implies $\rst{f} \cdperp \rst{g}$ and $\rg{f}\cdperp\rg{g}$.\\
 We will show the details of $\rst{f} \cdperp \rst{g}$, using $\rst{f} = f\inv{f}$ and the definition of
-$\inv{f}$ as given in Theorem~\ref{thm:cfrob_is_a_discrete_inverse_category}. The proof of $\inv{f}f
-= \rg{f} \perp \rg{g} = \inv{g}g$ is similar.
+$\inv{f}$ as given in Theorem~\ref{thm:cfrob_is_a_discrete_inverse_category}. The proof of
+$(\inv{f}f=) \rg{f} \perp \rg{g} (= \inv{g}g)$ is similar.
 \[
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
@@ -357,13 +357,13 @@ node at (0,2) [delta] (d) {};
 \begin{tikzpicture}
 \path
 node at (0,3) (start) {}
-node at (0,2.5) [map] (fg) {$\scriptstyle \rst{f'}\,\rst{g'}$}
+node at (0,2.5) [map] (f_g) {$\scriptstyle \rst{f'}\,\rst{g'}$}
 node at (0,2) [delta] (d) {}
 node at (-.5,1) [map] (f) {$\scriptstyle f$}
 node at (.5,1) [map] (g) {$\scriptstyle g$}
  node at (0,0) [nabla] (n1) {};
-\draw [] (d) to (fg);
-\draw [] (start) to (fg);
+\draw [] (d) to (f_g);
+\draw [] (start) to (f_g);
 \draw [] (n1) to (0,-0.5);
 \draw [] (d) to[out=305,in=90] (g);
 \draw [] (d) to[out=235,in=90] (f);
@@ -375,10 +375,10 @@ node at (.5,1) [map] (g) {$\scriptstyle g$}
 \begin{tikzpicture}
 \path
 node at (0,1.5) (start) {}
-node at (0,1) [map] (fg) {$\scriptstyle \rst{f'}\,\rst{g'}$}
+node at (0,1) [map] (f_g) {$\scriptstyle \rst{f'}\,\rst{g'}$}
 node at (0,.5) [map] (z) {$\scriptstyle 0$};
-\draw [] (z) to (fg);
-\draw [] (start) to (fg);
+\draw [] (z) to (f_g);
+\draw [] (start) to (f_g);
 \draw [] (z) to (0,0);
 \end{tikzpicture}
 }
@@ -393,22 +393,22 @@ This follows directly from the naturality of $\Delta$.\\
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1) [map] (fh) {$\scriptstyle f h$}
-node at (.5,1) [map] (gk) {$\scriptstyle g k$}
+node at (-.5,1) [map] (f_h) {$\scriptstyle f h$}
+node at (.5,1) [map] (g_k) {$\scriptstyle g k$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
-\draw [] (d) to[out=305,in=90] (gk);
-\draw [] (d) to[out=235,in=90] (fh);
-\draw [-] (fh) to[out=270,in=125] (n1);
-\draw [-] (gk) to[out=270,in=55] (n1);
+\draw [] (d) to[out=305,in=90] (g_k);
+\draw [] (d) to[out=235,in=90] (f_h);
+\draw [-] (f_h) to[out=270,in=125] (n1);
+\draw [-] (g_k) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1.5) [map] (rf) {$\scriptstyle \rst{f}$}
-node at (-.5,1) [map] (fh) {$\scriptstyle f h$}
+node at (-.5,1.5) [map] (r-f) {$\scriptstyle \rst{f}$}
+node at (-.5,1) [map] (f_h) {$\scriptstyle f h$}
 node at (-.5,.5) [map] (rngh) {$\scriptstyle \rg{h}$}
 node at (.5,1.5) [map] (rg) {$\scriptstyle \rst{g}$}
 node at (.5,1) [map] (gk) {$\scriptstyle g k$}
@@ -417,9 +417,9 @@ node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
 \draw [] (d) to[out=305,in=90] (rg);
-\draw [] (d) to[out=235,in=90] (rf);
-\draw (rf) to (fh);
-\draw (fh) to (rngh);
+\draw [] (d) to[out=235,in=90] (r-f);
+\draw (r-f) to (f_h);
+\draw (f_h) to (rngh);
 \draw (rg) to (gk);
 \draw (gk) to (rngk);
 \draw [-] (rngh) to[out=270,in=125] (n1);

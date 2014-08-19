@@ -3,7 +3,7 @@
 \label{cha:disjointness_in_inverse_categories}
 
 In this chapter we will explore coproduct like structure in inverse categories. We start by showing,
-as for the product that having coproducts is too restrictive a notion for inverse categories: An
+similarly to the product, that having coproducts is too restrictive a notion for inverse categories: An
 inverse category with a coproduct is a preorder.
 Nonetheless it is possible to define coproduct like structures in an inverse category. To introduce
 this structure we define a ``disjointness'' relation between parallel maps of an inverse category
@@ -84,11 +84,11 @@ partial functions) have coproducts.
 \end{proof}
 
 Recall that when an object is both initial and terminal, it is referred to as a zero object and
-denoted as $0$. This gives rise to the zero map $0_{A,B}: A \to 0 \to B$ between any two objects.
+denoted as $\zeroob$. This gives rise to the zero map $\zeroob_{A,B}: A \to \zeroob \to B$ between any two objects.
 
 \begin{definition}\label{def:restriction_zero}
-  Given a restriction category \X with a zero object, then $0$ is a \emph{restriction zero} when
-  for each object $A$ in \X we have $\restr{0_{A,A}} = 0_{A,A}$.
+  Given a restriction category \X with a zero object, then $\zeroob$ is a \emph{restriction zero} when
+  for each object $A$ in \X we have $\restr{\zeroob_{A,A}} = \zeroob_{A,A}$.
 \end{definition}
 
 \begin{lemma}[Cockett-Lack\cite{cockettlack2004:restcategories3}, Lemma 2.7]\label{lem:restriction_zero_equivalences}
@@ -133,14 +133,14 @@ denoted as $0$. This gives rise to the zero map $0_{A,B}: A \to 0 \to B$ between
 In the following, we will add a relation, \emph{disjointness} and a construction, \emph{disjoint
   join} on parallel maps in  an inverse category with a restriction
 zero and zero maps. The disjoint join is evocative of the join as defined in
-Sub-Section~\ref{sub:joins_in_restriction_categories}. We will begin by defining disjointness on
+Section~\ref{sub:joins_in_restriction_categories}. We will begin by defining disjointness on
 parallel maps and then show this is equivalent to a definition of disjointness on the restriction
 idempotents.
 
 From this point forward in the thesis, we will work with a number of relations and operations on
 parallel pairs of maps. Suppose we have a relation $\lozenge$ between maps $f,g:B\to C$, i.e., $f
-\lozenge g$. We will refer to $\lozenge$ as \emph{stable} whenever given a $h:A \to B$, then $h f
-\lozenge h g$. We will refer to $\lozenge$ as \emph{universal} whenever given a $k:C \to D$, then $f
+\lozenge g$. We will refer to $\lozenge$ as \emph{stable} whenever given $h:A \to B$, then $h f
+\lozenge h g$. We will refer to $\lozenge$ as \emph{universal} whenever given $k:C \to D$, then $f
 k \lozenge g k$.
 
 
@@ -175,7 +175,8 @@ k \lozenge g k$.
   Given $\axiom{Dis}{6}$ and $\axiom{Dis}{7}$, the \emph{only if} direction of $\axiom{Dis}{6'}$ is
   immediate. To show the \emph{if} direction, assume $\rst{f} \cdperp \rst{g}$ and
   $\rg{f}\cdperp\rg{g}$. This also means that $\rst{\rst{f}} \cdperp \rst{\rst{g}}$. Then, by
-  \axiom{Dis}{7}, $\rst{f} f \cdperp \rst{g}g$ and therefore $f \cdperp g$.
+  \axiom{Dis}{7}, $\rst{f} f \cdperp \rst{g}g$ and therefore $f \cdperp g$, showing $\axiom{Dis}{6}$
+  and $\axiom{Dis}{7}$ imply $\axiom{Dis}{6'}$.
 
   Conversely, assume we are given \axiom{Dis}{6'}. Then, \axiom{Dis}{6} follows immediately. To show
   \axiom{Dis}{7}, assume we have $\rst{f}\cdperp \rst{g},\ \rg{h}\cdperp \rg{k}$. As
@@ -204,9 +205,9 @@ k \lozenge g k$.
       means $\rst{\inv{f}} \cdperp \rst{\inv{g}}$ and $\wrg{\inv{f}}\cdperp\wrg{\inv{g}}$. By
       \axiom{Dis}{6'} from Lemma~\ref{lem:disjointness_equivalent_axioms}, we have
       $\inv{f} \cdperp \inv{g}$. The converse follows with  a similar argument.
-    \item Assume $f \cdperp g$. By the previous item, we have $\inv{f}\cdperp\inv{g}$. By
+    \item Assume $f \cdperp g$. By \ref{lemitem:djv_inverses}, we have $\inv{f}\cdperp\inv{g}$. By
       \axiom{Dis}{5}, $\inv{h}\inv{f}\cdperp\inv{h}\inv{g}$, giving us $\inv{(f h)} \cdperp
-      \inv{(g h)}$. By \ref{lemitem:djv_inverses}, we now have $f h \cdperp g h$.
+      \inv{(g h)}$. Applying \ref{lemitem:djv_inverses}, we now have $f h \cdperp g h$.
     \item Assume $f \cdperp g$. From \ref{lemitem:djv_inverses} and reflexivity, we know that
       $\inv{g} \cdperp \inv{f}$ and therefore $\rst{\inv{g}}\inv{f} = \rg{g}\inv{f}= 0$. However, in
       an inverse category, $\inv{0} = 0$ and therefore $0 = \inv{(\rg{g}\inv{f})} = f \inv{\rg{g}} =
@@ -220,7 +221,7 @@ k \lozenge g k$.
   \end{enumerate}
 \end{proof}
 
-We may equivalently define a disjointness relation by a releation on the restriction idempotents, \open{A}.
+We may equivalently define a disjointness relation by a relation on the restriction idempotents, \open{A}.
 
 \begin{definition}\label{def:disjointness_in_open_x}
   Given an inverse category \X, a relation $\ocdperpsub{A} \subseteq \open{A}\times\open{A}$ for
@@ -273,7 +274,7 @@ We will normally write $\ocdperp$ rather than $\ocdperpsub{A}$ where the object 
 For the converse, if $\ocdperp$ is an open disjointness relation in $\X$, then we may define a relation
 $\perpab \subseteq \union_{A,B\in\X} \X(A,B)\times \X(A,B)$ on parallel maps by
 \[
-  f\perpab g \iff  \rst{f}\ocdperp\rst{g} \wedge \rg{f}\ocdperp\rg{g}.
+  f\perpab g \iff  \rst{f}\ocdperp\rst{g} \text{ and } \rg{f}\ocdperp\rg{g}.
 \]
 Note the use of the $\rg{f}\ocdperp\rg{g}$. By \rrone, we know $\rst{\rg{f}} = \rg{f}$ and
 therefore it is a restriction idempotent in $\open{B}$.
@@ -283,7 +284,7 @@ We then have:
 \begin{proposition}\label{prop:extended_disjointness_is_a_disjointness_relation}
   If $\ocdperp$ is an open disjointness relation in \X, then
   \[
-    f\perpab g \iff  \rst{f}\ocdperp\rst{g} \wedge \rg{f}\ocdperp\rg{g}
+    f\perpab g \iff  \rst{f}\ocdperp\rst{g}  \text{ and }  \rg{f}\ocdperp\rg{g}
   \]
   is a disjointness relation in \X.
 \end{proposition}
@@ -344,7 +345,7 @@ We then have:
 
   By Proposition~\ref{prop:extended_disjointness_is_a_disjointness_relation}, $\perpab$ defined by
   \[
-    f\perpab g \iff  \rst{f}\ocdperp\rst{g} \wedge \rg{f}\ocdperp\rg{g}.
+    f\perpab g \iff  \rst{f}\ocdperp\rst{g}  \text{ and }  \rg{f}\ocdperp\rg{g}.
   \]
   is a disjointness relation on $\X$.
 
@@ -388,12 +389,12 @@ than one disjointness relation on the category. To see this, consider the trivia
 relation, where $f \perp_0 g$ if and only if $f = 0$ or $g = 0$. As $\rst{0} = 0 = \rg{0}$, $f \le 0
 \iff f = 0$ and $h 0 =0$ for any map $h$, axioms \axiom{Dis}{1} through \axiom{Dis}{7} are
 immediately satisfied. $\perp_0$ is definable on any inverse category with zero maps, hence is
-definable on \pinj. At the same time, \pinj has a more useful disjointness relation:
+definable on \pinj. However, \pinj does have a more useful disjointness relation:
 \begin{example}[\pinj has a disjointness relation]\label{ex:pinj_has_a_disjointness_relation}
   Consider the inverse category \pinj, introduced in Example~\ref{ex:pinj_is_a_restriction_category}
   and Example~\ref{ex:pinj_is_a_discrete_inverse_category}.
-  We note the restriction zero is the empty set, $\emptyset$ with initial and terminal maps being
-  $\emptyset$ and therefore $0_{A,B} = \emptyset$.
+  We note the restriction zero is the empty set, $\emptyset$, with initial and terminal maps being
+  $\emptyset$ and therefore $\zeroob_{A,B} = \emptyset$.
 
   We may define the disjointness relation $\perp$ by $f \perp g$ if and only if
   $\rst{f}\intersection\rst{g}=\emptyset$ and $\rg{f}\intersection\rg{g} = \emptyset$. It is then
@@ -413,9 +414,9 @@ definable on \pinj. At the same time, \pinj has a more useful disjointness relat
     Therefore, $f h \cdperp g k$.
   \end{proof}
 
-  We may define a different disjointness relation, $\perp'$, on the same restriction category.
-  Define $f \perp' g$ if and only if one of $f$ or $g$ is the restriction 0, $\emptyset$. As
-  $0 = \rst{0} = \rg{0} = h 0 = 0 k$, all of the seven disjointness axioms are easily verifiable.
+  We see that we may define $f \perp_0 g$ on \pinj as well: $f \perp_0 g$ if and only if one of $f$
+  or $g$ is the restriction $\zeroob$, $\emptyset$. As $\zeroob = \rst{\zeroob} = \rg{\zeroob} = h
+  \zeroob = \zeroob k$, all of the seven disjointness axioms are easily verifiable.
 \end{example}
 
 Although disjointness is additional structure on a restriction category, one can use the
@@ -432,7 +433,7 @@ on the product category.
   \begin{itemize}
     \item If $(f,g)$ is a map in $\X\times\Y$, then $\inv{(f,g)} = (\inv{f}, \inv{g})$;
     \item If $(f,g)$ is a map in $\X\times\Y$, then $\rst{(f,g)} = (\rst{f}, \rst{g})$;
-    \item The map $(0_X,0_Y)$ is the restriction zero in $\X\times\Y$.
+    \item The map $(\zeroob_X,\zeroob_Y)$ is the restriction zero in $\X\times\Y$.
   \end{itemize}
 
   Following this pattern, for $(f,g)$ and $(h,k)$ maps in $\X\times\Y$, $(f,g) \perp_{\times}(h,k)$
@@ -444,7 +445,7 @@ on the product category.
   \setlist[itemize,1]{leftmargin=1.5cm}
   \begin{itemize}
     \item [\axiom{Dis}{2}]: Given $(f,g)\perp_{\times}(h,k)$, we have
-      $\rst{(f,g)}(h,k) =  (\rst{f},\rst{g})(h,k) = (\rst{f} h, \rst{g} k) = (0, 0) = 0$.
+      $\rst{(f,g)}(h,k) =  (\rst{f},\rst{g})(h,k) = (\rst{f} h, \rst{g} k) = (\zeroob, \zeroob) = \zeroob$.
     \item [\axiom{Dis}{5}]: We are given $(f,g)\perp_{\times}(h,k)$. Consider the map $z = (x,y)$
       in $\X \times \Y$. We know that $x f \perp x h$ and $y g \perp y k$, therefore we have
       $z(f,g) = (x f, y g) \perp_{\times} (x h, y k) = z(h,k)$.
@@ -493,14 +494,14 @@ Given a specific disjointness relation on a category, there is only one disjoint
 \begin{lemma}\label{lem:join_is_associative_and_commutative_monoid}
   In an inverse category with disjoint joins, the disjoint join respects the restriction and is
   universal. Additionally, it is a partial associative and
-  commutative operation, with identity $0$. That is, the following hold:
+  commutative operation, with identity $\zeroob$. That is, the following hold:
   \begin{enumerate}[{(}i{)}]
     \item $\rst{f\djoin g} = \rst{f} \djoin \rst{g}$;
     \item $(f \djoin g)k = f k \djoin g k$ (Universal);
     \item $f \perp g,\ g\perp h,\ f\perp h$ implies that $(f\djoin g)\djoin h = f\djoin(g\djoin
       h)$; \label{lemitem:associative_join}
     \item $f \perp g$ implies $f \djoin g = g \djoin f$; \label{lemitem:commutative_join}
-    \item $f \djoin 0 = f$. \label{lemitem:identity_for_join}
+    \item $f \djoin \zeroob = f$. \label{lemitem:identity_for_join}
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -550,8 +551,8 @@ Given a specific disjointness relation on a category, there is only one disjoint
     \item \emph{Commutativity}: Note first that both $f$ and $g$ are less than or equal to both
       $f\djoin g$ and $g \djoin f$, by \axiom{DJ}{1}. By \axiom{DJ}{2}, we have $f \djoin g \le
       g\djoin f$ and $g\djoin f \le f \djoin g$ and we may conclude $f \djoin g = g \djoin f$.
-    \item \emph{Identity}: By \axiom{DJ}{1}, $f \le f \djoin 0$. As $0 \le f$ and $f \le f$, by
-      \axiom{DJ}{2}, $f \djoin 0 \le f$ and we have $f = f \djoin 0$.
+    \item \emph{Identity}: By \axiom{DJ}{1}, $f \le f \djoin \zeroob$. As $\zeroob \le f$ and $f \le
+      f$, by \axiom{DJ}{2}, $f \djoin \zeroob \le f$ and we have $f = f \djoin \zeroob$.
   \end{enumerate}
 \end{proof}
 
@@ -559,7 +560,7 @@ Note that the previous lemma and proof of associativity allows a simple inductiv
 shows that having binary disjoint joins extends to disjoint joins of an arbitrary
 finite collection of disjoint maps.
 
-Recalling our notation for disjointness of a set of maps, $\cdperp \{f_i\}$,
+Recalling our notation for disjointness of a set of maps,
 $\djoin \{f_i\}$ will mean the disjoint join of all maps $f_i$, i.e.,
 $f_1 \djoin f_2 \djoin \cdots \djoin f_n$.
 
@@ -643,7 +644,7 @@ Clearly the product of two inverse categories with disjoint joins has a disjoint
         & \qquad\qquad \text{ or }(\exists a',\dot{a}.\dot{a} = a', (a',\dot{b}) \in g, (c,\dot{a}) \in h)\}\\
         & = \{(c,\dot{b}) |\exists a, \dot{a}.\dot{a} = a, (a,\dot{b}) \in f, (c,\dot{a}) \in h\} \bigcup\\
         & \qquad\qquad\{(c,\dot{b}) | \exists a',\dot{a}.\dot{a} = a', (a',\dot{b}) \in g, (c,\dot{a}) \in h\}\\
-        &= h f \djoin hg
+        &= h f \djoin h g
       \end{align*}
     \item[\axiom{DJ}{4}] Suppose $\cdperp [f, f', f'']$, $f=\{(a,b)\}, f'=\{(a',b')\},
       f''=\{(a'',b'')\}$. Then the set $\{a\}$ does not intersect either $\{a'\}$ nor $\{a''\}$ and
