@@ -373,13 +373,13 @@ Our last example describes a construction on a category
         & A
       }
     \]
-    commutes.}{$(f,1_B,f):f \to f)$.}{$(f_1,g,f_2)(f_2,h,f_3) = (f_1,g h, f_3)$ which is well
+    commutes.}{$(f,1_B,f):f \to f$.}{$(f_1,g,f_2)(f_2,h,f_3) = (f_1,g h, f_3)$ which is well
     defined as $g h f_3 = g f_2 = f_1$.}
 
   There is also the concept of the \emph{simple slice} category\cite{blute2009cartesian}, $\B[A]$
   defined as:
-  \categoryns{Objects of \B}{$f:C\to D$ is given by maps $f:C\times A \to D$.}{projection --
-    $\pi_0$}{$C\xrightarrow{f}D\xrightarrow{g}E$ is given by $C\times A \xrightarrow{1\times \Delta}
+  \categoryns{Objects of \B.}{$f:C\to D$ is given by maps $f:C\times A \to D$.}{projection --
+    $\pi_0$.}{$C\xrightarrow{f}D\xrightarrow{g}E$ is given by $C\times A \xrightarrow{1\times \Delta}
     C\times A\times A\xrightarrow{f\times 1} D\times A \xrightarrow{g} E$.}
   Note the definition of simple slice category relies on products in categories, to be introduced in
   the next section.
@@ -637,6 +637,7 @@ based on the $A\in\A$.
   See Proposition 2.2.2\cite{cockett2009:ctcs}.
 \end{proof}
 
+
 When we have this occurring we say $F$ is \emph{left adjoint} to $G$ (and $G$ is the
 \emph{right adjoint} of $F$). The transformation $\eta$ is referred to as the \emph{unit} and the
 transformation $\epsilon$ is referred to as the \emph{counit}. This is written as:
@@ -644,7 +645,37 @@ transformation $\epsilon$ is referred to as the \emph{counit}. This is written a
   (\eta,\epsilon):F\leftadjoint G:A\to B.
 \]
 
-Revisiting Example~\ref{ex:skeleton} above, we see that $(1,\phi):F\leftadjoint G: \ord \to \finsets$.
+Additionally, adjoints are often defined as a one to one correspondence between hom-sets in the
+following manner:
+
+Let $F,G$ be functors such that $F:\A \to \B$ and $G:\B \to \A$ such that there is a bijection $\phi$
+between the homsets:
+\[
+  \phi: \B(F(X),Y) \to \A(X,G(Y)).
+\]
+This is the path followed by Mac Lane in \cite{maclan97:categorieswrkmath}, where he proves this
+definition is equivalent to Definition~\ref{def:universal_pair} above.
+
+Revisiting Example~\ref{ex:skeleton} above, we see that $(1,\phi):F\leftadjoint G: \ord \to
+\finsets$.
+
+\begin{example}[Simple slice adjoint.]\label{ex:simple-slice-adjoint}
+  Recall the simple slice construction $\B[A]$ from Example~\ref{ex:slice_category}, where maps in
+  $\B[A]$, $f:C\to D$ are maps of the form $f:C\times A \to D$ in \B.
+
+  There is an adjunction between $\B[A]$ and $\B$.
+
+  Define $F:\B[A]\to \B$ by $F:C \mapsto C\times A$, $F:(f:C\to D) \mapsto (1\times \Delta) (f\times
+  1)$.
+  Define $G:\B \to \B[A]$ by $G:C\mapsto C$, $G:(f:C\to D) \mapsto \pi_0 f$. We see immediately
+  there is a  correspondence $\phi$ of hom-sets
+  \[
+    \infer{\B[A](C,G(D))}{\B(F(C), D)}
+    \quad \left(= \infer{\B[A](C,D)}{\B(C\times A, D)}\right)
+  \]
+  given by $\phi(f) = f$.
+  Thus $F\leftadjoint G$.
+\end{example}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../phd-thesis"

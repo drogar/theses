@@ -299,15 +299,17 @@ disjoint sums.
 \label{sec:equivalence_between_an_disjoint_sum_category_and_its_matrix_category}
 In this section we will provide restriction functors between a disjoint sum category
 \X and its matrix category \imatx. Furthermore, we will show these functors form an
-equivalence between these two categories. That is,
+equivalence between these two categories. In actuality, this will give us an equivalence between
+inverse categories with disjoint sums and a disjointness relations (Disjoint Sum Cats) and
+categories with a disjoint join (Disjoint Join Cats). That is,
 \[
    \xymatrix@R+10pt@C+20pt{
      \text{Disjoint Sum Cats} \ar@{^{(}->}[r]
-     & \text{Disjoint Join Cats.} \ar@/^1.5pc/[l]_{\raisebox{2pt}{$\top$}}^{\text{Matrix}}
+     & \text{Disjoint Join Cats.} \ar@/_1.8pc/[l]_{\text{Matrix}} \ar@{}@<-1ex>[l]_{\bot}
    }
 \]
 \begin{definition}\label{def:functor_from_x_to_imatx}
-  Given $\X$ has disjoint sums with disjoint join $\cdperp$ and restriction zero,
+  Given $\X$ has disjoint sums with disjointness relationship $\cdperp$ and restriction zero,
   define $M:\X \to \imatx$ by:
   \begin{align*}
     \text{Objects:}\ &M(A) := [A]\\
@@ -377,8 +379,8 @@ equivalence between these two categories. That is,
   \end{align*}
 
   Next, we need to show that there is a natural transformation and isomorphism $\rho$ such that
-  $\rho(S M) = I_{\imatx}$. For each object $[A_1,A_2,\ldots,A_n]$, set
-  $\rho A = \begin{bmatrix}\icpa& \cdots &\icp{n}\end{bmatrix}$.
+  $\rho(S M) = I_{\imatx}$. For each object $A = [A_1,A_2,\ldots,A_n]$, set
+  $\rho_A = \begin{bmatrix}\icpa& \cdots &\icp{n}\end{bmatrix}$.
 
   Note that the functor $S M$ has the following effect:
 
@@ -418,6 +420,12 @@ equivalence between these two categories. That is,
   and defines an isomorphism between any object of the form $[\+_i A_i]$ and the
   object $[A_1,\ldots,A_n]$.
 \end{proof}
+
+Note that as we have an equivalence, we have the adjoint equivalence between hom-sets of
+\[
+  \infer{iMat(\X)(X, M(Y))}{\X(S(X),Y)}
+\]
+as $S$ is the left adjoint of $M$.
 % subsection equivalence_between_an_disjoint_sum_category_and_its_matrix_category (end)
 
 \begin{example}\label{ex:disjoint_sum_category_maps_are_matrices}
@@ -453,7 +461,7 @@ In particular, we note that we may represent $f:A\to B$ by the matrix
     f& 0 \\ 0 & 0
   \end{bmatrix}
 \]
-as $A \cong A\+0$ and $B \cong B\+0$.
+as $A \cong A\+0$ and $B \cong B\+0$. Equivalently, this is the matrix $\begin{bmatrix}f\end{bmatrix}$.
 \end{example}
 
 
