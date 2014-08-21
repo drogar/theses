@@ -10,14 +10,14 @@ details for category theory can be found from, e.g., \cite{barr:ctcs}, \cite{coc
 \label{sec:definition_of_a_category}
 
 
-A category may be defined in a variety of equivalent ways. As much of our
-work will involve the exploration of partial and reversible maps, their domains and codomains, we
-choose a definition that highlights the algebraic nature of these.
+A category may be defined in a variety of equivalent ways. As much of our work will involve the
+exploration of partial and reversible maps, we choose a definition that highlights the algebraic
+nature of these.
 
 \begin{definition}\label{def:category}
   A \emph{category} $\A$ is a directed graph consisting of objects $\A_o$ and maps $\A_m$. Each $f\in
-  \A_m$ has two associated objects in $\A_o$, called the domain, $\catdomain f$, and codomain,
-  $\catcodomain f$. When $\catdomain f$ is the object $X$  and $\catcodomain f$ is the object $Y$, we
+  \A_m$ has two associated objects in $\A_o$, called the domain, $\catdomain{f}$, and codomain,
+  $\catcodomain{f}$. When $\catdomain{f}$ is the object $X$  and $\catcodomain{f}$ is the object $Y$, we
   will write $f:X \to Y$. For $f, g \in \A_m$, if $f:X\to Y$ and $g:Y \to Z$, there is a map called
   the \emph{composite} of $f$ and $g$, written $f g$,\footnote{Note that composition is written in
     diagrammatic order throughout this thesis.} such that $f g:X \to Z$. For any $W \in \A_o$ there is
@@ -30,20 +30,20 @@ choose a definition that highlights the algebraic nature of these.
 
 Throughout   this thesis, we will be working with \emph{small} categories, that is, those categories
 whose collection of maps and collection of objects is, in fact, a set. We will give categories of
-``all'' sets as an example, and the reader should take that to mean all sets contained within a
-sufficiently large set.
+``all'' sets as an example, and the reader can take that to mean all our sets are very small and all
+belong to a some sufficiently large set, $\mathcal{U}$.
 
 We give a few examples of categories:
 
 \begin{example}\label{ex:small_finite_categories}
   We set $\mathbf{1}$ to be the category consisting of a single object $A$ and the identity arrow
   $id:A\to A$. This  is obviously a category, with $\mathbf{1}_o = A$ and
-  $\catdomain id = \catcodomain id = A$.
+  $\catdomain{id} = \catcodomain{id} = A$.
 
   There is also the category $\mathbf{2}$:
   \[
     \xymatrix{
-      A\ar[rr]^{f} \ar@(ul,dl)[]_{id_A}& & B  \ar@(ur,dr)[]_{id_B}
+      A\ar[rr]^{f} \ar@(ul,dl)[]_{id_A}& & B  \ar@(ur,dr)[]^{id_B}
     }
   \]
   where $f$ is the only non-identity arrow.
@@ -107,7 +107,7 @@ maps in a category $C$ with $e:A \to A$ and $f,g:A \to B$.
   \label{tab:properties_of_maps_in_categories}
 \end{table}
 
-There are number of basic properties of maps enumerated in this lemma:
+There are number of basic properties of maps enumerated in Table~\ref{tab:properties_of_maps_in_categories}.
 
 \begin{lemma}\label{lem:categorical_properties_of_maps}
   In a category \B,
@@ -152,8 +152,8 @@ In general, not all idempotents in a category will split. The following construc
 create a category based on the original one in which all idempotents do split.
 
 \begin{definition}\label{def:split_category}
-  Given a category $\B$ and a set of idempotents $E$ of $\B$, we may create \emph{Split${}_E$($\B$)}.
-  As this is called the Karoubi envelope, this is normally written as $\spl{E}{\B}$, and defined as:
+  Given a category $\B$ and a set of idempotents $E$ of $\B$, we may create the category of \B split
+  over the idempotents $E$. This is normally written as $\spl{E}{\B}$, and defined as:
   \category{$(A,e)$, where $A$ is an object of \B, $e:A\to A$ and $e\in E$.}
     {$f_{d,e}:(A,d)\to(B,e)$ is given by $f:A\to B$ in \B, where $f = d\uts f e$.}
     {The map $e_{e,e}$ for $(A,e)$.}
@@ -161,7 +161,7 @@ create a category based on the original one in which all idempotents do split.
   When $E$ is the set of all idempotents in $\B$, we write $\spl{}{\B}$.
 \end{definition}
 This is the standard idempotent splitting construction, variously known as the Karoubi
-envelope or Cauchy completion.
+envelope (whence the notation) or Cauchy completion.
 
 % subsection properties_of_maps (end)
 
@@ -172,7 +172,7 @@ envelope or Cauchy completion.
   A map $F:\X \to \Y$ between categories, as in Definition~\ref{def:category}, is called a
   \emph{functor}, provided it satisfies the following:
   \begin{itemize}
-    \item[\axiom{F}{1}] $F(\catdomain(f)) = \catdomain(F(f))$ and $F(\catcodomain(f)) = \catcodomain(F(f))$;
+    \item[\axiom{F}{1}] $F(\catdomain{f}) = \catdomain{F(f)}$ and $F(\catcodomain{f}) = \catcodomain{F(f)}$;
     \item[\axiom{F}{2}] $F(f g) = F(f)F(g)$;
   \end{itemize}
 \end{definition}
@@ -185,16 +185,23 @@ envelope or Cauchy completion.
   \categoryns{Categories.}{Functors.}{The identity functor which takes an object to the same object
     and a map to the same map.}{Given $F:\A\to\B$, $G:\B\to\D$, define the functor  $F G:\A\to\D$ such that
     $F G(x) = G(F(x))$ which is clearly associative.}
-  Note this would be a \emph{large} category, as its collection of objects would not be a set.
+  Note this is often regarded as a \emph{large} category, as its collection of objects is not a set.
 \end{proof}
 
-\begin{definition}\label{def:faithful_functor}
-  A functor $F:\X\to\Y$ is \emph{faithful} when for each pair of objects $A,B$ in $\X$, and map
+
+A functor $F:\B \to \D$ induces a map between hom-sets in $\B$ and hom-sets in $\D$. For
+each object $A,B$ in $\B$ we have the map:
+\[
+  F_{AB} : \B(A,B) \to \D(F(A),F(B)).
+\]
+
+\begin{definition}\label{def:full_functor}
+  A functor $F:\X\to\Y$ is \emph{full} when for each pair of objects $A,B$ in $\X$, and map
   $g:FA \to F B$ in $\Y$, there is a map $f:A\to B$ in $\X$ such that $F f = g$.
 \end{definition}
 
-\begin{definition}\label{def:full_functor}
-  A functor $F:\X\to\Y$ is \emph{full} when for parallel maps $f, f'$, if $Ff = Ff'$ then $f = f'$.
+\begin{definition}\label{def:faithful_functor}
+  A functor $F:\X\to\Y$ is \emph{faithful} when for parallel maps $f, f'$, if $Ff = Ff'$ then $f = f'$.
 \end{definition}
 We may also consider the notion of containment between categories:
 
@@ -260,12 +267,6 @@ For example,   $P(f:A \to B) = \exists h : B \to A. h f = 1_A$ expresses that $f
 For example, all functors preserve the properties of being an idempotent or a retraction or section,
 but in general, not the property of being monic.
 
-A functor $F:\B \to \D$ induces a map between hom-sets in $\B$ and hom-sets in $\D$. For
-each object $A,B$ in $\B$ we have the map:
-\[
-  F_{AB} : \B(A,B) \to \D(F(A),F(B)).
-\]
-
 \begin{definition}\label{def:natural_transformation}
   Given functors $F,G:\X \to \Y$, a \emph{natural transformation} $\alpha:F \natto G$ is a collection
   of maps in $\Y$, $\alpha_X : F(X) \to G(X)$, indexed by the objects of $\X$ such that for all
@@ -282,6 +283,98 @@ In the case where a natural transformation is a collection of isomorphisms, we w
 
 % subsection functors_and_natural_transformations (end)
 
+
+\section{Adjoint functors and equivalences}
+\label{sec:adjoint-functors-and-equivalences}
+
+Referring to Section~\ref{ssub:functors_and_natural_transformations}, we consider some relationships
+between categories. While two categories may be isomorphic (i.e. there is an invertible functor
+between them), we normally consider two alternate relations between categories: Equivalence and
+adjointness.
+
+We first consider adjoint pairs of functors. There are various equivalent ways of defining adjoints,
+we will approach them using universality.
+
+\begin{definition}\label{def:universal_pair}
+  Given $G:\A\to\B$ is a functor and $A\in \A$, then an object $U$ in \B together with a map
+  $\eta_A:A\to G(U)$ is a \emph{universal pair} for the $G$ at $A$ if whenever there is a map
+  $f:A\to G(Y)$, there is a unique $f^{\#}:U\to Y$ such that
+  \[
+    \xymatrix@C+15pt{
+      A \ar[r]^{\eta_A} \ar[dr]_{f} & G(U) \ar@{.>}[d]^{G(f^{\#})}\\
+      & G(Y)
+    }
+  \]
+  is a commutative diagram.
+\end{definition}
+
+Let us consider what happens when we have the situation above, but the $U$ in $\B$ is definable
+based on the $A\in\A$.
+\begin{lemma}\label{lem:adjoint-setup}
+  Suppose for $G:\B\to\A$ is a functor such that for each $A\in\A$, there is an operation
+  $F:\A\to\B$ such that  $(F(A),\eta_A)$ is a universal pair. Then:
+  \begin{itemize}
+    \item $F$ is a functor with $F(g) = (g\eta)^{\#}$;
+    \item $\eta_A: A \to G(F(A))$ is a natural transformation;
+    \item $\epsilon_B = 1_{G(B)}^{\#}:F(G(B)) \to B$ is a natural transformation;
+    \item The triangle equalities, $\eta_{G(B)}G(\epsilon_B) = 1_B$ and $F(\eta_A)\epsilon_{F(A)} =
+      1_{F(A)}$ hold.
+  \end{itemize}
+  Conversely, if we have functors $F,G$ with transformation $\eta$ and $\epsilon$ which satisfy the
+  triangle identities, then each $(F(A),\eta_A)$ is universal for $G$ at $A$.
+\end{lemma}
+\begin{proof}
+  See Proposition 2.2.2\cite{cockett2009:ctcs}.
+\end{proof}
+
+When we have this occurring we say $F$ is \emph{left adjoint} to $G$ (and $G$ is the
+\emph{right adjoint} of $F$). The transformation $\eta$ is referred to as the \emph{unit} and the
+transformation $\epsilon$ is referred to as the \emph{counit}. This is written as:
+\[
+  (\eta,\epsilon):F\leftadjoint G:A\to B.
+\]
+
+Additionally, adjoints are often defined as a one to one correspondence between hom-sets in the
+following manner:
+
+Let $F,G$ be functors such that $F:\A \to \B$ and $G:\B \to \A$ such that there is a bijection $\phi$
+between the hom-sets:
+\[
+  \phi: \B(F(X),Y) \to \A(X,G(Y)).
+\]
+This is the path followed by Mac Lane in \cite{maclan97:categorieswrkmath}, where he proves this
+definition is equivalent to Definition~\ref{def:universal_pair} above.
+
+\begin{example}[Simple slice adjoint.]\label{ex:simple-slice-adjoint}
+  Recall the simple slice construction $\B[A]$ from Example~\ref{ex:slice_category}, where maps in
+  $\B[A]$, $f:C\to D$ are maps of the form $f:C\times A \to D$ in \B.
+
+  There is an adjunction between $\B[A]$ and $\B$.
+
+  Define $F:\B[A]\to \B$ by $F:C \mapsto C\times A$, $F:(f:C\to D) \mapsto (1\times \Delta) (f\times
+  1)$.
+  Define $G:\B \to \B[A]$ by $G:C\mapsto C$, $G:(f:C\to D) \mapsto \pi_0 f$. We see immediately
+  there is a  correspondence $\phi$ of hom-sets
+  \[
+    \infer{\B[A](C,G(D))}{\B(F(C), D)}
+    \quad \left(= \infer{\B[A](C,D)}{\B(C\times A, D)}\right)
+  \]
+  given by $\phi(f) = f$.
+  Thus $F\leftadjoint G$.
+\end{example}
+
+Now, we may consider equivalence of categories.
+
+\begin{definition}\label{def:equivalence_of_categories}
+  Given two categories $\A$ and $\B$, we say they are \emph{equivalent} when there exists two
+  functors, $F:\A \to \B$ and $G:\B \to \A$ and natural isomorphisms such that $F G \cong I:\A \to
+  \A$ and $G F \cong I:\B \to \B$.
+\end{definition}
+
+
+The equivalence functors will also be an adjoint pair, typically they are chosen such that
+$F\leftadjoint G$.
+
 \section{Enrichment of categories} % (fold)
 \label{sub:enrichement_of_categories}
 
@@ -294,9 +387,10 @@ Specific types of enrichment may force a structure on a category. Examples:
 \begin{enumerate}
  \item If $\X$ is enriched in sets of cardinality of 0 or 1, then $\X$ is a preorder.
  \item If $\X$ is enriched in pointed sets with the monoid of smash product, the $\X$ has zero morphisms.
- \item If $\X$ is enriched in abelian groups, then $\X$ is a preadditive category (has zero
-   morphisms and has finite products which are the same as the coproduct).
+% \item If $\X$ is enriched in abelian groups, then $\X$ is a preadditive category (has zero
+%   morphisms and has finite products which are the same as the coproduct).
 \end{enumerate}
+
 
 % subsection enrichment_of_categories (end)
 \section{Examples of categories} % (fold)
@@ -312,31 +406,34 @@ In this section, we will offer a few examples of categories.
 
 Four categories derived from sets are \sets, \Par, \rel and \pinj:
 
-\begin{example}[\sets]\label{ex:category_sets}
-In this category, the maps are given by all set functions.
-\category{Sets}{Set functions}{The identity function}{Standard composition of functions}
-\end{example}
-
-\begin{example}[\Par]\label{ex:category_par}
-For this example, the maps are all partial set functions.
-\category{Sets}{Partial set functions}{The identity function}{Standard composition of functions}
-\end{example}
-
 \begin{example}[\rel]\label{ex:category_rel}
 \rel is often of interest in quantum programming language semantics:
-\category{All sets}{Relations: $R:X \to Y$}{$1_X = \{(x,x) | x \in X\}$}{$RS = \{(x,z) |\,
+\category{All sets}{Relations: $R\subseteq X\times Y$}{$1_X = \{(x,x) | x \in X\}$}{$RS = \{(x,z) |\,
 \exists y. (x,y) \in R$ and $(y,z)\in S\}$}
 \end{example}
 
-Note that \rel is enriched in posets, via set inclusion. \Par can be viewed as a sub-category of
-\rel, with the same objects, but only allowing maps which are partial functions, i.e., deterministic
-relations where if $(x,y), (x,y') \in f$, then $y = y'$. \Par is also enriched in posets, via the
-same inclusion ordering as in \rel.
+
+Note that \rel is enriched in posets (see Example~\ref{ex:preorders-are-categories}), via set
+inclusion. \sets and \Par can be viewed as sub-categories of \rel, with the same objects, but
+restricting the maps allowed --- see below. \Par is also enriched in posets, via the same inclusion
+ordering as in \rel.
+
+\begin{example}[\sets]\label{ex:category_sets}
+This is the subcategory of \rel which has the same  objects (sets) but only allowing maps which are
+total functions, i.e., deterministic relations $f$ where for all $x\in X$, there is a $y$ such
+that $(x,y)\in f$ and if $(x,y), (x,y') \in f$, then $y = y'$.
+\end{example}
+
+\begin{example}[\Par]\label{ex:category_par}
+This is the subcategory of \rel which has the same  objects (sets) but only allowing maps which are
+partial functions, i.e., deterministic relations $f$ where if $(x,y), (x,y') \in f$, then $y = y'$.
+\end{example}
+
 
 \begin{example}[\pinj]\label{ex:category_pinj}
 Our final example based on sets is one that will be used throughout this thesis. The category \pinj consists of
-the partial injective functions over sets. Similarly to \Par, it may be considered as a subcategory
-of \rel. The maps $f,g$ (relations in \rel) in \pinj are defined as follows:
+the partial injective functions over sets. Similarly to \sets and \Par, it may be considered as a subcategory
+of \rel. The maps $f,g$ (relations in \rel) in \pinj are subject to two conditions:
 \begin{align}
    (x,y)\in f\text{ and }(x,y')\in f & \text{ implies } y = y',\label{eq:pinj_relation_is_a_function}\\
    (x,y)\in f\text{ and }(x',y)\in f & \text{ implies } x = x'.\label{eq:pinj_converse_relation_is_a_function}
@@ -347,22 +444,34 @@ Equation~\ref{eq:pinj_converse_relation_is_a_function}}{$1_X = \{(x,x) | x \in X
 \end{example}
 
 \begin{example}[\topcat]\label{ex:category_top}
-  This is the category of topological spaces.
-  \category{Topological spaces}{Continuous functions}{The identity function}{Function composition}
-  As the composition of continuous maps is also continuous, this is a category.
+  A topological space is defined as a pair $(T,\open{T})$ where $T$ is a set and $\open{T} \subseteq
+  \mathcal{P}(T)$ satisfying three properties:
+  \begin{enumerate}[{(}i{)}]
+    \item $T\in \open{T}$ and $\emptyset \in \open{T}$;
+    \item The union of any sets in $\open{T}$ is again in $\open{T}$;
+    \item The intersection of finitely many sets in $\open{T}$ is in $\open{T}$.
+  \end{enumerate}
+
+  Maps between two topological spaces $(T,\open{T})$ and $(S,\open{S})$ consist of
+  a set map $f:T \to S$ such that elements of $\open{T}$ are sent to elements of $\open{S}$. such
+  maps are referred to as \emph{continuous functions}.
+
+  The identity map is always continuous and composition of continuous functions yields another
+  continuous function, hence setting $\topcat_o$ to be the set of all topological spaces and
+  $\topcat_m$ to be the continuous maps between them gives us a category.
 \end{example}
 
 Our next example shows maps in categories need not always be something normally thought of as a
 function or relation.
 
 \begin{example}[Matrix category]\label{ex:matrix_category}
-Given a rig $R$ (i.e., a ri\textbf{n}g minus \textbf{n}egatives, e.g., the natural numbers), one may
+Given a rig $R$ (i.e., a ri\textbf{n}g without \textbf{n}egatives, e.g., the natural numbers), one may
 form the category \textsc{Mat}($R$). For example, the category of matrices over natural numbers is:
 \category{\nat}{$[r_{i j}]: n \to m$ where $[r_{i j}]$ is an $n \times m$ matrix over \nat}{
 $I_n$}{Matrix multiplication}
 \end{example}
 
-Our last example describes a construction on a category
+Our last example describes a construction on a category:
 \begin{example}[Slice category]\label{ex:slice_category}
   Given a category $\B$ and an object $A$ in \B, form the \emph{slice category} $\B/A$:
   \categoryns{Maps of \B whose codomain is $A$, i.e., $f:B\to A$ for some $B$.}{
@@ -575,107 +684,6 @@ $\nabla$.
 The essence of the coherence diagrams is that any diagram composed solely of the structure
 isomorphisms will commute.
 % subsection symmetric monoidal categories (end)
-
-\section{Adjoint functors and equivalences}
-\label{sec:adjoint-functors-and-equivalences}
-
-Referring to Section~\ref{ssub:functors_and_natural_transformations}, we consider some relationships
-between categories. While two categories may be isomorphic (i.e. there is an invertible functor
-between them), we normally consider two alternate relations between categories: Equivalence and
-adjointness.
-
-\begin{definition}\label{def:equivalence_of_categories}
-  Given two categories $\A$ and $\B$, we say they are \emph{equivalent} when there exists two
-  functors, $F:\A \to \B$ and $G:\B \to \A$ and natural isomorphisms such that $F G \cong I:\A \to
-  \A$ and $G F \cong I:\B \to \B$.
-\end{definition}
-
-\begin{example}[Skeleton]\label{ex:skeleton}
-   Consider the category of all finite sets, \finsets. This is equivalent to the category of ordinal
-   sets, \ord, ($0 = \nothing$, $1 =
-   \{0\},\ldots,n=\{0,1,\ldots,n-1\},\ldots$)\cite{maclan97:categorieswrkmath}. Take $F:\ord\to
-   \finsets$ as the inclusion functor. Set $G:\finsets \to \ord$ such that $G: S \mapsto |S|$. We
-   have immediately that $F G = I$ and as $\phi_S:|S|\to S$ in \finsets is an isomorphism, we have
-   $\phi:G F \to I$.
-
-   This is a specific example of a the \emph{skeleton} of a category being equivalent to the
-   original category. The skeleton $\A$ of a category $\B$ is any full subcategory of $\B$ such that
-   each object $B\in\B$ is isomorphic in \B to exactly one object of $\A$.
-\end{example}
-
-We now turn to adjoint functors.
-
-\begin{definition}\label{def:universal_pair}
-  Given $G:\A\to\B$ is a functor and $A\in \A$, then an object $U$ in \B together with a map
-  $\eta_A:A\to G(U)$ is a \emph{universal pair} for the $G$ at $A$ if whenever there is a map
-  $f:A\to G(Y)$, there is a unique $f^{\#}:U\to Y$ such that
-  \[
-    \xymatrix@C+15pt{
-      A \ar[r]^{\eta_A} \ar[dr]_{f} & G(U) \ar@{.>}[d]^{G(f^{\#})}\\
-      & G(Y)
-    }
-  \]
-  is a commutative diagram.
-\end{definition}
-
-Let us consider what happens when we have the situation above, but the $U$ in $\B$ is definable
-based on the $A\in\A$.
-\begin{lemma}\label{lem:adjoint-setup}
-  Suppose for $G:\B\to\A$ is a functor such that for each $A\in\A$, there is an operation
-  $F:\A\to\B$ such that  $(F(A),\eta_A)$ is a universal pair. Then:
-  \begin{itemize}
-    \item $F$ is a functor with $F(g) = (g\eta)^{\#}$;
-    \item $\eta_A: A \to G(F(A))$ is a natural transformation;
-    \item $\epsilon_B = 1_{G(B)}^{\#}:F(G(B)) \to B$ is a natural transformation;
-    \item The triangle equalities, $\eta_{G(B)}G(\epsilon_B) = 1_B$ and $F(\eta_A)\epsilon_{F(A)} =
-      1_{F(A)}$ hold.
-  \end{itemize}
-  Conversely, if we have functors $F,G$ with transformation $\eta$ and $\epsilon$ which satisfy the
-  triangle identities, then each $(F(A),\eta_A)$ is universal for $G$ at $A$.
-\end{lemma}
-\begin{proof}
-  See Proposition 2.2.2\cite{cockett2009:ctcs}.
-\end{proof}
-
-
-When we have this occurring we say $F$ is \emph{left adjoint} to $G$ (and $G$ is the
-\emph{right adjoint} of $F$). The transformation $\eta$ is referred to as the \emph{unit} and the
-transformation $\epsilon$ is referred to as the \emph{counit}. This is written as:
-\[
-  (\eta,\epsilon):F\leftadjoint G:A\to B.
-\]
-
-Additionally, adjoints are often defined as a one to one correspondence between hom-sets in the
-following manner:
-
-Let $F,G$ be functors such that $F:\A \to \B$ and $G:\B \to \A$ such that there is a bijection $\phi$
-between the homsets:
-\[
-  \phi: \B(F(X),Y) \to \A(X,G(Y)).
-\]
-This is the path followed by Mac Lane in \cite{maclan97:categorieswrkmath}, where he proves this
-definition is equivalent to Definition~\ref{def:universal_pair} above.
-
-Revisiting Example~\ref{ex:skeleton} above, we see that $(1,\phi):F\leftadjoint G: \ord \to
-\finsets$.
-
-\begin{example}[Simple slice adjoint.]\label{ex:simple-slice-adjoint}
-  Recall the simple slice construction $\B[A]$ from Example~\ref{ex:slice_category}, where maps in
-  $\B[A]$, $f:C\to D$ are maps of the form $f:C\times A \to D$ in \B.
-
-  There is an adjunction between $\B[A]$ and $\B$.
-
-  Define $F:\B[A]\to \B$ by $F:C \mapsto C\times A$, $F:(f:C\to D) \mapsto (1\times \Delta) (f\times
-  1)$.
-  Define $G:\B \to \B[A]$ by $G:C\mapsto C$, $G:(f:C\to D) \mapsto \pi_0 f$. We see immediately
-  there is a  correspondence $\phi$ of hom-sets
-  \[
-    \infer{\B[A](C,G(D))}{\B(F(C), D)}
-    \quad \left(= \infer{\B[A](C,D)}{\B(C\times A, D)}\right)
-  \]
-  given by $\phi(f) = f$.
-  Thus $F\leftadjoint G$.
-\end{example}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../phd-thesis"
