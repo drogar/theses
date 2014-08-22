@@ -345,9 +345,15 @@ between the hom-sets:
 This is the path followed by Mac Lane in \cite{maclan97:categorieswrkmath}, where he proves this
 definition is equivalent to Definition~\ref{def:universal_pair} above.
 
+
+
 \begin{example}[Simple slice adjoint.]\label{ex:simple-slice-adjoint}
-  Recall the simple slice construction $\B[A]$ from Example~\ref{ex:slice_category}, where maps in
-  $\B[A]$, $f:C\to D$ are maps of the form $f:C\times A \to D$ in \B.
+  Consider the  \emph{simple slice} category\cite{blute2009cartesian}, $\B[A]$  defined as:
+  \categoryns{Objects of \B.}{$f:C\to D$ is given by maps $f:C\times A \to D$.}{projection --
+    $\pi_0$.}{$C\xrightarrow{f}D\xrightarrow{g}E$ is given by $C\times A \xrightarrow{1\times \Delta}
+    C\times A\times A\xrightarrow{f\times 1} D\times A \xrightarrow{g} E$.}
+  Note the definition of simple slice category relies on products in categories, to be introduced
+  below in Section~\ref{sub:limits_and_colimits_in_categories}.
 
   There is an adjunction between $\B[A]$ and $\B$.
 
@@ -451,9 +457,10 @@ Equation~\ref{eq:pinj_converse_relation_is_a_function}}{$1_X = \{(x,x) | x \in X
     \item The union of any sets in $\open{T}$ is again in $\open{T}$;
     \item The intersection of finitely many sets in $\open{T}$ is in $\open{T}$.
   \end{enumerate}
+  $\open{T}$ is referred to as the open sets of the topological space.
 
   Maps between two topological spaces $(T,\open{T})$ and $(S,\open{S})$ consist of
-  a set map $f:T \to S$ such that elements of $\open{T}$ are sent to elements of $\open{S}$. such
+  a set map $f:T \to S$ such that the inverse image of any open set  is an open set. Such
   maps are referred to as \emph{continuous functions}.
 
   The identity map is always continuous and composition of continuous functions yields another
@@ -471,28 +478,28 @@ form the category \textsc{Mat}($R$). For example, the category of matrices over 
 $I_n$}{Matrix multiplication}
 \end{example}
 
-Our last example describes a construction on a category:
-\begin{example}[Slice category]\label{ex:slice_category}
-  Given a category $\B$ and an object $A$ in \B, form the \emph{slice category} $\B/A$:
-  \categoryns{Maps of \B whose codomain is $A$, i.e., $f:B\to A$ for some $B$.}{
-    Triples $(f_1,g,f_2):f_1 \to f_2$ such that
-    \[
-      \xymatrix{
-        B_1 \ar[rr]^{g} \ar[dr]_{f_1} && B_2 \ar[dl]^{f_2}\\
-        & A
-      }
-    \]
-    commutes.}{$(f,1_B,f):f \to f$.}{$(f_1,g,f_2)(f_2,h,f_3) = (f_1,g h, f_3)$ which is well
-    defined as $g h f_3 = g f_2 = f_1$.}
+% \begin{example}[Slice category]\label{ex:slice_category}
+%   Given a category $\B$ and an object $A$ in \B, form the \emph{slice category} $\B/A$:
+%   \categoryns{Maps of \B whose codomain is $A$, i.e., $f:B\to A$ for some $B$.}{
+%     Triples $(f_1,g,f_2):f_1 \to f_2$ such that
+%     \[
+%       \xymatrix{
+%         B_1 \ar[rr]^{g} \ar[dr]_{f_1} && B_2 \ar[dl]^{f_2}\\
+%         & A
+%       }
+%     \]
+%     commutes.}{$(f,1_B,f):f \to f$.}{$(f_1,g,f_2)(f_2,h,f_3) = (f_1,g h, f_3)$ which is well
+%     defined as $g h f_3 = g f_2 = f_1$.}
 
-  There is also the concept of the \emph{simple slice} category\cite{blute2009cartesian}, $\B[A]$
-  defined as:
-  \categoryns{Objects of \B.}{$f:C\to D$ is given by maps $f:C\times A \to D$.}{projection --
-    $\pi_0$.}{$C\xrightarrow{f}D\xrightarrow{g}E$ is given by $C\times A \xrightarrow{1\times \Delta}
-    C\times A\times A\xrightarrow{f\times 1} D\times A \xrightarrow{g} E$.}
-  Note the definition of simple slice category relies on products in categories, to be introduced in
-  the next section.
-\end{example}
+%   There is also the concept of the \emph{simple slice} category\cite{blute2009cartesian}, $\B[A]$
+%   defined as:
+%   \categoryns{Objects of \B.}{$f:C\to D$ is given by maps $f:C\times A \to D$.}{projection --
+%     $\pi_0$.}{$C\xrightarrow{f}D\xrightarrow{g}E$ is given by $C\times A \xrightarrow{1\times \Delta}
+%     C\times A\times A\xrightarrow{f\times 1} D\times A \xrightarrow{g} E$.}
+%   Note the definition of simple slice category relies on products in categories, to be introduced in
+%   the next section.
+% \end{example}
+
 
 
 % subsection examples_of_categories (end)
@@ -669,14 +676,6 @@ $\nabla$.
       & (C\*A)\*B \ar[d]^{c_{C,A}\*1}\\
     A\*(C\*B) \ar[r]^{a_{A,C,B}}
       & C\*(A\*B)\text{ ,}
-  }\qquad
-  \xymatrix@C+15pt@R+10pt{
-    A\*(B\*C) \ar[r]^{c_{A,(B\*C)}} \ar[d]_{a_{A,B,C}}
-      & (B\*C)\*A \ar[d]^{a^{-1}_{B,C,A}}\\
-    (A\*B)\*C \ar[d]_{c_{A,B}\*1}
-      & B\*(C\*A) \ar[d]^{1\*c_{C,A}}\\
-    (B\*A)\*C \ar[r]^{a^{-1}_{B,A,C}}
-      & B\*(A\*C)
   }
 \]
 \caption{Associativity symmetry in an SMC.}\label{fig:SMC_associativity_symmetry}

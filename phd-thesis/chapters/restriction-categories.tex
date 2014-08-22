@@ -150,17 +150,17 @@ sub-restriction category of \Par. We will show the four restriction axioms:
 
 We may use the restriction to define a partial order on the hom-sets of a restriction
 category. Intuitively, we would think of a map $f$ being less than a map $g$ if $f$ is
-defined on fewer elements than $g$ \emph{and} they agree where they are defined. This sub-section
-will bring precision to the above intuition.
+defined on fewer elements than $g$ \emph{and} they agree where they are defined. This can be
+expressed as:
 
 
 \begin{definition}\label{def:restriction_category_hom_set_ordering}
-  In a restriction category, for any two parallel maps  $f,g:A\to B$, define $f \le g$ iff
+  In a restriction category, for any two parallel maps  $f,g:A\to B$, define $f \le g$ if and only if
   $\restr{f} g = f$.
 \end{definition}
 
 \begin{lemma}\label{lem:restriction_cats_are_partial_order_enriched}
-  For any restriction category \X, it is enriched in partial orders under the ordering $\le$ from
+  Any restriction category \X is enriched in category of partial orders under the ordering $\le$ from
   Definition~\ref{def:restriction_category_hom_set_ordering} and the following hold:
   \begin{multicols}{2}
     \begin{enumerate}[{(}i{)}]
@@ -208,11 +208,8 @@ will bring precision to the above intuition.
   \end{enumerate}
 \end{proof}
 
-Lemma \ref{lem:restriction_cats_are_partial_order_enriched} shows that restriction
-categories are enriched in partial orders.
-
 In a restriction category \X, we will use the notation $\open{A}$ for the restriction idempotents
-of $A\in \ob{\X}$. $\open{A} = \{x:A\to A| x = \rst{x}\}$. The notation $\open{A}$ was chosen
+of $A$, an object of \X. $\open{A} = \{x:A\to A| x = \rst{x}\}$. The notation $\open{A}$ was chosen
 to be suggestive of open sets, as in \topcatp, see Example~\ref{ex:restriction_category_top}.
 
 \begin{lemma}\label{lem:open_a_is_a_meet_semilattice}
@@ -224,8 +221,16 @@ to be suggestive of open sets, as in \topcatp, see Example~\ref{ex:restriction_c
   The meet of any two idempotents is given by their composition.
 \end{proof}
 
+In fact, the operation $\mathcal{O}$ is a functor, $\mathcal{O}: \X \to StabMeetSemiLat^{op}$, and
+is the fundamental functor.
+
 \section{Joins} % (fold)
 \label{sub:joins_in_restriction_categories}
+
+The restriction operator allows to algebraically axiomatize the concept of ``domain of definition''
+for a function. With that axiomatization, we may then consider other questions about the maps. In
+this section, we consider when maps are identical on their common domain of definition. Two maps
+having this property are called compatible.
 
 \begin{definition}\label{def:compatible_maps}
   Two parallel maps $f,g:A \to B$ in a restriction category are \emph{compatible}, written as $f
@@ -233,10 +238,22 @@ to be suggestive of open sets, as in \topcatp, see Example~\ref{ex:restriction_c
     pre-order} when all parallel pairs of maps are compatible.
 \end{definition}
 
+\begin{example}[Compatibility in \Par]\label{ex:compatibility_in_par}
+In the restriction category $\Par$, two maps, $f, g$ are compatible when
+$(x,y) \in f$ and $(x,y')\in g$ implies that $y = y'$.
+\end{example}
+
+Given two compatible maps, $f,g:A\to B$, we now want to consider if we can create a map that
+combines $f$ and $g$. Such a map needs to have certain properties:
+
 \begin{definition}\label{def:joins}
   Given \R is a restriction category with zero maps, then \R is said to have
-  \emph{joins}\cite{guox:thesis} whenever there is an operator $\join$ defined between compatible
-  maps such that:
+  \emph{joins}\cite{guox:thesis} whenever there is an operator $\join$
+  \[
+    \infer{A\xrightarrow{f\join g} B}
+      {A\overset{f}{\underset{g}{\rightrightarrows}}B\ f\compatible g}
+  \]
+  such that:
   \begin{enumerate}[{(}i{)}]
     \item $f \le f \join g$ and $g \le f \join g$,\label{defitem:join1}
     \item $\rst{f\join g} = \rst{f}\join \rst{g}$,\label{defitem:join2}
@@ -245,24 +262,8 @@ to be suggestive of open sets, as in \topcatp, see Example~\ref{ex:restriction_c
   \end{enumerate}
 \end{definition}
 
-
-\begin{theorem}[Cockett-Guo]\label{lem:join_determines_coproduct}
-  Given a restriction category $\R$ with joins, then
-  \[
-    A \xrightarrow{\cpa} C \xleftarrow{\cpb} B
-  \]
-  is a coproduct if and only iff:
-  \begin{enumerate}[{(}i{)}]
-    \item $\cpa$ and $\cpb$ are restriction monics;
-    \item $\rst{\icpa}\,\rst{\icpb} = 0$ and
-    \item $\rst{\icpa} \join \rst{\icpb} = 1_C$.
-  \end{enumerate}
-\end{theorem}
-\begin{proof}
-  See \cite{cockett-guo2007:joinrestrictioncats}.
-\end{proof}
 \begin{example}[Joins in \Par]\label{ex:joins_in_par}
-In the restriction category $\Par$, the join is given by:
+In the restriction category $\Par$, the join for two compatible maps is given by:
 \[(f \join g) (x) = \begin{cases}
   f(x)( = g(x))& \text{ when both $f$ and $g$ are defined;}\\
   f(x)& \text{ when only $f$ is defined;}\\
@@ -270,37 +271,42 @@ In the restriction category $\Par$, the join is given by:
   \undef & \text{ when both $f$ and $g$ are undefined.}
 \end{cases}
 \]
-We now must show each of the items in Definition~\ref{def:joins} hold:
-  \begin{enumerate}[{(}i{)}]
-    \item From its definition, we see the
-      \[
-        \rst{f}(f\join g) = \begin{cases}
-          f(x) & \text{when $f$ is defined,}\\
-          \undef & \text{otherwise.}
-          \end{cases}
-       \]
-       giving us $f \le f\join g$. Similarly, $g \le f\join g$.
-    \item $\rst{f\join g}(x) = x$ wherever $f$ or $g$ is defined, but that is the same as $\rst{f}\join \rst{g}$.
-    \item We are given $f,g \le h$. Calculating
-      \[
-        \rst{f\join g} h
-          = \begin{cases}
-            h(x) &\text{when $f$ or $g$ are defined,}\\
-            \undef &\text{otherwise.}
-            \end{cases}
-      \]
-      But since $\rst{f}h = f$ and $\rst{g}h = g$, this is the same as $f\join g$ giving $f\join g \le h$.
-    \item Calculating,
-      \[
-         h(f\join g) = \begin{cases}
-           hf(x)( = h g(x))& \text{ when $h$, $f$ and $g$ are defined;}\\
-           hf(x)& \text{ when only $h$ and $f$ are defined;}\\
-           h g(x)& \text{ when only $h$ and $g$ are defined;}\\
-           \undef & \text{ when $h$ or both $f$ and $g$ are undefined.}
-         \end{cases}
-       \]
-       This is the same as the definition of $h f \join h g$.
-  \end{enumerate}
+Note that the first line of the definition requires $f\compatible g$.
+
+Showing that the conditions of Definition~\ref{def:joins} hold is straightforward. For example,
+$\rst{f}(f\join g) = f(x)$ when $f$ is defined and is undefined otherwise, giving $f \le f\join g$
+and similarly for $g \le f \join g$.
+% We now must show each of the items in Definition~\ref{def:joins} hold:
+%   \begin{enumerate}[{(}i{)}]
+%     \item From its definition, we see the
+%       \[
+%         \rst{f}(f\join g) = \begin{cases}
+%           f(x) & \text{when $f$ is defined,}\\
+%           \undef & \text{otherwise.}
+%           \end{cases}
+%        \]
+%        giving us $f \le f\join g$. Similarly, $g \le f\join g$.
+%     \item $\rst{f\join g}(x) = x$ wherever $f$ or $g$ is defined, but that is the same as $\rst{f}\join \rst{g}$.
+%     \item We are given $f,g \le h$. Calculating
+%       \[
+%         \rst{f\join g} h
+%           = \begin{cases}
+%             h(x) &\text{when $f$ or $g$ are defined,}\\
+%             \undef &\text{otherwise.}
+%             \end{cases}
+%       \]
+%       But since $\rst{f}h = f$ and $\rst{g}h = g$, this is the same as $f\join g$ giving $f\join g \le h$.
+%     \item Calculating,
+%       \[
+%          h(f\join g) = \begin{cases}
+%            hf(x)( = h g(x))& \text{ when $h$, $f$ and $g$ are defined;}\\
+%            hf(x)& \text{ when only $h$ and $f$ are defined;}\\
+%            h g(x)& \text{ when only $h$ and $g$ are defined;}\\
+%            \undef & \text{ when $h$ or both $f$ and $g$ are undefined.}
+%          \end{cases}
+%        \]
+%        This is the same as the definition of $h f \join h g$.
+%   \end{enumerate}
 
 \end{example}
 \begin{example}[Joins in \topcatp]\label{ex:joins_in_top}
@@ -320,6 +326,25 @@ We now must show each of the items in Definition~\ref{def:joins} hold:
    Note this is similar to the definition of $\join$ in \Par and similar reasoning may be used to
    show it is a join.
 \end{example}
+
+When \R is a restriction category with joins, this means that $\R(X,Y)$ is now a join
+semi-lattice. Joins are related to the coproduct by the following:
+
+\begin{theorem}[Cockett-Guo]\label{lem:join_determines_coproduct}
+  Given a restriction category $\R$ with joins, then
+  \[
+    A \xrightarrow{\cpa} C \xleftarrow{\cpb} B
+  \]
+  is a coproduct if and only if:
+  \begin{enumerate}[{(}i{)}]
+    \item $\cpa$ and $\cpb$ are restriction monics;
+    \item $\rst{\icpa}\,\rst{\icpb} = 0$ and
+    \item $\rst{\icpa} \join \rst{\icpb} = 1_C$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  See \cite{cockett-guo2007:joinrestrictioncats}.
+\end{proof}
 
 % section joins_in_restriction_categories (end)
 
