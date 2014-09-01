@@ -7,40 +7,8 @@ conditions will allow us to define a disjoint sum tensor in an inverse category 
 disjoint join. As we shall see, it is sufficient to have ``enough'' \emph{disjoint sum} objects, as
 defined below.
 
-First, we show that the disjoint sum tensor is universal with respect to the disjoint join.
 
-\begin{lemma}\label{lem:disjoint_sum_tensor_preserves_the_disjoint_join}
-  Given an inverse category \X with a disjoint sum tensor $\+$, then $\+$ preserves the disjoint
-  join. That is,
-  \begin{align}
-    f \cdperp g, \ h \cdperp k&\text{ implies } f\+ h \cdperp g \+ k
-    \label{eq:disjoint_sum_preserve_perp}\\
-    f \cdperp g, \ h \cdperp k &\text{ implies } (f\djoin g)\+(h\djoin k) = (f \+h )\djoin (g\+k).
-    \label{eq:disjoint_sum_preserve_join}
-  \end{align}
-\end{lemma}
-\begin{proof}
-  For Condition~\ref{eq:disjoint_sum_preserve_perp}, suppose we have $f \tperp g$ and $\ h \tperp k$.
-  From Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_preserve_tensor}, we
-  know both $(f\+h)\tjdown(g\+k)$ and $(f\+h)\tjup(g\+k)$ exist, hence $(f\+h)\tperp(g\+k)$.
-
-  For Condition~\ref{eq:disjoint_sum_preserve_join}, we compute from the right hand side:
-  \begin{align*}
-    (f\+h)\tjoin(g\+k) &= (f\+h)\tjdown (g\+k) \wrg{(f\+h)}\tjup \wrg{(g\+k)}\\
-    &= \left( (f\tjdown g)\+ (h \tjdown k) \right)
-       \left( (\rg{f}\+\rg{h}) \tjup (\rg{g}\+\rg{k}) \right) \\
-    &= \left( (f\tjdown g)\+ (h \tjdown k) \right)
-       \left( (\rg{f}\tjup \rg{g}) \+ (\rg{h}\tjup\rg{k}) \right) \\
-    &= \left( (f\tjdown g)(\rg{f}\tjup \rg{g})\right) \+
-       \left((h \tjdown k) (\rg{h}\tjup\rg{k}) \right) \\
-    &=  (f\tjoin g)\+(h \tjoin k).
-  \end{align*}
-  The second and third lines above again use
-  Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_preserve_tensor}.
-
-\end{proof}
-
-Now, we define an abstract ``disjoint sum'', which will be our candidate for creating a disjoint sum
+We define an abstract ``disjoint sum'', which will be our candidate for creating a disjoint sum
 tensor.
 \begin{definition}\label{def:disjoint_sum}
   In an inverse category with disjoint joins, an object $X$ is the \emph{disjoint sum} of $A$ and

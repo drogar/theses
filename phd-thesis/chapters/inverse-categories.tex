@@ -9,7 +9,7 @@ restriction products is a restriction pre-order.
 Given this, the chapter then turns to focus on adding ``products'' to an inverse category, by which
 we mean a structure that behaves in a product-like manner in the inverse category, which we call
 \emph{inverse products}. These will be defined below in
-Sub-Section~\ref{sub:inverse_product_definition}: Inverse products are given by a natural structure
+Subsection~\ref{sub:inverse_product_definition}: Inverse products are given by a natural structure
 on a tensor product which includes a diagonal but lacks projections. The diagonal map is required to
 give a natural Frobenius structure on each object.
 
@@ -50,8 +50,10 @@ give a natural Frobenius structure on each object.
   \end{enumerate}
 \end{proof}
 
-The property of being an inverse category is
-preserved by splitting.
+For an inverse category \X, as $\inv{()}$ is an involution, in fact $(\rg{\_})$ is more than just a
+range, it is a restriction in $\X^{op}$.
+
+The property of being an inverse category is preserved by splitting.
 
 \begin{lemma}\label{lem:the_idempotent_splitting_of_an_inverse_category_is_an_inverse_category}
   When \X is an inverse category, $\spl{E}{X}$ is an inverse category.
@@ -90,12 +92,14 @@ preserved by splitting.
   \{(1,1),(2,2)\} = 1_A$. There is no partial function $g:B\to A$ such that $f g = 1_A$.
 \end{example}
 \begin{example}\label{ex:partial_isos_are_inverse_category}
-  Generally, let \R be a restriction category, and \X the sub-category of \R having the same objects
-  as \R and only the partial isomorphisms as maps. Then, \X is an inverse category.
+  Generally, let \R be a restriction category, and $\Inv{\R}$ the sub-category of \R having the same objects
+  as \R but only the partial isomorphisms as maps. Then, $\Inv{\R}$ is an inverse category.
 \end{example}
 \begin{example}\label{ex:groupoid_is_inverse_category}
   A groupoid, which is a category in which every map is an isomorphism, is an inverse category. Note
   that all maps in the groupoid are total, hence the partial isomorphisms are all isomorphisms.
+
+  As well, we note that for $\X$ any inverse category, $Total(\X)$ is a groupoid.
 \end{example}
 \begin{example}\label{ex:partial_map_monics_is_inverse_category}
   Given a category $\cP$, create a partial map category as in
@@ -107,6 +111,19 @@ preserved by splitting.
   identity when $m$ is an isomorphism. The partial isomorphisms will have either $m$ or $m'$ be in
   $\Mstab$, but not be an isomorphism. Taking just the partial isomorphisms gives us an inverse
   category.
+\end{example}
+
+\begin{example}\label{ex:inverse-semigroups-are-inverse-categories}
+  A semigroup is a set with an associative binary operation. A semigroup need not have an identity.
+  An inverse semigroup is a semigroup where each element $x$ has an associated element $x^*$ such
+  that:
+  \[
+    x = x x^* x\ \text{ and }\ x^* = x^* x x^*.
+  \]
+
+  In much the same way that a group may be viewed as a one object category, an inverse semigroup is
+  a one object inverse category, where the elements are the maps. For any map $x$, we have $\inv{x}
+  = x^*$.
 \end{example}
 
 \section{Inverse categories with restriction products} % (fold)
@@ -328,9 +345,11 @@ $(1\*\inv{\Delta})\inv{\Delta} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
 \begin{example}[\topcatp does not give a discrete inverse category]\label{ex:topcat_does_not_give_a_discrete_inverse_category}
   Recalling \topcatp from Example~\ref{ex:restriction_category_top}, we know that the partial
   isomorphisms of \topcatp form an inverse category --- \Inv{\topcatp}. Additionally, \topcatp has a
-  product, given by the standard Cartesian product. This product does work as a tensor in
-  \Inv{\topcatp}, but $\Delta$  is not a map in \Inv{\topcat} and hence it is not a discrete inverse
-  category.
+  product, given by the standard Cartesian product. However, as noted in
+  Example~\ref{ex:topcatp-not-discrete}, \topcatp is not a discrete Cartesian restriction category.
+
+  The product of \topcatp does work as a tensor in \Inv{\topcatp}, but $\Delta$  is not a map in
+  \Inv{\topcat} and hence we do not have a discrete inverse  category.
 \end{example}
 
 Inverse products are extra structure on an inverse category, rather than a property. An example to
@@ -1513,7 +1532,7 @@ v        \draw (g) to (f-inverse);
 \label{sub:the_inverse_subcategory_of_a_discrete_restriction_category}
 
 Given a discrete restriction category, one can pick out the maps which are partial isomorphisms.
-Using results from Sub-Section~\ref{sub:discrete_inverse_categories} and from
+Using results from Subsection~\ref{sub:discrete_inverse_categories} and from
 Section~\ref{sub:discrete_restriction_categories}, we will show that these maps form a
 subcategory which is a discrete inverse category.
 
@@ -1745,7 +1764,7 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
   In a discrete inverse category \X, for a fixed object $A$, the set of maps $h:A\*Y\to A\* Z$ where
   $h=\dmap{h}$ is:
   \begin{enumerate}[{(}i{)}]
-  \item Closed under partial inversion;\label{lemitem:delta_nabla_1}
+  \item Closed under partial inverses;\label{lemitem:delta_nabla_1}
   \item closed under composition;\label{lemitem:delta_nabla_2}
   \item contains all maps of the form $1\*k$ where $k:Y\to Z$;\label{lemitem:delta_nabla_3}
   \item contains $\Delta:A\*B \to A\*B\*A\*B$.\label{lemitem:delta_nabla_4}
@@ -2012,13 +2031,14 @@ Because of these closure rules, rather than stating $h = \dmap{h}$ we may equiva
 
 From Lemma~\ref{lem:delta_nabla_maps_are_closed}, we see that we will be able to form a category
 based on maps $h$ such that $h=\dmap{h}$. Of course, this category is dependent upon the choice of
-the object $A$, hence we will label it $\X[A]$, as it is reminiscent of the simple slice category of Example~\ref{ex:simple-slice-adjoint}
-over an object $A$ in a category. We make this precise in the following proposition:
+the object $A$, hence we will label it $\X[A]$, as it is reminiscent of the simple slice category of
+Example~\ref{ex:simple-slice-adjoint} over an object $A$ for an ordinary Cartesian category. We make
+this precise in the following proposition:
 
 \begin{proposition}\label{prop:slice-a-is-a-discrete-inverse-category}
   Given a discrete inverse category $\X$, define $\X[A]$ as  the restriction category:
   \rcategory{The objects of $\X$}{A map $h=\dmap{h}:A\*X\to A\*Y$ in \X is a map from $X$ to $Y$ in
-    $\X[A]$}{Composition in \X}{$1\*1$ in \X}{$\rst{h}$ in \X is $\rst{h}$ in $\X[A]$}
+    $\X[A]$}{$1\*1$ in \X}{Composition in \X}{$\rst{h}$ in \X is $\rst{h}$ in $\X[A]$}
   Then, $\X[A]$ is a discrete inverse category.
 \end{proposition}
 \begin{proof}
@@ -2046,9 +2066,9 @@ over an object $A$ in a category. We make this precise in the following proposit
   $\rst{h} \le \rst{k}$. As we already have $\rst{k}\le\rst{h}$ this means they are equal and the
   restriction is in $\X[A]$, thus, $\X[A]$ is a restriction category.
 
-  The tensor of objects in $\X[A]$ is given by the tensor of the objects in $\X$. For two maps $h,k$
-  in $\X[A]$, $h\*k$ is given by
-  $(\Delta\*1\*1)(1\*c_{\*}\*1)(h\*k)(1\*c_{\*}\*1)(\inv{\Delta}\*1\*1)$ in $\X$. This is a map in
+  The tensor of objects $X\*Y$ in $\X[A]$ is the element $A\* X\*Y$ in $\X$. For two maps $h,k$
+  in $\X[A]$, $h\*k$ is given by the $\X$ map
+  $(\Delta\*1\*1)(1\*c_{\*}\*1)(h\*k)(1\*c_{\*}\*1)(\inv{\Delta}\*1\*1)$. This is a map in
   $\X[A]$ as
   \[
     \raisebox{50pt}{$\dmap{(h\*g)}=$ }

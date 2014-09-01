@@ -1,11 +1,13 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\chapter{From a discrete inverse category to a Cartesian restriction category} % (fold)
+\chapter{Constructing a Cartesian restriction category from a discrete inverse category} % (fold)
 \label{chap:completing_a_discrete_inverse_category}
 
 The purpose of this chapter is to prove that the category of discrete inverse categories is
 equivalent to the the category of discrete Cartesian restriction categories. We will show
 how to construct a discrete Cartesian restriction category, \Xt, from a discrete inverse
-category, \X. Then, we will give the equivalence functors between \X and \Xt.
+category, \X. The construction is reminiscent of the technique generally used to make a computation
+reversible --- one adds a history to the function to make it reversible: Here we know how to remove
+the history to make it invertible!
 
 \section{The restriction category \hypXt} % (fold)
 \label{sec:the_restriction_category_hypxt}
@@ -560,25 +562,28 @@ leads us to the following theorem:
 \section{Equivalence between discrete inverse and discrete Cartesian restriction categories} % (fold)
 \label{sec:equivalence_of_categories}
 
-This section will show that the category of discrete inverse categories (with functors that preserve
-the inverse tensor) is equivalent to the category of discrete restriction categories (with
-restriction functors which preserve the product).
+This section will show that {\bf DInv}, the category of discrete inverse categories with functors that preserve
+the inverse tensor, is equivalent to {\bf DCartRest}, the category of discrete restriction categories with
+restriction functors which preserve the product.
 
-We will follow this path to showing the equivalence:
+Here are the steps:
 \begin{enumerate}
 \item Give a functor \Invf from discrete Cartesian restriction categories to discrete inverse
   categories and show that it is full and faithful.
-\item Draw the universal diagram:
-\begin{equation}
-  \xymatrix @C=65pt @R=40pt{
-    \X \ar[r]^{\eta} \ar[rd]_{F}& \Inv{\Xt} \ar[d]^{\Inv{F^{\#}}}\\
-    &\Inv{\D}
-  }
-  \label{dia:universal_property_of_inverse_categories}
-\end{equation}
-and show that there exists a functor $F^{\#}:\Xt \to \D$ which makes the diagram commute. As we have
-$\Invf$ full and faithful, we may conclude it is unique.
-\item Show that $\eta$ in Diagram~\ref{dia:universal_property_of_inverse_categories} is an isomorphism.
+\item In
+  \begin{equation}
+    \xymatrix @C=65pt @R=40pt{
+      \X \ar[r]^{\eta} \ar[rd]_{F}& \Inv{\Xt} \ar[d]^{\Inv{F^{\#}}}\\
+      &\Inv{\D}
+    }
+    \label{dia:universal_property_of_inverse_categories}
+  \end{equation}
+  we show that there exists a functor $F^{\#}:\Xt \to \D$ which makes the diagram commute. As we have
+  $\Invf$ full and faithful, we may conclude it is unique and that
+  Diagram~\ref{dia:universal_property_of_inverse_categories} is a universal diagram.
+\item Show that $\eta$ in Diagram~\ref{dia:universal_property_of_inverse_categories} is an
+  isomorphism. Note this follows directly from the previous point by Proposition 2.2.6 in
+  \cite{cockett2009:ctcs}.
 \end{enumerate}
 Once we have completed these steps, we may then conclude that there is an equivalence of discrete
 inverse categories to discrete Cartesian restriction categories.

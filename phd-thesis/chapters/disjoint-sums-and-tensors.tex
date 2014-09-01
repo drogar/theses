@@ -1,5 +1,5 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\chapter{Disjoint sums and tensors} % (fold)
+\chapter{Disjoint sums} % (fold)
 \label{chap:disjoint_sum_tensors}
 
 In this chapter, we first show how a tensor may be used to create a disjointness relation and a
@@ -636,7 +636,7 @@ equivalent ways:
 In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 (\rst{f}\tjup\rst{g})$ as $\rg{\rst{g}} = \rst{g}$.
 
-\begin{example}[Tensor join in \pinj]\label{ex:tensor_join_in_pinj}
+\begin{example}[Disjoint sum tensor in \pinj]\label{ex:tensor_join_in_pinj}
   We will use the third equality of those above for $f\tjoin g$, i.e.,
   $\rst{f}\tjdown\rst{g}\,  f\tjup g$.
 
@@ -769,6 +769,40 @@ We may now complete the proof of Proposition~\ref{prop:disjointness_tensor_gives
   \end{itemize}
 
 \end{proof}
+
+Finally, we show that the disjoint sum tensor is universal with respect to the disjoint join.
+
+\begin{lemma}\label{lem:disjoint_sum_tensor_preserves_the_disjoint_join}
+  Given an inverse category \X with a disjoint sum tensor $\+$, then $\+$ preserves the disjoint
+  join. That is,
+  \begin{align}
+    f \cdperp g, \ h \cdperp k&\text{ implies } f\+ h \cdperp g \+ k
+    \label{eq:disjoint_sum_preserve_perp}\\
+    f \cdperp g, \ h \cdperp k &\text{ implies } (f\djoin g)\+(h\djoin k) = (f \+h )\djoin (g\+k).
+    \label{eq:disjoint_sum_preserve_join}
+  \end{align}
+\end{lemma}
+\begin{proof}
+  For Condition~\ref{eq:disjoint_sum_preserve_perp}, suppose we have $f \tperp g$ and $\ h \tperp k$.
+  From Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_preserve_tensor}, we
+  know both $(f\+h)\tjdown(g\+k)$ and $(f\+h)\tjup(g\+k)$ exist, hence $(f\+h)\tperp(g\+k)$.
+
+  For Condition~\ref{eq:disjoint_sum_preserve_join}, we compute from the right hand side:
+  \begin{align*}
+    (f\+h)\tjoin(g\+k) &= (f\+h)\tjdown (g\+k) \wrg{(f\+h)}\tjup \wrg{(g\+k)}\\
+    &= \left( (f\tjdown g)\+ (h \tjdown k) \right)
+       \left( (\rg{f}\+\rg{h}) \tjup (\rg{g}\+\rg{k}) \right) \\
+    &= \left( (f\tjdown g)\+ (h \tjdown k) \right)
+       \left( (\rg{f}\tjup \rg{g}) \+ (\rg{h}\tjup\rg{k}) \right) \\
+    &= \left( (f\tjdown g)(\rg{f}\tjup \rg{g})\right) \+
+       \left((h \tjdown k) (\rg{h}\tjup\rg{k}) \right) \\
+    &=  (f\tjoin g)\+(h \tjoin k).
+  \end{align*}
+  The second and third lines above again use
+  Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_preserve_tensor}.
+
+\end{proof}
+
 % subsection disjoint_join_via_a_monoidal_tensor (end)
 % section tensors_for_disjointness (end)
 \input{chapters/section/disjoint-sums}

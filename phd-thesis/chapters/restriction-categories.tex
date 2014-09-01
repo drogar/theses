@@ -361,7 +361,9 @@ semi-lattice. Joins are related to the coproduct by the following:
   such that $f\meet g \le f, f\meet g \le g, f\meet f = f, h (f\meet g) = h f \meet h g$.
 \end{definition}
 
-Meets were introduced in \cite{cockett-guo-hofstra-2012:range2}.
+Meets were introduced in \cite{cockett-guo-hofstra-2012:range2}. Note that, in general,
+$(f \meet g) h \ne f h \meet g h$. In fact equality only holds when $h$ is a partial monic, as in
+Definition~\ref{def:partial_inverse_etc} below.
 The following are basic results on meets:
 
 \begin{lemma}
@@ -491,28 +493,32 @@ some of their basic properties.
     \item $f$ is a \emph{partial isomorphism} when there is a \emph{partial inverse}, written
       $\inv{f}$ with $f\inv{f} =\restr{f}$ and $\inv{f}f = \restr{\inv{f}}$;
     \item $f$ is a \emph{partial monic} if $h f = k f$ implies $h \restr{f} = k \restr{f}$;
-    \item $f$ is a \emph{partial section} if there exists an  $h$ such that $f h = \restr{f}$;
+%    \item $f$ is a \emph{partial section} if there exists an  $h$ such that $f h = \restr{f}$;
     \item $f$ is a \emph{restriction monic} if it is a section $s$ with a retraction
       $r$ such that $r s = \restr{r s}$.
   \end{itemize}
 \end{definition}
 
-Note that restriction monic is a stronger notion than that of monic. Consider two objects $A, B$
-in a restriction category where we have $m: A\to B$, $r:B \to A$ with $m r = 1_A$. In this case
-$A$ is called a \emph{retract} of $B$, which we will write as $A\retract B$. As $m$ and $r$ need
-not be unique, we will also write $(m,r) A \retract B$ when the specific section and retraction
-are to be emphasized. Since $m$ is a section,
-it is a monic and therefore total. The map $r m$ is idempotent on $B$ as $r m r m = r 1 m = r m$.
-$A$ is referred to as a \emph{splitting} of the idempotent $r m$. Note there is no requirement that
-$r m = \rst{r m}$ when $m$ is simply monic.
+For examples, consider the following maps in \Par, $f_1, f_2, f_3:\{1,2\} \to \{a,b,c\}$ where
+\[
+  f_1(1) = a, f_1(2) \undef;\quad   f_2(1) = a, f_2(2)=b;\quad   f_3(1) = a, f_3(2)=a.
+\]
+Then, $f_1$ is a partial isomorphism, but not a partial monic nor a restriction monic. $f_2$ is a
+restriction monic and a total partial isomorphism and a partial monic. $f_3$ is none of the items in
+Definition~\ref{def:partial_inverse_etc}.
+%todo - Find a partial monic that is not the others....
+
+Note that restriction monic is a stronger notion than that of section. In fact, restriction monics
+are the partial isomorphisms which are total.
+
 
 \begin{lemma}
   \label{lem:rcs_partial_monic_section_inverse_properties}
   In a restriction category:
   \begin{enumerate}[{(}i{)}]
     \item $f,\ g$ partial monic implies $f g$ is partial monic;
-    \item $f$ a partial section implies $f$ is partial monic;
-    \item $f,\ g$ partial sections implies $f g$ is a partial section;
+%    \item $f$ a partial section implies $f$ is partial monic;
+%    \item $f,\ g$ partial sections implies $f g$ is a partial section;
     \item The partial inverse of $f$, when it exists, is unique;
     \item If $f,\ g$ have partial inverses and $f\,g$ exists, then $f\,g$ has a partial inverse;
     \item A restriction monic $s$ is a partial isomorphism.
@@ -529,16 +535,16 @@ $r m = \rst{r m}$ when $m$ is simply monic.
         h \restr{f g}&= k \restr{f g} & \text{Lemma \ref{lem:restrictionvarious},
           \ref{lemitem:rv_2}.}
       \end{align*}
-    \item Suppose $g f = k f$. Then, $g\restr{f} = g f h = k f h = k \restr{f}$.
-    \item We have $f h = \restr{f}$ and $g h' = \restr{g}$. Therefore,
-      \begin{align*}
-        f g h' h &= f \restr{g} h & g \text{ partial section}\\
-        &= \restr{f g} f h & \rfour\\
-        &= \restr{f g}\, \restr{f} & f \text{ partial section}\\
-        &= \restr{f}\, \restr{f g} & \rtwo\\
-        &= \restr{\restr{f}f g} & \rthree\\
-        &= \restr{f g} & \rone.
-      \end{align*}
+    % \item Suppose $g f = k f$. Then, $g\restr{f} = g f h = k f h = k \restr{f}$.
+    % \item We have $f h = \restr{f}$ and $g h' = \restr{g}$. Therefore,
+    %   \begin{align*}
+    %     f g h' h &= f \restr{g} h & g \text{ partial section}\\
+    %     &= \restr{f g} f h & \rfour\\
+    %     &= \restr{f g}\, \restr{f} & f \text{ partial section}\\
+    %     &= \restr{f}\, \restr{f g} & \rtwo\\
+    %     &= \restr{\restr{f}f g} & \rthree\\
+    %     &= \restr{f g} & \rone.
+    %   \end{align*}
     \item Suppose both $\inv{f}$ and $f^{\diamond}$ are partial inverses of $f$. Then,
       \begin{multline*}
         \inv{f}
@@ -818,6 +824,15 @@ in $\spl{E}{\X}$.
       h f \meet h g$ which in $\spl{R}{\X}$ is $\mbh\mbf \meetspl \mbh\mbg$.
   \end{itemize}
 \end{proof}
+
+Consider two objects $A, B$
+in a restriction category where we have $m: A\to B$, $r:B \to A$ with $m r = 1_A$. In this case
+$A$ is called a \emph{retract} of $B$, which we will write as $A\retract B$. As $m$ and $r$ need
+not be unique, we will also write $A \retractmaps{m}{r} B$ when the specific section and retraction
+are to be emphasized. Since $m$ is a section, it is a monic and therefore total. The map $r m$ is
+idempotent on $B$ as $r m r m = r 1 m = r m$. $A$ is referred to as a \emph{splitting} of the
+idempotent $r m$. Note there is no requirement that $r m = \rst{r m}$ when $m$ is simply monic.
+
 % section split_restriction_categories (end)
 
 
@@ -923,6 +938,16 @@ Restriction categories have analogues of products and terminal objects.
   that a restriction terminal object is unique up to a unique isomorphism.
 \end{definition}
 
+For example, in \Par, the restriction terminal object is the one object set, $\{*\}$. The product of
+two sets is the standard Cartesian product, with $\pi_0$ mapping $(x,y) \mapsto x$ and
+$\pi_1:(x,y)\mapsto y$. The product map $\<f,g\>:Z\to X\times Y$ is given as:
+\[
+  \<f,g\>(z) = \begin{cases}
+    (x,y)&f(z) = x\text{ and } g(z) = y\\
+    \undef&f(z) \undef\text{ or }g(y)\undef.
+    \end{cases}
+\]
+
 \begin{definition}\label{def:cartesian_restriction_category}
   A restriction category \X\ is \emph{Cartesian} if it has all restriction products
   and a restriction terminal object.
@@ -940,6 +965,33 @@ Restriction categories have analogues of products and terminal objects.
   A  Cartesian restriction category where all objects are
   discrete is called a \emph{discrete} Cartesian restriction category.
 \end{definition}
+
+
+\begin{example}[\topcatp is not discrete]\label{ex:topcatp-not-discrete}
+  In any topological space $T$, the only way that $\Delta$ can have a continuous inverse is when the
+  topology is the discrete topology. This example is the motivating example for our terminology of
+  discrete.
+
+  To see this, for $\inv{\Delta}$ to be a continuous map, that means the diagonal must be an open
+  set in the product topology of $T\times T$. This means that $\{(x,x)| x\in T\} = \union_i
+  V_i\times U_i$ where $V_i$ and $U_i$ are open subsets of $T$. But this is only possible if the
+  $V_i$ and $U_i$ are singletons and hence we would need the open sets in $T$ to be each element,
+  i.e., $T$ must have the discrete topology.
+\end{example}
+
+\begin{example}[\Par is discrete]\label{ex:par_is_discrete}
+  In \Par,
+  \[
+    \Delta: x \mapsto (x,x)\text{ and }\inv{\Delta}:(x,y)\mapsto\begin{cases}
+      x& x = y,\\
+      \undef & x\ne y.
+    \end{cases}
+  \]
+  Thus, \Par is a discrete Cartesian restriction category.
+\end{example}
+
+Further examples of discrete and non-discrete Cartesian restriction categories are given at the end
+of the section.
 
 \begin{theorem}\label{thm:a_crc_is_discrete_iff_it_has_meets}
   A Cartesian restriction category \X is discrete if and only if it has meets.
@@ -1108,30 +1160,20 @@ Restriction categories have analogues of products and terminal objects.
 To conclude this section, we give a few examples of Cartesian restriction categories, of both the
 discrete and non-discrete variety.
 
-\begin{example}[\Par is discrete]\label{ex:par_is_discrete}
-  In \Par,
-  \[
-    \Delta: x \mapsto (x,x)\text{ and }\inv{\Delta}:(x,y)\mapsto\begin{cases}
-      x& x = y,\\
-      \undef & x\ne y.
-    \end{cases}
-  \]
-\end{example}
 \begin{example}[Terminal object is discrete]\label{ex:terminal_object_is_discrete}
   In any Cartesian restriction category, the terminal object, $1$, is discrete as $1\times 1 \cong 1$.
 \end{example}
+
 \begin{example}[Semi-lattice is discrete]\label{ex:semi-lattice_is_discrete}
   As the product is the meet of the semi-lattice and $A\wedge A = A$, we have $\Delta = 1$ and
-  therefore is always invertible. Note that a total Cartesian restriction category must equal a
+  therefore is always invertible. Note that a total discrete Cartesian restriction category must be a
   semi-lattice. Also, we see that any Cartesian restriction category which is a restriction preorder
   will also be discrete.
 \end{example}
 
-However, there are also numerous examples of non-discrete Cartesian restriction categories.
 \begin{example}[Non-discrete Cartesian restriction categories]\label{ex:various_not_discrete}
-We list a few categories which are not discrete:
+Besides the example of \topcatp given at the beginning of this section, the following are not discrete:
   \begin{enumerate}[{(}i{)}]
-  \item   \topcatp, the partial maps on open sets, is not discrete.
   \item Any total non-trivial (i.e., not a semi-lattice) Cartesian category is not discrete.
   \item $\text{Par}(\X,\Mstab)$ is not discrete unless $\Delta: X\to X\times X$ is in \Mstab.
   \item $StabMeetSemiLat^{op}$ is not discrete.

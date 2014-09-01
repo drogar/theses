@@ -1,5 +1,5 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\chapter{Turing Categories and PCAs} % (fold)
+\chapter{Turing categories and PCAs} % (fold)
 \label{chap:turing_categories}
 
 In this chapter, we review the definition and properties of a Turing
@@ -10,7 +10,14 @@ way from Cartesian restriction categories over to discrete inverse categories. W
 structures are needed in a discrete inverse category \X so that the constructed category, \Xt, is a
 Turing category or has a PCA.
 
-\section{Turing Categories}
+Turing categories will provide the link to standard models of computability as promised in our
+introduction. A Turing category may give a categorical formulation of various models of
+computability, including partial combinatory algebras and the partial lambda calculus as shown in
+\cite{cockett-hostra08-intro-to-turing}. Providing a link from inverse categories with the
+constructions we derive below to Turing categories provides the link between reversible computation
+and standard computation which we originally set out to show.
+
+\section{Turing categories}
 \label{sec:turing_category_definitions}
 
 
@@ -29,7 +36,7 @@ Turing category or has a PCA.
     \item A map $\txy: A \times X \to Y$ is called a \emph{universal application} if all
       $f:B\times X \to Y$ admit a $\txy$-index.\label{defitem:turing_universal_application}
     \item If $A$ is an object in $\X$ such that for every pair of objects $X,Y$ in \X there is
-      a universal application, then $A$ is called a \emph{Turing object}.
+      a universal application $\tau:A\times X \to Y$, then $A$ is called a \emph{Turing object}.
     \item A Cartesian restriction category that contains a Turing object is called a
       \emph{Turing category}.
   \end{enumerate}
@@ -39,6 +46,41 @@ Note there is no requirement in the definition for the map $\name{f}$ to be uniq
 for a specific $\txy$, then that $\txy$ is called \emph{extensional}. In the case where the object
 $B$ is the terminal object, then the map $\name{f}$ is a point of $A$ (with $f = (\name{f} \times 1)\txy$) and
 $\name{f}$ is referred to as a \emph{code} of $f$.
+
+\begin{example}\label{ex:turing-category-kleene}
+  This example is due to Cockett and Hofstra\cite{cockett-hostra08-intro-to-turing}.
+
+  We start with a ``suitable'' enumeration of partial recursive functions $f:\nat\to\nat$. Based on
+  the fact that functions such as these can be described by Turing machines, and that Turing
+  machines may be enumerated as $\{\phi_0,\phi_1,\ldots\}$, each of these functions can be coded
+  into a single number. This may be extended to partial recursive functions of $n$ variables which
+  may similarly be enumerated, $\{\phi_0^{(n)},\phi_1^{(n)},\ldots\}$. When $f$ is given by $\phi_e$
+  we say $e$ is a \emph{code} for $f$.
+
+  Two facts we will need about the family $\phi_m^{(n)}$:
+  \begin{itemize}
+    \item \textbf{Universal Functions:} There are partial recursive functions such that for each $n > 0$,
+      \[ \Phi^{(n)}(e,x_1,\ldots,x_n) = \phi_e(x_1,\ldots,x_n) \]
+      which are called the \emph{universal functions}.
+    \item \textbf{Parameter Theorem:}There are primitive recursive functions $S_m^n$ for each $n,m >
+      0$ such that
+      \[ \Phi^{(n+m)}(e,x_1,\ldots,x_m,u_1,\ldots,u_n) = \Phi^{(m)}(S_m^n(e,x_1,\ldots,x_m),u_1,\ldots,u_n).\]
+  \end{itemize}
+
+  Suppose we choose such an enumeration and use it for the \emph{Kleene-application} on the natural
+  numbers, i.e., $\nat\times\nat\xrightarrow{\bullet}\nat$ will be defined as
+  \[
+    n\bullet x = \phi_n(x).
+  \]
+
+  Now, consider the category with objects being the finite powers of $\nat$ and a map $\nat^k \to
+  \nat^m$ is an $m$-tuple of partial recursive function of $k$ variables. When $k$ is zero, the map
+  simply picks an $m$-tuple of $\nat$. We denote this category by $\compn$.
+  Then, $\compn$ is a Turing category with $\N$ being a Turing object, using Kleene-application
+  as the application map. We know $\N$ is isomorphic to $\N\times \N$ and hence we have $\N\times \N
+  \retract \N$. Application is guaranteed to be partial recursive by the universal functions item
+  above and the weak universal property of $\bullet$ is a result of the Parameter Theorem.
+\end{example}
 
 \begin{definition}\label{def:turing_structure}
   Given $\T$ is a Turing category and $A$ is an object of \T,
@@ -182,13 +224,24 @@ definition of this.
   commutes.
 \end{definition}
 
+\begin{lemma}\label{lem:discrete_turing_category_inverses_make_inverse_turing_category}
+  When $T$ is a Turing category that is also a discrete Cartesian restriction category, then
+  $\Inv{T}$ is an inverse Turing category.
+\end{lemma}
+\begin{proof}
+  First, we immediately know that $\Inv{T}$ is an inverse category. Additionally, we know that the
+  map $\<\iname{f},1\>$ is invertible as we are in a discrete Cartesian restriction category.
+\end{proof}
+
 We know from Chapter~\ref{chap:completing_a_discrete_inverse_category} that when \X is an inverse
 Turing category, we know \Xt is a discrete Cartesian restriction category. Moreover, if
 $(m_A,r_A):A\retract T$ in \X, then $(m_A\inv{\usr},r_A\inv{\usr})A \retract T$ in \Xt and hence $T$
 will remain universal in \Xt. Hence, we have the basic requirements for a Turing category as
 specified in Theorem~\ref{thm:turing_recognition} and
 Lemma~\ref{lem:t_t_to_t_gives_a_turing_category}. All that remains to be shown is that we have a
-self-application map and a code for each map $f:1\to T$ as in Lemma~\ref{lem:t_t_to_t_gives_a_turing_category}.
+self-application map and a code for each map $f:1\to T$ as in
+Lemma~\ref{lem:t_t_to_t_gives_a_turing_category}.
+
 \begin{theorem}\label{thm:inverse_turing_category_gives_a_turing_category}
   When $\X$ is an inverse Turing category, $\Xt$ is a Turing category.
 \end{theorem}
