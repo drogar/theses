@@ -108,7 +108,7 @@ $\name{f}$ is referred to as a \emph{code} of $f$.
   \]
   Note we also have $u_r:B\to B\times 1$ is an
   isomorphism and therefore we have $1_X = u_r \pi_0 = (u_r (\name{\pi_0}\times 1)) \tur{1}{X}$. Hence, we
-  have $((u_r (\name{\pi_0}\times 1)), \tur{1}{X}):B \retract T$.
+  have $B \retractmaps{u_r (\name{\pi_0}\times 1)}{\tur{1}{X}} T$.
 \end{proof}
 
 This allows for various recognition criteria for Turing categories.
@@ -127,7 +127,7 @@ This allows for various recognition criteria for Turing categories.
 
   Let us choose pairs of maps that witness the retractions of $X, Y$ of $T$, that is:
   \[
-    (m_X,r_X):X \retract T \quad\text{and}\quad(m_Y,r_Y):Y \retract T.
+    X \retractmaps{m_X}{r_X} T \quad\text{and}\quad Y\retractmaps{m_Y}{r_Y} T.
   \]
   Define $\txy = (1_T\times m_X ) \bullet r_Y$. Suppose we are given $f:B\times X \to Y$. Consider
   \[
@@ -180,7 +180,7 @@ There is another criteria that also gives a Turing category:
   \]
   commutes.
 
-  Let $(m,r):T\times T\retract T$. Then, consider
+  Let $T\times T\retractmaps{m}{r} T$. Then, consider
   \[
     \xymatrix@C+15pt{
      T\times T \ar[r]^{r\times 1} & T\times T\times T \ar[r]^{1\times m} &T\times T \ar[rr]^{\circ}
@@ -231,11 +231,43 @@ definition of this.
 \begin{proof}
   First, we immediately know that $\Inv{T}$ is an inverse category. Additionally, we know that the
   map $\<\iname{f},1\>$ is invertible as we are in a discrete Cartesian restriction category.
+  Given $f$ is invertible, we know that we have the diagram
+      \[
+        \xymatrix{
+          T\times T \ar[r]^{\circ} & T \\
+          T \ar[ur]_{f} \ar[u]^{\<!\code{f},1\>}
+        }
+      \]
+  in $T$. Translating this directly to $\Inv{T}$, for some $h'_f \in \dmap{T}$ we have:
+  \begin{equation}
+    \xymatrix @C=15pt @R=15pt{
+      & & T \* T\*C \ar@{.>}[dddd]^{h'_f}\\
+      &T\*T \ar[ur]^{\circ} & & \\
+      T \ar[ur]^(.3){\inv{\usl}(\code{f}\*1)} \ar[ddrr]_{f} \\
+      & & & \\
+      && T\*D.
+    }\label{dia:pre-inverse-turing}
+  \end{equation}
+
+  Next, note that for any monic $m$, we have $f \xequiv{1\*m} f m$. We have both $T\*C \retract T$
+  and $D \retract T$, and as equivalence is a transitive relation, we may redraw
+  Diagram~\ref{dia:pre-inverse-turing} as
+  \[
+    \xymatrix @C=15pt @R=15pt{
+      & & T \* T \ar@{.>}[dddd]^{h_f}\\
+      &T\*T \ar[ur]^{\circ\, m_{T\*C}} & & \\
+      T \ar[ur]^(.3){\inv{\usl}(\code{f}\*1)} \ar[ddrr]_{f m_D} \\
+      & & & \\
+      && T\*T.
+    }
+  \]
+  But this is the required diagram for an inverse Turing category and therefore $\Inv{T}$ is an
+  inverse category with $\diamond = \circ\, m_{T\*C}$.
 \end{proof}
 
 We know from Chapter~\ref{chap:completing_a_discrete_inverse_category} that when \X is an inverse
 Turing category, we know \Xt is a discrete Cartesian restriction category. Moreover, if
-$(m_A,r_A):A\retract T$ in \X, then $(m_A\inv{\usr},r_A\inv{\usr})A \retract T$ in \Xt and hence $T$
+$A\retractmaps{m_A}{r_A} T$ in \X, then $A \retractmaps{m_A\inv{\usr}}{r_A\inv{\usr}} T$ in \Xt and hence $T$
 will remain universal in \Xt. Hence, we have the basic requirements for a Turing category as
 specified in Theorem~\ref{thm:turing_recognition} and
 Lemma~\ref{lem:t_t_to_t_gives_a_turing_category}. All that remains to be shown is that we have a
@@ -260,7 +292,7 @@ Lemma~\ref{lem:t_t_to_t_gives_a_turing_category}.
   But this corresponds exactly to the requirement of
   Lemma~\ref{lem:t_t_to_t_gives_a_turing_category} with $\circ = (\diamond,T)$ and $\code{(f,T)} =
   \<\name{f},1\>$.  Finally, noting that $T$ is universal in \X, if we have $(f,B):T\to T$ in \Xt,
-  where $(m_B,r_B):B\retract T$ in \X, we see $(f,B) \xequiv{} (fr_B,T)$ in \X and therefore may be
+  where $B\retractmaps{m_B}{r_B} T$ in \X, we see $(f,B) \xequiv{} (fr_B,T)$ in \X and therefore may be
   written as above and we therefore have shown that $\Xt$ is a Turing category.
 \end{proof}
 
@@ -431,7 +463,7 @@ define $\imultiapp{f}{n}$ recursively by:
 However, we can simplify the definition of an inverse partial combinatory algebra when $A$ is
 powerful in \X. (Here, powerful means that $1\retract A$, $A\*A\retract A$, $A\*A\*A\retract A$,
 $\ldots$). Note that if $A$ is a partial combinatory algebra in $\Xt$, that guarantees it is
-powerful in \Xt. Assuming the retractions are $(m_n,r_n): A^n \retract A$, we have $m_j r_j =
+powerful in \Xt. Assuming the retractions are $A^n \retractmaps{m_n}{r_n} A$, we have $m_j r_j =
 1$ and $r_j m_j = \rst{r_j m_j}$ for each $j$. Thus, each of the maps are partial inverses in
 $\Xt$ and therefore in $\X$. Hence we have $A$ is a powerful object in $\X$.
 
@@ -483,7 +515,7 @@ A\*A$ where $A$ is a powerful object define $\multiapp{f}{n}$ recursively by:
 
 \begin{lemma}\label{lem:powerful_inverse_partial_combinatory_algebra}
   Suppose a discrete inverse category \X has a inverse partial combinatory algebra over $A$ and $A$
-  is  a powerful object in \X, with $(m_n,r_n)\*^n A \retract A$. Then \axiom{iCPA}{1},
+  is  a powerful object in \X, with $\*^n A \retractmaps{m_n}{r_n} A$. Then \axiom{iCPA}{1},
   \axiom{iCPA}{2} and \axiom{iCPA}{3} may be simplified to:\\
   \axiom{iCPA$'$}{1}
     \[
@@ -524,7 +556,9 @@ the category of computable partial functions generated by $A$. These are the map
   }
 \]
 We would like \compa to be a discrete Turing category so that $\Inv{\compa}$ is an inverse Turing
-category. However, this is not guaranteed.  However, we can define conditions so that it is true:
+category by Lemma~\ref{lem:discrete_turing_category_inverses_make_inverse_turing_category}. However,
+we can not guarantee that \compa is a discrete Turing category.  However, we can define conditions
+so that it is true:
 
 \begin{definition}\label{def:discrete_pca}
   Given a discrete object $A$ in a Cartesian restriction category, $A$ has a \emph{discrete partial
@@ -547,9 +581,9 @@ We immediately have:
   When $A$ has a discrete partial combinatory algebra, then \compa is a discrete Cartesian
   restriction category.
 \end{lemma}
-This, of course, means that $\Inv{\compa}$ is an inverse Turing category. Note it is still the case
-that there can be a map of \compa which is invertible in \Xt (i.e., is in \X), but is \emph{not}
-invertible in \compa.
+By Lemma~\ref{lem:discrete_turing_category_inverses_make_inverse_turing_category}, this means that
+$\Inv{\compa}$ is an inverse Turing category. Note it is still the case that there can be a map of
+\compa which is invertible in \Xt (i.e., is in \X), but is \emph{not} invertible in \compa.
 
 % chapter turing_categories (end)
 

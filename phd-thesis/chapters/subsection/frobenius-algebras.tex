@@ -1,7 +1,7 @@
 \subsection{Frobenius Algebras} % (fold)
 \label{sub:frobenius_algebras}
-Frobenius algebras are defined as a finite dimensional algebra over a field together with a
-non-degenerate pairing operation. We will continue with the definitions that make this precise.
+Frobenius algebras were originally defined as a finite dimensional algebra over a field together with a
+non-degenerate pairing operation. Here we present the general categorical definition:
 
 \begin{definition}\label{def:frobeniusalgebra}
   Given a symmetric monoidal category \cD, a \emph{Frobenius algebra} is an object $X$ of \cD and
@@ -26,9 +26,9 @@ non-degenerate pairing operation. We will continue with the definitions that mak
       & A
     }
   \]
-  all commute. The Frobenius algebra is \emph{separable} when $\Delta \nabla = 1_{X}$ and
-  \emph{commutative} when $\Delta c_{X,X} = \Delta$. Note that separable is sometimes referred to as
-  \emph{special}.
+  all commute. The Frobenius algebra is \emph{special} when $\Delta \nabla = 1_{X}$ and
+  \emph{commutative} when $\Delta c_{X,X} = \Delta$. Note that special is sometimes referred to as
+  \emph{separable}.
 \end{definition}
 \begin{definition}\label{def:daggerfrob}
   A Frobenius algebra in a dagger symmetric monoidal category where $\Delta = \dgr{\nabla}$ and
@@ -42,8 +42,8 @@ $\dagger$-Frobenius algebra.
 
 
 In \cite{coeckeetal08:ortho}, Coecke et. al. provide an algebraic description of orthogonal bases in
-finite dimensional Hilbert spaces. Additionally, an orthonormal basis for such a space is
-a separable commutative $\dagger$-Frobenius algebra. To show the other direction, given a commutative
+finite dimensional Hilbert spaces. An orthonormal basis for such a space determines, as above,
+a special commutative $\dagger$-Frobenius algebra. To show the other direction, given a commutative
 $\dagger$-Frobenius algebra, $(H,\nabla,\eta)$ and for each element $\alpha\in H$, define the right
 action of $\alpha$ as $R_{\alpha}:=(id\*\alpha)\, \nabla:H\to H$. Note the use of the fact that
 elements $\alpha\in H$ can be considered as linear maps $\alpha:\complex \to H:1\mapsto \ket{\alpha}$.
@@ -89,44 +89,44 @@ authors to prove the following Theorem.
   constructions are inverse to each other.
 \end{theorem}
 
-In \cite{coecke08structures}, Coecke et.al. build on the results of \cite{coeckeetal08:ortho}
-to start from a $\dagger$-symmetric monoidal category and construct the minimal machinery needed to
-model quantum and classical computations. For the rest of this section, $\cD$ will be assumed to be
-such a category, with $\*$ the monoid tensor and $I$ the unit of the monoid.
+% In \cite{coecke08structures}, Coecke et.al. build on the results of \cite{coeckeetal08:ortho}
+% to start from a $\dagger$-symmetric monoidal category and construct the minimal machinery needed to
+% model quantum and classical computations. For the rest of this section, $\cD$ will be assumed to be
+% such a category, with $\*$ the monoid tensor and $I$ the unit of the monoid.
 
-\begin{definition}\label{def:compact_structure}
-  A compact structure on an object $A$ in the category $\cD$ is given by the object $A$, an object
-  $A^{*}$ called its \emph{dual} and the maps $\eta:I \to A^{*}\* A$, $\epsilon: A\* A^{*} \to I$
-  such that the diagrams
-  \[
-    \xymatrix@C+20pt{
-      A^{*} \ar[dr]^{id} \ar[d]_{\eta\*A^{*}} \\
-      A^{*} \*A\*A^{*}  \ar[r]_(.6){A^{*} \*\epsilon} & A^{*}
-    }
-    \text{ and }
-    \xymatrix@C+20pt{
-      A \ar[r]^(.4){A\*\eta} \ar[dr]_{id} & A\* A^{*}\* A \ar[d]^{\epsilon\*A}\\
-      & A
-    }
-  \]
-  commute.
-\end{definition}
+% \begin{definition}\label{def:compact_structure}
+%   A compact structure on an object $A$ in the category $\cD$ is given by the object $A$, an object
+%   $A^{*}$ called its \emph{dual} and the maps $\eta:I \to A^{*}\* A$, $\epsilon: A\* A^{*} \to I$
+%   such that the diagrams
+%   \[
+%     \xymatrix@C+20pt{
+%       A^{*} \ar[dr]^{id} \ar[d]_{\eta\*A^{*}} \\
+%       A^{*} \*A\*A^{*}  \ar[r]_(.6){A^{*} \*\epsilon} & A^{*}
+%     }
+%     \text{ and }
+%     \xymatrix@C+20pt{
+%       A \ar[r]^(.4){A\*\eta} \ar[dr]_{id} & A\* A^{*}\* A \ar[d]^{\epsilon\*A}\\
+%       & A
+%     }
+%   \]
+%   commute.
+% \end{definition}
 
-\begin{definition}\label{def:quantumstructure}
-  A \emph{quantum structure} is an object $A$ and map $\eta:I\to A\*A$ such that
-  $(A,A,\eta,\dgr{\eta})$ form a compact structure.
-\end{definition}
-Note that $A$ is self-dual in definition \ref{def:quantumstructure}.
+% \begin{definition}\label{def:quantumstructure}
+%   A \emph{quantum structure} is an object $A$ and map $\eta:I\to A\*A$ such that
+%   $(A,A,\eta,\dgr{\eta})$ form a compact structure.
+% \end{definition}
+% Note that $A$ is self-dual in definition \ref{def:quantumstructure}.
 
-This allows the creation of the category $\cD_{q}$ which has as objects quantum structures and maps
-are the maps in $\cD$ between the objects in the quantum structures.
+% This allows the creation of the category $\cD_{q}$ which has as objects quantum structures and maps
+% are the maps in $\cD$ between the objects in the quantum structures.
 
-In the category $\cD_{q}$, it is now possible to define the upper and lower $*$ operations on maps,
-such that $(f_{*})^{*}= (f^{*})_{*} = \dgr{f}$:
-\begin{eqnarray*}
-&f^{*} &:= (\eta_{A}\*1) (1 \* f\*1) (1\*\dgr{\eta}_{B}),\\
-&f_{*} &:= (\eta_{B}\*1) (1 \* \dgr{f}\*1) (1\*\dgr{\eta}_{A}).
-\end{eqnarray*}
+% In the category $\cD_{q}$, it is now possible to define the upper and lower $*$ operations on maps,
+% such that $(f_{*})^{*}= (f^{*})_{*} = \dgr{f}$:
+% \begin{eqnarray*}
+% &f^{*} &:= (\eta_{A}\*1) (1 \* f\*1) (1\*\dgr{\eta}_{B}),\\
+% &f_{*} &:= (\eta_{B}\*1) (1 \* \dgr{f}\*1) (1\*\dgr{\eta}_{A}).
+% \end{eqnarray*}
 
 % Next, define a classical structure on \cD.
 % \begin{definition}\label{def:classicalstructure}
