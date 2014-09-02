@@ -1,10 +1,31 @@
 \section{Disjointness in Frobenius Algebras}
 \label{sec:disjointness_in_frobenius_algebras}
-An important example of a disjointness system arises naturally from Frobenius Algebras.
+An important example of a disjointness system arises naturally from Frobenius Algebras. Recall that
+we defined a zero map in Section~\ref{sec:coproducts_in_inverse_categories} whenever there was a
+zero object. This may also be defined directly:
+
+\begin{definition}\label{def:zero_map}
+  A family of maps in a symmetric monoidal category with monoid $\*$ is called a \emph{zero map},
+  written as $0$ whenever:
+  \begin{itemize}
+    \item For all $f, g$, $f 0 g = 0$;
+    \item For all $f$, $f \* 0 = 0$ and $ 0 \* f = 0$.
+  \end{itemize}
+\end{definition}
+
+\begin{lemma}\label{lem:cfrobx-has-a-zero-when-x-has-zero}
+  If $\X$ is a symmetric monoidal category with a zero map, then CFrob(\X) has a zero map.
+\end{lemma}
+\begin{proof}
+  As $\Delta 0 = 0 = 0 \Delta$ and $0 \nabla = 0 = \nabla 0$, the zero maps are in CFrob(\X). Since
+  composition is inherited from \X, the first item of Definition~\ref{def:zero_map} is
+  satisfied. Finally, since the tensor in \X is the tensor in CFrob(\X), the second item is also
+  satisfied. Hence, CFrob(\X) has zero maps.
+\end{proof}
 
 \begin{lemma}\label{lem:cfrobperp_is_a_disjointness_relation}
   As shown in Lemma~\ref{lem:cfrobx_is_an_inverse_category} $CFrob(\X)$ is a discrete inverse
-  category. For $f,g:A\to B$, define $f\perp g$  when
+  category. Suppose \X has zero maps. Then for $f,g:A\to B$, define $f\perp g$  when
 \[
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}

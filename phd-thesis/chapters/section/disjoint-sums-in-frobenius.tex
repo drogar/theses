@@ -2,13 +2,22 @@
 \label{sec:disjoint-sums-in-frobenius-algebras}
 
 In the previous sections, we have shown that CFrob(\X) is a discrete inverse category, with a
-disjointness relation whenever \X is a symmetric monoidal category.
+disjointness relation whenever \X is a symmetric monoidal category with zero maps.
 
-We now show that if \X is an additive category, i.e., a symmetric monoidal category where the
+We now show that if \X is an additive tensor category, i.e., a symmetric monoidal category where the
 hom-sets are enriched in additive monoids, then CFrob(\X) will have a disjoint join and moreover, a
-disjoint sum.
+disjoint sum. First, we explicitly define additive tensor category:
 
-We begin by showing that given an additive category, we may form an equivalent category which has
+\begin{definition}\label{def:additive-tensor-category}
+  Suppose \X is a symmetric monoidal category with zero maps and the hom-sets are enriched in
+  additive monoids. It is an \emph{additive tensor category}  when:
+  \begin{itemize}
+    \item $h(f+g)k = h f k + h g k$ for all $h:A\to B$, $f,g:B\to C$ and $k:C \to  D$;
+    \item $(f+g)\*k = f\*k + g\* k$ for all $f,g:A\to B$ and  $k:C\to D$.
+  \end{itemize}
+\end{definition}
+
+We begin by showing that given an additive tensor category, we may form an equivalent category which has
 biproducts.
 
 \begin{lemma}\label{lem:axb_is_a_biproduct}
@@ -39,7 +48,7 @@ $\X$, defined as:
     j}]:[A_i]\to[B_j]$}{The diagonal matrix $I$ ($f_{i,i} = 1_{A_i}$ and $f_{i,j} = 0, i \ne
   j$)}{Matrix multiplication}
 
-Now, let us consider CFrob(\X) where \X is an additive symmetric monoidal category with
+Now, let us consider CFrob(\X) where \X is an additive tensor category with
 biproducts. We know from Lemma~\ref{lem:cfrobperp_is_a_disjointness_relation} that
 \[
 \raisebox{40pt}{$f\perp g \iff$}\
@@ -59,12 +68,42 @@ node at (0,2) [delta] (d) {};
 \ \raisebox{40pt}{$= 0.$}\
 \]
 
-We will now show that the biproduct is the disjoint join of any two disjoint maps.
+We will now show that the biproduct is the disjoint join of any two disjoint maps. But first, we
+must show the biproduct of two disjoint maps is in the category CFrob(\X)
 
-\begin{lemma}\label{lem:biproduct_is_the_disjoint_join_in_cfrobx}
-  Given \X is an  additive symmetric monoidal category with
-biproduct $+$, and $f\perp g$, then $f\djoin g \definedas f+g$ is a disjoint join.
+\begin{lemma}\label{lem:biproduct-is-in-cfrob-x}
+  Given \X is an additive tensor category with biproducts, when $f,g$ are maps in CFrob(\X) with
+  $f\perp g$, then $f+g$ is a map in CFrob(\X).
 \end{lemma}
+\begin{proof}
+  We must show $(f+g)\Delta = \Delta((f+g)\*(f+g))$. As this is an additive tensor category and both
+  $f,g$ are in CFrob(\X) we have:
+  \begin{equation}
+    (f+g)\Delta = f\Delta + g\Delta = \Delta(f\*f) + \Delta(g\*g).\label{eq:lhs-f+g-in-cfrob}
+  \end{equation}
+  However, we also have
+  \begin{equation}
+    \Delta((f+g)\*(f+g)) = \Delta( f\*f + f\* g + g\* f + g\*g) = \Delta(f\*f) + \Delta(f\*g) +
+    \Delta(g\*f) + \Delta(g\*g).
+    \label{eq:rhs-f+g-in-cfrob}
+  \end{equation}
+  Recalling
+  Lemma~\ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}~\ref{le:deltaefg}
+  which shows that $e\Delta (f\*g) = \Delta(ef\*g)$ for $e$ a restriction idempotent, we have
+  \[
+    \Delta(f\*g) = \rst{f} \Delta(f\*g) = \Delta(f\*\rst{f} g) = \Delta(f \* 0) = \Delta 0 = 0,
+  \]
+  where $\rst{f}g = 0$ follows from the disjointness of $f,g$ by \axiom{Dis}{2} and the remaining
+  equalities are due to \X being an additive tensor category. But this means that
+  Equation~\ref{eq:rhs-f+g-in-cfrob} reduces to $\Delta(f\*f) + 0 + 0 + \Delta(g\*g)$ and is
+  therefore the same as Equation~\ref{eq:lhs-f+g-in-cfrob}, showing $f+g$ is in CFrob(\X) when
+  $f\perp g$.
+\end{proof}
+
+\begin{proposition}\label{prop:biproduct_is_the_disjoint_join_in_cfrobx}
+  Given \X is an  additive tensor category with
+  biproduct $+$, and $f\perp g$, then $f\djoin g \definedas f+g$ is a disjoint join.
+\end{proposition}
 \begin{proof}
   We need to show the four axioms of disjoint join from Definition~\ref{def:disjoint_join}.
 
