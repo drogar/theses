@@ -1,44 +1,13 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
 \subsection{Dagger categories}\label{ssec:daggercategories}
-Dagger categories generalize the concepts of Hilbert spaces that are required to model quantum
-computation. These were introduced in \cite{abramsky04:catsemquantprot} as \emph{strongly compact
-closed categories}, an additional structure only on compact closed categories.
-
-Before introducing dagger categories, we define compact closed
-categories.
-
-
-
-\begin{definition}\label{def:compactclosedcat}
-A \emph{compact closed category} \cD{} is a symmetric monoidal category with tensor $\*$ where each
-object $A$ has a dual $A^{*}$. Additionally, there must exist families of maps $\eta_{A}: I \to
-A^{*} \* A$ (the \emph{unit}) and $\epsilon_{A}: A\*A^{*}\to I$ (the \emph{counit}) such that
-\[
-  \xymatrix@C+20pt{
-    A \ar[r]^{u_{A}} \ar@{=}[d]  & A\*I \ar[r]^{1\*\eta_{A}}
-        & A\* (A^{*}\*A) \ar[d]^{a_{A,A^{*},A}} \\
-    A & I\* A \ar[l]^{u_{A}^{-1}} & (A\* A^{*})\*A \ar[l]^{\*\epsilon_{B}\*1}
-    }
-  \]
-commutes and so does the similar one based on $A^{*}$.
-\end{definition}
-
-Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*} \to A^{*}$ as
-\[
-  \xymatrix@C+10pt{
-    B^{*}\ar[r]^{u_{B^{*}}} \ar[d]_{f^{*}}& I\*B^{*} \ar[r]^{\eta_{A}\*1}
-      & A^{*}\*A\*B^{*}\ar[d]^{1\*f\*1}\\
-    A^{*}&    A^{*}\*I\ar[l]^{u_{A^{*}}^{-1}}  &   A^{*}\*B\*B^{*}\ar[l]^{1\*\epsilon_{B}}.
-  }
-\]
 
 Although dagger categories were introduced in the context of compact closed categories, the concept
 of a dagger is definable independently. This was first done in \cite{selinger05:dagger}.
 
 \begin{definition}\label{def:daggercat}
-  A \emph{dagger operator} on a category $D$ is a functor $\dagger:\cD^{op}\to \cD$, which is
-  involutive in the sense that it is the identity on objects. A \emph{dagger category} is a category
-  that has a dagger operator.
+  A \emph{dagger} on a category $D$ is a functor $\dagger:\cD^{op}\to \cD$, which is  involutive,
+  that is, $\dgr{\dgr{f}} = f$ which is the identity on objects. A \emph{dagger category} is a
+  category that has a dagger.
 \end{definition}
 
 Typically, the dagger is written as a superscript on the morphism. So, if $f:A\to B$ is a map in

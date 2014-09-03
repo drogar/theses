@@ -2,24 +2,26 @@
 \chapter{Turing categories and PCAs} % (fold)
 \label{chap:turing_categories}
 
-In this chapter, we review the definition and properties of a Turing
-category and Partial Combinatory
-Algebras\cite{cockett-hostra08-intro-to-turing,cockett2010:categories-and-computability}. Because of
+In this chapter, we review the definition and properties of a Turing category and partial
+combinatory algebras
+\cite{cockett-hostra08-intro-to-turing,cockett2010:categories-and-computability}. Because of
 the theorems of the earlier chapters, we will be able to transfer these ideas in a straightforward
-way from Cartesian restriction categories over to discrete inverse categories. We will show which
-structures are needed in a discrete inverse category \X so that the constructed category, \Xt, is a
-Turing category or has a PCA.
+way from discrete Cartesian restriction categories to discrete inverse categories.  Inverse Turing
+categories are defined below and correspond to Turing categories using
+Theorem~\ref{thm:inverse_turing_category_gives_a_turing_category}: This  provides the link between
+reversible computation and standard models of computation as promised in our introduction.
 
-Turing categories will provide the link to standard models of computability as promised in our
-introduction. A Turing category may give a categorical formulation of various models of
-computability, including partial combinatory algebras and the partial lambda calculus as shown in
-\cite{cockett-hostra08-intro-to-turing}. Providing a link from inverse categories with the
-constructions we derive below to Turing categories provides the link between reversible computation
-and standard computation which we originally set out to show.
+As noted in our introduction, Bennett\cite{bennett:1973reverse} showed how a reversible Turing
+machine can emulate a standard Turing machine. As Turing machines can perform the applications of a
+partial combinatory algebra, we have a link between inverse Turing categories through Turing
+categories to reversible Turing machines.
 
 \section{Turing categories}
 \label{sec:turing_category_definitions}
-
+Turing categories provide a categorical formulation for
+computability and includes partial combinatory algebras, the partial lambda calculus, and various
+other models as given in
+\cite{cockett-hostra08-intro-to-turing}.
 
 \begin{definition}[Turing category]\label{def:turing_category}
   Given \X is a Cartesian restriction category:
@@ -202,9 +204,9 @@ There is another criteria that also gives a Turing category:
 \end{proof}
 \section{Inverse Turing categories}
 \label{sec:inverse_turing_categories}
-Now, we define inverse Turing categories. Essentially, an inverse Turing category is a discrete
-inverse category \X where $\Xt$ is a Turing category. Let us proceed with a more concrete
-definition of this.
+Now, we define inverse Turing categories. The idea is that an inverse Turing category should be a discrete
+inverse category \X such that $\Xt$ is a Turing category. A concrete description of this is
+developed below.
 
 \begin{definition}\label{def:inverse_turing_category}
   A discrete inverse category \X is an \emph{inverse Turing category} when there is a universal
@@ -212,33 +214,44 @@ definition of this.
   \X with a map $\diamond :T\*T \to T\*T$ such that for every map $f:T \to T\*T$ there is a total map
   $\iname{f}: I\to T$ and a map $h_f:T\*T \to T\*T$ with $h_f \in \dmap{T}$ such that $f \xequiv{h_f}
   \inv{\usl}(\iname{f}\*1)\diamond$, i.e., the diagram
-  \[
+  \begin{equation}
     \xymatrix @C=15pt @R=15pt{
       & & T \* T \ar@{.>}[dddd]^{h_f}\\
       &T\*T \ar[ur]^{\diamond} & & \\
       T \ar[ur]^(.3){\inv{\usl}(\iname{f}\*1)} \ar[ddrr]_{f} \\
       & & & \\
       && T\*T
-    }
-  \]
+    }\label{dia:inverse-turing-category-code}
+  \end{equation}
   commutes.
 \end{definition}
 
+First, we observe:
+
 \begin{lemma}\label{lem:discrete_turing_category_inverses_make_inverse_turing_category}
-  When $T$ is a Turing category that is also a discrete Cartesian restriction category, then
-  $\Inv{T}$ is an inverse Turing category.
+  When $T$ is a discrete Turing category then $\Inv{T}$ is an inverse Turing category.
 \end{lemma}
 \begin{proof}
-  First, we immediately know that $\Inv{T}$ is an inverse category. Additionally, we know that the
-  map $\<\iname{f},1\>$ is invertible as we are in a discrete Cartesian restriction category.
-  Given $f$ is invertible, we know that we have the diagram
+  By Lemma~\ref{lem:inv_x_is_a_discrete_inverse_category}, we know that $\Inv{T}$ is a discrete
+  inverse category. Thus, all that remains is to show:
+  \begin{enumerate}[{(}i{)}]
+    \item There is a map $\diamond:T\*T \to T\*T$ in $\Inv{T}$;
+    \item given a  map $f$ in $\Inv{T}$, there is another map $\iname{f}$ which makes
+      Diagram~\ref{dia:inverse-turing-category-code} commute.
+  \end{enumerate}
+
+  Given $f$ is invertible and we are in a Turing category, we know that we have the diagram
       \[
         \xymatrix{
           T\times T \ar[r]^{\circ} & T \\
           T \ar[ur]_{f} \ar[u]^{\<!\code{f},1\>}
         }
       \]
-  in $T$. Translating this directly to $\Inv{T}$, for some $h'_f \in \dmap{T}$ we have:
+  in $T$.   We know that the  map $\<\iname{f},1\>$ is invertible by
+  \ref{lem:a_discrete_crc_is_precisely_a_graphic_crc} as we are in a discrete Cartesian restriction
+  category.
+
+  Expressing this in $\Inv{T}$, for some $h'_f \in \dmap{T}$ we have:
   \begin{equation}
     \xymatrix @C=15pt @R=15pt{
       & & T \* T\*C \ar@{.>}[dddd]^{h'_f}\\
@@ -249,8 +262,11 @@ definition of this.
     }\label{dia:pre-inverse-turing}
   \end{equation}
 
-  Next, note that for any monic $m$, we have $f \xequiv{1\*m} f m$. We have both $T\*C \retract T$
-  and $D \retract T$, and as equivalence is a transitive relation, we may redraw
+  Next, note that for any monic $m$, we have $f$ is in the equivalence class of $f m$. This is
+  because $\rst{f} = \rst{fm}$ by Lemma~\ref{lem:restrictionvarious}, .... NEED WORK HERE.
+
+  We have both $T\*C \retract T$
+  and $D \retract T$, and as equivalence is a transitive relation, we may express
   Diagram~\ref{dia:pre-inverse-turing} as
   \[
     \xymatrix @C=15pt @R=15pt{
