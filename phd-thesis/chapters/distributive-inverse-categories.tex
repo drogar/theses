@@ -2,11 +2,10 @@
 
 \chapter{Distributive inverse categories} % (fold)
 \label{chap:distributive_inverse_categories}
-We now consider inverse categories with both an disjoint sum and
-inverse product, where the inverse product distributes overs the disjoint sum in a specific way. We
-show that completing such a category, in the sense of
-Chapter~\ref{chap:completing_a_discrete_inverse_category}, produces a distributive restriction
-category where the product distributes over the coproduct.
+We now consider inverse categories with both an disjoint sum and inverse product, where the inverse
+product distributes overs the disjoint sum in a specific way. We show that the Cartesian Completion
+of such a category is a distributive restriction category where the product distributes over the
+coproduct.
 
 \section{Distributive restriction categories} % (fold)
 \label{sec:distributive_restriction_categories}
@@ -87,7 +86,7 @@ diagram~\ref{eq:inverse_distributive_laws} available to us. That is,
 is also a commuting diagram in \D.
 
 \begin{definition}\label{def:join_of_perp_rst_maps}
-  Suppose \X is an inverse category with a disjoint join tensor $\+$ and a restriction zero. Then
+  Suppose \X is an inverse category with a disjoint sum tensor $\+$ and a restriction zero. Then
   for maps $f:A \to B$ and $g:A \to C$ with $\rst{f} \perp \rst{g}$, define the map $[f,g]:A \to
   B\+C$ as $(f \cpa) \djoin (g \cpb)$. This is well defined as $\wrg{\cpa} \perp \wrg{\cpb}$ and
   therefore by \axiom{Dis}{7}, $f\cpa \perp g\cpb$.
@@ -96,9 +95,9 @@ is also a commuting diagram in \D.
 \begin{lemma}
   Suppose \X is an inverse category \X\ with:
   \begin{itemize}
-    \item a disjoint join tensor $\+$,
+    \item a disjoint sum tensor $\+$,
     \item a restriction zero, and
-    \item an inverse  product tensor $\*$ which distributes over disjoint joins, (that is,
+    \item an inverse  product $\*$ which distributes over disjoint joins, (that is,
       $f\*(g\djoin h) = (f\*g) \djoin (f\* h)$).
   \end{itemize}
   Then, \X is an inverse distributive  category.
@@ -233,20 +232,19 @@ inverse distributive category. We now show the converse is true.
 \label{sec:discrete_inverse_categories_with_disjoint_sums}
 
 We now consider the case where we have a discrete inverse category with inverse product
-tensor $\*$ and a disjoint join tensor $\+$, with the $\*$ tensor preserves the
-disjoint join.
+ $\*$ and a disjoint sum tensor $\+$, with the $\*$ tensor preserves the disjoint join.
 
 A map in \Xt is related to a map in \X in the following way:
 \[
   \infer{A\xrightarrow{f} B\*C \text{ in }\X.}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
 \]
 
-Our goal is to show that an disjoint sum in a distributive inverse category becomes a co-product
+Our goal is to show that a disjoint sum in a distributive inverse category becomes a coproduct
 in \Xt.
 
 \begin{lemma}\label{lem:x_tilde_has_a_restriction_zero}
-  Given $\X$ is a distributive inverse category, then $\Xt$, the discrete inverse category created
-  from $\X$, has a restriction zero.
+  Given $\X$ is a distributive inverse category, then $\Xt$, the discrete Cartesian restriction
+  category created from $\X$, has a restriction zero.
 \end{lemma}
 \begin{proof}
   Recall from Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories}
@@ -330,9 +328,9 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   Given \X is an distributive inverse category, then the category \Xt has coproducts.
 \end{proposition}
 \begin{proof}
-  The tensor object $A\+B$ in \X will become the co-product of $A, B$ in \Xt.
+  The tensor object $A\+B$ in \X will become the coproduct of $A, B$ in \Xt.
 
-  The injection maps of the co-product are $i_1 =(\cpa \inv{\usr}, 1)$ and
+  The injection maps of the coproduct are $i_1 =(\cpa \inv{\usr}, 1)$ and
   $i_2 = (\cpb \inv{\usr}, 1)$.
 
   Consider the following diagram in \Xt:
@@ -367,7 +365,7 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   where $f'$ and $g'$ are respectively equivalent to $f,g$.
 
   Lifting Diagram~\ref{diag:pre-coproduct-with-common-map} to \X, we see this corresponds to the
-  desired co-product diagram, where  $h$ in \Xt is the map $(\icpa f' \djoin \icpb g', (C\+D))$.
+  desired coproduct diagram, where  $h$ in \Xt is the map $(\icpa f' \djoin \icpb g', (C\+D))$.
 
   By construction, in \X, we have
   \[
@@ -611,7 +609,7 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
 \end{corollary}
 \begin{proof}
   As $\Xt$ has restriction products by Lemma~\ref{lem:tensor_on_x_is_the_restriction_product_on_xt},
-  restriction co-products by
+  restriction coproducts by
   Theorem~\ref{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category} and the equations
   for distributivity follow directly from the distributivity of the base tensors, we see $\Xt$ is a
   distributive restriction category.

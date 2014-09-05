@@ -6,7 +6,7 @@
 
 Restriction categories were introduced in
 \cite{cockett2002:restcategories1,cockettlack2003:restcategories2,cockettlack2004:restcategories3}
-as a way to give an algebraic axiomatization of partial maps. We will introduce restriction
+as a way to give an algebraic treatment of partiality. We will introduce restriction
 categories and provide a variety of results.
 
 \section{Definitions}
@@ -85,13 +85,13 @@ as $\rst{f}=\rst{\rst{f}}$.
 \end{definition}
 
 \begin{lemma}\label{lem:total_maps_form_sub_category}
-   The total maps in a restriction category form a sub-category  $Total(\X) \subseteq \X$.
+   The total maps in a restriction category form a subcategory  $Total(\X) \subseteq \X$.
 \end{lemma}
 \begin{proof}
   First, as the identity map $1$ is monic, by Lemma~\ref{lem:restrictionvarious}, we have $\rst{1} =
   1$ and therefore the identity map is in $Total(\X)$. If $f,g$ are composable maps in $Total(\X)$,
   then $\rst{f\,g} = \rst{f\rst{g}} = \rst{f} = 1$ and hence $f g$ is in $Total(\X)$. Therefore,
-  $Total(\X)$ is a sub-category of $\X$.
+  $Total(\X)$ is a subcategory of $\X$.
 \end{proof}
 \begin{example}[\Par]\label{ex:par_is_a_restriction_category}
 Continuing from Example~\ref{ex:category_par}, \Par is a restriction category. The restriction of $f:A\to B$ is:
@@ -143,6 +143,17 @@ sub-restriction category of \Par. We will show the four restriction axioms:
   \end{cases}
 \]
 }
+\end{example}
+
+\begin{example}\label{ex:algebras-not-preserving-unit-as-restriction-cat}
+  Given $S$ is a symmetric monoidal category, let \D be the category whose objects are the objects
+  of $S$ which are commutative monoids and maps the homomorphisms of monoids that do not
+  necessarily preserve the unit.
+
+  This is the dual of a counital copy category as defined in
+  \cite{cockettlack2004:restcategories3}. Theorem 5.2 from   \cite{cockettlack2004:restcategories3}
+  shows that counital copy categories have a restriction, thus $\D$ has a corestriction, i.e., an
+  operator on $f:A\to B$ with $\rst{f}:B\to B$ fulfilling the restriction axioms.
 \end{example}
 
 \section{Partial order enrichment} % (fold)
@@ -235,7 +246,7 @@ having this property are called compatible.
 \begin{definition}\label{def:compatible_maps}
   Two parallel maps $f,g:A \to B$ in a restriction category are \emph{compatible}, written as $f
   \compatible g$, when $\rst{f} g = \rst{g} f$.  A restriction category \X is a \emph{restriction
-    pre-order} when all parallel pairs of maps are compatible.
+    preorder} when all parallel pairs of maps are compatible.
 \end{definition}
 
 \begin{example}[Compatibility in \Par]\label{ex:compatibility_in_par}
@@ -364,7 +375,7 @@ semi-lattice. Joins are related to the coproduct by the following:
 Meets were introduced in \cite{cockett-guo-hofstra-2012:range2}. Note that, in general,
 $(f \meet g) h \ne f h \meet g h$. In fact equality only holds when $h$ is a partial monic, as in
 Definition~\ref{def:partial_inverse_etc} below.
-The following are basic results on meets:
+We give the following basic results on meets:
 
 \begin{lemma}
   \label{lem:properties_of_meets_in_restriction_categories}
@@ -499,11 +510,11 @@ some of their basic properties.
   \end{itemize}
 \end{definition}
 
-For examples, consider the following maps in \Par, $f_1, f_2, f_3:\{1,2\} \to \{a,b,c\}$ where
+For example, consider the following maps in \Par, $f_1, f_2, f_3:\{1,2\} \to \{a,b,c\}$ where
 \[
   f_1(1) = a, f_1(2) \undef;\quad   f_2(1) = a, f_2(2)=b;\quad   f_3(1) = a, f_3(2)=a.
 \]
-Then, $f_1$ is a partial isomorphism, but not a partial monic nor a restriction monic. $f_2$ is a
+Then, $f_1$ is a partial isomorphism, but is neither a partial monic nor a restriction monic. $f_2$ is a
 restriction monic and a total partial isomorphism and a partial monic. $f_3$ is none of the items in
 Definition~\ref{def:partial_inverse_etc}.
 %todo - Find a partial monic that is not the others....
@@ -901,7 +912,7 @@ such that $\gamma m' = m$ and $\gamma f' = f$.
 
 In \cite{cockettlack2003:restcategories2}, it is shown that:
 \begin{theorem}[Cockett-Lack]
-  Every restriction category is a full sub-category of a partial map category.
+  Every restriction category is a full subcategory of a partial map category.
 \end{theorem}
 % section partial_map_categories (end)
 \section{Restriction products and Cartesian restriction categories} % (fold)
@@ -1111,7 +1122,7 @@ of the section.
 \end{proof}
 
 \begin{lemma}\label{lem:a_discrete_crc_is_precisely_a_graphic_crc}
-  A discrete restriction category is precisely a graphic Cartesian restriction category.
+  A discrete Cartesian restriction category is precisely a graphic Cartesian restriction category.
 \end{lemma}
 \begin{proof}
   The requirement is that $\<f,1\>$ (and $\<\rst{f},1\>$) each have partial inverses. For
@@ -1145,7 +1156,7 @@ of the section.
     &= \rst{(1 \times f)\inv{\Delta}} \< \pi_0, \pi_1 \>\\ % products
     &= \rst{(1 \times f)\inv{\Delta}}
   \end{align*}
-  The above follows in a discrete restriction category, as we have
+  The above follows in a discrete Cartesian restriction category, as we have
   \begin{equation*}
     \rst{\inv{\Delta}} \pi_1 = \inv{\Delta} \Delta \pi_1 = \inv{\Delta} = \inv{\Delta} \Delta \pi_0 = \rst{\inv{\Delta}} \pi_0.
   \end{equation*}

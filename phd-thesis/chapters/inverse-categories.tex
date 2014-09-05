@@ -4,11 +4,10 @@
 
 This chapter will introduce inverse categories. We first give
 a few results about inverse categories and then proceed to show an inverse category which has
-restriction products is a restriction pre-order.
+restriction products is a restriction preorder.
 
-Given this, the chapter then turns to focus on adding ``products'' to an inverse category, by which
-we mean a structure that behaves in a product-like manner in the inverse category, which we call
-\emph{inverse products}. These will be defined below in
+Given this, the chapter then focuses on adding product-like structures to an inverse category, which
+we call \emph{inverse products}. These will be defined below in
 Subsection~\ref{sub:inverse_product_definition}: Inverse products are given by a natural structure
 on a tensor product which includes a diagonal but lacks projections. The diagonal map is required to
 give a natural Frobenius structure on each object.
@@ -92,12 +91,12 @@ The property of being an inverse category is preserved by splitting.
   \{(1,1),(2,2)\} = 1_A$. There is no partial function $g:B\to A$ such that $f g = 1_A$.
 \end{example}
 \begin{example}\label{ex:partial_isos_are_inverse_category}
-  Generally, let \R be a restriction category, and $\Inv{\R}$ the sub-category of \R having the same objects
+  Generally, let \R be a restriction category, and $\Inv{\R}$ the subcategory of \R having the same objects
   as \R but only the partial isomorphisms as maps. Then, $\Inv{\R}$ is an inverse category.
 \end{example}
 \begin{example}\label{ex:groupoid_is_inverse_category}
-  A groupoid, which is a category in which every map is an isomorphism, is an inverse category. Note
-  that all maps in the groupoid are total, hence the partial isomorphisms are all isomorphisms.
+  A groupoid, which is a category in which every map is an isomorphism, is an inverse category. As
+  all maps in the groupoid are total, the partial isomorphisms are all  isomorphisms.
 
   As well, we note that for $\X$ any inverse category, $Total(\X)$ is a groupoid.
 \end{example}
@@ -126,12 +125,52 @@ The property of being an inverse category is preserved by splitting.
   = x^*$.
 \end{example}
 
+\begin{example}[Equivalence relations]\label{ex:equivalence-relations-are-inverse-category}
+  Equivalence relations of finite sets are representable as a pair of surjective functions onto
+  another set. That is,
+  \[
+    \xymatrix{
+      &C\\
+      A\ar@{->>}[ur]^f && B\ar@{->>}[ul]_{g}
+    }
+    \raisebox{-15pt}{$\iff$}
+    \xymatrix{
+      A+B \ar@{->>}[d]^{[f,g]}\\
+      C
+    }
+    \raisebox{-15pt}{$\iff$}
+    \xymatrix{
+      E_{[f,g]} \ar@<0.5ex>[d] \ar@<-0.5ex>[d]\\
+      A+B
+      }
+    \raisebox{-15pt}{$\iff A \longsquiggly{E_{[f,g]}} B$.}
+  \]
+
+  So, we define our category $EqR$ with objects being finite sets and maps being equivalence classes
+  of the relations $E_{[f,g]}:A\leadsto B$. The equivalence classes are given by the following:
+  \[
+   \xymatrix{
+      &C \ar@{<->}[dd]^{b}\\
+      A\ar@{->>}[ur]^f \ar@{->>}[dr]_{f'} && B\ar@{->>}[ul]_{g} \ar@{->>}[dl]_{g'}\\
+      &C'
+    } \raisebox{-38pt}{$\iff E_{[f,g]} \cong E_{[f',g']}$.}
+  \]
+  That is, whenever there is a bijection $b:C\leftrightarrow C'$ such that the above diagram commutes, then
+  the relations are equivalent.
+
+  The identity is given by $E_{[1,1]}$ and composition is by   pushout. The restriction of an
+  relation is given by restricting it to the first element only, i.e., $\rst{E_{[f,g]}} =
+  E_{[f,f]}$. This is an inverse category with the partial inverse of an relation given
+  by swapping the maps $f,g$. That is, $\inv{E_{[f,g]}} = E_{[g,f]}$. The
+  total maps are those where $f$ is a bijection.
+\end{example}
+
 \section{Inverse categories with restriction products} % (fold)
 \label{sec:inverse_categories_with_restriction_products}
-We start by showing that an inverse category with restriction products is a restriction pre-order
+We start by showing that an inverse category with restriction products is a restriction preorder
 and thus, is a very restrictive notion.
 \begin{proposition}\label{prop:an_inverse_category_with_products_is_a_restriction_preorder}
-  Given an inverse category \X, if it has restriction products, it is a restriction pre-order as in
+  Given an inverse category \X, if it has restriction products, it is a restriction preorder as in
   Definition~\ref{def:compatible_maps}. That is,
   \[
     \xymatrix {
@@ -157,19 +196,19 @@ and thus, is a very restrictive notion.
 \end{proof}
 
 \begin{corollary}
-  \X\ is a inverse category with restriction products if and only if Total($\spl{r}{\X}$) is a meet pre-order.
+  \X\ is a inverse category with restriction products if and only if Total($\spl{r}{\X}$) is a meet preorder.
 \end{corollary}
 
 \begin{proof}
   Total(\X), the subcategory of total maps on \X, has products and therefore every pair of parallel
   maps is compatible. As total compatible maps are equal, there is at most
-  one map between any two objects. Hence, Total(\X) is a pre-order with the meet being the product.
+  one map between any two objects. Hence, Total(\X) is a preorder with the meet being the product.
 
   Similarly, from \cite{cockett2002:restcategories1} and \cite{cockettlack2004:restcategories3},
   Total($\spl{r}{\X}$) is an inverse category and has products and is therefore also a meet
-  pre-order. This shows the ``only if'' side of the corollary.
+  preorder. This shows the ``only if'' side of the corollary.
 
-  For the other direction, if Total($\spl{r}{\X}$) is a meet pre-order, define the product as the
+  For the other direction, if Total($\spl{r}{\X}$) is a meet preorder, define the product as the
   meet of the maps and the terminal object as the supremum of all maps.
 \end{proof}
 
@@ -212,7 +251,7 @@ and thus, is a very restrictive notion.
   inverse category has inverse products, it is called  a \emph{discrete inverse category}.
 
 
-  The diagonal map $\Delta_A:A \to A\*A$ must be total and create a co-semigroup. It
+  The diagonal map $\Delta_A:A \to A\*A$ must be total and create a cosemigroup. It
   must satisfy the following diagrams:
  % in Figures~\ref{fig:inverse_product_cocommutativity},
  %  \ref{fig:inverse_product_coassociativity}, \ref{fig:inverse_product_exchange}, and
@@ -321,7 +360,7 @@ $(1\*\inv{\Delta})\inv{\Delta} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
   inverse product of $\*$. The required properties of cocommutativity, coassociativity and
   exchange are immediately obvious. To show the Frobenius rule for $\Delta$, first note that
   $\inv{\Delta}$ is defined only on the elements of $A\*A$ which agree in the first and second
-  co-ordinate. We show the upper triangle of the Frobenius diagram in
+  coordinate. We show the upper triangle of the Frobenius diagram in
   detail. Equation~\ref{eq:delta_inverse_delta} shows the result of applying $\inv{\Delta}$ followed by
   $\Delta$.
   \begin{equation}
@@ -1528,29 +1567,29 @@ v        \draw (g) to (f-inverse);
 % subsection discrete_inverse_categories (end)
 
 
-\subsection{The inverse subcategory of a discrete restriction category } % (fold)
+\subsection{The inverse subcategory of a discrete Cartesian restriction category } % (fold)
 \label{sub:the_inverse_subcategory_of_a_discrete_restriction_category}
 
-Given a discrete restriction category, one can pick out the maps which are partial isomorphisms.
+Given a discrete Cartesian restriction category, one can pick out the maps which are partial isomorphisms.
 Using results from Subsection~\ref{sub:discrete_inverse_categories} and from
 Section~\ref{sub:discrete_restriction_categories}, we will show that these maps form a
 subcategory which is a discrete inverse category.
 
 \begin{proposition}\label{lem:inv_x_is_a_discrete_inverse_category}
-  Given \X is a discrete restriction category, the partial isomorphisms of \X, together with the objects
-  of \X form a sub-restriction category which is a discrete inverse category. For the restriction
-  category $\X$, we denote this sub-category by \Inv{\X}.
+  Given \X is a discrete Cartesian restriction category, the partial isomorphisms of \X, together
+  with the objects of \X form a sub-restriction category which is a discrete inverse category. For
+  the restriction category $\X$, we denote this subcategory by \Inv{\X}.
 \end{proposition}
 \begin{proof}
   As shown in Lemma~\ref{lem:rcs_partial_monic_section_inverse_properties}, partial isomorphisms
   are closed under composition. The identity maps are in \Inv{\X} and restrictions of
   partial isomorphisms are also partial isomorphisms.
 
-  The product on the discrete restriction category \X becomes the tensor product of the restriction
-  category \Inv{\X}. Table~\ref{tab:structural_maps_for_the_tensor_in_invx} shows how each of the
-  elements of the tensor are defined. Note that the last definition makes explicit use of the fact
-  we are in a discrete restriction category and hence the $\Delta$ of \X possesses a partial
-  inverse.
+  The product on the discrete Cartesian restriction category \X becomes the tensor product of the
+  restriction category \Inv{\X}. Table~\ref{tab:structural_maps_for_the_tensor_in_invx} shows how
+  each of the elements of the tensor are defined. Note that the last definition makes explicit use
+  of the fact we are in a discrete Cartesian restriction category and hence the $\Delta$ of \X
+  possesses a partial inverse.
 
   \begin{table}[!htbp]
     \begin{center}
@@ -1662,9 +1701,10 @@ subcategory which is a discrete inverse category.
 \section{The ``slice'' construction on a discrete inverse category}
 \label{sec:slice_construction_on_discrete_inverse_category}
 
-In an inverse category, we will be interested in a specific class of maps, which will be used in
-future chapters to connect discrete inverse categories to discrete Cartesian restriction
-categories. Throughout this section, we will assume $\X$ is a discrete inverse category.
+% In an inverse category, we will be interested in a specific class of maps, which will be used in
+% future chapters to connect discrete inverse categories to discrete Cartesian restriction
+% categories.
+Throughout this section, we will assume $\X$ is a discrete inverse category.
 
 In a discrete inverse category, suppose we are given a map $h:A\*B \to A\*C$. We define
 $\dmap{h}:A\*B \to A\*C$ as the composite $(\Delta\*1)(1\*h)(\inv{\Delta}\*1)$. We want to consider
@@ -2038,7 +2078,7 @@ this precise in the following proposition:
 \begin{proposition}\label{prop:slice-a-is-a-discrete-inverse-category}
   Given a discrete inverse category $\X$, define $\X[A]$ as  the restriction category:
   \rcategory{The objects of $\X$}{A map $h=\dmap{h}:A\*X\to A\*Y$ in \X is a map from $X$ to $Y$ in
-    $\X[A]$}{$1\*1$ in \X}{Composition in \X}{$\rst{h}$ in \X is $\rst{h}$ in $\X[A]$}
+    $\X[A]$}{$1\*1$ in \X}{Composition in \X}{$\rst{h}$ in $\X[A]$ is given by $\rst{h}$ in $\X$}
   Then, $\X[A]$ is a discrete inverse category.
 \end{proposition}
 \begin{proof}
@@ -2066,9 +2106,9 @@ this precise in the following proposition:
   $\rst{h} \le \rst{k}$. As we already have $\rst{k}\le\rst{h}$ this means they are equal and the
   restriction is in $\X[A]$, thus, $\X[A]$ is a restriction category.
 
-  The tensor of objects $X\*Y$ in $\X[A]$ is the element $A\* X\*Y$ in $\X$. For two maps $h,k$
-  in $\X[A]$, $h\*k$ is given by the $\X$ map
-  $(\Delta\*1\*1)(1\*c_{\*}\*1)(h\*k)(1\*c_{\*}\*1)(\inv{\Delta}\*1\*1)$. This is a map in
+  The tensor of objects $X\*Y$ in $\X[A]$ is the element $A\* X\*Y$ in $\X$. For two maps $h,g$
+  in $\X[A]$, $h\*g$ is given by the $\X$ map
+  $(\Delta\*1\*1)(1\*c_{\*}\*1)(h\*g)(1\*c_{\*}\*1)(\inv{\Delta}\*1\*1)$. This is a map in
   $\X[A]$ as
   \[
     \raisebox{50pt}{$\dmap{(h\*g)}=$ }

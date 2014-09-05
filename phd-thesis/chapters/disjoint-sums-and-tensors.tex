@@ -2,29 +2,31 @@
 \chapter{Disjoint sums} % (fold)
 \label{chap:disjoint_sum_tensors}
 
-In this chapter, we first show how a tensor may be used to create a disjointness relation and a
-disjoint join in an inverse category. Conversely, if one is given an inverse category with a
-disjoint join and a construction we shall call a disjoint sum, this is sufficient to define a tensor
-in the inverse category.
+In this chapter, we introduce the disjoint sum and show how it may be used to define a tensor in an
+inverse category. Conversely, we then show how a tensor $\+$ may be used to create a disjointness
+relation and a disjoint join in an inverse category  --- at which point we shall see that $A\+B$ is
+a disjoint sum.
+
+
+
+\input{chapters/section/disjoint-sums}
+
+\section{Disjointness via a tensor}
+\label{sec:disjointness_via_a_tensor}
+
+Our first step will be to  show how a disjointness tensor, defined below, may be used to create a
+disjointness relation in an inverse category. We will do this by noting that when it is possible for
+maps to work separately on the components of the tensor, this essentially will allow us to define
+when the restriction and range of functions are disjoint, and therefore when the maps are disjoint.
 
 Suppose \X is an inverse category  with a restriction zero, and $\+$ is a tensor product on $\X$.
-Given specific  conditions regarding the tensor it is possible to define disjointness based upon the
-action of the tensor. We are assuming the following naming for the standard monoidal tensor
-isomorphisms:
+We are assuming the following naming for the standard monoidal tensor isomorphisms:
 \begin{align*}
    \upl &: 0 \+ A \to A &
    \upr &: A \+ 0 \to A\\
    a_\+ &: (A \+ B) \+ C \to A \+ (B \+ C) &
    c_\+ &: A \+ B \to B \+ A.
  \end{align*}
-
-\section{Disjointness via a tensor}
-\label{sec:disjointness_via_a_tensor}
-
-Our first section will show how a disjointness tensor, defined below, may be used to create a
-disjointness relation in an inverse category. We will do this by noting that when it is possible for
-maps to work separately on the components of the tensor, this essentially will allow us to define
-when the restriction and range of functions are disjoint, and therefore when the maps are disjoint.
 
 \begin{definition}\label{def:disjointness_tensor}
   Given we have an inverse category \X with restriction zero and a symmetric monoidal tensor
@@ -35,10 +37,11 @@ when the restriction and range of functions are disjoint, and therefore when the
     zero in \X).
     \item Define $\cpa = \inv{\upr}(1\+0):A\to A\+B$ and $\cpb = \inv{\upl}(0\+1): A\to B\+A$.
       $\cpa$ and $\cpb$ must be jointly epic. That is, if $\cpa f = \cpa g$ and $\cpb f = \cpb g$, then
-      $f = g$.
+      $f = g$.\label{enuitem:cpa-and-cpb-epic}
     \item Define $\scpa := (1\+0)\upr: A\+B \to A$ and $\scpb := (0\+1)\upl:A\+B \to B$.
       $\scpa$  and $\scpb$ must be jointly monic. That is, whenever $f\scpa = g \scpa$ and
-      $f\scpb = g\scpb$ then $f = g$.
+      $f\scpb = g\scpb$ then $f = g$. (Note this is derivable by taking the inverses of maps in
+      \ref{enuitem:cpa-and-cpb-epic}, as will be shown below).
   \end{enumerate}
 \end{definition}
 
@@ -57,8 +60,8 @@ when the restriction and range of functions are disjoint, and therefore when the
   \]
   From our definitions above, we may define our tensor structure maps:
   \begin{align*}
-    \upl &:0\+A \to A, &(a,A) \mapsto a\\
-    \upr &:A\+0 \to A, &(a,A) \mapsto a\\
+    \upl &:0\+A \to A, &(a,2) \mapsto a\\
+    \upr &:A\+0 \to A, &(a,1) \mapsto a\\
     a_\+ &: (A\+B)\+C, &((a,1),1) \mapsto (a,1)\\
      &  &((b,2),1) \mapsto ((b,1),2)\\
      &  &(c,2) \mapsto ((c,1),2)\\
@@ -239,7 +242,7 @@ remainder of this thesis.
 
 The partial pairing and copairing of Definition~\ref{def:up_triangle_and_down_triangle} will provide
 our mechanism for defining disjointness and eventually the disjoint join of maps. The existence of
-the pairing map $f\tjdown g$ allows us to ensure the restrictions of $f$ and $g$ are disjoint, while
+the pairing map $f\tjdown g$ ensures the restrictions of $f$ and $g$ are disjoint, while
 the copairing map $f\tjup d$ exists only when the ranges of $f$ and $g$ are disjoint.
 
 To arrive at the disjointness we first give the following lemma detailing properties of the two
@@ -672,7 +675,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item By Lemma~\ref{lem:disjointness_various}, item \ref{lemitem:djv_universal}, we know that
+    \item By Lemma~\ref{lem:disjointness_various} \ref{lemitem:djv_universal}, we know that
     $\rst{f}h \tperp \rst{g} h$, hence we can form $\rst{f}h \tjoin \rst{g}h$.
     Also, noting that
       \[
@@ -689,7 +692,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
           & = (\rst{f} \tjoin \rst{g} ) h.
       \end{align*}
     \item
-    Using Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item~\ref{lemitem:l_r_rst_is_natural},
+    Using Lemma~\ref{lem:properties_of_tjdown_and_tjup} \ref{lemitem:l_r_rst_is_natural},
     we can compute:
     \begin{align*}
       \rst{f\tjoin g} & = f \tjoin g \inv{(f\tjoin g)} \\
@@ -770,7 +773,7 @@ We may now complete the proof of Proposition~\ref{prop:disjointness_tensor_gives
 
 \end{proof}
 
-Finally, we show that the disjoint sum tensor is universal with respect to the disjoint join.
+Next, we show that the disjoint sum tensor is universal with respect to the disjoint join.
 
 \begin{lemma}\label{lem:disjoint_sum_tensor_preserves_the_disjoint_join}
   Given an inverse category \X with a disjoint sum tensor $\+$, then $\+$ preserves the disjoint
@@ -803,9 +806,68 @@ Finally, we show that the disjoint sum tensor is universal with respect to the d
 
 \end{proof}
 
+We may now show:
+\begin{proposition}\label{prop:a_disjoint_sum_tensor_gives_disjoint_sums}
+  A disjoint sum tensor in an inverse category \X gives disjoint sums, i.e., for each pair of
+  objects $A,B$, $A\+B$ is a disjoint sum.
+\end{proposition}
+\begin{proof}
+  We claim that setting $i_i = \cp{i}$ and $x_i = \icp{i}$ and setting $X = A\+B$ produces a disjoint
+  sum in \X. We show this satisfies the four conditions of Definition~\ref{def:disjoint_sum}.
+  \begin{enumerate}[{(}i{)}]
+    \item From Lemma~\ref{lem:tensor_identities}, we know that $\cpa$ and $\cpb$ are monic maps.
+    \item $\cpa : A \to A\+B$, $\cpb: B \to A\+B$, $\icpa: A\+B \to A$ and $\icpb: A\+B \to B$.
+    \item $\inv{\cpa} = \icpa$ and $\inv{\cpb} = \icpb$.
+    \item $\inv{i_1}i_1 = 1\+ 0 \tperp 0\+1 = \inv{i_2}i_2$ as
+      $1\+0 \tjdown 0\+1 = (\inv{\upr}\+\inv{\upl})$ and
+      $1\+0 \tjup 0\+1 = (\icpa\+\icpb)$. For their join,
+      $(1\+0)\tjoin (0\+1) = (\inv{\upr}\+\inv{\upl})(\icpa\+\icpb) =
+      \inv{\upr}\icpa \+ \inv{\upl}\icpb = 1\+1 = 1$.
+  \end{enumerate}
+\end{proof}
+
+Finally, to complete the cycle, we have:
+\begin{proposition}\label{prop:enough_disjoint_sums_make_a_disjoint_sum_tensor}
+  Given \X is an inverse category where every pair of objects has a disjoint sum, then the tensor
+  $\+$ derived from the disjoint sum of $A,B$ is a disjoint sum tensor.
+\end{proposition}
+\begin{proof}
+  In Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor} we showed that
+  $\+$ was a symmetric monoidal tensor. Therefore we need only to show that it is a disjointness
+  tensor that also satisfies Definition~\ref{def:disjoint_sum_tensor}.
+
+  We first note that we immediately have that it is a   disjointness tensor as:
+    \begin{enumerate}[{(}i{)}]
+      \item We have shown above it is a restriction functor. (Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor})
+      \item We have shown above that the unit is the restriction zero. (Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor})
+      \item From the above, we see $\cpa = i_1$ and $\cpb = i_2$. Assume we have $\cpa f = \cpa g$
+        and $\cpb f = \cpb g$. As $\icpa \cpa \djoin \icpb \cpb = 1$, we have
+        \begin{multline*}
+           f = (\icpa \cpa \djoin \icpb \cpb) f = \icpa \cpa f \djoin \icpb \cpb f = \\
+           \icpa \cpa g \djoin \icpb \cpb g =  (\icpa \cpa \djoin \icpb \cpb) g = g
+        \end{multline*}
+        and therefore $\cpa$ and $\cpb$ are jointly monic.\label{pfitem:3}
+      \item $\icpa$ and $\icpb$ are jointly epic by a similar argument as \ref{pfitem:3}.
+    \end{enumerate}
+
+  Note that we may also immediately conclude that the original disjointness relation on \X is the
+  same as the one generated by $\+$. This is because $f \tjdown g$ will be equal to $f\cpa \djoin
+  g\cpb$ and $f \tjup g$ will be equal to $\icpa f \djoin \icpb g$, therefore, $f\tjdown g$ and $f
+  \tjup g$ will exist if and only if $f\perp g$.
+
+  To show it is a disjoint sum tensor, we must show the existence of the maps $\alpha$ and $\beta$
+  from Definition~\ref{def:disjoint_sum_tensor}.
+
+  For Diagram~\ref{dia:tensor_complete_left}, assuming we have $f\icpb \tjdown g\icpb$ exists,
+  then $\alpha = (f\icpa)\cpa \djoin ((f\icpb \tjdown g \icpb)\cpb)$ satisfies the diagram. If
+  $\alpha$ does exist, then $\alpha \icpb$ satisfies the diagram for $f\icpb \tjdown g\icpb$. The
+  argument for satisfying Diagram~\ref{dia:tensor_complete_right} is analogous.
+
+  Therefore, $\+$ is a disjoint sum tensor.
+\end{proof}
+
 % subsection disjoint_join_via_a_monoidal_tensor (end)
 % section tensors_for_disjointness (end)
-\input{chapters/section/disjoint-sums}
 
 %%% Local Variables:
 %%% mode: latex

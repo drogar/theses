@@ -12,22 +12,22 @@ The following are the main results of this thesis.
 \item \textbf{Inverse Categories}
 
 We showed in Proposition~\ref{prop:an_inverse_category_with_products_is_a_restriction_preorder} that
-an inverse category with restriction products is a restriction pre-order. Similarly, in
+an inverse category with restriction products is a restriction preorder. Similarly, in
 Proposition~\ref{prop:inverse_category_with_coproducts_is_pre-order}, an inverse category with
-coproducts is a pre-order.
+coproducts is a preorder.
 
 \item \textbf{Discrete Inverse Categories}
 
 We introduced the inverse product, Definition~\ref{def:inverse_product} and showed that this
 provided meets for the inverse category in
-Proposition~\ref{prop:discrete_inverse_category_has_meets}. We showed that the inverse sub-category
+Proposition~\ref{prop:discrete_inverse_category_has_meets}. We showed that the inverse subcategory
 of a discrete Cartesian restriction category is a Discrete Inverse Category in
 Lemma~\ref{lem:inv_x_is_a_discrete_inverse_category}.
 
-Given a discrete inverse category $\X$, we constructed a category $\Xt$ with the same objects and
-maps being equivalence classes of maps of $\X$. We showed this was a restriction category in
-Lemmas~\ref{lem:xt_is_a_category} and \ref{lem:xt_is_a_restriction_category} and in fact was a
-discrete Cartesian restriction category as shown in
+Given a discrete inverse category $\X$, we constructed a category $\Xt$, the Cartesian Completion of
+\X with the same objects and maps being equivalence classes of maps of $\X$. We showed this was a
+restriction category in Lemmas~\ref{lem:xt_is_a_category} and \ref{lem:xt_is_a_restriction_category}
+and in fact was a discrete Cartesian restriction category as shown in
 Theorem~\ref{thm:xt_is_a_discrete_crc_when_x_is_an_inverse_category}.
 
 Finally, in
@@ -67,8 +67,8 @@ show that distributivity of the inverse product over the disjoint join is equiva
 over an disjoint sum tensor in Lemma~\ref{lem:distributive_means_distribute_over_join}.
 
 Then, in Theorem~\ref{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category} we show that
-the $\wtf$ construction of Chapter~\ref{chap:completing_a_discrete_inverse_category} lifts an disjoint sum
-tensor into a coproduct. From this we conclude that $\Xt$ is a distributive restriction category in
+Cartesian Completion turns a disjoint sum tensor into a coproduct. From this we conclude that $\Xt$
+is a distributive restriction category in
 Corollary~\ref{cor:xt_is_a_distributive_restriction_category}.
 
 \item \textbf{Linkage to quantum computation}
@@ -88,10 +88,9 @@ Definition~\ref{def:inverse_turing_category} and
 Definition~\ref{def:inverse_partial_combinatory_algebra} respectively. First, we show in
 Lemma~\ref{lem:discrete_turing_category_inverses_make_inverse_turing_category} that if we have a
 discrete Turing category $\T$, then $\Inv{\T}$, the inverse subcategory of $\T$ is an inverse Turing
-category. Then we show that an inverse Turing category gives a Turing category under the $\wtf$
-construction in Theorem~\ref{thm:inverse_turing_category_gives_a_turing_category}. In
-Proposition~\ref{prop:inverse-pca-iff-pca} we show that a discrete inverse category \X has an
-inverse PCA if and only if \Xt has a PCA. Furthermore, we discuss the category of computable
+category. Then we show that the Cartesian Completion of an inverse Turing category gives a Turing
+category. In Proposition~\ref{prop:inverse-pca-iff-pca} we show that a discrete inverse category \X
+has an inverse PCA if and only if \Xt has a PCA. Furthermore, we discuss the category of computable
 function based on a PCA in a Cartesian restriction category and show the conditions required for
 that to be a discrete Cartesian restriction category in Lemma~\ref{lem:comp_a_is_discrete_cart}.
 \end{enumerate}
@@ -124,10 +123,10 @@ of Theseus from \cite{james2013isomorphic,james2012information}.
 The connection to quantum computing, as exampled in
 Chapter~\ref{chap:commutative_frobenius_algebras} would benefit from further investigation. Although
 we were able to create a discrete inverse category based on commutative Frobenius algebras, we have
-not yet investigated the structure of $\widetilde{\text{CFrob}(\X)}$. As well, we note that the
-bulk of current literature on semantics of quantum computing is based on finite dimensional Hilbert
-spaces. Our construction on Frobenius algebras does not appear to be limited to the finite
-dimensional case, and as such, may be of use when considering  infinite dimensions.
+not yet investigated the effect of performing the Cartesian Completion on CFrob(\X). As well, we
+note that the bulk of current literature on semantics of quantum computing is based on finite
+dimensional Hilbert spaces. Our construction on Frobenius algebras is not limited to the finite
+dimensional case, and as such, may be of use when considering infinite dimensions.
 
 % chapter conclusions_and_future_work (end)
 

@@ -5,9 +5,9 @@
 The purpose of this chapter is to prove that the category of discrete inverse categories is
 equivalent to the the category of discrete Cartesian restriction categories. We will show
 how to construct a discrete Cartesian restriction category, \Xt, from a discrete inverse
-category, \X. The construction is reminiscent of the technique generally used to make a computation
-reversible --- one adds a history to the function to make it reversible: Here we know how to remove
-the history to make it invertible!
+category, \X. The construction, to be called the ``Cartesian Completion'',  is reminiscent of the
+technique generally used to make a computation reversible --- one adds a history to the function to
+make it reversible: Here we know how to remove the history to make it invertible!
 
 \section{The restriction category \hypXt} % (fold)
 \label{sec:the_restriction_category_hypxt}
@@ -15,8 +15,8 @@ the history to make it invertible!
 
 We begin by giving the construction of $\Xt$.
 
-\begin{definition}\label{def:xt}
-  When \X is an inverse category, define \Xt\ as:
+\begin{definition}[Cartesian Completion]\label{def:xt}
+  When \X is an inverse category, define \Xt, the Cartesian Completion of \X, as:
   \categoryns{objects as in \X;}
   {
     A map $(f,C):A\to B$ in \Xt is the equivalence class of the map $f:A\to B\*C$ in \X (detailed below in
@@ -435,8 +435,8 @@ Define the restriction in \Xt\ as follows:
   to commute, which is true by \rone and from the coherence diagrams for the inverse product tensor.
 \end{proof}
 
-Next,we show that the category \Xt\ has restriction products, given by the action of \wtc on
-the $\*$ tensor in \X.
+Next, we show that the category \Xt\ has restriction products, given by the action of the Cartesian
+Completion on the $\*$ tensor in \X.
 
 First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
 \begin{align}
@@ -538,7 +538,7 @@ At this point, we have shown that \Xt is a restriction category with restriction
 leads us to the following theorem:
 
 \begin{theorem}\label{thm:xt_is_a_discrete_crc_when_x_is_an_inverse_category}
-  For any inverse category \X, the category \Xt is a discrete restriction category.
+  For any inverse category \X, the category \Xt is a discrete Cartesian restriction category.
 \end{theorem}
 \begin{proof}
   The fact that \Xt is a Cartesian restriction category is immediate from
@@ -559,12 +559,12 @@ leads us to the following theorem:
     }
   \]
 \end{proof}
-\section{Equivalence between discrete inverse and discrete Cartesian restriction categories} % (fold)
+\section{Equivalence between the category  {\bf DInv} and the category {\bf DCartRest}} % (fold)
 \label{sec:equivalence_of_categories}
 
-This section will show that {\bf DInv}, the category of discrete inverse categories with functors that preserve
-the inverse tensor, is equivalent to {\bf DCartRest}, the category of discrete restriction categories with
-restriction functors which preserve the product.
+This section will show that {\bf DInv}, the category of discrete inverse categories with functors
+that preserve the inverse product, is equivalent to {\bf DCartRest}, the category of discrete
+Cartesian restriction categories with restriction functors which preserve the product.
 
 Here are the steps:
 \begin{enumerate}
@@ -578,30 +578,29 @@ Here are the steps:
     }
     \label{dia:universal_property_of_inverse_categories}
   \end{equation}
-  we show that there exists a functor $F^{\#}:\Xt \to \D$ which makes the diagram commute. As we have
-  $\Invf$ full and faithful, we may conclude it is unique and that
+  we show that there exists a functor $F^{\#}:\Xt \to \D$ which makes the diagram commute. As we
+  have $\Invf$ full and faithful, we may conclude it is unique and that
   Diagram~\ref{dia:universal_property_of_inverse_categories} is a universal diagram.
 \item Show that $\eta$ in Diagram~\ref{dia:universal_property_of_inverse_categories} is an
-  isomorphism. Note this follows directly from the previous point by Proposition 2.2.6 in
+  isomorphism. Note this also follows directly from the previous point by Proposition 2.2.6 in
   \cite{cockett2009:ctcs}.
 \end{enumerate}
-Once we have completed these steps, we may then conclude that there is an equivalence of discrete
-inverse categories to discrete Cartesian restriction categories.
+Once we have completed these steps, we may then conclude that there is an equivalence.
 
-In the following, $\X$
-will always be a discrete inverse category, $\D$ and $\B$ will be discrete restriction categories.
+In the following, $\X$ will always be a discrete inverse category, $\D$ and $\B$ will be discrete
+Cartesian restriction categories.
 
-The functor $\Invf$ maps a discrete restriction category to its inverse subcategory and
-maps functors between discrete restriction categories to a functor having the same action on the
-partial inverses. That is, given $G:\B \to \D$, then:
+The functor $\Invf$ maps a discrete Cartesian restriction category to its inverse subcategory and
+maps functors between discrete Cartesian restriction categories to a functor having the same action
+on the partial inverses. That is, given $G:\B \to \D$, then:
 \begin{align*}
   &\Inv{G}: \Inv{\B} \to \Inv{\D}\\
   &\Inv{G}(A) = G{A}&\text{(all objects of $\D$ are in $Inv(\D)$)}\\
   &\Inv{G}(f) = G(f)&\text{(restriction functors preserve partial inverse)}.
 \end{align*}
 \begin{lemma}\label{lem:inv_is_full_and_faithful}
-  The functor $\Invf$ from the category of discrete restriction categories to the category of
-  discrete inverse categories is full and faithful.
+  The functor $\Invf$ from the category of discrete Cartesian restriction categories to the category
+  of discrete inverse categories is full and faithful.
 \end{lemma}
 
 \begin{proof}
@@ -639,7 +638,7 @@ Next we define  $\eta:\X \to \Inv{\Xt}$ as the identity on objects functor where
   \eta(f g) &= (f g\inv{\usr},1) \xequiv{} (f\inv{\usr},1)(g\inv{\usr},1) = \eta{f}\eta{g}.
 \end{align*}
 
-Now, we may define the functor $F^{\#}:\Xt \to \D$. Recall that $\Inv{\D}$ is a sub-category of $\D$
+Now, we may define the functor $F^{\#}:\Xt \to \D$. Recall that $\Inv{\D}$ is a subcategory of $\D$
 having the same objects, but only the invertible maps. Given a functor $F:\X \to \Inv{\D}$ define
 $F^{\#}$ as follows:
 \begin{description}
@@ -682,7 +681,7 @@ We will now  show \ref{dia:universal_property_of_inverse_categories} is a univer
   The category \Xt and functor $\eta:\X\to \Inv{\Xt}$ is a universal pair for the functor $\Invf$.
 \end{corollary}
 \begin{proof}
-  Immediate and Lemma~\ref{lem:universal_diagram_is_a_commutative_diagram}.
+  Immediate by Lemma~\ref{lem:universal_diagram_is_a_commutative_diagram}.
 \end{proof}
 
 We may now proceed to show $\eta$ is an isomorphism, but we need a lemma first showing that all
@@ -739,7 +738,7 @@ invertible maps in $\Xt$ are the equivalence class of the form  $(f \inv{\usr},1
     }\label{eq:eta_iso_f_g}
   \end{equation}
   But as $h = (\Delta\*1)(1\*h)(\inv{\Delta}\*1)$, and letting $\ell =  \inv{\usr}h\usr$,
-  Diagram~(\ref{eq:eta_iso_f_g}) equates to $g = f \Delta (1\*\ell) \inv{\Delta}$. But by
+  Diagram~\ref{eq:eta_iso_f_g} equates to $g = f \Delta (1\*\ell) \inv{\Delta}$. But by
   Lemma~\ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}\ref{le:restfg},
   $\Delta (1\* \ell) \inv{\Delta} = \rst{\Delta (1\* \ell) \inv{\Delta}}$. Setting $\Delta (1\* \ell)
   \inv{\Delta}$ as $k$, we have $g = f \rst{k}$. This gives us:
@@ -750,16 +749,14 @@ invertible maps in $\Xt$ are the equivalence class of the form  $(f \inv{\usr},1
 \end{proof}
 
 \begin{theorem}\label{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories}
-  The category of discrete inverse categories (objects are discrete inverse categories, maps are
-  inverse tensor preserving functors) is equivalent to the category of discrete restriction
-  categories (objects are discrete restriction categories, maps are the Cartesian restriction
-  functors).
+  The category \textbf{DInv} of discrete inverse categories is equivalent to the category
+  \textbf{DCartRest} of discrete Cartesian restriction categories.
 \end{theorem}
 \begin{proof}
-  Letting $\wtf:\X \to \Xt$ be the functor that takes $X$ to its $\wtc$ completion, then from the
+  Letting $\wtf:\X \to \Xt$ be the functor that takes $\X$ to its Cartesian Completion, then from the
   above lemmas, we have shown that we have an adjoint:
   \begin{equation}
-    (\eta,\varepsilon):\wtf \vdash \Invf :\text{DInv} \to \text{DCartRest}. \label{eq:inv_and_wtf_are_adjoint_pair}
+    (\eta,\varepsilon):\wtf \vdash \Invf :\text{\textbf{DInv}} \to \text{\textbf{DCartRest}}. \label{eq:inv_and_wtf_are_adjoint_pair}
   \end{equation}
   By Lemma~\ref{lem:the_functor_eta_is_an_isomorphism} we know $\eta$ is an isomorphism. But this
   means the functor $\wtf$ is full and faithful, as shown in, e.g., Proposition 2.2.6 of
@@ -774,8 +771,8 @@ Cartesian restriction categories and discrete inverse categories:
 
 \[
   \xymatrix{
-    \text{DCartRest} \ar@{^{(}->}[rr]^{\top} && \text{CartRest} \ar@/_15pt/[ll]\\
-    \text{DInv}\ar@{<->}[u]^{\cong}
+    \text{\textbf{DCartRest}} \ar@{^{(}->}[rr]^{\top} && \text{\textbf{CartRest}} \ar@/_15pt/[ll]\\
+    \text{\textbf{DInv}}\ar@{<->}[u]^{\cong}
   }
 \]
 where the arrow from discrete Cartesian restriction categories to Cartesian restriction categories
@@ -784,7 +781,7 @@ restriction category. Of course, the terminal object is always discrete, as note
 Example~\ref{ex:terminal_object_is_discrete}.
 
 % subsection equivalence_of_categories (end)
-\section{Examples of the \texorpdfstring{\wtc}{tilde} construction} % (fold)
+\section{Examples of the Cartesian Construction} % (fold)
 \label{sec:examples_of_the_wtf_construction}
 
 \begin{example}[Different inverse products produce different $\Xt$]
@@ -887,7 +884,7 @@ $}. Once again, the tensor in \D becomes the meet.
      h \definedas \{(a,(b,a)) | (a,b) \in g\} \label{eq:new_partial_injective}
   \end{equation}
   By its definition, $h : A \to B \*A$ is injective, $(h,A): A \to B$ coincides with $g$ and therefore
-  we see that using the \wtc construction on \pinj results in \Par.
+  we see that using the Cartesian Construction on \pinj results in \Par.
 \end{example}
 % subsection examples_of_the_wtf_construction (end)
 

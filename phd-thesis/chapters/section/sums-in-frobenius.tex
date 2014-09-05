@@ -24,7 +24,7 @@ zero object. This may also be defined directly:
 \end{proof}
 
 \begin{lemma}\label{lem:cfrobperp_is_a_disjointness_relation}
-  As shown in Lemma~\ref{lem:cfrobx_is_an_inverse_category} $CFrob(\X)$ is a discrete inverse
+  As shown in Lemma~\ref{lem:cfrobx_is_an_inverse_category}, $CFrob(\X)$ is a discrete inverse
   category. Suppose \X has zero maps. Then for $f,g:A\to B$, define $f\perp g$  when
 \[
 \begin{tikzpicture}
@@ -43,10 +43,10 @@ node at (0,2) [delta] (d) {};
 \ \raisebox{40pt}{$= 0.$}\
 \]
 
-  The relation $\perp$ is a disjointness relation.
+  Then, the relation $\perp$ is a disjointness relation.
 \end{lemma}
 \begin{proof}
-We need to show the seven axioms of the disjointness relation hold. Note that we will show
+We must show the seven axioms of the disjointness relation hold. We will show
 \axiom{Dis}{6} early on as its result will be used to establish some of the other axioms.\\
 \axiom{Dis}{1}: For all $f:A\to B,\ f\cdperp 0$.\\
 \[
@@ -336,7 +336,7 @@ In this proof, we use the result of \axiom{Dis}{6}, i.e., that $\rst{f}\perp\rst
       \end{pgfonlayer}
 \end{tikzpicture}
 }
-\ \raisebox{45pt}{$=0$}
+\ \raisebox{45pt}{$=0$.}
 \]
 \axiom{Dis}{3}: $f\cdperp g,\ f' \le f,\ g' \le g$ implies $f' \cdperp g'$.\\
 \[
@@ -403,10 +403,10 @@ node at (0,.5) [map] (z) {$\scriptstyle 0$};
 \draw [] (z) to (0,0);
 \end{tikzpicture}
 }
-\ \raisebox{45pt}{$=0$}
+\ \raisebox{45pt}{$=0$.}
 \]
 \axiom{Dis}{4}: $f\cdperp g$ implies $g \cdperp f$.\\
-This follows directly from the co-commutativity of $\Delta$.\\
+This follows directly from the cocommutativity of $\Delta$.\\
 \axiom{Dis}{5}: $f\cdperp g$ implies $h f \cdperp h g$.\\
 This follows directly from the naturality of $\Delta$.\\
 \axiom{Dis}{7}: $\rst{f}\cdperp \rst{g},\ \rg{h}\cdperp \rg{k}$ implies $f h \cdperp g k$.\\

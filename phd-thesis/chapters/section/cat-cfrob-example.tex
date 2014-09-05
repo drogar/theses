@@ -47,7 +47,7 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
   Commutative separable Frobenius algebras\cite{kock04}: A quintuple $(A,\nabla,\eta,\Delta,\epsilon)$ where
   $A$ is an object of \X with the following maps:
   $\nabla :A\*A \to A$, $\eta:I\to A$, $\Delta : A \to A\*A$, $\epsilon : A \to I$ which are natural
-  maps in \X, with $(A,\nabla,\eta)$ a monoid and $(A,\Delta,\epsilon)$ a co-monoid. Additionally, these
+  maps in \X, with $(A,\nabla,\eta)$ a monoid and $(A,\Delta,\epsilon)$ a comonoid. Additionally, these
   satisfy
   \[
     \xymatrix @C=10pt @R=20pt{
@@ -63,7 +63,7 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
   together with the additional property that $\Delta \nabla = 1$ (separable).
 
   \paragraph{Maps:} The maps of \X between the objects of \X which preserve multiplication ($\nabla$)
-  and co-multiplication ($\Delta$) but do not necessarily preserve the units.
+  and comultiplication ($\Delta$) but do not necessarily preserve the units.
   This means a map $f$ must satisfy the following commuting diagrams:
   \[
     \xymatrix@C+25pt{
@@ -224,8 +224,6 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
   \end{tikzpicture}
   \raisebox{15pt}{.}
   \]
-
-  %todo - Show combined with Frob condition.
 
   First, we must show that $\inv{f}$ is a map in the category, i.e., that $\Delta (\inv{f} \*
   \inv{f}) = \inv{f} \Delta$ and $(\inv{f} \* \inv{f})\nabla = \nabla \inv{f}$. We show this for
@@ -904,7 +902,7 @@ Hence, CFrob(\X) is an inverse category.
   \end{tikzpicture}
   \raisebox{20pt}{$= \nabla_A \Delta_A$.}
   \]
-  Note that the last step in the proof uses the ``special'' property in a non-trivial way.
+  Note that the proof uses the ``special'' property in a non-trivial way.
 
   Thus, we have a $\Delta$ in CFrob(\X). As $\nabla = \inv{\Delta}$, the Frobenius requirement for
   the inverse product is immediately fulfilled. Commutativity, cocommutativity, associativity,

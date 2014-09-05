@@ -82,24 +82,29 @@ categorical definition. Throughout Table~\ref{tab:properties_of_maps_in_categori
 maps in a category $C$ with $e:A \to A$ and $f,g:A \to B$.
 \begin{table}[!htbp]
   \begin{center}
-    \begin{tabular}{|p{1in}p{1in}p{3.73in}|}
+    \begin{tabular}{|p{1in}p{1in}p{3.78in}|}
       \hline
       {\bf Sets} & {\bf Categorical Property} & {\bf Definition}\\
       \hline
       \hline
       Injective & Monic & $f$ is monic whenever $h f = k f$ means that $h = k$.\\
+      & & \\
       \hline
-      Surjective & Epic & The dual notion to monic, $g$ is epic whenever $g h = g k$ means that $h = k$.
-      A map that is both monic and epic is called \emph{bijic}.\\
+      Surjective & Epic & {The dual notion to monic, $g$ is epic whenever $g h = g k$ means that $h = k$.
+      A map that is both monic and epic is called \emph{bijic}.}\\
+      & & \\
       \hline
       Left~Inverse & Section & $f$ is a section when there is a map $\categorysection{f}$ such that $f \categorysection{f} = 1_A$. $f$
       is also referred to as the \emph{left inverse} of $\categorysection{f}$.\\
+      & & \\
       \hline
       Right Inverse & Retraction & $f$ is a retraction when there is a map $\retraction{f}$ such that $\retraction{f} f = 1_B$.
       $f$ is also referred to as the \emph{right inverse} of $\retraction{f}$. A map that is both a section and a
       retraction is called an \emph{isomorphism}.\\
+      & & \\
       \hline
       Idempotent & Idempotent & An endomorphism $e$ is idempotent whenever $e e = e$.\\
+      & & \\
       \hline
     \end{tabular}
   \end{center}
@@ -154,7 +159,7 @@ create a category based on the original one in which all idempotents do split.
 \begin{definition}\label{def:split_category}
   Given a category $\B$ and a set of idempotents $E$ of $\B$, we may create the category of \B split
   over the idempotents $E$. This is normally written as $\spl{E}{\B}$, and defined as:
-  \category{$(A,e)$, where $A$ is an object of \B, $e:A\to A$ and $e\in E$.}
+  \categoryns{$(A,e)$, where $A$ is an object of \B, $e:A\to A$ and $e\in E$.}
     {$f_{d,e}:(A,d)\to(B,e)$ is given by $f:A\to B$ in \B, where $f = d\uts f e$.}
     {The map $e_{e,e}$ for $(A,e)$.}
     {Inherited from \B.}
@@ -173,7 +178,7 @@ envelope (whence the notation) or Cauchy completion.
   \emph{functor}, provided it satisfies the following:
   \begin{itemize}
     \item[\axiom{F}{1}] $F(\catdomain{f}) = \catdomain{F(f)}$ and $F(\catcodomain{f}) = \catcodomain{F(f)}$;
-    \item[\axiom{F}{2}] $F(f g) = F(f)F(g)$;
+    \item[\axiom{F}{2}] $F(f g) = F(f)F(g)$.
   \end{itemize}
 \end{definition}
 
@@ -206,7 +211,7 @@ each object $A,B$ in $\B$ we have the map:
 We may also consider the notion of containment between categories:
 
 \begin{definition}\label{def:subcategories}
-  Given the categories $\B$ and $\D$, we say that \B is a \emph{sub-category} of \D when each object
+  Given the categories $\B$ and $\D$, we say that \B is a \emph{subcategory} of \D when each object
   of \B is an object of \D and when each map of \B is a map of \D.
 \end{definition}
 
@@ -218,13 +223,13 @@ We now have the machinery to discus the relationship between a category \B and i
 $\spl{}{\B}$:
 
 \begin{lemma}\label{lem:split_category_splits_and_has_category}
-  Given a category $\B$, then it is a full sub-category of $\spl{}{\B}$ and all idempotents split
+  Given a category $\B$, then it is a full subcategory of $\spl{}{\B}$ and all idempotents split
   in  $\spl{}{\B}$.
 \end{lemma}
 \begin{proof}
   We identify each object $A$ in $\B$ with the object $(A,1)$ in $\spl{}{\B}$. The only maps between
   $(A,1)$ and $(B,1)$ in $\spl{}{\B}$ are the maps between $A$ and $B$ in $\B$, hence we have a
-  full sub-category.
+  full subcategory.
 
   Suppose we have the map $d_{e,e}: (A,e) \to (A,e)$ with $d d = d$, i.e., it is idempotent in $C$
   and $\spl{}{\B}$. In $\spl{}{\B}$, we have the maps $d_{e,d}:(A,e) \to (A,d)$ and $d_{d,e}:(A,d) \to
@@ -238,8 +243,7 @@ Functors with two arguments, e.g., $F:\A \times \A \to \A$ which satisfy \axiom{
 
 
 We will often restrict ourselves to specific classes of functors which either \emph{preserve} or
-\emph{reflect} certain characteristics of the domain category or codomain category. To be more
-precise, we provide some definitions.
+\emph{reflect} certain characteristics of the domain category or codomain category.
 
 \begin{definition}\label{def:diagram_in_a_category}
   Given a category $\cS$, a \emph{diagram}
@@ -247,11 +251,11 @@ precise, we provide some definitions.
 \end{definition}
 
 \begin{definition}\label{def:property_of_a_diagram}
-  A \emph{property} of a diagram $D$, written $P(D)$ is a logical relation expressed using the
+  A \emph{property} of a diagram $D$, written $P(D)$, is a logical relation expressed using the
   objects and maps of the diagram $D$.
 \end{definition}
 
-For example,   $P(f:A \to B) = \exists h : B \to A. h f = 1_A$ expresses that $f$ is a retraction.
+For example,   $P(f:A \to B) \definedas \exists h : B \to A. h f = 1_A$ expresses that $f$ is a retraction.
 
 \begin{definition}\label{def:functor_preserving_and_reflecting_a_property}
   A functor $F$ \emph{preserves} the property $P$ over maps $f_i$ and objects $A_j$ when:
@@ -287,7 +291,7 @@ In the case where a natural transformation is a collection of isomorphisms, we w
 \section{Adjoint functors and equivalences}
 \label{sec:adjoint-functors-and-equivalences}
 
-Referring to Section~\ref{ssub:functors_and_natural_transformations}, we consider some relationships
+Referring to Section~\ref{ssub:functors_and_natural_transformations}, we consider relationships
 between categories. While two categories may be isomorphic (i.e. there is an invertible functor
 between them), we normally consider two alternate relations between categories: Equivalence and
 adjointness.
@@ -410,7 +414,7 @@ In this section, we will offer a few examples of categories.
   = G$, this category is enriched in groups.
 \end{example}
 
-Four categories derived from sets are \sets, \Par, \rel and \pinj:
+Four categories derived from sets are \rel, \sets, \Par, and \pinj:
 
 \begin{example}[\rel]\label{ex:category_rel}
 \rel is often of interest in quantum programming language semantics:
@@ -420,7 +424,7 @@ Four categories derived from sets are \sets, \Par, \rel and \pinj:
 
 
 Note that \rel is enriched in posets (see Example~\ref{ex:preorders-are-categories}), via set
-inclusion. \sets and \Par can be viewed as sub-categories of \rel, with the same objects, but
+inclusion. \sets and \Par can be viewed as subcategories of \rel, with the same objects, but
 restricting the maps allowed --- see below. \Par is also enriched in posets, via the same inclusion
 ordering as in \rel.
 
@@ -535,7 +539,7 @@ and the terminal object by $1$.
 A map \emph{from} the terminal object to another object in the category is often referred to as an
 \emph{element} or a \emph{point}.
 
-We now turn to products and co-products.
+We now turn to products and coproducts.
 
 \begin{definition}\label{def:categorical_product}
   Let $A,B$ be objects of the category $\B$. Then the object $A \times B$ is a \emph{product} of
@@ -555,7 +559,7 @@ We now turn to products and co-products.
 
 \end{definition}
 
-A co-product is the dual of a product.
+A coproduct is the dual of a product.
 
 \begin{definition}\label{def:categorical_coproduct}
   Let $A,B$ be objects of the category $\B$. Then the object $A + B$ is a \emph{coproduct} of
@@ -574,7 +578,7 @@ A co-product is the dual of a product.
   \end{itemize}
 \end{definition}
 
-It is possible for an object to both a limit and a co-limit at the same time:
+It is possible for an object to both a limit and a colimit at the same time:
 \begin{definition}\label{def:categorical_zero}
   Given a category $\B$, any object that is both a terminal and initial object is called a
   \emph{zero object}. This object is labelled $\zeroob$.
@@ -675,7 +679,7 @@ $\nabla$.
     A\*(B\*C) \ar[d]_{1\*c_{B,C}}
       & (C\*A)\*B \ar[d]^{c_{C,A}\*1}\\
     A\*(C\*B) \ar[r]^{a_{A,C,B}}
-      & C\*(A\*B)\text{ ,}
+      & C\*(A\*B).
   }
 \]
 \caption{Associativity symmetry in an SMC.}\label{fig:SMC_associativity_symmetry}

@@ -7,9 +7,9 @@ that similar to the product, having coproducts is too restrictive a notion for i
 inverse category with a coproduct is a preorder.
 Nonetheless it is possible to define coproduct like structures in an inverse category. To introduce
 this structure we define a ``disjointness'' relation between parallel maps of an inverse category
-and whence a ``disjoint join'' for disjoint maps. We will then show how a tensor product satisfying
-some specific conditions gives rise to both a disjointness relation and a disjoint join. Such a
-tensor product provides the proposed replacement for ``coproducts'' in an inverse category.
+and whence a ``disjoint join'' for disjoint maps. In the next chapter, we will then show how a
+tensor satisfying certain specific conditions gives rise to both a disjointness relation and a
+disjoint join. Such a tensor provides the replacement for ``coproducts'' in an inverse category.
 
 
 
@@ -24,7 +24,7 @@ partial functions) has coproducts.
   $\cpa$ and $\cpb$ are total.
 \end{definition}
 \begin{lemma}\label{lem:restriction_coproduct_is_restriction_functor}
-  A restriction coproduct in $\R$ satisfies:
+  A restriction coproduct $+$ in $\R$ satisfies:
   \begin{enumerate}[{(}i{)}]
     \item $\restr{f+g} = \restr{f} + \restr{g}$ which means $+$ is a restriction functor.
     \item $\nabla:A+A\to A$ is total.
@@ -34,7 +34,6 @@ partial functions) has coproducts.
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item Totality of $\cpa$ and $\cpb$.
     \item \textbf{$+$ is a restriction functor.}
       Consider the diagram:
       \[
@@ -54,7 +53,7 @@ partial functions) has coproducts.
         &= \restr{f} \cpa & \cpa'\text{ total}.
       \end{align*}
     \item   \textbf{$\nabla:A+A\to A$ is total.}
-      By the definition of $\nabla$ ($=\<1 | 1 \>$) and the co-product, the following diagram
+      By the definition of $\nabla$ ($=\<1 | 1 \>$) and the coproduct, the following diagram
       commutes,
       \[
         \xymatrix @C=30pt @R=35pt{
@@ -112,7 +111,7 @@ the zero object.
 
 
 \begin{proposition}\label{prop:inverse_category_with_coproducts_is_pre-order}
-  An inverse category \X with restriction coproducts is a pre-order.
+  An inverse category \X with restriction coproducts is a preorder.
 \end{proposition}
 \begin{proof}
   By Lemma~\ref{lem:restriction_coproduct_is_restriction_functor}, we know $\nabla$ is total and
@@ -123,9 +122,9 @@ the zero object.
 
   This means for parallel maps $f,g:A \to B$, we have
   \[
-    f = \cpa \<f|g\> = \inv{\nabla} \<f|g\> = \cpb\<f|g\> = g
+    f = \cpa [f,g] = \inv{\nabla} [f,g] = \cpb [f,g] = g
   \]
-  and therefore \X is a pre-order.
+  and therefore \X is a preorder.
 \end{proof}
 % subsection inverse_categories_with_restriction_coproducts (end)
 % section coproducts_in_restriction_categories (end)
@@ -230,7 +229,7 @@ We may equivalently define a disjointness relation by a relation on the restrict
   each $A \in \mathrm{ob}(\X)$, is an \emph{open disjointness} relation when for all $e, e' \in
   \open{A}$
   \begin{align*}
-    \axiom{$\mathcal{O}$dis}{1}\quad &1 \ocdperpsub{A} 0; &\text{(Zero disjoint to all idempotents)}\\
+    \axiom{$\mathcal{O}$dis}{1}\quad &1 \ocdperpsub{A} 0; &\text{(Zero disjoint to identity)}\\
     \axiom{$\mathcal{O}$dis}{2}\quad &e \ocdperpsub{A} e' \text{ implies }e' \ocdperpsub{A} e;
     &\text{(Symmetric)}\\
     \axiom{$\mathcal{O}$dis}{3}\quad &e \ocdperpsub{A} e' \text{ implies }e e' = 0; &\text{(Disjoint implies no intersection)}\\

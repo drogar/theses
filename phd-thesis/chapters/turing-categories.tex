@@ -262,23 +262,25 @@ First, we observe:
     }\label{dia:pre-inverse-turing}
   \end{equation}
 
-  Next, note that for any monic $m$, we have $f$ is in the equivalence class of $f m$. This is
-  because $\rst{f} = \rst{fm}$ by Lemma~\ref{lem:restrictionvarious}, .... NEED WORK HERE.
+  Recall from Lemma~\ref{lem:delta_nabla_maps_are_closed} that $\dmap{T}$ is closed under
+  composition. In actuality, the proof of closure only relies on one of the maps being in
+  $\dmap{T}$. Thus, if $h\in \dmap{T}$ then $f h g$ will be in $\dmap{T}$ as well.
 
-  We have both $T\*C \retract T$
-  and $D \retract T$, and as equivalence is a transitive relation, we may express
-  Diagram~\ref{dia:pre-inverse-turing} as
+  We use this and the fact that we have both $T\*C \retract T$
+  and $D \retract T$, to add to   Diagram~\ref{dia:pre-inverse-turing}:
   \[
     \xymatrix @C=15pt @R=15pt{
-      & & T \* T \ar@{.>}[dddd]^{h_f}\\
-      &T\*T \ar[ur]^{\circ\, m_{T\*C}} & & \\
-      T \ar[ur]^(.3){\inv{\usl}(\code{f}\*1)} \ar[ddrr]_{f m_D} \\
+      & & & T \* T \ar@{.>}[d]^{r_{T\*C}}\\
+      & & T \* T \* C \ar@{.>}[dddd]^{h'_f} \ar[ur]^{m_{T\*C}} \ar@{=}[r] &T\*T\*C \ar@{.>}[dddd]^{h'_f} \\
+      &T\*T \ar[ur]^{\circ} & & \\
+      T \ar[ur]^(.3){\inv{\usl}(\code{f}\*1)} \ar[ddrr]_{f} \\
       & & & \\
-      && T\*T.
+      && T\*D \ar[dr]_{m_D} &  T\*D \ar[d]_{m_D}\\
+      &&&T\*T.
     }
   \]
-  But this is the required diagram for an inverse Turing category and therefore $\Inv{T}$ is an
-  inverse category with $\diamond = \circ\, m_{T\*C}$.
+  But this then is the required diagram for an inverse Turing category with $h_f = r_{T\*C} h' f m_D$
+  and therefore $\Inv{T}$ is an inverse Turing category with $\diamond = \circ\, m_{T\*C}$.
 \end{proof}
 
 We know from Chapter~\ref{chap:completing_a_discrete_inverse_category} that when \X is an inverse

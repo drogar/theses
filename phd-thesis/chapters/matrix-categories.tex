@@ -55,7 +55,7 @@ The types of matrices allowed in the matrix category are subject to certain cons
 \end{definition}
 
 \begin{lemma}\label{lem:inverse_matrix_category_is_a_restriction_category}
-  When $\X$ is an inverse category with disjoint sums, \imatx is an inverse category.
+  When $\X$ is an inverse category with disjoint joins, \imatx is an inverse category.
 \end{lemma}
 \begin{proof}
   We need to show the following:
@@ -149,7 +149,7 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
 
 Furthermore, $\imatx$ is actually a disjoint sum category:
 \begin{theorem}\label{thm:imatx_is_an_disjoint_sum_category}
-  Given \X an inverse category with disjoint sums and restriction zero, \imatx has
+  Given \X an inverse category with disjoint joins and restriction zero, \imatx has
   disjoint sums.
 \end{theorem}
 
@@ -299,8 +299,8 @@ disjoint sums.
 \label{sec:equivalence_between_an_disjoint_sum_category_and_its_matrix_category}
 In this section we will provide restriction functors between a disjoint sum category
 \X and its matrix category \imatx. Furthermore, we will show these functors form an
-equivalence between these two categories. In actuality, this will give us an equivalence between
-inverse categories with disjoint sums and a disjointness relations (Disjoint Sum Cats) and
+equivalence between these two categories. In actuality, this will give us a reflection between
+inverse categories with disjoint sums (Disjoint Sum Cats) and
 categories with a disjoint join (Disjoint Join Cats). That is,
 \[
    \xymatrix@R+10pt@C+20pt{

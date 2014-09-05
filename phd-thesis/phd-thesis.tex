@@ -95,30 +95,14 @@ External Examiner
 \phantomsection
 \altchapter[Abstract]{\bf{Abstract}}
 The categorical semantics of reversible computing must be a category which combines the concepts of
-partiality and the ability to, at least partially, reverse a map in the category. Inverse
-categories, restriction categories where each map is a partial isomorphism, provide the necessary
-machinery for reversible computing. This thesis explores inverse categories and relates them to both
-quantum computing, by showing that commutative Frobenius algebras form an inverse category, and to
-standard non-reversible computing by both showing the equivalence of discrete inverse categories to
-discrete Cartesian restriction categories and relating an inverse Turing category to a Turing
-category.
-
-While restriction categories have products and coproducts, we show the direct application of these
-to inverse categories is not the right notion to consider. Therefore we introduce corresponding
-structures in inverse categories: inverse products and disjoint sums. We also show inverse
-categories with another construction, disjoint join, allows us to create an equivalent matrix
-category with disjoint sums. We show that a commutative Frobenius algebra over a symmetric monoidal
-category with a biproduct and additive tensor has both disjoint  sums and inverse products.
-
-We provide an equivalence between discrete inverse categories (an inverse category with an inverse
-product) and discrete Cartesian restriction categories. Here, discrete means that the diagonal map
-$\Delta:A \to A\times A$ has a partial inverse. We also show the construction giving the equivalence
-translates inverse sums to coproducts in the Cartesian restriction category.
-
-Finally, we relate this directly to standard computing by giving the analogues for Turing objects
-and partial combinatory algebras in an inverse category and show these correspond directly with a
-Turing object and PCA in a Cartesian restriction category.
-
+partiality and the ability to reverse any map in the category. Inverse categories, restriction
+categories in which each map is a partial isomorphism, provide exactly this structure. This thesis
+explores inverse categories and relates them to both quantum computing and standard non-reversible
+computing. The former is achieved by showing that commutative Frobenius algebras form an inverse
+category. The latter is by establishing the equivalence of discrete inverse categories to discrete
+Cartesian restriction categories --- this is the main result of this thesis. This allows one to
+transfer the formulation of computability given by Turing categories onto discrete inverse
+categories.
 
 \newpage
 \phantomsection
@@ -130,12 +114,12 @@ inspiration for both my master's degree and my doctoral studies.
 
 Secondly, thank you to Dr. Peter Selinger, both for his paper on the semantics of quantum computing
 which inspired me to write LQPL and the opportunity to work for him at MSRI in Berkeley for the fall
-of 2012. His clarity of exposition in his papers remains a target which I  aspire to.
+of 2012. His clarity of exposition in research writing remains a target to which I aspire.
 
 Thank you to Dr. Kristine Bauer and Dr. Peter Høyer for serving on my supervisory committee,
 partaking in my qualifying exam and my thesis defence. I always felt your doors were open to me.
 
-Thank you to Dr. Gilad Gour for being the internal examiner.
+Thank you to Dr. Gilad Gour for being my internal examiner.
 
 Thank you to Dr. Bob Coecke for agreeing to be my external examiner.
 
@@ -145,7 +129,7 @@ Dana Harrington, Ross Duncan, Jon Grattage, Sean Nichols, Ning Tang, Alexander G
 Jonathan Gallagher, Chad Nester and Prashant Kumar.
 
 Finally, and most of all, thank you so much to all of my family. My wife, for being with me for all
-these years and proof-reading both my masters and this thesis --- learning more about math than she
+these years and proof-reading both my master's and this thesis --- learning more about math than she
 ever thought she would; my kids, who still remember me; and my grandkids --- who likely don't remember a time
 when Grandpa was not in school.
 \newpage
