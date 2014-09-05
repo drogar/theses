@@ -116,7 +116,7 @@ $\name{f}$ is referred to as a \emph{code} of $f$.
 This allows for various recognition criteria for Turing categories.
 
 \begin{theorem}\label{thm:turing_recognition}
-  A Cartesian restriction category \D is a Turing category if and only if $\T$ has an object $T$
+  A Cartesian restriction category \D is a Turing category if and only if $\D$ has an object $T$
   for which every other object of \D is a retract and $T$ has a universal self-application map
   $\bullet$, written as $T\times T \xrightarrow{\ \bullet\ }T$.
 \end{theorem}
@@ -156,7 +156,7 @@ There is another criteria that also gives a Turing category:
 \begin{lemma}\label{lem:t_t_to_t_gives_a_turing_category}
   A Cartesian restriction category \T is a Turing category if:
   \begin{enumerate}[{(}i{)}]
-  \item $\T$ has an object $T$ for which every other object of \D is a retract;
+  \item $\T$ has an object $T$ for which every other object of \T is a retract;
   \item $T\times T$ has a map  $T\times T \xrightarrow{\ \circ\ }T$ and for all
     $f:T\to T$ there exists an element, $\code{f}:1\to T$ (which is total) such that
       \[
@@ -229,14 +229,14 @@ developed below.
 First, we observe:
 
 \begin{lemma}\label{lem:discrete_turing_category_inverses_make_inverse_turing_category}
-  When $T$ is a discrete Turing category then $\Inv{T}$ is an inverse Turing category.
+  When $\T$ is a discrete Turing category then $\Inv{\T}$ is an inverse Turing category.
 \end{lemma}
 \begin{proof}
-  By Lemma~\ref{lem:inv_x_is_a_discrete_inverse_category}, we know that $\Inv{T}$ is a discrete
+  By Lemma~\ref{lem:inv_x_is_a_discrete_inverse_category}, we know that $\Inv{\T}$ is a discrete
   inverse category. Thus, all that remains is to show:
   \begin{enumerate}[{(}i{)}]
-    \item There is a map $\diamond:T\*T \to T\*T$ in $\Inv{T}$;
-    \item given a  map $f$ in $\Inv{T}$, there is another map $\iname{f}$ which makes
+    \item There is a map $\diamond:T\*T \to T\*T$ in $\Inv{\T}$;
+    \item given a  map $f$ in $\Inv{\T}$, there is another map $\iname{f}$ which makes
       Diagram~\ref{dia:inverse-turing-category-code} commute.
   \end{enumerate}
 
@@ -247,11 +247,11 @@ First, we observe:
           T \ar[ur]_{f} \ar[u]^{\<!\code{f},1\>}
         }
       \]
-  in $T$.   We know that the  map $\<\iname{f},1\>$ is invertible by
+  in $\T$.   We know that the  map $\<\iname{f},1\>$ is invertible by
   \ref{lem:a_discrete_crc_is_precisely_a_graphic_crc} as we are in a discrete Cartesian restriction
   category.
 
-  Expressing this in $\Inv{T}$, for some $h'_f \in \dmap{T}$ we have:
+  Expressing this in $\Inv{\T}$, for some $h'_f \in \dmap{T}$ we have:
   \begin{equation}
     \xymatrix @C=15pt @R=15pt{
       & & T \* T\*C \ar@{.>}[dddd]^{h'_f}\\
@@ -263,33 +263,42 @@ First, we observe:
   \end{equation}
 
   Recall from Lemma~\ref{lem:delta_nabla_maps_are_closed} that $\dmap{T}$ is closed under
-  composition. In actuality, the proof of closure only relies on one of the maps being in
-  $\dmap{T}$. Thus, if $h\in \dmap{T}$ then $f h g$ will be in $\dmap{T}$ as well.
+  composition and that $1\*f\in \dmap{T}$ for any $f$. In particular, for $f:T\to T\*D$ in
+  $\Inv{\T}$, as $D\retract T$, we have $f$ is in the same equivalence class as $f(1\*m_D)$. We see
+  this as $\rst{f} = \rst{f(1\*m_D)}$, $1\*m_D\in \dmap{T}$ and the diagram
+  \[
+    \xymatrix@R-10pt{
+      &T\*D \ar@{.>}[dd]^{1\*m_D}\\
+      T \ar[ur]^{f} \ar[dr]_{f(1\*m_D)}& \\
+      &T\*T
+    }
+  \]
+  obviously commutes.
 
   We use this and the fact that we have both $T\*C \retract T$
   and $D \retract T$, to add to   Diagram~\ref{dia:pre-inverse-turing}:
   \[
     \xymatrix @C=15pt @R=15pt{
-      & & & T \* T \ar@{.>}[d]^{r_{T\*C}}\\
-      & & T \* T \* C \ar@{.>}[dddd]^{h'_f} \ar[ur]^{m_{T\*C}} \ar@{=}[r] &T\*T\*C \ar@{.>}[dddd]^{h'_f} \\
+      & & & T \* T \ar@{.>}[d]^{1\*r_{T\*C}}\\
+      & & T \* T \* C \ar@{.>}[dddd]^{h'_f} \ar[ur]^{1\*m_{T\*C}} \ar@{=}[r] &T\*T\*C \ar@{.>}[dddd]^{h'_f} \\
       &T\*T \ar[ur]^{\circ} & & \\
-      T \ar[ur]^(.3){\inv{\usl}(\code{f}\*1)} \ar[ddrr]_{f} \\
+      T \ar[ur]^(.3){\inv{\usl}(\iname{f(1\*m_D)}\*1)} \ar[ddrr]_{f} \\
       & & & \\
-      && T\*D \ar[dr]_{m_D} &  T\*D \ar[d]_{m_D}\\
+      && T\*D \ar[dr]_{1\*m_D} &  T\*D \ar[d]^{1\*m_D}\\
       &&&T\*T.
     }
   \]
-  But this then is the required diagram for an inverse Turing category with $h_f = r_{T\*C} h' f m_D$
-  and therefore $\Inv{T}$ is an inverse Turing category with $\diamond = \circ\, m_{T\*C}$.
+  But this is the required diagram for an inverse Turing category with $h_f = (1\*r_{T\*C}) h'_f (1\*m_D)$,
+  and with $\iname{f(1\*m_D)} = \code{f}$ and  with $\diamond = \circ(1\* m_{T\*C})$. Therefore
+  $\Inv{\T}$ is an inverse Turing category.
 \end{proof}
 
-We know from Chapter~\ref{chap:completing_a_discrete_inverse_category} that when \X is an inverse
-Turing category, we know \Xt is a discrete Cartesian restriction category. Moreover, if
-$A\retractmaps{m_A}{r_A} T$ in \X, then $A \retractmaps{m_A\inv{\usr}}{r_A\inv{\usr}} T$ in \Xt and hence $T$
-will remain universal in \Xt. Hence, we have the basic requirements for a Turing category as
-specified in Theorem~\ref{thm:turing_recognition} and
-Lemma~\ref{lem:t_t_to_t_gives_a_turing_category}. All that remains to be shown is that we have a
-self-application map and a code for each map $f:1\to T$ as in
+We know that applying the Cartesian Completion to \X, an inverse Turing category, results in \Xt, a
+discrete Cartesian restriction category. Moreover, if $A\retractmaps{m_A}{r_A} T$ in \X, then $A
+\retractmaps{m_A\inv{\usr}}{r_A\inv{\usr}} T$ in \Xt and hence $T$ will remain universal in
+\Xt. Hence, we have the basic requirements for a Turing category as specified in
+Theorem~\ref{thm:turing_recognition} and Lemma~\ref{lem:t_t_to_t_gives_a_turing_category}. All that
+remains to be shown is that we have a self-application map and a code for each map $f:1\to T$ as in
 Lemma~\ref{lem:t_t_to_t_gives_a_turing_category}.
 
 \begin{theorem}\label{thm:inverse_turing_category_gives_a_turing_category}
@@ -310,8 +319,9 @@ Lemma~\ref{lem:t_t_to_t_gives_a_turing_category}.
   But this corresponds exactly to the requirement of
   Lemma~\ref{lem:t_t_to_t_gives_a_turing_category} with $\circ = (\diamond,T)$ and $\code{(f,T)} =
   \<\name{f},1\>$.  Finally, noting that $T$ is universal in \X, if we have $(f,B):T\to T$ in \Xt,
-  where $B\retractmaps{m_B}{r_B} T$ in \X, we see $(f,B) \xequiv{} (fr_B,T)$ in \X and therefore may be
-  written as above and we therefore have shown that $\Xt$ is a Turing category.
+  where $B\retractmaps{m_B}{r_B} T$ in \X, we recall that $(f,B) \xequiv{} (f(1\*m_B),T)$ in
+  \X. Therefore, it may be  written as above and we therefore have shown that $\Xt$ is a Turing
+  category.
 \end{proof}
 
 \section{Partial combinatory algebras}
@@ -465,9 +475,11 @@ define $\imultiapp{f}{n}$ recursively by:
   algebra in \Xt.
 
   For the reverse, when we have a partial combinatory algebra over $A$ in $\Xt$, a discrete Cartesian
-  restriction category, we know that the map $\<\bullet,1\>$ is invertible and hence is in
-  $\X$. The two maps from the terminal object $k,s$ are also invertible (as they are total) and are
-  therefore also in $\X$.
+  restriction category, by Lemma~\ref{lem:a_discrete_crc_is_precisely_a_graphic_crc} we know that
+  the map $\<\bullet,1\>$ is invertible and hence is in $\X$. The two maps $\<k,1\>$ and $\<s,1\>$
+  are also invertible are therefore also in $\X$.
+
+  %todo - Why  \<k,1\> and \<s,1\> work....?
 
   Given this, the diagrams of the partial combinatory algebra in \Xt translate directly to the
   \axiom{iCPA}{1} and \axiom{iCPA}{2} where $\bullet$ in \X is the invertible map $\<\bullet,1\>$.

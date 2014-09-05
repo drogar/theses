@@ -4,12 +4,19 @@
 
 This thesis has studied inverse categories \cite{cockett2002:restcategories1}, providing conditions
 for a tensor to act like a product --- the inverse product --- and similarly for a second
-tensor to behave like a sum --- the disjoint sum.
+tensor to behave like a coproduct --- the disjoint sum.
 
 The following are the main results of this thesis.
 
+
+% \item The development of disjointness relations and disjoint joins in inverse categories and how
+%   they arise from suitable tensors on the inverse category in
+%   Proposition~\ref{prop:disjointness_tensor_gives_disjoint_join}.
+%   Corollary~\ref{cor:xt_is_a_distributive_restriction_category}.
+% \end{enumerate}
+
 \begin{enumerate}
-\item \textbf{Inverse Categories}
+\item \textbf{Restriction Products and Coproducts in Inverse Categories}
 
 We showed in Proposition~\ref{prop:an_inverse_category_with_products_is_a_restriction_preorder} that
 an inverse category with restriction products is a restriction preorder. Similarly, in
@@ -32,8 +39,9 @@ Theorem~\ref{thm:xt_is_a_discrete_crc_when_x_is_an_inverse_category}.
 
 Finally, in
 Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories} we
-provided an equivalence functor between the category of discrete inverse categories and the category
-of discrete Cartesian restriction categories.
+provided an equivalence between the category of discrete inverse categories and the category
+of discrete Cartesian restriction categories. This result, together with its consequences, is the
+main theoretical contribution of this thesis.
 
 \item \textbf{Disjointness Relations and Disjoint Joins}
 
@@ -50,14 +58,30 @@ In Chapter~\ref{chap:disjoint_sum_tensors} we explore the properties a symmetric
 on an inverse category requires in order to generate a disjointness relation and a disjoint
 join. These are referred to as disjoint sum tensors.
 
-\item \textbf{Disjoint Sum Categories}
+\item \textbf{Disjoint Sums}
 
-Disjoint sum categories are given by inverse categories that have a disjoint join tensor. We define
-$\imatx$, a matrix category over the disjoint sum category \X in
-Definition~\ref{def:inverse_matrix_category} and show that it is an disjoint sum category in
-Theorem~\ref{thm:imatx_is_an_disjoint_sum_category}. Furthermore, we show
-that an disjoint sum category \X is equivalent to a $\imatx$ in
-Proposition~\ref{pro:x_and_imatx_are_equivalent}.
+Disjoint sums in an inverse category are given in Definition~\ref{def:disjoint_sum} and we show that
+an inverse category having all disjoint sums has a symmetric monoidal tensor in
+Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor}.
+
+Disjointness tensors, Definition~\ref{def:disjointness_tensor} are shown to provide enough structure
+to allow the creation of a disjointness relation in
+Lemma~\ref{lem:tensor_disjointness_is_disjointness}. However, additional conditions are given in
+Definition~\ref{def:disjoint_sum_tensor} of a disjoint sum tensor. Given a disjoint sum tensor we
+are now able to define a disjoint joint on disjoint maps, where the additional conditions of the
+disjoint sum tensor are needed to prove the fourth axiom of disjoint joins hold.
+
+Section~\ref{sec:disjoint-sums-via-a-disjoint-sum-tensor} proves, in
+Proposition~\ref{prop:a_disjoint_sum_tensor_gives_disjoint_sums} and
+Proposition~\ref{prop:enough_disjoint_sums_make_a_disjoint_sum_tensor}, that a disjoint sum enables
+the creation of a disjoint sum tensor and conversely, a disjoint sum tensor produces disjoint sums.
+
+
+In Chapter~\ref{cha:matrix_categories}, Definition~\ref{def:inverse_matrix_category} gives us
+$\imatx$, a matrix category over the inverse category \X with disjoint
+joins. Theorem~\ref{thm:imatx_is_an_disjoint_sum_category} proves this is an inverse category with
+disjoint sums. Furthermore, Proposition~\ref{pro:x_and_imatx_are_equivalent} shows
+that an inverse category \X with disjoint joins is equivalent to $\imatx$.
 
 
 \item \textbf{Distributive Inverse Categories}
@@ -73,13 +97,16 @@ Corollary~\ref{cor:xt_is_a_distributive_restriction_category}.
 
 \item \textbf{Linkage to quantum computation}
 
-In Chapter~\ref{chap:commutative_frobenius_algebras}, we review Frobenius algebras and how they
-arrive in models of quantum computation. We then show that category of commutative Frobenius
-algebras, CFrob(\X) based on a symmetric monoidal category \X is actually a discrete inverse category in
-Theorem~\ref{thm:cfrob_is_a_discrete_inverse_category}. Furthermore, when the symmetric monoidal
-category \X is an additive tensor category with zero maps and biproducts, then CFrob(\X) possesses a
-disjointness relation, given by  $f\perp g \iff \Delta(f\* g)\inv{\Delta} = 0$. We then showed that
-the biproduct of maps gives a  disjoint join and the biproduct of objects gives a disjoint sum.
+Chapter~\ref{chap:commutative_frobenius_algebras} starts with a review of Frobenius algebras and how
+they appear in models of quantum computation. Theorem~\ref{thm:cfrob_is_a_discrete_inverse_category}
+shows the category of commutative Frobenius algebras, \CFrob, in a symmetric monoidal category \X
+is actually a discrete inverse category. Furthermore, when the symmetric monoidal category \X is an
+additive tensor category with zero maps and biproducts, then \CFrob is shown in
+Lemma~\ref{lem:cfrobperp_is_a_disjointness_relation} to possess a disjointness relation, given by
+$f\perp g \iff \Delta(f\* g)\inv{\Delta} =
+0$. Proposition~\ref{prop:biproduct_is_the_disjoint_join_in_cfrobx} shows that the addition of maps
+is a disjoint join in \CFrob and Proposition~\ref{prop:cfrobx_has_disjoint_sums} shows and the
+biproduct of objects is a disjoint sum.
 
 \item \textbf{Inverse Turing Categories and Inverse PCAs}
 
@@ -95,38 +122,37 @@ function based on a PCA in a Cartesian restriction category and show the conditi
 that to be a discrete Cartesian restriction category in Lemma~\ref{lem:comp_a_is_discrete_cart}.
 \end{enumerate}
 
-Thus, we have shown that discrete inverse categories provide a link between standard computing
-models (i.e., via inverse Turing categories to Turing categories) and quantum computing (commutative
-Frobenius algebras are discrete inverse categories with a disjoint join).
+This thesis demonstrates that discrete inverse categories provide a convenient intermediate link
+between standard models of computing (i.e., via inverse Turing categories to Turing categories) and
+quantum computing (via special commutative Frobenius algebras).
 
 \section{Future directions}
 \label{sec:whither-next}
 
-The obvious next step is to apply these results to existing reversible languages such as
-\textbf{Inv} \cite{muetal04:injreversible}, and Theseus
-\cite{james2013isomorphic,james2012information}. In each case, there do not appear to be any issues
-in doing this work, it simply requires careful attention to the language definitions. Note that our
-examples about the category of partial injective functions done throughout this thesis provide the
-basis for the semantics of \textbf{Inv}.
+The obvious next step is to use discrete inverse categories to provide a categorical semantics for
+existing reversible languages such as \textbf{Inv} \cite{muetal04:injreversible}, and Theseus
+\cite{james2013isomorphic,james2012information}. The examples of the category of partial injective
+functions used throughout this thesis provides the basis for the semantics of \textbf{Inv}.
 
-A more interesting direction, in my opinion, would be to further investigate the work on reversible
-CCS as in \cite{danos2004reversible} and \cite{phillips2006operational}. This could be combined with
-the work of Chakraborty on MPL \cite{chakraborty2014} to describe the communication of multiple
-processes and generalize that to a series of reversible processes.
-
-A third direction would be to formalize types in reversible languages using the results of this
-thesis as a basis. The obvious correspondences are from product types to the inverse product and
+It would be interesting to understand how to formulate datatypes, higher order structures, etc. at the
+inverse category level. The obvious correspondences are from product types to the inverse product and
 between sum types and the disjoint sum. From there, one would study the trace and explore infinite
 and recursive types. Note that some of this work would follow naturally from exploring the semantics
 of Theseus from \cite{james2013isomorphic,james2012information}.
 
+An interesting direction, in my opinion, would be to further investigate the work on reversible
+CCS as in \cite{danos2004reversible} and \cite{phillips2006operational}. This could be combined with
+the work of Chakraborty on MPL \cite{chakraborty2014} to describe the communication of multiple
+processes and generalize that to a series of reversible processes.
+
+
 The connection to quantum computing, as exampled in
-Chapter~\ref{chap:commutative_frobenius_algebras} would benefit from further investigation. Although
-we were able to create a discrete inverse category based on commutative Frobenius algebras, we have
-not yet investigated the effect of performing the Cartesian Completion on CFrob(\X). As well, we
-note that the bulk of current literature on semantics of quantum computing is based on finite
-dimensional Hilbert spaces. Our construction on Frobenius algebras is not limited to the finite
-dimensional case, and as such, may be of use when considering infinite dimensions.
+Chapter~\ref{chap:commutative_frobenius_algebras} would benefit from further investigation. As well,
+the bulk of current literature on semantics of quantum computing is based on finite dimensional
+Hilbert spaces. Our construction is not limited to the finite dimensional
+case, and as such, may be of use when considering infinite dimensions. To pursue this area, one
+would likely start with a consideration of Frobenius algebras in a linearly distributive category,
+as described by Egger in \cite{egger2010frobenius}.
 
 % chapter conclusions_and_future_work (end)
 

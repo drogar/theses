@@ -41,9 +41,9 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
 \input{chapters/subsection/dagger-categories}
 \input{chapters/subsection/frobenius-algebras}
 
-\subsection{CFrob(\X) is an inverse category}\label{ssec:cfrob_x_is_an_inverse_category}
+\subsection{\CFrob is an inverse category}\label{ssec:cfrob_x_is_an_inverse_category}
 \begin{example}[Commutative separable Frobenius algebras]\label{example:commfrob}
-  Let \X be a symmetric monoidal category and form CFrob(\X) as follows: \paragraph{Objects:}
+  Let \X be a symmetric monoidal category and form \CFrob as follows: \paragraph{Objects:}
   Commutative separable Frobenius algebras\cite{kock04}: A quintuple $(A,\nabla,\eta,\Delta,\epsilon)$ where
   $A$ is an object of \X with the following maps:
   $\nabla :A\*A \to A$, $\eta:I\to A$, $\Delta : A \to A\*A$, $\epsilon : A \to I$ which are natural
@@ -79,10 +79,10 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
 \end{example}
 
 \begin{lemma}\label{lem:cfrobx_is_an_inverse_category}
-  When \X is a symmetric monoidal category, CFrob(\X) is a inverse category.
+  When \X is a symmetric monoidal category, \CFrob is a inverse category.
 \end{lemma}
 \begin{proof}
-  We need to show that CFrob(\X) has restrictions and that each map has a partial inverse. We do
+  We need to show that \CFrob has restrictions and that each map has a partial inverse. We do
   this by exhibiting the partial inverse of a map.
   For $f:X \to Y$, define $\inv{f}$ as
   \[
@@ -713,23 +713,23 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
   \ \raisebox{40pt}{$= g\inv{g}f\inv{f}$ }
 \]
 where the last step is accomplished by reversing all the previous diagrammatic steps.
-Hence, CFrob(\X) is an inverse category.
+Hence, \CFrob is an inverse category.
 \end{proof}
 
 \begin{theorem}\label{thm:cfrob_is_a_discrete_inverse_category}
-  When \X is a symmetric monoidal category, CFrob(\X) is a discrete inverse category.
+  When \X is a symmetric monoidal category, \CFrob is a discrete inverse category.
 \end{theorem}
 \begin{proof}
-  Lemma~\ref{lem:cfrobx_is_an_inverse_category} shows CFrob(\X) is an inverse category. We
+  Lemma~\ref{lem:cfrobx_is_an_inverse_category} shows \CFrob is an inverse category. We
   need to show the conditions of Definition~\ref{def:inverse_product} are met.
 
-  First, we see that the tensor of $\X$ is a tensor in CFrob(\X). $A\*B$ is an object in CFrob(\X)
+  First, we see that the tensor of $\X$ is a tensor in \CFrob. $A\*B$ is an object in \CFrob
   with $\Delta_{A\*B} = (\Delta_A\*\Delta_B)(1\*c_{\*}\*1)$,
   $\nabla_{A\*B} =  (1\*c_{\*}\*1)(\nabla_A\*\nabla_B)$,
   $\eta_{A\*B} = \Delta_I(\eta_A \* \eta_B)$, and
   $\epsilon_{A\*B} =  (\epsilon_A\*\epsilon_B)\nabla_I$.
 
-  The map $\Delta : A \to A\*A$ is a map in CFrob(\X). To show it preserves $\Delta$, we need to
+  The map $\Delta : A \to A\*A$ is a map in \CFrob. To show it preserves $\Delta$, we need to
   show $\Delta_A \Delta_{A\*A} = \Delta_A (\Delta_A \* \Delta_A)$:
   \[
   \raisebox{20pt}{$\Delta_A \Delta_{A\*A} =$}
@@ -904,10 +904,10 @@ Hence, CFrob(\X) is an inverse category.
   \]
   Note that the proof uses the ``special'' property in a non-trivial way.
 
-  Thus, we have a $\Delta$ in CFrob(\X). As $\nabla = \inv{\Delta}$, the Frobenius requirement for
+  Thus, we have a $\Delta$ in \CFrob. As $\nabla = \inv{\Delta}$, the Frobenius requirement for
   the inverse product is immediately fulfilled. Commutativity, cocommutativity, associativity,
   coassociativity and the exchange rule all follow from the properties of the commutative Frobenius
-  algebras and therefore CFrob(\X) is a discrete inverse category.
+  algebras and therefore \CFrob is a discrete inverse category.
 \end{proof}
 
 % section the_category_of_commutative_frobenius_algebras (end)

@@ -4,8 +4,8 @@
 
 In this chapter, we introduce the disjoint sum and show how it may be used to define a tensor in an
 inverse category. Conversely, we then show how a tensor $\+$ may be used to create a disjointness
-relation and a disjoint join in an inverse category  --- at which point we shall see that $A\+B$ is
-a disjoint sum.
+relation and a disjoint join in an inverse category  --- at which point we can prove that $A\+B$ is
+a disjoint sum with respect to this structure.
 
 
 
@@ -14,10 +14,14 @@ a disjoint sum.
 \section{Disjointness via a tensor}
 \label{sec:disjointness_via_a_tensor}
 
-Our first step will be to  show how a disjointness tensor, defined below, may be used to create a
-disjointness relation in an inverse category. We will do this by noting that when it is possible for
-maps to work separately on the components of the tensor, this essentially will allow us to define
-when the restriction and range of functions are disjoint, and therefore when the maps are disjoint.
+Our next objective is to characterize when a tensor provides a disjoint sum. The first step will be
+to show how a disjointness tensor, defined below, may be used to create a disjointness relation in
+an inverse category. We will do this by first determining when it is possible for maps to work
+separately on the components of the tensor. This ability to separate the action of the maps will
+allow us to define when the restriction and range of functions are disjoint, and therefore when the
+maps are disjoint.
+
+%todo - can there be something more said here indicating it is a lot of work?
 
 Suppose \X is an inverse category  with a restriction zero, and $\+$ is a tensor product on $\X$.
 We are assuming the following naming for the standard monoidal tensor isomorphisms:
@@ -805,8 +809,14 @@ Next, we show that the disjoint sum tensor is universal with respect to the disj
   Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_preserve_tensor}.
 
 \end{proof}
+\section{Disjoint sums via a disjoint sum tensor}
+\label{sec:disjoint-sums-via-a-disjoint-sum-tensor}
 
-We may now show:
+The significant amount of technical machinery of Section~\ref{sec:disjointness_via_a_tensor} and
+Section~\ref{sec:disjoint_joins_via_a_tensor} now allow us to show that a disjoint sum tensor will
+produce disjoint sums in a category and conversely, having all disjoint sums in a category produces
+a disjoint sum tensor.
+
 \begin{proposition}\label{prop:a_disjoint_sum_tensor_gives_disjoint_sums}
   A disjoint sum tensor in an inverse category \X gives disjoint sums, i.e., for each pair of
   objects $A,B$, $A\+B$ is a disjoint sum.
@@ -866,8 +876,6 @@ Finally, to complete the cycle, we have:
   Therefore, $\+$ is a disjoint sum tensor.
 \end{proof}
 
-% subsection disjoint_join_via_a_monoidal_tensor (end)
-% section tensors_for_disjointness (end)
 
 %%% Local Variables:
 %%% mode: latex
