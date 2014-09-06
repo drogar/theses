@@ -347,7 +347,11 @@ between the hom-sets:
   \phi: \B(F(X),Y) \to \A(X,G(Y)).
 \]
 This is the path followed by Mac Lane in \cite{maclan97:categorieswrkmath}, where he proves this
-definition is equivalent to Definition~\ref{def:universal_pair} above.
+definition is equivalent to Definition~\ref{def:universal_pair} above. Rather than explicitly
+defining the bijection, this is often written in the form of an inference:
+\[
+  \infer{\A(X,G(Y)).}{\B(F(X),Y)}
+\]
 
 
 
@@ -367,7 +371,7 @@ definition is equivalent to Definition~\ref{def:universal_pair} above.
   there is a  correspondence $\phi$ of hom-sets
   \[
     \infer{\B[A](C,G(D))}{\B(F(C), D)}
-    \quad \left(= \infer{\B[A](C,D)}{\B(C\times A, D)}\right)
+    \qquad \raisebox{8pt}{$\equiv$}\ \ \infer{\B[A](C,D)}{\B(C\times A, D)}
   \]
   given by $\phi(f) = f$.
   Thus $F\leftadjoint G$.
@@ -461,7 +465,7 @@ Equation~\ref{eq:pinj_converse_relation_is_a_function}}{$1_X = \{(x,x) | x \in X
     \item The union of any sets in $\open{T}$ is again in $\open{T}$;
     \item The intersection of finitely many sets in $\open{T}$ is in $\open{T}$.
   \end{enumerate}
-  $\open{T}$ is referred to as the open sets of the topological space.
+  The sets in $\open{T}$ are referred to as the open sets of the topological space.
 
   Maps between two topological spaces $(T,\open{T})$ and $(S,\open{S})$ consist of
   a set map $f:T \to S$ such that the inverse image of any open set  is an open set. Such
@@ -549,7 +553,7 @@ We now turn to products and coproducts.
     \item Given an object $C$ with maps $f:C\to A$ and $g:C \to B$ there is a unique map
     $\<f,g\>$ such that the following diagram commutes:
     \[
-      \xymatrix@C+15pt@R+25pt{
+      \xymatrix@C+5pt@R+15pt{
         &&&A\\
         C\ar[urrr]^{f} \ar[drrr]_{g}\ar@{.>}[rr]^{\<f,g\>} & &A\times B \ar[ur]_{\pi_0}\ar[dr]^{\pi_1}\\
         &&&B
@@ -569,7 +573,7 @@ A coproduct is the dual of a product.
     \item Given an object $C$ with maps $h:A\to C$ and $k:B \to C$ there is a unique map
     $[h,k]$ such that the following diagram commutes:
     \[
-      \xymatrix@C+15pt@R+25pt{
+      \xymatrix@C+5pt@R+15pt{
         A \ar[drrr]^h \ar[dr]_{\cpa} \\
         &A +B \ar@{.>}[rr]^{[h,k]} && C\\
         B \ar[urrr]_k \ar[ur]^{\cpb}
@@ -578,7 +582,7 @@ A coproduct is the dual of a product.
   \end{itemize}
 \end{definition}
 
-It is possible for an object to both a limit and a colimit at the same time:
+It is possible for an object to be both a limit and a colimit at the same time:
 \begin{definition}\label{def:categorical_zero}
   Given a category $\B$, any object that is both a terminal and initial object is called a
   \emph{zero object}. This object is labelled $\zeroob$.
@@ -595,20 +599,19 @@ between any two objects $A,B$ of the category given by: $\zeroob_{A,B} : A \to \
       0 & i \neq j
       \end{cases}
   \]
-  and given any two objects, $A,B$, $A\times B$ is the same as $A+B$, then $A\times B$ is
+  and forany two objects, $A,B$, $A\times B$ is the same as $A+B$, then $A\times B$ is
   referred to as the \emph{biproduct} and designated as $A\biproduct B$. A category \cD{} is said to
   have \emph{finite biproducts} when it has a zero object $\mathbf{0}$ and when each pair of objects
   $A,B$ have a biproduct $A\biproduct B$.
 
-  Note the biproduct is often written  as $\+$. As we will be using $\+$ frequently in this thesis
-  where it is not a biproduct, this alternate notation for $\biproduct$ will be used instead.
+  The biproduct is often written as $\+$. This thesis frequently uses $\+$ where it is not a
+  biproduct, and thus uses $\biproduct$ for biproduct instead.
 \end{definition}
 
-Note that a category with finite biproducts is enriched in commutative monoids. If $f,g:A\to
-B$, define $f+g:A\to B$ as $\<id_{A}, id_{A}\>\, (f\biproduct g)\, [id_{B},id_{B}]$. The unit for the
-addition is $\zeroob_{A,B}$. Throughout this thesis, when working in a category with finite
-biproducts, $\<id, id\>$ will be designated by $\Delta$ and $[id,id]$ will be designated by
-$\nabla$.
+A category with finite biproducts is enriched in commutative monoids. If $f,g:A\to
+B$, define $f+g:A\to B$ as $\<1_{A}, 1_{A}\>\, (f\biproduct g)\, [1_{B},1_{B}]$. The unit for
+$+$ is $\zeroob_{A,B}$. In this thesis, when discussing a category with finite biproducts,
+$\<1, 1\>$ will be designated by $\Delta$ and $[1,1]$ by $\nabla$.
 
 % subsection limits_and_colimits_in_categories (end)
 
@@ -622,10 +625,11 @@ $\nabla$.
   four families of natural isomorphisms:  $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u^r_{A}:A\*I\to A$,
   $u^l_{A}:I\*A \to A$ and $c_{A,B}:A\*B \to B\* A$, which satisfy coherence diagrams and
   equations shown in Figures~\ref{fig:SMC_pentagon}, \ref{fig:SMC_unit}, \ref{fig:SMC_commutes},
-  \ref{fig:SMC_unit_symmettry} and \ref{fig:SMC_associativity_symmetry}. The isomorphisms are
-  referred to as the \emph{structure isomorphisms}  for the symmetric monoidal category. $I$ is the
-  unit of the monoid. A symmetric monoidal category where each of $a_{A,B,C}$, $u^r_{A}$, $u^l_{A}$
-  and $c_{A,B}$ are identity maps is called a \emph{strict symmetric monoidal category}.
+  \ref{fig:SMC_unit_symmettry} and \ref{fig:SMC_associativity_symmetry}. The essence of the
+  coherence diagrams is that any diagram composed solely of the structure isomorphisms will
+  commute. The isomorphisms are referred to as the \emph{structure isomorphisms}. $I$ is the
+  unit of the monoid. A symmetric monoidal category is called \emph{strict} when each of
+  $a_{A,B,C}$, $u^r_{A}$, $u^l_{A}$ and $c_{A,B}$ are identity maps.
 \end{definition}
 
 \begin{figure}[!htbp]
@@ -684,8 +688,6 @@ $\nabla$.
 \]
 \caption{Associativity symmetry in an SMC.}\label{fig:SMC_associativity_symmetry}
 \end{figure}
-The essence of the coherence diagrams is that any diagram composed solely of the structure
-isomorphisms will commute.
 % subsection symmetric monoidal categories (end)
 %%% Local Variables:
 %%% mode: latex

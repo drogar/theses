@@ -234,7 +234,8 @@ of $A$, an object of \X. $\open{A} = \{x:A\to A| x = \rst{x}\}$. The notation $\
 to be suggestive of open sets, as in \topcatp, see Example~\ref{ex:restriction_category_top}.
 
 \begin{lemma}\label{lem:open_a_is_a_meet_semilattice}
-  In a restriction category \X, $\open{A}$ is a meet semi-lattice.
+  In a restriction category \X, $\open{A}$ is a meet semi-lattice - a poset with a top element and
+  binary meets.
 \end{lemma}
 \begin{proof}
   The top of the meet semi-lattice is $1_A$, under the ordering from
@@ -242,8 +243,11 @@ to be suggestive of open sets, as in \topcatp, see Example~\ref{ex:restriction_c
   The meet of any two idempotents is given by their composition.
 \end{proof}
 
-In fact, the operation $\mathcal{O}$ is a functor, $\mathcal{O}: \X \to StabMeetSemiLat^{op}$, and
-is the fundamental functor.
+Let \stabLat be the category whose objects are meet semi-lattices and maps are stable homomorphisms,
+that is, they preserve the meets but not necessarily the top. From Example 13 in
+\cite{cockett2002:restcategories1}, this is a corestriction category, i.e. $\stabLat^{op}$ is a
+restriction category. We see that the operation $\mathcal{O}$ is a functor, $\mathcal{O}: \X \to
+\stabLat^{op}$, and is the fundamental functor.
 
 \section{Joins} % (fold)
 \label{sub:joins_in_restriction_categories}
@@ -1202,7 +1206,7 @@ Besides the example of \topcatp given at the beginning of this section, the foll
   \begin{enumerate}[{(}i{)}]
   \item Any total non-trivial (i.e., not a semi-lattice) Cartesian category is not discrete.
   \item $\text{Par}(\X,\Mstab)$ is not discrete unless $\Delta: X\to X\times X$ is in \Mstab.
-  \item $StabMeetSemiLat^{op}$ is not discrete.
+  \item $\stabLat^{op}$ is not discrete.
   \end{enumerate}
 \end{example}
 

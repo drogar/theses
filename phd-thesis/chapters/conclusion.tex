@@ -54,7 +54,7 @@ equivalent, allowing us to define disjointness in whichever way is most convenie
 Disjoint joins are introduced with Definition~\ref{def:disjoint_join}, providing an analogue to
 joins in a restriction category.
 
-In Chapter~\ref{chap:disjoint_sum_tensors} we explore the properties a symmetric monoidal tensor
+In Chapter~\ref{chap:disjoint_sum_tensors} we explored the properties a symmetric monoidal tensor
 on an inverse category requires in order to generate a disjointness relation and a disjoint
 join. These are referred to as disjoint sum tensors.
 
@@ -76,19 +76,21 @@ Proposition~\ref{prop:a_disjoint_sum_tensor_gives_disjoint_sums} and
 Proposition~\ref{prop:enough_disjoint_sums_make_a_disjoint_sum_tensor}, that a disjoint sum enables
 the creation of a disjoint sum tensor and conversely, a disjoint sum tensor produces disjoint sums.
 
-
 In Chapter~\ref{cha:matrix_categories}, Definition~\ref{def:inverse_matrix_category} gives us
 $\imatx$, a matrix category over the inverse category \X with disjoint
 joins. Theorem~\ref{thm:imatx_is_an_disjoint_sum_category} proves this is an inverse category with
-disjoint sums. Furthermore, Proposition~\ref{pro:x_and_imatx_are_equivalent} shows
-that an inverse category \X with disjoint joins is equivalent to $\imatx$.
+disjoint sums. Lemma~\ref{lem:m_is_a_functor} shows that there is a functor from an inverse category
+with disjoint joins to its matrix category and this gives an adjoint between \DSum, the category of
+inverse categories with disjoint sums and \DJoin, the category of inverse categories with disjoint
+joins. Furthermore, Proposition~\ref{pro:x_and_imatx_are_equivalent} shows that an inverse category
+\X with disjoint sums is equivalent to $\imatx$.
 
 
 \item \textbf{Distributive Inverse Categories}
 
 We define distributive inverse categories in Definition~\ref{def:distributive_inverse_category} and
 show that distributivity of the inverse product over the disjoint join is equivalent to distributing
-over an disjoint sum tensor in Lemma~\ref{lem:distributive_means_distribute_over_join}.
+over a disjoint sum tensor in Lemma~\ref{lem:distributive_means_distribute_over_join}.
 
 Then, in Theorem~\ref{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category} we show that
 Cartesian Completion turns a disjoint sum tensor into a coproduct. From this we conclude that $\Xt$

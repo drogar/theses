@@ -146,23 +146,22 @@ The property of being an inverse category is preserved by splitting.
     \raisebox{-15pt}{$\iff A \longsquiggly{E_{[f,g]}} B$.}
   \]
 
-  So, we define our category $EqR$ with objects being finite sets and maps being equivalence classes
-  of the relations $E_{[f,g]}:A\leadsto B$. The equivalence classes are given by the following:
+  Define the category $\specialcat{EqR}$ with objects being finite sets and maps being equivalence classes of the
+  relations $E_{[f,g]}:A\leadsto B$. The equivalence classes are given by the following:
   \[
    \xymatrix{
       &C \ar@{<->}[dd]^{b}\\
-      A\ar@{->>}[ur]^f \ar@{->>}[dr]_{f'} && B\ar@{->>}[ul]_{g} \ar@{->>}[dl]_{g'}\\
+      A\ar@{->>}[ur]^f \ar@{->>}[dr]_{f'} && B\ar@{->>}[ul]_{g} \ar@{->>}[dl]^{g'}\\
       &C'
     } \raisebox{-38pt}{$\iff E_{[f,g]} \cong E_{[f',g']}$.}
   \]
-  That is, whenever there is a bijection $b:C\leftrightarrow C'$ such that the above diagram commutes, then
-  the relations are equivalent.
+  That is, whenever there is a bijection $b:C\leftrightarrow C'$ such that the above diagram
+  commutes, then the relations are equivalent.
 
-  The identity is given by $E_{[1,1]}$ and composition is by   pushout. The restriction of an
-  relation is given by restricting it to the first element only, i.e., $\rst{E_{[f,g]}} =
-  E_{[f,f]}$. This is an inverse category with the partial inverse of an relation given
-  by swapping the maps $f,g$. That is, $\inv{E_{[f,g]}} = E_{[g,f]}$. The
-  total maps are those where $f$ is a bijection.
+  The identity is given by $E_{[1,1]}$ and composition is by  pushout. The restriction of a relation
+  is given by restricting it to the first element only, i.e., $\rst{E_{[f,g]}} = E_{[f,f]}$. This is
+  an inverse category with the partial inverse of a relation given  by swapping the maps $f,g$. That
+  is, $\inv{E_{[f,g]}} = E_{[g,f]}$. The total maps are those where $f$ is a bijection.
 \end{example}
 
 \section{Inverse categories with restriction products} % (fold)
@@ -1597,21 +1596,21 @@ subcategory which is a discrete inverse category.
         \hline
         \X & \Inv{\X} & Inverse map\\
         \hline\hline
-        $\scriptstyle A\times B$ & $\scriptstyle A\* B$ &\\
+        $\scriptstyle A\times B$ & $\scriptstyle A\* B$ &\\[6pt]
         \hline
-        $\scriptstyle \top$ & $\scriptstyle 1$ &\\
+        $\scriptstyle \top$ & $\scriptstyle 1$ &\\[6pt]
         \hline
-        $\scriptstyle \pi_1:\top\times A \to A$ & $\scriptstyle \usl:1\* A \to A$ & $\scriptstyle \<!,1\>$\\
+        $\scriptstyle \pi_1:\top\times A \to A$ & $\scriptstyle \usl:1\* A \to A$ & $\scriptstyle \<!,1\>$\\[6pt]
         \hline
-        $\scriptstyle \pi_0:A\times\top \to A$ & $\scriptstyle \usr:A\*1 \to A$& $\scriptstyle \<1,!\>$\\
+        $\scriptstyle \pi_0:A\times\top \to A$ & $\scriptstyle \usr:A\*1 \to A$& $\scriptstyle \<1,!\>$\\[6pt]
         \hline
         ${\scriptstyle a_{\X} = \<\pi_0 \pi_0,\<\pi_0 \pi_1,\pi_1\>\>:(A\times B)\times C \to A\times(B\times C)}$
           & $\scriptstyle a_{\*}:(A\*B)\*C \to A\*(B\*C)$
-          & $\scriptstyle \<\<\pi_0, \pi_1 \pi_0\>,\pi_1 \pi_1\>$\\
+          & $\scriptstyle \<\<\pi_0, \pi_1 \pi_0\>,\pi_1 \pi_1\>$\\[6pt]
         \hline
-        $\scriptstyle c_{\X}=\< \pi_1,\pi_0\>:A\times B \to B\times A$ & $\scriptstyle c_{\*}:A\*B \to B \* A$ & $\scriptstyle \< \pi_1,\pi_0\>$\\
+        $\scriptstyle c_{\X}=\< \pi_1,\pi_0\>:A\times B \to B\times A$ & $\scriptstyle c_{\*}:A\*B \to B \* A$ & $\scriptstyle \< \pi_1,\pi_0\>$\\[6pt]
         \hline
-        $\scriptstyle \Delta_{\X}:A\to A\times A$ & $\scriptstyle \Delta:A \to A\* A$ & $\scriptstyle  \inv{\Delta_{\X}} $\\
+        $\scriptstyle \Delta_{\X}:A\to A\times A$ & $\scriptstyle \Delta:A \to A\* A$ & $\scriptstyle  \inv{\Delta_{\X}} $\\[6pt]
         \hline
       \end{tabular}
 
@@ -2208,11 +2207,11 @@ and
 \]
 However, these do not form an adjoint pair as the relation is
 \[
-  \infer{\X(A\*X,A\*Y)}{\X[A](X,Y)}\quad \left(\text{i.e.,}  \infer{\X(F(X),F(Y))}{\X[A](X,G(Y))}\right)
+  \infer{\X[A](X,Y)}{\X(A\*X,A\*Y)}\quad \raisebox{10pt}{that is,}\ \  \infer{\X[A](X,G(Y))}{\X(F(X),F(Y))}
 \]
 rather than the required
 \[
-  \infer{\X(F(X),Y)}{\X[A](X,G(Y))}.
+  \infer{\X[A](X,G(Y))}{\X(F(X),Y)}.
 \]
 
 

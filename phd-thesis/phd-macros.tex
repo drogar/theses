@@ -336,8 +336,10 @@
 \newcommand{\natto}{\Rightarrow}
 \newcommand{\specialcat}[1]{\textsc{#1}\xspace}
 \newcommand{\ltrcatbb}[1]{\ensuremath{\mathbb{#1}}\xspace}
+
 \newcommand{\retract}{\ensuremath{\triangleleft}}
 \newcommand{\retractmaps}[2]{\ensuremath{\triangleleft_{#1}^{#2}}}
+
 
 \newcommand{\A}{\ltrcatbb{A}}
 \newcommand{\B}{\ltrcatbb{B}}
@@ -357,16 +359,20 @@
 \newcommand{\pinj}{\specialcat{Pinj}}
 
 \newcommand{\sets}{\specialcat{Sets}}
-\newcommand{\finsets}{\ensuremath{\text{\specialcat{Sets}}_f}}
+\newcommand{\finsets}{\ensuremath{\sets_f}}
 \newcommand{\ord}{\specialcat{Ord}}
 \newcommand{\cat}{\specialcat{Cat}}
 \newcommand{\Par}{\specialcat{Par}}
 \newcommand{\Ab}{\specialcat{Ab}}
 
 \newcommand{\topcat}{\specialcat{Top}}
-\newcommand{\topcatp}{\ensuremath{\textsc{Top}_p}\xspace}
+\newcommand{\topcatp}{\ensuremath{\topcat_p}\xspace}
 
-\newcommand{\CFrob}{\ensuremath{\mathbf{CFrob(\X)}}}
+\newcommand{\DSum}{\specialcat{DSum}}
+\newcommand{\DJoin}{\specialcat{DJoin}}
+\newcommand{\stabLat}{\specialcat{stabLat}}
+
+\newcommand{\CFrob}{\ensuremath{\specialcat{CFrob}(\X)}\xspace}
 \newcommand{\rel}{\specialcat{Rel}}
 
 \newcommand{\fdh}{\specialcat{FdHilb}}
@@ -456,7 +462,7 @@
 %---------------------------------------------------------------------
 % Notation for inverse sum categories
 
-\newcommand{\imat}[1]{\ensuremath{iMat({#1})}\xspace}
+\newcommand{\imat}[1]{\ensuremath{\specialcat{iMat}({#1})}\xspace}
 \newcommand{\imatx}{\imat{\X}}
 
 

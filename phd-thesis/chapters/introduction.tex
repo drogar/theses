@@ -74,7 +74,7 @@ that the output is copied before reversing the rest of the program.
 
 In addition, a number of reversible calculi have been developed. Danos and Krivine
 \cite{danos2004reversible} extend CCS (Calculus for Communicating Systems)
-\cite{milner1980calculus,milner1989communication} to produces RCCS, which adds reversible
+\cite{milner1980calculus,milner1989communication} to produce RCCS, which adds reversible
 transitions to CCS. This is done by adding a syntax for backtracking, together with a labelling
 which guides the backtracking. The interesting aspect of this work is the applicability to
 concurrent programs.
@@ -144,14 +144,14 @@ Quipper is the inclusion of an operator to compute the reverse of a given circui
 In much of the research on reversibility, specific conditions are placed on some aspect of the
 computational model or reversible language to ensure ``programs'' in this model are reversible.
 The variety of models and languages obscures the fundamental commonality of reversibility.
-By basing our theory on inverse categories, our treatment clarifies the relationship
+By basing the theory of this thesis on inverse categories, our treatment clarifies the relationship
 between these various approaches.
 
 
 \section{Objectives}
 \label{sec:objectives}
 
-This thesis proposes a categorical semantics for reversible computing. Based upon our review of
+This thesis proposes a categorical semantics for reversible computing. Based upon the review of
 current research as noted in Section~\ref{sec:background}, reversibility still lacks a unifying
 semantic model. Standard computability has Cartesian closed categories \cite{barr:ctcs} and Turing
 categories \cite{cockett-hostra08-intro-to-turing}, while quantum computing has had much success
@@ -210,15 +210,14 @@ properties of the inverse product. Inverse categories with inverse products are 
 
 Chapter~\ref{chap:completing_a_discrete_inverse_category} then presents the ``Cartesian
 Completion'' --- a construction of a discrete Cartesian restriction category from a discrete
-inverse category. Section~\ref{sec:equivalence_classes_of_maps_in_hypx} presents the details of the
+inverse category. SubSection~\ref{sec:equivalence_classes_of_maps_in_hypx} presents the details of the
 equivalence relation on  maps of a discrete inverse category needed in the construction, while
-Section~\ref{sec:the_restriction_category_hypxt} and
-Section~\ref{sec:the_category_hypxt_is_cartesian} prove the construction gives a Cartesian
-restriction category. Section~\ref{sec:equivalence_of_categories} culminates in
+Section~\ref{sec:the_restriction_category_hypxt} contains the proof that the construction gives a
+Cartesian restriction category. Section~\ref{sec:equivalence_of_categories} culminates in
 Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories}
 giving an equivalence between the category of discrete inverse categories and the
-category of discrete Cartesian restriction categories. We note here that this is not a 2-equivalence
-of categories. We provide some simple examples of the construction.
+category of discrete Cartesian restriction categories. Note this is not a 2-equivalence
+of categories. We provide some simple examples.
 
 
 Chapter~\ref{cha:disjointness_in_inverse_categories} begins the exploration of how to add a
@@ -240,9 +239,8 @@ join based on the tensor. Disjoint sum tensors do produce disjoint sums and conv
 defined by disjoint sums is a disjoint sum tensor.
 
 Chapter~\ref{cha:matrix_categories} introduces a matrix construction on inverse categories with
-disjoint joins in order to add disjoint sums. We show that an inverse category \X with a disjoint join
-is equivalent to its matrix category, i.e., $\X \cong \imat{\X}$. From this,
-we produce an reflection between the category of inverse categories with disjoint joins and the
+disjoint joins in order to add disjoint sums. The functor from \X to \imatx gives us an adjunction
+between the category of inverse categories with disjoint joins and the
 category of inverse categories with disjoint sums.
 
 In Chapter~\ref{chap:distributive_inverse_categories}  a distributive inverse category is defined as

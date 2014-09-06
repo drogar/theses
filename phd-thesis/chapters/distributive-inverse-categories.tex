@@ -2,7 +2,7 @@
 
 \chapter{Distributive inverse categories} % (fold)
 \label{chap:distributive_inverse_categories}
-We now consider inverse categories with both an disjoint sum and inverse product, where the inverse
+We now consider inverse categories with both a disjoint sum and inverse product, where the inverse
 product distributes overs the disjoint sum in a specific way. We show that the Cartesian Completion
 of such a category is a distributive restriction category where the product distributes over the
 coproduct.
@@ -51,7 +51,7 @@ In the following, we will present distributivity in inverse categories.
   \begin{itemize}
     \item \D is an inverse category;
     \item \D has an inverse product with tensor $\*$, per Definition~\ref{def:inverse_product};
-    \item \D has an disjoint sum tensor, $\+$, per Definition~\ref{def:disjoint_sum_tensor} and
+    \item \D has a disjoint sum tensor, $\+$, per Definition~\ref{def:disjoint_sum_tensor} and
     \item There is a family of isomorphisms, $d$, such that
     \begin{equation}
       \xymatrix{
@@ -232,7 +232,7 @@ inverse distributive category. We now show the converse is true.
 \label{sec:discrete_inverse_categories_with_disjoint_sums}
 
 We now consider the case where we have a discrete inverse category with inverse product
- $\*$ and a disjoint sum tensor $\+$, with the $\*$ tensor preserves the disjoint join.
+ $\*$ and a disjoint sum $\+$, where the $\*$ tensor preserves the disjoint join.
 
 A map in \Xt is related to a map in \X in the following way:
 \[
@@ -325,7 +325,7 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   \end{enumerate}
 \end{proof}
 \begin{proposition}\label{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category}
-  Given \X is an distributive inverse category, then the category \Xt has coproducts.
+  Given \X is a distributive inverse category, then the category \Xt has coproducts.
 \end{proposition}
 \begin{proof}
   The tensor object $A\+B$ in \X will become the coproduct of $A, B$ in \Xt.
@@ -388,11 +388,11 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   Since equivalence is a transitive relation, this means we have
   \begin{align*}
     f &\xequiv{q_1} \cpa k\quad\text{and}\\
-    g &\xequiv{q_2} \cpb k.
+    g &\xequiv{q_2} \cpb k,
   \end{align*}
   where the maps $q_1: Y\*C \to Y\*E$ and $q_2:Y\*D \to Y\*E$ fulfill the respective equivalence diagrams.
 
-  Drawing this explicitly for $k, f$ and $q_1$,
+  Explicitly for $k, f$ and $q_1$, this gives us:
   \[
     \xymatrix @C=20pt @R=20pt{
       & Y \* C \ar@{.>}[dd]^{1\*q_1}\\
@@ -429,7 +429,7 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
     }\label{diag:k-equiv-f-djoin-g}
   \end{equation}
 
-  As we are in an inverse category, we know there is a map $t$ that makes this diagram commute,
+  As \X is an inverse category, we know there is a map $t$ that makes this diagram commute,
   namely $t =  \inv{(\icpa f' \djoin \icpb g')}k$. However, we must show this is in $\dmap{Y}$.
 
   Next, recalling Definition~\ref{def:up_triangle_and_down_triangle} consider
@@ -437,11 +437,11 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
     \xymatrix@C+0pt @R+20pt{
       Y\*C\ar[rr]^{1\*\cpa} \ar[drr]_{q_1} &&Y\*(C\+D)   \ar@{.>}[d]|-{q_1\tjup q_2}
         && Y\*D \ar[ll]_{1\*\cpb} \ar[dll]^{q_2}\\
-      &&Y\*E
+      &&Y\*E.
       }%\label{diag:q1_q2_tjup}
   \end{equation*}
-  We know the map $q_1\tjup q_2$ exists iff $\wrg{q_1} \perp \wrg{q_2}$. But, the map $t$ from above
-  does make the diagram commute. We can see this as
+  The map $q_1\tjup q_2$ exists iff $\wrg{q_1} \perp \wrg{q_2}$. But, the map $t$ from above
+  does make the diagram commute. This can be shown by
   \begin{align*}
     (1\*\cpa)& \inv{(\icpa f' \djoin \icpb g')}k\\
     &=  (1\*\cpa)\inv{(\icpa f(1\*\cpa) \djoin \icpb g(1\*\cpb))}k\\
@@ -451,10 +451,10 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
     &=  \inv{f} \cpa k\\
     &= q_1
   \end{align*}
-  and similarly for $q_2$. Therefore, we have  $\wrg{q_1} \perp \wrg{q_2}$.
+  and similarly for $q_2$. Therefore,  $\wrg{q_1} \perp \wrg{q_2}$.
 
   This means we may form the map $q_1\tjup q_2:Y\*(C\+D) \to Y\*E$. But then the map
-  $(q_1\tjup  q_2)$  makes Diagram~\ref{diag:k-equiv-f-djoin-g} commute. We also have
+  $(q_1\tjup  q_2)$  makes Diagram~\ref{diag:k-equiv-f-djoin-g} commute. At the same time,
   $q_1,q_2\in\dmap{Y}$, but this means $q_1\tjup q_2 \in \dmap{Y}$ as
   \[
     \raisebox{40pt}{$q_1=$ }
@@ -599,7 +599,7 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
     \end{tikzpicture}
     \,\raisebox{40pt}{$= (1\*\cpa)\dmap{(q_1\tjup q_2)}$.}
   \]
-  and similarly $q_2 = (1\*\cpb)\dmap{(q_1\tjup q_2)}$ giving us $q_1\tjup q_2 \in \dmap{Y}$ by the
+  Similarly, $q_2 = (1\*\cpb)\dmap{(q_1\tjup q_2)}$ giving us $q_1\tjup q_2 \in \dmap{Y}$ by the
   uniqueness of the $\tjup$ map. Therefore $q_1\tjup q_2$ provides an
   equivalence between $k$ and $\icpa f' \djoin \icpb g'$, meaning the coproduct is unique.
 \end{proof}
