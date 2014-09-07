@@ -1,0 +1,622 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+
+\chapter{Distributive inverse categories} % (fold)
+\label{chap:distributive_inverse_categories}
+We now consider inverse categories with both a disjoint sum and inverse product, where the inverse
+product distributes overs the disjoint sum in a specific way. We show that the Cartesian Completion
+of such a category is a distributive restriction category where the product distributes over the
+coproduct.
+
+\section{Distributive restriction categories} % (fold)
+\label{sec:distributive_restriction_categories}
+
+\begin{definition}\label{def:distributive_category}
+  A Cartesian category $\B$ with coproducts is called a
+  \emph{distributive}\cite{cockett1993-introduction-distributive} category when
+  \[
+    (A\times B) + (A\times C) \cong A \times (B+ C).
+  \]
+\end{definition}
+
+\begin{definition}\label{def:distributive_restriction_category}
+  A Cartesian restriction category $\D$ with a restriction zero and coproducts is called a
+  \emph{distributive restriction category}\cite{cockettlack2004:restcategories3}
+  when there is an isomorphism $\rho$ such that
+  \[
+    A\times (B+C) \xrightarrow{\rho} (A\times B) +(A\times C).
+  \]
+\end{definition}
+
+If $\D$ is a distributive restriction category, then Total($\D$) is a distributive
+category as in Definition~\ref{def:distributive_category}.
+
+In the following, we will present distributivity in inverse categories.
+
+% subsection distributive_restriction_categories (end)
+
+\section{Distributive inverse categories} % (fold)
+\label{sec:distributive_inverse_categories}
+% \note{
+% The following two \emph{should} be equivalent. Either
+% \begin{itemize}
+%   \item $\*$ preserves sums
+%   \item $\*$ preserves disjoint
+% \end{itemize}
+%
+% Break down the map into disjoint items, if equivalent on pieces, then they are
+% equivalent.
+% }
+\begin{definition}\label{def:distributive_inverse_category}
+  A \emph{distributive inverse category} \D consists of the following:
+  \begin{itemize}
+    \item \D is an inverse category;
+    \item \D has an inverse product with tensor $\*$, per Definition~\ref{def:inverse_product};
+    \item \D has a disjoint sum tensor, $\+$, per Definition~\ref{def:disjoint_sum_tensor} and
+    \item There is a family of isomorphisms, $d$, such that
+    \begin{equation}
+      \xymatrix{
+      && A\*B\\
+      A \* (B \+ C) \ar[rr]^{d} \ar[urr]^{1\*\icpa} \ar[drr]_{1\*\icpb}
+        && (A\*B) \+ (A \* C) \ar[u]_{\icpa} \ar[d]^{\icpb}\\
+      && A\*C,
+      }\label{eq:inverse_distributive_laws}
+    \end{equation}
+    commutes in \D for any choices of objects $A, B, C$.
+  \end{itemize}
+\end{definition}
+
+\begin{example}[\pinj is a distributive inverse category]
+  The isomorphism $d$ of Diagram~\ref{eq:inverse_distributive_laws} is given by the following:
+  \begin{equation}
+    d((a,(x,n)) = \begin{cases}
+      ((a,x),1) & n = 1\\
+      ((a,x),2) & n = 2.
+      \end{cases}\label{eq:pinj_distributive_isomporphism}
+    \end{equation}
+\end{example}
+Note that as we are operating in an inverse category, we also have the inverse of
+diagram~\ref{eq:inverse_distributive_laws} available to us. That is,
+\begin{equation}
+  \xymatrix{
+  A\*B \ar[d]_{\cpa} \ar[drr]^{1\*\cpa}\\
+  (A\*B) \+ (A \* C)  \ar[rr]^{\inv{d}}  &&A \* (B \+ C) \\
+  A\*C\ar[u]^{\cpb} \ar[urr]_{1\*\cpb}
+  }\label{eq:inverse_distributive_laws_reversed}
+\end{equation}
+is also a commuting diagram in \D.
+
+\begin{definition}\label{def:join_of_perp_rst_maps}
+  Suppose \X is an inverse category with a disjoint sum tensor $\+$ and a restriction zero. Then
+  for maps $f:A \to B$ and $g:A \to C$ with $\rst{f} \perp \rst{g}$, define the map $[f,g]:A \to
+  B\+C$ as $(f \cpa) \djoin (g \cpb)$. This is well defined as $\wrg{\cpa} \perp \wrg{\cpb}$ and
+  therefore by \axiom{Dis}{7}, $f\cpa \perp g\cpb$.
+\end{definition}
+
+\begin{lemma}
+  Suppose \X is an inverse category \X\ with:
+  \begin{itemize}
+    \item a disjoint sum tensor $\+$,
+    \item a restriction zero, and
+    \item an inverse  product $\*$ which distributes over disjoint joins, (that is,
+      $f\*(g\djoin h) = (f\*g) \djoin (f\* h)$).
+  \end{itemize}
+  Then, \X is an inverse distributive  category.
+\end{lemma}
+\begin{proof}
+  By assumption, we have the first three items of
+  Definition~\ref{def:distributive_inverse_category}. Therefore, we need to construct an
+  isomorphism $d$ such that diagram~\ref{eq:inverse_distributive_laws} commutes. We claim that the
+  map $d = [1\* \icpa, 1\* \icpb]$ does this.
+
+  First, note that the typing of $d$ is correct. By Definition~\ref{def:join_of_perp_rst_maps},
+  \[
+    d = ((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb) : A \* (B \+ C) \to (A\*B)\+(A\*C)
+  \]
+  as
+  \begin{align*}
+      A \* (B \+ C) & \xrightarrow{(1\*\icpa)} A\* B \xrightarrow{\icpa} (A\*B)\+(A\*C),\\
+      A \* (B \+ C) & \xrightarrow{(1\*\icpb)} A\* C \xrightarrow{\icpb} (A\*B)\+(A\*C).
+  \end{align*}
+
+  Next, we need to show $d$ is an isomorphism. We will do this by showing both $\rst{d} = 1$ and
+  $\rst{\inv{d}} = 1$.
+  As a consequence of Lemma~\ref{lem:join_is_associative_and_commutative_monoid}, we know
+  the inverse of $d$ is
+  \[
+    \inv{((1 \* \icpa) \cpa )}\djoin \inv{((1\*\icpb) \cpb)} =
+      ( \icpa(1 \* \cpa) ) \djoin ( \icpb(1\*\cpb)).
+  \]
+
+  Having $\*$ distribute over the disjoint sum means that for any maps $f,h,k$ with $h\perp k$, we
+  have $f \* (h\djoin k) = (f\*h) \djoin (f\*k)$. We use this in the calculation of the restriction
+  of $f$:
+  \begin{align*}
+    \rst{((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb)}
+      &= \rst{((1 \* \icpa) \cpa )}\djoin \rst{((1\*\icpb) \cpb)} \\
+      &= (1\* \rst{\icpa}) \djoin (1\* \rst{\icpb}) \\
+      &= (1\* (\rst{\icpa} \djoin \rst{\icpb}) \\
+      &= 1\* ((1\+0) \djoin (0\+1) )\\
+      &=1 \* 1 = 1
+  \end{align*}
+  and for the inverse,
+  \begin{align*}
+    \rst{( \icpa(1 \* \cpa) ) \djoin ( \icpb(1\*\cpb))}
+      &= \rst{(\icpa(1 \* \cpa) )}\djoin \rst{(\icpb(1\*\cpb))} \\
+      &= \rst{(\icpa\rst{(1 \* \cpa)} )}\djoin \rst{(\icpb\rst{(1\*\cpb)})} \\
+      &= \rst{(\icpa)}\djoin \rst{(\icpb)}\\
+      &= (1\+0) \djoin (0\+1) \\
+      &= 1.
+  \end{align*}
+
+  Hence, $[1\* \icpa, 1\* \icpb]$ is an isomorphism.
+  Finally, we must show that diagram~\ref{eq:inverse_distributive_laws} commutes:
+  \begin{align*}
+    d \icpa & = \left( ((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb) \right)\icpa \\
+     & = \left(((1 \* \icpa) \cpa )\icpa \right) \djoin \left( ((1\*\icpb) \cpb) \icpa\right) \\
+     & = \left((1 \* \icpa) 1 \right) \djoin \left( (1\*\icpb) 0\right) \\
+     & = (1 \* \icpa) \djoin 0\\
+     & = 1 \* \icpa
+  \end{align*}
+  and
+  \begin{align*}
+    d \icpb & = \left( ((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb) \right)\icpb \\
+     & = \left(((1 \* \icpa) \cpa )\icpb \right) \djoin \left( ((1\*\icpb) \cpb) \icpb\right) \\
+     & = 0 \djoin (1 \* \icpb)\\
+     & = 1 \* \icpb.
+  \end{align*}
+  This shows the fourth condition is satisfied and $\X$ is a distributive inverse category.
+\end{proof}
+
+We have seen that a second tensor distributing over the disjoint joins implies that we have an
+inverse distributive category. We now show the converse is true.
+\begin{lemma}\label{lem:distributive_means_distribute_over_triangles}
+  Given an inverse distributive category \X, then $h\*(f\tjdown g) = (h\* f) \tjdown (h\* g)$
+  whenever $f\tjdown g$ exists and $h\*(f\tjup g) = (h\* f) \tjup (h\* g)$ whenever
+  $f\tjup g$ exists.
+\end{lemma}
+\begin{proof}
+  Let $h:A \to C$, $f:B \to D$ and $g: B \to E$. Consider the following diagram:
+  \[
+    \xymatrix@R+20pt@C+10pt{
+      & && B\*E\\
+      A\*C \ar[rr]^{h\*(f\tjdown g)} \ar[drrr]_{h\*g} \ar[urrr]^{h\*f}
+        && B \* (D \+ E) \ar[r]^{\cong} \ar[ur]_{1\*\icpa} \ar[dr]^{1\*\icpb}
+        & (B\*D) \+ (B \* E) \ar[d]^{\icpb} \ar[u]_{\icpa}\\
+      & && B\*D.
+    }
+  \]
+  The two leftmost  triangles commute by the diagram for $f\tjdown g$. The right hand triangles
+  commute as per Definition~\ref{def:distributive_inverse_category}. By the uniqueness of the
+  $\tjdown$ operation we see  $h\*(f\tjdown g) = (h\* f)\tjdown(h\* g)$,
+
+  The argument for showing $h\*(f\tjup g) = (h\* f)\tjup(h\* g)$ follows the same pattern.
+  %TODO: Is the isomorphism important? Do we need to do something with it?
+\end{proof}
+\begin{lemma}\label{lem:distributive_means_distribute_over_join}
+  Given an inverse distributive category \X, then $\*$ distributes over the disjoint join.
+\end{lemma}
+\begin{proof}
+  First recall the definition of $f\djoin g = (\rst{f}\tjdown\rst{g})(f\tjup g)$. In order
+  to show $h\*(f\djoin g) = (h\*f)\djoin (h\*g)$, we need to show that
+  \begin{equation}
+    h\*(\rst{f}\tjdown\rst{g})(f\tjup g) = (\rst{h\*f}\tjdown\rst{h\*g})(h\*f\tjup h\*g).
+    \label{eq:distribute_over_left_right}
+  \end{equation}
+
+  Since $h\*(\rst{f}\tjdown\rst{g})(f\tjup g) =
+  (\rst{h}\*(\rst{f}\tjdown\rst{g}))(h\*(f\tjup g))$, Equation~\ref{eq:distribute_over_left_right}
+  follows directly from  Lemma~\ref{lem:distributive_means_distribute_over_triangles} and the fact
+  that $\*$ is a  restriction functor.
+\end{proof}
+
+\begin{corollary}\label{cor:inverse_product_and_disjointness}
+  Suppose we have an inverse distributive category \X. Then,
+  \begin{enumerate}[{(}i{)}]
+    \item if $f \perp g$, then $h\*f \perp h\*  g$ for any $h$,
+    \item  if  $f\perp g : A\to B$ and $h \perp k: C\to D$, then $(f\*h)\perp (g\*k)$.
+   \end{enumerate}
+\end{corollary}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item As $f\perp g$, we have $f\tjup g$ and $f\tjdown g$. By
+      Lemma~\ref{lem:distributive_means_distribute_over_triangles}, both $h\*f \tjup h\*g$ and
+      $h\*f \tjdown h\* g$ exist and therefore $h\*f \perp h\*g$.
+    \item By the previous item, we have that $((f\djoin g)\*h) \perp ((f\djoin g)\* k)$. Then, by
+      \axiom{DJ}{1} and \axiom{Dis}{3} we have $(f\*h)\perp (g\*k)$.
+  \end{enumerate}
+\end{proof}
+% subsection distributive_inverse_categories (end)
+
+\section{Discrete inverse categories with disjoint sums} % (fold)
+\label{sec:discrete_inverse_categories_with_disjoint_sums}
+
+We now consider the case where we have a discrete inverse category with inverse product
+ $\*$ and a disjoint sum $\+$, where the $\*$ tensor preserves the disjoint join.
+
+A map in \Xt is related to a map in \X in the following way:
+\[
+  \infer{A\xrightarrow{f} B\*C \text{ in }\X.}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
+\]
+
+Our goal is to show that a disjoint sum in a distributive inverse category becomes a coproduct
+in \Xt.
+
+\begin{lemma}\label{lem:x_tilde_has_a_restriction_zero}
+  Given $\X$ is a distributive inverse category, then $\Xt$, the discrete Cartesian restriction
+  category created from $\X$, has a restriction zero.
+\end{lemma}
+\begin{proof}
+  Recall from Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories}
+  that $\X$ is equivalent as a category to $\Xt$ under the identity on objects
+  functor
+  \[
+    {\raisebox{-18pt}{$\wtf:\X \to \Xt;$}} \quad
+    \xymatrix{A\ar[d]^{f}\\B}\ \raisebox{-18pt}{$\mapsto$}\, \xymatrix{A\ar[d]^{(f\inv{\usr},1)}\\B}
+    \,\raisebox{-18pt}{.}
+  \]
+
+  In $\X$, we know $0$ is a terminal and initial object, with maps
+  $A \xrightarrow{t_A} 0 $ and $0 \xrightarrow{z_A} A$, where  $\rst{0_{A,A}} = 0_{A,A} = t_A z_A$.
+
+  First we note that $0$ is both initial and terminal in $\Xt$, with the terminal maps being
+  $\wtf(t_A)$ and initial maps being $\wtf(z_A)$.
+
+  As was also shown in
+  Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories},
+$\wtf$ is a restriction functor, so in $\Xt$ we have
+  \[
+    0_{A,A} = \wtf(t_A)\wtf(z_A) = \wtf(t_A z_A) = \wtf(0_{A,A}) = \wtf(\rst{0_{A,A}}) =
+    \rst{\wtf(0_{A,A})} = \rst{0_{A,A}}.
+  \]
+  Hence, $0_{A,A}$ is a restriction zero in $\Xt$.
+\end{proof}
+
+\begin{lemma}\label{lem:maps_from_disjoint_sums_have_disjoint_equivalences}
+  In a distributive inverse category \X, the following hold:
+  \begin{enumerate}[{(}i{)}]
+    \item Given $f : A \to Y\*C$, we can construct $f' : A \to Y \* (C\+D)$  for some object $D$ such
+      that $f \xequiv{} f'$.\label{lemitem:construct_f_prime}
+    \item Given $f : A \to Y \* C$, $g : A\to Y \* D$, then the $f' : A \to Y \* (C\+D)$,
+      $g' : B \to Y \* (C\+D)$ as constructed in  \ref{lemitem:construct_f_prime} satisfies $\icpa f'
+      \perp \icpb g'$.\label{lemitem:constructed_are_disjoint}
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+  \item Set $f' = f(1\*\cpa)$.
+    To show $f\xequiv{} f'$, we must first show their restriction is the same.
+    \[
+      \rst{f(1\*\cpa)} = \rst{f\rst{(1\*\cpa)}} = \rst{f 1} =  \rst{f}
+    \]
+    The mediating map between $f$ and $f'$ is, of course, $1\*\cpa$:
+    \[
+    \xymatrix @C=20pt @R=20pt{
+      &  Y \* C \ar@{.>}[dd]^{1\*\cpa}\\
+      A \ar[ur]^f \ar[dr]_{f'} \\
+      & Y\*(C\+ D).
+    }
+    \]
+  By the same reasoning we may also create $f':A\to Y\*(D\+C)$ by setting $f' = f(1\*\cpb)$.
+  \item First note we have $\icpa f',\,\icpb g': A\+B \to Y\*(C\+D)$. In order to show  $\icpa f'
+    \perp \icpb g'$, we will proceed by showing their restrictions and ranges are disjoint.
+    As $\rst{\inv{\cpa}} \perp \rst{\inv{\cpb}}$ and $\rst{\inv{\cpa}f'} \le \rst{\inv{\cpa}}$ and
+    $\rst{\inv{\cpb}g'} \le \rst{\inv{\cpb}}$, we immediately have
+    $\rst{\inv{\cpa}f'} \perp \rst{\inv{\cpb}g'}$.
+
+    For the ranges, we have
+    \begin{align*}
+      \wrg{\inv{\cpa} (f (1\*\cpa))} &=
+      \rst{((1\*\icpa)\inv{f})\cpa}\\
+      &= \rst{((1\*\icpa)\inv{f}}\\
+      &\le \rst{(1\*\icpa)}
+    \end{align*}
+    and similarly
+    \[
+      \wrg{\inv{\cpb} g'} \le \rst{(1\*\icpb)}.
+    \]
+
+    Using Lemma~\ref{lem:disjointness_various}
+    we know that $\rst{(\icpa)}\perp \rst{(\icpb)}$. From
+    Corollary~\ref{cor:inverse_product_and_disjointness}
+    we conclude that $\rst{(1\*\icpa)}\perp \rst{(1\*\icpb)}$ and giving us
+    $\wrg{\inv{\cpa}f'} \perp \wrg{\inv{\cpb}g'}$ and therefore $\inv{\cpa}f' \perp \inv{\cpb}g'$.
+  \end{enumerate}
+\end{proof}
+\begin{proposition}\label{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category}
+  Given \X is a distributive inverse category, then the category \Xt has coproducts.
+\end{proposition}
+\begin{proof}
+  The tensor object $A\+B$ in \X will become the coproduct of $A, B$ in \Xt.
+
+  The injection maps of the coproduct are $i_1 =(\cpa \inv{\usr}, 1)$ and
+  $i_2 = (\cpb \inv{\usr}, 1)$.
+
+  Consider the following diagram in \Xt:
+  \[
+    \xymatrix{
+      A \ar[drrr]^{(f,C)} \ar[dr]_{i_1} \\
+      & A\+B \ar@{.>}[rr]^h & & Y. \\
+      B \ar[urrr]_{(g,D)} \ar[ur]^{i_2}
+    }
+  \]
+
+  In \X, this comes from the diagram:
+  \begin{equation}
+    \xymatrix{
+      A \ar[dr]_{\cpa} \ar[rr]^f && Y\*C\\
+      & A\+B\\
+      B \ar[ur]^{\cpb} \ar[rr]^g && Y\*D\\
+    }\label{diag:pre-coproduct}
+  \end{equation}
+  where the extraneous unit isomorphisms are removed.
+
+  This corresponds to the conditions of
+  Lemma~\ref{lem:maps_from_disjoint_sums_have_disjoint_equivalences}. Hence by that lemma we may
+  revise Diagram~\ref{diag:pre-coproduct} as
+  \begin{equation}
+    \xymatrix@R+20pt {
+      A \ar[dr]^{\cpa} \ar[drrrrr]^{f'}\\
+      &A\+B \ar[rrrr]^(.4){\icpa f' \djoin \icpb g'} &&&& Y\*(C\+D)\\
+      B \ar[ur]^{\cpb} \ar[urrrrr]_{g'}\\
+    }\label{diag:pre-coproduct-with-common-map}
+  \end{equation}
+  where $f'$ and $g'$ are respectively equivalent to $f,g$.
+
+  Lifting Diagram~\ref{diag:pre-coproduct-with-common-map} to \X, we see this corresponds to the
+  desired coproduct diagram, where  $h$ in \Xt is the map $(\icpa f' \djoin \icpb g', (C\+D))$.
+
+  By construction, in \X, we have
+  \[
+    \cpa (\icpa f' \djoin \cpa\icpb g') = (\cpa\icpa f') \djoin (\cpa\icpb g') = f' \djoin 0 = f'
+  \]
+  and
+  \[
+    \cpb (\icpa f' \djoin \cpa\icpb g') = g'.
+  \]
+  Hence, in \Xt, we have  $(i_1 \usr, 1) h = f$ and $(i_2 \usr, 1) h = g$.
+
+  All that remains to be shown is that $h$ is unique.
+
+  Suppose there is another $(k,E)$ in \Xt such that it satisfies the coproduct properties, i.e.,
+  that $i_1 (k,E) = (f',C\+D)$ and $i_2 (k,E) = (g',C\+D)$. In \X, $k:A\+B \to Y \* E$ and we have
+  \begin{align*}
+    \cpa k &\xequiv{} f'\quad\text{and}\\
+    \cpb k &\xequiv{} g'.
+  \end{align*}
+  Since equivalence is a transitive relation, this means we have
+  \begin{align*}
+    f &\xequiv{q_1} \cpa k\quad\text{and}\\
+    g &\xequiv{q_2} \cpb k,
+  \end{align*}
+  where the maps $q_1: Y\*C \to Y\*E$ and $q_2:Y\*D \to Y\*E$ fulfill the respective equivalence diagrams.
+
+  Explicitly for $k, f$ and $q_1$, this gives us:
+  \[
+    \xymatrix @C=20pt @R=20pt{
+      & Y \* C \ar@{.>}[dd]^{1\*q_1}\\
+      A \ar[ur]^{f} \ar[dr]_{\cpa k} \\
+      & Y\*E.
+    }
+  \]
+  % Additionally, as $f' = f(1\*\cpa)$, we have $\cpa k \xequiv{q_1(1\*\cpa)} f'$. Similarly,
+  % $\cpb k \xequiv{q_2(1\*\cpb)} g'$.
+
+  % Furthermore, as we may prepend equivalences with the same map, we may conclude
+  % $\icpa\cpa k \xequiv{q_1(1\*\cpa)} \icpa f'$ and $\icpb\cpb k \xequiv{q_2(1\*\cpb)} \icpb g'$.
+
+
+  % As we have $\icpa f' \perp \icpb g'$, we have $\rst{\icpa f'} \perp \rst{\icpb g'}$ by
+  % \axiom{Dis}{6}. By the definition of our equivalence relation, we therefore have
+  % $\rst{\icpa\cpa k} \perp \rst{\icpb \cpb k}$ as equivalent maps have the equal restrictions. As
+  % $\Delta \* 1$ is total, $\rst{\icpa\cpa k} = \rst{\icpa \cpa k (\Delta \*1)}$ and we may further
+  % conclude   $\rst{\icpa\cpa k (\Delta \*1)} \perp \rst{\icpb \cpb k (\Delta \*1)}$.
+
+  % Then, following the same reasoning as in
+  % Lemma~\ref{lem:maps_from_disjoint_sums_have_disjoint_equivalences}\ref{lemitem:constructed_are_disjoint},
+  % we know that \[\wrg{1\*\cpa}\perp \wrg{1\*\cpb}.\] By
+  % Lemma~\ref{lem:ordering_of_restriction_and_range}~\ref{lemitem:ordering_1} ($\wrg{f h} \le
+  % \rg{h}$) and \axiom{Dis}{3}, we have \[\wrg{q_1(1\*\cpa)} \perp \wrg{q_2(1\*\cpb)}.\]
+
+  Now, we turn out attention to showing that $k \xequiv{} h = \icpa f' \djoin \icpb g'$. Consider the
+  diagram
+  \begin{equation}
+    \xymatrix @C=35pt @R=20pt{
+      & Y \* (C\+D)\ar@{.>}[dd]^{t}\\
+      A \ar[ur]^(.4){\icpa f' \djoin \icpb g'\ \ \,} \ar[dr]_{k} \\
+      & Y\*E.
+    }\label{diag:k-equiv-f-djoin-g}
+  \end{equation}
+
+  As \X is an inverse category, we know there is a map $t$ that makes this diagram commute,
+  namely $t =  \inv{(\icpa f' \djoin \icpb g')}k$. However, we must show this is in $\dmap{Y}$.
+
+  Next, recalling Definition~\ref{def:up_triangle_and_down_triangle} consider
+  \begin{equation*}
+    \xymatrix@C+0pt @R+20pt{
+      Y\*C\ar[rr]^{1\*\cpa} \ar[drr]_{q_1} &&Y\*(C\+D)   \ar@{.>}[d]|-{q_1\tjup q_2}
+        && Y\*D \ar[ll]_{1\*\cpb} \ar[dll]^{q_2}\\
+      &&Y\*E.
+      }%\label{diag:q1_q2_tjup}
+  \end{equation*}
+  The map $q_1\tjup q_2$ exists iff $\wrg{q_1} \perp \wrg{q_2}$. But, the map $t$ from above
+  does make the diagram commute. This can be shown by
+  \begin{align*}
+    (1\*\cpa)& \inv{(\icpa f' \djoin \icpb g')}k\\
+    &=  (1\*\cpa)\inv{(\icpa f(1\*\cpa) \djoin \icpb g(1\*\cpb))}k\\
+    &=  (1\*\cpa)((1\*\icpa) \inv{f}\cpa \djoin (1\*\icpb) \inv{g}\cpb) k \\
+    &=  ((1\*1) \inv{f}\cpa \djoin (1\*0) \inv{g}\cpb) k \\ % as Y\*0
+                                % Y\*0 = 0
+    &=  \inv{f} \cpa k\\
+    &= q_1
+  \end{align*}
+  and similarly for $q_2$. Therefore,  $\wrg{q_1} \perp \wrg{q_2}$.
+
+  This means we may form the map $q_1\tjup q_2:Y\*(C\+D) \to Y\*E$. But then the map
+  $(q_1\tjup  q_2)$  makes Diagram~\ref{diag:k-equiv-f-djoin-g} commute. At the same time,
+  $q_1,q_2\in\dmap{Y}$, but this means $q_1\tjup q_2 \in \dmap{Y}$ as
+  \[
+    \raisebox{40pt}{$q_1=$ }
+    \begin{tikzpicture}
+      \node at (0,2.75) (s) {};
+      \node at (.75,2.75) (s2) {};
+      \node at (0,2.25) [delta] (d1) {};
+      \node at (.5,1.75) [map] (c) {$\scriptstyle 1\*\cpa$};
+      \node at (.5,1) [map] (q) {$\scriptstyle q_1\tjup q_2$};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.75,0) (end2) {};
+      \draw [] (s) to (d1);
+      \draw [] (s2) to[out=270,in=55] (c);
+      \draw [] (d1) to[out=305,in=125] (c);
+      \draw [] (d1) to[out=235,in=125] (n1);
+      \draw [] (c) to[out=305,in=55] (q);
+      \draw [] (c) to[out=235,in=125] (q);
+      \draw [] (q) to[out=235,in=55] (n1);
+      \draw [] (q) to[out=305,in=90] (end2);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \,\raisebox{40pt}{$=$}
+    \begin{tikzpicture}
+      \node at (0,3.75) (s) {};
+      \node at (.75,3.75) (s2) {};
+      \node at (0,3.25) [delta] (d1) {};
+      \node at (0.25,2.75) [delta] (d2) {};
+      \node at (.75,2.25) [map] (c) {$\scriptstyle 1\*\cpa$};
+      \node at (0.25, 1.75) [nabla] (n2) {};
+      \node at (.5,1) [map] (q) {$\scriptstyle q_1\tjup q_2$};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.75,0) (end2) {};
+      \draw [] (s) to (d1);
+      \draw [] (s2) to[out=270,in=55] (c);
+      \draw [] (d1) to[out=305,in=90] (d2);
+      \draw [] (d1) to[out=235,in=125] (n1);
+      \draw [] (d2) to[out=305,in=125] (c);
+      \draw [] (d2) to[out=235,in=125] (n2);
+      \draw [] (c) to[out=305,in=55] (q);
+      \draw [] (c) to[out=235,in=55] (n2);
+      \draw (n2) to[out=270,in=125] (q);
+      \draw [] (q) to[out=235,in=55] (n1);
+      \draw [] (q) to[out=305,in=90] (end2);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \,\raisebox{40pt}{$=$}
+    \begin{tikzpicture}
+      \node at (0,3.75) (s) {};
+      \node at (.75,3.75) (s2) {};
+      \node at (0,3.25) [delta] (d1) {};
+      \node at (-0.25,2.75) [delta] (d2) {};
+      \node at (.5,2.25) [map] (c) {$\scriptstyle 1\*\cpa$};
+      \node at (0, 1.75) [nabla] (n2) {};
+      \node at (.5,1) [map] (q) {$\scriptstyle q_1\tjup q_2$};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.75,0) (end2) {};
+      \draw [] (s) to (d1);
+      \draw [] (s2) to[out=270,in=55] (c);
+      \draw [] (d1) to[out=235,in=90] (d2);
+      \draw [] (d1) to[out=305,in=125] (c);
+      \draw [] (d2) to[out=305,in=125] (n2);
+      \draw [] (d2) to[out=235,in=125] (n1);
+      \draw [] (c) to[out=305,in=55] (q);
+      \draw [] (c) to[out=235,in=55] (n2);
+      \draw (n2) to[out=270,in=125] (q);
+      \draw [] (q) to[out=235,in=55] (n1);
+      \draw [] (q) to[out=305,in=90] (end2);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \,\raisebox{40pt}{$=$}
+    \begin{tikzpicture}
+      \node at (0,3.75) (s) {};
+      \node at (.75,3.75) (s2) {};
+      \node at (0,3.25) [delta] (d1) {};
+      \node at (.5,2.75) [map] (c) {$\scriptstyle 1\*\cpa$};
+      \node at (-0.25,2.25) [delta] (d2) {};
+      \node at (0, 1.75) [nabla] (n2) {};
+      \node at (.5,1) [map] (q) {$\scriptstyle q_1\tjup q_2$};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.75,0) (end2) {};
+      \draw [] (s) to (d1);
+      \draw [] (s2) to[out=270,in=55] (c);
+      \draw [] (d1) to[out=235,in=90] (d2);
+      \draw [] (d1) to[out=305,in=125] (c);
+      \draw [] (d2) to[out=305,in=125] (n2);
+      \draw [] (d2) to[out=235,in=125] (n1);
+      \draw [] (c) to[out=305,in=55] (q);
+      \draw [] (c) to[out=235,in=55] (n2);
+      \draw (n2) to[out=270,in=125] (q);
+      \draw [] (q) to[out=235,in=55] (n1);
+      \draw [] (q) to[out=305,in=90] (end2);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \,\raisebox{40pt}{$=$}
+    \begin{tikzpicture}
+      \node at (0,3.75) (s) {};
+      \node at (.75,3.75) (s2) {};
+      \node at (0,3.25) [delta] (d1) {};
+      \node at (.5,2.75) [map] (c) {$\scriptstyle 1\*\cpa$};
+      \node at (0, 2.25) [nabla] (n2) {};
+      \node at (0,1.5) [delta] (d2) {};
+      \node at (.5,1) [map] (q) {$\scriptstyle q_1\tjup q_2$};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.75,0) (end2) {};
+      \draw [] (s) to (d1);
+      \draw [] (s2) to[out=270,in=55] (c);
+      \draw [] (d1) to[out=235,in=125] (n2);
+      \draw [] (d1) to[out=305,in=125] (c);
+      \draw [] (c) to[out=305,in=55] (q);
+      \draw [] (c) to[out=235,in=55] (n2);
+      \draw (n2) to[out=270,in=90] (d2);
+      \draw [] (d2) to[out=305,in=125] (q);
+      \draw [] (d2) to[out=235,in=125] (n1);
+      \draw [] (q) to[out=235,in=55] (n1);
+      \draw [] (q) to[out=305,in=90] (end2);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \,\raisebox{40pt}{$=$}
+    \begin{tikzpicture}
+      \node at (0,2.75) (s) {};
+      \node at (.75,2.75) (s2) {};
+      \node at (.5,2.25) [map] (c) {$\scriptstyle 1\*\cpa$};
+      \node at (0,1.5) [delta] (d2) {};
+      \node at (.5,1) [map] (q) {$\scriptstyle q_1\tjup q_2$};
+      \node at (0, .5) [nabla] (n1) {};
+      \node at (0,0) (end) {};
+      \node at (.75,0) (end2) {};
+      \draw [] (s) to[out=270,in=125] (c);
+      \draw [] (s2) to[out=270,in=55] (c);
+      \draw [] (c) to[out=305,in=55] (q);
+      \draw [] (c) to[out=235,in=90] (d2);
+      \draw [] (d2) to[out=305,in=125] (q);
+      \draw [] (d2) to[out=235,in=125] (n1);
+      \draw [] (q) to[out=235,in=55] (n1);
+      \draw [] (q) to[out=305,in=90] (end2);
+      \draw (n1) to (end);
+    \end{tikzpicture}
+    \,\raisebox{40pt}{$= (1\*\cpa)\dmap{(q_1\tjup q_2)}$.}
+  \]
+  Similarly, $q_2 = (1\*\cpb)\dmap{(q_1\tjup q_2)}$ giving us $q_1\tjup q_2 \in \dmap{Y}$ by the
+  uniqueness of the $\tjup$ map. Therefore $q_1\tjup q_2$ provides an
+  equivalence between $k$ and $\icpa f' \djoin \icpb g'$, meaning the coproduct is unique.
+\end{proof}
+
+\begin{corollary}\label{cor:xt_is_a_distributive_restriction_category}
+  When \X is a distributive inverse category, $\Xt$ is a distributive restriction category.
+\end{corollary}
+\begin{proof}
+  As $\Xt$ has restriction products by Lemma~\ref{lem:tensor_on_x_is_the_restriction_product_on_xt},
+  restriction coproducts by
+  Theorem~\ref{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category} and the equations
+  for distributivity follow directly from the distributivity of the base tensors, we see $\Xt$ is a
+  distributive restriction category.
+\end{proof}
+% chapter disjoint_sum_categories (end)
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:

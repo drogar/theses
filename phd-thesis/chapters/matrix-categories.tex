@@ -1,0 +1,528 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+\chapter{Matrix categories} % (fold)
+\label{cha:matrix_categories}
+
+Inverse categories with enough disjoint sums are equivalent to their matrix categories and are, in
+fact, Unique Decomposition Categories\cite{haghverdi:2000phd}.
+
+
+
+\section{Matrices} % (fold)
+\label{sec:matrix_representation}
+In this section, we will show that when given an inverse  category \X with a disjoint sums, one
+can define a matrix category based on $\X$. We will call this category \imatx. Furthermore, we will
+show that \imatx is an inverse category and that $\X$ embeds within this category.
+
+The types of matrices allowed in the matrix category are subject to certain constraints:
+\begin{definition}\label{def:disjoint_sum_matrix}
+  Suppose we have \X is an inverse category with disjoint sums. Then an \emph{disjoint sum matrix}
+  in \X is a matrix of maps $[f_{i j}]$ where $i \in \{1,\ldots, n\}$ and $j \in \{1,\ldots, m\}$ with
+  $f_{i\jay}:A_i \to B_\jay$ which satisfy the two conditions:
+  \begin{align}
+    &\text{For each }i,\ \cdperp\{f_{i \jay} \cp{\jay}\}_{\jay=1,\ldots,m}
+    \text{ where } \cp{\jay}: B_\jay \to B_1\+B_2\+\cdots\+B_m.
+      \label{eq:disjoint_sum_matrix_row_perp}\\
+    &\text{For each }j,\ \cdperp\{\inv{\cp{i}} f_{i \jay}\}_{i=1,\ldots,n}
+    \text{ where } \icp{i} : A_1\+A_2\+\cdots\+A_n \to A_i.
+    \label{eq:disjoint_sum_matrix_column_perp}
+  \end{align}
+\end{definition}
+
+  In the above and following we will use the notation $\cp{i}$ for the $i^{\text{th}}$ injection
+  map of the disjoint sum, with $i$ starting at 1. This simply extends the notation introduced in
+  Definition~\ref{def:disjointness_tensor}.
+
+  We will show that this type of matrix corresponds to maps in the category \imatx. In \imatx the
+  composition is given by ``matrix multiplication'', with the operations of multiplication and
+  addition  replaced with composition in \X and the disjoint join respectively.
+
+\begin{definition}\label{def:inverse_matrix_category}
+  Given an inverse category \X with disjoint sums, we define the \emph{inverse
+  matrix category} of \X, \imatx, as follows:
+  \rcategory{Non-empty lists of the objects of $\X$}{
+    disjoint sum matrices $[f_{i\jay}]: [A_i] \to [B_\jay]$. In such a matrix each individual map
+    $f_{i\jay}:A_i \to B_{\jay}$ is a map in $\X$. For each $j$, $B_\jay$ is given by
+    applying the map $\djoin_i \icp{i} f_{i\jay}$ to the object $\+_i A_i$}{
+    The disjoint sum matrix $I$}{
+    Given $[f_{i\jay}]: [A_i] \to [B_\jay]$ and $[g_{j k}] : [B_\jay] \to [C_k]$, then
+    $[h_{i k}] = [f_{i\jay}][g_{\jay k}]: [A_i] \to [C_k]$ is defined as
+    $h_{i k} = \djoinbig_\jay f_{i \jay}g_{\jay k}$}{
+    We set $\rst{[f_{i\jay}]}$ to be $[f'_{i\jay}]$ where $f'_{i\jay} = 0$ when $i\neq \jay$
+    and $f'_{i i} = \djoin_\jay \rst{f_{i\jay}}$}
+  In the following, we will use the notation $\diag[d_j]$ for diagonal matrices where the
+  $j,j$ entry is $d_j$.
+  %TODO: Get the notation better
+\end{definition}
+
+\begin{lemma}\label{lem:inverse_matrix_category_is_a_restriction_category}
+  When $\X$ is an inverse category with disjoint joins, \imatx is an inverse category.
+\end{lemma}
+\begin{proof}
+  We need to show the following:
+  \begin{itemize}
+    \item Composition is well defined and associative.
+    \item The restriction is well defined.
+  \end{itemize}
+
+  \emph{Composition is well defined:} Consider $[h_{i k}] = [f_{i j}] [g_{j k}]$ where $[f_{i j}]:
+  [A_1,\ldots, A_n] \to [B_1,\ldots, B_m]$ and $[g_{j k}]: [B_1,\ldots, B_m] \to [C_1,\ldots,
+  C_\ell]$. By supposition, we know $h_{i k} = \djoinbig_\jay f_{i \jay} g_{\jay k}$. As each of
+  the maps are disjoint sum matrices, we know that $\cdperp \{f_{i \jay} \cp{j}\}$ and
+  $\cdperp\{\inv{\cp{j}}g_{\jay k}\}$. Hence, for each $\jay$ we know the composition $f_{i \jay}
+  \cp{j} \inv{\cp{j}}g_{\jay k} = f_{i \jay} g_{\jay k}$ is defined and from $A_i$ to $C_{k}$. By
+  the stability and universality of $\djoin$, we know $h_{i k}$ exists and by the definition of
+  $\djoin$, we have each $h_{i k}: A_i \to C_k$ and hence composition is well-defined.
+
+  \emph{Associativity of composition.} We have
+  \begin{align*}
+    ([f_{i j}] [g_{j k}]) [h_{k \ell}]
+        &= \left[(\djoinbig_j f_{i j}  g_{j k})\right] [h_{k \ell}]\\
+        &=\left[ \djoinbig_k (\djoinbig_j f_{i j} g_{j k}) h_{k \ell}\right]\\
+        &=\left[ \djoinbig_j f_{i j}  (\djoinbig_k g_{j k} h_{k \ell})\right]\\
+        &=[ f_{i j} ]  ([g_{j k}] [h_{k \ell}]).
+  \end{align*}
+
+  \emph{The restriction axioms.}
+  \begin{align*}
+    \rone \quad& \rst{[f_{i\jay}]}[f_{i\jay}] =
+      \begin{bmatrix}
+        (\djoin_j \rst{f_{1\jay}}) f_{11} & \cdots & (\djoin_\jay \rst{f_{1 \jay}}) f_{1n}\\
+        & \vdots & \\
+        (\djoin_\jay \rst{f_{m\jay}}) f_{m1} & \cdots & (\djoin_\jay \rst{f_{m\jay}}) f_{m n}
+      \end{bmatrix} = [f_{i\jay}].\\
+  \end{align*}
+  \begin{align*}
+    \rtwo \quad & \rst{[f_{i\jay}]} \rst{g_{i\jay}} =  \rst{g_{i\jay}} \rst{[f_{i\jay}]}
+      \text{ as diagonal matrices commute and }\djoin\text{ is commutative.}\\
+  \end{align*}
+  \begin{align*}
+    \rthree \quad & \rst{\rst{[f_i\jay]}[g_{\jay k}]} =
+      \rst{\diag[\djoin_\jay \rst{f_{1\jay}},\ldots,\djoin_\jay \rst{f_{n \jay}}] [g_{\jay k}]}
+      \\
+      & = \rst{\begin{bmatrix}
+        \djoin_\jay \rst{f_{1\jay}} g_{11} & \ldots & \djoin_\jay \rst{f_{1 \jay}} g_{1 k}\\[-4pt]
+        & \vdots & \\[-4pt]
+        \djoin_\jay \rst{f_{n\jay}} g_{n 1} & \ldots & \djoin_\jay \rst{f_{n \jay}} g_{n k}\\
+      \end{bmatrix}} \\
+      & = \diag[\djoin_k (\rst{\djoin_\jay (\rst{f_{1\jay}} g_{1k})}), \ldots,
+                 \djoin_k (\rst{\djoin_\jay(\rst{f_{n\jay})} g_{n k}})]\\
+      & = \diag[\djoin_k (\djoin_\jay(\rst{f_{1\jay}}) \rst{g_{1k}}), \ldots,
+                 \djoin_k (\djoin_\jay(\rst{f_{n\jay}}) \rst{g_{n k}})]\\
+      & = \diag[(\djoin_\jay(\rst{f_{1\jay}}) \djoin_k  \rst{g_{1k}}), \ldots,
+                 (\djoin_\jay(\rst{f_{n\jay}}) \djoin_k  \rst{g_{n k}})] = \rst{[f_i\jay]}\,\rst{[g_{\jay k}]}.\\
+  \end{align*}
+  \begin{align*}
+      \rfour \quad & [f_{i\jay}]\rst{[g_{\jay k}]} =
+        [f_{i\jay}]\diag_\jay[\djoin_k \rst{g_{\jay k}}]
+        \\
+      & = \begin{bmatrix}
+        f_{11}\djoin_k \rst{g_{1 k}} &\ldots & f_{1n}\djoin_k \rst{g_{n k}} \\[-4pt]
+        & \vdots & \\[-4pt]
+        f_{m1}\djoin_k \rst{g_{1 k}} &\ldots & f_{m n}\djoin_k \rst{g_{n k}}
+      \end{bmatrix}\\[10pt]
+      & = \begin{bmatrix}
+        \djoin_k f_{11}\rst{g_{1 k}} &\ldots & \djoin_k f_{1n}\rst{g_{n k}} \\[-4pt]
+        & \vdots & \\[-4pt]
+        \djoin_k f_{m1}\rst{g_{1 k}} &\ldots & \djoin_k f_{m n}\rst{g_{n k}}
+      \end{bmatrix}\\[10pt]
+      & = \begin{bmatrix}
+        \djoin_k \rst{f_{11} g_{1 k}} f_{11} &\ldots & \djoin_k \rst{f_{1n} g_{n k}} f_{1n}\\[-4pt]
+        & \vdots & \\[-4pt]
+        \djoin_k \rst{f_{m1} g_{1 k}}f_{m1} &\ldots & \djoin_k \rst{f_{m n} g_{n k}}f_{m n}
+      \end{bmatrix}\\[10pt]
+      & = \begin{bmatrix} % because the f_ij \perp fi1 etc.
+        \djoin_\jay\djoin_k \rst{f_{1\jay} g_{\jay k}} f_{11} &\ldots &
+          \djoin_\jay\djoin_k \rst{f_{1\jay} g_{\jay k}} f_{1n}\\[-4pt]
+        & \vdots & \\[-4pt]
+        \djoin_\jay\djoin_k \rst{f_{m\jay} g_{\jay k}}f_{m1} &\ldots &
+          \djoin_\jay\djoin_k \rst{f_{m \jay} g_{\jay k}}f_{m n}
+      \end{bmatrix}\\[10pt]
+      &= \rst{[f_{i\jay}][g_{\jay k}]} [f_{i\jay}].
+  \end{align*}
+
+Thus, \imatx is a restriction category.
+
+The inverse of the map $f = [f_{i\jay}]$ is the map $\inv{f}\definedas[\inv{f_{\jay i}}]$.
+Recalling that the rows and columns of $f$ are each disjoint, we see that the composition
+$f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
+\end{proof}
+
+Furthermore, $\imatx$ is actually a disjoint sum category:
+\begin{theorem}\label{thm:imatx_is_an_disjoint_sum_category}
+  Given \X an inverse category with disjoint joins and restriction zero, \imatx has
+  disjoint sums.
+\end{theorem}
+
+We will prove this in a series of lemmas.
+
+\begin{lemma}\label{lem:imat_has_restriction_zero}
+  Given \X is an inverse restriction category with a restriction zero and a disjoint join,
+  then \imatx has a restriction zero.
+\end{lemma}
+\begin{proof}
+  The restriction zero in \imatx is the list $[0]$ where $0$ is the restriction zero in \X.
+
+  For the object $A=[A_1,\ldots,A_n]$, the $0$ map is given by the $n\times 1$ matrix
+  $[0,\ldots,0]$. The map from $0$ is given by the $1\times n$ matrix
+  $\begin{bmatrix}0\\ \vdots\\ 0\end{bmatrix}$.
+
+\end{proof}
+
+\begin{lemma}\label{lem:imat_is_disjoint_tensor_category}
+  Given \X is an inverse restriction category with a restriction zero, $0$, and a disjoint join,
+  then the monoid $\+$ defined by list catenation of objects is a disjointness tensor.
+\end{lemma}
+\begin{proof}
+  We first note the monoidal isomorphisms:
+  \begin{align*}
+    \upl : [0,A_1,A_2,\ldots,A_n] \to [A_1,A_2,\ldots,A_n] \qquad& \upl :=
+    \begin{bmatrix}
+      0&\cdots&0 \\
+      & I_{n\times n}
+    \end{bmatrix}\\
+    \upr : [A_1,A_2,\ldots,A_n,0] \to [A_1,A_2,\ldots,A_n] \qquad & \upr :=
+    \begin{bmatrix}
+      & I_{n\times n} \\
+      0&\cdots&0
+    \end{bmatrix} \\
+    a_{\+} : (A\+B)\+C \to A\+ (B\+C) \qquad &a_{\+} := id \\
+    c_{\+} : [A_1,\ldots,A_n,B_1,\ldots,B_m] \to [B_1,\ldots,B_m,A_1,\ldots,A_n]  \qquad &
+      c_{\+} := \begin{bmatrix}
+                      0_{m\times n} & I_{n\times n} \\
+                      I_{m\times m} & 0_{n\times m}
+                \end{bmatrix}.
+  \end{align*}
+
+  The action of $\+$ on maps is given by:
+  \[
+    [f_{i\jay}]\+ [g_{\ell \kay}] = \begin{bmatrix}
+      [f_{i\jay}] & 0 \\
+      0 & [g_{\ell \kay}]
+      \end{bmatrix}.
+  \]
+
+  With this definition, we see that $\+$ is a restriction functor:
+  \begin{align*}
+    id_X \+ id_Y &= id_{X\+Y}, \\
+    f_1 g_1 \+ f_2 g_2 &= h_1 \+ h_2 =
+    \begin{bmatrix}
+      h_1 & 0 \\ 0 & h_2
+    \end{bmatrix} =
+    \begin{bmatrix}
+      f_1 & 0 \\ 0 & g_1
+    \end{bmatrix}
+    \begin{bmatrix}
+      f_2 & 0 \\ 0 & g_2
+    \end{bmatrix} = (f_1 \+ g_1) (f_2 \+ g_2).
+  \end{align*}
+
+  Following Definition~\ref{def:disjointness_tensor}, we note $\icpa = (1\+0)\upr =
+  \begin{bmatrix}
+    1&0\\0&0
+  \end{bmatrix}
+  \begin{bmatrix}
+    1\\0
+  \end{bmatrix}  =
+  \begin{bmatrix}
+    1\\0
+  \end{bmatrix}
+  $ and similarly $\icpb =
+  \begin{bmatrix}
+    0\\1
+  \end{bmatrix}$. Suppose we have $f = [f_{i\jay}]$ and $g = [g_{i\jay}]$ where
+  $i \in \{1,\ldots,n\}$ and $j\in\{1,2\}$. Further suppose $f\icpa = g\icpa$ and $f\icpa = g\icpa$.
+  Therefore, $f \icpa = [f_{i 1}] = [g_{i 1}] = g\icpa$ and
+  $f \icpb = [f_{i 2}] = [g_{i 2}] = g\icpb$, but this means that $f = g$ and we may conclude
+  $\icpa$ and $\icpb$ are jointly monic. Similarly, $\cp{1} = [1\ 0]$ and $\cp{2} = [0\ 1]$ are
+  jointly epic.
+\end{proof}
+
+\begin{lemma}\label{lem:imat_tensor_is_a_disjoint_sum_tensor}
+  Given \X is an inverse category with a disjoint join and restriction zero, then \imatx
+  has a disjoint sum tensor.
+\end{lemma}
+\begin{proof}
+  By Lemma~\ref{lem:imat_is_disjoint_tensor_category}, we know that the tensor defined by
+  list catenation is a disjointness tensor. To show that it is a disjoint sum tensor, we must
+  show the diagrams and conditions of Definition~\ref{def:disjoint_sum_tensor} hold.
+
+  First, for the diagram below, we show that $\alpha$ exists if and only if
+  $f\icpb \tjdown g\icpb$.
+  \begin{align*}
+    \xymatrix@C+10pt@R+5pt{
+      [A] \ar@/_/[ddr]_f \ar@/^/[drr]^g \ar@{.>}[dr]|-{\alpha} \\
+        & [X,Y,Z] \ar[d]^{\icp{1,2}} \ar[r]_{\icp{1,3}} & [X,Z] \ar[d]^{\icpa} \\
+        & [X,Y] \ar[r]_{\icpa} & [X].
+    }
+  \end{align*}
+  The existence of $f\icpb \tjdown g\icpb$ means there is an $h = [h_1,h_2]: [A]\to[Y,Z]$ such that
+  $h\icpa = f\icpb$ and $h\icpb = g\icpb$. From the diagram, given that $f = [f_1,f_2]$ and
+  $g = [g_1,g_2]$, we know that $f_1 = f\icpa = g\icpa = g_1$. We also have $h_1 = f_2$ and
+  $h_2 = g_2$. If we set $\alpha$ to the matrix $[f_1,f_2,g_2]$, the diagram above commutes.
+  We need only show that $\alpha$ is a map in \imatx. As $f, g$ and $h$ are maps in
+  \imatx, we know that:
+  \begin{align*}
+    f_1\cp{1} & \cdperp f_2 \cp{2}\\
+    (f_1\cp{1} =) g_1\cp{1} & \cdperp g_2 \cp{2}\\
+    (f_2 \cp{2} =) h_1\cp{1} & \cdperp h_2 \cp{2} (= g_2 \cp{2}).\\
+  \end{align*}
+  From this, we can conclude $\cdperp [f_1 \cp{1}, f_2 \cp{2}, g_2 \cp{3}]$.
+
+  Conversely, suppose we have an $\alpha = [\alpha_1, \alpha_2, \alpha_3]$ that makes the
+  above diagram commute. Then  $h := [\alpha_2, \alpha_3]$ is a map in $\X$.
+  Since $[\alpha_1,\alpha_3] = g$ and $[\alpha_1,\alpha_2] = f$, we have
+  $h\icpa = f\icpb$ and $h\icpb = g\icpb$, hence $h = f\icpb \tjdown g\icpb$.
+
+  The proof that $\beta$ in the diagram below exists if and only if $\cp{2}h\tjup \cp{2}k$
+  follows similar reasoning.
+  \[
+    \xymatrix@C+5pt{
+        &&[A] \\
+         [X,Y] \ar[r]_{\cp{1,2}} \ar@/^/[urr]^h &[X,Y,Z] \ar@{.>}[ur]|-{\beta} \\
+         [X] \ar[u]^{\cpa} \ar[r]_{\cpa} & [X,Z]. \ar[u]^{\cp{1,3}} \ar@/_/[uur]_k
+    }
+  \]
+\end{proof}
+
+We are now ready to prove Theorem~\ref{thm:imatx_is_an_disjoint_sum_category}, that \imatx has
+disjoint sums.
+
+\begin{proof}
+  By Lemma~\ref{lem:imat_tensor_is_a_disjoint_sum_tensor}, we know $\imatx$ has a disjoint sum
+  tensor and therefore by Proposition~\ref{prop:disjointness_tensor_gives_disjoint_join},
+  it has a disjoint join. By Proposition~\ref{prop:a_disjoint_sum_tensor_gives_disjoint_sums}
+  we know that $[A,B] = A\+B$ is a disjoint sum of $A$ and $B$ for any two objects in \imatx, and
+  hence, \imatx has disjoint sums.
+\end{proof}
+
+\section{Equivalence between a disjoint sum category and its matrix category} % (fold)
+\label{sec:equivalence_between_an_disjoint_sum_category_and_its_matrix_category}
+This section starts with giving a functor from an inverse category with disjoint joins to its matrix
+category, followed by exhibiting a reflection between inverse categories with disjoint sums
+(Disjoint Sum Cats) and categories with a disjoint join (Disjoint Join Cats). That is,
+\[
+   \xymatrix@R+10pt@C+20pt{
+     \text{Disjoint Sum Cats} \ar@{^{(}->}[r]
+     & \text{Disjoint Join Cats.} \ar@/_1.8pc/[l]_{\text{Matrix}} \ar@{}@<-1ex>[l]_{\top}
+   }
+\]
+
+Then, we will provide a restriction functor from the matrix category of an inverse category with a
+disjoint sum to itself, i.e., $\imatx \to \X$.  Furthermore, we will show in the case where \X is an
+inverse category with a disjoint sum, $\X\cong \imatx$.
+
+\begin{definition}\label{def:functor_from_x_to_imatx}
+  Given $\X$ has disjoint joins and restriction zero, define $M:\X \to \imatx$ by:
+  \begin{align*}
+    \text{Objects:}\ &M(A) := [A]\\
+    \text{Maps:}\ &M(f) := [f] \text{ -- The }1\times1\text{ matrix with entry }f.
+  \end{align*}
+\end{definition}
+\begin{lemma}\label{lem:m_is_a_functor}
+  The map $M$ from Definition~\ref{def:functor_from_x_to_imatx} is a restriction functor.
+\end{lemma}
+\begin{proof}
+  From the definition of \imatx, we have
+  \begin{align*}
+    &f: A\to B \text{ if and only if } M(f):M(A)\to M(B)\quad ([f]: [A]\to [B])\\
+    &M(id_A)  = [id_{A}] = id_M(A)\\
+    &M(f g) = [f g] = [f][g] = M(f) M(g)\\
+    &M(\rst{f}) = [\rst{f}] = \rst{[f]} = \rst{M(f)}.
+  \end{align*}
+\end{proof}
+
+Let us represent the category of inverse categories with disjoint sums as \DSum and the
+category of inverse categories with disjoint joins as \DJoin.
+
+Note that any inverse category with disjoint sums is an inverse category with disjoint joins. Hence,
+we have the obvious forgetful functor $U:\DSum \to \DJoin$. From above, we also have a functor
+$Mat:\DJoin \to \DSum$ given by $Mat: \X \mapsto \imatx$. From the definition of \imatx, we see
+that we have the correspondence
+\[
+  \infer{\DJoin(\X,\Y)}{\DSum(\imatx,\Y)}
+\]
+meaning that we have an adjunction, $Mat\leftadjoint U:\DJoin \to \DSum$, as noted at the beginning
+of this section.
+
+Let us now consider when we apply the matrix construction to an inverse category which already has a
+disjoint sum:
+
+\begin{definition}\label{def:functor_from_imatx_to_x}
+  Given $\X$ has disjoint sums with restriction zero $0$,
+  and disjoint sum tensor $\+$, define $S:\imatx \to \X$ by:
+  \begin{align*}
+    \text{Objects:}\ &S([A_1,A_2, \ldots, A_n]) := A_1\+A_2\+\cdots\+A_n\\
+    \text{Maps:}\ &S([f_{i\jay}]) := \djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j}).
+  \end{align*}
+\end{definition}
+
+\begin{lemma}\label{lem:s_is_a_functor}
+  The map $S$ from Definition~\ref{def:functor_from_imatx_to_x} is a restriction functor.
+\end{lemma}
+\begin{proof}
+  From the definition of \imatx, where $A = [A_1,A_2,\ldots,A_n]$, $B=[B_1,B_2,\ldots,B_M]$,
+  and $f = [f_{i\jay}]$ we have
+  \begin{align*}
+    &S(id_A)  = S([id_{A_i}]) = \djoinbig_i \icp{i} (\djoin_j \cp{j}) = id_{S(A)}\\
+    &f: A\to B  \iff S(f):S(A)\to S(B) \iff \\
+    &\qquad \qquad  \djoinbig_i \icp{i} (\djoin_\jay f_{i\jay} \cp{j}) : A_1\+\cdots\+A_n \to B_1\+\cdots\+B_m\\
+    &M(\rst{f}) = [\rst{f}] = \rst{[f]} = \rst{M(f)}.
+  \end{align*}
+  For composition, we have
+  \begin{align*}
+    S(f)S(g) & = (\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j}))
+                  (\djoinbig_{j'} \icp{j'} (\djoin_k g_{\jay\kay} \cp{k})) \\
+    &= \djoinbig_i \icp{i} \djoinbig_j \djoinbig_{j'} f_{i\jay} \cp{j} \icp{j'}
+            (\djoin_k g_{\jay'\kay} \cp{k}) \\
+    &= \djoinbig_i \icp{i} \djoinbig_j  f_{i\jay} (\djoin_k g_{\jay\kay} \cp{k}) \\
+    &= \djoinbig_i \icp{i} \djoinbig_k (\djoin_j  f_{i\jay}  g_{\jay\kay} \cp{k}) \\
+    &= S([\djoin_j f_{i\jay} g_{\jay\kay}]) \\
+    &= S(f g).
+  \end{align*}
+
+\end{proof}
+
+The functors $S$ and $M$ provide an equivalence:
+
+\begin{proposition}\label{pro:x_and_imatx_are_equivalent}
+  Given an inverse category \X with a disjoint sum tensor $\+$ and restriction zero, then the
+  categories $\X$ and \imatx are equivalent.
+\end{proposition}
+\begin{proof}
+  The functors of the equivalence are $S$ from Definition~\ref{def:functor_from_imatx_to_x} and
+  $M$ from Definition~\ref{def:functor_from_x_to_imatx}.
+
+  First, we see that $M S:\X \to \X$ is the identity functor as
+  \begin{align*}
+    \text{Objects:}\ &S(M(A)) = S([A]) = A,\\
+    \text{Maps:}\ &S(M(f)) = S([f]) = f.
+  \end{align*}
+
+  Next, we need to show that there is a natural transformation and isomorphism $\rho$ such that
+  $\rho(S M) = I_{\imatx}$. For each object $A = [A_1,A_2,\ldots,A_n]$, set
+  $\rho_A = \begin{bmatrix}\icpa& \cdots &\icp{n}\end{bmatrix}$.
+
+  Note that the functor $S M$ has the following effect:
+
+  \begin{align*}
+    \text{Objects:}\quad &M(S([A_1,\ldots, A_n])) = M(A_1\+\cdots\+ A_n) =
+      [A_1\+\cdots\+ A_n]\\
+    \text{Maps:}\quad &M(S([f_{i\jay}]) = M(\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j}))
+      = [\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j})].
+  \end{align*}
+  We can now draw the commuting naturality square for $f=[f_{i\jay}]:[A_i]\to [B_j]$:
+  \[
+    \xymatrix{
+      SM([A_i]) \ar@{=}[r] & [\+_i A_i]
+          \ar[rrrr]^{\begin{bmatrix}\icpa& \cdots &\icp{n}\end{bmatrix}}
+          \ar[dd]_{SM(f)}
+          & &&& [A_i] \ar[dd]^{f}\\
+        &&&&&  \\
+      SM([B_j]) \ar@{=}[r] & [\+_j B_j]
+          \ar[rrrr]_{\begin{bmatrix}\icpa& \cdots &\icp{m}\end{bmatrix}}
+          & &&& [B_j]. \\
+    }.
+  \]
+
+  Following the square by the top--right path from $[\+_i A_i]$ to $[B_j]$, by the definition of
+  the maps in the category \imatx, we see each $B_j = \djoin_i\icp{i} f_{i\jay}(\+_i A_i)$.
+  Following the left--bottom path, composing $SM(f)$ with $\begin{bmatrix}\icpa& \cdots
+  &\icp{m}\end{bmatrix}$ gives us the map
+  \begin{multline*}
+    \begin{bmatrix}\djoin_i \icp{i} (\djoin_j f_{i\jay}\cp{j})\icpa& \cdots
+      &\djoin_i \icp{i} (\djoin_j f_{i\jay}\cp{j})\icp{m}\end{bmatrix} = \\
+      \begin{bmatrix}\djoin_i \icp{i}  f_{i 1}& \cdots &\djoin_i \icp{i} f_{i m}\end{bmatrix}.
+  \end{multline*}
+  Applying this to $[\+_i A_i]$, we see each $B_j = \djoin_i\icp{i} f_{i\jay}(\+_i A_i)$ and the
+  two directions are equal.
+
+  Finally, we know that $\inv{\rho_{A_i}} = \begin{bmatrix}\cp{1}\\ \vdots \\\cp{n}\end{bmatrix}$
+  and defines an isomorphism between any object of the form $[\+_i A_i]$ and the
+  object $[A_1,\ldots,A_n]$.
+\end{proof}
+
+Note that as we have an equivalence, we have the adjoint equivalence between hom-sets of
+\[
+  \infer{iMat(\X)(X, M(Y))}{\X(S(X),Y)}
+\]
+as $S$ is the left adjoint of $M$.
+% subsection equivalence_between_an_disjoint_sum_category_and_its_matrix_category (end)
+
+\begin{example}\label{ex:disjoint_sum_category_maps_are_matrices}
+  We may obtain a matrix representative of any map $f:A\+B\to C\+D$ by applying the construction of
+  Definition~\ref{def:functor_from_imatx_to_x} in reverse.
+
+  Then given a function   $f:A\+B \to C\+D$ define
+  \[ f_M =
+     \begin{bmatrix}
+       \cpa f \icpa & \cpa f \icpb \\
+       \cpb f \icpa & \cpb f \icpb
+      \end{bmatrix}.
+  \]
+
+  Thus, applying the functor $S$ from Definition~\ref{lem:s_is_a_functor}, we have
+  \begin{align*}
+     S(f_M) &= \icpa (\cpa f \icpa \cpa \djoin \cpa f \icpb \cpb) \djoin \icpb( \cpb f \icpa\cpa
+     \djoin \cpb f \icpb \cpb) \\
+     & = \icpa \cpa f (\icpa \cpa \djoin \icpb \cpb) \djoin \icpb \cpb f ( \icpa \cpa \djoin
+     \icpb\cpb) \\
+     & = \icpa \cpa f \djoin \icpb \cpb f \\
+     & = (\icpa \cpa \djoin \icpb \cpb) f \\
+     & = f.
+  \end{align*}
+
+In particular, we note that we may represent $f:A\to B$ by the matrix
+\[
+  \begin{bmatrix}
+    1f1& 1f 0 \\ 0 f 1 & 0 f 0
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    f& 0 \\ 0 & 0
+  \end{bmatrix}
+\]
+as $A \cong A\+0$ and $B \cong B\+0$. Equivalently, this is the matrix $\begin{bmatrix}f\end{bmatrix}$.
+\end{example}
+
+
+\begin{definition}\label{def:unique_decomposition_category}
+A unique decomposition category\cite{haghverdi:2000phd} is a category where any
+\[
+  h:A\+B \to C\+D
+\]
+is uniquely determined by:
+\begin{alignat*}{2}
+  \cpa  h  \icpa &: A \to C & \quad \cpa  h  \icpb &: A \to D\\
+  \cpb  h  \icpa &: B \to C & \quad \cpb  h  \icpb &: B \to D
+\end{alignat*}
+i.e., is writable as the matrix:
+\[
+  \begin{bmatrix}
+    \cpa  h  \cpa^{(-1)} & \cpa  h  \cpb^{(-1)}\\
+    \cpb  h  \cpa^{(-1)} &\quad \cpb  h  \cpb^{(-1)}
+  \end{bmatrix}:
+  A\+B \to C\+D.
+\]
+
+The $0$ map in the category corresponds to the $0$-dimensional matrix,
+\[
+  0\xrightarrow{[]}B.
+\]
+%Note also that as $\cpa$ and $\cpb$ are restriction maps, the following diagram commutes:
+%\[
+%  \xymatrix @C+10pt{
+%    A \ar@{=}[d] \ar[r]^{\cpa} & A\+B \\
+%    A \ar[r]_{\cpa} & A\+0 \ar[u]_{1+0}
+%  }
+%\]
+\end{definition}
+
+\begin{corollary}\label{cor:disjoint_sum_category_is_udc}
+  If $\X$ is an inverse category with disjoint sums, then it is a unique decomposition category.
+\end{corollary}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:

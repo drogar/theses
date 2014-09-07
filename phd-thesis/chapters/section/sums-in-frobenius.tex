@@ -1,8 +1,31 @@
-\section{Disjointness in Frobenius Algebras}
+\section{Disjointness in \CFrob}
 \label{sec:disjointness_in_frobenius_algebras}
-\begin{definition}\label{def:perp_in_cfrob}
-  As shown in ..., $CFrob(\X)$ is a discrete inverse category. For $f,g:A\to B$, define $f\perp g$
-  when
+An important example of a disjointness system arises naturally from Frobenius Algebras. Recall that
+we defined a zero map in Section~\ref{sec:coproducts_in_inverse_categories} whenever there was a
+zero object. This may also be defined directly:
+
+\begin{definition}\label{def:zero_map}
+  A family of maps in a symmetric monoidal category with monoid $\*$ is called a \emph{zero map},
+  written as $0$ whenever:
+  \begin{itemize}
+    \item For all $f, g$, $f 0 g = 0$;
+    \item For all $f$, $f \* 0 = 0$ and $ 0 \* f = 0$.
+  \end{itemize}
+\end{definition}
+
+\begin{lemma}\label{lem:cfrobx-has-a-zero-when-x-has-zero}
+  If $\X$ is a symmetric monoidal category with a zero map, then \CFrob has a zero map.
+\end{lemma}
+\begin{proof}
+  As $\Delta 0 = 0 = 0 \Delta$ and $0 \nabla = 0 = \nabla 0$, the zero maps are in \CFrob. Since
+  composition is inherited from \X, the first item of Definition~\ref{def:zero_map} is
+  satisfied. Finally, since the tensor in \X is the tensor in \CFrob, the second item is also
+  satisfied. Hence, \CFrob has zero maps.
+\end{proof}
+
+\begin{lemma}\label{lem:cfrobperp_is_a_disjointness_relation}
+  As shown in Lemma~\ref{lem:cfrobx_is_an_inverse_category}, $\CFrob$ is a discrete inverse
+  category. Suppose \X has zero maps. Then for $f,g:A\to B$, define $f\perp g$  when
 \[
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
@@ -17,16 +40,14 @@ node at (0,2) [delta] (d) {};
 \draw [-] (f) to[out=270,in=125] (n1);
 \draw [-] (g) to[out=270,in=55] (n1);
 \end{tikzpicture}
-\ \raisebox{45pt}{$= 0.$}\
+\ \raisebox{40pt}{$= 0.$}\
 \]
-\end{definition}
 
-\begin{lemma}\label{lem:cfrobperp_is_a_disjointness_relation}
-  The relation $\perp$ of Definition~\ref{def:perp_in_cfrob} is a disjointness relation.
+  Then, the relation $\perp$ is a disjointness relation.
 \end{lemma}
 \begin{proof}
-We need to show the seven axioms of the disjointness relation hold. Note that we will show
-\axiom{Dis}{6} early on as its result will be used in some of the other axiom proofs.\\
+We must show the seven axioms of the disjointness relation hold. We will show
+\axiom{Dis}{6} early on as its result will be used to establish some of the other axioms.\\
 \axiom{Dis}{1}: For all $f:A\to B,\ f\cdperp 0$.\\
 \[
 \begin{tikzpicture}
@@ -76,8 +97,8 @@ node at (0,2) [delta] (d) {};
 \]
 \axiom{Dis}{6}: $f\cdperp g$ implies $\rst{f} \cdperp \rst{g}$ and $\rg{f}\cdperp\rg{g}$.\\
 We will show the details of $\rst{f} \cdperp \rst{g}$, using $\rst{f} = f\inv{f}$ and the definition of
-$\inv{f}$ as given in Theorem~\ref{thm:cfrob_is_a_discrete_inverse_category}. The proof of $\inv{f}f
-= \rg{f} \perp \rg{g} = \inv{g}g$ is similar.
+$\inv{f}$ as given in Theorem~\ref{thm:cfrob_is_a_discrete_inverse_category}. The proof of
+$(\inv{f}f=) \rg{f} \perp \rg{g} (= \inv{g}g)$ is similar.
 \[
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
@@ -315,7 +336,7 @@ In this proof, we use the result of \axiom{Dis}{6}, i.e., that $\rst{f}\perp\rst
       \end{pgfonlayer}
 \end{tikzpicture}
 }
-\ \raisebox{45pt}{$=0$}
+\ \raisebox{45pt}{$=0$.}
 \]
 \axiom{Dis}{3}: $f\cdperp g,\ f' \le f,\ g' \le g$ implies $f' \cdperp g'$.\\
 \[
@@ -357,13 +378,13 @@ node at (0,2) [delta] (d) {};
 \begin{tikzpicture}
 \path
 node at (0,3) (start) {}
-node at (0,2.5) [map] (fg) {$\scriptstyle \rst{f'}\,\rst{g'}$}
+node at (0,2.5) [map] (f_g) {$\scriptstyle \rst{f'}\,\rst{g'}$}
 node at (0,2) [delta] (d) {}
 node at (-.5,1) [map] (f) {$\scriptstyle f$}
 node at (.5,1) [map] (g) {$\scriptstyle g$}
  node at (0,0) [nabla] (n1) {};
-\draw [] (d) to (fg);
-\draw [] (start) to (fg);
+\draw [] (d) to (f_g);
+\draw [] (start) to (f_g);
 \draw [] (n1) to (0,-0.5);
 \draw [] (d) to[out=305,in=90] (g);
 \draw [] (d) to[out=235,in=90] (f);
@@ -375,17 +396,17 @@ node at (.5,1) [map] (g) {$\scriptstyle g$}
 \begin{tikzpicture}
 \path
 node at (0,1.5) (start) {}
-node at (0,1) [map] (fg) {$\scriptstyle \rst{f'}\,\rst{g'}$}
+node at (0,1) [map] (f_g) {$\scriptstyle \rst{f'}\,\rst{g'}$}
 node at (0,.5) [map] (z) {$\scriptstyle 0$};
-\draw [] (z) to (fg);
-\draw [] (start) to (fg);
+\draw [] (z) to (f_g);
+\draw [] (start) to (f_g);
 \draw [] (z) to (0,0);
 \end{tikzpicture}
 }
-\ \raisebox{45pt}{$=0$}
+\ \raisebox{45pt}{$=0$.}
 \]
 \axiom{Dis}{4}: $f\cdperp g$ implies $g \cdperp f$.\\
-This follows directly from the co-commutativity of $\Delta$.\\
+This follows directly from the cocommutativity of $\Delta$.\\
 \axiom{Dis}{5}: $f\cdperp g$ implies $h f \cdperp h g$.\\
 This follows directly from the naturality of $\Delta$.\\
 \axiom{Dis}{7}: $\rst{f}\cdperp \rst{g},\ \rg{h}\cdperp \rg{k}$ implies $f h \cdperp g k$.\\
@@ -393,22 +414,22 @@ This follows directly from the naturality of $\Delta$.\\
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1) [map] (fh) {$\scriptstyle f h$}
-node at (.5,1) [map] (gk) {$\scriptstyle g k$}
+node at (-.5,1) [map] (f_h) {$\scriptstyle f h$}
+node at (.5,1) [map] (g_k) {$\scriptstyle g k$}
 node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
-\draw [] (d) to[out=305,in=90] (gk);
-\draw [] (d) to[out=235,in=90] (fh);
-\draw [-] (fh) to[out=270,in=125] (n1);
-\draw [-] (gk) to[out=270,in=55] (n1);
+\draw [] (d) to[out=305,in=90] (g_k);
+\draw [] (d) to[out=235,in=90] (f_h);
+\draw [-] (f_h) to[out=270,in=125] (n1);
+\draw [-] (g_k) to[out=270,in=55] (n1);
 \end{tikzpicture}
 \ \raisebox{45pt}{$=$}\
 \begin{tikzpicture}
 \path node at (0,0) [nabla] (n1) {}
 node at (0,2.5) (start) {}
-node at (-.5,1.5) [map] (rf) {$\scriptstyle \rst{f}$}
-node at (-.5,1) [map] (fh) {$\scriptstyle f h$}
+node at (-.5,1.5) [map] (r-f) {$\scriptstyle \rst{f}$}
+node at (-.5,1) [map] (f_h) {$\scriptstyle f h$}
 node at (-.5,.5) [map] (rngh) {$\scriptstyle \rg{h}$}
 node at (.5,1.5) [map] (rg) {$\scriptstyle \rst{g}$}
 node at (.5,1) [map] (gk) {$\scriptstyle g k$}
@@ -417,9 +438,9 @@ node at (0,2) [delta] (d) {};
 \draw [] (d) to (start);
 \draw [] (n1) to (0,-0.5);
 \draw [] (d) to[out=305,in=90] (rg);
-\draw [] (d) to[out=235,in=90] (rf);
-\draw (rf) to (fh);
-\draw (fh) to (rngh);
+\draw [] (d) to[out=235,in=90] (r-f);
+\draw (r-f) to (f_h);
+\draw (f_h) to (rngh);
 \draw (rg) to (gk);
 \draw (gk) to (rngk);
 \draw [-] (rngh) to[out=270,in=125] (n1);

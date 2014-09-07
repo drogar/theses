@@ -191,10 +191,12 @@
 \newcommand{\snorm}[1]{\|#1\|}
 \newcommand{\sweight}[1]{\snorm{#1}_{\rm weight}}
 
+\DeclareMathOperator*{\definedas}{:\!=}
+
 \DeclareMathOperator*{\dom}{dom}
 \DeclareMathOperator*{\rng}{range}
 
-
+\newcommand{\longsquiggly}[1]{\xymatrix{{}\ar@{~>}[r]^{#1}&{}}}
 %-----------------------------------------------------------------------------
 % Regular expressions, MA algo
 
@@ -314,6 +316,12 @@
 
 %------------------------------------------------------------------------------------
 % General notation for categories
+\newcommand{\catdomain}[1]{\partial_0({#1})}
+\newcommand{\catcodomain}[1]{\partial_1({#1})}
+
+\newcommand{\categorysection}[1]{{#1}^\diamond}
+\newcommand{\retraction}[1]{{#1}_\diamond}
+
 \newcommand{\categoryns}[4]{%
 \begin{description}%
 \item{\textbf{Objects: }}{#1}%
@@ -328,33 +336,51 @@
 \newcommand{\natto}{\Rightarrow}
 \newcommand{\specialcat}[1]{\textsc{#1}\xspace}
 \newcommand{\ltrcatbb}[1]{\ensuremath{\mathbb{#1}}\xspace}
+
 \newcommand{\retract}{\ensuremath{\triangleleft}}
+\newcommand{\retractmaps}[2]{\ensuremath{\triangleleft_{#1}^{#2}}}
+
 
 \newcommand{\A}{\ltrcatbb{A}}
 \newcommand{\B}{\ltrcatbb{B}}
 %\newcommand{\C}{\ltrcatbb{C}}
+\newcommand{\cP}{\ltrcatbb{P}}
 \newcommand{\R}{\ltrcatbb{R}}
 \newcommand{\T}{\ltrcatbb{T}}
 \newcommand{\X}{\ltrcatbb{X}}
 \newcommand{\Y}{\ltrcatbb{Y}}
 
 \newcommand{\cD}{\ltrcatbb{D}}
+\newcommand{\cS}{\ltrcatbb{S}}
 
 \newcommand{\Lat}{\ltrcatbb{L}}
 \newcommand{\Mstab}{\ensuremath{\mathcal{M}}\xspace}
 %\newcommand{\inj}{\specialcat{Inj}}
-\newcommand{\pinj}{\specialcat{PInj}}
+\newcommand{\pinj}{\specialcat{Pinj}}
 
 \newcommand{\sets}{\specialcat{Sets}}
+\newcommand{\finsets}{\ensuremath{\sets_f}}
+\newcommand{\ord}{\specialcat{Ord}}
 \newcommand{\cat}{\specialcat{Cat}}
 \newcommand{\Par}{\specialcat{Par}}
+\newcommand{\Ab}{\specialcat{Ab}}
 
+\newcommand{\topcat}{\specialcat{Top}}
+\newcommand{\topcatp}{\ensuremath{\topcat_p}\xspace}
+
+\newcommand{\DSum}{\specialcat{DSum}}
+\newcommand{\DJoin}{\specialcat{DJoin}}
+\newcommand{\stabLat}{\specialcat{stabLat}}
+
+\newcommand{\CFrob}{\ensuremath{\specialcat{CFrob}(\X)}\xspace}
 \newcommand{\rel}{\specialcat{Rel}}
 
 \newcommand{\fdh}{\specialcat{FdHilb}}
 
 \newcommand{\spl}[2]{\ensuremath{\text{K}_{#1}(#2)}}
 
+\newcommand{\leftadjoint}{\vdash}
+\newcommand{\rightadjoint}{\dashv}
 
 \newcommand{\zeroob}{\ensuremath{\mathbf{0}}}
 
@@ -367,28 +393,32 @@
 
 \newcommand{\compatible}{\smile}
 
-\newcommand{\rcategoryequiv}[5]{%
+\newcommand{\rcategoryequivns}[5]{%
 \begin{description}%
-\item{\textbf{Objects: }}{#1};%
-\item{\textbf{Equivalence Classes of Maps: }}{#2};%
-\item{\textbf{Identity: }}{#3};%
-\item{\textbf{Composition: }}{#4};%
-\item{\textbf{Restriction: }}{#5}.%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Equivalence Classes of Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
+\item{\textbf{Restriction: }}{#5}%
+\end{description}%
+%
+}
+
+\newcommand{\rcategoryequiv}[5]{\rcategoryequivns{{#1};}{{#2};}{{#3};}{{#4};}{{#5}.}}
+
+\newcommand{\rcategoryns}[5]{%
+\begin{description}%
+\item{\textbf{Objects: }}{#1}%
+\item{\textbf{Maps: }}{#2}%
+\item{\textbf{Identity: }}{#3}%
+\item{\textbf{Composition: }}{#4}%
+\item{\textbf{Restriction: }}{#5}%
 \end{description}%
 %
 }
 
 
-\newcommand{\rcategory}[5]{%
-\begin{description}%
-\item{\textbf{Objects: }}{#1};%
-\item{\textbf{Maps: }}{#2};%
-\item{\textbf{Identity: }}{#3};%
-\item{\textbf{Composition: }}{#4};%
-\item{\textbf{Restriction: }}{#5}.%
-\end{description}%
-%
-}
+\newcommand{\rcategory}[5]{\rcategoryns{{#1};}{{#2};}{{#3};}{{#4};}{{#5}.}}
 
 \newcommand{\restr}[1]{\overline{#1}}
 \newcommand{\rst}[1]{\restr{#1}}
@@ -396,8 +426,6 @@
 \newcommand{\rg}[1]{\hat{#1}}
 \newcommand{\wrg}[1]{\widehat{#1}}
 
-\newcommand{\tur}[2]{\ensuremath{\tau_{{#1},{#2}}}}
-\newcommand{\txy}{\tur{X}{Y}}
 \newcommand{\why}{\ensuremath{\mathbf{?}}}
 %--------------------------------------------------------------------------------------
 % Notation for inverse categories
@@ -411,6 +439,7 @@
 \newcommand{\exchange}[1]{\ensuremath{e\!x_{#1}}}
 \newcommand{\excs}{\exchange{\*}}
 
+\newcommand{\idelta}{\ensuremath{\inv{\Delta}}}
 \newcommand{\Invc}[1]{\ensuremath{Inv(#1)}\xspace}
 \newcommand{\Invf}{\ensuremath{\mathbf{INV}}\xspace}
 \newcommand{\Inv}[1]{\ensuremath{\mathbf{INV}({#1})}\xspace}
@@ -429,10 +458,11 @@
 \newcommand{\wtf}{\ensuremath{\mathbf{T}}\xspace}
 \newcommand{\wt}[1]{\ensuremath{\mathbf{T}({#1})}\xspace}
 
+\newcommand{\dmap}[1]{\ensuremath{{#1}^{\Delta}_{\nabla}}\xspace}
 %---------------------------------------------------------------------
 % Notation for inverse sum categories
 
-\newcommand{\imat}[1]{\ensuremath{iMat({#1})}\xspace}
+\newcommand{\imat}[1]{\ensuremath{\specialcat{iMat}({#1})}\xspace}
 \newcommand{\imatx}{\imat{\X}}
 
 
@@ -450,20 +480,20 @@
 
 
 \newcommand{\perpvv}[2]{{}_{{}_{#1}}{\perp_{{}_{#2}}}}
+\newcommand{\perpaa}{\perpvv{A}{A}}
 \newcommand{\perpab}{\perpvv{A}{B}}
 \newcommand{\perpba}{\perpvv{B}{A}}
 \newcommand{\perpcb}{\perpvv{C}{B}}
 \newcommand{\tperp}{\perpvv{}{\oplus}}
 
-
 \newcommand{\compat}{\smile}
 \newcommand{\join}{\vee}
 \newcommand{\meet}{\cap}
-\newcommand{\intersection}{\Cap}
+\newcommand{\intersection}{\cap}
 \newcommand{\union}{\cup}
 \newcommand{\disjointunion}{\uplus}
 
-\newcommand{\undefined}{\uparrow}
+\newcommand{\undef}{\uparrow}
 
 \newcommand{\djoin}{\sqcup}
 \newcommand{\djoinbig}{\bigsqcup}
@@ -563,6 +593,23 @@
 \newtheorem*{sllemma}{Lemma}
 
 
+%--------------------------------------------------------------------------------
+% Macros for Turing categories
+
+\newcommand{\name}[1]{\ensuremath{{}^\ulcorner\!\!#1^\urcorner}}
+\newcommand{\iname}[1]{\name{#1}}   %{\ensuremath{{}_\llcorner#1_{\!\lrcorner}}}
+\newcommand{\code}[1]{\ensuremath{#1_{\bullet}}}
+
+\newcommand{\tur}[2]{\ensuremath{\tau_{{#1},{#2}}}}
+\newcommand{\txy}{\tur{X}{Y}}
+\newcommand{\multiapp}[2]{\ensuremath{{#1}^{(#2)}}}
+\newcommand{\multibullet}[1]{\multiapp{\bullet}{#1}}
+\newcommand{\imultiapp}[2]{\ensuremath{{#1}^{[#2]}}}
+\newcommand{\imultibullet}[1]{\imultiapp{\bullet}{#1}}
+
+
+\newcommand{\compa}{\ensuremath{\specialcat{Comp}(A)}\xspace}
+\newcommand{\compn}{\ensuremath{\specialcat{Comp}(\N)}\xspace}
 %-------------------------------------------------------------------------------
 % Code environments for Verbatim package
 

@@ -1,54 +1,83 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\chapter{Introduction}
-\section{Background}
+\chapter{Introduction}\label{chap:introduction}
+\section{Summary}\label{sec:summary}
+A ``quantum'' setting has a fundamental duality given by the ``dagger'' of dagger
+categories\cite{selinger05:dagger,abramsky05:abstractscalars}. On the other hand, classical
+computation is fundamentally asymmetric and has no duality. In passing from a quantum setting to a more classical setting, one
+may want to keep this duality for as long as possible and, thus, consider the intermediate step of
+passing to ``reversible'' computation --- which has an obvious self-duality given by the ability to
+reverse the computation. It is reasonable to
+wonder whether one can then pass from a reversible setting to a classical setting quite
+independently from the underlying quantum setting. Such an abstract
+passage would allow a direct translation into the reversible world of the classical notions of
+computation, for example.
+
+Of course, from a quantum setting, it is already possible to pass directly to a classical setting by
+taking the homomorphisms between special coalgebras, where ``special'' means the coalgebra must be
+the algebra part of a separable Frobenius algebra. That the coalgebra should be special in this manner
+may be justified by regarding this as a two step process through reversible computation. However,
+this leaves some gaps: How does one pass, in general, between a quantum setting to a reversible
+setting and how does one obtain a classical setting from a reversible setting? This thesis answers
+these questions.
+\section{Background of reversible computation}
 \label{sec:background}
 
-The semantics of reversible computing has been examined in a variety of ways. Broadly, they may be
-broken into two classes. The first class consists of those that introduce a reversible
-language and then describe the semantics of that language in some way. Examples of this include
-Zuliani, \cite{zuliani01:reversibility} and Mu et.al., \cite{muetal04:injreversible}. The second
-class focuses on some algebraic model and then introduces reversibility to that model. Examples of this
-include Abramsky \cite{abramsky05:reversible}, Di Pierro et.al. \cite{DiPierro200625}, Danos and
-Krivine \cite{danos2004reversible} and Phillips and Uladowski \cite{phillips2006operational}.
+In 1961, Landauer\cite{landauer1961irreversibility} examined irreversible computing
+and showed that it must dissipate energy, i.e., produce heat at a specified minimal level. This is
+due to applying a physically irreversible operation to non-random data, leading to an entropy
+increase in the computer. While there are various objections to the connection between
+\emph{logical} irreversibility and heat generation, summarized by Bennett\cite{bennett2003notes},
+this led to an interest in exploring reversible computation, because of its potential energy advantage.
 
-Reversible computing, at the level of Turing machines, was shown to be equivalent to standard
-computing by Bennet \cite{bennett:1973reverse} in 1973. Since approximately 2000, there has
-been an increased interest in reversible computing. This may have been engendered by the obvious relationship
-to Quantum computing (e.g., \cite{neilsen2000:QuantumComputationAndInfo}) where computation is done
-by a series of unitary transforms, each of which is reversible, followed by an irreversible
-measurement.
+Bennett, in 1973,  \cite{bennett:1973reverse} showed how one can simulate an ordinary Turing machine
+using a reversible Turing machine, based on reversible transitions. Since approximately 2000, there has
+been an increased interest in reversible computing. Active areas include research in database
+theory, specifically the view-update problem
+\cite{Pierce06:lenses,Pierce05:combinators,Johnson08:reverse} and quantum computing. Recall that
+quantum computation may be modelled by unitary transforms
+\cite{neilsen2000:QuantumComputationAndInfo}, each of which is reversible, followed by an
+irreversible measurement.
 
-An important aspect of the treatment of reversible computing is the consideration of partiality in
-programs, i.e., it is possible for programs to not return an answer for certain inputs. The above
-references consider partiality to a greater or lesser degree, but none of them treat it as a central
-consideration.
+An important aspect of the treatment of reversible computing is the consideration of the partiality
+inherit in programs, as it is possible for programs to never provide a result for certain
+inputs. Some of the reversibility research referenced in this section considers partiality to a
+greater or lesser degree, but none of them treat it as a central consideration.
 
-Partiality was shown to have an algebraic treatment, restriction categories, by Cockett and Lack in
-\cite{cockett2002:restcategories1,cockettlack2003:restcategories2,cockettlack2004:restcategories3}. The
-algebraic treatment consists of an operator on maps, denoted by a bar over the map, such that for a
-map $f:A\to B$ in a category, then $\rst{f}:A\to A$ is an idempotent map in the category. Full
-details are given here in Section~\ref{sec:restriction_categories}.
+Partiality was shown to have a purely algebraic description by Cockett and Lack in
+\cite{cockett2002:restcategories1,cockettlack2003:restcategories2,cockettlack2004:restcategories3}. They
+introduce a restriction  operator on maps, which associated to a map a partial identity on its
+domain. In \cite{cockett2002:restcategories1}, they recalled the concept of \emph{inverse
+  category}, a category equipped with a restriction operator in which all the maps have partial
+inverses, i.e., are reversible. Categories with restriction operators are presented in
+Chapter~\ref{chap:restriction_categories}, while inverse categories are explored in
+Chapter~\ref{cha:inverse_categories}.
 
-In much of the research on reversibility, specific conditions are placed on some aspect of the
-computational model or reversible language to ensure ``programs'' in this model are reversible. Due
-to the variety of models and languages it is unclear what are the common threads of these restrictions.
-We contend that our treatment of the theory of reversibility will provide the basis to show
-relationships between a variety of approaches.
+The semantics of reversible computing has been explored in a variety of ways, including by
+developing various reversible programming languages. An early example of this is Janus
+\cite{lutz1986janus}, an imperative language written as an experiment in producing a language that
+did not erase information. However, it does not appear that any semantic underpinnings were
+developed for this language. Additionally, there are special purpose reversible languages, such as
+biXid \cite{bixid06}, a language developed explicitly to transform XML \cite{xml} from one data
+schema to another. The main novelty of biXid is that a single program targets two schemas and will
+transform in either direction.
 
-\subsection{Algebraic models of reversibility}
-\label{subsec:algebraic_models_of_reversibility}
-In \cite{abramsky05:reversible}, Abramsky considers bi-orthogonal automata as his computational
-model. (An automata is considered orthogonal if it is non-ambiguous and left-linear. It is
-bi-orthogonal when both the automata and its converse are both orthogonal). Abramsky then builds a
-bridge from partial injective and involutive functions to these automata. To show universality,
-specific constructions of bi-orthogonal automata are provided which create a Linear Combinatory Algebra
-\cite{abramsky02:GOI}.
+Zuliani \cite{zuliani01:reversibility} provides a reversible language with an operational
+semantics. He examines logical reversibility via comparing the probabilistic Guarded Command
+Language ($pGCL$) \cite{MorganIver99} to the quantum Guarded Command Language ($qGCL$)
+\cite{sanders:quantum}. Zuliani provides a method for transforming an irreversible $pGCL$ program
+into a reversible one. This is accomplished via an application of expectation transform semantics to
+the $pGCL$ program. Interestingly, in this work, partial programs are specifically excluded from the
+definition of reversible programs. The initial definition of a reversible program is strict, i.e.,
+the program is equivalent to $skip$ which does nothing. To alleviate this and allow us to extract
+the output, Zuliani follows the example of \cite{bennett:1973reverse} and modifies the result so
+that the output is copied before reversing the rest of the program.
 
-In \cite{danos2004reversible}, Danos and Krivine extend CCS (Calculus for Communicating Systems)
-\cite{milner1980calculus,milner1989communication} to produces RCCS, which adds reversible
+In addition, a number of reversible calculi have been developed. Danos and Krivine
+\cite{danos2004reversible} extend CCS (Calculus for Communicating Systems)
+\cite{milner1980calculus,milner1989communication} to produce RCCS, which adds reversible
 transitions to CCS. This is done by adding a syntax for backtracking, together with a labelling
-which guides the backtracking. The interesting aspect of this paper is the applicability to
-multi-processor programs.
+which guides the backtracking. The interesting aspect of this work is the applicability to
+concurrent programs.
 
 Phillips and Uladowski \cite{phillips2006operational} take a different approach to creating a
 reversible CCS from that of Danos and Krivine. Rather, their stated goal is to use a structural
@@ -64,108 +93,97 @@ To preserve information and allow reversibility, this is replaced with
   \infer{X+Y \to X' +Y}{X\to X'}.
 \]
 
-
-\subsection{Reversible languages}
-\label{subsec:reversible_languages}
-
-Early examples of reversible languages include Janus \cite{lutz1986janus}, an imperative language
-written as an experiment in producing a language that did not erase information. We were unable to
-find any evidence of a semantics for this language.
-
-Additionally, there are special purpose reversible languages, such as biXid \cite{bixid06}, a
-language developed explicitly to transform XML \cite{xml} from one schema to another. The main
-novelty of biXid is that a single program targets two schemas and will transform in either direction.
-
-In the realm of languages which possess an explicit semantics, we start with Zuliani
-\cite{zuliani01:reversibility}, who examines logical reversibility via extending $pGCL$
-\cite{MorganIver99} and comparing to $qGCL$ \cite{sanders:quantum}. Zuliani provides a method for
-transforming an irreversible $pGCL$ program into a reversible one. This is accomplished via an
-application of expectation transform semantics to the $pGCL$ program. Interestingly, partial
-programs are specifically excluded from the definition of reversible programs. The initial
-definition of a reversible program is strict, i.e., the program is equivalent to $skip$
-which does nothing. To alleviate this and allow us to extract the output, Zuliani follows the example of
-\cite{bennett:1973reverse} and modifies the result so that the output is copied before reversing the
-rest of the program.
+In \cite{abramsky05:reversible}, Abramsky considers linear logic as his computational model. This is
+done by producing a Linear Combinatory Algebra \cite{abramsky02:GOI} from the involutive reversible
+maps over a term algebra and showing these are bi-orthogonal automata. (An automata is considered
+orthogonal if it is non-ambiguous and left-linear. It is bi-orthogonal when both the automata and
+its converse are both orthogonal). While the paper does use reversible term rewritings as the
+basis for computation, its emphasis is on how one can derive a linear combinatory algebra.
+Linear combinatory algebras are themselves not reversible systems.
 
 In \cite{mu06bidirectional} and \cite{muetal04:injreversible}, Mu et.al. introduce the language
 \textbf{Inv}, a language that is composed only of partial injective functions. The language has an
-operational semantics based on relations and converses. They provide a variety of examples of the
+operational semantics based on determinate relations and converses. They provide a variety of examples of the
 language, including translations from XML to HTML and simple functions such as $wrap$, which wraps
 its argument into a list. They continue by describing how non-injective functions may be converted to
 injective ones in \textbf{Inv} via the addition of logging. In fact, they use this logging to argue
 the language is equivalent in terms of power to the reversible Turing machine of
 \cite{bennett:1973reverse}.
 
-The approach of Mu et.al. is a good example of a specific case which is describable by the theory
-presented in this Thesis. Their approach of insisting on injective functions is a specific case of
-an inverse category. When given two functions $f,g$ of \textbf{Inv}, constructing their union,
-$f\union g$ requires that both $\dom f \intersection \dom g = \nothing$ and $\rng f \intersection \rng g =
-\nothing$. This is an explicit creation of a disjoint join as introduced in
-Section~\ref{sec:disjoint_joins}.
+Some of the ideas of Mu et.al. are closely related to the theory developed in this thesis. For
+example,  given two functions $f,g$ of \textbf{Inv}, constructing their union, $f\union g$ requires
+that both $\dom f \intersection \dom g = \nothing$ and $\rng f \intersection \rng g =
+\nothing$. This is an example of a disjoint join as introduced in Section~\ref{sec:disjoint_joins}.
 
-A more recent entry into the field of reversible languages is that of Theseus,
-\cite{james2014theseus}, by Sabry and James. Theseus is a functional language which compiles to
-$\Pi^0$ as presented in \cite{james2013isomorphic}. The language $\Pi^0$ is based on $\Pi$
-\cite{james2012information}.  $\Pi$ is a graphical language for reversible computation, based on
+In Di Pierro et.al. \cite{DiPierro200625}, the authors consider groupoids as their mathematical
+model for reversible computations. This leads them to develop \textbf{rCL}, reversible combinatory
+logic. This logic consists of a pair of terms, $\<M|H\>$ where $M$ is a term of standard combinatory
+logic and $H$ is a history, with a specified syntax. In standard combinatory logic, the $k$ term is
+irreversible in that it erases its second argument. In \textbf{rCL}, application of the $k$ term
+copies the second argument into the history, preserving reversibility. Groupoids are a specific
+example of inverse categories, which are total.
+
+A recent reversible language is Theseus, \cite{james2014theseus}, by Sabry and James. Theseus is a
+functional language which compiles to a graphical language
+\cite{james2013isomorphic,james2012information} for reversible computation, based on
 isomorphisms of finite sums and products of types. Their chosen isomorphisms include commutativity
 and associativity for sums and products, units for product and distributivity of product over
-sums. $\Pi^0$ extends this with recursive types and looping operators and therefore introduces partiality
-due to the possibility of non-terminating loops.
+sums. The basic graphical language is extended with recursive types and looping operators and
+therefore introduces partiality due to the possibility of non-terminating loops. Their abstract
+model for this language is a dagger symmetric traced bimonoidal category\cite{selinger05:dagger}.
 
-The basis of $\Pi^0$ is reminiscent of what we produce in this thesis, however, our approach differs
-significantly in focusing first on partiality and the expressiveness this gives us, rather than
-building a specific language.
-
-
-Finally, we note there are a number of quantum programming languages which, as noted, included
-reversible operations. Our first example is LQPL \cite{giles2007}, a compiled language based on the
+Additionally, we note there are a number of quantum programming languages which, as noted, included
+reversible operations. Our primary example is LQPL \cite{giles2007}, a compiled language based on the
 semantics of \cite{selinger04:qpl}. The language includes a variety of reversible operations
-(unitary transforms) as primitives, a linear type system and an operational semantics. A more recent
-entry is Quipper, \cite{green2013introduction,green2013quipper} a language embedded in Haskell
-\cite{peyton2003:haskell98}. Quipper uses quantum \emph{and} classical circuits as an underlying
-model. An interesting aspect of reversibility in Quipper is the inclusion of an operator to compute
-the reverse of a given circuit.
+(unitary transforms) as primitives, a linear type system and an operational semantics. More recently
+Quipper \cite{green2013introduction,green2013quipper}, which focuses on methods to handle very large
+circuits, is a language embedded in Haskell \cite{peyton2003:haskell98}. Quipper uses quantum
+\emph{and} classical circuits as an underlying model. An interesting aspect of reversibility in
+Quipper is the inclusion of an operator to compute the reverse of a given circuit.
+
+In much of the research on reversibility, specific conditions are placed on some aspect of the
+computational model or reversible language to ensure ``programs'' in this model are reversible.
+The variety of models and languages obscures the fundamental commonality of reversibility.
+By basing the theory of this thesis on inverse categories, our treatment clarifies the relationship
+between these various approaches.
+
 
 \section{Objectives}
 \label{sec:objectives}
 
-Based upon our review of current research as noted in Section~\ref{sec:background}, reversibility
-lacks a unifying semantic model. Standard computing has Cartesian closed categories
-\cite{barr:ctcs}, while quantum computing has had much success with dagger compact closed categories
+This thesis proposes a categorical semantics for reversible computing. Based upon the review of
+current research as noted in Section~\ref{sec:background}, reversibility still lacks a unifying
+semantic model. Standard computability has Cartesian closed categories \cite{barr:ctcs} and Turing
+categories \cite{cockett-hostra08-intro-to-turing}, while quantum computing has had much success
+with dagger compact closed categories
 \cite{selinger04:towardssemantics,selinger05:dagger,abramsky05:abstractscalars}.
 
-In this thesis, we will present a type of restriction category which abstracts partial reversible
-computations in as general a way as possible. We will show this category admits product-like and
-sum-like structures. We will also show this type of restriction category is equivalent to a specific
-type of Cartesian restriction category, showing there is a relation to standard computing models.
+We present inverse categories as an abstract semantics for partial reversible computation.
+Inverse categories admit product-like and coproduct-like structures, respectively called
+inverse product and disjoint sum. Inverse categories with an inverse product are called discrete
+inverse categories, due to their possessing an inverse for comultiplication. Similarly, when
+$\Delta$ in a Cartesian restriction category has an inverse, it will be called a discrete Cartesian
+restriction category. Section~\ref{sec:the_restriction_category_hypxt} shows how the ``Cartesian
+Completion'' of an inverse category can be constructed. This enables us to create a discrete
+Cartesian restriction category from a discrete inverse category. It is then shown that we have an
+equivalence between the category of discrete inverse categories and the category of discrete
+Cartesian restriction categories.
 
-\section{Contributions}
-\label{sec:contributions}
+The next step is to show how to add a disjoint sum to an inverse category and how the
+Cartesian Completion results in a distributive restriction category when one starts with a
+distributive inverse category.
 
-The initial contribution of this thesis is the characterization of inverse categories with
-restriction products and restriction coproducts.  We show in
-Proposition~\ref{prop:an_inverse_category_with_products_is_a_restriction_preorder} and
-Proposition~\ref{prop:inverse_category_with_coproducts_is_pre-order} that each of products and
-coproducts impose a trivialization of the structure of the base category.
+An example of a discrete inverse category with disjoint sums is provided by the commutative
+Frobenius algebras in any additive symmetric monoidal category. As Frobenius algebras are related to
+bases in finite dimensional Hilbert spaces\cite{coeckeetal08:ortho}, this provides a connection
+between inverse categories and quantum computing.
 
-The main contributions of this thesis are:
-\begin{enumerate}
-\item The definition and characterization of the inverse product in an inverse category (known as a
-  discrete inverse category) and showing  that it provides meets for the inverse category.
-\item The creation of an equivalence relation on a discrete inverse category and showing that the
-  category resulting from factoring out the equivalence relation is a discrete Cartesian restriction
-  category.\label{item:contribution-2}
-\item Showing that the category of discrete inverse categories is equivalent to the category of
-  discrete Cartesian restriction categories.
-\item The development of disjointness relations and disjoint joins in inverse categories and how
-  they arise from suitable monoids over the inverse category.
-\item Showing that inverse categories with disjoint joins and restriction zeroes (called inverse sum
-  categories) give rise to a matrix category and that the original inverse sum category is
-  equivalent to the matrix category.
-\item The proof that a distributive inverse category (one with inverse products and disjoint joins
-  where the inverse product distributes over the disjoint join) gives a distributive restriction
-  category when factoring out the equivalence relation from Item~\ref{item:contribution-2} above.
-\end{enumerate}
+Finally, we develop the structure of inverse Turing categories and inverse partial combinatory
+algebras, directly based on Turing category and partial combinatory algebras  from
+\cite{cockett-hostra08-intro-to-turing,cockett2010:categories-and-computability}, using the main
+result of this thesis. This places the connection between reversible and irreversible
+computing on a more abstract footing.
+
 
 \section{Outline} % (fold)
 \label{sec:outline}
@@ -174,56 +192,76 @@ We assume a knowledge of basic algebra including definitions and properties of g
 fields, vector spaces and matrices. The reader may consult \cite{lang:algebra} if further details
 are needed.
 
-Chapter~\ref{chap:abstract_computability} introduces the various concepts that will be used
-throughout this thesis. The basics of category theory are reviewed in Section~\ref{sec:categories}
-followed by an introduction to restriction categories in
-Section~\ref{sec:restriction_categories}. Section~\ref{sec:daggercategories} and
-Section~\ref{sec:frobenius_algebras}  introduce dagger categories and Frobenius
-algebras respectively. These constructs are of particular interest in the study of quantum semantics
-and will provide a source of examples for us.
+Chapter~\ref{chap:introduction_to_categories} introduces the various categorical concepts that will
+be used throughout this thesis.
 
-Chapter~\ref{cha:inverse_categories} starts with showing that inverse categories with a restriction
-product collapses to a restriction pre-order, that is, all parallel maps agree wherever they are
-both defined. Section~\ref{sec:inverse_products} introduces the concept of inverse products and
-explores the properties of the inverse product. We call inverse categories with
-inverse products \emph{discrete inverse categories}. A major example of discrete inverse
-categories, commutative Frobenius algebras, is then introduced in
-Section~\ref{sec:the_category_of_commutative_frobenius_algebras}.
-Section~\ref{sec:completing_a_discrete_inverse_category} then presents how to construct a Cartesian
-restriction category based on a discrete inverse category. This culminates in
+Chapter~\ref{chap:restriction_categories} describes restriction categories, an algebraic
+formulation of partiality in categories. We discuss joins, meets and ranges in
+restriction categories and their relation to partial map categories. We describe products in
+restriction categories, and define discrete Cartesian restriction categories, which will be
+important to the thesis. Various examples of restriction categories are given.
+
+Chapter~\ref{cha:inverse_categories} introduces inverse categories and provides examples of them. We
+show that inverse categories with a restriction product collapse to a restriction preorder, that
+is, a restriction category in which all parallel maps agree wherever they are both defined. Then,
+Section~\ref{sec:inverse_products} introduces the concept of inverse products and explores the
+properties of the inverse product. Inverse categories with inverse products are called
+\emph{discrete inverse categories}.
+
+Chapter~\ref{chap:completing_a_discrete_inverse_category} then presents the ``Cartesian
+Completion'' --- a construction of a discrete Cartesian restriction category from a discrete
+inverse category. SubSection~\ref{sec:equivalence_classes_of_maps_in_hypx} presents the details of the
+equivalence relation on  maps of a discrete inverse category needed in the construction, while
+Section~\ref{sec:the_restriction_category_hypxt} contains the proof that the construction gives a
+Cartesian restriction category. Section~\ref{sec:equivalence_of_categories} culminates in
 Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories}
-giving an equivalence adjunction between discrete inverse categories and discrete Cartesian
-restriction categories, which were introduced in Sub-Section~\ref{sub:discrete_restriction_categories}.
+giving an equivalence between the category of discrete inverse categories and the
+category of discrete Cartesian restriction categories. Note this is not a 2-equivalence
+of categories. We provide some simple examples.
 
-Having explored how to introduce a product-like construction in an inverse category,
+
 Chapter~\ref{cha:disjointness_in_inverse_categories} begins the exploration of how to add a
-coproduct-like construction. Paralleling the previous chapter, in
-Section~\ref{sec:coproducts_in_restriction_categories} we show that restriction coproducts
-impose an even greater amount of structure on an inverse category. The existence of a restriction
-coproduct implies that an inverse category must be a pre-order, i.e., that all parallel maps are
-equal. Section~\ref{sec:disjointness_in_an_inverse_category} starts with a quick review of joins in
-restriction categories, followed by defining a disjointness relation in an inverse category. We show
-that disjointness may be defined on all maps or equivalently only on the restriction idempotents of
-the inverse category. This allows us to now define the disjoint join in
-Section~\ref{sec:disjoint_joins}. We then conclude this chapter with
-Section~\ref{sec:tensors_for_disjointness} showing how specific conditions on a symmetric monoidal
-tensor in an inverse category allow us to define both a disjointness relation and a disjoint join
-from that tensor.
+coproduct-like construction to inverse categories. Paralleling the previous chapter, we show the
+existence of a restriction coproduct implies that an inverse category must be a preorder, i.e.,
+that all parallel maps are equal. Section~\ref{sec:disjointness_in_an_inverse_category} defines a
+disjointness relation in an inverse category. We show that disjointness may be defined on all maps
+or equivalently only on the restriction idempotents of the inverse category. This allows us to
+define the disjoint join in Section~\ref{sec:disjoint_joins}.
 
-Chapter~\ref{cha:inverse_sum_categories} builds upon the previous chapters to introduce
-coproduct-like constructions into the inverse
-category. Section~\ref{sec:disjointness_in_frobenius_algebras} starts by expanding the example of
-commutative Frobenius algebras, showing there is a disjointness relation in them. In
-Section~\ref{sec:inverse_sum_categories} we explore the relationship between disjoint joins and
-inverse sums. This culminates in showing that an inverse category \X with a tensor generating disjoint
-joins gives rise to a matrix category over \X and that \X is equivalent to its matrix
-category. Finally, in Section~\ref{sec:completing_a_distributive_inverse_category} we show that the
-construction introduced in Section~\ref{sec:completing_a_discrete_inverse_category} also lifts an
-inverse sum up to a coproduct and in fact will create a distributive restriction category when the
-inverse product distributes over the disjoint join.
+Chapter~\ref{chap:disjoint_sum_tensors} introduces the disjoint sum, an object in an inverse
+category with a disjoint join, which behaves like a coproduct. The disjoint sum has injection maps
+which are subject to certain conditions. When an inverse category has all disjoint sums, it is
+possible to define a symmetric monoidal tensor based on the disjoint sum. The remainder of the
+chapter explores what constraints on a tensor will allow the creation of  a disjoint sum. We define
+a disjoint sum tensor, a symmetric monoidal tensor in the inverse category with specific additional
+constraints. A disjoint sum tensor allows us to define both a disjointness relation and a disjoint
+join based on the tensor. Disjoint sum tensors do produce disjoint sums and conversely, the tensor
+defined by disjoint sums is a disjoint sum tensor.
 
-Our conclusions and thoughts for potentially interesting areas to explore further are then given in
-Chapter~\ref{cha:conclusions_and_future_work}.
+Chapter~\ref{cha:matrix_categories} introduces a matrix construction on inverse categories with
+disjoint joins in order to add disjoint sums. The functor from \X to \imatx gives us an adjunction
+between the category of inverse categories with disjoint joins and the
+category of inverse categories with disjoint sums.
+
+In Chapter~\ref{chap:distributive_inverse_categories}  a distributive inverse category is defined as
+an inverse category where the inverse product distributes over the disjoint sum. The Cartesian
+Completion of a distributive inverse category turns the disjoint sum into a coproduct and, in fact,
+will create a distributive restriction category.
+
+Chapter~\ref{chap:commutative_frobenius_algebras} discusses commutative Frobenius algebras. The
+chapter starts with providing a background on dagger categories and frobenius algebras, showing how
+the latter are equivalent to bases in a finite dimensional Hilbert space. The category \CFrob,
+the category of commutative Frobenius algebras in a symmetric monoidal category $\X$, is
+introduced. \CFrob is shown to be a discrete inverse category. Furthermore, when \X is an
+additive tensor category with zero maps, \CFrob has disjoint sums.
+
+In Chapter~\ref{chap:turing_categories}, Turing categories and partial combinatory algebras are
+introduced as a way to formulate computability. The corresponding structures in inverse categories,
+inverse Turing categories and inverse partial combinatory algebras, are then investigated. We show the
+equivalence of these structures to the ones in discrete Cartesian restriction categories.
+
+Chapter~\ref{cha:conclusions_and_future_work} starts with a summary of the contributions of this
+thesis and concludes with a short section on potential areas of further exploration.
 
 
 

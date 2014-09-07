@@ -1,0 +1,695 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+
+\chapter{Introduction to Categories}\label{chap:introduction_to_categories}
+
+This chapter introduces categories and fixes notation for them. More
+details for category theory can be found from, e.g., \cite{barr:ctcs}, \cite{cockett2009:ctcs},
+\cite{maclan97:categorieswrkmath} and \cite{various:nlab}.
+
+\section{Definition of a category}
+\label{sec:definition_of_a_category}
+
+
+A category may be defined in a variety of equivalent ways. As much of our work will involve the
+exploration of partial and reversible maps, we choose a definition that highlights the algebraic
+nature of these.
+
+\begin{definition}\label{def:category}
+  A \emph{category} $\A$ is a directed graph consisting of objects $\A_o$ and maps $\A_m$. Each $f\in
+  \A_m$ has two associated objects in $\A_o$, called the domain, $\catdomain{f}$, and codomain,
+  $\catcodomain{f}$. When $\catdomain{f}$ is the object $X$  and $\catcodomain{f}$ is the object $Y$, we
+  will write $f:X \to Y$. For $f, g \in \A_m$, if $f:X\to Y$ and $g:Y \to Z$, there is a map called
+  the \emph{composite} of $f$ and $g$, written $f g$,\footnote{Note that composition is written in
+    diagrammatic order throughout this thesis.} such that $f g:X \to Z$. For any $W \in \A_o$ there is
+  an \emph{identity} map $1_W:W \to W$. Additionally, these two axioms must hold:
+  \begin{align*}
+    \catone &\text{ for }f:X \to Y,\ 1_X f = f = f 1_Y;&\text{(Unit laws)}\\
+    \cattwo &\text{ given }f:X \to Y,\ g:Y \to Z\text{ and }h: Z\to W\text{, then }f (g h) = (f g) h.&\text{( Associativity)}
+  \end{align*}
+\end{definition}
+
+Throughout   this thesis, we will be working with \emph{small} categories, that is, those categories
+whose collection of maps and collection of objects is, in fact, a set. We will give categories of
+``all'' sets as an example, and the reader can take that to mean all our sets are very small and all
+belong to a some sufficiently large set, $\mathcal{U}$.
+
+We give a few examples of categories:
+
+\begin{example}\label{ex:small_finite_categories}
+  We set $\mathbf{1}$ to be the category consisting of a single object $A$ and the identity arrow
+  $id:A\to A$. This  is obviously a category, with $\mathbf{1}_o = A$ and
+  $\catdomain{id} = \catcodomain{id} = A$.
+
+  There is also the category $\mathbf{2}$:
+  \[
+    \xymatrix{
+      A\ar[rr]^{f} \ar@(ul,dl)[]_{id_A}& & B  \ar@(ur,dr)[]^{id_B}
+    }
+  \]
+  where $f$ is the only non-identity arrow.
+\end{example}
+
+\begin{example}[Preorders are categories]\label{ex:preorders-are-categories}
+  Take any partially ordered set $(P,\le)$. Define $f:a \to b$ for $a,b\in P$ if and only if
+  $a\le b$. This is a category as we always have:
+  \begin{enumerate}[{(}i{)}]
+  \item $a \le a$ (Identity);
+  \item $a \le b$ and $b \le c$ implies $a\le c$ (Composition);
+  \end{enumerate}
+  Note that we have at most one map between any two objects in $P$, hence \catone and \cattwo are
+  immediately satisfied
+\end{example}
+\begin{example}[Dual Category]\label{ex:dual_category}
+Given a category $\B$, we may form the \emph{dual} of $\B$, written $\B^{op}$ as the following
+category:
+\category{The objects of $\B$}{$f^{op}:B\to A$ in $\B^{op}$ when $f:A\to B$ in $\B$}{
+The identity maps of $\B$}{If $f g = h$ in $\B$, $g^{op} f^{op} = h^{op}$}
+\end{example}
+
+Note the format of the previous example, where we list the four basic requirements of a
+category. This is typically how we will present categories in this thesis. Depending upon the
+complexity of the definition, we may add further proof that it meets \catone and \cattwo.
+
+The previous example is an important one, as we will often speak of \emph{dualizing} a notion, or
+that concept ``x'' is the \emph{dual} of concept ``y''. This means that when ``y'' holds in a
+category \B, the ``x'' holds in $\B^{op}$.
+
+\section{Properties of maps} % (fold)
+\label{sub:properties_of_maps}
+Many useful properties of maps are generalizations of notions used for sets and functions. We
+present a few of these in Table~\ref{tab:properties_of_maps_in_categories}, together with their
+categorical definition. Throughout Table~\ref{tab:properties_of_maps_in_categories}, $e,f,g$ are
+maps in a category $C$ with $e:A \to A$ and $f,g:A \to B$.
+\begin{table}[!htbp]
+  \begin{center}
+    \begin{tabular}{|p{1in}p{1in}p{3.78in}|}
+      \hline
+      {\bf Sets} & {\bf Categorical Property} & {\bf Definition}\\
+      \hline
+      \hline
+      Injective & Monic & $f$ is monic whenever $h f = k f$ means that $h = k$.\\
+      & & \\
+      \hline
+      Surjective & Epic & {The dual notion to monic, $g$ is epic whenever $g h = g k$ means that $h = k$.
+      A map that is both monic and epic is called \emph{bijic}.}\\
+      & & \\
+      \hline
+      Left~Inverse & Section & $f$ is a section when there is a map $\categorysection{f}$ such that $f \categorysection{f} = 1_A$. $f$
+      is also referred to as the \emph{left inverse} of $\categorysection{f}$.\\
+      & & \\
+      \hline
+      Right Inverse & Retraction & $f$ is a retraction when there is a map $\retraction{f}$ such that $\retraction{f} f = 1_B$.
+      $f$ is also referred to as the \emph{right inverse} of $\retraction{f}$. A map that is both a section and a
+      retraction is called an \emph{isomorphism}.\\
+      & & \\
+      \hline
+      Idempotent & Idempotent & An endomorphism $e$ is idempotent whenever $e e = e$.\\
+      & & \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Properties of Maps In Categories}
+  \label{tab:properties_of_maps_in_categories}
+\end{table}
+
+There are number of basic properties of maps enumerated in Table~\ref{tab:properties_of_maps_in_categories}.
+
+\begin{lemma}\label{lem:categorical_properties_of_maps}
+  In a category \B,
+  \begin{enumerate}[{(}i{)}]
+    \item If $f,g$ are monic, then $f g$ is monic.
+    \item If $f g$ is monic, then $f$ is monic.
+    \item $f$ being a section means it is monic.
+    \item $f, g$ sections implies that $f g$ is a section.
+    \item $f g$ a section means $f$ is a section.
+    \item If $f:A \to B$ is both a section and a retraction, then $\categorysection{f} = \retraction{f}$, where $\categorysection{f}$ and $\retraction{f}$ are as
+      defined in Table~\ref{tab:properties_of_maps_in_categories}.
+    \item  $f$ is an isomorphism if and only if it is an epic section.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item Suppose $h f g = k f g$. As $g$ is monic, $h f = k f$. As $f$ is monic, this gives us $h =
+      k$ and therefore $f g$ is monic.
+    \item See \cite{barr:ctcs}, chapter 2.
+    \item Suppose $h f = k f$. Then $h f \categorysection{f} = k f \categorysection{f}$ giving us $h
+      1 = k 1$ and therefore $h = k$  and $f$ is monic.
+    \item We are given $f\categorysection{f} =1$ and $g\categorysection{g} =1 $. But then $f g
+      \categorysection{g}\categorysection{f} = f \categorysection{f} = 1$ and $f g$ is a section.
+    \item We are given there is some $h$ such that $(f g) h = 1$. This means $f (g h) =1$ and $f$ is
+      a section.
+    \item See \cite{cockett2009:ctcs}, Lemma 1.2.2.
+    \item See \cite{cockett2009:ctcs}, Lemma 1.2.3.
+  \end{enumerate}
+
+\end{proof}
+
+Note there are corresponding properties for epics and retractions, obtained by dualizing the
+statements of Lemma~\ref{lem:categorical_properties_of_maps}.
+
+Suppose $f:A \to B$ is a retraction with left inverse $\retraction{f}:B \to A$. Note that $f
+\retraction{f}$ is idempotent as $f \retraction{f} f \retraction{f} = f 1_B \retraction{f} = f
+\retraction{f}$. If we are given an idempotent $e$, we say $e$ is \emph{split} if there is a
+retraction $f$ with $e = f \retraction{f}$.
+
+In general, not all idempotents in a category will split. The following construction allows us to
+create a category based on the original one in which all idempotents do split.
+
+\begin{definition}\label{def:split_category}
+  Given a category $\B$ and a set of idempotents $E$ of $\B$, we may create the category of \B split
+  over the idempotents $E$. This is normally written as $\spl{E}{\B}$, and defined as:
+  \categoryns{$(A,e)$, where $A$ is an object of \B, $e:A\to A$ and $e\in E$.}
+    {$f_{d,e}:(A,d)\to(B,e)$ is given by $f:A\to B$ in \B, where $f = d\uts f e$.}
+    {The map $e_{e,e}$ for $(A,e)$.}
+    {Inherited from \B.}
+  When $E$ is the set of all idempotents in $\B$, we write $\spl{}{\B}$.
+\end{definition}
+This is the standard idempotent splitting construction, variously known as the Karoubi
+envelope (whence the notation) or Cauchy completion.
+
+% subsection properties_of_maps (end)
+
+\section{Functors and natural transformations} % (fold)
+\label{ssub:functors_and_natural_transformations}
+
+\begin{definition}\label{def:functor}
+  A map $F:\X \to \Y$ between categories, as in Definition~\ref{def:category}, is called a
+  \emph{functor}, provided it satisfies the following:
+  \begin{itemize}
+    \item[\axiom{F}{1}] $F(\catdomain{f}) = \catdomain{F(f)}$ and $F(\catcodomain{f}) = \catcodomain{F(f)}$;
+    \item[\axiom{F}{2}] $F(f g) = F(f)F(g)$.
+  \end{itemize}
+\end{definition}
+
+\begin{lemma}\label{lem:cat_is_a_category}
+  Categories and functors form a category \cat.
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \categoryns{Categories.}{Functors.}{The identity functor which takes an object to the same object
+    and a map to the same map.}{Given $F:\A\to\B$, $G:\B\to\D$, define the functor  $F G:\A\to\D$ such that
+    $F G(x) = G(F(x))$ which is clearly associative.}
+  Note this is often regarded as a \emph{large} category, as its collection of objects is not a set.
+\end{proof}
+
+
+A functor $F:\B \to \D$ induces a map between hom-sets in $\B$ and hom-sets in $\D$. For
+each object $A,B$ in $\B$ we have the map:
+\[
+  F_{AB} : \B(A,B) \to \D(F(A),F(B)).
+\]
+
+\begin{definition}\label{def:full_functor}
+  A functor $F:\X\to\Y$ is \emph{full} when for each pair of objects $A,B$ in $\X$, and map
+  $g:FA \to F B$ in $\Y$, there is a map $f:A\to B$ in $\X$ such that $F f = g$.
+\end{definition}
+
+\begin{definition}\label{def:faithful_functor}
+  A functor $F:\X\to\Y$ is \emph{faithful} when for parallel maps $f, f'$, if $Ff = Ff'$ then $f = f'$.
+\end{definition}
+We may also consider the notion of containment between categories:
+
+\begin{definition}\label{def:subcategories}
+  Given the categories $\B$ and $\D$, we say that \B is a \emph{subcategory} of \D when each object
+  of \B is an object of \D and when each map of \B is a map of \D.
+\end{definition}
+
+When $\B$ is a subcategory of $\D$, the functor $J:\B \to \D$ which takes each object to itself in
+$\D$ and each map to itself in $\D$ is called the inclusion functor. When $J$ is a full functor, we
+say $\B$ is a full subcategory of $\D$.
+
+We now have the machinery to discus the relationship between a category \B and its splitting
+$\spl{}{\B}$:
+
+\begin{lemma}\label{lem:split_category_splits_and_has_category}
+  Given a category $\B$, then it is a full subcategory of $\spl{}{\B}$ and all idempotents split
+  in  $\spl{}{\B}$.
+\end{lemma}
+\begin{proof}
+  We identify each object $A$ in $\B$ with the object $(A,1)$ in $\spl{}{\B}$. The only maps between
+  $(A,1)$ and $(B,1)$ in $\spl{}{\B}$ are the maps between $A$ and $B$ in $\B$, hence we have a
+  full subcategory.
+
+  Suppose we have the map $d_{e,e}: (A,e) \to (A,e)$ with $d d = d$, i.e., it is idempotent in $C$
+  and $\spl{}{\B}$. In $\spl{}{\B}$, we have the maps $d_{e,d}:(A,e) \to (A,d)$ and $d_{d,e}:(A,d) \to
+  (A,e)$ where $d_{d,e} d_{e,d} = d_{d,d} = 1_{(A,d)}$ and $d_{e,d} d_{d,e} = d_{e,e}$. Hence,
+  it is a splitting of the map  $d_{e,e}$.
+\end{proof}
+
+
+Functors with two arguments, e.g., $F:\A \times \A \to \A$ which satisfy \axiom{F}{1} and
+\axiom{F}{2} for each argument independently are called \emph{bi-functors}.
+
+
+We will often restrict ourselves to specific classes of functors which either \emph{preserve} or
+\emph{reflect} certain characteristics of the domain category or codomain category.
+
+\begin{definition}\label{def:diagram_in_a_category}
+  Given a category $\cS$, a \emph{diagram}
+  in a category $\B$ of \emph{shape} $\cS$ is a functor $D:\cS \to \B$.
+\end{definition}
+
+\begin{definition}\label{def:property_of_a_diagram}
+  A \emph{property} of a diagram $D$, written $P(D)$, is a logical relation expressed using the
+  objects and maps of the diagram $D$.
+\end{definition}
+
+For example,   $P(f:A \to B) \definedas \exists h : B \to A. h f = 1_A$ expresses that $f$ is a retraction.
+
+\begin{definition}\label{def:functor_preserving_and_reflecting_a_property}
+  A functor $F$ \emph{preserves} the property $P$ over maps $f_i$ and objects $A_j$ when:
+  \[
+     P(f_1,\ldots,f_n, A_1,\ldots,A_m) \implies P(F(f_1),\ldots,F(f_n), F(A_1),\ldots,F(A_m)).
+  \]
+  A functor $F$ \emph{reflects} the property $P$ over maps $f_i$ and objects $A_j$ when:
+  \[
+    P(F(f_1),\ldots,F(f_n), F(A_1),\ldots,F(A_m)) \implies P(f_1,\ldots,f_n, A_1,\ldots,A_m).
+  \]
+\end{definition}
+
+For example, all functors preserve the properties of being an idempotent or a retraction or section,
+but in general, not the property of being monic.
+
+\begin{definition}\label{def:natural_transformation}
+  Given functors $F,G:\X \to \Y$, a \emph{natural transformation} $\alpha:F \natto G$ is a collection
+  of maps in $\Y$, $\alpha_X : F(X) \to G(X)$, indexed by the objects of $\X$ such that for all
+  $f:X_1 \to X_2$ in $\X$ the following diagram in $\Y$ commutes:
+  \[\xymatrix @R+10pt @C+10pt{
+      F(X_1) \ar[r]^{F(f)} \ar[d]_{\alpha_{X_1}} & F(X_2) \ar[d]^{\alpha_{X_2}}\\
+      G(X_1) \ar[r]_{G(f)} &  G(X_2)
+    }
+  \]
+\end{definition}
+
+In the case where a natural transformation is a collection of isomorphisms, we write $\alpha: F
+\cong G$ or simply $F\cong G$.
+
+% subsection functors_and_natural_transformations (end)
+
+
+\section{Adjoint functors and equivalences}
+\label{sec:adjoint-functors-and-equivalences}
+
+Referring to Section~\ref{ssub:functors_and_natural_transformations}, we consider relationships
+between categories. While two categories may be isomorphic (i.e. there is an invertible functor
+between them), we normally consider two alternate relations between categories: Equivalence and
+adjointness.
+
+We first consider adjoint pairs of functors. There are various equivalent ways of defining adjoints,
+we will approach them using universality.
+
+\begin{definition}\label{def:universal_pair}
+  Given $G:\A\to\B$ is a functor and $A\in \A$, then an object $U$ in \B together with a map
+  $\eta_A:A\to G(U)$ is a \emph{universal pair} for the $G$ at $A$ if whenever there is a map
+  $f:A\to G(Y)$, there is a unique $f^{\#}:U\to Y$ such that
+  \[
+    \xymatrix@C+15pt{
+      A \ar[r]^{\eta_A} \ar[dr]_{f} & G(U) \ar@{.>}[d]^{G(f^{\#})}\\
+      & G(Y)
+    }
+  \]
+  is a commutative diagram.
+\end{definition}
+
+Let us consider what happens when we have the situation above, but the $U$ in $\B$ is definable
+based on the $A\in\A$.
+\begin{lemma}\label{lem:adjoint-setup}
+  Suppose for $G:\B\to\A$ is a functor such that for each $A\in\A$, there is an operation
+  $F:\A\to\B$ such that  $(F(A),\eta_A)$ is a universal pair. Then:
+  \begin{itemize}
+    \item $F$ is a functor with $F(g) = (g\eta)^{\#}$;
+    \item $\eta_A: A \to G(F(A))$ is a natural transformation;
+    \item $\epsilon_B = 1_{G(B)}^{\#}:F(G(B)) \to B$ is a natural transformation;
+    \item The triangle equalities, $\eta_{G(B)}G(\epsilon_B) = 1_B$ and $F(\eta_A)\epsilon_{F(A)} =
+      1_{F(A)}$ hold.
+  \end{itemize}
+  Conversely, if we have functors $F,G$ with transformation $\eta$ and $\epsilon$ which satisfy the
+  triangle identities, then each $(F(A),\eta_A)$ is universal for $G$ at $A$.
+\end{lemma}
+\begin{proof}
+  See Proposition 2.2.2\cite{cockett2009:ctcs}.
+\end{proof}
+
+When we have this occurring we say $F$ is \emph{left adjoint} to $G$ (and $G$ is the
+\emph{right adjoint} of $F$). The transformation $\eta$ is referred to as the \emph{unit} and the
+transformation $\epsilon$ is referred to as the \emph{counit}. This is written as:
+\[
+  (\eta,\epsilon):F\leftadjoint G:A\to B.
+\]
+
+Additionally, adjoints are often defined as a one to one correspondence between hom-sets in the
+following manner:
+
+Let $F,G$ be functors such that $F:\A \to \B$ and $G:\B \to \A$ such that there is a bijection $\phi$
+between the hom-sets:
+\[
+  \phi: \B(F(X),Y) \to \A(X,G(Y)).
+\]
+This is the path followed by Mac Lane in \cite{maclan97:categorieswrkmath}, where he proves this
+definition is equivalent to Definition~\ref{def:universal_pair} above. Rather than explicitly
+defining the bijection, this is often written in the form of an inference:
+\[
+  \infer{\A(X,G(Y)).}{\B(F(X),Y)}
+\]
+
+
+
+\begin{example}[Simple slice adjoint.]\label{ex:simple-slice-adjoint}
+  Consider the  \emph{simple slice} category\cite{blute2009cartesian}, $\B[A]$  defined as:
+  \categoryns{Objects of \B.}{$f:C\to D$ is given by maps $f:C\times A \to D$.}{projection --
+    $\pi_0$.}{$C\xrightarrow{f}D\xrightarrow{g}E$ is given by $C\times A \xrightarrow{1\times \Delta}
+    C\times A\times A\xrightarrow{f\times 1} D\times A \xrightarrow{g} E$.}
+  Note the definition of simple slice category relies on products in categories, to be introduced
+  below in Section~\ref{sub:limits_and_colimits_in_categories}.
+
+  There is an adjunction between $\B[A]$ and $\B$.
+
+  Define $F:\B[A]\to \B$ by $F:C \mapsto C\times A$, $F:(f:C\to D) \mapsto (1\times \Delta) (f\times
+  1)$.
+  Define $G:\B \to \B[A]$ by $G:C\mapsto C$, $G:(f:C\to D) \mapsto \pi_0 f$. We see immediately
+  there is a  correspondence $\phi$ of hom-sets
+  \[
+    \infer{\B[A](C,G(D))}{\B(F(C), D)}
+    \qquad \raisebox{8pt}{$\equiv$}\ \ \infer{\B[A](C,D)}{\B(C\times A, D)}
+  \]
+  given by $\phi(f) = f$.
+  Thus $F\leftadjoint G$.
+\end{example}
+
+Now, we may consider equivalence of categories.
+
+\begin{definition}\label{def:equivalence_of_categories}
+  Given two categories $\A$ and $\B$, we say they are \emph{equivalent} when there exists two
+  functors, $F:\A \to \B$ and $G:\B \to \A$ and natural isomorphisms such that $F G \cong I:\A \to
+  \A$ and $G F \cong I:\B \to \B$.
+\end{definition}
+
+
+The equivalence functors will also be an adjoint pair, typically they are chosen such that
+$F\leftadjoint G$.
+
+\section{Enrichment of categories} % (fold)
+\label{sub:enrichement_of_categories}
+
+If $\X$ is a category, then the maps from $A$ to $B$ in $\X$ are denoted $\X(A,B)$.
+If $\X(A,B)$ is a set for all objects in $\X$, we say $\X$ is \emph{enriched} in sets. More generally,
+categories may be enriched in any monoidal category. For example a category may be
+enriched in abelian groups, vector spaces, posets, categories or commutative monoids.
+
+Specific types of enrichment may force a structure on a category. Examples:
+\begin{enumerate}
+ \item If $\X$ is enriched in sets of cardinality of 0 or 1, then $\X$ is a preorder.
+ \item If $\X$ is enriched in pointed sets with the monoid of smash product, the $\X$ has zero morphisms.
+% \item If $\X$ is enriched in abelian groups, then $\X$ is a preadditive category (has zero
+%   morphisms and has finite products which are the same as the coproduct).
+\end{enumerate}
+
+
+% subsection enrichment_of_categories (end)
+\section{Examples of categories} % (fold)
+\label{sub:examples_of_categories}
+In this section, we will offer a few examples of categories.
+
+\begin{example}
+  A group $G$ may be considered as a one-object category $\mathbb{G}$, with object $\{*\}$. The elements of the
+  group are the maps between $\{*\}$. As $G$ is a group, there is an identity, composition is given
+  by the group multiplication and additionally, each map has an inverse. As $\mathbb{G}(\{*\},\{*\})
+  = G$, this category is enriched in groups.
+\end{example}
+
+Four categories derived from sets are \rel, \sets, \Par, and \pinj:
+
+\begin{example}[\rel]\label{ex:category_rel}
+\rel is often of interest in quantum programming language semantics:
+\category{All sets}{Relations: $R\subseteq X\times Y$}{$1_X = \{(x,x) | x \in X\}$}{$RS = \{(x,z) |\,
+\exists y. (x,y) \in R$ and $(y,z)\in S\}$}
+\end{example}
+
+
+Note that \rel is enriched in posets (see Example~\ref{ex:preorders-are-categories}), via set
+inclusion. \sets and \Par can be viewed as subcategories of \rel, with the same objects, but
+restricting the maps allowed --- see below. \Par is also enriched in posets, via the same inclusion
+ordering as in \rel.
+
+\begin{example}[\sets]\label{ex:category_sets}
+This is the subcategory of \rel which has the same  objects (sets) but only allowing maps which are
+total functions, i.e., deterministic relations $f$ where for all $x\in X$, there is a $y$ such
+that $(x,y)\in f$ and if $(x,y), (x,y') \in f$, then $y = y'$.
+\end{example}
+
+\begin{example}[\Par]\label{ex:category_par}
+This is the subcategory of \rel which has the same  objects (sets) but only allowing maps which are
+partial functions, i.e., deterministic relations $f$ where if $(x,y), (x,y') \in f$, then $y = y'$.
+\end{example}
+
+
+\begin{example}[\pinj]\label{ex:category_pinj}
+Our final example based on sets is one that will be used throughout this thesis. The category \pinj consists of
+the partial injective functions over sets. Similarly to \sets and \Par, it may be considered as a subcategory
+of \rel. The maps $f,g$ (relations in \rel) in \pinj are subject to two conditions:
+\begin{align}
+   (x,y)\in f\text{ and }(x,y')\in f & \text{ implies } y = y',\label{eq:pinj_relation_is_a_function}\\
+   (x,y)\in f\text{ and }(x',y)\in f & \text{ implies } x = x'.\label{eq:pinj_converse_relation_is_a_function}
+\end{align}
+\category{All sets}{Relations: $f:X \to Y$ which satisfy Equation~\ref{eq:pinj_relation_is_a_function} and
+Equation~\ref{eq:pinj_converse_relation_is_a_function}}{$1_X = \{(x,x) | x \in X\}$}{$f g = \{(x,z) |\,
+\exists y. (x,y) \in f$ and $(y,z)\in g\}$}
+\end{example}
+
+\begin{example}[\topcat]\label{ex:category_top}
+  A topological space is defined as a pair $(T,\open{T})$ where $T$ is a set and $\open{T} \subseteq
+  \mathcal{P}(T)$ satisfying three properties:
+  \begin{enumerate}[{(}i{)}]
+    \item $T\in \open{T}$ and $\emptyset \in \open{T}$;
+    \item The union of any sets in $\open{T}$ is again in $\open{T}$;
+    \item The intersection of finitely many sets in $\open{T}$ is in $\open{T}$.
+  \end{enumerate}
+  The sets in $\open{T}$ are referred to as the open sets of the topological space.
+
+  Maps between two topological spaces $(T,\open{T})$ and $(S,\open{S})$ consist of
+  a set map $f:T \to S$ such that the inverse image of any open set  is an open set. Such
+  maps are referred to as \emph{continuous functions}.
+
+  The identity map is always continuous and composition of continuous functions yields another
+  continuous function, hence setting $\topcat_o$ to be the set of all topological spaces and
+  $\topcat_m$ to be the continuous maps between them gives us a category.
+\end{example}
+
+Our next example shows maps in categories need not always be something normally thought of as a
+function or relation.
+
+\begin{example}[Matrix category]\label{ex:matrix_category}
+Given a rig $R$ (i.e., a ri\textbf{n}g without \textbf{n}egatives, e.g., the natural numbers), one may
+form the category \textsc{Mat}($R$). For example, the category of matrices over natural numbers is:
+\category{\nat}{$[r_{i j}]: n \to m$ where $[r_{i j}]$ is an $n \times m$ matrix over \nat}{
+$I_n$}{Matrix multiplication}
+\end{example}
+
+% \begin{example}[Slice category]\label{ex:slice_category}
+%   Given a category $\B$ and an object $A$ in \B, form the \emph{slice category} $\B/A$:
+%   \categoryns{Maps of \B whose codomain is $A$, i.e., $f:B\to A$ for some $B$.}{
+%     Triples $(f_1,g,f_2):f_1 \to f_2$ such that
+%     \[
+%       \xymatrix{
+%         B_1 \ar[rr]^{g} \ar[dr]_{f_1} && B_2 \ar[dl]^{f_2}\\
+%         & A
+%       }
+%     \]
+%     commutes.}{$(f,1_B,f):f \to f$.}{$(f_1,g,f_2)(f_2,h,f_3) = (f_1,g h, f_3)$ which is well
+%     defined as $g h f_3 = g f_2 = f_1$.}
+
+%   There is also the concept of the \emph{simple slice} category\cite{blute2009cartesian}, $\B[A]$
+%   defined as:
+%   \categoryns{Objects of \B.}{$f:C\to D$ is given by maps $f:C\times A \to D$.}{projection --
+%     $\pi_0$.}{$C\xrightarrow{f}D\xrightarrow{g}E$ is given by $C\times A \xrightarrow{1\times \Delta}
+%     C\times A\times A\xrightarrow{f\times 1} D\times A \xrightarrow{g} E$.}
+%   Note the definition of simple slice category relies on products in categories, to be introduced in
+%   the next section.
+% \end{example}
+
+
+
+% subsection examples_of_categories (end)
+
+\section{Limits and colimits in categories} % (fold)
+\label{sub:limits_and_colimits_in_categories}
+
+We shall review only a few basic limits/colimits in categories, in order to set up notation and
+terminology. First we discuss initial and terminal objects.
+
+\begin{definition}\label{def:initial_object}
+  An \emph{initial object} in a category $\B$ is an object which has exactly one map to each other
+  object in the category. The dual notion is \emph{terminal object}. Every object in the category
+  has exactly one map to the terminal object.
+\end{definition}
+
+
+\begin{lemma}\label{lem:initial_objects_are_unique}
+  Suppose $I,J$ are initial objects in $\B$. Then there is a unique isomorphism $i:I \to J$.
+\end{lemma}
+\begin{proof}
+  First, note that by definition there is only one map from $I$ to $I$ --- which must be the
+  identity map. As $I$ is initial there is a map $i: I \to J$. As $J$ is initial there is a map
+  $j:J \to I$. But this means $i j : I \to I = 1$ and $j i : J \to J = 1$ and hence $i$ is the
+  unique isomorphism from $I$ to $J$.
+\end{proof}
+
+Dually, we have the corresponding result to Lemma~\ref{lem:initial_objects_are_unique} for terminal
+objects --- they are also unique up to a unique isomorphism.
+
+In categories, following the terminology in sets, we normally designate the initial object by $0$
+and the terminal object by $1$.
+A map \emph{from} the terminal object to another object in the category is often referred to as an
+\emph{element} or a \emph{point}.
+
+We now turn to products and coproducts.
+
+\begin{definition}\label{def:categorical_product}
+  Let $A,B$ be objects of the category $\B$. Then the object $A \times B$ is a \emph{product} of
+  $A$ and $B$ when:
+  \begin{itemize}
+    \item There exist maps $\pi_0, \pi_1$ with $\pi_0:A\times B \to A$, $\pi_1:A\times B \to B$;
+    \item Given an object $C$ with maps $f:C\to A$ and $g:C \to B$ there is a unique map
+    $\<f,g\>$ such that the following diagram commutes:
+    \[
+      \xymatrix@C+5pt@R+15pt{
+        &&&A\\
+        C\ar[urrr]^{f} \ar[drrr]_{g}\ar@{.>}[rr]^{\<f,g\>} & &A\times B \ar[ur]_{\pi_0}\ar[dr]^{\pi_1}\\
+        &&&B
+      }
+    \]
+  \end{itemize}
+
+\end{definition}
+
+A coproduct is the dual of a product.
+
+\begin{definition}\label{def:categorical_coproduct}
+  Let $A,B$ be objects of the category $\B$. Then the object $A + B$ is a \emph{coproduct} of
+  $A$ and $B$ when:
+  \begin{itemize}
+    \item There exist maps $\cpa, \cpb$ with $\cpa:A \to A + B$, $\cpb:B \to A+ B$;
+    \item Given an object $C$ with maps $h:A\to C$ and $k:B \to C$ there is a unique map
+    $[h,k]$ such that the following diagram commutes:
+    \[
+      \xymatrix@C+5pt@R+15pt{
+        A \ar[drrr]^h \ar[dr]_{\cpa} \\
+        &A +B \ar@{.>}[rr]^{[h,k]} && C\\
+        B \ar[urrr]_k \ar[ur]^{\cpb}
+      }
+    \]
+  \end{itemize}
+\end{definition}
+
+It is possible for an object to be both a limit and a colimit at the same time:
+\begin{definition}\label{def:categorical_zero}
+  Given a category $\B$, any object that is both a terminal and initial object is called a
+  \emph{zero object}. This object is labelled $\zeroob$.
+\end{definition}
+
+Note that any category with a zero object has a special map, $\zeroob_{A,B}$
+between any two objects $A,B$ of the category given by: $\zeroob_{A,B} : A \to \mathbf{0} \to B$.
+
+\begin{definition}\label{def:categorical_biproduct}
+  In a category \B, with products and coproducts, where:
+  \[
+    \cp{i}\pi_j = \begin{cases}
+      1 & i = j\\
+      0 & i \neq j
+      \end{cases}
+  \]
+  and forany two objects, $A,B$, $A\times B$ is the same as $A+B$, then $A\times B$ is
+  referred to as the \emph{biproduct} and designated as $A\biproduct B$. A category \cD{} is said to
+  have \emph{finite biproducts} when it has a zero object $\mathbf{0}$ and when each pair of objects
+  $A,B$ have a biproduct $A\biproduct B$.
+
+  The biproduct is often written as $\+$. This thesis frequently uses $\+$ where it is not a
+  biproduct, and thus uses $\biproduct$ for biproduct instead.
+\end{definition}
+
+A category with finite biproducts is enriched in commutative monoids. If $f,g:A\to
+B$, define $f+g:A\to B$ as $\<1_{A}, 1_{A}\>\, (f\biproduct g)\, [1_{B},1_{B}]$. The unit for
+$+$ is $\zeroob_{A,B}$. In this thesis, when discussing a category with finite biproducts,
+$\<1, 1\>$ will be designated by $\Delta$ and $[1,1]$ by $\nabla$.
+
+% subsection limits_and_colimits_in_categories (end)
+
+
+\section{Symmetric Monoidal Categories} % (fold)
+\label{sub:categories_with_additional_structure}
+
+\begin{definition}\label{symmetricmonoidalcat}
+  A \emph{symmetric monoidal category}\cite{barr:ctcs,maclan97:categorieswrkmath} \cD{} is a
+  category equipped with a monoid $\*$ (a bi-functor $\*:\cD \times \cD \to \cD$) together with
+  four families of natural isomorphisms:  $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u^r_{A}:A\*I\to A$,
+  $u^l_{A}:I\*A \to A$ and $c_{A,B}:A\*B \to B\* A$, which satisfy coherence diagrams and
+  equations shown in Figures~\ref{fig:SMC_pentagon}, \ref{fig:SMC_unit}, \ref{fig:SMC_commutes},
+  \ref{fig:SMC_unit_symmettry} and \ref{fig:SMC_associativity_symmetry}. The essence of the
+  coherence diagrams is that any diagram composed solely of the structure isomorphisms will
+  commute. The isomorphisms are referred to as the \emph{structure isomorphisms}. $I$ is the
+  unit of the monoid. A symmetric monoidal category is called \emph{strict} when each of
+  $a_{A,B,C}$, $u^r_{A}$, $u^l_{A}$ and $c_{A,B}$ are identity maps.
+\end{definition}
+
+\begin{figure}[!htbp]
+\[
+  \xymatrix@C+25pt{
+    A\*(B\*(C\*D) \ar[r]^{a_{A,B,(C\*D)}} \ar[d]_{1\*a_{B,C,D}}
+      & (A\*B)\*(C\*D) \ar[r]^{a_{(A\*B),C,D}}
+      & ((A\*B)\*C)\*D \ar[d]^{a_{A,B,C}\*1}\\
+    A\*((B\*C)\*D) \ar[rr]_{a_{A,(B\*C),D}}
+      && (A\*(B\*C))\*D
+  }
+\]
+\caption{Pentagon diagram for associativity in an SMC.}\label{fig:SMC_pentagon}
+\end{figure}
+\begin{figure}[!htbp]
+\[
+  \xymatrix@C+5pt@R+10pt{
+    A\*(I\*B) \ar[rr]^{a_{A,I,B}} \ar[dr]_{1\*u^l_B}
+      && (A\*I)\*B \ar[dl]^{u^r_A \* 1}\\
+      &A\*B
+  }
+\]
+\[\text{ and } u^r_I = u^l_I: I\* I \to I\]
+\caption{Unit diagram and equation in an SMC.}\label{fig:SMC_unit}
+\end{figure}
+\begin{figure}[!htbp]
+\[
+  \xymatrix@C+5pt@R+10pt{
+    A\*B \ar[r]^{c_{A,B}} \ar@{=}[dr]
+      & B\*A \ar[d]^{c_{B,A}}\\
+      &A\*B
+  }
+\]
+\caption{Symmetry in an SMC.}\label{fig:SMC_commutes}
+\end{figure}
+\begin{figure}[!htbp]
+\[
+  \xymatrix@C+5pt@R+10pt{
+    A\*I \ar[rr]^{c_{A,I}} \ar[dr]_{u^r_A}
+      && I\*A \ar[dl]^{u^l_A}\\
+      &A
+  }
+\]
+\caption{Unit symmetry in an SMC.}\label{fig:SMC_unit_symmettry}
+\end{figure}
+\begin{figure}[!htbp]
+\[
+  \xymatrix@C+15pt@R+10pt{
+    (A\*B)\*C \ar[r]^{c_{(A\*B),C}} \ar[d]_{a^{-1}_{A,B,C}}
+      & C\*(A\*B) \ar[d]^{a_{C,A,B}}\\
+    A\*(B\*C) \ar[d]_{1\*c_{B,C}}
+      & (C\*A)\*B \ar[d]^{c_{C,A}\*1}\\
+    A\*(C\*B) \ar[r]^{a_{A,C,B}}
+      & C\*(A\*B).
+  }
+\]
+\caption{Associativity symmetry in an SMC.}\label{fig:SMC_associativity_symmetry}
+\end{figure}
+% subsection symmetric monoidal categories (end)
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:

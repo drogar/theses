@@ -1,19 +1,13 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\section{Dagger categories}\label{sec:daggercategories}
-Dagger categories generalize the concepts of Hilbert spaces that are required to model quantum
-computation. These were introduced in \cite{abramsky04:catsemquantprot} as \emph{strongly compact
-closed categories}, an additional structure only on compact closed categories.
-
-
-\subsection{Definitions}\label{sec:daggerdefinitions}
+\subsection{Dagger categories}\label{ssec:daggercategories}
 
 Although dagger categories were introduced in the context of compact closed categories, the concept
 of a dagger is definable independently. This was first done in \cite{selinger05:dagger}.
 
 \begin{definition}\label{def:daggercat}
-  A \emph{dagger operator} on a category $D$ is an involutive, contravariant functor $\dagger:\cD\to
-  \cD$, which is the identity on objects. A \emph{dagger category} is a category that has a dagger
-  operator.
+  A \emph{dagger} on a category $D$ is a functor $\dagger:\cD^{op}\to \cD$, which is  involutive,
+  that is, $\dgr{\dgr{f}} = f$ and which is the identity on objects. A \emph{dagger category} is a
+  category that has a dagger.
 \end{definition}
 
 Typically, the dagger is written as a superscript on the morphism. So, if $f:A\to B$ is a map in
@@ -23,17 +17,14 @@ $f^{-1} = \dgr{f}$ is called \emph{unitary}. A map $f:A\to A$ with $f=\dgr{f}$ i
 
 \begin{definition}\label{def:daggersmc}
   A \emph{dagger symmetric monoidal category} is a symmetric monoidal category \cD{} with a dagger
-  operator such that the dagger interacts coherently with the monoid to preserve the symmetric
-  monoidal structure.
+  operator such that:
+  \begin{enumerate}[{(}i{)}]
+    \item For all maps $f:A\to B$ and $g:C\to D$, $\dgr{(f\*g)} = \dgr{f}\*\dgr{g}:B\*D \to A\* C$;\label{defitem:dagger_smc_one}
+    \item The monoid structure isomorphisms $a_{A,B,C}:(A\*B)\* C\to A\*(B\*C)$, $u^l_{A}:I\*A\to
+      A$, $u^r_{A}:A\*I \to A$ and  $c_{A,B}:A\*B \to B\*A$ are unitary.\label{defitem:dagger_smc_two}
+  \end{enumerate}
 \end{definition}
 
-The coherence requirements in definition \ref{def:daggersmc} are in addition to the standard
-coherence diagrams for a symmetric monoidal category. The additional coherence requirements are:
-\begin{itemize}
-  \item For all maps $f:A\to B$ and $g:C\to D$, $\dgr{(f\*g)} = \dgr{f}\*\dgr{g}:B\*D \to A\* C$;
-  \item The monoid structure isomorphisms $a_{A,B,C}:(A\*B)\* C\to A\*(B\*C)$, $u_{A}:A\to I\*A$ and
-    $c_{A,B}:A\*B \to B\*A$ are unitary.
-\end{itemize}
 
 \begin{definition}\label{def:daggercompact}
   A \emph{dagger compact closed category} \cD{} is a dagger symmetric monoidal category
@@ -50,17 +41,19 @@ coherence diagrams for a symmetric monoidal category. The additional coherence r
 \begin{lemma}\label{lemma:daggerbiproducts}
 If \cD{} is a dagger category with biproducts, with injections $in_{1},in_{2}$ and projections
 $p_{1},p_{2}$, then the following are equivalent:
-\begin{enumerate}
+\begin{enumerate}[{(}i{)}]
   \item $\dgr{p_{i}} = in_{i}, i=1,2$, \label{ldpdgrpisq}
   \item $\dgr{(f\biproduct g)} = \dgr{f}\biproduct \dgr{g}$ and $\dgr{\Delta} = \nabla$,\label{ldpddeltisnab}
   \item $\dgr{\<f,g\>} = [\dgr{f},\dgr{g}]$,\label{ldpdcopisprod}
-  \item the below diagram commutes:\label{ldpcommute}
-  \[
-    \xymatrix @C+20pt @R+10pt{
-      \dgr{A} \biproduct \dgr{B} \ar[d]_{id} \ar[dr]^{[\dgr{p_{1}},\dgr{p_{2}}]}\\
-      A\biproduct B\ar[r]_{id}&\dgr{(A\biproduct B)}.
-    }
-  \]
+  \item The map $[\dgr{p_{1}},\dgr{p_{2}}]: \dgr{A} \biproduct \dgr{B} \to \dgr{(A\biproduct B)}$ is
+    the identity map.\label{ldpcommute}
+%the below diagram commutes:
+%  \[
+%    \xymatrix @C+20pt @R+10pt{
+%      \dgr{A} \biproduct \dgr{B} \ar[d]_{id} \ar[dr]^{[\dgr{p_{1}},\dgr{p_{2}}]}\\
+%      A\biproduct B\ar[r]_{id}&\dgr{(A\biproduct B)}.
+%    }
+%  \]
 \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -87,7 +80,7 @@ $p_{1},p_{2}$, then the following are equivalent:
       }
     \]
     Then, apply the dagger functor to this diagram. This is now the diagram defining the
-    co-product of maps and therefore $\dgr{(f\biproduct g)} = \dgr{f}\biproduct\dgr{g}$.
+    coproduct of maps and therefore $\dgr{(f\biproduct g)} = \dgr{f}\biproduct\dgr{g}$.
     \item[\ref{ldpddeltisnab}$\implies$\ref{ldpdcopisprod}] The calculation showing this is
       \begin{eqnarray*}
         &[\dgr{f},\dgr{g}] & = \nabla; (\dgr{f}\biproduct \dgr{g})\\
@@ -98,23 +91,23 @@ $p_{1},p_{2}$, then the following are equivalent:
       \end{eqnarray*}
     \item[\ref{ldpdcopisprod}$\implies$\ref{ldpcommute}]
       Under the assumption,
-      \begin{eqnarray*}
-        &[\dgr{p_{1}},\dgr{p_{2}}] &= \dgr{\<p_{1},p_{2}\>}\\
-        &&=\dgr{id}\\
-        &&=id
-      \end{eqnarray*}
-      and therefore the diagram commutes.
-
-    \item[\ref{ldpcommute}$\implies$\ref{ldpdgrpisq}] Using the injections and under
-    the assumption, the following diagram commutes:
       \[
-        \xymatrix @C+20pt @R+10pt{
-          \dgr{A} \biproduct \dgr{B} \ar[d]_{id} \ar[dr]^{[\dgr{p_{1}},\dgr{p_{2}}]}\ar[r]^{[in_{1},in_{2}]}
-            & \dgr{A} \biproduct \dgr{B} \ar[d]^{id}\\
-          A\biproduct B\ar[r]_{id}&\dgr{(A\biproduct B)}
-        }
+        [\dgr{p_{1}},\dgr{p_{2}}] = \dgr{\<p_{1},p_{2}\>}=\dgr{id}=id.
       \]
-      and therefore, $\dgr{p_{1}} = in_{1}$ and $\dgr{p_{2}} = in_{2}$.
+    \item[\ref{ldpcommute}$\implies$\ref{ldpdgrpisq}] As $[in_{1},in_{2}]:\dgr{A} \biproduct \dgr{B}
+      \to \dgr{A} \biproduct \dgr{B} = id = [\dgr{p_{1}},\dgr{p_{2}}]$, we immediately have
+      $\dgr{p_{1}} = in_{1}$ and $\dgr{p_{2}} = in_{2}$.
+%
+%Using the injections and under
+%    the assumption, the following diagram commutes:
+%      \[
+%        \xymatrix @C+20pt @R+10pt{
+%          \dgr{A} \biproduct \dgr{B} \ar[d]_{id} \ar[dr]^{[\dgr{p_{1}},\dgr{p_{2}}]}\ar[r]^{[in_{1},in_{2}]}
+%            & \dgr{A} \biproduct \dgr{B} \ar[d]^{id}\\
+%          A\biproduct B\ar[r]_{id}&\dgr{(A\biproduct B)}
+%        }
+%      \]
+%      and therefore,
   \end{description}
 \end{proof}
 
@@ -134,26 +127,26 @@ $\dgr{f}:B\to A$ such that $\<f a|b\> = \<a | \dgr{f} b\>$ for all $a\in A, b\in
 \end{example}
 
 \begin{example}[\rel]\label{ex:rel_is_dagger_category}
-The category \rel of sets and relations has the tensor $S\*T = S\times T$, the
-Cartesian product and the biproduct $S\biproduct T = S+T$, the disjoint union. This is compact closed under
-$A^{*} = A$ and the dagger is the relational converse. That is, if the relation $R=\{(s,t)|s\in S,
-t\in T\}:S\to T$, then $\dgr{R}=\{(t,s)|(s,t)\in R\}(=R^{*})$.
+The category \rel of sets and relations has the tensor $S\*T \definedas S\times T$ and the biproduct
+$S\biproduct T \definedas S\disjointunion T$. This is compact closed under $A^{*} \definedas A$ and
+the dagger is the relational converse. That is, if the relation
+$R=\{(s,t)|s\in S, t\in T\}:S\to T$, then $\dgr{R}=R^*=\{(t,s)|(s,t)\in R\}$.
 \end{example}
 
 \begin{example}[Inverse categories]\label{ex:inverse_category_is_dagger_category}
 An inverse category \X is also a dagger category when the dagger is defined as the partial inverse.
-The unitary maps are the total restriction idempotents. However, if the inverse category \X is also a
+The unitary maps are the total maps. When the inverse category \X is also a
 symmetric monoidal category where the monoid $\*$ is actually a restriction bi-functor, then \X is
-not a dagger symmetric monoidal category. The first requirement for being a dagger symmetric
-monoidal category is fulfilled, as
+a dagger symmetric monoidal category.
+
+Requirement \ref{defitem:dagger_smc_one} of Definition~\ref{def:daggersmc}  is fulfilled, as
 \[
   (f\*g) \inv{(f\*g)} = \rst{f\*g}=\rst{f} \*\rst{g} =
    f\inv{f} \* g \inv{g} = (f\*g) (\inv{f} \* \inv{g})
 \]
-and since the partial inverse of $f\*g$ is unique, $\inv{(f\*g)} = \inv{f} \* \inv{g}$. The other
-requirement is that the structure isomorphisms are unitary. This is, of course, not the case
-\emph{unless \X is a strict symmetric monoidal category}. In general,
-therefore \X is not a dagger symmetric monoidal restriction category.
+and since the partial inverse of $f\*g$ is unique, $\inv{(f\*g)} = \inv{f} \* \inv{g}$.
+Requirement \ref{defitem:dagger_smc_two} is that the structure isomorphisms are unitary. This is, of
+course, true as each of them are isomorphisms, hence total and therefore unitary.
 \end{example}
 %%% Local Variables:
 %%% mode: latex
