@@ -2,12 +2,12 @@
 \chapter{Disjointness in Inverse Categories} % (fold)
 \label{cha:disjointness_in_inverse_categories}
 
-In this chapter we will explore coproduct like structure in inverse categories. We start by showing,
+This chapter explores coproduct like structure in inverse categories. It starts by showing,
 that similar to the product, having coproducts is too restrictive a notion for inverse categories: An
 inverse category with a coproduct is a preorder.
 Nonetheless it is possible to define coproduct like structures in an inverse category. To introduce
 this structure we define a ``disjointness'' relation between parallel maps of an inverse category
-and whence a ``disjoint join'' for disjoint maps. In the next chapter, we will then show how a
+and whence a ``disjoint join'' for disjoint maps. The  next chapter will then show how a
 tensor satisfying certain specific conditions gives rise to both a disjointness relation and a
 disjoint join. Such a tensor provides the replacement for ``coproducts'' in an inverse category.
 
@@ -89,7 +89,7 @@ the zero object.
 
 \begin{definition}\label{def:restriction_zero}
   Given a restriction category \X with a zero object, then $\zeroob$ is a \emph{restriction zero} when
-  for each object $A$ in \X we have $\restr{\zeroob_{A,A}} = \zeroob_{A,A}$.
+  for each object $A$ in \X, $\restr{\zeroob_{A,A}} = \zeroob_{A,A}$.
 \end{definition}
 
 \begin{lemma}[Cockett-Lack\cite{cockettlack2004:restcategories3}, Lemma 2.7]\label{lem:restriction_zero_equivalences}
@@ -114,13 +114,13 @@ the zero object.
   An inverse category \X with restriction coproducts is a preorder.
 \end{proposition}
 \begin{proof}
-  By Lemma~\ref{lem:restriction_coproduct_is_restriction_functor}, we know $\nabla$ is total and
-  therefore $\nabla\inv{\nabla} = 1$. From the coproduct diagrams, we have $\cpa\nabla =1$ and
-  $\cpb\nabla = 1$. But this gives us $\inv{\nabla}\inv{\cpa} = \inv{(\cpa\nabla)} = 1$ and
+  By Lemma~\ref{lem:restriction_coproduct_is_restriction_functor}, $\nabla$ is total and
+  therefore $\nabla\inv{\nabla} = 1$. From the coproduct diagrams, $\cpa\nabla =1$ and
+  $\cpb\nabla = 1$. But this gives $\inv{\nabla}\inv{\cpa} = \inv{(\cpa\nabla)} = 1$ and
   similarly $\inv{\nabla}\inv{\cpb} =1$. Hence, $\inv{\nabla} = \cpa$ \emph{and} $\inv{\nabla} =
   \cpb$.
 
-  This means for parallel maps $f,g:A \to B$, we have
+  This means for parallel maps $f,g:A \to B$,
   \[
     f = \cpa [f,g] = \inv{\nabla} [f,g] = \cpb [f,g] = g
   \]
@@ -131,17 +131,17 @@ the zero object.
 
 \section{Disjointness in an inverse category} % (fold)
 \label{sec:disjointness_in_an_inverse_category}
-In the following, we will add a relation, \emph{disjointness}, and a construction, \emph{disjoint
-  join}, on parallel maps in  an inverse category with a restriction
-zero and zero maps. The disjoint join is evocative of the join as defined in
-Section~\ref{sub:joins_in_restriction_categories}. We will begin by defining disjointness on
-parallel maps and then show this is equivalent to a definition of disjointness on the restriction
+This section and the next first add a relation, \emph{disjointness}, and then an operation,
+\emph{disjoint join}, on parallel maps in  an inverse category with a restriction zero and zero
+maps. The disjoint join is evocative of the join as defined in
+Section~\ref{sub:joins_in_restriction_categories}. This section will begin by defining disjointness
+on parallel maps and then show this is equivalent to a definition of disjointness on the restriction
 idempotents.
 
 From this point forward in the thesis, we will work with a number of relations and operations on
-parallel pairs of maps. Suppose we have a relation $\lozenge$ between maps $f,g:B\to C$, i.e., $f
-\lozenge g$. We will refer to $\lozenge$ as \emph{stable} whenever given $h:A \to B$, then $h f
-\lozenge h g$. We will refer to $\lozenge$ as \emph{universal} whenever given $k:C \to D$, then $f
+parallel pairs of maps. Suppose there is a relation $\lozenge$ between maps $f,g:B\to C$, i.e., $f
+\lozenge g$. Then, $\lozenge$ will be referred to as \emph{stable} whenever given $h:A \to B$, then $h f
+\lozenge h g$. As well, $\lozenge$ will be referred to as \emph{universal} whenever given $k:C \to D$, then $f
 k \lozenge g k$.
 
 
@@ -165,8 +165,8 @@ k \lozenge g k$.
 \end{definition}
 
 \begin{lemma}\label{lem:disjointness_equivalent_axioms}
-  In \ref{def:disjointness_relation}, given $\axiom{Dis}{1-5}$, we may
-  replace $\axiom{Dis}{6}$ and $\axiom{Dis}{7}$ by:
+  In \ref{def:disjointness_relation}, given $\axiom{Dis}{1-5}$, the axioms $\axiom{Dis}{6}$ and
+  $\axiom{Dis}{7}$ may be replaced by:
   \begin{align*}
     \axiom{Dis}{6'}\quad &f\cdperp g\text{ if and only if }\rst{f} \cdperp \rst{g}
       \text{ and }\rg{f}\cdperp\rg{g}.
@@ -179,9 +179,9 @@ k \lozenge g k$.
   \axiom{Dis}{7}, $\rst{f} f \cdperp \rst{g}g$ and therefore $f \cdperp g$, showing $\axiom{Dis}{6}$
   and $\axiom{Dis}{7}$ imply $\axiom{Dis}{6'}$.
 
-  Conversely, assume we are given \axiom{Dis}{6'}. Then, \axiom{Dis}{6} follows immediately. To show
-  \axiom{Dis}{7}, assume we have $\rst{f}\cdperp \rst{g},\ \rg{h}\cdperp \rg{k}$. As
-  $\rst{f h} \le \rst{f}$ and $\rst{g k}\le\rst{g}$, by \axiom{Dis}{3}, we know that
+  Conversely, assume \axiom{Dis}{6'}. Then, \axiom{Dis}{6} follows immediately. To show
+  \axiom{Dis}{7}, assume $\rst{f}\cdperp \rst{g},\ \rg{h}\cdperp \rg{k}$. As
+  $\rst{f h} \le \rst{f}$ and $\rst{g k}\le\rst{g}$, by \axiom{Dis}{3}, it follows that
   $\rst{f h} \cdperp \rst{g k}$. Similarly, $\wrg{f h} \le \rg{h}$ and $\wrg{g k} \le \rg{k}$,
   giving us $\wrg{f h}\cdperp \wrg{g k}$. Then, from \axiom{Dis}{6'} we may conclude
   $f h \cdperp g k$, showing \axiom{Dis}{7} holds.
@@ -201,19 +201,19 @@ k \lozenge g k$.
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item Assume $f \cdperp g$. By \axiom{Dis}{6}, we have $\rst{f} \cdperp \rst{g}$ and
+    \item Assume $f \cdperp g$. By \axiom{Dis}{6}, $\rst{f} \cdperp \rst{g}$ and
       $\rg{f}\cdperp\rg{g}$. Since $\rg{f} = \rst{\inv{f}}$ and $\rst{f} = \wrg{\inv{f}}$, this
       means $\rst{\inv{f}} \cdperp \rst{\inv{g}}$ and $\wrg{\inv{f}}\cdperp\wrg{\inv{g}}$. By
-      \axiom{Dis}{6'} from Lemma~\ref{lem:disjointness_equivalent_axioms}, we have
+      \axiom{Dis}{6'} from Lemma~\ref{lem:disjointness_equivalent_axioms},
       $\inv{f} \cdperp \inv{g}$. The converse follows with  a similar argument.
-    \item Assume $f \cdperp g$. By \ref{lemitem:djv_inverses}, we have $\inv{f}\cdperp\inv{g}$. By
-      \axiom{Dis}{5}, $\inv{h}\inv{f}\cdperp\inv{h}\inv{g}$, giving us $\inv{(f h)} \cdperp
+    \item Assume $f \cdperp g$. By \ref{lemitem:djv_inverses}, $\inv{f}\cdperp\inv{g}$. By
+      \axiom{Dis}{5}, $\inv{h}\inv{f}\cdperp\inv{h}\inv{g}$, giving $\inv{(f h)} \cdperp
       \inv{(g h)}$. Applying \ref{lemitem:djv_inverses}, we now have $f h \cdperp g h$.
     \item Assume $f \cdperp g$. From \ref{lemitem:djv_inverses} and reflexivity, we know that
       $\inv{g} \cdperp \inv{f}$ and therefore $\rst{\inv{g}}\inv{f} = \rg{g}\inv{f}= 0$. However, in
       an inverse category, $\inv{0} = 0$ and therefore $0 = \inv{(\rg{g}\inv{f})} = f \inv{\rg{g}} =
       f \rg{g}$.
-    \item Assume $f m \cdperp g n$ where $m, n$ are monic. By \axiom{Dis}{6}, this gives us
+    \item Assume $f m \cdperp g n$ where $m, n$ are monic. By \axiom{Dis}{6}, this gives
       $\rst{f m} \cdperp \rst{g n}$. By Lemma~\ref{lem:restrictionvarious},
       $\rst{f m} = \rst{f \rst{m}} = \rst{f 1} = \rst{f}$ and therefore $\rst{f} \cdperp \rst{g}$.
     \item By assumption, we have $\inv{m} f \cdperp  \inv{n}g$ and therefore $\inv{f}m \cdperp
@@ -257,13 +257,13 @@ We will normally write $\ocdperp$ rather than $\ocdperpsub{A}$ where the object 
       $f = 1$.
     \item[\axiom{$\mathcal{O}$dis}{2}] Reflexivity follows directly from  \axiom{Dis}{4}.
     \item[\axiom{$\mathcal{O}$dis}{3}] By \axiom{Dis}{2}, $0 = \rst{e} e' = e e'$.
-    \item[\axiom{$\mathcal{O}$dis}{4}] Given $e \cdperp e'$, we have $f e \cdperp f e'$ by
-      \axiom{Dis}{5}. Then, by \axiom{Dis}{6} we may conclude $\rst{f e} \cdperp \rst{f e'}$.
+    \item[\axiom{$\mathcal{O}$dis}{4}] Given $e \cdperp e'$, this means $f e \cdperp f e'$ by
+      \axiom{Dis}{5}. Then, \axiom{Dis}{6} gives a conclusion of $\rst{f e} \cdperp \rst{f e'}$.
     \item[\axiom{$\mathcal{O}$dis}{5}] This follows from the above item, using $\inv{g}$ for $f$.
-      This means we have $\rst{\inv{g}e} \cdperp \rst{\inv{g}e'}$. But this gives us $\rst{\inv{(e
+      This means $\rst{\inv{g}e} \cdperp \rst{\inv{g}e'}$. But this gives $\rst{\inv{(e
       g)}} \cdperp \rst{\inv{(e' g)}}$. Recalling from
-      Lemma~\ref{lem:inverse_categories_are_range_categories} that $\rg{k} = \rst{\inv{k}}$, we may
-      conclude $\wrg{e g} \cdperp \wrg{e' g}$.
+      Lemma~\ref{lem:inverse_categories_are_range_categories} that $\rg{k} = \rst{\inv{k}}$, the
+      conclusion is $\wrg{e g} \cdperp \wrg{e' g}$.
     \item[\axiom{$\mathcal{O}$dis}{6}] Assuming $e \cdperp e'$ and $e_1 \le e,\ e'_1 \le e'$, by
       \axiom{Dis}{3}, $e_1 \cdperp e'_1$.
   \end{enumerate}
@@ -272,15 +272,14 @@ We will normally write $\ocdperp$ rather than $\ocdperpsub{A}$ where the object 
 
 \end{proof}
 
-For the converse, if $\ocdperp$ is an open disjointness relation in $\X$, then we may define a relation
+For the converse, if $\ocdperp$ is an open disjointness relation in $\X$, then define a relation
 $\perpab \subseteq \union_{A,B\in\X} \X(A,B)\times \X(A,B)$ on parallel maps by
 \[
   f\perpab g \iff  \rst{f}\ocdperp\rst{g} \text{ and } \rg{f}\ocdperp\rg{g}.
 \]
-Note the use of the $\rg{f}\ocdperp\rg{g}$. By \rrone, we know $\rst{\rg{f}} = \rg{f}$ and
+Note the use of the $\rg{f}\ocdperp\rg{g}$. By \rrone, $\rst{\rg{f}} = \rg{f}$ and
 therefore it is a restriction idempotent in $\open{B}$.
-
-We then have:
+The relation $\perpab$ is a disjointness relation:
 
 \begin{proposition}\label{prop:extended_disjointness_is_a_disjointness_relation}
   If $\ocdperp$ is an open disjointness relation in \X, then
@@ -293,37 +292,37 @@ We then have:
   \prepprooflist
   \setlist[enumerate,1]{leftmargin=1.5cm}
   \begin{enumerate}
-    \item[\axiom{Dis}{1}] We need to show $f \cdperp 0$ for any $f$. We know that $1 \ocdperp 0$
-      and therefore $\rst{f} \ocdperp 0$ and $\rg{f} \ocdperp 0$, as $\rst{f}\le 1$ and $\rg{f}\le
-      1$. This gives us $f \cdperp 0$.
+    \item[\axiom{Dis}{1}] This requires showing $f \cdperp 0$ for any $f$. The assumption is that
+      $1 \ocdperp 0$  and therefore $\rst{f} \ocdperp 0$ and $\rg{f} \ocdperp 0$, as $\rst{f}\le 1$
+      and $\rg{f}\le 1$. This gives $f \cdperp 0$.
     \item[\axiom{Dis}{2}] Assume $f \cdperp g$, i.e., $\rst{f}\ocdperp \rst{g}$. Then, $\rst{f}g =
       \rst{f}\rst{g}g = 0 g = 0$.
-    \item[\axiom{Dis}{3}] We are given $f \cdperp g$, $f' \le f$ and $g' \le g$. By
+    \item[\axiom{Dis}{3}] This axiom assumes $f \cdperp g$, $f' \le f$ and $g' \le g$. By
       Lemma~\refitem{lem:restriction_cats_are_partial_order_enriched}{lemitem:rst_ordering_2}
-      $\rst{f'} \le \rst{f}$ and $\rst{g'} \le \rst{g}$. Then, by \axiom{$\mathcal{O}$dis}{6}, as
-      $\rst{f} \ocdperp \rst{g}$ we have $\rst{f'} \ocdperp \rst{g'}$. By
-      Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_2}, we have $\wrg{f'}
-      \le \rg{f}$ and $\wrg{g'} \le \rg{g}$. Then, by \axiom{$\mathcal{O}$dis}{6}, as $\rg{f}
-      \ocdperp \rg{g}$ we have $\wrg{f'} \ocdperp \wrg{g'}$. This means $f' \cdperp g'$.
+      $\rst{f'} \le \rst{f}$ and $\rst{g'} \le \rst{g}$. Then,  $\rst{f'} \ocdperp \rst{g'}$ by
+      \axiom{$\mathcal{O}$dis}{6}, as  $\rst{f} \ocdperp \rst{g}$. By
+      Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_2}, both $\wrg{f'}
+      \le \rg{f}$ and $\wrg{g'} \le \rg{g}$ and by \axiom{$\mathcal{O}$dis}{6}, $\wrg{f'} \ocdperp
+      \wrg{g'}$ as $\rg{f} \ocdperp \rg{g}$. This means $f' \cdperp g'$.
     \item[\axiom{Dis}{4}] Reflexivity of $\cdperp$ follows immediately from the reflexivity of
       $\ocdperp$.
     \item[\axiom{Dis}{5}] Assume $f \cdperp g$, i.e., $\rst{f}\ocdperp \rst{g}$ and $\rg{f}
-      \ocdperp \rg{g}$. Then we have $\rst{hf}\ocdperp \rst{h g}$ by \axiom{$\mathcal{O}$dis}{4}. By
-      Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1} we have $\wrg{h f}
-      \le \rg{f}$ and $\wrg{h g} \le \rg{g}$. Therefore we have $\wrg{h f}\ocdperp \wrg{h g}$ by
+      \ocdperp \rg{g}$. By \axiom{$\mathcal{O}$dis}{4}, $\rst{hf}\ocdperp \rst{h g}$. By
+      Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1}, $\wrg{h f}
+      \le \rg{f}$ and $\wrg{h g} \le \rg{g}$. Therefore $\wrg{h f}\ocdperp \wrg{h g}$ by
       \axiom{$\mathcal{O}$dis}{6} and therefore $h f \cdperp h g$.
-    \item[\axiom{Dis}{6}] Assume $f\perpab g$. Then both $\rst{f}\ocdperp\rst{g}$ and
-      $\rg{f}\ocdperp\rg{g}$. By Lemma~\ref{lem:basic_range_category_properties} we know for any map
+    \item[\axiom{Dis}{6}] Assume $f\perpab g$ which gives both $\rst{f}\ocdperp\rst{g}$ and
+      $\rg{f}\ocdperp\rg{g}$. By Lemma~\ref{lem:basic_range_category_properties} for any map
       $h$, $\rg{\rst{h}} = \rst{h}$ and by Lemma~\ref{lem:restrictionvarious} we have $\rst{\rst{h}}
       = \rst{h}$. Thus, we have both $\rst{\rst{f}} \ocdperp \rst{\rst{g}}$ and $\rg{\rst{f}}
       \ocdperp \rg{\rst{g}}$ and therefore $\rst{f} \perpaa \rst{g}$. Similarly for any map $h$,
       \rrone gives $\rst{\rg{h}} = \rg{h}$ and Lemma~\ref{lem:basic_range_category_properties} gives
-      $\rg{\rg{h}} = \rg{h}$. Thus, we have $\rst{\rg{f}} \ocdperp \rst{\rg{g}}$ and $\rg{\rg{f}}
-      \ocdperp \rg{\rg{g}}$ giving us $\rg{f} \perpvv{B}{B} \rg{g}$.
-    \item[\axiom{Dis}{7}] We assume $\rst{f} \cdperp \rst{g}$ and $\rg{h} \cdperp \rg{k}$. Then,
-      we have $\rst{f} \ocdperp \rst{g}$ and $\rg{h} \ocdperp \rg{k}$. By
-      Lemma~\refitem{lem:restriction_cats_are_partial_order_enriched}{lemitem:rst_ordering_3}, we
-      have $\rst{f h} \le \rst{f}$ and $\rst{g k} \le \rst{g}$. Therefore, $\rst{f h} \ocdperp
+      $\rg{\rg{h}} = \rg{h}$. This means $\rst{\rg{f}} \ocdperp \rst{\rg{g}}$ and $\rg{\rg{f}}
+      \ocdperp \rg{\rg{g}}$ which gives $\rg{f} \perpvv{B}{B} \rg{g}$.
+    \item[\axiom{Dis}{7}] Start with the assumption $\rst{f} \cdperp \rst{g}$ and $\rg{h} \cdperp
+      \rg{k}$, which gives $\rst{f} \ocdperp \rst{g}$ and $\rg{h} \ocdperp \rg{k}$. By
+      Lemma~\refitem{lem:restriction_cats_are_partial_order_enriched}{lemitem:rst_ordering_3}, both
+      $\rst{f h} \le \rst{f}$ and $\rst{g k} \le \rst{g}$. Therefore, $\rst{f h} \ocdperp
       \rst{g k}$ by \axiom{$\mathcal{O}$dis}{6}. By
       Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1}, $\wrg{f h} \le
       \rg{h}$ and $\wrg{g k} \le \rg{k}$, giving us $\wrg{f h}\ocdperp \wrg{g k}$ also by
@@ -335,12 +334,12 @@ We then have:
    $\ocdperp$ on \X.
 \end{theorem}
 \begin{proof}
-  We must show there is a bijection between disjointness relations and open disjointness
-  relations. That is, give a disjointness relation $\perp$, we know we may generate an open
-  disjointness relation, $\ocdperp$, from it. We then need to show that the disjointness relation
-  generated from $\ocdperp$ is in fact $\perp$.
+  This requires showing there is a bijection between disjointness relations and open disjointness
+  relations. That is, give a disjointness relation $\perp$, it generates an open disjointness
+  relation, $\ocdperp$. We then need to show that the disjointness relation generated from
+  $\ocdperp$ is in fact $\perp$.
 
-  Suppose we are given the disjointness relation $\perp$. By
+  Starting with the disjointness relation $\perp$, by
   Proposition~\ref{prop:disjointness_is_open_disjointness}, this is an open disjointness $\ocdperp =
   \perp \intersection (\union_{A\in\X}\open{A}\times\open{A})$.
 
@@ -350,38 +349,19 @@ We then have:
   \]
   is a disjointness relation on $\X$.
 
-  Assume $f\perp g$. We have $\rst{f}\ocdperp\rst{g}$ and $\rg{f}\ocdperp\rg{g}$ by
-  \axiom{Dis}{6} and Proposition~\ref{prop:disjointness_is_open_disjointness}. Then by its
-  definition, we have $f \perpab g$.
+  Assume $f\perp g$. By \axiom{Dis}{6} and Proposition~\ref{prop:disjointness_is_open_disjointness},
+  $\rst{f}\ocdperp\rst{g}$ and $\rg{f}\ocdperp\rg{g}$. Then by its definition, we have $f \perpab g$.
 
-  Assume $f \perpab g$. This means we must have had $\rst{f}\ocdperp\rst{g}$ and
+  Assume $f \perpab g$, which required that both $\rst{f}\ocdperp\rst{g}$ and
   $\rg{f}\ocdperp\rg{g}$. Therefore $\rst{f}\perp\rst{g}$ and  $\rg{f}\perp\rg{g}$. By
-  Proposition~\ref{lem:disjointness_various}, we have $f \perp g$.
+  Proposition~\ref{lem:disjointness_various}, $f \perp g$.
 
   We have shown $f \perp g \iff f\perpab g$. We may also conclude that if we started with an open
   disjointness relation $\ocdperp$ and used it to construct $\perpab$, then the relation $\perpab
   \intersection (\union_{A\in\X}\open{A}\times\open{A})$ would again be $\ocdperp$.
 
-  Hence we have shown a bijection between disjointness relations and open disjointness relations on
+  Hence there is a bijection between disjointness relations and open disjointness relations on
   an inverse category $\X$.
-
-
-  % following used to be part of longer murky proof - should not bee needed...
-
-  % Now, suppose we are given the open disjointness relation $\ocdperp$. Similar to above, we can
-  % construct the extended disjointness relation $\perp$ by
-  % Definition~\ref{def:extended_open_disjointness}. From the disjointness relation $\perp$, we have
-  % the open disjointness relation $\overline{\perp}$ by
-  % Lemma~\ref{prop:disjointness_is_open_disjointness}.
-
-  % Assume $e \ocdperp e'$. As this means both $\rst{e} \ocdperp \rst{e'}$ and
-  % $\rg{e} \ocdperp \wrg{e'}$, we have $e \perp e'$. By
-  % Proposition~\ref{prop:disjointness_is_open_disjointness} this means $e \overline{\perp} e'$.
-
-  % If we are given that $e \overline{\perp} e'$, then we know that $e \perp e'$ by
-  % Proposition~\ref{prop:disjointness_is_open_disjointness}. From
-  % Definition~\ref{def:extended_open_disjointness}, this requires that $\rst{e} \ocdperp \rst{e'}$
-  % and $\rg{e} \ocdperp \wrg{e'}$, but that just means $e \ocdperp e'$.
 \end{proof}
 
 
@@ -394,10 +374,10 @@ definable on \pinj. However, \pinj does have a more useful disjointness relation
 \begin{example}[\pinj has a disjointness relation]\label{ex:pinj_has_a_disjointness_relation}
   Consider the inverse category \pinj, introduced in Example~\ref{ex:pinj_is_a_restriction_category}
   and Example~\ref{ex:pinj_is_a_discrete_inverse_category}.
-  We note the restriction zero is the empty set, $\emptyset$, with initial and terminal maps being
+  Note the restriction zero is the empty set, $\emptyset$, with initial and terminal maps being
   $\emptyset$ and therefore $\zeroob_{A,B} = \emptyset$.
 
-  We may define the disjointness relation $\perp$ by $f \perp g$ if and only if
+  Define the disjointness relation $\perp$ by $f \perp g$ if and only if
   $\rst{f}\intersection\rst{g}=\emptyset$ and $\rg{f}\intersection\rg{g} = \emptyset$. It is then
   reasonably straightforward to verify \axiom{Dis}{1} through \axiom{Dis}{7}. For example, take
   \axiom{Dis}{7}:
@@ -406,8 +386,8 @@ definable on \pinj. However, \pinj does have a more useful disjointness relation
     \[
       \rst{f}\intersection\rst{g}=\emptyset \text{ and }\rg{h}\intersection\rg{k} = \emptyset.
     \]
-    As discussed in Example~\ref{ex:pinj_has_meets}, we have
-    $\rst{m n} \subseteq \rst{m}$ and that $\wrg{m n} \subseteq \rg{n}$. Hence we have
+    As discussed in Example~\ref{ex:pinj_has_meets}, both
+    $\rst{m n} \subseteq \rst{m}$ and  $\wrg{m n} \subseteq \rg{n}$. Hence,
     \begin{align*}
       \rst{f h}\intersection\rst{g k}&\subseteq \rst{f}\intersection \rst{g}= \emptyset\\
       \wrg{f h}\intersection\wrg{g k}&\subseteq \rg{h}\intersection \rg{k}= \emptyset.
@@ -415,18 +395,18 @@ definable on \pinj. However, \pinj does have a more useful disjointness relation
     Therefore, $f h \cdperp g k$.
   \end{proof}
 
-  We see that we may define $f \perp_0 g$ on \pinj as well: $f \perp_0 g$ if and only if one of $f$
+  Alternatively, define $f \perp_0 g$ on \pinj as well: $f \perp_0 g$ if and only if one of $f$
   or $g$ is the restriction $\zeroob$, $\emptyset$. As $\zeroob = \rst{\zeroob} = \rg{\zeroob} = h
-  \zeroob = \zeroob k$, all of the seven disjointness axioms are easily verifiable.
+  \zeroob = \zeroob k$, all of the seven disjointness axioms are easily verifiable. This shows that
+  disjointness is additional structure on a restriction category.
 \end{example}
 
-Although disjointness is additional structure on a restriction category, one can use the
-disjointness structure of a base category (or categories) to define a disjointness structure
-on the product category.
+Although disjointness is additional structure, one can use the disjointness structure of the base
+categories to define a disjointness structure on the product category.
 
 \begin{lemma}\label{lem:disjointness_is_derivable_on_a_product_category}
   If $\X$ and $\Y$ are inverse categories with restriction zeros and respective disjointness
-  relations $\perp$ and $\perp'$, then we may construct a disjointness relation
+  relations $\perp$ and $\perp'$, then there is a disjointness relation
   $\perp_{\times}$ on $\X\times\Y$.
 \end{lemma}
 \begin{proof}
@@ -445,11 +425,14 @@ on the product category.
   {
   \setlist[itemize,1]{leftmargin=1.5cm}
   \begin{itemize}
-    \item [\axiom{Dis}{2}]: Given $(f,g)\perp_{\times}(h,k)$, we have
+    \item [\axiom{Dis}{2}]: Given $(f,g)\perp_{\times}(h,k)$,
       $\rst{(f,g)}(h,k) =  (\rst{f},\rst{g})(h,k) = (\rst{f} h, \rst{g} k) = (\zeroob, \zeroob) = \zeroob$.
-    \item [\axiom{Dis}{5}]: We are given $(f,g)\perp_{\times}(h,k)$. Consider the map $z = (x,y)$
-      in $\X \times \Y$. We know that $x f \perp x h$ and $y g \perp y k$, therefore we have
-      $z(f,g) = (x f, y g) \perp_{\times} (x h, y k) = z(h,k)$.
+    \item [\axiom{Dis}{5}]: The assumption is $(f,g)\perp_{\times}(h,k)$. For the map $z = (x,y)$
+      in $\X \times \Y$, \axiom{Dis}{5} in the base categories gives $x f \perp x h$ and $y g \perp
+      y k$. Thus
+      \[
+        z(f,g) = (x f, y g) \perp_{\times} (x h, y k) = z(h,k).
+      \]
   \end{itemize}
   }
 \end{proof}
@@ -458,10 +441,10 @@ on the product category.
 \section{Disjoint joins} % (fold)
 \label{sec:disjoint_joins}
 
-We now consider additional structure on the inverse category, dependent upon the disjointness
-relation. Note that while we have worked with binary disjointness up to this point, one may extend
-the concept to sets of maps simply by considering disjointness pairwise:
-$\cdperp \{f_1,f_2,\ldots,f_n\} \definedas f_i \cdperp f_k$ whenever $i \ne j$.
+This section will now consider additional structure on the inverse category, the disjoint join,
+dependent upon the disjointness relation. Although we have only considered with binary disjointness
+up to this point, extending disjointness to sets of maps is done by considering disjointness
+pairwise: $\cdperp \{f_1,f_2,\ldots,f_n\} \definedas f_i \cdperp f_k$ whenever $i \ne j$.
 
 \begin{definition}\label{def:disjoint_join}
   An inverse category with $\X$ with a restriction $0$ and a disjointness relation $\perp$ has
@@ -489,7 +472,7 @@ Given a specific disjointness relation on a category, there is only one disjoint
   \[
     f,g \le f\djoin g\text{ and }f,g \le f \altjoin g.
   \]
-  By \axiom{DJ}{2}, we may therefore conclude $f \djoin g \le f \altjoin g$ and
+  By \axiom{DJ}{2}, $f \djoin g \le f \altjoin g$ and
   $f \altjoin g \le f\djoin g$, hence $f \djoin g = f \altjoin g$.
 \end{proof}
 \begin{lemma}\label{lem:join_is_associative_and_commutative_monoid}
@@ -508,7 +491,7 @@ Given a specific disjointness relation on a category, there is only one disjoint
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item As $\rst{f}, \rst{g} \le \rst{f\djoin g}$, we immediately have
+    \item As $\rst{f}, \rst{g} \le \rst{f\djoin g}$, \axiom{DJ}{2} gives
       $\rst{f} \djoin \rst{g} \le \rst{f \djoin g}$. To show the other direction, consider
       \begin{align*}
         \rst{f}(\rst{f} \djoin \rst{g}) (f \djoin g)
@@ -516,8 +499,8 @@ Given a specific disjointness relation on a category, there is only one disjoint
         &= \rst{f} (f\djoin g) &\text{Lemma~\ref{lem:restrictionvarious}, \axiom{Dis}{2}}\\
         &= f.
       \end{align*}
-      Hence, we have $f \le (\rst{f} \djoin \rst{g}) (f \djoin g)$ and similarly, so is $g$. By
-      \axiom{DJ}{2} and that $\rst{f} \djoin \rst{g}$ is a restriction idempotent, we then have
+      Hence, $f \le (\rst{f} \djoin \rst{g}) (f \djoin g)$ and similarly, so is $g$. By
+      \axiom{DJ}{2} and $\rst{f} \djoin \rst{g}$ being a restriction idempotent,
       \[
         f \djoin g \le (\rst{f} \djoin \rst{g}) (f \djoin g) \le f \djoin g
       \]
@@ -525,9 +508,9 @@ Given a specific disjointness relation on a category, there is only one disjoint
       Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}, $\rst{f\djoin g} \le \rst{f}
       \djoin \rst{g}$ and so $\rst{f\djoin g} = \rst{f}\djoin \rst{g}$.
     \item First consider when $f, g$ and $k$ are restriction idempotents, say $e_0, e_1 $ and $e_2$.
-      Then, we have $(e_0 \djoin e_1)e_2 = e_2(e_0 \djoin e_1) = e_2 e_0 \djoin e_2 e_1 =
+      Then, $(e_0 \djoin e_1)e_2 = e_2(e_0 \djoin e_1) = e_2 e_0 \djoin e_2 e_1 =
       e_0 e_2 \djoin e_1 e_2$.
-      Next, note that for general $f,g,h$, we have $f k \djoin g k \le (f\djoin g) k$ as both
+      Next, note that for general $f,g,h$, by \axiom{DJ}{2} $f k \djoin g k \le (f\djoin g) k$ as both
       $f k, g k \le (f\djoin g) k$.
       By Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}, we need only show that their
       restrictions are equal:
@@ -541,19 +524,18 @@ Given a specific disjointness relation on a category, there is only one disjoint
         & = \rst{f k} \djoin \rst{g k}\\
         & = \rst{f k \djoin g k}.
       \end{align*}
-      Therefore, as the restrictions are equal, we have shown $(f\djoin g)k = f k \djoin g k$.
+      Therefore, as the restrictions are equal, $(f\djoin g)k = f k \djoin g k$.
     \item \emph{Associativity}: Note that \axiom{DJ}{4} shows that both sides of the equation
-      exist. To show they are equal, we show that they are less than or equal to each other.
-
-      From the definitions, we know that $f\djoin g, h \le (f\djoin g)\djoin h$, which also means
+      exist.
+      From \axiom{DJ}{1} $f\djoin g, h \le (f\djoin g)\djoin h$, which also means
       $f, g \le (f\djoin g)\djoin h$. Similarly, $g\djoin h \le (f\djoin g)\djoin h $ and then $f
       \djoin (g\djoin h)\le (f\djoin g)\djoin h$. Conversely, $f,g,h \le f \djoin (g\djoin h)$ and
       therefore $(f\djoin g)\djoin h \le f \djoin (g\djoin h)$ and both sides are equal.
-    \item \emph{Commutativity}: Note first that both $f$ and $g$ are less than or equal to both
-      $f\djoin g$ and $g \djoin f$, by \axiom{DJ}{1}. By \axiom{DJ}{2}, we have $f \djoin g \le
-      g\djoin f$ and $g\djoin f \le f \djoin g$ and we may conclude $f \djoin g = g \djoin f$.
+    \item \emph{Commutativity}: Note first that both $f$ and $g$ are less than or equal to each of
+      $f\djoin g$ and $g \djoin f$, by \axiom{DJ}{1}. By \axiom{DJ}{2}, $f \djoin g \le
+      g\djoin f$ and $g\djoin f \le f \djoin g$ and thus $f \djoin g = g \djoin f$.
     \item \emph{Identity}: By \axiom{DJ}{1}, $f \le f \djoin \zeroob$. As $\zeroob \le f$ and $f \le
-      f$, by \axiom{DJ}{2}, $f \djoin \zeroob \le f$ and we have $f = f \djoin \zeroob$.
+      f$, by \axiom{DJ}{2}, $f \djoin \zeroob \le f$ and therefore $f = f \djoin \zeroob$.
   \end{enumerate}
 \end{proof}
 
@@ -581,12 +563,12 @@ $f_1 \djoin f_2 \djoin \cdots \djoin f_n$.
   inducting on $n$.
 
   To show \ref{lemitem:arbitrary_disjoint_joins_2}, first assume $\djoin \{f_i\} \cdperp \djoin
-  \{g_j\}$. By \axiom{Dj}{4} and associativity, we have $\djoin \{f_i\} \cdperp g_j$ for each
-  $j$. Using the reflexivity of $\cdperp$, \axiom{Dj}{4} and associativity, we have $f_i \cdperp
+  \{g_j\}$. By \axiom{Dj}{4} and associativity, $\djoin \{f_i\} \cdperp g_j$ for each
+  $j$. Using the reflexivity of $\cdperp$, \axiom{Dj}{4} and associativity, $f_i \cdperp
   g_j$ for each $i$ and $j$.
 
   Next, assume $f_i \cdperp g_j$ for each $i$ and $j$. Then by \axiom{Dj}{4} and associativity, $f_i
-  \cdperp \djoin \{g_j\}$ for each $i$. Applying \axiom{Dj}{4} again, we have $\djoin \{f_i\} \cdperp
+  \cdperp \djoin \{g_j\}$ for each $i$. Applying \axiom{Dj}{4} again, $\djoin \{f_i\} \cdperp
   \djoin \{g_j\}$.
 \end{proof}
 
@@ -596,25 +578,28 @@ Clearly the product of two inverse categories with disjoint joins has a disjoint
   then the category $\X \times \Y$ is an inverse category with disjoint joins.
 \end{lemma}
 \begin{proof}
-  From Lemma~\ref{lem:disjointness_is_derivable_on_a_product_category}, we know $\X\times\Y$ has a
-  disjointness relation that is defined point-wise.  We therefore define $\djoin_{\times}$ the
+  From Lemma~\ref{lem:disjointness_is_derivable_on_a_product_category}, $\X\times\Y$ has a
+  disjointness relation that is defined point-wise.  Define $\djoin_{\times}$ the
   disjoint join on $\X\times\Y$ by
   \begin{equation}
     (f,g)\djoin_{\times}(h,k) = (f \djoin h, g \djoin' k). \label{eq:disjoint_join_on_product}
   \end{equation}
-  We now prove each of the axioms in Definition~\ref{def:disjoint_join} hold.
+  It remains to prove each of the axioms in Definition~\ref{def:disjoint_join} hold.
   \setlist[itemize,1]{leftmargin=1.5cm}
   \begin{itemize}
-    \item [\axiom{DJ}{1}] From Equation~\ref{eq:disjoint_join_on_product}, we see that since
-      $f,h \le f \djoin h$ and $g,k \le g \djoin' k$, we have $(f,g) \le (f,g)\djoin_{\times}(h,k)$
+    \item [\axiom{DJ}{1}] From Equation~\ref{eq:disjoint_join_on_product},  since
+      $f,h \le f \djoin h$ and $g,k \le g \djoin' k$, both $(f,g) \le (f,g)\djoin_{\times}(h,k)$
       and  $(h,k) \le (f,g)\djoin_{\times}(h,k)$.
     \item [\axiom{DJ}{2}] Suppose $(f,g) \le (x,y)$, $(h,k) \le (x,y)$ and $(f,g) \perp_{\times}
-      (h,k)$. Then regarding it point-wise, we have $(f,g)\djoin_{\times}(h,k) = (f \djoin h, g
+      (h,k)$. Then regarding it point-wise, $(f,g)\djoin_{\times}(h,k) = (f \djoin h, g
       \djoin' k) \le (x,y)$.
-    \item [\axiom{DJ}{3}] $(x,y)\left((f,g)\djoin_{\times}(h,k)\right) = (x(f \djoin h), y(g
-      \djoin' k)) = (x f \djoin x h, y g \djoin' y k) = (x f,y g)\djoin_{\times}(x h,y k) =
-      ((x,y)(f,g))\djoin_{\times}((x,y)(h,k))$.
-    \item [\axiom{DJ}{4}] Given $\perp_{\times}\!\![(f,g),(h,k),(x,y)]$, we know $f \perp (h\djoin
+    \item [\axiom{DJ}{3}] Calculating,
+      \begin{multline*}
+        (x,y)\left((f,g)\djoin_{\times}(h,k)\right) = (x(f \djoin h), y(g  \djoin' k)) = \\
+        (x f \djoin x h, y g \djoin' y k) = (x f,y g)\djoin_{\times}(x h,y k) =\\
+        ((x,y)(f,g))\djoin_{\times}((x,y)(h,k)).
+      \end{multline*}
+  \item [\axiom{DJ}{4}] Given $\perp_{\times}\!\![(f,g),(h,k),(x,y)]$,  both $f \perp (h\djoin
       x)$ and $g \perp' (k\djoin' y)$. Hence, $(f,g) \perp_{\times}((h,k)\djoin_{\times}(x,y))$. The
       opposite direction is similar.
   \end{itemize}

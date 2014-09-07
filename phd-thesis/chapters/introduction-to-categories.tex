@@ -50,14 +50,14 @@ We give a few examples of categories:
 \end{example}
 
 \begin{example}[Preorders are categories]\label{ex:preorders-are-categories}
-  Take any partially ordered set $(P,\le)$. Define $f:a \to b$ for $a,b\in P$ if and only if
+  Take any partially ordered set $(P,\le)$ and define $f:a \to b$ for $a,b\in P$ if and only if
   $a\le b$. This is a category as we always have:
   \begin{enumerate}[{(}i{)}]
   \item $a \le a$ (Identity);
-  \item $a \le b$ and $b \le c$ implies $a\le c$ (Composition);
+  \item $a \le b$ and $b \le c$ implies $a\le c$ (Composition).
   \end{enumerate}
   Note that we have at most one map between any two objects in $P$, hence \catone and \cattwo are
-  immediately satisfied
+  immediately satisfied.
 \end{example}
 \begin{example}[Dual Category]\label{ex:dual_category}
 Given a category $\B$, we may form the \emph{dual} of $\B$, written $\B^{op}$ as the following
@@ -277,7 +277,7 @@ but in general, not the property of being monic.
   $f:X_1 \to X_2$ in $\X$ the following diagram in $\Y$ commutes:
   \[\xymatrix @R+10pt @C+10pt{
       F(X_1) \ar[r]^{F(f)} \ar[d]_{\alpha_{X_1}} & F(X_2) \ar[d]^{\alpha_{X_2}}\\
-      G(X_1) \ar[r]_{G(f)} &  G(X_2)
+      G(X_1) \ar[r]_{G(f)} &  G(X_2).
     }
   \]
 \end{definition}
@@ -293,11 +293,11 @@ In the case where a natural transformation is a collection of isomorphisms, we w
 
 Referring to Section~\ref{ssub:functors_and_natural_transformations}, we consider relationships
 between categories. While two categories may be isomorphic (i.e. there is an invertible functor
-between them), we normally consider two alternate relations between categories: Equivalence and
-adjointness.
+between them), category theory normally considers two alternate relations between categories:
+Equivalence and adjointness.
 
-We first consider adjoint pairs of functors. There are various equivalent ways of defining adjoints,
-we will approach them using universality.
+Adjointness refers to an \emph{adjoint pair} of functors. There are various equivalent ways of
+defining adjoints and we will approach them using universality.
 
 \begin{definition}\label{def:universal_pair}
   Given $G:\A\to\B$ is a functor and $A\in \A$, then an object $U$ in \B together with a map
@@ -312,7 +312,7 @@ we will approach them using universality.
   is a commutative diagram.
 \end{definition}
 
-Let us consider what happens when we have the situation above, but the $U$ in $\B$ is definable
+Consider what happens when we have the situation above, but the $U$ in $\B$ is definable
 based on the $A\in\A$.
 \begin{lemma}\label{lem:adjoint-setup}
   Suppose for $G:\B\to\A$ is a functor such that for each $A\in\A$, there is an operation
@@ -355,7 +355,7 @@ defining the bijection, this is often written in the form of an inference:
 
 
 
-\begin{example}[Simple slice adjoint.]\label{ex:simple-slice-adjoint}
+\begin{example}[Simple slice adjoint]\label{ex:simple-slice-adjoint}
   Consider the  \emph{simple slice} category\cite{blute2009cartesian}, $\B[A]$  defined as:
   \categoryns{Objects of \B.}{$f:C\to D$ is given by maps $f:C\times A \to D$.}{projection --
     $\pi_0$.}{$C\xrightarrow{f}D\xrightarrow{g}E$ is given by $C\times A \xrightarrow{1\times \Delta}
@@ -413,7 +413,7 @@ In this section, we will offer a few examples of categories.
 
 \begin{example}
   A group $G$ may be considered as a one-object category $\mathbb{G}$, with object $\{*\}$. The elements of the
-  group are the maps between $\{*\}$. As $G$ is a group, there is an identity, composition is given
+  group are the maps between $\{*\}$. As $G$ is a group, it has an identity, composition is given
   by the group multiplication and additionally, each map has an inverse. As $\mathbb{G}(\{*\},\{*\})
   = G$, this category is enriched in groups.
 \end{example}
@@ -556,7 +556,7 @@ We now turn to products and coproducts.
       \xymatrix@C+5pt@R+15pt{
         &&&A\\
         C\ar[urrr]^{f} \ar[drrr]_{g}\ar@{.>}[rr]^{\<f,g\>} & &A\times B \ar[ur]_{\pi_0}\ar[dr]^{\pi_1}\\
-        &&&B
+        &&&B.
       }
     \]
   \end{itemize}
@@ -576,7 +576,7 @@ A coproduct is the dual of a product.
       \xymatrix@C+5pt@R+15pt{
         A \ar[drrr]^h \ar[dr]_{\cpa} \\
         &A +B \ar@{.>}[rr]^{[h,k]} && C\\
-        B \ar[urrr]_k \ar[ur]^{\cpb}
+        B. \ar[urrr]_k \ar[ur]^{\cpb}
       }
     \]
   \end{itemize}
@@ -599,7 +599,7 @@ between any two objects $A,B$ of the category given by: $\zeroob_{A,B} : A \to \
       0 & i \neq j
       \end{cases}
   \]
-  and forany two objects, $A,B$, $A\times B$ is the same as $A+B$, then $A\times B$ is
+  and for any two objects, $A,B$, $A\times B$ is the same as $A+B$, then $A\times B$ is
   referred to as the \emph{biproduct} and designated as $A\biproduct B$. A category \cD{} is said to
   have \emph{finite biproducts} when it has a zero object $\mathbf{0}$ and when each pair of objects
   $A,B$ have a biproduct $A\biproduct B$.

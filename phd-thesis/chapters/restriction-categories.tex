@@ -237,11 +237,11 @@ expressed as:
 \end{proof}
 
 In a restriction category \X, we will use the notation $\open{A}$ for the restriction idempotents
-of $A$, an object of \X. $\open{A} = \{x:A\to A| x = \rst{x}\}$. The notation $\open{A}$ was chosen
+of $A$, an object of \X, that is, $\open{A} = \{x:A\to A| x = \rst{x}\}$. The notation $\open{A}$ was chosen
 to be suggestive of open sets, as in \topcatp, see Example~\ref{ex:restriction_category_top}.
 
 \begin{lemma}\label{lem:open_a_is_a_meet_semilattice}
-  In a restriction category \X, $\open{A}$ is a meet semi-lattice - a poset with a top element and
+  In a restriction category \X, $\open{A}$ is a meet semi-lattice --- a poset with a top element and
   binary meets.
 \end{lemma}
 \begin{proof}
@@ -533,12 +533,14 @@ some of their basic properties.
 
 For example, consider the following maps in \Par, $f_1, f_2, f_3:\{1,2\} \to \{a,b,c\}$ where
 \[
-  f_1(1) = a, f_1(2) \undef;\quad   f_2(1) = a, f_2(2)=b;\quad   f_3(1) = a, f_3(2)=a.
+  f_1(1) = a, f_1(2)=b;\quad  f_2(1) = a, f_2(2) \undef;\quad    f_3(1) = f_3(2)=a.
 \]
-Then, $f_1$ is a partial isomorphism, but is neither a partial monic nor a restriction monic. $f_2$ is a
-restriction monic and a total partial isomorphism and a partial monic. $f_3$ is none of the items in
-Definition~\ref{def:partial_inverse_etc}.
-%todo - Find a partial monic that is not the others....
+Then, $f_1$ is a total partial isomorphism and a partial monic and a restriction monic. $f_2$  is a
+partial isomorphism and is a partial monic but is not a restriction monic as it is not a
+section. $f_3$ is none of the items in Definition~\ref{def:partial_inverse_etc}. Finally, in the
+category \topcatp, we shall see in Example~\ref{ex:topcatp-not-discrete} that $\Delta$ does not have
+a partial inverse unless the topological space is discrete. But as $\Delta$ is monic and total, it
+is a partial monic.
 
 Note that restriction monic is a stronger notion than that of section. In fact, restriction monics
 are the partial isomorphisms which are total.
