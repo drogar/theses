@@ -434,9 +434,9 @@ define $\imultiapp{f}{n}$ recursively by:
     \axiom{iCPA}{1}
     \[
       \xymatrix@C+15pt@R-10pt{
-         && A\*A \ar@{.>}[dddd]^{h_k}\\
+         && A\*A\*A \ar@{.>}[dddd]^{h_k}\\
         &A\* A\* A \ar[ur]^{\imultibullet{2}} \\
-        A\* A\*A \ar[ur]^{\inv{\usl}(k\*1\*1)\ \,} \ar[ddrr]_{1} \\
+        A\*A \ar[ur]^(.4){\inv{\usl}(k\*1\*1)\ \ } \ar[ddrr]_{1} \\
          && & \\
         && A\*A.
       }
@@ -449,7 +449,7 @@ define $\imultiapp{f}{n}$ recursively by:
           \ar[ur]^{\imultibullet{3}}\\
         && \\
         A\* A\* A \ar[uurr]^{\inv{\usl}(s\*1)} \ar[dr]_(.4){\theta_A'}\\
-        &(A\* A) \* (A\* A) \ar[dr]_{(\bullet\*\bullet)(1\*c\*1)\ \,} \\
+        &(A\* A) \* (A\* A) \ar[dr]_{(\bullet\*\bullet)(1\*c\*1)\ \ } \\
         & &A\* A\* A\*A\ar[dr]_{(\bullet\*1)}\\
         &&&A\*A\*A\*A.\\
       }
@@ -466,8 +466,8 @@ define $\imultiapp{f}{n}$ recursively by:
   immediately the map $\bullet:A\*A\to A\*A$ in \X becomes the map $(\bullet,A):A\times A \to A$,
   satisfying \ref{defitem:pca-1} of Definition~\ref{def:partial_combinatory_algebra}. The
   commutative diagrams \axiom{iCPA}{1} and \axiom{iCPA}{2}, when lifted to \Xt, become the diagrams
-  for a partial combinatory algebra as given in \ref{defitem:pca-2}, where $(k,\inv{\usl})$ and
-  $(s,\inv{\usl})$ are the $k,s$ of the partial combinatory algebra. Finally, the totality
+  for a partial combinatory algebra as given in \ref{defitem:pca-2}, where $(k\inv{\usl}, I)$ and
+  $(s\inv{\usl}, I)$ are the $k,s$ of the partial combinatory algebra. Finally, the totality
   requirement, \axiom{iCPA}{3}, gives \ref{defitem:pca-3} of the partial combinatory algebra
   definition.
 
@@ -548,7 +548,7 @@ A\*A$ where $A$ is a powerful object define $\multiapp{f}{n}$ recursively by:
       \xymatrix@C+15pt{
          && A\*A \ar@{.>}[dddd]^{h'_k}\\
         &A\* A\* A \ar[ur]^{\multibullet{2}} & & \\
-        A\* A \ar[ur]^{\inv{\usl}(k\*1\*1)\ \,} \ar[ddrr]_{1} && &\\
+        A\* A \ar[ur]^{\inv{\usl}(k\*1\*1)\ \ } \ar[ddrr]_{1} && &\\
          && & \\
         && A\*A. &
       }
@@ -560,9 +560,9 @@ A\*A$ where $A$ is a powerful object define $\multiapp{f}{n}$ recursively by:
         & &  && \\
         &A\* A\* A\* A
           \ar[uurr]^{\multibullet{3}}\\
-        A\* A\* A \ar[ur]^{\inv{\usl}(s\*1)} \ar[dr]_(.4){\theta_A'}\\
+        A\* A\* A \ar[ur]^{\inv{\usl}(s\*1)\,} \ar[dr]_(.4){\theta_A'}\\
         &(A\* A) \* (A\* A) \ar[dr]|{(\bullet\*\bullet)(1\*c\*1)(1\*1\*m_2)} \\
-        & &A\* A\* A\ar[dr]_{(\bullet\*1)(1\*m_2)}& &\\
+        & &A\* A\* A\ar[dr]_{(\bullet\*1)(1\*m_2)\ }& &\\
         &&&A\*A. \\
       }
     \]

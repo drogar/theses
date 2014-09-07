@@ -146,24 +146,31 @@ sub-restriction category of \Par. We will show the four restriction axioms:
 \end{example}
 
 \begin{example}\label{ex:algebras-not-preserving-unit-as-restriction-cat}
-  Given $\cS$ is a symmetric monoidal category, define $\mathbf{Copy}(\sC)$ as the category whose objects are
-  the objects of $\cS$ which are commutative comonoids and semigroup homomorphisms, i.e., do not
-  preserve the unit. As noted in \cite{cockett2002:restcategories1}, when there is a counit, $!:B\to
-  I$, this is a restriction category, where the restriction is given by
+  Given $\cS$ is a symmetric monoidal category, define $\specialcat{Copy}(\cS)$ as the category whose objects are
+  the objects of $\cS$ which are commutative comonoids and semigroup homomorphisms, i.e., maps which
+  do not preserve the unit. As noted in \cite{cockett2002:restcategories1}, when there is a counit,
+  $!:B\to I$, this is a restriction category, where the restriction is given by
   \[
     \infer{A\xrightarrow{\rst{f}}A \definedas A \xrightarrow{\Delta} A\*A \xrightarrow{f\*1} B\* A
       \xrightarrow{!\*1} I\*A \xrightarrow{\usl} A.}{A\xrightarrow{f}B}
   \]
 
-  We may also consider commutative monoids with semigroup morphisms, $\mathbf{Copy}(\cS)^{op}$.
+  We may also consider commutative monoids with semigroup morphisms,
+  $\specialcat{Copy}(\cS)^{op}$. These will have a corestriction operator, i.e., an operator
+  $\rst{(\_)}$ on $f:A\to B$ with $\rst{f}:B\to B$ fulfilling the duals of the restriction axioms.
 
-  We may also define This is the dual of a counital copy category as defined in
-  \cite{cockettlack2004:restcategories3}. Theorem 5.2 from   \cite{cockettlack2004:restcategories3}
-  shows that counital copy categories have a restriction, thus $\D$ has a corestriction, i.e., an
-  operator on $f:A\to B$ with $\rst{f}:B\to B$ fulfilling the duals of the restriction axioms.
+%  This is the dual of a counital copy category as defined in
+%  \cite{cockettlack2004:restcategories3}. Theorem 5.2 from   \cite{cockettlack2004:restcategories3}
+%  shows that counital copy categories have a restriction.
 
   For example, consider the category of commutative monoids in \Ab, the category of abelian
-  categories. This is the same as $(\mathbf{Copy}(\Ab^{op}))^{op}$.
+  categories. This is the same as $(\specialcat{Copy}(\Ab^{op}))^{op}$ and thus is a corestriction
+  category. At the same time, this is the category of commutative rings with homomorphisms which do
+  not preserve the unit.
+
+  As another example, consider Frobenius algebras in \cS (defined below in
+  \ref{def:frobeniusalgebra}) with coalgebra homomorphisms that do not preserve the unit. Again,
+  this category will have a corestriction.
 \end{example}
 
 \section{Partial order enrichment} % (fold)
