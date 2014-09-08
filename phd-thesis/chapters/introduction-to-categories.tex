@@ -37,13 +37,13 @@ We give a few examples of categories:
 
 \begin{example}\label{ex:small_finite_categories}
   We set $\mathbf{1}$ to be the category consisting of a single object $A$ and the identity arrow
-  $id:A\to A$. This  is obviously a category, with $\mathbf{1}_o = A$ and
-  $\catdomain{id} = \catcodomain{id} = A$.
+  $1:A\to A$. This  is obviously a category, with $\mathbf{1}_o = A$ and
+  $\catdomain{1} = \catcodomain{1} = A$.
 
   There is also the category $\mathbf{2}$:
   \[
     \xymatrix{
-      A\ar[rr]^{f} \ar@(ul,dl)[]_{id_A}& & B  \ar@(ur,dr)[]^{id_B}
+      A\ar[rr]^{f} \ar@(ul,dl)[]_{1_A}& & B  \ar@(ur,dr)[]^{1_B}
     }
   \]
   where $f$ is the only non-identity arrow.
@@ -413,7 +413,8 @@ In this section, we will offer a few examples of categories.
 
 \begin{example}
   A group $G$ may be considered as a one-object category $\mathbb{G}$, with object $\{*\}$. The elements of the
-  group are the maps between $\{*\}$. As $G$ is a group, it has an identity, composition is given
+  group are the maps between $\{*\}$. As $G$ is a group, it has an identity $e$ and multiplication is
+  associative. In $\mathbb{G}$, the identity map is $e$, composition is given
   by the group multiplication and additionally, each map has an inverse. As $\mathbb{G}(\{*\},\{*\})
   = G$, this category is enriched in groups.
 \end{example}

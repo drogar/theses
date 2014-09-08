@@ -25,7 +25,7 @@ other models as given in
 
 \begin{definition}[Turing category]\label{def:turing_category}
   Given \X is a Cartesian restriction category:
-  \begin{enumerate}
+  \begin{enumerate}[{(}i{)}]
     \item For a map $\txy: A \times X \to Y$, a map $f:B\times X \to Y$ \emph{admits a $\txy$-index}
       when there is a total $\name{f}:B\to A$ such that
       \[
@@ -377,8 +377,7 @@ In a discrete inverse category, we define the notation $\imultiapp{f}{n}$. For a
 define $\imultiapp{f}{n}$ recursively by:
 \begin{enumerate}[{(}i{)}]
 \item
-  \[
-  \raisebox{12pt}{$\imultiapp{f}{1}:A\*A \to A\*A =f =\ $}
+  $\imultiapp{f}{1}:A\*A \to A\*A =f =\ $\raisebox{-12pt}{
   \begin{tikzpicture}
     \node [style=nothing] (s1) at (0,1) {};
     \node [style=nothing] (s2) at (.5,1) {};
@@ -389,12 +388,9 @@ define $\imultiapp{f}{n}$ recursively by:
     \draw [] (s2) to[out=270,in=55] (bullet1);
     \draw [] (bullet1) to[out=235,in=90] (e1);
     \draw [] (bullet1) to[out=305,in=90] (e2);
-  \end{tikzpicture}
-  \raisebox{12pt}{.}
-  \]
+  \end{tikzpicture}}.
 \item
-  \[
-  \raisebox{45pt}{$\imultiapp{f}{n+1}:A\*(\*_{n}A)\*A \to A\*(\*_{n+1}A) =\ $}
+  $\imultiapp{f}{n+1}:A\*(\*_{n}A)\*A \to A\*(\*_{n+1}A) =\ $\raisebox{-45pt}{
   \begin{tikzpicture}
     \node [style=nothing] (s1) at (-0.25,3.5) {};
     \node [style=nothing] (s1a) at (0.25,3.5) {};
@@ -417,9 +413,7 @@ define $\imultiapp{f}{n}$ recursively by:
     \draw [] (bullet2) to[out=305,in=125] (t1);
     \draw [] (bullet2) to[out=235,in=90] (e1);
     \draw (t1) to (e2);
-  \end{tikzpicture}
-  \raisebox{45pt}{.}
-  \]
+  \end{tikzpicture}}.
 \end{enumerate}
 
 \begin{definition}\label{def:inverse_partial_combinatory_algebra}

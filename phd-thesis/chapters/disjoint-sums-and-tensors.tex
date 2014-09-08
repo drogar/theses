@@ -62,11 +62,11 @@ We are assuming the following naming for the standard monoidal tensor isomorphis
   \]
   From our definitions above, define our tensor structure maps:
   \begin{align*}
-    \upl &:0\+A \to A, &(a,2) \mapsto a\\
-    \upr &:A\+0 \to A, &(a,1) \mapsto a\\
-    a_\+ &: (A\+B)\+C, &((a,1),1) \mapsto (a,1)\\
+    \upl &:0\+A \to A &(a,2) \mapsto a,\\
+    \upr &:A\+0 \to A &(a,1) \mapsto a,\\
+    a_\+ &: (A\+B)\+C &((a,1),1) \mapsto (a,1)\\
      &  &((b,2),1) \mapsto ((b,1),2)\\
-     &  &(c,2) \mapsto ((c,1),2)\\
+     &  &(c,2) \mapsto ((c,1),2),\\
     c_\+ &: A\+B \to B\+ A & (a,1) \mapsto (a,2)\\
     & & (a,2) \mapsto (a,1).
   \end{align*}
@@ -752,7 +752,7 @@ Next, we show that the disjoint sum tensor is universal with respect to the disj
   Given an inverse category \X with a disjoint sum tensor $\+$, then $\+$ preserves the disjoint
   join. That is,
   \begin{align}
-    f \cdperp g, \ h \cdperp k&\text{ implies } f\+ h \cdperp g \+ k
+    f \cdperp g, \ h \cdperp k&\text{ implies } f\+ h \cdperp g \+ k,
     \label{eq:disjoint_sum_preserve_perp}\\
     f \cdperp g, \ h \cdperp k &\text{ implies } (f\djoin g)\+(h\djoin k) = (f \+h )\djoin (g\+k).
     \label{eq:disjoint_sum_preserve_join}
@@ -798,11 +798,16 @@ a disjoint sum tensor.
     \item $\cpa : A \to A\+B$, $\cpb: B \to A\+B$, $\icpa: A\+B \to A$ and $\icpb: A\+B \to B$.
     \item $\inv{\cpa} = \icpa$ and $\inv{\cpb} = \icpb$.
     \item $\inv{i_1}i_1 = 1\+ 0 \tperp 0\+1 = \inv{i_2}i_2$ as
-      $1\+0 \tjdown 0\+1 = (\inv{\upr}\+\inv{\upl})$ and
-      $1\+0 \tjup 0\+1 = (\icpa\+\icpb)$. For their join,
-      $(1\+0)\tjoin (0\+1) = (\inv{\upr}\+\inv{\upl})(\icpa\+\icpb) =
-      \inv{\upr}\icpa \+ \inv{\upl}\icpb = 1\+1 = 1$.
-  \end{enumerate}
+      \[
+        1\+0 \tjdown 0\+1 = (\inv{\upr}\+\inv{\upl})\text{ and }
+        1\+0 \tjup 0\+1 = (\icpa\+\icpb).
+      \]
+      For their join,
+      \begin{multline*}
+        (1\+0)\tjoin (0\+1) = (\inv{\upr}\+\inv{\upl})(\icpa\+\icpb) =\\
+        \inv{\upr}\icpa \+ \inv{\upl}\icpb = 1\+1 = 1.
+      \end{multline*}
+    \end{enumerate}
 \end{proof}
 
 Finally, to complete the cycle:

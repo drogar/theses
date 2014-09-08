@@ -55,7 +55,7 @@ The types of matrices allowed in the matrix category are subject to certain cons
 \end{definition}
 
 \begin{lemma}\label{lem:inverse_matrix_category_is_a_restriction_category}
-  When $\X$ is an inverse category with disjoint joins, \imatx is an inverse category.
+  When $\X$ is an inverse category with disjoint sums, \imatx is an inverse category.
 \end{lemma}
 \begin{proof}
   We need to show the following:
@@ -149,14 +149,14 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
 
 Furthermore, $\imatx$ is actually a disjoint sum category:
 \begin{theorem}\label{thm:imatx_is_an_disjoint_sum_category}
-  Given \X an inverse category with disjoint joins and restriction zero, \imatx has
+  Given \X an inverse category with disjoint sums and restriction zero, \imatx has
   disjoint sums.
 \end{theorem}
 
 We will prove this in a series of lemmas.
 
 \begin{lemma}\label{lem:imat_has_restriction_zero}
-  Given \X is an inverse restriction category with a restriction zero and a disjoint join,
+  Given \X is an inverse restriction category with a restriction zero and a disjoint sum,
   then \imatx has a restriction zero.
 \end{lemma}
 \begin{proof}
@@ -203,7 +203,7 @@ We will prove this in a series of lemmas.
 
   With this definition, we see that $\+$ is a restriction functor:
   \begin{align*}
-    id_X \+ id_Y &= id_{X\+Y}, \\
+    1_X \+ 1_Y &= 1_{X\+Y}, \\
     f_1 g_1 \+ f_2 g_2 &= h_1 \+ h_2 =
     \begin{bmatrix}
       h_1 & 0 \\ 0 & h_2
@@ -238,7 +238,7 @@ We will prove this in a series of lemmas.
 \end{proof}
 
 \begin{lemma}\label{lem:imat_tensor_is_a_disjoint_sum_tensor}
-  Given \X is an inverse category with a disjoint join and restriction zero, then \imatx
+  Given \X is an inverse category with a disjoint sum and restriction zero, then \imatx
   has a disjoint sum tensor.
 \end{lemma}
 \begin{proof}

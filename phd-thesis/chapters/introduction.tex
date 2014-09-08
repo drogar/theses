@@ -22,7 +22,7 @@ these questions.
 \section{Background of reversible computation}
 \label{sec:background}
 
-In 1961, Landauer\cite{landauer1961irreversibility} examined irreversible computing
+In 1961, Landauer\cite{landauer1961irreversibility} examined logically irreversible computing
 and showed that it must dissipate energy, i.e., produce heat at a specified minimal level. This is
 due to applying a physically irreversible operation to non-random data, leading to an entropy
 increase in the computer. While there are various objections to the connection between
@@ -117,7 +117,7 @@ that both $\dom f \intersection \dom g = \nothing$ and $\rng f \intersection \rn
 
 In Di Pierro et.al. \cite{DiPierro200625}, the authors consider groupoids as their mathematical
 model for reversible computations. This leads them to develop \textbf{rCL}, reversible combinatory
-logic. This logic consists of a pair of terms, $\<M|H\>$ where $M$ is a term of standard combinatory
+logic. This logic consists of a pair of terms, $\<M|H\>$, where $M$ is a term of standard combinatory
 logic and $H$ is a history, with a specified syntax. In standard combinatory logic, the $k$ term is
 irreversible in that it erases its second argument. In \textbf{rCL}, application of the $k$ term
 copies the second argument into the history, preserving reversibility. Groupoids are a specific
@@ -132,7 +132,7 @@ sums. The basic graphical language is extended with recursive types and looping 
 therefore introduces partiality due to the possibility of non-terminating loops. Their abstract
 model for this language is a dagger symmetric traced bimonoidal category\cite{selinger05:dagger}.
 
-Additionally, we note there are a number of quantum programming languages which, as noted, included
+Additionally, there are a number of quantum programming languages which, as noted, included
 reversible operations. Our primary example is LQPL \cite{giles2007}, a compiled language based on the
 semantics of \cite{selinger04:qpl}. The language includes a variety of reversible operations
 (unitary transforms) as primitives, a linear type system and an operational semantics. More recently
@@ -210,7 +210,7 @@ properties of the inverse product. Inverse categories with inverse products are 
 
 Chapter~\ref{chap:completing_a_discrete_inverse_category} then presents the ``Cartesian
 Completion'' --- a construction of a discrete Cartesian restriction category from a discrete
-inverse category. SubSection~\ref{sec:equivalence_classes_of_maps_in_hypx} presents the details of the
+inverse category. Subsection~\ref{sec:equivalence_classes_of_maps_in_hypx} presents the details of the
 equivalence relation on  maps of a discrete inverse category needed in the construction, while
 Section~\ref{sec:the_restriction_category_hypxt} contains the proof that the construction gives a
 Cartesian restriction category. Section~\ref{sec:equivalence_of_categories} culminates in
