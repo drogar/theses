@@ -1,0 +1,341 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+\chapter{Commutative Frobenius algebras and inverse categories} % (fold)
+\label{chap:commutative_frobenius_algebras}
+
+
+\input{chapters/section/cat-cfrob-example}
+
+\input{chapters/section/sums-in-frobenius}
+
+\section{Disjoint joins in \CFrob}
+\label{sec:disjoint-joins-in-frobenius-algebras}
+
+In the previous sections, we have shown that \CFrob is a discrete inverse category, with a
+disjointness relation whenever \X is a symmetric monoidal category with zero maps.
+
+We now show that if \X has biproducts and is an additive tensor category, i.e., a symmetric monoidal
+category where the hom-sets are enriched in additive monoids, then \CFrob will have a disjoint
+join. Moreover, in the following section, we shall show it possesses a disjoint sum. First, we
+explicitly define additive tensor category:
+
+\begin{definition}\label{def:additive-tensor-category}
+  Suppose \X is a symmetric monoidal category with zero maps and the hom-sets are enriched in
+  additive monoids. It is an \emph{additive tensor category}  when:
+  \begin{itemize}
+    \item $h(f+g)k = h f k + h g k$ for all $h:A\to B$, $f,g:B\to C$ and $k:C \to  D$;
+    \item $(f+g)\*k = f\*k + g\* k$ for all $f,g:A\to B$ and  $k:C\to D$.
+  \end{itemize}
+\end{definition}
+
+We begin by showing that given an additive tensor category, we may form an equivalent category which has
+biproducts.
+
+\begin{lemma}\label{lem:axb_is_a_biproduct}
+  Suppose $\X$ is an additive symmetric monoidal category. If we have the diagram
+  \[
+      \xymatrix{
+      A\ar[r]^{\sigma_1} &X\ar@/^9pt/[l]^{\pi_1} \ar@/_9pt/[r]_{\pi_2} & B \ar[l]_{\sigma_2}
+    }
+  \]
+  with
+  \[
+    \sigma_1\pi_1 = 1_A,\quad\sigma_2\pi_2 = 1_B,\qquad \sigma_1\pi_2 = 0 = \sigma_2\pi_2
+  \]
+  and $\pi_1\sigma_1 + \pi_2\sigma_2 = 1$, then $X$ is a biproduct of $A$ and $B$.
+\end{lemma}
+
+\begin{corollary}\label{cor:functor_preserves_biproducts}
+  If $F:\X\to\Y$ is an additively enriched functor, then $F$ preserves all biproducts.
+\end{corollary}
+
+\begin{corollary}\label{cor:tensor_preserves_biproducts}
+  The functor $A\*\_:\X \to \X$ preserves biproducts.
+\end{corollary}
+
+Thus, if $\X$ is additively enriched, we may add biproducts by moving to the matrix category of
+$\X$, defined as:
+\category{Lists of the objects $[A_i]$ of $\X$}{Matrices of maps in $\X$, $[f_{i,
+    j}]:[A_i]\to[B_j]$}{The diagonal matrix $I$ ($f_{i,i} = 1_{A_i}$ and $f_{i,j} = 0, i \ne
+  j$)}{Matrix multiplication}
+
+Now, let us consider \CFrob where \X is an additive tensor category with
+biproducts. We know from Lemma~\ref{lem:cfrobperp_is_a_disjointness_relation} that
+\[
+\raisebox{40pt}{$f\perp g \iff$}\
+\begin{tikzpicture}
+\path node at (0,0) [nabla] (n1) {}
+node at (0,2.5) (start) {}
+node at (-.5,1) [map] (f) {$\scriptstyle f$}
+node at (.5,1) [map] (g) {$\scriptstyle g$}
+node at (0,2) [delta] (d) {};
+\draw [] (d) to (start);
+\draw [] (n1) to (0,-0.5);
+\draw [] (d) to[out=305,in=90] (g);
+\draw [] (d) to[out=235,in=90] (f);
+\draw [-] (f) to[out=270,in=125] (n1);
+\draw [-] (g) to[out=270,in=55] (n1);
+\end{tikzpicture}
+\ \raisebox{40pt}{$= 0.$}\
+\]
+
+We will now show that the biproduct is the disjoint join of any two disjoint maps. To do so, we
+must show the biproduct of two disjoint maps is in the category \CFrob. We first give a lemma
+about the biproduct of disjoint maps.
+
+\begin{lemma}\label{lem:delta_disjoint_is_zero}
+  Given \X is an additive tensor category, when $f,g$ are maps in \CFrob with  $f\perp g$, then
+  $\Delta(f\*g) = 0$ and $(f\*g)\nabla = 0$.
+\end{lemma}
+\begin{proof}
+  From
+  Lemma~\ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}~\ref{le:deltaefg}
+  we have that $e\Delta (f\*g) = \Delta(e f\*g)$ and $(f\*g)\inv{\Delta}e = (f\*g e)\inv{\Delta}$ for
+  $e$ a restriction idempotent. Thus, we have
+  \[
+    \Delta(f\*g) = \rst{f} \Delta(f\*g) = \Delta(f\*\rst{f} g) = \Delta(f \* 0) = \Delta 0 = 0,
+  \]
+  where $\rst{f}g = 0$ follows from the disjointness of $f,g$ by \axiom{Dis}{2} and the remaining
+  equalities are due to \X being an additive tensor category. Dually, as $\nabla = \inv{\Delta}$, we
+  have
+  \[
+    (f\*g)\nabla = (f\*g)\nabla\rg{f} = (f\*g\rg{f})\nabla = (f \* 0)\nabla = 0\nabla = 0.
+  \]
+\end{proof}
+
+\begin{lemma}\label{lem:biproduct-is-in-cfrob-x}
+  Given \X is an additive tensor category with biproducts, when $f,g$ are maps in \CFrob with
+  $f\perp g$, then $f+g$ is a map in \CFrob.
+\end{lemma}
+\begin{proof}
+  We must show $(f+g)\Delta = \Delta((f+g)\*(f+g))$ and $\nabla(f+g) = ((f+g)\*(f+g))\nabla$. As
+  this is an additive tensor category and both $f,g$ are in \CFrob and using
+  Lemma~\ref{lem:delta_disjoint_is_zero}, we have
+  \begin{multline*}
+    \Delta((f+g)\*(f+g)) = \Delta( f\*f + f\* g + g\* f + g\*g) = \\
+    \Delta(f\*f) + \Delta(f\*g) + \Delta(g\*f) + \Delta(g\*g) = \\
+    \Delta(f\*f) + \Delta(g\*g) = f\Delta + g \Delta = (f+g)\Delta.
+  \end{multline*}
+  Hence, the biproduct of $f,g$ preserves $\Delta$.
+  Similarly, $f+g$ preserves $\nabla$:
+  \begin{multline*}
+    ((f+g)\*(f+g))\nabla =( f\*f + f\* g + g\* f + g\*g)\nabla = \\
+    (f\*f)\nabla +(f\*g) \nabla+(g\*f)\nabla + (g\*g)\nabla = \\
+    (f\*f)\nabla + (g\*g)\nabla =\nabla f + \nabla g  = \nabla(f+g).
+  \end{multline*}
+\end{proof}
+
+\begin{proposition}\label{prop:biproduct_is_the_disjoint_join_in_cfrobx}
+  Given \X is an  additive tensor category with biproduct $\+$, and $f\perp g$, then $f\djoin g
+  \definedas f+g$ is a disjoint join.
+\end{proposition}
+\begin{proof}
+  We need to show the four axioms of disjoint join from Definition~\ref{def:disjoint_join}.
+
+  \axiom{DJ}{1} : $f \le f \djoin g$ and $g \le f \djoin g$.
+  As $f+g = g+f$, we need only show the first part of the axiom. As $f\perp g$, we know $\rst{f}g=0$
+  by the definition of disjointness and therefore we have:
+  \[
+    \rst{f}(f+g) = \rst{f}f + \rst{f} g = f + 0 = f
+  \]
+  and thus $f \le f \djoin g$ and \axiom{DJ}{1} is true.
+
+  \axiom{DJ}{2}: $f \le h,\ g \le h$ and $f\perp g$ implies $f \djoin g \le h$.  We calculate
+  \[
+    \rst{f+g}h = (\rst{f}+\rst{g}) h = \rst{f}h + \rst{g} h = f + g
+  \]
+  giving us the required inequality and \axiom{DJ}{1} is true.
+
+  \axiom{DJ}{3}: Disjoint join is stable, i.e., $h(f \djoin g) = h f \djoin h g$. This is immediate
+  as $h(f+g) = hf + h g$.
+
+  \axiom{DJ}{4}: $\cdperp \{f, g, h\} \iff f \perp (g\djoin h)$. Consider the $\Longleftarrow$
+  direction first. We immediately have $g\perp h$ as we are able to form the disjoint join. By
+  \axiom{DJ}{1}, we have both $g \le g \djoin h$ and $h \le g\djoin h$ and therefore by
+  \axiom{Dis}{3}, $f \perp g$ and $f\perp h$. Thus the $\Longleftarrow$ direction is true.
+
+  For the $\implies$ direction, we compute
+  \[
+  \begin{tikzpicture}
+    \path node at (0,0) [nabla] (n1) {}
+    node at (0,2.5) (start) {}
+    node at (-.5,1) [map] (f) {$\scriptstyle f$}
+    node at (.5,1) [map] (g) {$\scriptstyle g+h$}
+    node at (0,2) [delta] (d) {};
+    \draw [] (d) to (start);
+    \draw [] (n1) to (0,-0.5);
+    \draw [] (d) to[out=305,in=90] (g);
+    \draw [] (d) to[out=235,in=90] (f);
+    \draw [-] (f) to[out=270,in=125] (n1);
+    \draw [-] (g) to[out=270,in=55] (n1);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$=$}\
+  \begin{tikzpicture}
+    \path node at (0,0) [nabla] (n1) {}
+    node at (0,2.5) (start) {}
+    node at (-.5,1) [map] (f) {$\scriptstyle f$}
+    node at (.5,1) [map] (g) {$\scriptstyle g$}
+    node at (0,2) [delta] (d) {};
+    \draw [] (d) to (start);
+    \draw [] (n1) to (0,-0.5);
+    \draw [] (d) to[out=305,in=90] (g);
+    \draw [] (d) to[out=235,in=90] (f);
+    \draw [-] (f) to[out=270,in=125] (n1);
+    \draw [-] (g) to[out=270,in=55] (n1);
+  \end{tikzpicture}
+  \raisebox{40pt}{$\,+\,$}
+  \begin{tikzpicture}
+    \path node at (0,0) [nabla] (n1) {}
+    node at (0,2.5) (start) {}
+    node at (-.5,1) [map] (f) {$\scriptstyle f$}
+    node at (.5,1) [map] (g) {$\scriptstyle h$}
+    node at (0,2) [delta] (d) {};
+    \draw [] (d) to (start);
+    \draw [] (n1) to (0,-0.5);
+    \draw [] (d) to[out=305,in=90] (g);
+    \draw [] (d) to[out=235,in=90] (f);
+    \draw [-] (f) to[out=270,in=125] (n1);
+    \draw [-] (g) to[out=270,in=55] (n1);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$= 0.$}\
+  \]
+  This gives us both directions and all of the axioms have been shown to be true, hence, the
+  addition of maps is a disjoint join.
+\end{proof}
+
+\section{Disjoint sums in \CFrob}
+\label{sec:disjoint-sums-in-cfrob-x}
+
+Now that we have shown we have a disjoint join, our last remaining task is to show that the
+biproduct in \X provides a disjoint sum. For the remainder of this section, we define the following
+objects and maps:
+\begin{align*}
+    A\+B & \definedas A+B \text{ (the biproduct of $A$ and $B$),}\\
+    \epsilon_{A+B} &\definedas [\epsilon_A,\epsilon_B]:A+B \to I,\\
+    \eta_{A+B}&\definedas \<\eta_A,\eta_B\>:I\to A+B,\\
+    \Delta_{A+B} & \definedas (\Delta_A i_1 + \Delta_B i_2):A+B\to A\*A+A\*B+B\*A+B\*B,\\
+    \nabla_{A+B} & \definedas (\pi_1 \nabla_A + \pi_2 \nabla_B): (A\*A+A\*B)+(B\*A+B\*B) \to A+B.
+\end{align*}
+Note that we have $A\*A+A\*B+B\*A+B\*B \cong (A+B)\*(A+B)$ via the isomorphism $b = \<i_1\*i_1 |
+i_1\*i_2 | i_2 \* i_1 | i_2\* i_2\>$.
+
+
+\begin{lemma}\label{lem:biproduct-injections-and-projections-are-in-cfrob}
+  Given \X is an additive tensor category with biproduct $+$, then the injection maps $i_1,i_2$ and
+  projection maps $\pi_1,\pi_2$ of the biproduct are maps in \CFrob.
+\end{lemma}
+\begin{proof}
+  We  must show each of the injections and projections preserve $\Delta$ and $\nabla$.
+
+  Consider
+  \[
+     \xymatrix@C+40pt@R+10pt{
+       A \ar[d]_{\Delta} \ar[rr]^{i_1} & &A+B \ar[d]^{\Delta_{A+B}(=\Delta_A i_1 + \Delta_B i_2)}\\
+       A\*A \ar[rr]_{i_1\*i_1} \ar[dr]_(.425){i_1} & & (A+B)\*(A+B)\\
+       &A\*A+A\*B \ar[r]_(.375){i_1} & A\*A+A\*B+B\*A+B\*B \ar[u]_{b}.
+     }
+  \]
+  The outer arrows commute as $i_1(f+g) = f i_1$. The bottom half commutes due to the isomorphism
+  hence the top rectangle commutes and $i_1$ preserves $\Delta$.  Similarly, $i_2$ preserves
+  $\Delta$. By dualizing the diagram, we also have $\pi_1, \pi_2$ preserve $\nabla$.
+
+  Next, we show the projections preserve $\nabla$,
+  \[
+    \xymatrix@C+40pt@R+10pt{
+       A+B \ar[rr]_{\pi_1}\ar[d]_{\Delta}& & A\ar[d]^{\Delta_A}\\
+        (A+B)\*(A+B)  \ar[rr]^{\pi_1\*\pi_1} \ar[d]_{b^{-1}}  & &A\*A\\
+       {A\*A+A\*B+B\*A+B\*B}  \ar[r]^(.625){\pi_1}  &A\*A+A\*B \ar[ur]^(.575){\pi_1}
+     }
+  \]
+  which, by the same argument as above, shows that $\Delta$ is preserved by $\pi_1$ and similarly by
+  $\pi_2$. Once again, dualizing  this diagram gives us that $\nabla$ is preserved by $i_1$ and $i_2$.
+\end{proof}
+
+\begin{lemma}\label{prop:biproducts-of-frobenius-objects-are-frobenius}
+  Suppose $A$ and $B$ are Frobenius algebras in \CFrob where \X, an additive tensor category, has
+  the biproduct $+$.
+  Then $A\+B$ is a Frobenius algebra and is therefore in \CFrob.
+\end{lemma}
+\begin{proof}
+
+  To show $A\+B$ is a Frobenius algebra and therefore in \CFrob, we must show it is separable,
+  the unit laws hold and the Frobenius condition hold for $A\+B$.
+
+  For the requirement that it is separable:
+  \begin{align*}
+    \Delta_{A+B}\nabla_{A+B}&= (\Delta_A i_1 + \Delta_B i_2) (\pi_1 \nabla_A + \pi_2 \nabla_B)\\
+    &=  (\Delta_A i_1 \pi_1 \nabla_A + \Delta_B i_2\pi_2 \nabla_B)\\
+    &=  (\Delta_A \nabla_A + \Delta_B \nabla_B)\\
+    &=  (1_A + 1_B) = 1_{A+B}.
+  \end{align*}
+
+
+  To show the comultiplication unit law,
+  \[
+     \xymatrix@C+20pt{
+       A \ar[r]^{\Delta} \ar[d]_{i_1} & A\*A \ar[d]^{i_1\*i_1} \ar@{=}[dr] \\
+       A+B \ar[r]^(.35){\Delta} \ar@{=}[ddr] &(A+B)\*(A+B) \ar[d]^{1\*\epsilon}
+          & A\*A \ar[l]^(.35){i_1\*i_1}  \ar[d]^{1\*\epsilon}\\
+       & (A+B)\*I \ar[d]^{\usl} & A\*I \ar[d]^{\usl} \ar[l]^{i_1\*1}\\
+       & A+B & A. \ar[l]^{i_1}
+     }
+  \]
+  The outer path shows the unit law for the Frobenius algebra $A$ and is what happens to the $A$
+  component in the inner path. There is a similar diagram where the outer path $A$'s are replaced
+  with a $B$ and the $i_1$ with $i_2$. As these outer paths commute, they show that the inner path
+  commutes as each component of it commutes.
+
+  For the Frobenius law, as we are in a commutative world, we need only show
+  $\nabla \Delta = (1\*\Delta)(\nabla\*1)$:
+  \[
+  \xymatrix@C+17pt{
+      &A\*A \ar@{=}[ld] \ar[rr]^{1\*\Delta} \ar[d]^{i_1\*i_1} && A\*A\*A  \ar[d]_{i_1\*i_1\*i_1} \ar@{=}[dr] \\
+      A\*A \ar[r]^(.45){i_1\*i_1}  \ar[dr]_{\nabla}
+         &\scriptstyle{(A+B)\*(A+B)} \ar[rr]^{1\*\Delta} \ar[dr]^{\nabla}
+         &&\scriptstyle{(A+B)\*(A+B)\*(A+B)}  \ar[dd]^{\nabla\*1} & A\*A\*A  \ar[l]^(.4){i_1\*i_1\*i_1}  \ar[dd]^{\nabla\*1}\\
+     & A \ar[r]^{i_1} \ar[ddrr]_{\Delta} & \scriptstyle{A+B} \ar[dr]^{\Delta} \\
+     & & & \scriptstyle{(A+B)\*(A+B)} & A\*A  \ar[l]_(.45){i_1\*i_1} \ar@{=}[dl]\\
+     & & & A\*A. \ar[u]_{i_1\*i_1}
+    }
+  \]
+  By the same reasoning as the previous two arguments, the diagram commutes and $A+B$ is a Frobenius
+  algebra.
+\end{proof}
+
+Now that we have that $A\+B$ is in \CFrob when, $A,B$ are in \CFrob, we can show that the
+biproduct projections and injections are maps in \CFrob.
+
+
+\begin{proposition}\label{prop:cfrobx_has_disjoint_sums}
+  Suppose $A$ and $B$ are Frobenius algebras in \CFrob where \X, an additive tensor category, has
+  the biproduct $+$.
+  Then $A\+B$ as defined in Lemma~\ref{lem:biproduct-is-in-cfrob-x} is a disjoint sum in \CFrob.
+\end{proposition}
+\begin{proof}
+  Next, we must give maps $i_1,i_2,x_1,x_2$  in \CFrob that satisfy the disjoint sum diagram,
+  \begin{equation}
+    \xymatrix@C+10pt{
+      A\ar[r]^{i_1} &A+B\ar@/^9pt/[l]^{x_1} \ar@/_9pt/[r]_{x_2} & B \ar[l]_{i_2}
+    }\label{dia:cfrob-disjoint-sum}
+  \end{equation}
+  where
+  \begin{enumerate}[{(}i{)}]
+    \item $i_1$ and $i_2$ are monic,
+    \item $\inv{i_1} = \xa$ and $\inv{i_2} = \xb$, and
+    \item $\inv{i_1}i_1 \perp \inv{i_2}i_2$ and $\inv{i_1}i_1 \djoin \inv{i_2}i_2 = 1_X$.
+  \end{enumerate}
+
+  By Lemma~\ref{lem:biproduct-injections-and-projections-are-in-cfrob}, setting $i_1,i_2$ to be the
+  injections of the biproduct and $\xa,\xb$ to be the projections will immediately give us
+  Diagram~\ref{dia:cfrob-disjoint-sum}, as all those maps are in \CFrob.
+
+  For the three conditions, as $i_1$ and $i_2$ are total maps, they are monic in the inverse
+  category. We know from above that $i_j\pi_j = 1$ and therefore $\inv{i_j} = \pi_j$. Additionally
+  we know that $\pi_1i_1 + \pi_2i_2 = 1$, but as $+$ is the disjoint join, this shows the third
+  condition is true and $A\+B$ is a disjoint sum.
+\end{proof}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:

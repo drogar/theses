@@ -1,0 +1,1229 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+
+\chapter{Restriction categories} % (fold)
+\label{chap:restriction_categories}
+
+
+Restriction categories were introduced in
+\cite{cockett2002:restcategories1,cockettlack2003:restcategories2,cockettlack2004:restcategories3}
+as a way to give an algebraic treatment of partiality. We will introduce restriction
+categories and provide a variety of results.
+
+\section{Definitions}
+\label{sec:definitions}
+
+
+\begin{definition}\label{def:restriction_category}
+  A \emph{restriction category} is a category \X\ together with a \emph{restriction operator} on
+  maps,
+  \[
+    \infer{\restr{f}:A\to A,}{f:A \to B}
+  \]
+  where $f$ is a map of \X\ and $A,B$ are objects of \X, such that the
+  following four \emph{restriction identities} hold, whenever the
+  compositions are defined:
+  \begin{align*}
+    &\rone\ \restr{f} f = f & &
+    \rtwo\ \restr{g}  \restr{f} = \restr{f}  \restr{g}\\
+    &\rthree\ \restr{\restr{f}  g} = \restr{f}   \restr{g} & &
+    \rfour\  f \restr{g} = \restr{f g} f.
+  \end{align*}
+\end{definition}
+
+\begin{definition}
+  A \emph{restriction functor} is a functor which preserves the restriction. That is,
+  given a functor $F: \X \to \Y$ with \X\  and \Y\ restriction categories,
+  $F$ is a restriction functor if:
+  \[
+    F(\restr{f}) = \restr{F(f)}.
+  \]
+\end{definition}
+
+Note that any map such that $r=\restr{r}$ is an idempotent, as $r r = \rst{r} r = r$.
+Such a map is called a \emph{restriction idempotent}.
+
+Here are some basic facts (see e.g., \cite{cockett2002:restcategories1} and
+\cite{cockett-manes09-boolean-classical-rest-cats}) for restriction categories.
+
+\begin{lemma}\label{lem:restrictionvarious}
+  In a restriction category \X,
+  \begin{multicols}{2}
+    \begin{enumerate}[{(}i{)}]
+      \item{}$\rst{f}$ is idempotent;
+      \item{} $\rst{f g} = \rst{f g} \, \rst{f}$;\label{lemitem:rv_2}
+      \item{} $\rst{f g} = \rst{f \rst{g}}$ ;\label{lemitem:rv_3}
+      \item{} $\rst{\rst{f}} = \rst{f}$;
+      \item{} $\rst{f}\,\rst{g} = \rst{\rst{f}\,\rst{g}}$;
+      \item{} $f$ monic implies $\rst{f} = 1$;
+      \item{} $f = \rst{g} f \implies \rst{g}\,\rst{f} = \rst{f}$.
+      \\
+    \end{enumerate}
+  \end{multicols}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item Using \rthree and then \rone, we see $\rst{f}\,\rst{f} = \rst{\rst{f} f} = \rst{f}$.
+    \item Using \rone, \rthree and then \rtwo, $\rst{f g} = \rst{\rst{f} f g} = \rst{f}\,\rst{f g} =
+      \rst{f g}\, f$.
+    \item Using \ref{lemitem:rv_2}, \rthree and then \rfour, $\rst{f g} = \rst{f g}\,\rst{f} =
+      \rst{\rst{f g} f} = \rst{f\rst{g}}$.
+    \item By \ref{lemitem:rv_3}, $\rst{f} = \rst{1 f} = \rst{1 \rst{f}} = \rst{\rst{f}}$.
+    \item Using \rthree, $\rst{\rst{f}\,\rst{g}} = \rst{f}\rst{\rst{g}} = \rst{f}\,\rst{g}$.
+    \item By \rone $\rst{f} f = 1 f$, hence when $f$ is monic, $\rst{f} = 1$.
+    \item $\rst{g}\rst{f} = \rst{\rst{g} f} = \rst{f}$.
+  \end{enumerate}
+\end{proof}
+
+Note that by Lemma~\ref{lem:restrictionvarious}, all maps $\restr{f}$ are restriction idempotents
+as $\rst{f}=\rst{\rst{f}}$.
+
+
+\begin{definition}\label{def:total_map}
+  A map $f:A\to B$ in a restriction category is said to be \emph{total} when
+  $\rst{f} = 1_A$.
+\end{definition}
+
+\begin{lemma}\label{lem:total_maps_form_sub_category}
+   The total maps in a restriction category form a subcategory  $Total(\X) \subseteq \X$.
+\end{lemma}
+\begin{proof}
+  First, as the identity map $1$ is monic, by Lemma~\ref{lem:restrictionvarious}, we have $\rst{1} =
+  1$ and therefore the identity map is in $Total(\X)$. If $f,g$ are composable maps in $Total(\X)$,
+  then $\rst{f\,g} = \rst{f\rst{g}} = \rst{f} = 1$ and hence $f g$ is in $Total(\X)$. Therefore,
+  $Total(\X)$ is a subcategory of $\X$.
+\end{proof}
+\begin{example}[\Par]\label{ex:par_is_a_restriction_category}
+Continuing from Example~\ref{ex:category_par}, \Par is a restriction category. The restriction of $f:A\to B$ is:
+\[
+  \rst{f}(x) =
+  \begin{cases}
+    x&\text{if $f(x)$ is defined,}\\
+    \undef&\text{if }f(x)\text{ is }\undef.
+  \end{cases}
+\]
+In \Par, the
+total maps correspond precisely to the functions that are defined on all elements of the domain.
+\end{example}
+
+\begin{example}[\rel]\label{ex:rel_is_not_a_restriction_category}
+The category \rel from Example~\ref{ex:category_rel} is a \emph{not} a restriction category with the
+candidate restriction of $R=\{(a,b)\}$ being $\rst{R} = \{(a,a) | \exists b. (a,b) \in R\}$. The
+axiom that fails is \rfour, as can be seen by setting $R=\{(1,1),(1,2)\}, S=\{(2,3)\}$. Then we
+have $\rst{RS} = \{(1,1)\}$ and therefore $\rst{RS} R = R$. However, $R\rst{S} = R\{(2,2)\} = \{(1,2)\}$.
+\end{example}
+
+\begin{example}[\pinj]\label{ex:pinj_is_a_restriction_category}
+From Example~\ref{ex:category_pinj}, we see \pinj is a restriction category and in fact is a
+sub-restriction category of \Par. We will show the four restriction axioms:
+\begin{align*}
+  \rone\ & \rst{f}f = \{(x,z) | \exists x. (x,x) \in \rst{f} \text{ and } (x,z) \in f\} = \{(x,z) |
+  (x,z) \in f\} = f,\\
+  \rtwo\ & \rst{f}\rst{g} = \{(x,z) | \exists y. (x,y) \in \rst{f} \text{ and } (y,z) \in \rst{g}\} =
+  \{(x,x) | (x,x) \in \rst{f} \text{ and } (x,x) \in \rst{g}\} = \rst{g}\rst{f},\\
+  \rthree\ & \rst{\rst{f} g} = \rst{\{(x,y) | (x,x) \in \rst{f}, (x,y) \in g\}} = \{(x,x) | (x,x) in
+  \rst{f}, (x,x) \in \rst{g} \} = \rst{f} \rst{g},\\
+  \rfour\ & f \rst{g} = \{(x,y) | (x,y) \in f, (y,y) \in \rst{g}\} =  \{(x,y) | (x,y) \in f, \exists
+  z. (y,z) \in g\} \\
+  &=  \{(x,y) | (x,y) \in f, \exists z. (x,z) \in f g\} =  \{(x,y) | (x,y) \in f,
+  (x,x) \in \rst{f g}\} = \rst{f g} f.
+\end{align*}
+\end{example}
+
+
+\begin{example}[\topcatp]\label{ex:restriction_category_top}
+  This is the category of topological spaces with partial functions.
+  \rcategoryns{Topological spaces;}{Any partial function $f$, where $f$ is defined on some open subset
+    of $\catdomain{f}$;}{The identity function;}{Function composition;}{The restriction of $f:A\to B$ is:
+\[
+  \rst{f}(x) =
+  \begin{cases}
+    x&\text{if $f(x)$ is defined,}\\
+    \undef&\text{if }f(x)\text{ is }\undef.
+  \end{cases}
+\]
+}
+\end{example}
+
+\begin{example}\label{ex:algebras-not-preserving-unit-as-restriction-cat}
+  Given $\cS$ is a symmetric monoidal category, define $\specialcat{Copy}(\cS)$ as the category whose objects are
+  the objects of $\cS$ which are commutative comonoids and semigroup homomorphisms, i.e., maps which
+  do not preserve the unit. As noted in \cite{cockett2002:restcategories1}, when there is a counit,
+  $!:B\to I$, this is a restriction category, where the restriction is given by
+  \[
+    \infer{A\xrightarrow{\rst{f}}A \definedas A \xrightarrow{\Delta} A\*A \xrightarrow{f\*1} B\* A
+      \xrightarrow{!\*1} I\*A \xrightarrow{\usl} A.}{A\xrightarrow{f}B}
+  \]
+
+  We may also consider commutative monoids with semigroup morphisms,
+  $\specialcat{Copy}(\cS)^{op}$. These will have a corestriction operator, i.e., an operator
+  $\rst{(\_)}$ on $f:A\to B$ with $\rst{f}:B\to B$ fulfilling the duals of the restriction axioms.
+
+%  This is the dual of a counital copy category as defined in
+%  \cite{cockettlack2004:restcategories3}. Theorem 5.2 from   \cite{cockettlack2004:restcategories3}
+%  shows that counital copy categories have a restriction.
+
+  For example, consider the category of commutative monoids in \Ab, the category of abelian
+  categories. This is the same as $(\specialcat{Copy}(\Ab^{op}))^{op}$ and thus is a corestriction
+  category. At the same time, this is the category of commutative rings with homomorphisms which do
+  not preserve the unit.
+
+  As another example, consider Frobenius algebras in \cS (defined below in
+  \ref{def:frobeniusalgebra}) with coalgebra homomorphisms that do not preserve the unit. Again,
+  this category will have a corestriction.
+\end{example}
+
+\section{Partial order enrichment} % (fold)
+\label{sub:enrichment_in_restriction_categories}
+
+We may use the restriction to define a partial order on the hom-sets of a restriction
+category. Intuitively, we would think of a map $f$ being less than a map $g$ if $f$ is
+defined on fewer elements than $g$ \emph{and} they agree where they are defined. This can be
+expressed as:
+
+
+\begin{definition}\label{def:restriction_category_hom_set_ordering}
+  In a restriction category, for any two parallel maps  $f,g:A\to B$, define $f \le g$ if and only if
+  $\restr{f} g = f$.
+\end{definition}
+
+\begin{lemma}\label{lem:restriction_cats_are_partial_order_enriched}
+  Any restriction category \X is enriched in category of partial orders under the ordering $\le$ from
+  Definition~\ref{def:restriction_category_hom_set_ordering} and the following hold:
+  \begin{multicols}{2}
+    \begin{enumerate}[{(}i{)}]
+      \item $f \le g \implies \restr{f} \le \restr{g}$;\label{lemitem:rst_ordering_2}
+      \item $\rst{f g} \le \rst{f}$; \label{lemitem:rst_ordering_3}
+      \item $f \le g \implies h f \le h g$;
+      \item $f \le g \implies f h \le g h$;
+      \item $f \le g$ and $\rst{f} = \rst{g}$ implies $f = g$;
+      \item $f \le 1 \iff f = \restr{f}$;
+      \item $\rst{g}f = f$ implies $\rst{f} \le \rst{g}$.
+    \end{enumerate}
+  \end{multicols}
+\end{lemma}
+\begin{proof}
+  First, we show the enrichment by showing $\le$ is a partial order on $\X(A,B)$. With
+  $f,g,h:A\to  B$ parallel maps in \X, each of the requirements for a partial order is
+  verified below:
+  \begin{description}
+    \itembf{Reflexivity:} $\restr{f} f = f$ and therefore, $ f \le f$.
+    \itembf{Anti-Symmetry:} Given $\restr{f}g = f$ and $\restr{g}f = g$, it follows:
+    \[
+      f = \restr{f} f = \restr{\restr{f} g} f = \restr{f}\, \restr{g} f
+      = \restr{g}\restr{f} f =  \restr{g} f = g.
+    \]
+    \itembf{Transitivity:} Given $f \le g$ and $g\le h$,
+      \[
+        \restr{f} h = \restr{\restr{f} g} h = \restr{f}\, \restr{g} h = \restr{f} g = f
+      \]
+    showing that $f \le h$.
+  \end{description}
+
+  We now show the rest of the claims.
+  \setlist[enumerate,1]{leftmargin=1.2cm}
+  \begin{enumerate}[{(}i{)}]
+    \item The premise is that $\restr{f} g = f$. From this, $ \restr{f}\, \restr{g} =
+      \restr{\restr{f} g} = \restr{f}$, showing $\restr{f} \le \restr{g}$.
+    \item $\restr{h f} h g = h \restr{f} g = h f$  and therefore $h f \le h g$.
+    \item $\restr{f} g = f$, this shows $\restr{f h} g h = \restr{\restr{f} g h} g h
+      = \restr{f}\, \restr{g h} g h = \restr{f} g h = f h$ and therefore $f h \le g h$.
+    \item $g = \rst{g} g = \rst{f} g = f$.
+    \item As $f \le 1$ means precisely $\restr{f}1 = f$.
+    \item Assuming $\rst{g} f = f$, we need to show $\rst{f}\, \rst{g} = \rst{f}$. Using \rtwo and
+      then \rthree we have $\rst{f}\,\rst{g} = \rst{g}\rst{f}  = \rst{\rst{g} f}  = \rst{f}$.
+      Hence, $\rst{f} \le \rst{g}$.
+  \end{enumerate}
+\end{proof}
+
+In a restriction category \X, we will use the notation $\open{A}$ for the restriction idempotents
+of $A$, an object of \X, that is, $\open{A} = \{x:A\to A| x = \rst{x}\}$. The notation $\open{A}$ was chosen
+to be suggestive of open sets, as in \topcatp, see Example~\ref{ex:restriction_category_top}.
+
+\begin{lemma}\label{lem:open_a_is_a_meet_semilattice}
+  In a restriction category \X, $\open{A}$ is a meet semi-lattice --- a poset with a top element and
+  binary meets.
+\end{lemma}
+\begin{proof}
+  The top of the meet semi-lattice is $1_A$, under the ordering from
+  Definition~\ref{def:restriction_category_hom_set_ordering}.
+  The meet of any two idempotents is given by their composition.
+\end{proof}
+
+Let \stabLat be the category whose objects are meet semi-lattices and maps are stable homomorphisms,
+that is, they preserve the meets but not necessarily the top. From Example 13 in
+\cite{cockett2002:restcategories1}, this is a corestriction category, i.e. $\stabLat^{op}$ is a
+restriction category. We see that the operation $\mathcal{O}$ is a functor, $\mathcal{O}: \X \to
+\stabLat^{op}$, and is the fundamental functor.
+
+\section{Joins} % (fold)
+\label{sub:joins_in_restriction_categories}
+
+The restriction operator allows to algebraically axiomatize the concept of ``domain of definition''
+for a function. With that axiomatization, we may then consider other questions about the maps. In
+this section, we consider when maps are identical on their common domain of definition. Two maps
+having this property are called compatible.
+
+\begin{definition}\label{def:compatible_maps}
+  Two parallel maps $f,g:A \to B$ in a restriction category are \emph{compatible}, written as $f
+  \compatible g$, when $\rst{f} g = \rst{g} f$.  A restriction category \X is a \emph{restriction
+    preorder} when all parallel pairs of maps are compatible.
+\end{definition}
+
+\begin{example}[Compatibility in \Par]\label{ex:compatibility_in_par}
+In the restriction category $\Par$, two maps, $f, g$ are compatible when
+$(x,y) \in f$ and $(x,y')\in g$ implies that $y = y'$.
+\end{example}
+
+Given two compatible maps, $f,g:A\to B$, we now want to consider if we can create a map that
+combines $f$ and $g$. Such a map needs to have certain properties:
+
+\begin{definition}\label{def:joins}
+  Given \R is a restriction category with zero maps, then \R is said to have
+  \emph{joins}\cite{guox:thesis} whenever there is an operator $\join$
+  \[
+    \infer{A\xrightarrow{f\join g} B}
+      {A\overset{f}{\underset{g}{\rightrightarrows}}B\ f\compatible g}
+  \]
+  such that:
+  \begin{enumerate}[{(}i{)}]
+    \item $f \le f \join g$ and $g \le f \join g$,\label{defitem:join1}
+    \item $\rst{f\join g} = \rst{f}\join \rst{g}$,\label{defitem:join2}
+    \item $f,g \le h$ implies that $f\join g \le h$ and\label{defitem:join3}
+    \item $h(f\join g) = h f \join h g$.\label{defitem:join4}
+  \end{enumerate}
+\end{definition}
+
+\begin{example}[Joins in \Par]\label{ex:joins_in_par}
+In the restriction category $\Par$, the join for two compatible maps is given by:
+\[(f \join g) (x) = \begin{cases}
+  f(x)( = g(x))& \text{ when both $f$ and $g$ are defined;}\\
+  f(x)& \text{ when only $f$ is defined;}\\
+  g(x)& \text{ when only $g$ is defined;}\\
+  \undef & \text{ when both $f$ and $g$ are undefined.}
+\end{cases}
+\]
+Note that the first line of the definition requires $f\compatible g$.
+
+Showing that the conditions of Definition~\ref{def:joins} hold is straightforward. For example,
+$\rst{f}(f\join g) = f(x)$ when $f$ is defined and is undefined otherwise, giving $f \le f\join g$
+and similarly for $g \le f \join g$.
+% We now must show each of the items in Definition~\ref{def:joins} hold:
+%   \begin{enumerate}[{(}i{)}]
+%     \item From its definition, we see the
+%       \[
+%         \rst{f}(f\join g) = \begin{cases}
+%           f(x) & \text{when $f$ is defined,}\\
+%           \undef & \text{otherwise.}
+%           \end{cases}
+%        \]
+%        giving us $f \le f\join g$. Similarly, $g \le f\join g$.
+%     \item $\rst{f\join g}(x) = x$ wherever $f$ or $g$ is defined, but that is the same as $\rst{f}\join \rst{g}$.
+%     \item We are given $f,g \le h$. Calculating
+%       \[
+%         \rst{f\join g} h
+%           = \begin{cases}
+%             h(x) &\text{when $f$ or $g$ are defined,}\\
+%             \undef &\text{otherwise.}
+%             \end{cases}
+%       \]
+%       But since $\rst{f}h = f$ and $\rst{g}h = g$, this is the same as $f\join g$ giving $f\join g \le h$.
+%     \item Calculating,
+%       \[
+%          h(f\join g) = \begin{cases}
+%            hf(x)( = h g(x))& \text{ when $h$, $f$ and $g$ are defined;}\\
+%            hf(x)& \text{ when only $h$ and $f$ are defined;}\\
+%            h g(x)& \text{ when only $h$ and $g$ are defined;}\\
+%            \undef & \text{ when $h$ or both $f$ and $g$ are undefined.}
+%          \end{cases}
+%        \]
+%        This is the same as the definition of $h f \join h g$.
+%   \end{enumerate}
+
+\end{example}
+\begin{example}[Joins in \topcatp]\label{ex:joins_in_top}
+   Recall from Example~\ref{ex:restriction_category_top} that the map $f:A\to B$ is a continuous
+   partial function on some open subset of $A$. $\rst{f}$ is the identity map on the open subset of
+   $A$ where $f$ is defined, and as such, may be identified with that open subset.
+   As the intersection of open subsets of $A$ is again
+   an open subset of $A$, given $f,g:A\to B$, define
+   \[
+      f\join g(x) = \begin{cases}
+        f(x) &\text{when }x\in  \rst{f}\intersection\rst{g},\\
+        f(x) &\text{when }x\in  \rst{f}\setminus\rst{g},\\
+        g(x) &\text{when }x\in  \rst{g}\setminus\rst{f},\\
+        \undef &\text{otherwise.}
+      \end{cases}
+   \]
+   Note this is similar to the definition of $\join$ in \Par and similar reasoning may be used to
+   show it is a join.
+\end{example}
+
+When \R is a restriction category with joins, this means that $\R(X,Y)$ is now a join
+semi-lattice. Joins are related to the coproduct by the following:
+
+\begin{theorem}[Cockett-Guo]\label{lem:join_determines_coproduct}
+  Given a restriction category $\R$ with joins, then
+  \[
+    A \xrightarrow{\cpa} C \xleftarrow{\cpb} B
+  \]
+  is a coproduct if and only if:
+  \begin{enumerate}[{(}i{)}]
+    \item $\cpa$ and $\cpb$ are restriction monics;
+    \item $\rst{\icpa}\,\rst{\icpb} = 0$ and
+    \item $\rst{\icpa} \join \rst{\icpb} = 1_C$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  See \cite{cockett-guo2007:joinrestrictioncats}.
+\end{proof}
+
+% section joins_in_restriction_categories (end)
+
+
+\section{Meets} % (fold)
+\label{sub:meets_in_restriction_categories}
+
+\begin{definition}\label{def:meet_in_a_restriction_category}
+  A restriction category has \emph{meets} if there is an operation $\meet$ on parallel maps:
+  \[
+    \infer{A\xrightarrow{f\meet g} B}
+      {A\overset{f}{\underset{g}{\rightrightarrows}}B}
+  \]
+  such that $f\meet g \le f, f\meet g \le g, f\meet f = f, h (f\meet g) = h f \meet h g$.
+\end{definition}
+
+Meets were introduced in \cite{cockett-guo-hofstra-2012:range2}. Note that, in general,
+$(f \meet g) h \ne f h \meet g h$. In fact equality only holds when $h$ is a partial monic, as in
+Definition~\ref{def:partial_inverse_etc} below.
+We give the following basic results on meets:
+
+\begin{lemma}
+  \label{lem:properties_of_meets_in_restriction_categories}
+  In a restriction category \X with meets, where $f, g, h$ are maps in
+  \X, the following are true:
+  \setlist[enumerate,1]{leftmargin=1.2cm}
+  \begin{enumerate}[{(}i{)}]
+    \item $f\le g \text{ and } f \le h \iff f \le g\meet h$;
+        \label{lemsub:properties_of_meets_one}
+    \item $f\meet g = g \meet f$;\label{lemsub:properties_of_meets_two}
+    \item $\restr{f\meet 1} = f \meet 1$;\label{lemsub:properties_of_meets_three}
+    \item $(f \meet g) \meet h = f \meet (g \meet h)$;
+    \item $r(f\meet g) = r f \meet g$ where $r=\rst{r}$ is a restriction idempotent;
+    \item $(f\meet g)r = f r \meet g$ where $r=\rst{r}$ is a restriction idempotent;
+    \item $\restr{f\meet g} \le \restr{f}$ (and therefore $\restr{f\meet g} \le \restr{g}$);
+    \item $ (f \meet 1) f = f \meet 1$;
+    \item $ e(e \meet 1) = e$ where $e$ is idempotent.
+  %\item $ e \meet e' = e e'$
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \setlist[enumerate,1]{leftmargin=1.2cm}
+  \begin{enumerate}[{(}i{)}]
+    \item $f\le g \text{ and } f \le h$ means precisely $f = \restr{f} g$ and $f = \restr{f} h$.
+      Therefore,
+      \[
+        \restr{f} (g\meet h) =  \restr{f} g \meet \restr{f} h =  f\meet f = f
+      \]
+      and so $f \le g \meet h$. Conversely, given $f \le g\meet h$, we have
+      $f = \restr{f} (g\meet h) = \restr{f} g \meet \restr{f} h \le \restr{f} g $. But
+      $f \le \restr{f} g$ means $f = \restr{f}\,\restr{f} g = \restr{f}g$ and therefore
+      $f \le g$. Similarly, $f \le h$.
+    \item From \ref{lemsub:properties_of_meets_one}, as by definition, $f\meet g \le g$ and
+      $f \meet g \le f$.
+    \item $f\meet 1 = \restr{f\meet 1} (f \meet 1)= (\restr{f \meet 1} f ) \meet (\restr{f \meet 1})
+      \le \restr{f \meet 1}$ from which the result follows. %def of $\le$, \rthree and \rone
+    \item By definition and transitivity, $(f\meet g)\meet h \le f, g, h$ therefore by
+      \ref{lemsub:properties_of_meets_one} $(f \meet g) \meet h \le f \meet (g \meet h)$. Similarly,
+      $f \meet (g \meet h) \le(f \meet g) \meet h$ giving the equality.
+    \item Given  $r f \meet g \le r f$, calculate:
+      \[
+        r f\meet g
+        = \restr{r f\meet g} r f
+        = \restr{r (r f\meet g)} f
+        = \restr{r r f\meet r g} f
+        = \restr{r (f\meet g)} f
+        = r \restr{f\meet g} f
+        = r (f\meet g).
+      \]
+    \item Using the previous point with the restriction idempotent $\restr{f r}$,
+      \begin{equation*}
+        \begin{split}
+          f r \meet g
+          = f \restr{r} \meet g   %%r rest id
+          = \restr{f r }f \meet g  %% R.4
+          = \restr{f r}(f\meet g)   %Pre
+          = \restr{f r}\, \restr{f\meet g} f \\ % meet <=
+          = \restr{f\meet g}\, \restr{f r} f % R2
+          = \restr{f\meet g} f \restr{r}  %R4
+          = (f\meet g) r. % meet, r rest id
+        \end{split}
+      \end{equation*}
+    \item For the first claim,
+      \[
+        \restr{f\meet g}\, \restr{f} =\restr{\restr{f}(f\meet g)}\\
+        =\restr{(\restr{f}f)\meet g} =\restr{f\meet g}.
+      \]
+      The second claim then follows by \ref{lemsub:properties_of_meets_two}.
+    \item Given $ f \meet 1 \leq f$:
+      \[
+        f \meet 1 \leq f \iff  \restr{f \meet 1} f = f \meet 1 \iff  (f \meet 1) f = f \meet 1
+      \]
+      where the last step is by item \ref{lemsub:properties_of_meets_three} of this lemma.
+    \item As $e$ is idempotent, $e (e\meet 1) = (e e \meet e) = e$.
+  \end{enumerate}
+\end{proof}
+
+Additionally, when a restriction category has both meets and joins, we have:
+\begin{lemma}\label{lem:meet_distributes_over_join}
+  If \R is a meet restriction category with joins, then the meet distributes over the join, i.e.,
+  \[
+    h\meet(f\join g) = (h\meet f)\join (h\meet g).
+  \]
+\end{lemma}
+\begin{proof}
+  \begin{align*}
+    h\meet(f\join g) &= \rst{(f\join g)} h\meet (f\join g)\\
+    &= (\rst{f}\join \rst{g}) h\meet (f\join g)\\
+    &= (\rst{f}(h\meet (f\join g))) \join (\rst{g}(h\meet (f\join g)))\\
+    &= (h\meet \rst{f}(f\join g)) \join (h\meet \rst{g}(f\join g)))\\
+    &= (h\meet (f\join g)) \join (h\meet (f\join g))).
+  \end{align*}
+\end{proof}
+
+\begin{example}[Meets in \pinj and \Par]\label{ex:pinj_has_meets}
+The restriction category \pinj has meets given by the intersection of the sets defining the
+maps. First, we note that the hom-set ordering for \pinj is given by set inclusion. We immediately have
+\begin{align*}
+  f\intersection g &\subseteq f \\
+  f\intersection g &\subseteq g\\
+  f\intersection f & = f
+\end{align*}
+by the properties of sets and intersections. For the final requirement,
+\begin{align*}
+  h(f\intersection g) &= \{(x,z) | \exists y. (x,y) \in h, (y,z) \in f\intersection g\}\\
+  &=   \{(x,z) | \exists y. (x,y)  \in h, (y,z) \in f, (y,z) \in g\}\\
+  & = \{(x,z) | (x,z) \in h f, (x,z) \in h g\} = h f \intersection h g.
+\end{align*}
+Thus, intersection is a meet in \pinj.
+
+Note that the calculations above apply immediately to \Par as well, therefore intersection is a
+meet in \Par.
+
+\end{example}
+% section enrichment_and_meets (end)
+\section{Partial monics and isomorphisms} % (fold)
+\label{sub:restricted_monics_and_partial_isomorphisms}
+
+Partial isomorphisms play a central role in this thesis. Below we present
+some of their basic properties.
+
+\begin{definition}\label{def:partial_inverse_etc}
+  In a restriction category \X, a map $f$ may have some of the following properties:
+  \begin{itemize}
+    \item $f$ is a \emph{partial isomorphism} when there is a \emph{partial inverse}, written
+      $\inv{f}$ with $f\inv{f} =\restr{f}$ and $\inv{f}f = \restr{\inv{f}}$;
+    \item $f$ is a \emph{partial monic} if $h f = k f$ implies $h \restr{f} = k \restr{f}$;
+%    \item $f$ is a \emph{partial section} if there exists an  $h$ such that $f h = \restr{f}$;
+    \item $f$ is a \emph{restriction monic} if it is a section $s$ with a retraction
+      $r$ such that $r s = \restr{r s}$.
+  \end{itemize}
+\end{definition}
+
+For example, consider the following maps in \Par, $f_1, f_2, f_3:\{1,2\} \to \{a,b,c\}$ where
+\[
+  f_1(1) = a, f_1(2)=b;\quad  f_2(1) = a, f_2(2) \undef;\quad    f_3(1) = f_3(2)=a.
+\]
+Then, $f_1$ is a total partial isomorphism and a partial monic and a restriction monic. $f_2$  is a
+partial isomorphism and is a partial monic but is not a restriction monic as it is not a
+section. $f_3$ is none of the items in Definition~\ref{def:partial_inverse_etc}. Finally, in the
+category \topcatp, we shall see in Example~\ref{ex:topcatp-not-discrete} that $\Delta$ does not have
+a partial inverse unless the topological space is discrete. But as $\Delta$ is monic and total, it
+is a partial monic.
+
+Note that restriction monic is a stronger notion than that of section. In fact, restriction monics
+are the partial isomorphisms which are total.
+
+
+\begin{lemma}
+  \label{lem:rcs_partial_monic_section_inverse_properties}
+  In a restriction category:
+  \begin{enumerate}[{(}i{)}]
+    \item $f,\ g$ partial monic implies $f g$ is partial monic;
+%    \item $f$ a partial section implies $f$ is partial monic;
+%    \item $f,\ g$ partial sections implies $f g$ is a partial section;
+    \item The partial inverse of $f$, when it exists, is unique;
+    \item If $f,\ g$ have partial inverses and $f\,g$ exists, then $f\,g$ has a partial inverse;
+    \item A restriction monic $s$ is a partial isomorphism.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item Suppose $h f g = k f g$. As $g$ is partial monic, $h f \restr{g} = k f \restr{g}$.
+      Therefore:
+      \begin{align*}
+        h \restr{f g} f &= k \restr{f g} f &\rfour\\
+        h \restr{f g}\,\restr{f} &= k \restr{f g}\, \restr{f} & f\text{partial monic}\\
+        h \restr{f g}&= k \restr{f g} & \text{Lemma \ref{lem:restrictionvarious},
+          \ref{lemitem:rv_2}.}
+      \end{align*}
+    % \item Suppose $g f = k f$. Then, $g\restr{f} = g f h = k f h = k \restr{f}$.
+    % \item We have $f h = \restr{f}$ and $g h' = \restr{g}$. Therefore,
+    %   \begin{align*}
+    %     f g h' h &= f \restr{g} h & g \text{ partial section}\\
+    %     &= \restr{f g} f h & \rfour\\
+    %     &= \restr{f g}\, \restr{f} & f \text{ partial section}\\
+    %     &= \restr{f}\, \restr{f g} & \rtwo\\
+    %     &= \restr{\restr{f}f g} & \rthree\\
+    %     &= \restr{f g} & \rone.
+    %   \end{align*}
+    \item Suppose both $\inv{f}$ and $f^{\diamond}$ are partial inverses of $f$. Then,
+      \begin{multline*}
+        \inv{f}
+        = \restr{\inv{f}}\inv{f} %R.1
+        =\inv{f}f\inv{f}  %Assumption, inverse is \inv{f}
+        = \inv{f} \restr{f}   %Assumption, inverse is \inv{f}
+        = \inv{f} f f^{\diamond}   %Assumption, inverse is f^{\diamond}
+        = \inv{f} f \restr{f^{\diamond}} f^{\diamond}  \\ %R.1
+        = \restr{\inv{f}}\restr{f^{\diamond}} f^{\diamond}   %Assumption, inverse is \inv{f}
+        = \restr{f^{\diamond}}\restr{\inv{f}} f^{\diamond} %R.2
+        = f^{\diamond} f \restr{\inv{f}}  f^{\diamond} %Assumption, inverse is f^{\diamond}
+        = f^{\diamond} f \inv{f} f f^{\diamond} %Assumption, inverse is \inv{f}
+        = f^{\diamond} f f^{\diamond} %Assumption, inverse is \inv{f} and R.1
+        = f^{\diamond}. %Assumption, inverse is f^{\diamond}
+      \end{multline*}
+    \item For $f:A\to B,\ g:B\to C$ with partial inverses $\inv{f}$ and $\inv{g}$ respectively,
+      the partial inverse of $f g$ is $\inv{g} \inv{f}$. Calculating $f g \inv{g} \inv{f}$
+      using all the restriction identities:
+      \[
+        f g \inv{g} \inv{f} = f \restr{g} \inv{f} = \restr{f g} f \inv{f} =
+        \restr{f g}\, \restr{f} = \restr{f}\, \restr{f g} = \restr{\restr{f} f g} = \restr{f g}.
+      \]
+      The calculation of $\inv{g} \inv{f} f g = \restr{\inv{g} \inv{f}}$ is similar.
+    \item The partial inverse of $s$ is $\restr{r s}\,r$. First, note
+      that $\restr{\restr{r s}\,r}
+      = \restr{r s}\,\restr{r}
+      = \restr{r}\, \restr{r s}
+      = \restr{\restr{r}\,r s}
+      = \restr{r s}$.
+      Then, it follows that $(\restr{r s}\,r) s
+      = r s\,= \restr{r s}
+      = \restr{\restr{r s}r} $ and
+      $s (\restr{r s}\,r)
+      = s r \restr{s} %sr = 1 as r is the retraction of the section s
+      = \restr{s}$.
+  \end{enumerate}
+\end{proof}
+
+% section restricted_monics_sections_and_partial_isomorphisms (end)
+
+\section{Range categories} % (fold)
+\label{sub:range_categories}
+Corresponding to Definition~\ref{def:restriction_category} for restriction, which axiomatizes the
+concept of a domain of definition, we now introduce range categories
+\cite{guox:thesis,cockett-guo-hofstra-2012:range,cockett-guo-hofstra-2012:range2}
+which algebraically axiomatize the concept of the range for a function.
+
+\begin{definition}\label{def:range_category}
+  A restriction category \X is a \emph{range category} when it has an operator on all maps
+  \[
+    \infer{\rg{f}:B\to B}{f:A\to B}
+  \]
+  where the operator satisfies the following:
+  \begin{align*}
+    &\rrone\ \restr{\rg{f}} = \rg{f} & &
+     \rrtwo\ f \rg{f} = f\\
+    &\rrthree\ \wrg{f\rst{g}} = \rg{f} \rst{g} & &
+     \rrfour\  \wrg{\rg{f}g} = \wrg{f g}
+  \end{align*}
+  whenever the compositions are defined.
+
+\end{definition}
+
+\begin{lemma}\label{lem:basic_range_category_properties}
+  In a range category \X, the following hold:
+  \begin{multicols}{2}
+    \begin{enumerate}[{(}i{)}]
+      \item $\rg{g}\rg{f} = \rg{f}\rg{g}$;
+      \item $\rst{f}\rg{g} = \rg{g}\rst{f}$;
+      \item $\wrg{f\rg{g}} = \rg{f}\rg{g}$;
+      \item $\rg{f} = 1$ when $f$ is epic, hence $\rg{1} = 1$;
+      \item $\rg{f}\rg{f} = \rg{f}$;
+      \item $\rg{\rg{f}} = \rg{f}$;
+      \item $\rg{\rst{f}} = \rst{f}$;
+      \item $\rg{g}\wrg{f g} = \wrg{f g}$;
+      \item $\wrg{\rg{f}\rg{g}} = \rg{f}\rg{g}$.
+    \end{enumerate}
+  \end{multicols}
+\end{lemma}
+\begin{proof}
+  See, e.g., \cite{guox:thesis}.
+\end{proof}
+
+\begin{lemma}\label{lem:ordering_of_restriction_and_range}
+  In a range category:
+  \begin{multicols}{2}
+    \begin{enumerate}[{(}i{)}]
+      \item  $\wrg{h f} \le \rg{f}$; \label{lemitem:ordering_1}
+      \item $f' \le f$ implies $\rg{f'} \le \rg{f}$. \label{lemitem:ordering_2}
+    \end{enumerate}
+  \end{multicols}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item Noting that $\rst{\wrg{hf}} \rg{f} = \wrg{hf} \rg{f}  = \wrg{hf \rg{f}} = \wrg{h f}$,
+      we see $\wrg{h f} \le \rg{f}$.
+    \item Calculating $\rst{\rg{f'}} \rg{f} = \rg{f'} \rg{f} = \wrg{\rst{f'} f} \rg{f} =
+      \wrg{\rst{f'} f \rg{f}} = \wrg{\rst{f'} f} = \rg{f'}$, we see $\rg{f'} \le \rg{f}$.
+  \end{enumerate}
+\end{proof}
+
+
+Note that unlike restrictions, a range is a \emph{property} of a restriction category. To see
+this, assume we have two ranges $\wrg{(\_)}$ and $\widetilde{(\_)}$. Then,
+\[\rg{f}=\wrg{f \tilde{f}}=\rg{f} \tilde{f}=\tilde{f} \rg{f}=\widetilde{f \rg{f}}=\tilde{f}.\]
+% section range_categories (end)
+
+\begin{example}\label{ex:ranges}
+   In \pinj, $\rg{f} = \{(y,y) | \exists x. (x,y) \in f\}$.
+\end{example}
+\section{Split restriction categories} % (fold)
+\label{sub:split_restriction_categories}
+
+The Karoubi envelope of a restriction category, $\spl{E}{\X}$ as defined in
+Definition~\ref{def:split_category} is a restriction category.
+
+Note that for $f:(A,d)\to(B,e)$, by definition, in \X we have $f=d\uts f e$, giving
+\[
+  d\uts f = d(d\uts f e) = d\uts d\uts f e = d\uts f e =f\
+  \text{ and }\  f e = (d\uts f e)e = d\uts f e\uts e = d\uts f e = f.
+\]
+When \X is a restriction category, there is an immediate candidate for a restriction in
+$\spl{E}{\X}$. If $f\in\spl{E}{\X}$ is $e_1 f e_2$ in $\X$, then define $\restr{f}$ as
+given by $e_1 \restr{f}$ in \X. Note that for $f:(A,d)\to(B,e)$, in \X we have:
+\[
+  d\uts\restr{f} = \restr{d\uts f} d = \restr{f} d.
+\]
+
+\begin{proposition}\label{prop:spleisarestrictioncat}
+  If \X is a restriction category and $E$ is a set of idempotents, then
+  the restriction as defined above makes $\spl{E}{\X}$ a restriction category.
+\end{proposition}
+\begin{proof}
+  The restriction takes $f:(A,e_1)\to (B,e_2)$ to an endomorphism of $(A,e_1)$. The restriction
+  is in $\spl{E}{\X}$ as
+  \[
+    e_1 (e_1\restr{f}) e_1 = e_1 \restr{f} e_1
+    = \restr{e_1 f} e_1 e_1
+    = \restr{e_1 f} e_1
+    = e_1 \restr{ f}.
+  \]
+
+  Checking the 4 restriction axioms:
+  \begin{align*}
+    &[\text{{\bfseries R.1}}]\  \llbracket\restr{f}f\rrbracket = e_1 \restr{f} f
+    = e_1 f = \llbracket f\rrbracket.\\
+    %
+    & [\text{{\textbf{R.2}}}]\ \llbracket\restr{g}\restr{f}\rrbracket =
+    e_1\restr{g}  e_1\restr{f}
+    = e_1 e_1\restr{g}  \restr{f} = e_1 e_1\restr{f}  \restr{g}
+    = e_1\restr{f}  e_1\restr{g}  = \llbracket\restr{f}\restr{g}\rrbracket.\\
+    %
+    & [\text{{\textbf{R.3}}}]\ \llbracket\restr{\restr{f} g } \equiv
+    e_1 \restr{e_1 \restr{f}  g}
+    =  \restr{e_1 e_1 \restr{f} g} e_1
+    =  \restr{e_1 \restr{f} g} e_1
+    =  e_1 \restr{\restr{f} g}
+    = e_1 \restr{f}\restr{g}
+    = e_{1}e_{1}\restr{f}\restr{g}
+    = e_1 \restr{f}e_1\restr{g}
+    = \llbracket\restr{f}\, \restr{g}\rrbracket.\\
+    %
+    &[\text{{\textbf{R.4}}}]\  \llbracket f \restr{g} \rrbracket =
+     e_1f e_2 \restr{g}
+    = \restr{e_1 f e_2 g} e_1 f e_2
+    = \restr{e_1 e_1 f e_2 g} e_1 e_1 f e_2 \\
+    & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad
+    = e_1 \restr{ e_1 f e_2 g} e_1 f e_2
+    = e_1 \restr{f g} e_1 f e_2
+    = \llbracket\restr{f g} f\rrbracket.
+  \end{align*}
+\end{proof}
+
+Given this, provided all identity maps are in $E$, $\spl{E}{\X}$ is a
+restriction category with $\X$ as a full sub-restriction category, via
+the embedding defined by taking an object $A$ in \X to  the object $(A,1)$
+in $\spl{E}{\X}$.
+
+
+\begin{proposition}\label{pro:in_rc_x_with_meets_split_x_is_cong_to_split_r_x}
+  In a restriction category \X, with meets, let $R$ be the set of restriction idempotents.
+  Then, $\spl{}{\X} \cong \spl{R}{\X}$. That is, splitting over all the idempotents is equivalent to
+  splitting over just the restriction idempotents.
+  Furthermore, $\spl{R}{\X}$ has meets.
+\end{proposition}
+\begin{proof}
+  The proof first shows the equivalence of the two categories, then addresses the claim
+  that $\spl{R}{\X}$ has meets.
+
+  For equivalence, we require two functors,
+  \[
+    U:\spl{R}{\X}\to\spl{}{\X}\text{ and }V:\spl{}{\X}\to\spl{R}{\X},
+  \]
+  with:
+  \begin{align}
+    U V \cong I_{\spl{R}{\X}}\\
+    V U \cong I_{\spl{}{\X}}.
+  \end{align}
+
+
+  $U$ is the standard inclusion functor. $V$ will take the object $(A,e)$ to
+  $(A,e\meet 1)$ and the map $f:(A,e_1)\to (B,e_2)$ to $(e_1\meet 1)f $.
+
+  $V$ is a functor as:
+  \begin{description}
+    \itembf{Well Defined:} If  $f:(A,e_1) \to (B,e_2)$, then
+      $(e_1\meet 1) f $ is a map in \X from $A$ to $B$ and
+      $ (e_1\meet 1)(e_1\meet 1) f  (e_2 \meet 1) =
+      (e_1\meet 1) (f  e_2 \meet f ) = (e_1\meet 1) (f \meet f)= (e_1\meet 1) f$, therefore,
+      $V(f):V((A,e_1)) \to V((B,e_2))$.
+    \itembf{Identities:} $V(e) = (e\meet 1 ) e = e \meet 1$ by
+      lemma \ref{lem:properties_of_meets_in_restriction_categories}.
+    \itembf{Composition:} $V(f) V(g)
+      = (e_1\meet 1 ) f (e_2 \meet 1) g
+      = (e_1\meet 1 ) f e_2 (e_2 \meet 1) g
+      = (e_1\meet 1 ) f  (e_2 \meet e_{2}) g
+      = (e_1\meet 1 ) f e_2 g
+      = (e_1\meet 1 ) f g
+      = V(f g)$.
+  \end{description}
+
+  By Lemma \ref{lem:properties_of_meets_in_restriction_categories} $(e\meet 1)$
+  is a restriction idempotent. Using this fact, the commutativity of restriction idempotents
+  and Lemma~\ref{lem:properties_of_meets_in_restriction_categories}, the composite functor $U V$ is
+  the identity on $\spl{r}{\X}$. This is because when $e$ is a restriction idempotent,
+  $e = e (e\meet 1) = (e\meet 1) e = (e\meet 1)$.
+
+  For the other direction,  note that for a particular idempotent $e:A\to A$,  this gives the
+  maps $e:(A,e)\to(A,e\meet 1)$ and $e\meet 1 : (A,e\meet 1) \to (A,e)$, again by
+  \ref{lem:properties_of_meets_in_restriction_categories}. These maps give the natural
+  isomorphism between $I$ and $V U$ as
+  \[
+    \xymatrix{
+      (A,e)\ar[r]^e \ar[dr]_{e} &(A,e\meet 1)\ar[d]^{e\meet 1}\\
+      &(A,e)
+    }\qquad \text{ and  }\qquad
+    \xymatrix{
+      (A,e\meet 1)\ar[r]^{e\meet 1} \ar[dr]_{e\meet 1} &(A,e)\ar[d]^{e}\\
+      &(A,e\meet 1)
+    }
+  \]
+  both commute. Therefore, $U V = I$ and $V U \cong I$, giving an equivalence of the categories.
+
+  For the rest of this proof, functions in bold type, e.g., $\mbf$, are in $\spl{R}{\X}$.
+  Functions in normal slanted type, e.g., $f$ are in \X.
+
+  To show that $\spl{R}{\X}$ has meets,  designate the meet in $\spl{R}{\X}$ as \meetspl
+  and define $\mbf \meetspl \mbg$ as the map given by the \X map $f \meet g$, where
+  $\mbf,\mbg:(A,d)\to(B,e)$ in $\spl{R}{\X}$ and $f,g:A\to B$ in \X . This is
+  a map in $\spl{R}{\X}$ as
+  $d(f \meet g)e = (d\uts f \meet d\uts g) e = (f \meet g) e = (f e \meet g) = f\meet g$
+  where the penultimate equality is by
+  \ref{lem:properties_of_meets_in_restriction_categories}.
+  By definition $\restr{\mbf \meetspl \mbg }$ is $d\restr{f\meet g}$.
+
+  It is necessary to show \meetspl satisfies the four meet properties.
+  \begin{itemize}
+    \item{$\mbf\meetspl \mbg \le \mbf$: } We need to show
+      $\rst{\mbf \meetspl \mbg} \mbf =  \mbf \meetspl \mbg$.  Calculating now in \X:
+      \[
+        d \rst{f \meet g} f= \rst{d(f\meet g)} d f  = \rst{d f \meet d g} d f
+         = \rst{f \meet g} f  = f \meet g
+      \]
+      which is the definition of $\mbf \meetspl \mbg$.
+    \item{$\mbf\meetspl \mbg \le \mbg$: } Similarly and once again calculating in \X,
+      \[
+        d \rst{f \meet g} g = \rst{d(f\meet g)} d g  = \rst{d f \meet d g} d g
+         = \rst{f \meet g} g  = f \meet g
+      \]
+      which is the definition of $\mbf \meetspl \mbg$.
+    \item{$\mbf\meetspl \mbf = \mbf$: } From the definition, this is $f \meet f = f$ which
+      is just $ \mbf$.
+    \item{$\mbh(\mbf\meetspl \mbg) = \mbh\mbf \meetspl \mbh\mbg$: }
+      From the definition, this is given in \X by $ h (f \meet g) =
+      h f \meet h g$ which in $\spl{R}{\X}$ is $\mbh\mbf \meetspl \mbh\mbg$.
+  \end{itemize}
+\end{proof}
+
+Consider two objects $A, B$
+in a restriction category where we have $m: A\to B$, $r:B \to A$ with $m r = 1_A$. In this case
+$A$ is called a \emph{retract} of $B$, which we will write as $A\retract B$. As $m$ and $r$ need
+not be unique, we will also write $A \retractmaps{m}{r} B$ when the specific section and retraction
+are to be emphasized. Since $m$ is a section, it is a monic and therefore total. The map $r m$ is
+idempotent on $B$ as $r m r m = r 1 m = r m$. $A$ is referred to as a \emph{splitting} of the
+idempotent $r m$. Note there is no requirement that $r m = \rst{r m}$ when $m$ is simply monic.
+
+% section split_restriction_categories (end)
+
+
+
+\section{Partial map categories} % (fold)
+\label{sub:partial_map_categories}
+
+In \cite{cockett2002:restcategories1}, it is shown that split restriction categories are
+equivalent to \emph{partial map categories}. The main definitions and results related to
+partial map categories are given below.
+
+\begin{definition}
+  A collection $\Mstab$ of monics is \emph{a stable system of monics}
+  when:
+  \begin{enumerate}[{(}i{)}]
+    \item it includes all isomorphisms;
+    \item it is closed under composition;
+    \item it is pullback stable.
+  \end{enumerate}
+\end{definition}
+
+\emph{Stable} in this definition means that if $m:A\to B$ is in \Mstab, then for arbitrary
+$b$ with codomain $B$, the pullback
+\[
+  \xymatrix{
+    A'\ar[r]^a \ar[d]_{m'} &A\ar[d]^{m}\\
+    B' \ar[r]_{b} & B
+  }
+\]
+exists and $m' \in \Mstab$. A category that has a stable system of monics
+is referred to as an \Mstab-category.
+
+\begin{lemma}
+  If $n m \in \Mstab$, a stable system of monics, and $m$ is monic, then $n \in \Mstab$.
+\end{lemma}
+\begin{proof}
+  The commutative square
+  \[
+    \xymatrix{
+      A\ar[d]_n \ar[r]^{1} &A\ar[d]^{n m}\\
+      A' \ar[r]_{m} & B
+    }
+  \]
+  is a pullback.
+\end{proof}
+
+Given a category \B and a stable system of monics, the \emph{partial map category},
+$\text{Par}(\B,\Mstab)$ is:
+  \rcategoryequivns{$A\in\B$;}
+    {$(m,f):A\to B$  with $m:A' \to A$ is in \Mstab and $f:A' \to B$ is a map in \B. i.e.,
+      $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{f}\\A&&B}$;}
+    {$1_A,1_A:A \to A$;}
+    {via a pullback, $(m,f)(m',g) = (m'' m, f' g)$ where
+      \[
+        \xymatrix @C-15pt @R-15pt{
+          &&A''\ar[dl]_{m''}\ar[dr]^{f'}\\
+          &A'\ar[dl]_{m}\ar[dr]_{f}&\text{{\tiny (pb)}}&B'\ar[dl]^{m'}\ar[dr]^{g}\\
+          A&&B&&C;
+        }
+      \]
+    }
+    {$\restr{(m,f)} = (m,m)$.}
+
+For the maps, $(m,f) \sim (m',f')$ when there is an isomorphism $\gamma : A'' \to A'$
+such that $\gamma m' = m$ and $\gamma f' = f$.
+
+In \cite{cockettlack2003:restcategories2}, it is shown that:
+\begin{theorem}[Cockett-Lack]
+  Every restriction category is a full subcategory of a partial map category.
+\end{theorem}
+% section partial_map_categories (end)
+\section{Restriction products and Cartesian restriction categories} % (fold)
+\label{sub:restriction_products_and_cartesian_restriction_categories}
+
+
+Restriction categories have analogues of products and terminal objects.
+
+\begin{definition}\label{def:restriction_product}
+  In a restriction category \X, a \emph{restriction product}  of two objects $X, Y$ is an
+  object $X\times Y$ equipped with \emph{total} projections
+  $\pi_0:X\times Y\to X, \pi_1:X\times Y\to Y $ where:
+  \begin{quote}
+    $\forall f:Z\to X, g: Z\to Y, \quad \exists$ a unique $\<f,g\>:Z \to X\times Y$ such that
+    \begin{itemize}
+      \item $\<f,g\> \pi_0 \le f$,
+      \item $\<f,g\> \pi_1 \le g$ and
+      \item $\restr{\<f,g\>} = \restr{f}\, \restr{g} ( = \restr{g}\, \restr{f})$.
+    \end{itemize}
+  \end{quote}
+\end{definition}
+
+\begin{definition}\label{def:restriction_terminal_object}
+  In a restriction category \X\, a \emph{restriction terminal object}
+  is an object $\top$ such that for all objects $X$, there is a
+  unique total map $!_X : X \to \top$ and the diagram
+  \[
+    \xymatrix @C=40pt @R=25pt{
+      X \ar[r]^{\restr{f}} \ar[d]^{f} & X \ar[r]^{!_X}  &\top  \\
+      Y \ar[urr]_{!_Y}
+    }
+  \]
+  commutes. That is,  $f\, !_Y = \restr{f}\, !_X$. Note this implies
+  that a restriction terminal object is unique up to a unique isomorphism.
+\end{definition}
+
+For example, in \Par, the restriction terminal object is the one object set, $\{*\}$. The product of
+two sets is the standard Cartesian product, with $\pi_0$ mapping $(x,y) \mapsto x$ and
+$\pi_1:(x,y)\mapsto y$. The product map $\<f,g\>:Z\to X\times Y$ is given as:
+\[
+  \<f,g\>(z) = \begin{cases}
+    (x,y)&f(z) = x\text{ and } g(z) = y\\
+    \undef&f(z) \undef\text{ or }g(y)\undef.
+    \end{cases}
+\]
+
+\begin{definition}\label{def:cartesian_restriction_category}
+  A restriction category \X\ is \emph{Cartesian} if it has all restriction products
+  and a restriction terminal object.
+\end{definition}
+
+\section{Discrete Cartesian restriction categories}\label{sub:discrete_restriction_categories}
+
+\begin{definition}\label{def:discrete_object_and_discrete_cartesian}
+  An object $A$ in a Cartesian restriction category is \emph{discrete}
+  when the diagonal map
+  \[
+    \Delta:A \to A \times A
+  \]
+  is a partial isomorphism.
+  A  Cartesian restriction category where all objects are
+  discrete is called a \emph{discrete} Cartesian restriction category.
+\end{definition}
+
+
+\begin{example}[\topcatp is not discrete]\label{ex:topcatp-not-discrete}
+  In any topological space $T$, the only way that $\Delta$ can have a continuous inverse is when the
+  topology is the discrete topology. This example is the motivating example for our terminology of
+  discrete.
+
+  The topology of $T\times T$ is generated by open sets $U\times V$ where $U,V$ are open sets of
+  $T$. We see that $\Delta \intersection U\times V = \Delta \intersection (U\intersection V) \times
+  (U\intersection V)$, so if $\Delta \subseteq \union_i U_i\times V_i$, then  $\Delta \subseteq
+  \union_i (U_i\intersection V_i)\times( U_i\intersection V_i)$. Thus, any open cover of $\Delta$ has a
+  subcover of the form $\union_i U_i\times U_i$. For $\inv{\Delta}$ to be a continuous
+  map, that means the diagonal must be an open set. But if $\Delta$ is open, then $\Delta = \union_i
+  U_i\times V_i$ if and only if $\Delta \subseteq \union_i (U_i\intersection V_i) \times (U_i \intersection
+  V_I) \subseteq \union_i U_i \times U_i \subseteq \Delta$. So, $\Delta = \union_i U_i \times U_i$,
+  which gives us $U_i \times U_i \subseteq \Delta$, but this can only happen when $U_i = \{x\}$, a
+  singleton set.  Therefore, $T$ has the discrete topology.
+\end{example}
+
+\begin{example}[\Par is discrete]\label{ex:par_is_discrete}
+  In \Par,
+  \[
+    \Delta: x \mapsto (x,x)\text{ and }\inv{\Delta}:(x,y)\mapsto\begin{cases}
+      x& x = y,\\
+      \undef & x\ne y.
+    \end{cases}
+  \]
+  Thus, \Par is a discrete Cartesian restriction category.
+\end{example}
+
+Further examples of discrete and non-discrete Cartesian restriction categories are given at the end
+of the section.
+
+\begin{theorem}\label{thm:a_crc_is_discrete_iff_it_has_meets}
+  A Cartesian restriction category \X is discrete if and only if it has meets.
+\end{theorem}
+\begin{proof}
+  If \X has meets, then
+  \[
+    \Delta(\pi_0 \meet \pi_1) = \Delta\pi_0 \meet \Delta\pi_1 = 1\meet 1 = 1.
+  \]
+  As $\<\pi_0,\pi_1\>$ is identity,
+  \begin{align*}
+    \restr{\pi_0 \meet \pi_1} &= \restr{\pi_0 \meet \pi_1} \<\pi_0, \pi_1\> \\
+    &=\<\rst{\pi_0 \meet \pi_1}\pi_0, \rst{\pi_0 \meet \pi_1}\pi_1\>\\
+    &=\<\pi_0 \meet \pi_1,\pi_0 \meet \pi_1\>\\
+    &=(\pi_0 \meet \pi_1 )\Delta
+  \end{align*}
+  and therefore, $\pi_0 \meet \pi_1$ is $\inv{\Delta}$.
+
+  To show the other direction, we set $f\meet g = \<f,g\>\inv{\Delta}$.
+  By the definition of the restriction product:
+  \[
+    f \meet g =  \<f,g\>\inv{\Delta} =\<f,g\>\inv{\Delta} \Delta \pi_0 =
+      \<f,g\>\restr{\inv{\Delta}}\pi_0 \le \<f,g\>\pi_0 \le f.
+  \]
+  Then, substituting $\pi_1$ for $\pi_0$ above, this gives us $f \meet g \le g$.
+
+  For the left distributive law,
+  \[
+    h(f \meet g) = h \<f,g\>\inv{\Delta} =  \<h f,h g\>\inv{\Delta} = h f \meet h g.
+  \]
+  The intersection of a map with itself is
+  \[
+    f\meet f = \<f,f\> \inv{\Delta} = (f \Delta) \inv{\Delta} = f \restr{\Delta} = f
+  \]
+  as $\Delta$ is total. This shows that $\meet$ as defined above is a meet for the
+  Cartesian restriction category \X.
+
+\end{proof}
+
+\begin{definition}\label{def:graphic_map}
+  In a Cartesian restriction category, a map $A\xrightarrow{f}B$ is called \emph{graphic} when the
+  maps
+  \[
+    A\xrightarrow{\<f,1\>}B\times A\qquad \text{and}\qquad
+    A\xrightarrow{\<\rst{f},1\>}A\times A
+  \]
+  have partial inverses. A Cartesian restriction category is \emph{graphic} when all of its maps
+  are graphic.
+\end{definition}
+
+\begin{lemma}\label{lem:graphic_maps_are_closed_in_a_cartesian_restriction_category}
+  In a Cartesian restriction category:
+  \begin{enumerate}[{(}i{)}]
+    \item Graphic maps are closed under composition;
+    \item Graphic maps are closed under the restriction;
+    \item An object is discrete if and only if its identity map is graphic.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \prepprooflist
+  \begin{enumerate}[{(}i{)}]
+    \item To show closure, it is necessary to show that $\<f g,1\>$ has a partial inverse.
+      By Lemma \ref{lem:rcs_partial_monic_section_inverse_properties}, the uniqueness of the
+      partial inverse gives
+      \[
+        \inv{(\<f,1\> ; \<g,1\>\times 1)} = \inv{\<g,1\>} \times 1 ; \inv{\<f,1\>} .
+      \]
+      By the definition of the restriction product, we have $\rst{\<f g,1\>} = \rst{f g}$. Additionally,
+      a straightforward calculation shows that
+        $\rst{\<f,1\>;\<g,1\> \times 1} =
+          \rst{\<f\<g,1\>, 1\>} = \rst{f ;\< g,1\>}
+          = \rst{\<f;g, f\>} = \rst{f g}\,\rst{f} = \rst{f g}
+        $
+      where the last equality is by \rtwo, \rthree and finally \rone.
+
+    Consider the diagram
+    \[
+      \xymatrix @C+35pt @R+20pt{
+        A \ar[r]^{\<f,1\>} \ar[drr]_{\<f g,1\>} &
+           B \times A  \ar[r]^{\<g,1\> \times 1}
+           &  C \times B \times A \\
+        &&C \times A. \ar[u]_{1 \times \<f,1\>}
+      }
+    \]
+
+    Thus,
+    \begin{align*}
+      \<f g,1\>  (1\times \<f,1\>) &( \inv{\<g,1\>}\times 1) \inv{\<f,1\>}\\
+      &=\<f,1\>(\<g,1\>\times 1 ) (\inv{\<g,1\>}\times 1) \inv{\<f,1\>}\\
+      &=\<f,1\> (\rst{g\times 1}) \inv{\<f,1\>}\\
+      &=\rst{\<f,1\> (g\times 1)}  \<f,1\> \inv{\<f,1\>}\\
+      &=\rst{\<f,1\> (g\times 1)}\,  \rst{\<f,1\>}\\
+      &= \rst{\<f,1\>}\, \rst{\<f,1\>(g\times 1)}\\
+      &= \rst{\<f,1\> (g\times 1)}\\
+      &= \rst{\<f g,1\>}(=\restr{f g})\\
+    \end{align*}
+    showing that $1\times \<f,1\>  (\inv{\<g,1\>}\times 1 ) \inv{\<f,1\>}$ is
+    a right inverse for $\<f g,1\>$.
+
+    For the other direction, note that in general $\inv{(h k)} = \inv{k}\inv{h}$ and that
+    we have $\<f g,1\> = \<f,1\> (\<g,1\>\times 1)  (1 \times \inv{\<f,1\>})$, thus
+    $(1\times \<f,1\>)  (\inv{\<g,1\>}\times 1) \inv{\<f,1\>}$ will also be a left inverse and
+    $\<f g,1\>$ is a restriction isomorphism.
+
+    \item This follows from the definition of graphic and that
+       $\rst{\<f,1\>} = \rst{f} = \restr{\rst{f}}$.
+
+    \item Given a discrete object $A$, the identity on $A$ is graphic as $\<1,1\> = \Delta$
+      and therefore $\inv{\<1,1\>} = \inv{\Delta}$. Conversely, if $\<1,1\> = \Delta$ has an
+      inverse, $A$ is discrete by definition.
+  \end{enumerate}
+\end{proof}
+
+\begin{lemma}\label{lem:a_discrete_crc_is_precisely_a_graphic_crc}
+  A discrete Cartesian restriction category is precisely a graphic Cartesian restriction category.
+\end{lemma}
+\begin{proof}
+  The requirement is that $\<f,1\>$ (and $\<\rst{f},1\>$) each have partial inverses. For
+  $\<f,1\>$, the inverse is $\rst{(1 \times f)\inv{\Delta}} \pi_1$.
+
+  To show this, calculate  the two compositions. First,
+  \[
+    \<f,1\> \rst{1 \times f \inv{\Delta}} \pi_1 =
+      \rst{\<f,f\> \inv{\Delta}}\<f,1\>\pi_1 % use R.4
+    = \rst{f \Delta \inv{\Delta}}\<f,1\>\pi_1 % product
+    = \rst{f}\<f,1\>\pi_1 % Delta total
+    = \rst{f}.% product
+  \]
+  The other direction is:
+  \begin{align*}
+    \rst{(1 \times f)\inv{\Delta}} \pi_1 \<f,1\>
+      &= \< \rst{(1 \times f)\inv{\Delta}} \pi_1 f ,
+      \rst{(1 \times f)\inv{\Delta}}\pi_1 \>\\ %product definition
+    &= \< \rst{(1 \times f)\inv{\Delta}} (1 \times f) \pi_1,
+      \rst{(1 \times f)\inv{\Delta}}\pi_1 \>\\ %pi total, natural
+    &= \< (1 \times f )\rst{\inv{\Delta}} \pi_1 ,
+      \rst{(1 \times f)\inv{\Delta}}\pi_1 \>\\ %R.4
+    &= \< (1 \times f) \rst{\inv{\Delta}} \pi_0 ,
+      \rst{(1 \times f)\inv{\Delta}}\pi_1 \>\\ %below
+    &= \< \rst{(1 \times f)\inv{\Delta}} (1 \times f) \pi_0,
+      \rst{(1 \times f)\inv{\Delta}}\pi_1 \>\\ %R.4
+  %  &= \< \rst{(1 \times f)\inv{\Delta}}\,
+  %     \rst{(1 \times f)} \pi_0, \rst{(1 \times f)\inv{\Delta}}\pi_1 \>\\
+    &= \< \rst{(1 \times f)\inv{\Delta}} \pi_0,
+      \rst{(1 \times f)\inv{\Delta}}\pi_1 \>\\ %(a x b);pi0 = a
+    &= \rst{(1 \times f)\inv{\Delta}} \< \pi_0, \pi_1 \>\\ % products
+    &= \rst{(1 \times f)\inv{\Delta}}.
+  \end{align*}
+  The above follows in a discrete Cartesian restriction category, as we have
+  \begin{equation*}
+    \rst{\inv{\Delta}} \pi_1 = \inv{\Delta} \Delta \pi_1 = \inv{\Delta} = \inv{\Delta} \Delta \pi_0 = \rst{\inv{\Delta}} \pi_0.
+  \end{equation*}
+
+  For $\<\rst{f},1\>$, the inverse is $\rst{(1 \times \rst{f})\inv{\Delta}} \pi_1$. Similarly
+  to above,
+  \[
+    \<\rst{f},1\> \rst{1 \times \rst{f} \inv{\Delta}} \pi_1 =
+      \rst{\<\rst{f},\rst{f}\> \inv{\Delta}}\<\rst{f},1\>\pi_1 % use R.4
+    = \rst{\rst{f} \Delta \inv{\Delta}}\<\rst{f},1\>\pi_1 % product
+    = \rst{\rst{f}}\<\rst{f},1\>\pi_1 % Delta total
+    = \rst{f}.% product
+  \]
+  The other direction follows the same pattern as for $\<f,1\>.$
+\end{proof}
+
+To conclude this section, we give a few examples of Cartesian restriction categories, of both the
+discrete and non-discrete variety.
+
+\begin{example}[Terminal object is discrete]\label{ex:terminal_object_is_discrete}
+  In any Cartesian restriction category, the terminal object, $1$, is discrete as $1\times 1 \cong 1$.
+\end{example}
+
+\begin{example}[Semi-lattice is discrete]\label{ex:semi-lattice_is_discrete}
+  As the product is the meet of the semi-lattice and $A\wedge A = A$, we have $\Delta = 1$ and,
+  therefore, is always invertible. Note that a total discrete Cartesian restriction category must be a
+  semi-lattice. Also, we see that any Cartesian restriction category which is a restriction preorder
+  will also be discrete.
+\end{example}
+
+\begin{example}[Non-discrete Cartesian restriction categories]\label{ex:various_not_discrete}
+Besides the example of \topcatp given at the beginning of this section, the following are not discrete:
+  \begin{enumerate}[{(}i{)}]
+  \item Any total non-trivial (i.e., not a semi-lattice) Cartesian category is not discrete.
+  \item $\text{Par}(\X,\Mstab)$ is not discrete unless $\Delta: X\to X\times X$ is in \Mstab.
+  \item $\stabLat^{op}$ is not discrete.
+  \end{enumerate}
+\end{example}
+
+
+% section graphic_categories (end)
+
+% chapter restriction_categories (end)
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../phd-thesis"
+%%% End:

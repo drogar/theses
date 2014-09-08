@@ -1,0 +1,149 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+\section{Disjoint sums} % (fold)
+\label{sub:disjoint_sums}
+
+This chapter explores what conditions will allow the definition of a  tensor in an inverse category
+which already has a disjoint join. As we shall see, it is sufficient to have ``enough''
+\emph{disjoint sums}, as defined below.
+
+\begin{definition}\label{def:disjoint_sum}
+  In an inverse category with disjoint joins, an object $X$ is the \emph{disjoint sum} of $A$ and
+  $B$ when there exist maps $i_1,\ i_2,\ \xa,\ \xb$ such that:
+  \begin{enumerate}[{(}i{)}]
+    \item $i_1$ and $i_2$ are monic;
+    \item $i_1 : A \to X$, $i_2: B \to X$, $\xa: X \to A$ and $\xb: X \to B$;
+    \item $\inv{i_1} = \xa$ and $\inv{i_2} = \xb$;
+    \item $\inv{i_1}i_1 \perp \inv{i_2}i_2$ and $\inv{i_1}i_1 \djoin \inv{i_2}i_2 = 1_X$.
+  \end{enumerate}
+  The maps $i_1$ and $i_2$ will be referred to as the \emph{injection} maps of the disjoint sum.
+\end{definition}
+
+\begin{lemma}\label{lem:disjoint_sum_is_unique}
+  The disjoint sum $X$ of $A$ and $B$ is unique up to isomorphism.
+\end{lemma}
+\begin{proof}
+  Assume there are two disjoint sums over $A$ and $B$:
+  \[
+    \xymatrix{
+      A\ar[r]^{i_1} &X\ar@/^9pt/[l]^{x_1} \ar@/_9pt/[r]_{x_2} & B \ar[l]_{i_2}
+    }
+    \qquad  \text{ and  }\qquad
+    \xymatrix{
+      A\ar[r]^{\jay_1} &Y\ar@/^9pt/[l]^{y_1} \ar@/_9pt/[r]_{y_2} & B \ar[l]_{\jay_2}
+    }.
+  \]
+  We will show that the map $x_1 \jay_1 \djoin x_2 \jay_2 : X \to Y$ is an isomorphism.
+
+  Note by the fact that $i_1, i_2$ are monic and \axiom{Dis}{2},
+  $0 = \rst{x_1 i_1} x_2 = \rst{x_1\rst{i_1}} x_2 = \rst{x_1} x_2 = \wrg{i_1}{x_2}$. But then
+  $i_1 x_2 = i_1 \wrg{i_1} x_2 = i_1 0 = 0$. Similarly, $i_2 x_2 = 0$, $j_1 y_2 =0$ and
+  $j_2 y_1 = 0$.
+
+  Next, by Lemma~\ref{lem:disjointness_various}, $\rst{\xa}\cdperp\rst{\xb}$ as both
+  $i_1$ and $i_2$ are monic. By the same lemma, $\rg{\jay_1} \cdperp \rg{\jay_2}$ as $y_1, y_2$
+  are the inverses of monic maps.  Then, from \axiom{Dis}{7}, $x_1 \jay_1 \cdperp x_2 \jay_2$,
+  hence we may form $x_1 \jay_1 \djoin x_2 \jay_2 : X \to Y$.
+
+  Similarly, we may form the map $y_1 i_1 \djoin y_2 i_2 : Y \to X$. Computing their composition:
+  \begin{align*}
+    (x_1 \jay_1 \djoin x_2 \jay_2)(y_1 i_1 \djoin y_2 i_2)
+      &= (x_1 \jay_1 (y_1 i_1 \djoin y_2 i_2))\djoin (x_2 \jay_2(y_1 i_1 \djoin y_2 i_2))\\
+      &= x_1 \jay_1 y_1 i_1 \djoin x_1 \jay_1 y_2 i_2 \djoin x_2 \jay_2 y_1 i_1 \djoin x_2
+        \jay_2 y_2 i_2 \\
+      &= x_1\, 1\, i_1 \djoin x_1\, 0\, i_2 \djoin x_2\, 0\, i_1 \djoin x_2\, 1\, i_2\\
+      &= x_1 i_1 \djoin x_2 i_2 = 1.
+  \end{align*}
+  Computing the other direction,
+  \begin{align*}
+    (y_1 i_1 \djoin y_2 i_2)(x_1 \jay_1 \djoin x_2 \jay_2)
+      &= (y_1 i_1 (x_1 \jay_1 \djoin x_2 \jay_2) )\djoin (y_2 i_2(x_1 \jay_1 \djoin x_2 \jay_2))\\
+      &= y_1 i_1 x_1 \jay_1 \djoin y_1 i_1 x_2 \jay_2 \djoin y_2 i_2 x_1 \jay_1
+        \djoin y_2 i_2 x_2 \jay_2\\
+      &= y_1\, 1\, \jay_1 \djoin y_1\, 0\, \jay_2 \djoin y_2\, 0\, \jay_1 \djoin y_2\, 1\, \jay_2\\
+      &= y_1 \jay_1 \djoin y_2 \jay_2 = 1.\\
+  \end{align*}
+  This shows that the map between any two disjoint sums over the same two objects is an isomorphism.
+\end{proof}
+
+
+When there are ``enough'' disjoint sums in a category, this gives rise to tensor. In anticipation of the result, henceforth we will write $A\+B$
+for the disjoint sum of $A$ and $B$.
+
+First, the next lemma shows how to construct maps between the disjoint sums:
+\begin{lemma}\label{lem:disjoint_sum_maps_are_perp}
+  Given \X an inverse category with all disjoint sums and suppose $f:A \to C$ and $g:B\to D$ in
+  \X. Then  $\inv{i_1} f i_1 \cdperp \inv{i_2} g i_2 : A\+B\to C\+D$ and therefore
+  $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2 : A\+B\to C\+D$.
+\end{lemma}
+\begin{proof}
+  Note that $\rst{\inv{i_1} f i_1} = \rst{\inv{i_1} f} \le \rst{\inv{i_1}}$ and similarly
+  $\rst{\inv{i_2} g i_2} \le \rst{\inv{i_2}}$. Then, by \axiom{Dis}{3}, we have
+  $\rst{\inv{i_1} f i_1} \cdperp \rst{\inv{i_2} g i_2}$.
+  Similarly, as $\wrg{\inv{i_1} f i_1} \le \wrg{i_1}$ and  $\wrg{\inv{i_2} g i_2} \le \wrg{i_2}$,
+  this gives $\wrg{\inv{i_1} f i_1} \cdperp \wrg{\inv{i_2} g i_2}$ and by
+  Lemma~\ref{lem:disjointness_various}, the conclusion is $\inv{i_1} f i_1\cdperp \inv{i_2} g i_2$
+  and therefore the disjoint join $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2$ is a map between the two
+  disjoint sums.
+\end{proof}
+
+The argument in the above lemma is one we will used from time to time. Specifically, that
+$\rst{\inv{i_1} g} \cdperp \rst{\inv{i_2} h}$ for arbitrary $g,h$ and that
+$\wrg{h i_1} \cdperp \wrg{k i_2}$.
+
+\begin{proposition}\label{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor}
+  Given \X is an inverse category where every pair of objects has a disjoint sum, then the tensor
+  $\+$ where $A\+B$ is a disjoint sum of $A,B$ is a symmetric monoidal tensor.
+\end{proposition}
+\begin{proof}
+  It is necessary to show that $\+$ is a bi-functor and that the required structural maps exist.
+
+  First note that $f\+g$ is given by $\inv{i_1} f i_1 \djoin \inv{i_2} g i_2$ as shown in
+  Lemma~\ref{lem:disjoint_sum_maps_are_perp}. By the definition of the disjoint sum, identity maps
+  are taken to identity maps and by the stability and universality of the disjoint join, composition
+  is preserved and therefore $\+$ is a bi-functor as required.
+
+  We must now show the restriction zero is the unit of $\+$ and then give the structural maps.
+
+  Considering the disjoint sum $A\+0$, we see that $i_2 = \zeroob$, the zero map. This gives
+  $1_{A\+\zeroob}  = \inv{i_1}i_1 \djoin \inv{i_2}i_2 = \inv{i_1}i_1 \djoin 0 = \inv{i_1}i_1 =
+    \rst{\inv{i_1}}$, meaning $\inv{i_1}$ is total. Thus, $\inv{i_1}$ is an isomorphism and is
+  $\upr$. Similarly, $\inv{i_2} = \upl:\zeroob\+A \to A$ is an isomorphism.
+
+  For the symmetry map, note $c_\+ = \inv{i_1}i_2 \djoin \inv{i_2}i_1: A\+B \to B\+A$ is a symmetry
+  map and that
+  \begin{align*}
+    (\inv{i_1}i_2 \djoin \inv{i_2}i_1)&(\inv{i_1}i_2 \djoin \inv{i_2}i_1)\\
+    &=\inv{i_1}i_2(\inv{i_1}i_2
+    \djoin \inv{i_2}i_1) \djoin \inv{i_2}i_1(\inv{i_1}i_2 \djoin \inv{i_2}i_1)\\
+    &=\inv{i_1}i_2\inv{i_1}i_2 \djoin \inv{i_1}i_2\inv{i_2}i_1 \djoin \inv{i_2}i_1\inv{i_1}i_2
+    \djoin \inv{i_2}i_1\inv{i_2}i_1\\
+    & = 0 \djoin 1 \djoin 1 \djoin 0 \\
+    & = 1.
+  \end{align*}
+  Thus, $c_\+c_\+ =1$.
+
+  For associativity, set $a_\+ = \inv{i_1}i_1i_1 \djoin \inv{i_2}\inv{i_1}i_2i_1 \djoin \inv{i_2}
+  \inv{i_2} i_2:A\+(B\+C) \to (A\+B)\+C$.
+  To visualize this,
+  \[
+    \xymatrix@C+5pt{
+      B\+C \ar[r]^{\inv{i_1}} \ar[dr]_{\inv{i_2}}
+        & B \ar[r]^{i_2}
+        & A\+B \ar[dd]^{i_1}\\
+      & C \ar[dr]^{i_2} & \\
+      A\+(B\+C)\ar[uu]^{\inv{i_2}} \ar[d]_{\inv{i_1}} \ar@{.>}[rr]^{a_{\+}} && (A\+B)\+C \\
+      A \ar[rr]_{i_1} & & A\+B. \ar[u]_{i_1}
+    }
+  \]
+  The inverse of the $a_\+$ is obtained by taking the inverses of the arrows in the above diagram,
+  yielding $\inv{i_1}\inv{i_1}i_1 \djoin \inv{i_1}\inv{i_2}i_1i_1 \djoin \inv{i_2}i_2 i_2$.
+
+  Thus, $\+$ is a symmetric monoidal tensor on $\X$.
+\end{proof}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../phd-thesis"
+%%% End:

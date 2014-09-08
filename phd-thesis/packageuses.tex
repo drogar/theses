@@ -1,0 +1,81 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{palatino,courier}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts,amssymb}
+\usepackage{mathrsfs}   % special script style \mathscr{S}
+\usepackage[mathscr]{euscript}
+\usepackage[all]{xy}
+\usepackage{stmaryrd}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{fancyvrb}
+\usepackage{proof}
+\usepackage{delarray}
+%\usepackage{mchaskell}
+\usepackage{float}
+%\usepackage{makeidx}
+%\usepackage{url}
+\usepackage{varioref}
+%\usepackage{listings}
+
+%\usepackage{mylhs}
+\usepackage{wrapfig}
+\usepackage{subfig}
+\usepackage{caption}
+\usepackage{supertabular}
+\usepackage{blkarray}
+\usepackage{cite}
+\usepackage{xspace}
+\usepackage[colorlinks=true,citecolor=magenta]{hyperref}
+\usepackage{hyperref}
+%\usepackage{lqpl}
+%\usepackage{prettyref}
+\usepackage[shortlabels]{enumitem}
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows,positioning,shapes.geometric,fit,decorations.markings}
+
+\pgfdeclarelayer{edgelayer}
+\pgfdeclarelayer{nodelayer}
+\pgfsetlayers{edgelayer,nodelayer,main}
+
+\tikzset{ node distance=.1mm, inner sep=0.5mm}
+
+\tikzstyle{delta}=[isosceles triangle, isosceles triangle apex angle=70, draw, shape border rotate=90, minimum size=3mm]
+\tikzstyle{eta}=[circle, draw, minimum size=2mm]
+\tikzstyle{epsilon}=[circle, draw, fill=black!75, minimum size=2mm]
+\tikzstyle{nabla}=[isosceles triangle, isosceles triangle apex angle=70, draw, shape border rotate=270, minimum size=3mm]
+\tikzstyle{map}=[rectangle,draw, minimum height=4mm, minimum width=3mm]
+\tikzstyle{nothing}=[rectangle,draw=white]
+\tikzstyle{tensor}=[inner sep=0mm]
+\tikzstyle{bullet}=[circle, draw, minimum size=3mm]
+\tikzstyle{retract}=[isosceles triangle, isosceles triangle apex angle=70, draw, shape border rotate=180, minimum size=2mm]
+
+\reversemarginpar
+
+\captionsetup{style=default,labelfont={bf}}
+\def\figurename{Figure}
+\def\tablename{Table}
+
+% label formats for use with varioref
+
+\labelformat{section}{#1}
+\labelformat{chapter}{#1}
+\labelformat{equation}{(#1)}
+\labelformat{theorem}{#1}
+\labelformat{lemma}{#1}
+\labelformat{proposition}{#1}
+\labelformat{definition}{#1}
+
+% This causes horrid processing error - text garbage appearing instead of
+% The diagram. DO NOT USE \CompileMatrices
+
+%%% Local Variables:
+%%% mode: plain-tex
+%%% TeX-master: "phd-thesis"
+%%% End:

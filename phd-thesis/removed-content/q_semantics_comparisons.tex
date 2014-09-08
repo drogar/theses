@@ -1,0 +1,154 @@
+
+\section{Suitability of the semantics} % (fold)
+\label{sec:suitability_of_the_semantics}
+The previous section presented two alternate views of semantics for quantum computation. That of
+\cite{selinger04:qpl} which models a specific language designed to write quantum
+programs, and \cite{abramsky04:catsemquantprot} which models finitary quantum mechanics directly.
+
+Additionally, in section \ref{sec:biproduct}, given a biproduct dagger compact closed category, we
+create a category of completely positive maps based on it. Starting with the category $\fdh$, now
+construct \bcpm{\fdh}. Recalling $V$ from section \ref{sec:catsemanticsofqpl}, \bcpm{\fdh} is
+equivalent to the subcategory of $V$ which has only the completely positive maps. Recall that $Q$,
+the category used to interpret QPL further restricted the maps, requiring them to be trace
+non-increasing. So, there are the following inclusions: $Q\subseteq \bcpm{\fdh} \subseteq V$. The
+language QPL can therefore obviously be interpreted inside \bcpm{\fdh}.
+
+Referring to section \ref{sec:puresemantics}, the interpretation of finitary quantum mechanics
+presented there was intended to axiomatize \fdh. The maps for initialization, $base_{Q}:I\+I \to Q$
+and measurement $meas:Q\to I\+I$ are given as isomorphisms. If we were to compose them
+$Q\xrightarrow{meas}I\+I\xrightarrow{base_{Q}} Q$, this would be the identity function. However,
+this is prevented in their interpretation by insisting any map $f$ occurring in an interpretation
+that has $A\+B$ as its domain must be decomposable to $f_{1}\+f_{2}$. Therefore, it is not legal to
+apply $base_{Q}$ after a measure.
+
+However the axiomatization given in \cite{abramsky04:catsemquantprot} is applicable to \bcpm{\fdh}
+with a few changes as noted in \cite{selinger05:dagger}. Instead of the map $base_{Q}$ being an
+isomorphism, it needs to only be a retraction
+\[
+  \xymatrix{
+    I\+I \ar[r]^{base_{Q}} \ar[dr]_{id} & Q \ar[d]^{meas}\\
+    & I\+I
+    }.
+\]
+
+\subsection{Applicability to quantum algorithms}\label{sec:applicability}
+In this section, we present a few examples of using the semantics on specific quantum algorithms.
+For simple initial example, consider ``coin flipping'', that is, initialize a \qbit, apply the
+Hadamard transform and measure it. In QPL, this can be accomplished by the program:
+
+\begin{Verbatim}[numbers=left,numbersep=6pt,firstnumber=0]
+
+newqbit q:=0;
+q *= H;
+measure q
+ |0> => {discard q;}
+ |1> => {discard q;};
+\end{Verbatim}
+
+Using the interpretations of Table \ref{tab:interp}, the semantics and annotations at the
+completion of each line are:
+\begin{eqnarray*}
+  0 & &\Gamma=1\\
+  1 & q:\text{qbit} & \Gamma=\begin{pmatrix}1&0\\0&0\end{pmatrix}\\
+  2 & q:\text{qbit} & \Gamma=\begin{pmatrix}.5&.5\\.5&.5\end{pmatrix}\\
+  3 & q:\text{qbit} \+ q:\text{qbit} & \Gamma=\left( \begin{pmatrix}.5&0\\0&0\end{pmatrix},
+    \begin{pmatrix}0&0\\0&.5\end{pmatrix}\right)\\
+  4 & I \+ q:\text{qbit} & \Gamma=\left( .5, \begin{pmatrix}0&0\\0&.5\end{pmatrix}\right)\\
+  5 & I\+I (=\text{bit}) & \Gamma=(.5,.5)
+\end{eqnarray*}
+
+QPL is able to encode the quantum teleportation algorithm, but it should be noted that the spatial
+components (i.e, separating the entangled pair) of the algorithm are not expressible in the
+language. Essentially, this is because the teleport algorithm to consists of four stages:
+\begin{description}
+  \item[Preparation] Creation of an entangled pair of \qubits $a$ and $b$ which are then physically
+    separated
+  \item[Measurement] Alice, the holder of $a$ applies transforms to $a$ and $n$ a new \qbit and
+    measures them both.
+  \item[Communication] Alice sends Bob, the holder of $b$ two \bits of information, based the the
+    measurements of the previous step.
+  \item[Application] Bob, depending on the \bits received in the previous stage conditionally
+    applies transforms to $b$.
+\end{description}
+
+In a physical implementation, this would consist of three programs (one each for Preparation,
+Measurement and Application) along with the actual communication. QPL has no features for actual
+input, output or communication, so we must idealize this to a single program. In the program,
+assume the \qbit $n$ to be transferred is available at stage $0$ and has the density matrix $T
+=\begin{pmatrix}a&b\\c&d\end{pmatrix}$.
+
+\begin{Verbatim}[numbers=left,numbersep=6pt,firstnumber=0]
+
+newqbit b:=0;
+newqbit a:=0;
+a *= H;
+a,b *= CNot;
+permute a,b,n -> n,a,b;
+n,a *= CNot;
+n *= H;
+permute n,a,b -> a,n,b;
+measure a
+      |0> => {discard a;}
+      |1> => {discard a;
+              b *= Not};
+merge;
+measure n
+      |0> => {discard n;}
+      |1> => {discard n;
+              b * = Z};
+merge;
+\end{Verbatim}
+In the interests of space, I will only show the first few stages. The number in the first column
+matches the annotation to the line of the program it corresponds to, after execution of that line.
+\begin{eqnarray*}
+  0 & n:\text{qbit} & T\\
+  1 & b,n:\text{qbit} & \begin{pmatrix}1&0\\0&0\end{pmatrix} \*T\\
+  3 & a,b,n:\text{qbit} & \begin{pmatrix}.5&.5\\.5&.5\end{pmatrix} \*
+    \begin{pmatrix}1&0\\0&0\end{pmatrix} \* T\\
+  4 & a,b,n:\text{qbit} & \begin{pmatrix}.5&0&0&.5\\0&0&0&0\\0&0&0&0\\.5&0&0&.5\end{pmatrix} \* T\\
+  6 & n,a,b:\text{qbit} &
+    \begin{pmatrix}a/2&0&0&a/2&0&b/2&b/2&0\\0&0&0&0&0&0&0&0\\0&0&0&0&0&0&0&0\\
+        a/2&0&0&a/2&0&b/2&b/2&0\\0&0&0&0&0&0&0&0\\c/2&0&0&c/2&0&d/2&d/2&0\\
+          c/2&0&0&c/2&0&d/2&d/2&0\\0&0&0&0&0&0&0&0\end{pmatrix}\\
+  & \vdots &
+\end{eqnarray*}
+\section{Relations to other semantics}
+\subsection{Probabilistic semantics}
+As presented in \cite{kozen-semanticsprobabilistic}, a probabilistic programming language may be
+interpreted as linear operators between Banach spaces. Assume $X$ is some domain of values and $M$
+is the collection of measurable sets associated with it.
+%Denote by $(X^{n}, M^{(n)})$ the Cartesian product of $n$ copies of the measurable space
+%$(X,M)$ The semantics for a program $P$ map distributions $\delta$ on
+%$(X^{n}, M^{(n)})$ to the distribution $P(\delta)$ over $(X^{n}, M^{(n)})$.
+These linear operators form a Banach space with the \emph{uniform norm} and pointwise addition and
+scalar multiplication. In this interpretation of probabilistic programs, isotone operators $T$
+(where $\mu \le \nu \implies T(\mu) \le T(\nu)$) allow the definition of an ordering of the space
+of programs and will give a least fixed point semantics. \cite{kozen-semanticsprobabilistic} gives
+denotations of five elements of probabilistic programming: \emph{Simple Assignment}; \emph{Random
+Assignment}; \emph{Composition}; \emph{Conditional} and \emph{While Loop}.
+
+As every Hilbert space is a Banach space (as the inner product generates a norm), it should be
+possible to model Kozen's semantics in the category $Q$ used for QPL, or in $\bcpm{\fdh}$.
+Specifically, one would have to ensure that the interpretation mapped \emph{simple assignment} to a
+measurable function and would have to provide specific operators for the various allowed random
+distributions in \emph{random assignment}. As an example, the ``coin flip'' program presented
+\ref{sec:applicability} generates random bit values.
+
+\subsection{Reversible semantics}
+In \cite{gilescockett09}, we initiate the exploration of semantics of reversibility with the
+introduction of discrete inverse categories, an inverse category with a tensor, which is a natural,
+coassociative, cocommutative, Frobenius bifunctor with a natural ``duplication'' map $\Delta:A\to
+A\*A$.
+
+As seen in \cite{coeckeetal08:ortho,coecke08structures}, $\dagger$-Frobenius algebras in
+$\dagger$-symmetric monoidal categories give rise to classical structures, and to quantum
+structures (See sections \ref{sec:basesandfrob} and \ref{sec:quantumclassical} and definitions
+\ref{def:quantumstructure} and \ref{def:classicalstructure}).
+
+Conversley, in \cite{gilescockett09}, we show
+\begin{theorem}
+  Given \X is a symmetric monoidal category, define the category $CFrob(\X)$. $CFrob(\X)$ has
+  objects the commutative Frobenius algebras $X$ where $X$ is an object of $\X$ and $X$ is a
+  $k$-algebra for some field $k$. The maps of $CFrob(\X)$ are the multiplication and
+  comultiplication preserving homomorphisms. Then, $CFrob(\X)$ forms a discrete inverse category.
+\end{theorem}

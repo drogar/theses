@@ -1,0 +1,918 @@
+\section{The category of Commutative Frobenius Algebras} % (fold)
+\label{sec:the_category_of_commutative_frobenius_algebras}
+Dagger categories generalize the category of Hilbert spaces which is often used to model quantum
+computation. These were introduced in \cite{abramsky04:catsemquantprot} as \emph{strongly compact
+closed categories}, an additional structure on compact closed categories.
+
+Before introducing dagger categories, we define compact closed
+categories.
+
+
+
+\begin{definition}\label{def:compactclosedcat}
+A \emph{compact closed category} \cD{} is a symmetric monoidal category with tensor $\*$ where each
+object $A$ has a dual $A^{*}$. Additionally, there must exist families of maps $\eta_{A}: I \to
+A^{*} \* A$ (the \emph{unit}) and $\epsilon_{A}: A\*A^{*}\to I$ (the \emph{counit}) such that
+\[
+  \xymatrix@C+15pt{
+    A \ar[r]^{u_{A}} \ar@{=}[d]  & A\*I \ar[r]^(.4){1\*\eta_{A}}
+        & A\* (A^{*}\*A) \ar[d]^{a_{A,A^{*},A}} \\
+    A & I\* A \ar[l]^{u_{A}^{-1}} & (A\* A^{*})\*A \ar[l]^(.6){\epsilon_{A}\*1}
+    }\text{ and }
+  \xymatrix@C+15pt{
+    A^{*} \ar[r]^{u_{A^*}} \ar@{=}[d]  & I\*A^* \ar[r]^(.4){\eta_{A}\*1}
+        & (A^{*}\* A)\*A^{*} \ar[d]^{a_{A^{*},A,A^{*}}^{-1}} \\
+    A & A\*I \ar[l]^{u_{A^*}^{-1}} & A^{*}\*(A\*A^{*}) \ar[l]^(.6){1\*\epsilon_{A}}
+    }
+  \]
+commute.
+\end{definition}
+
+Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*} \to A^{*}$ as
+\[
+  \xymatrix@C+10pt{
+    B^{*}\ar[r]^{u_{B^{*}}} \ar[d]_{f^{*}}& I\*B^{*} \ar[r]^{\eta_{A}\*1}
+      & A^{*}\*A\*B^{*}\ar[d]^{1\*f\*1}\\
+    A^{*}&    A^{*}\*I\ar[l]^{u_{A^{*}}^{-1}}  &   A^{*}\*B\*B^{*}\ar[l]^{1\*\epsilon_{B}}.
+  }
+\]
+
+
+\input{chapters/subsection/dagger-categories}
+\input{chapters/subsection/frobenius-algebras}
+
+\subsection{\CFrob is an inverse category}\label{ssec:cfrob_x_is_an_inverse_category}
+\begin{example}[Commutative separable Frobenius algebras\cite{kock04}]\label{example:commfrob}
+  Let \X be a symmetric monoidal category and form \CFrob as follows: \paragraph{\textbf{Objects:}}
+  Commutative separable Frobenius algebras, a quintuple $(A,\nabla,\eta,\Delta,\epsilon)$ where
+  $A$ is an object of \X with the following maps:
+  $\nabla :A\*A \to A$, $\eta:I\to A$, $\Delta : A \to A\*A$, $\epsilon : A \to I$ which are natural
+  maps in \X, with $(A,\nabla,\eta)$ a monoid and $(A,\Delta,\epsilon)$ a comonoid. Additionally,
+  these satisfy
+  \[
+    \xymatrix @C=10pt @R=20pt{
+      A \* A \ar[dd]_{1\*\Delta} \ar[dr]^{\nabla}
+        \ar[rr]^{\Delta \* 1} & &
+        A \* (A \* A) \ar[dd]^{1 \* \nabla}\\
+      & A \ar[dr]^{\Delta} & \\
+      (A \* A) \* A \ar[rr]_{\nabla \* 1} & &
+        A \* A\\
+      &*!<0pt,-25pt>{\text{\textbf{Frobenius}}}
+    }
+  \]
+  together with the additional property that $\Delta \nabla = 1$ (separable).
+
+  \paragraph{\textbf{Maps:}} The maps of \X between the objects of \X which preserve multiplication ($\nabla$)
+  and comultiplication ($\Delta$) but do not necessarily preserve the units.
+  This means a map $f$ must satisfy the following commuting diagrams:
+  \[
+    \xymatrix@C+25pt{
+      A \ar[d]_{\Delta} \ar[r]^{f} & B \ar[d]^{\Delta}\\
+      A\*A \ar[r]_{f\*f} & B\* B
+    }
+    \text{ and }
+    \xymatrix@C+25pt{
+      A\*A \ar[d]_{\nabla} \ar[r]^{f\*f}& B\*B \ar[d]^{\nabla}\\
+      A \ar[r]_{f} & B.
+    }
+  \]
+\end{example}
+
+\begin{lemma}\label{lem:cfrobx_is_an_inverse_category}
+  When \X is a symmetric monoidal category, \CFrob is a inverse category.
+\end{lemma}
+\begin{proof}
+  We need to show that \CFrob has restrictions and that each map has a partial inverse. We do
+  this by exhibiting the partial inverse of a map.
+  For $f:X \to Y$, define $\inv{f}$ as
+  \[
+    Y \xrightarrow{1\*\eta} Y\*X \xrightarrow{1\*\Delta}
+      Y\*X\*X \xrightarrow{1\*f\*1} Y\*Y\*X \xrightarrow{\nabla\*1}
+      Y\*X \xrightarrow{\epsilon\*1}X.
+  \]
+  As a string diagram, this looks like:
+  \[
+  \begin{tikzpicture}
+    \path node at (-.5,3) (start) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (0,2) [delta] (d) {}
+    node at (-.25,1.5) [map] (f) {$\scriptstyle f$}
+    node at (-.5,1) [nabla] (n1) {}
+    node at (-.5,.5) [epsilon] (e1) {}
+    node at (0,0) (end) {};
+    \draw [] (start) to[out=270,in=125] (n1);
+    \draw [] (eta1) to (d);
+    \draw [] (d) to[out=305,in=90] (end);
+    \draw [] (d) to[out=235,in=90] (f);
+    \draw [] (f) to[out=270,in=55] (n1);
+    \draw [-] (n1) to (e1);
+  \end{tikzpicture}
+  \ \raisebox{25pt}{\text{.}}
+  \]
+
+  In the following proofs, we also use the following two identities from \cite{kock04}:
+  \begin{align}
+    (1\*\eta)\nabla &= 1,\\
+    \Delta(1\*\epsilon) &= 1.
+  \end{align}
+  Diagrammatically, this is:
+  \[
+    \begin{tikzpicture}
+    \path   node at (.5,1) (start) {}
+    node at (0,1) [eta] (eta1) {}
+    node at (.25,.5) [nabla] (n1) {}
+    node at (.25,0) (end) {};
+    \draw [] (eta1) to[out=270,in=125] (n1);
+    \draw [] (start) to[out=270,in=55] (n1);
+    \draw [] (n1)   to (end);
+  \end{tikzpicture}
+  \ \raisebox{15pt}{\text{= }}
+  \begin{tikzpicture}
+    \path node at (0,1) (start) {}
+    node at (0,0) (end) {};
+    \draw [-] (start) to (end);
+  \end{tikzpicture}
+  \ \raisebox{15pt}{\text{=}}
+  \begin{tikzpicture}
+    \path node at (0,1) (start) {}
+    node at (0,.5) [delta] (d1) {}
+    node at (-.25,0) (end) {}
+    node at (.25,0) [epsilon] (e1) {};
+    \draw [] (start) to (d1);
+    \draw [] (d1) to[out=305,in=90] (e1);
+    \draw [] (d1) to[out=235,in=90] (end);
+  \end{tikzpicture}
+  \ \raisebox{15pt}{.}
+  \]
+  Note that when combined with the Frobenius identities, this allows transforms of the following
+  types:
+  \[
+  \begin{tikzpicture}
+    \path node at (0,1.5) (s1) {}
+    node at (.75,1.5) (s2) {}
+    node at (0,1) [delta] (d1) {}
+    node at (.5,.5) [nabla] (n1) {}
+    node at (0,0) (end) {}
+    node at (.5,0) [epsilon] (e1) {};
+    \draw [] (s1) to (d1);
+    \draw [] (s2) to[out=270,in=55] (n1);
+    \draw [] (d1) to[out=235,in=90] (end);
+    \draw [] (d1) to[out=305,in=125] (n1);
+    \draw [] (n1) to (e1);
+  \end{tikzpicture}
+  \raisebox{15pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (0,1.5) (s1) {}
+    node at (.5,1.5) (s2) {}
+    node at (.25,1) [nabla] (n1) {}
+    node at (.25,.5) [delta] (d1) {}
+    node at (0,0) (end) {}
+    node at (.5,0) [epsilon] (e1) {};
+    \draw [] (s1) to[out=270,in=125] (n1);
+    \draw [] (s2) to[out=270,in=55] (n1);
+    \draw [] (d1) to[out=235,in=90] (end);
+    \draw [] (d1) to[out=305,in=90] (e1);
+    \draw [] (n1) to (d1);
+  \end{tikzpicture}
+  \raisebox{15pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (0,1.5) (s1) {}
+    node at (.5,1.5)  (s2) {}
+    node at (.25,1) [nabla] (n1) {}
+    node at (.25,0.5) (end) {};
+    \draw [] (s1) to[out=270,in=125] (n1);
+    \draw [] (s2) to[out=270,in=55] (n1);
+    \draw [] (n1) to (end);
+  \end{tikzpicture}
+  \raisebox{15pt}{ and }
+  \begin{tikzpicture}
+    \path node at (0,1.5)  [eta](s1) {}
+    node at (.75,1.5) (s2) {}
+    node at (0,1) [delta] (d1) {}
+    node at (.5,.5) [nabla] (n1) {}
+    node at (0,0) (end) {}
+    node at (.5,0) (e1) {};
+    \draw [] (s1) to (d1);
+    \draw [] (s2) to[out=270,in=55] (n1);
+    \draw [] (d1) to[out=235,in=90] (end);
+    \draw [] (d1) to[out=305,in=125] (n1);
+    \draw [] (n1) to (e1);
+  \end{tikzpicture}
+  \raisebox{15pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (0,1.5)  [eta] (s1) {}
+    node at (.5,1.5) (s2) {}
+    node at (.25,1) [nabla] (n1) {}
+    node at (.25,.5) [delta] (d1) {}
+    node at (0,0) (end) {}
+    node at (.5,0)  (e1) {};
+    \draw [] (s1) to[out=270,in=125] (n1);
+    \draw [] (s2) to[out=270,in=55] (n1);
+    \draw [] (d1) to[out=235,in=90] (end);
+    \draw [] (d1) to[out=305,in=90] (e1);
+    \draw [] (n1) to (d1);
+  \end{tikzpicture}
+  \raisebox{15pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (.25,1.5) (s1) {}
+    node at (.25,1) [delta] (d1) {}
+    node at (0,0.5) (end) {}
+    node at (.5,0.5) (end1) {};
+    \draw [] (s1) to (d1);
+    \draw [] (d1) to[out=255,in=90] (end);
+    \draw [] (d1) to[out=305,in=90] (end1);
+  \end{tikzpicture}
+  \raisebox{15pt}{.}
+  \]
+
+  First, we must show that $\inv{f}$ is a map in the category, i.e., that $\Delta (\inv{f} \*
+  \inv{f}) = \inv{f} \Delta$ and $(\inv{f} \* \inv{f})\nabla = \nabla \inv{f}$. We show this for
+  $\Delta$ using string diagrams, starting from $\Delta(\inv{f} \*
+  \inv{f})$. The proof for the preservation of $\nabla$ proceeds in a similar manner.
+  \[
+  \begin{tikzpicture}
+    \path node at (0,3) (start) {}
+    node at (-.75,2.5) [eta] (eta1) {}
+    node at (0,2.5) [delta] (d0) {}
+    node at (.75,2.5) [eta] (eta2) {}
+    node at (-.75,2) [delta] (d) {}
+    node at (.75,2) [delta] (d2) {}
+    node at (-.5,1.5) [map] (f) {$\scriptstyle f$}
+    node at (.5,1.5) [map] (f2) {$\scriptstyle f$}
+    node at (-.25,1) [nabla] (n1) {}
+    node at (.25,1) [nabla] (n2) {}
+    node at (-.25,.5) [epsilon] (e1) {}
+    node at (.25,.5) [epsilon] (e2) {}
+    node at (-.75,0) (end) {}
+    node at (.75,0) (end2) {};
+    \draw [] (start) to (d0);
+    \draw [] (eta1) to (d);
+    \draw [] (eta2) to (d2);
+    \draw (d0) to[out=235,in=55] (n1);
+    \draw (d0) to[out=305,in=125] (n2);
+    \draw [] (d) to[out=235,in=90] (end);
+    \draw [] (d) to[out=305,in=90] (f);
+    \draw [] (f) to[out=270,in=125] (n1);
+    \draw [-] (n1) to (e1);
+    \draw [] (d2) to[out=305,in=90] (end2);
+    \draw [] (d2) to[out=235,in=90] (f2);
+    \draw [] (f2) to[out=270,in=55] (n2);
+    \draw [-] (n2) to (e2);
+  \end{tikzpicture}
+  \raisebox{45pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (0,3.5) (start) {}
+    node at (-.75,2.5) [eta] (eta1) {}
+    node at (.75,3) [eta] (eta2) {}
+    node at (-.75,2) [delta] (d) {}
+    node at (.75,2.5) [delta] (d2) {}
+    node at (-.5,1.5) [map] (f) {$\scriptstyle f$}
+    node at (.5,2) [map] (f2) {$\scriptstyle f$}
+    node at (-.25,1) [nabla] (n1) {}
+    node at (.25,1.5) [nabla] (n2) {}
+    node at (-.25,.5) [epsilon] (e1) {}
+    node at (-.75,0) (end) {}
+    node at (.75,0) (end2) {};
+    \draw [] (start) to[out=270,in=125] (n2);
+    \draw [] (eta1) to (d);
+    \draw [] (eta2) to (d2);
+    \draw [] (d) to[out=235,in=90] (end);
+    \draw [] (d) to[out=305,in=90] (f);
+    \draw [] (f) to[out=270,in=125] (n1);
+    \draw [-] (n1) to (e1);
+    \draw [] (d2) to[out=305,in=90] (end2);
+    \draw [] (d2) to[out=235,in=90] (f2);
+    \draw [] (f2) to[out=270,in=55] (n2);
+    \draw [-] (n2) to[out=270,in=55] (n1);
+  \end{tikzpicture}
+  \raisebox{45pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (-0.25,3.5) (start) {}
+    node at (-.75,3) [eta] (eta1) {}
+    node at (.75,3) [eta] (eta2) {}
+    node at (-.75,2.5) [delta] (d) {}
+    node at (.75,2.5) [delta] (d2) {}
+    node at (-.5,2) [map] (f) {$\scriptstyle f$}
+    node at (.5,2) [map] (f2) {$\scriptstyle f$}
+    node at (0,1.5) [nabla] (n1) {}
+    node at (0.1,1) [nabla] (n2) {}
+    node at (0.1,.5) [epsilon] (e1) {}
+    node at (-.75,0) (end) {}
+    node at (.5,0) (end2) {};
+    \draw [] (start) to[out=270,in=55] (n2);
+    \draw [] (eta1) to (d);
+    \draw [] (eta2) to (d2);
+    \draw [] (d) to[out=235,in=90] (end);
+    \draw [] (d) to[out=305,in=90] (f);
+    \draw [] (f) to[out=270,in=125] (n1);
+    \draw [-] (n1) to[out=270,in=125] (n2);
+    \draw [] (d2) to[out=305,in=90] (end2);
+    \draw [] (d2) to[out=235,in=90] (f2);
+    \draw [] (f2) to[out=270,in=55] (n1);
+    \draw [-] (n2) to (e1);
+  \end{tikzpicture}
+  \raisebox{45pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (.75,3.5) (start) {}
+    node at (-.25,3) [eta] (eta1) {}
+    node at (.25,3) [eta] (eta2) {}
+    node at (-.25,2.5) [delta] (d) {}
+    node at (.25,2.5) [delta] (d2) {}
+    node at (0,2) [nabla] (n1) {}
+    node at (0,1.5) [map] (f) {$\scriptstyle f$}
+    node at (0.25,1) [nabla] (n2) {}
+    node at (0.25,.5) [epsilon] (e1) {}
+    node at (-.5,0) (end) {}
+    node at (.75,0) (end2) {};
+    \draw [] (start) to[out=270,in=55] (n2);
+    \draw [] (eta1) to (d);
+    \draw [] (eta2) to (d2);
+    \draw [] (d) to[out=235,in=90] (end);
+    \draw [] (d) to[out=305,in=125] (n1);
+    \draw [] (d2) to[out=305,in=90] (end2);
+    \draw [] (d2) to[out=235,in=55] (n1);
+    \draw [-] (n1) to[out=270,in=90] (f);
+    \draw [] (f) to[out=270,in=125] (n2);
+    \draw [-] (n2) to (e1);
+  \end{tikzpicture}
+  \raisebox{45pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (.75,3.5) (start) {}
+    node at (.25,3) [eta] (eta2) {}
+    node at (.25,2.5) [delta] (d2) {}
+    node at (-0.25,2) [delta] (d) {}
+    node at (0,1.5) [map] (f) {$\scriptstyle f$}
+    node at (0.25,1) [nabla] (n2) {}
+    node at (0.25,.5) [epsilon] (e1) {}
+    node at (-.5,0) (end) {}
+    node at (.5,0) (end2) {};
+    \draw [] (start) to[out=270,in=55] (n2);
+    \draw [] (eta2) to (d2);
+    \draw [] (d2) to[out=305,in=90] (end2);
+    \draw [] (d2) to[out=235,in=90] (d);
+    \draw [] (d) to[out=235,in=90] (end);
+    \draw [] (d) to[out=305,in=90] (f);
+    \draw [] (f) to[out=270,in=125] (n2);
+    \draw [-] (n2) to (e1);
+  \end{tikzpicture}
+  \ \raisebox{45pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (.75,3) (start) {}
+    node at (0,2.5) [eta] (eta2) {}
+    node at (0,2) [delta] (d2) {}
+    node at (-0.25,1.5) [delta] (d) {}
+    node at (.25,1.5) [map] (f) {$\scriptstyle f$}
+    node at (0.5,1) [nabla] (n2) {}
+    node at (0.5,.5) [epsilon] (e1) {}
+    node at (-.5,0) (end) {}
+    node at (0,0) (exit) {};
+    \draw [] (start) to[out=270,in=55] (n2);
+    \draw [] (eta2) to (d2);
+    \draw [] (d2) to[out=235,in=90] (d);
+    \draw [] (d2) to[out=305,in=90] (f);
+    \draw [] (d) to[out=235,in=90] (end);
+    \draw [] (d) to[out=305,in=90] (exit);
+    \draw [] (f) to[out=270,in=125] (n2);
+    \draw [-] (n2) to (e1);
+  \end{tikzpicture}
+  \raisebox{45pt}{$=\inv{f}\Delta$.}
+  \]
+  Thus, $\inv{f}$ is a map in the category whenever $f$ is.
+
+  If $\inv{f}$ is truly a partial inverse, we may then define $\rst{f} = f \inv{f}$.
+  Using Theorem 2.20 from \cite{cockett2002:restcategories1}, we need only show:
+  \begin{align}
+    \inv{(\inv{f})} &= f\label{eq:finvinv_is_f}\\
+    f\inv{f}f &= f\label{eq:ffinvf_is_f}\\
+    f\inv{f}g\inv{g} &=g\inv{g} f\inv{f}.\label{eq:ffinv_commutes_gginv}
+  \end{align}
+  Proof of Equation~\ref{eq:finvinv_is_f}: $\inv{(\inv{f})} =$
+  \[
+  \begin{tikzpicture}
+    \path node at (-.75,4) (start) {}
+    node at (0,3.5) [eta] (eta2) {}
+    node at (0,3) [delta] (d2) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (0,2) [delta] (d1) {}
+    node at (-.25,1.5) [map] (f) {$\scriptstyle f$}
+    node at (-.5,1) [nabla] (n1) {}
+    node at (-.5,.5) [epsilon] (e1) {}
+    node at (-.5,0) [nabla] (n2) {}
+    node at (-.5,-.5) [epsilon] (e2) {}
+    node at (.25,-1) (end) {};
+    \draw [] (start) to[out=270,in=125] (n2);
+    \draw [] (eta2) to (d2);
+    \draw [] (d2) to[out=235,in=125] (n1);
+    \draw [] (d2) to[out=305,in=90] (end);
+    \draw [] (eta1) to (d1);
+    \draw [] (d1) to[out=305,in=55] (n2);
+    \draw [] (d1) to[out=235,in=90] (f);
+    \draw [] (f) to[out=270,in=55] (n1);
+    \draw [-] (n1) to (e1);
+    \draw [-] (n2) to (e2);
+  \end{tikzpicture}
+  \ \raisebox{70pt}{\text{=}}
+  \begin{tikzpicture}
+    \path node at (.25,4) (start) {}
+    node at (-.5,3.5) [eta] (eta2) {}
+    node at (-.5,3) [delta] (d2) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (0,2) [delta] (d1) {}
+    node at (-.25,1.5) [map] (f) {$\scriptstyle f$}
+    node at (-.5,1) [nabla] (n1) {}
+    node at (-.5,.5) [epsilon] (e1) {}
+    node at (0,0) [nabla] (n2) {}
+    node at (0,-.5) [epsilon] (e2) {}
+    node at (-.5,-1) (end) {};
+    \draw [] (start) to[out=270,in=55] (n2);
+    \draw [] (eta2) to (d2);
+    \draw [] (d2) to[out=305,in=125] (n1);
+    \draw [] (d2) to[out=235,in=90] (end);
+    \draw [] (eta1) to (d1);
+    \draw [] (d1) to[out=305,in=125] (n2);
+    \draw [] (d1) to[out=235,in=90] (f);
+    \draw [] (f) to[out=270,in=55] (n1);
+    \draw [-] (n1) to (e1);
+    \draw [-] (n2) to (e2);
+  \end{tikzpicture}
+  \ \raisebox{70pt}{\text{= }}
+  \begin{tikzpicture}
+    \path node at (.25,4) (start) {}
+    node at (-.5,1) [eta] (eta2) {}
+    node at (-.5,.5) [delta] (d2) {}
+    node at (0,3.5) [eta] (eta1) {}
+    node at (0,3) [delta] (d1) {}
+    node at (-.25,1.5) [map] (f) {$\scriptstyle f$}
+    node at (-.25,0) [nabla] (n1) {}
+    node at (-.25,-.5) [epsilon] (e1) {}
+    node at (.25,2.5) [nabla] (n2) {}
+    node at (.25,2) [epsilon] (e2) {}
+    node at (-.5,-1) (end) {};
+    \draw [] (start) to[out=270,in=55] (n2);
+    \draw [] (eta2) to (d2);
+    \draw [] (d2) to[out=305,in=125] (n1);
+    \draw [] (d2) to[out=235,in=90] (end);
+    \draw [] (eta1) to (d1);
+    \draw [] (d1) to[out=305,in=125] (n2);
+    \draw [] (d1) to[out=235,in=90] (f);
+    \draw [] (f) to[out=270,in=55] (n1);
+    \draw [-] (n1) to (e1);
+    \draw [-] (n2) to (e2);
+  \end{tikzpicture}
+  \ \raisebox{70pt}{\text{= }}
+  \begin{tikzpicture}
+    \path node at (.5,4) (start) {}
+    node at (0,3.5) [eta] (eta1) {}
+    node at (.25,3) [nabla] (n1) {}
+    node at (.25,2.5) [delta] (d1) {}
+    node at (.5,2) [epsilon] (e1) {}
+    node at (0,1.5) [map] (f) {$\scriptstyle f$}
+    node at (-.5,1) [eta] (eta2) {}
+    node at (-.25,.5) [nabla] (n2) {}
+    node at (-.25,0) [delta] (d2) {}
+    node at (0,-.5) [epsilon] (e2) {}
+    node at (-.5,-1) (end) {};
+    \draw [] (start) to[out=270,in=55] (n1);
+    \draw [] (eta1) to[out=270,in=125] (n1);
+    \draw [] (n1) to (d1);
+    \draw [] (d1) to[out=305,in=90] (e1);
+    \draw [] (d1) to[out=235,in=90] (f);
+    \draw [] (f) to[out=270,in=55] (n2);
+    \draw [] (eta2) to[out=270,in=125] (n2);
+    \draw [-] (n2) to (d2);
+    \draw [] (d2) to[out=305,in=125] (e2);
+    \draw [] (d2) to[out=235,in=90] (end);
+  \end{tikzpicture}
+  \ \raisebox{70pt}{\text{=}}
+  \begin{tikzpicture}
+    \path node at (.5,4) (start) {}
+    node at (0,1.5) [map] (f) {$\scriptstyle f$}
+    node at (-.5,-1) (end) {};
+    \draw [] (start) to[out=270,in=90] (f);
+    \draw [] (f) to[out=270,in=90] (end);
+  \end{tikzpicture}
+  \ \raisebox{70pt}{\text{= }$f$.}
+  \]
+  Proof of Equation~\ref{eq:ffinvf_is_f}: $f \inv{f} f =$
+  \[
+  \begin{tikzpicture}
+    \path node at (-.5,3) (start) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (0,2) [delta] (d) {}
+    node at (-.75,1.5) [map] (f1) {$\scriptstyle f$}
+    node at (-.25,1.5) [map] (f2) {$\scriptstyle f$}
+    node at (.25,1.5) [map] (f3) {$\scriptstyle f$}
+    node at (-.5,1) [nabla] (n1) {}
+    node at (-.5,.5) [epsilon] (e1) {}
+    node at (0,0) (end) {};
+    \draw [] (start) to[out=270,in=90] (f1);
+    \draw [] (f1) to [out=270,in=125] (n1);
+    \draw [] (eta1) to (d);
+    \draw [] (d) to[out=305,in=90] (f3);
+    \draw [] (f3) to[out=270,in=90] (end);
+    \draw [] (d) to[out=235,in=90] (f2);
+    \draw [] (f2) to[out=270,in=55] (n1);
+    \draw [-] (n1) to (e1);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$=$ }
+  \begin{tikzpicture}
+    \path node at (-.5,3) (start) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (0,2) [delta] (d) {}
+    node at (-.5,1.5) [nabla] (n1) {}
+    node at (-.5,1) [map] (f2) {$\scriptstyle f$}
+    node at (.25,1) [map] (f3) {$\scriptstyle f$}
+    node at (-.5,.5) [epsilon] (e1) {}
+    node at (0,0) (end) {};
+    \draw [] (start) to [out=270,in=125] (n1);
+    \draw (n1) to (f2);
+    \draw (f2) to (e1);
+    \draw [] (eta1) to (d);
+    \draw [] (d) to[out=305,in=90] (f3);
+    \draw [] (f3) to[out=270,in=90] (end);
+    \draw [] (d) to[out=235,in=55] (n1);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$=$ }
+  \begin{tikzpicture}
+    \path node at (-.5,3) (start) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (-.25,2) [nabla] (n1) {}
+    node at (-.25,1.5) [delta] (d) {}
+    node at (-.5,1) [map] (f2) {$\scriptstyle f$}
+    node at (0,1) [map] (f3) {$\scriptstyle f$}
+    node at (-.5,.5) [epsilon] (e1) {}
+    node at (0,0) (end) {};
+    \draw [] (start) to[out=270,in=125] (n1);
+    \draw [] (eta1) to[out=270,in=55] (n1);
+    \draw [] (n1) to (d);
+    \draw [] (d) to[out=305,in=90] (f3);
+    \draw [] (d) to[out=235,in=90] (f2);
+    \draw (f2) to (e1);
+    \draw [] (f3) to[out=270,in=90] (end);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{\text{= }}
+  \begin{tikzpicture}
+    \path node at (-.5,3) (start) {}
+    node at (-.25,1.5) [map] (f3) {$\scriptstyle f$}
+    node at (-.25,1) [delta] (d) {}
+    node at (-.5,.5) [epsilon] (e1) {}
+    node at (0,0) (end) {};
+    \draw [] (start) to[out=270,in=90] (f3);
+    \draw [] (f3) to (d);
+    \draw [] (d) to[out=305,in=90] (end);
+    \draw [] (d) to[out=235,in=90] (e1);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{\text{= }}
+  \begin{tikzpicture}
+    \path node at (-.5,3) (start) {}
+    node at (-.25,1.5) [map] (f3) {$\scriptstyle f$}
+    node at (0,0) (end) {};
+    \draw [] (start) to[out=270,in=90] (f3);
+    \draw [] (f3) to[out=270,in=90] (end);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$= f$.}
+  \]
+  Proof of Equation~\ref{eq:ffinv_commutes_gginv}:  $f\inv{f}g\inv{g} =$
+
+  \[
+  \begin{tikzpicture}
+    \path node at (-.5,3) (start) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (0,2) [delta] (d1) {}
+    node at (1,2.5) [eta] (eta2) {}
+    node at (1,2) [delta] (d2) {}
+    node at (-.75,1.5) [map] (f1) {$\scriptstyle f$}
+    node at (-.25,1.5) [map] (f2) {$\scriptstyle f$}
+    node at (.25,1.5) [map] (g1) {$\scriptstyle g$}
+    node at (.75,1.5) [map] (g2) {$\scriptstyle g$}
+    node at (-.5,1) [nabla] (n1) {}
+    node at (-.5,.5) [epsilon] (e1) {}
+    node at (.5,1) [nabla] (n2) {}
+    node at (.5,.5) [epsilon] (e2) {}
+    node at (.75,0) (end) {};
+    \draw [] (start) to[out=270,in=90] (f1);
+    \draw [] (eta1) to (d1);
+    \draw [] (eta2) to (d2);
+    \draw [] (d1) to[out=235,in=90] (f2);
+    \draw [] (d1) to[out=305,in=90] (g1);
+    \draw [] (d2) to[out=235,in=90] (g2);
+    \draw [] (d2) to[out=305,in=90] (end);
+    \draw [] (f1) to [out=270,in=125] (n1);
+    \draw [] (f2) to[out=270,in=55] (n1);
+    \draw [] (g1) to[out=270,in=125] (n2);
+    \draw [] (g2) to[out=270,in=55] (n2);
+    \draw [-] (n1) to (e1);
+    \draw [-] (n2) to (e2);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$=$ }
+  \begin{tikzpicture}
+    \path node at (-.5,3) (start) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (0,2) [delta] (d1) {}
+    node at (1,2.5) [eta] (eta2) {}
+    node at (1,2) [delta] (d2) {}
+    node at (-.5,1.5) [nabla] (n1) {}
+    node at (.5,1.5) [nabla] (n2) {}
+    node at (-.5,1) [map] (f1) {$\scriptstyle f$}
+    node at (.5,1) [map] (g1) {$\scriptstyle g$}
+    node at (-.5,.5) [epsilon] (e1) {}
+    node at (.5,.5) [epsilon] (e2) {}
+    node at (.75,0) (end) {};
+    \draw [] (start) to[out=270,in=125] (n1);
+    \draw [] (eta1) to (d1);
+    \draw [] (eta2) to (d2);
+    \draw [] (d1) to[out=235,in=55] (n1);
+    \draw [] (d1) to[out=305,in=125] (n2);
+    \draw [] (d2) to[out=235,in=55] (n2);
+    \draw [] (d2) to[out=305,in=90] (end);
+    \draw [-] (n1) to (f1);
+    \draw [-] (n2) to (g1);
+    \draw [] (f1) to (e1);
+    \draw [] (g1) to (e2);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$=$ }
+  \begin{tikzpicture}
+    \path node at (-.25,3) (start) {}
+    node at (0,2.5) [eta] (eta1) {}
+    node at (-.25,2) [nabla] (n1) {}
+    node at (-.25,1.5) [delta] (d1) {}
+    node at (.5,1.5) [eta] (eta2) {}
+    node at (-.5,1) [map] (f1) {$\scriptstyle f$}
+    node at (.25,1) [nabla] (n2) {}
+    node at (-.5,.5) [epsilon] (e1) {}
+    node at (.25,.5) [delta] (d2) {}
+    node at (0,0) [map] (g1) {$\scriptstyle g$}
+    node at (0,-.5) [epsilon] (e2) {}
+    node at (.25,-1) (end) {};
+    \draw [] (start) to[out=270,in=125] (n1);
+    \draw [] (eta1) to[out=270,in=55] (n1);
+    \draw [] (n1) to (d1);
+    \draw [] (eta2) to[out=270,in=55] (n2);
+    \draw [] (d1) to[out=235,in=90] (f1);
+    \draw [] (d1) to[out=305,in=125] (n2);
+    \draw [] (f1) to (e1);
+    \draw [] (n2) to (d2);
+    \draw [] (d2) to[out=235,in=90] (g1);
+    \draw [] (d2) to[out=305,in=90] (end);
+    \draw [] (g1) to (e2);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$=$ }
+  \begin{tikzpicture}
+    \path node at (-.25,2.5) (start) {}
+    node at (-.25,1.5) [delta] (d1) {}
+    node at (-.5,.5) [map] (f1) {$\scriptstyle f$}
+    node at (-.5,0) [epsilon] (e1) {}
+    node at (.25,1) [delta] (d2) {}
+    node at (0,.5) [map] (g1) {$\scriptstyle g$}
+    node at (0,0) [epsilon] (e2) {}
+    node at (.25,-.5) (end) {};
+    \draw [] (start) to (d1);
+    \draw [] (d1) to[out=235,in=90] (f1);
+    \draw [] (d1) to[out=305,in=90] (d2);
+    \draw [] (f1) to (e1);
+    \draw [] (d2) to[out=235,in=90] (g1);
+    \draw [] (d2) to[out=305,in=90] (end);
+    \draw [] (g1) to (e2);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$=$ }
+  \begin{tikzpicture}
+    \path node at (-.25,2.5) (start) {}
+    node at (.25,2) [delta] (d2) {}
+    node at (-.25,1.5) [delta] (d1) {}
+    node at (-.5,.5) [map] (f1) {$\scriptstyle f$}
+    node at (-.5,0) [epsilon] (e1) {}
+    node at (0,.5) [map] (g1) {$\scriptstyle g$}
+    node at (0,0) [epsilon] (e2) {}
+    node at (.25,-.5) (end) {};
+    \draw [] (start) to[out=270,in=90] (d2);
+    \draw [] (d2) to[out=235,in=90] (d1);
+    \draw [] (d2) to[out=305,in=90] (end);
+    \draw [] (d1) to[out=235,in=90] (f1);
+    \draw [] (d1) to[out=305,in=90] (g1);
+    \draw [] (f1) to (e1);
+    \draw [] (g1) to (e2);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$=$ }
+  \begin{tikzpicture}
+    \path node at (-.25,2.5) (start) {}
+    node at (.25,2) [delta] (d2) {}
+    node at (-.25,1.5) [delta] (d1) {}
+    node at (-.5,1) [map] (g1) {$\scriptstyle g$}
+    node at (-.5,.5) [epsilon] (e2) {}
+    node at (0,1) [map] (f1) {$\scriptstyle f$}
+    node at (0,.5) [epsilon] (e1) {}
+    node at (.25,0) (end) {};
+    \draw [] (start) to[out=270,in=90] (d2);
+    \draw [] (d2) to[out=235,in=90] (d1);
+    \draw [] (d2) to[out=305,in=90] (end);
+    \draw [] (d1) to[out=235,in=90] (g1);
+    \draw [] (d1) to[out=305,in=90] (f1);
+    \draw [] (f1) to (e1);
+    \draw [] (g1) to (e2);
+  \end{tikzpicture}
+  \ \raisebox{40pt}{$= g\inv{g}f\inv{f}$ }
+\]
+where the last step is accomplished by reversing all the previous diagrammatic steps.
+Hence, \CFrob is an inverse category.
+\end{proof}
+
+\begin{theorem}\label{thm:cfrob_is_a_discrete_inverse_category}
+  When \X is a symmetric monoidal category, \CFrob is a discrete inverse category.
+\end{theorem}
+\begin{proof}
+  Lemma~\ref{lem:cfrobx_is_an_inverse_category} shows \CFrob is an inverse category. We
+  need to show the conditions of Definition~\ref{def:inverse_product} are met.
+
+  First, we see that the tensor of $\X$ is a tensor in \CFrob. $A\*B$ is an object in \CFrob
+  with $\Delta_{A\*B} = (\Delta_A\*\Delta_B)(1\*c_{\*}\*1)$,
+  $\nabla_{A\*B} =  (1\*c_{\*}\*1)(\nabla_A\*\nabla_B)$,
+  $\eta_{A\*B} = \Delta_I(\eta_A \* \eta_B)$, and
+  $\epsilon_{A\*B} =  (\epsilon_A\*\epsilon_B)\nabla_I$.
+
+  The map $\Delta : A \to A\*A$ is a map in \CFrob. To show it preserves $\Delta$, we need to
+  show $\Delta_A \Delta_{A\*A} = \Delta_A (\Delta_A \* \Delta_A)$:
+  \[
+  \raisebox{20pt}{$\Delta_A \Delta_{A\*A} =$}
+  \begin{tikzpicture}
+    \path node at (0,1.5) (start) {}
+    node at (0,1) [delta] (d0) {}
+    node at (-.25,.5) [delta] (d1) {}
+    node at (.25,.5) [delta] (d2) {}
+    node at (-.35,0) (e1) {}
+    node at (-.15,0) (e2) {}
+    node at (.15,0) (e3) {}
+    node at (.35,0) (e4) {};
+    \draw [] (start) to[out=270,in=90] (d0);
+    \draw [] (d0) to[out=235,in=90] (d1);
+    \draw [] (d0) to[out=305,in=90] (d2);
+    \draw [] (d1) to[out=235,in=90] (e1);
+    \draw [] (d1) to[out=305,in=90] (e3);
+    \draw [] (d2) to[out=235,in=90] (e2);
+    \draw [] (d2) to[out=305,in=90] (e4);
+  \end{tikzpicture}
+  \raisebox{20pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (0,2) (start) {}
+    node at (-.25,1.5) [delta] (d0) {}
+    node at (0,1) [delta] (d1) {}
+    node at (.25,.5) [delta] (d2) {}
+    node at (-.35,0) (e1) {}
+    node at (-.15,0) (e2) {}
+    node at (.15,0) (e3) {}
+    node at (.35,0) (e4) {};
+    \draw [] (start) to[out=270,in=90] (d0);
+    \draw [] (d0) to[out=235,in=90] (e1);
+    \draw [] (d0) to[out=305,in=90] (d1);
+    \draw [] (d1) to[out=235,in=90] (e3);
+    \draw [] (d1) to[out=305,in=90] (d2);
+    \draw [] (d2) to[out=235,in=90] (e2);
+    \draw [] (d2) to[out=305,in=90] (e4);
+  \end{tikzpicture}
+  \raisebox{20pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (0,2) (start) {}
+    node at (-.25,1.5) [delta] (d0) {}
+    node at (.25,1) [delta] (d1) {}
+    node at (0,.5) [delta] (d2) {}
+    node at (-.35,0) (e1) {}
+    node at (-.15,0) (e2) {}
+    node at (.15,0) (e3) {}
+    node at (.35,0) (e4) {};
+    \draw [] (start) to[out=270,in=90] (d0);
+    \draw [] (d0) to[out=235,in=90] (e1);
+    \draw [] (d0) to[out=305,in=90] (d1);
+    \draw [] (d1) to[out=235,in=90] (d2);
+    \draw [] (d1) to[out=305,in=90] (e4);
+    \draw [] (d2) to[out=235,in=90] (e3);
+    \draw [] (d2) to[out=305,in=90] (e2);
+  \end{tikzpicture}
+  \raisebox{20pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (0,2) (start) {}
+    node at (-.25,1.5) [delta] (d0) {}
+    node at (.25,1) [delta] (d1) {}
+    node at (0,.5) [delta] (d2) {}
+    node at (-.35,0) (e1) {}
+    node at (-.15,0) (e2) {}
+    node at (.15,0) (e3) {}
+    node at (.35,0) (e4) {};
+    \draw [] (start) to[out=270,in=90] (d0);
+    \draw [] (d0) to[out=235,in=90] (e1);
+    \draw [] (d0) to[out=305,in=90] (d1);
+    \draw [] (d1) to[out=235,in=90] (d2);
+    \draw [] (d1) to[out=305,in=90] (e4);
+    \draw [] (d2) to[out=235,in=90] (e2);
+    \draw [] (d2) to[out=305,in=90] (e3);
+  \end{tikzpicture}
+  \raisebox{20pt}{$=\Delta_A (\Delta_A \* \Delta_A).$}
+  \]
+  Note that in the last step, we simply reverse the various associativity steps used previously.
+
+  To show that $\Delta$ preserves the $\nabla$, we must show that
+  $(\Delta_A\*\Delta_A)\nabla_{A\*A} = \nabla_A \Delta_A$. Starting with $(\Delta_A\*\Delta_A)\nabla_{A\*A} =$
+  \[
+  \begin{tikzpicture}
+    \path node at (0,1.5) (s1) {}
+    node at (.5,1.5) (s2) {}
+    node at (0,1) [delta] (d0) {}
+    node at (.5,1) [delta] (d1) {}
+    node at (0,.5) [nabla] (n0) {}
+    node at (.5,.5) [nabla] (n1) {}
+    node at (0,0) (e0) {}
+    node at (.5,0) (e1) {};
+    \draw [] (s1) to[out=270,in=90] (d0);
+    \draw [] (s2) to[out=270,in=90] (d1);
+    \draw [] (d0) to[out=235,in=125] (n0);
+    \draw [] (d0) to[out=305,in=125] (n1);
+    \draw [] (d1) to[out=235,in=55] (n0);
+    \draw [] (d1) to[out=305,in=55] (n1);
+    \draw [] (n0) to[out=270,in=90] (e0);
+    \draw [] (n1) to[out=270,in=90] (e1);
+  \end{tikzpicture}
+  \raisebox{20pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (0,2.5) (s1) {}
+    node at (.5,2.5) (s2) {}
+    node at (.5,2) [delta] (d1) {}
+    node at (0,1.5) [nabla] (n0) {}
+    node at (0,1) [delta] (d0) {}
+    node at (0,.5) [nabla] (n1) {}
+    node at (0,0) (e0) {}
+    node at (.5,0) (e1) {};
+    \draw [] (s1) to[out=270,in=125] (n0);
+    \draw [] (s2) to[out=270,in=90] (d1);
+    \draw [] (d1) to[out=235,in=55] (n0);
+    \draw [] (d1) to[out=305,in=55] (n1);
+    \draw [] (n0) to[out=270,in=90] (d0);
+    \draw [] (d0) to[out=235,in=125] (n1);
+    \draw [] (d0) to[out=305,in=90] (e1);
+    \draw [] (n1) to[out=270,in=90] (e0);
+  \end{tikzpicture}
+  \raisebox{20pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (0,2.5) (s1) {}
+    node at (.25,2.5) (s2) {}
+    node at (.25,2) [nabla] (n0) {}
+    node at (.25,1.5) [delta] (d1) {}
+    node at (0,1) [delta] (d0) {}
+    node at (0,.5) [nabla] (n1) {}
+    node at (0,0) (e0) {}
+    node at (.5,0) (e1) {};
+    \draw [] (s1) to[out=270,in=125] (n0);
+    \draw [] (s2) to[out=270,in=55] (n0);
+    \draw [] (n0) to[out=270,in=90] (d1);
+    \draw [] (d1) to[out=235,in=90] (d0);
+    \draw [] (d1) to[out=305,in=55] (n1);
+    \draw [] (d0) to[out=235,in=125] (n1);
+    \draw [] (d0) to[out=305,in=90] (e1);
+    \draw [] (n1) to[out=270,in=90] (e0);
+  \end{tikzpicture}
+  \raisebox{20pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (0,2.5) (s1) {}
+    node at (.25,2.5) (s2) {}
+    node at (.25,2) [nabla] (n0) {}
+    node at (.25,1.5) [delta] (d1) {}
+    node at (0,1) [delta] (d0) {}
+    node at (0,.5) [nabla] (n1) {}
+    node at (0,0) (e0) {}
+    node at (.5,0) (e1) {};
+    \draw [] (s1) to[out=270,in=125] (n0);
+    \draw [] (s2) to[out=270,in=55] (n0);
+    \draw [] (n0) to[out=270,in=90] (d1);
+    \draw [] (d1) to[out=235,in=90] (d0);
+    \draw [] (d1) to[out=305,in=90] (e1);
+    \draw [] (d0) to[out=235,in=125] (n1);
+    \draw [] (d0) to[out=305,in=55] (n1);
+    \draw [] (n1) to[out=270,in=90] (e0);
+  \end{tikzpicture}
+  \raisebox{20pt}{$=$}
+  \begin{tikzpicture}
+    \path node at (0,2.5) (s1) {}
+    node at (.5,2.5) (s2) {}
+    node at (.25,2) [nabla] (n0) {}
+    node at (.25,1.5) [delta] (d1) {}
+    node at (0,1) (e0) {}
+    node at (.5,1) (e1) {};
+    \draw [] (s1) to[out=270,in=125] (n0);
+    \draw [] (s2) to[out=270,in=55] (n0);
+    \draw [] (n0) to[out=270,in=90] (d1);
+    \draw [] (d1) to[out=235,in=90] (e0);
+    \draw [] (d1) to[out=305,in=90] (e1);
+  \end{tikzpicture}
+  \raisebox{20pt}{$= \nabla_A \Delta_A$.}
+  \]
+  Note that the proof uses the ``special'' property in a non-trivial way.
+
+  Thus, we have a $\Delta$ in \CFrob. As $\nabla = \inv{\Delta}$, the Frobenius requirement for
+  the inverse product is immediately fulfilled. Commutativity, cocommutativity, associativity,
+  coassociativity and the exchange rule all follow from the properties of the commutative Frobenius
+  algebras and therefore \CFrob is a discrete inverse category.
+\end{proof}
+
+% section the_category_of_commutative_frobenius_algebras (end)
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../phd-thesis"
+%%% End:

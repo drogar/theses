@@ -1,0 +1,165 @@
+%!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
+\section{Semantics of quantum computation}% (fold)
+\label{sec:semanticsquantum}
+
+\subsection{Semantics of pure quantum computations}\label{sec:puresemantics}
+In \cite{abramsky04:catsemquantprot}, Abramsky and Coecke approach the creation of a categorical semantics
+for quantum computation independently of a specific language. They use finitary quantum
+mechanics as their reference point.
+
+Finitary quantum mechanics consists of the following:
+\begin{enumerate}
+  \item The system's state space is represented by a finite dimensional Hilbert space $H$.
+    \label{lis:qfm1}
+  \item The basic type of the system is that of \qubit --- 2-dimensional Hilbert space --- with the
+    computational basis $\{\kz, \ko\}$.\label{lis:qfm2}
+  \item Compound systems are tensor products of the components. This is what enables
+    \emph{entanglement} as the general form of the system $H\*J$ where $H$ and $J$ are Hilbert
+    spaces is
+    \[
+      \sum_{i=1}^{n}\alpha_{i} (u_{i} \* v_{i})
+    \]
+    where $u_{i}$ is a basis element of $H$ and $v_{i}$ is a basis element of $J$.\label{lis:qfm3}
+  \item The basic transforms are \emph{unitary transformations}. \label{lis:qfm4}
+  \item The measurements performable are \emph{self-adjoint} (Hermitian) operators - with two
+    sub-steps:\label{lis:qfm5}
+    \begin{enumerate}
+      \item The actual act of measurement. (Preparation).\label{lis:qfm5a}
+      \item The communication of the results of the measurement. (Observation).\label{lis:qfm5b}
+    \end{enumerate}
+\end{enumerate}
+The above definition does allow for the possibility of mixed states, but for the
+remainder of this section, it is assumed both steps of the
+measurement are carried out, resulting in pure states only.
+
+The interpretation of finitary quantum mechanics from \cite{abramsky04:catsemquantprot} is given in the
+context of a biproduct dagger compact closed category, \cD.
+\begin{description}
+  \item[\ref{lis:qfm1}.] An $n-$dimensional state space $S$ is an object of \cD,
+    together with a unitary isomorphism $base_{A}:\+^{n}I\to A$.
+  \item[\ref{lis:qfm2}.] A \qubit is a 2 dimensional state space $Q$ with the computational basis
+    $base_{Q}:I\+I \to Q$.
+  \item[\ref{lis:qfm3}.] Compound systems $A,B$ are described by $A\*B$ and
+    $base_{A\*B} = \phi (base_{A}\*base_{B})$ where $\phi:\+^{n m}I \cong(\+^{n}I)\*(\+^{m}I)$ is
+    the isomorphism obtained by repeated application of distributivity isomorphisms.
+  \item[\ref{lis:qfm4}.] The basic transformations are unitary transformations, i.e., $f$, where
+    $\dgr{f} = f^{-1}$.
+  \item[\ref{lis:qfm5a}.] A preparation is a morphism $P:I \to A$ which has a corresponding unitary
+    morphism $f_{P}:\+^{n}I\to\+^{n}I$ and
+    \[
+      \xymatrix{
+        I \ar[r]^{P} \ar[d]_{i_{1}}& A\\
+        \+^{n}I \ar[r]_{f_{P}} & \+^{n}I \ar[u]_{base_{A}}
+      }
+    \]
+    commutes.
+  \item[\ref{lis:qfm5b}.] An observation  is an isomorphism $O = \+^{n}O_{i}$ with components
+    $O_{i}:A \to I$ which has an unitary automorphism $f_{O}:\+^{n}I\to\+^{n}I$ such that
+    \[
+      \xymatrix{
+        A \ar[r]^{O_{i}} & I\\
+        \+^{n}I \ar[r]_{f_{O}}  \ar[u]_{base_{A}} & \+^{n}I \ar[u]_{p_{i}}
+      }
+    \]
+    commutes for all $i=1,\ldots,n$. The observational branches are the individual $O_{i}:A \to I$.
+\end{description}
+Additionally, the biproduct $\+$ represents distinct branches resulting from measurement.
+Accordingly, any operation on a biproduct must be an explicit biproduct, that is $f:A\+B\to C\+D$
+will be $f_{1}\+f_{2}$ with $f_{1}:A\to C$ and $f_{2}:B\to D$.
+
+The authors go on to show how this interpretation is sufficient to model quantum teleportation,
+logic gate teleportation and entanglement swapping.
+
+
+\subsection{Complete positivity}\label{sec:completepositivity}
+Given a $\dagger$-compact closed category, it is possible to construct its category of completely
+positive maps.
+
+\begin{definition}\label{def:positivemap}
+  A map $f:A\to A$ in a dagger category is called \emph{positive} if there is an object $B$ and a
+  map $g:A\to B$ with $f = g \dgr{g}$.
+\end{definition}
+
+\begin{definition}\label{def:tracecp}
+  For $f:A\to A$ in a compact closed category, its \emph{trace} is defined as $tr\, f:I\to I =
+  \eta_{A} ; c_{A^{*},A} ; (f\*A^{*}) ; \epsilon$.
+\end{definition}
+
+The following lemma gives some properties of positive maps:
+
+\begin{lemma}\label{lemma:positivemaps}
+  In any biproduct dagger compact closed category, the following hold:
+  \begin{enumerate}
+    \item{} $f$ positive $\implies$ $h f \dgr{h}$ is positive for all maps $h$.
+    \item{} $id_{A}$ is positive.
+    \item If $f:A\to A$ and $g:B\to B$ are positive, so are $f\*g$ and $f\+g$.
+    \item $0_{A,A}$ is positive. If $f,g:A\to A$ is positive, so is $f+g$.
+    \item $f$ positive $\implies$ $\dgr{f}=f$.
+    \item $f$ positive $\implies$ $f^{*}$ and $tr\ f$ are positive.
+    \item $f,g:A\to A$ positive $\implies$ $tr (g\,f)$ is positive.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  The first six items follow immediately from the definitions and how structure is preserved for
+  $(\_)^{\dagger}$. For item 6, note that $g = h\, \dgr{h}$ and $tr(g\,f) = tr(\dgr{h}\,f\,h)$
+  which is positive by points 1 and 5.%FIXME - why
+\end{proof}
+
+\begin{definition}\label{def:name}
+  In a compact closed category, the \emph{name} of a map $f:A\to B$ is the map $\ulcorner f
+  \urcorner:I \to A^{*} \* B$ defined as $\eta_{A}; (1\*f)$. This is also called the \emph{matrix} of
+  $f$.
+\end{definition}
+
+In the case of a positive map $f$, $\ulcorner f \urcorner$ is referred to as a \emph{positive
+matrix}.
+
+\begin{definition}\label{def:completelypositive}
+  In a dagger compact closed category, a map $f:A^{*}\*A \to B^{*}\* B$ is \emph{completely positive}
+  if for all objects $C$ and all positive matrices $f: I \to C^{*} \* A^{*} \* A \* C$ the morphism
+  $g ; (1\*f\*1):I \to C^{*} \* B^{*}\* B \* C$ is a positive matrix.
+\end{definition}
+
+This now allows us to define the CPM construction.
+
+\begin{definition}\label{def:cpmconstruction}
+  Given a dagger compact closed category $\cD$, define \specialcat{CPM(d)} as the category with the
+  same objects as $\cD$, and a map $f:A\to B$ in \specialcat{CPM(d)} is a completely positive map
+  $f:A^{*}\*A \to B^{*}\* B$ in \cD.
+\end{definition}
+
+\specialcat{CPM(d)} is also a dagger compact closed structure, inheriting its tensor from \cD.
+There is a functor $F:\cD \to \specialcat{CPM(d)}$ defined as $F(A) = A$ on objects and $F(f)=
+f_{*}\*f$ on maps. The image of the structure maps under $F$ are structure maps for
+\specialcat{CPM(d)}. The dagger of a map $f$ is the same as its dagger in \cD.
+
+\subsubsection{Biproduct completion}\label{sec:biproduct}
+When the \specialcat{CPM} construction is applied to a biproduct dagger compact closed category, it
+will not in general retain biproducts. However, it will be monoid enriched by lemma
+\ref{lemma:positivemaps}. This allows us to create the biproduct completion.
+
+The biproduct completion of a category \cD, which is enriched in commutative monoids is the
+category $\cD^{\+}$ which has as objects finite sequences $\<A_{1},\ldots,A_{n}\>$ where $n\ge 0$.
+The morphisms of $\cD^{\+}$ are matrices of the morphisms of \cD. Application and composition of
+morphisms is via matrix multiplication. The functor $F(A) = \<A\>$, $F(f)=[f]$ is an embedding of
+\cD{} in $\cD^{\+}$. If \cD{} is compact closed and the tensor is linear (i.e., interacts with the
+enrichment in a linear fashion), then $\cD^{\+}$ is also compact closed.
+
+Furthermore, if \cD{} is a dagger category and the dagger is linear, then $\cD^{\+}$ will be a
+dagger category. The dagger of a map $(f_{i,j})$ in $\cD^{\+}$ is $(\dgr{(f_{j,i})})$.
+
+This gives us the following theorem:
+
+\begin{theorem}\label{theorem:biproductcompletion}
+Given \cD, a biproduct dagger compact closed category, \cpm{d} is enriched in commutative monoids
+as a dagger compact closed category. Therefore, it is possible to construct its biproduct
+completion, \bcpm{d}.
+\end{theorem}
+
+Note that the canonical embedding from above, $F$, while it preserves the dagger compact closed
+structure, it does \emph{not} preserve biproducts.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../phd-thesis"
+%%% End:

@@ -1,0 +1,189 @@
+% textmate project ignores: !(/\.(?!htaccess)[^/]*|\.(tmproj|o|pyc|toc|aux|xyc|bbl|blg|lof|lot|out|synctex\.gz)|/Icon\r|/svn-commit(\.[2-9])?\.tmp)$
+
+%   Modified   92-09-18      Add references to dissertation        D. Teale
+%                            Add approval page to toc
+%                            Add reference to Title Degree on approval page
+%   Modified  2006-09-12     Added geometry package to set up UofC thesis margins
+%                            Removed includeprompt option N. Mancell
+%
+% Modified  2012-04-15  T.Zhang
+% 1, the ``fancy'' package is canceled. The page style is changed from ``myheadings''
+%    and ``headings'' to ``plain'' to move the page number (footer) from top right to bottom center.
+% 2, The parameter  of using ``geometry'' package is changed from four different values
+%     (top=1in, bottom=1.22in, left=1.40in, right=0.850in) to one single value:
+%     1in (top=1in, bottom= 1in, left= 1in, right= 1in)
+% 3, ``List of Figures'' is modified to ``List of Figures and Illustrations''
+% 4, A new page ``List of Symbols, Abbreviations and Nomenclature'' is created.
+%    Its page number is following ``List of Figures and Illustrations'' with Roman numerals.
+%    A separate file ``symbols.tex'' is created for students to put content into the list.
+
+
+
+
+
+\documentclass{ucalgthes1}
+\usepackage{etex}
+\usepackage[letterpaper,top=1in, bottom= 1in, left= 1in, right= 1in]{geometry}
+%Define other usepackages here
+
+\input{packageuses}
+
+\graphicspath{{./diagrams/}{.}}
+%
+% captionskips do not seem to be defined in uc class
+\makeatletter
+%%\newlength\abovecaptionskip
+%%\newlength\belowcaptionskip
+\setlength\abovecaptionskip{10\p@}
+\setlength\belowcaptionskip{0\p@}
+\makeatother
+\input{Qcircuit}
+\input{phd-macros}
+\newcommand{\thesistitle}{An investigation of some theoretical aspects of reversible computing}
+\title{\thesistitle \\
+\bigskip  }
+%
+%            Insert the correct information between the {}
+%
+\author{Brett Gordon Giles}
+\thesisyear{2014}
+\thesis{dissertation}    % the word dissertation can be inserted between {}
+\monthname{September}
+\dept{COMPUTER SCIENCE}
+\degree{DOCTOR OF PHILOSOPHY}
+%
+%                    End of supplied information
+%
+\begin{document}
+\makethesistitle
+\pagenumbering{roman}     % resets page counter to one
+\setcounter{page}{1}
+\chapter*{UNIVERSITY OF CALGARY \\ FACULTY OF GRADUATE STUDIES}
+\thispagestyle{empty}
+The undersigned certify that they have read, and recommend
+to the Faculty of Graduate Studies for acceptance, a \Thesis\ entitled
+``\thesistitle'' submitted by \Author\
+in partial fulfillment of the requirements for the degree of
+\Degree.\\
+\begin{signing}{Department of Computer Science}
+\signline
+Dr.~J.R.B.~Cockett\\
+Professor, Department of Computer Science \\
+Thesis Supervisor\\
+\signline
+Dr. Kristine Bauer \\
+Assistant Professor, Department of Mathematics \\
+Supervisory committee member  \\
+\signline
+Dr.~Peter~S.~Høyer \\
+Associate Professor, Department of Computer Science \\
+Supervisory committee member  \\
+\newsigncolumn
+\signline
+Dr.~Gilad~Gour \\
+Associate Professor, Applied Mathematics\\
+Internal external examiner  \\
+%\newsigncolumn         use this command to start a new column if necessary
+\signline
+Dr. Bob Coecke\\
+Professor of Quantum Foundations, Logics and Structures\\
+Department of Computer Science,  Oxford University \\
+External Examiner
+\end{signing}
+%
+\newpage
+\phantomsection
+\altchapter[Abstract]{\bf{Abstract}}
+The categorical semantics of reversible computing must be a category which combines the concepts of
+partiality and the ability to reverse any map in the category. Inverse categories, restriction
+categories in which each map is a partial isomorphism, provide exactly this structure. This thesis
+explores inverse categories and relates them to both quantum computing and standard non-reversible
+computing. The former is achieved by showing that commutative Frobenius algebras form an inverse
+category. The latter is by establishing the equivalence of the category of discrete inverse
+categories to the category of discrete Cartesian restriction categories --- this is the main result
+of this thesis. This allows one to transfer the formulation of computability given by Turing
+categories onto discrete inverse categories.
+
+\newpage
+\phantomsection
+\altchapter[Acknowledgements]{\bf{Acknowledgements}}
+
+First and foremost, many thanks to my supervisor of the past many, many years, Dr. Robin
+Cockett. His indefatigable thirst for mathematical exploration of computer science has been an
+inspiration for both my master's degree and my doctoral studies.
+
+Secondly, thank you to Dr. Peter Selinger, both for his paper on the semantics of quantum computing
+which inspired me to write LQPL and the opportunity to work for him at MSRI in Berkeley for the fall
+of 2012. His clarity of exposition in research writing remains a target to which I aspire.
+
+Thank you to Dr. Kristine Bauer and Dr. Peter Høyer for serving on my supervisory committee,
+partaking in my qualifying exam and serving on my thesis defence committee. I always felt your doors
+were open to me.
+
+Thank you to Dr. Gilad Gour for being my internal examiner.
+
+Thank you to Dr. Bob Coecke for agreeing to be my external examiner.
+
+Thanks to my fellow graduate students (and post-docs) over the years for great conversations, people
+to hang with while at conferences and critiques of research. Thanks to Craig Pastro, Xiuzhan Guo,
+Dana Harrington, Ross Duncan, Jon Grattage, Sean Nichols, Ning Tang, Alexander Green, Neil Ross,
+Jonathan Gallagher, Chad Nester and Prashant Kumar.
+
+Finally, and most of all, thank you so much to all of my family. My wife, for being with me for all
+these years and proof-reading both my master's and this thesis --- learning more about math than she
+ever thought she would; my kids, who still remember me; and my grandkids --- who likely don't remember a time
+when Grandpa was not in school.
+\newpage
+\phantomsection
+\altchapter[Dedication]{\bf{Dedication}}
+\vspace{3in}
+\begin{flushright}
+To my wife, Marie Gelinas Giles.
+\end{flushright}
+
+
+\begin{singlespace}
+\newpage
+\phantomsection
+\tableofcontents
+\pagestyle{plain}
+\newpage
+\phantomsection
+\listoftables
+\pagestyle{plain}
+\newpage
+\phantomsection
+\listoffigures
+\pagestyle{plain}
+\clearpage
+\clearpage          % otherwise tables will be numbered wrong
+\end{singlespace}
+\newpage
+\phantomsection
+\chapter*{\bf{List of Symbols, Abbreviations and Nomenclature}\hfill} \addcontentsline{toc}{chapter}{List of Symbols}
+\listofsymbols
+%\pagestyle{plain}
+%\clearpage
+
+
+\pagenumbering{arabic}
+\input{chapters/introduction}
+\input{chapters/introduction-to-categories}
+\input{chapters/restriction-categories}
+\input{chapters/inverse-categories}
+\input{chapters/inverse-cats-completion}
+\input{chapters/coproducts_and_disjointness}
+\input{chapters/disjoint-sums-and-tensors}
+\input{chapters/matrix-categories}
+\input{chapters/distributive-inverse-categories}
+\input{chapters/commutative-frobenius}
+\input{chapters/turing-categories}
+\input{chapters/conclusion}
+
+\begin{singlespace}
+\bibliography{bibentries-phd}
+\bibliographystyle{plain}
+\end{singlespace}
+\appendix
+%\input{appendix1}
+\end{document}
