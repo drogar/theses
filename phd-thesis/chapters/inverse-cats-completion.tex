@@ -3,7 +3,7 @@
 \label{chap:completing_a_discrete_inverse_category}
 
 The purpose of this chapter is to prove that the category of discrete inverse categories is
-equivalent to the the category of discrete Cartesian restriction categories. We will show
+equivalent to the category of discrete Cartesian restriction categories. We will show
 how to construct a discrete Cartesian restriction category, \Xt, from a discrete inverse
 category, \X. The construction, to be called the ``Cartesian Completion'',  is reminiscent of the
 technique generally used to make a computation reversible --- one adds a history to the function to
@@ -94,7 +94,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
       Thus, $g\xequiv{\inv{h}} f$.
 
     \itembf{Transitivity: } Suppose $f\xequiv{h} f'$ and $f' \xequiv{k} f''$, i.e., $f h = f'$ and
-    $f' k = f''$. We immediately have $f h k = f''$ and by
+    $f' k = f''$. Therefore, $f h k = f' k = f''$ and by
     Lemma~\ref{lem:delta_nabla_maps_are_closed}, we know $h k = \dmap{(h k)}$ and therefore we have
     an equivalence.
   \end{description}
@@ -149,12 +149,13 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
     & = \restr{f((g (h\*1)a_{\*} )\*1)a_{\*}} & \restr{a_{\*}}=1 .
   \end{align*}
 
-  For the mediating map, see the diagram below, where the calculation is in \X. The path starting at
-  the top left at $A$ and going right to \xtdmn{D}{D' \* (C' \* B')} is grouping parentheses to the
-  left. Starting at $A$ and then going down to $\xtdmn{(\xtdmn{D}{D' \* C'})}{B'}$ followed by
-  right to $ \xtdmn{D}{(D' \* C') \* B'}$ is grouping parentheses to the right. The
-  commutativity of the diagram is shown by the commutativity of the internal portions, which all
-  follow from the standard coherence diagrams for the tensor and naturality of association.
+  For the mediating map, see the diagram below, where the calculation is in \X. The path, starting in
+  the top left at $A$ and going right to \xtdmn{D}{D' \* (C' \* B')}, is grouping parentheses to the
+  left. The path which starts with $A$, then goes down to $\xtdmn{(\xtdmn{D}{D' \* C'})}{B'}$,
+  followed by continuing right to $ \xtdmn{D}{(D' \* C') \* B'}$ is grouping parentheses to the
+  right. The commutativity of the diagram is shown by the commutativity of the internal portions,
+  which all follow from the standard coherence diagrams for the tensor and naturality of
+  association.
 
   \[
     \xymatrix @C=35pt @R=35pt{
@@ -198,8 +199,8 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
       &&& B \* C.
     }
   \]
-  $\restr{\inv{\usr} (f \*1)  a_{\*}} = \restr{f}$ by the naturality of $\inv{\usr}$ and
-  Lemma~\ref{lem:restrictionvarious}. The diagram
+  For the restrictions, $\restr{\inv{\usr} (f \*1)  a_{\*}} = \restr{f}$ by the naturality of
+  $\inv{\usr}$ and Lemma~\ref{lem:restrictionvarious}. The diagram
   \[
     \xymatrix @C=50pt @R=45pt{
       A \ar@{=}[dd] \ar[r]^{\inv{\usr}} \ar[dr]_{f}
@@ -550,12 +551,12 @@ leads us to the following theorem:
   same equivalence class as $\Xt$'s $\Delta(= \<1,1\> = \<(\inv{\usr},1),(\inv{\usr},1))$. As both
   $\Delta$ and $\inv{\usr}$ are total, the restriction of each side is the same, namely $1$. The
   diagram below uses Lemma~\ref{lem:delta_nabla_maps_are_closed}~\ref{lemitem:delta_nabla_3} and
-  shows that the two maps are in the same equivalence class.
+  shows that the two maps are in the same equivalence class:
   \[
     \xymatrix @C=190pt @R=40pt{
       & A \* A \* 1 \ar@{.>}[d]^{1\*\inv{\usr}}\\
       A \ar[ur]^{\Delta\inv{\usr}}
-        \ar[r]_{\Delta(\inv{\usr}\*\inv{\usr})(1\*c_{\*}\*1)}& A\*A\*1\*1
+        \ar[r]_{\Delta(\inv{\usr}\*\inv{\usr})(1\*c_{\*}\*1)}& A\*A\*1\*1.
     }
   \]
 \end{proof}
@@ -590,8 +591,8 @@ Once we have completed these steps, we may then conclude that there is an equiva
 In the following, $\X$ will always be a discrete inverse category, $\D$ and $\B$ will be discrete
 Cartesian restriction categories.
 
-The functor $\Invf$ maps a discrete Cartesian restriction category to its inverse subcategory and
-maps functors between discrete Cartesian restriction categories to a functor having the same action
+The functor $\Invf$ maps a discrete Cartesian restriction category to its inverse subcategory. It
+maps a functor between discrete Cartesian restriction categories to a functor having the same action
 on the partial inverses. That is, given $G:\B \to \D$, then:
 \begin{align*}
   &\Inv{G}: \Inv{\B} \to \Inv{\D}\\
@@ -631,10 +632,10 @@ on the partial inverses. That is, given $G:\B \to \D$, then:
 \end{proof}
 
 
-Next we define  $\eta:\X \to \Inv{\Xt}$ as the identity on objects functor where for a map $f$ in
-\X, $\eta: f \mapsto (f\inv{\usr},1)$. $\eta$ is a functor as
+Next, define  $\eta:\X \to \Inv{\Xt}$ as an identity on objects functor. For a map $f$ in
+\X, $\eta: f \mapsto (f\inv{\usr},1)$. This is a functor as
 \begin{align*}
-  \eta(1) & = (\inv{\usr},1)\\
+  \eta(1) & = (\inv{\usr},1) \quad\text{and}\\
   \eta(f g) &= (f g\inv{\usr},1) \xequiv{} (f\inv{\usr},1)(g\inv{\usr},1) = \eta{f}\eta{g}.
 \end{align*}
 
@@ -642,8 +643,8 @@ Now, we may define the functor $F^{\#}:\Xt \to \D$. Recall that $\Inv{\D}$ is a 
 having the same objects, but only the invertible maps. Given a functor $F:\X \to \Inv{\D}$ define
 $F^{\#}$ as follows:
 \begin{description}
-  \item{Objects:} $F^{\#}:A \mapsto F(A) \in \D_{o}$
-  \item{Arrows:} $F^{\#}:(f,C) \mapsto F(f\pi_0)\in \D_{m}$
+  \item{On objects:} $F^{\#}:A \mapsto F(A) \in \D_{o}$.
+  \item{On maps:} $F^{\#}:(f,C) \mapsto F(f\pi_0)\in \D_{m}$.
 \end{description}
 
 We will now  show \ref{dia:universal_property_of_inverse_categories} is a universal diagram.
@@ -663,7 +664,7 @@ We will now  show \ref{dia:universal_property_of_inverse_categories} is a univer
     \Inv{F^{\#}}(\eta(f) &= \Inv{F^{\#}}((f\inv{\usr},1))\\
     &= F^{\#}((f\inv{\usr},1))\\
     &= F(f\inv{\usr}\pi_0)\\
-    &= F(f)\\
+    &= F(f).\\
   \end{align*}
   % Chasing maps around the diagram, we have:
   % \[
@@ -772,7 +773,7 @@ Cartesian restriction categories and discrete inverse categories:
 \[
   \xymatrix{
     \text{\textbf{DCartRest}} \ar@{^{(}->}[rr]^{\top} && \text{\textbf{CartRest}} \ar@/_15pt/[ll]\\
-    \text{\textbf{DInv}}\ar@{<->}[u]^{\cong}
+    \text{\textbf{DInv}}\ar@{<->}[u]
   }
 \]
 where the arrow from discrete Cartesian restriction categories to Cartesian restriction categories
@@ -853,7 +854,7 @@ $
   }
 $}. Once again, the tensor in \D becomes the meet.
 
-\begin{example}[Lattice completion.]\label{example:lattice_completion}
+\begin{example}[Lattice completion]\label{example:lattice_completion}
   Suppose we have a set together with an idempotent, commutative, associative operation $\wedge$ on
   the set, giving us a lattice, \Lat. Further suppose the set is partially ordered via $\le$ with
   the order being compatible with $\wedge$.
@@ -881,7 +882,7 @@ $}. Once again, the tensor in \D becomes the meet.
   and we are done.  If it is not injective, that means there are one or more elements of $B$ which
   appear in the left hand element of $g$ multiple times. Construct a new function $h$ as follows:
   \begin{equation}
-     h \definedas \{(a,(b,a)) | (a,b) \in g\} \label{eq:new_partial_injective}
+     h \definedas \{(a,(b,a)) | (a,b) \in g\}. \label{eq:new_partial_injective}
   \end{equation}
   By its definition, $h : A \to B \*A$ is injective, $(h,A): A \to B$ coincides with $g$ and therefore
   we see that using the Cartesian Construction on \pinj results in \Par.

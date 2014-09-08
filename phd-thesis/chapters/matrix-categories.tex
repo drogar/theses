@@ -55,7 +55,7 @@ The types of matrices allowed in the matrix category are subject to certain cons
 \end{definition}
 
 \begin{lemma}\label{lem:inverse_matrix_category_is_a_restriction_category}
-  When $\X$ is an inverse category with disjoint joins, \imatx is an inverse category.
+  When $\X$ is an inverse category with disjoint sums, \imatx is an inverse category.
 \end{lemma}
 \begin{proof}
   We need to show the following:
@@ -149,14 +149,14 @@ $f \inv{f} = \diag_i [\djoin_j \rst{f_{i\jay}}] = \rst{f}$.
 
 Furthermore, $\imatx$ is actually a disjoint sum category:
 \begin{theorem}\label{thm:imatx_is_an_disjoint_sum_category}
-  Given \X an inverse category with disjoint joins and restriction zero, \imatx has
+  Given \X an inverse category with disjoint sums and restriction zero, \imatx has
   disjoint sums.
 \end{theorem}
 
 We will prove this in a series of lemmas.
 
 \begin{lemma}\label{lem:imat_has_restriction_zero}
-  Given \X is an inverse restriction category with a restriction zero and a disjoint join,
+  Given \X is an inverse restriction category with a restriction zero and a disjoint sum,
   then \imatx has a restriction zero.
 \end{lemma}
 \begin{proof}
@@ -203,7 +203,7 @@ We will prove this in a series of lemmas.
 
   With this definition, we see that $\+$ is a restriction functor:
   \begin{align*}
-    id_X \+ id_Y &= id_{X\+Y}, \\
+    1_X \+ 1_Y &= 1_{X\+Y}, \\
     f_1 g_1 \+ f_2 g_2 &= h_1 \+ h_2 =
     \begin{bmatrix}
       h_1 & 0 \\ 0 & h_2
@@ -238,7 +238,7 @@ We will prove this in a series of lemmas.
 \end{proof}
 
 \begin{lemma}\label{lem:imat_tensor_is_a_disjoint_sum_tensor}
-  Given \X is an inverse category with a disjoint join and restriction zero, then \imatx
+  Given \X is an inverse category with a disjoint sum and restriction zero, then \imatx
   has a disjoint sum tensor.
 \end{lemma}
 \begin{proof}
@@ -314,8 +314,8 @@ inverse category with a disjoint sum, $\X\cong \imatx$.
 \begin{definition}\label{def:functor_from_x_to_imatx}
   Given $\X$ has disjoint joins and restriction zero, define $M:\X \to \imatx$ by:
   \begin{align*}
-    \text{Objects:}\ &M(A) := [A]\\
-    \text{Maps:}\ &M(f) := [f] \text{ -- The }1\times1\text{ matrix with entry }f.
+    \text{On objects:}\ &M(A) := [A].\\
+    \text{On maps:}\ &M(f) := [f] \text{ -- The }1\times1\text{ matrix with entry }f.
   \end{align*}
 \end{definition}
 \begin{lemma}\label{lem:m_is_a_functor}
@@ -324,9 +324,9 @@ inverse category with a disjoint sum, $\X\cong \imatx$.
 \begin{proof}
   From the definition of \imatx, we have
   \begin{align*}
-    &f: A\to B \text{ if and only if } M(f):M(A)\to M(B)\quad ([f]: [A]\to [B])\\
-    &M(id_A)  = [id_{A}] = id_M(A)\\
-    &M(f g) = [f g] = [f][g] = M(f) M(g)\\
+    &f: A\to B \text{ if and only if } M(f):M(A)\to M(B)\  (\text{i.e., }[f]: [A]\to [B]),\\
+    &M(id_A)  = [id_{A}] = id_M(A),\\
+    &M(f g) = [f g] = [f][g] = M(f) M(g),\text{ and}\\
     &M(\rst{f}) = [\rst{f}] = \rst{[f]} = \rst{M(f)}.
   \end{align*}
 \end{proof}
@@ -405,9 +405,9 @@ The functors $S$ and $M$ provide an equivalence:
   Note that the functor $S M$ has the following effect:
 
   \begin{align*}
-    \text{Objects:}\quad &M(S([A_1,\ldots, A_n])) = M(A_1\+\cdots\+ A_n) =
-      [A_1\+\cdots\+ A_n]\\
-    \text{Maps:}\quad &M(S([f_{i\jay}]) = M(\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j}))
+    \text{On objects:}\quad &M(S([A_1,\ldots, A_n])) = M(A_1\+\cdots\+ A_n) =
+      [A_1\+\cdots\+ A_n].\\
+    \text{On maps:}\quad &M(S([f_{i\jay}]) = M(\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j}))
       = [\djoinbig_i \icp{i} (\djoin_j f_{i\jay} \cp{j})].
   \end{align*}
   We can now draw the commuting naturality square for $f=[f_{i\jay}]:[A_i]\to [B_j]$:
@@ -490,12 +490,12 @@ A unique decomposition category\cite{haghverdi:2000phd} is a category where any
 \[
   h:A\+B \to C\+D
 \]
-is uniquely determined by:
+is uniquely determined by the four maps:
 \begin{alignat*}{2}
-  \cpa  h  \icpa &: A \to C & \quad \cpa  h  \icpb &: A \to D\\
-  \cpb  h  \icpa &: B \to C & \quad \cpb  h  \icpb &: B \to D
+  \cpa  h  \icpa &: A \to C, & \quad \cpa  h  \icpb &: A \to D,\\
+  \cpb  h  \icpa &: B \to C, & \quad \cpb  h  \icpb &: B \to D.
 \end{alignat*}
-i.e., is writable as the matrix:
+That is, it is writable as the matrix:
 \[
   \begin{bmatrix}
     \cpa  h  \cpa^{(-1)} & \cpa  h  \cpb^{(-1)}\\

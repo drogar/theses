@@ -125,7 +125,7 @@ about the biproduct of disjoint maps.
 \end{proof}
 
 \begin{proposition}\label{prop:biproduct_is_the_disjoint_join_in_cfrobx}
-  Given \X is an  additive tensor category with biproduct $+$, and $f\perp g$, then $f\djoin g
+  Given \X is an  additive tensor category with biproduct $\+$, and $f\perp g$, then $f\djoin g
   \definedas f+g$ is a disjoint join.
 \end{proposition}
 \begin{proof}
@@ -199,7 +199,7 @@ about the biproduct of disjoint maps.
   \ \raisebox{40pt}{$= 0.$}\
   \]
   This gives us both directions and all of the axioms have been shown to be true, hence, the
-  biproduct is a disjoint join.
+  addition of maps is a disjoint join.
 \end{proof}
 
 \section{Disjoint sums in \CFrob}
@@ -209,11 +209,11 @@ Now that we have shown we have a disjoint join, our last remaining task is to sh
 biproduct in \X provides a disjoint sum. For the remainder of this section, we define the following
 objects and maps:
 \begin{align*}
-    A\*B & \definedas A+B \text{ (the biproduct of $A$ and $B$),}\\
+    A\+B & \definedas A+B \text{ (the biproduct of $A$ and $B$),}\\
     \epsilon_{A+B} &\definedas [\epsilon_A,\epsilon_B]:A+B \to I,\\
     \eta_{A+B}&\definedas \<\eta_A,\eta_B\>:I\to A+B,\\
     \Delta_{A+B} & \definedas (\Delta_A i_1 + \Delta_B i_2):A+B\to A\*A+A\*B+B\*A+B\*B,\\
-    \nabla_{A+B} & \definedas (\pi_1 \nabla_A + \pi_2 \nabla_B): (A\*A+A\*B)+(B\*A+B\*B) \to A+B,
+    \nabla_{A+B} & \definedas (\pi_1 \nabla_A + \pi_2 \nabla_B): (A\*A+A\*B)+(B\*A+B\*B) \to A+B.
 \end{align*}
 Note that we have $A\*A+A\*B+B\*A+B\*B \cong (A+B)\*(A+B)$ via the isomorphism $b = \<i_1\*i_1 |
 i_1\*i_2 | i_2 \* i_1 | i_2\* i_2\>$.
@@ -260,25 +260,13 @@ i_1\*i_2 | i_2 \* i_1 | i_2\* i_2\>$.
   To show $A\+B$ is a Frobenius algebra and therefore in \CFrob, we must show it is separable,
   the unit laws hold and the Frobenius condition hold for $A\+B$.
 
-  For the requirement that it is separable, we have
+  For the requirement that it is separable:
   \begin{align*}
     \Delta_{A+B}\nabla_{A+B}&= (\Delta_A i_1 + \Delta_B i_2) (\pi_1 \nabla_A + \pi_2 \nabla_B)\\
     &=  (\Delta_A i_1 \pi_1 \nabla_A + \Delta_B i_2\pi_2 \nabla_B)\\
     &=  (\Delta_A \nabla_A + \Delta_B \nabla_B)\\
-    &=  (1_A + 1_B) = 1_{A+B}
+    &=  (1_A + 1_B) = 1_{A+B}.
   \end{align*}
-  % \[
-  %   \xymatrix{
-  %     A\ar[r]^{\Delta} \ar[d]_{i_1} & A\*A \ar[d]^{i_1\*i_1} \ar@{=}[dr] \\
-  %      A+B \ar[r]^(.35){\Delta} \ar@{=}[dr] &(A+B)\*(A+B) \ar[d]^{\nabla}
-  %      & A\*A \ar[l]^(.35){i_1\*i_1}  \ar[d]^{\nabla}\\
-  %      & A+B & A. \ar[l]^{i_1}
-  %   }
-  % \]
-  % The outer path shows the separability of the Frobenius algebra $A$ and is what happens to the $A$
-  % component in the inner path. There is a similar diagram where the outer path $A$s are replaced
-  % with a $B$ and the $i_1$ with $i_2$. As these outer paths commute, they show that the inner path
-  % commutes as each component of it commutes.
 
 
   To show the comultiplication unit law,
@@ -297,7 +285,7 @@ i_1\*i_2 | i_2 \* i_1 | i_2\* i_2\>$.
   commutes as each component of it commutes.
 
   For the Frobenius law, as we are in a commutative world, we need only show
-  $\nabla \Delta = (1\*\Delta)(\nabla\*1)$.
+  $\nabla \Delta = (1\*\Delta)(\nabla\*1)$:
   \[
   \xymatrix@C+17pt{
       &A\*A \ar@{=}[ld] \ar[rr]^{1\*\Delta} \ar[d]^{i_1\*i_1} && A\*A\*A  \ar[d]_{i_1\*i_1\*i_1} \ar@{=}[dr] \\
@@ -306,7 +294,7 @@ i_1\*i_2 | i_2 \* i_1 | i_2\* i_2\>$.
          &&\scriptstyle{(A+B)\*(A+B)\*(A+B)}  \ar[dd]^{\nabla\*1} & A\*A\*A  \ar[l]^(.4){i_1\*i_1\*i_1}  \ar[dd]^{\nabla\*1}\\
      & A \ar[r]^{i_1} \ar[ddrr]_{\Delta} & \scriptstyle{A+B} \ar[dr]^{\Delta} \\
      & & & \scriptstyle{(A+B)\*(A+B)} & A\*A  \ar[l]_(.45){i_1\*i_1} \ar@{=}[dl]\\
-     & & & A\*A \ar[u]_{i_1\*i_1}
+     & & & A\*A. \ar[u]_{i_1\*i_1}
     }
   \]
   By the same reasoning as the previous two arguments, the diagram commutes and $A+B$ is a Frobenius

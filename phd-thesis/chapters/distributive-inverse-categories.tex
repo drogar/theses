@@ -3,9 +3,9 @@
 \chapter{Distributive inverse categories} % (fold)
 \label{chap:distributive_inverse_categories}
 We now consider inverse categories with both a disjoint sum and inverse product, where the inverse
-product distributes overs the disjoint sum in a specific way. We show that the Cartesian Completion
-of such a category is a distributive restriction category where the product distributes over the
-coproduct.
+product distributes overs the disjoint sum in a specific way. This chapter will show that the
+Cartesian Completion of such a category is a distributive restriction category where the product
+distributes over the coproduct.
 
 \section{Distributive restriction categories} % (fold)
 \label{sec:distributive_restriction_categories}
@@ -29,8 +29,6 @@ coproduct.
 
 If $\D$ is a distributive restriction category, then Total($\D$) is a distributive
 category as in Definition~\ref{def:distributive_category}.
-
-In the following, we will present distributivity in inverse categories.
 
 % subsection distributive_restriction_categories (end)
 
@@ -66,7 +64,7 @@ In the following, we will present distributivity in inverse categories.
 \end{definition}
 
 \begin{example}[\pinj is a distributive inverse category]
-  The isomorphism $d$ of Diagram~\ref{eq:inverse_distributive_laws} is given by the following:
+  The following defines the isomorphism $d$ of Diagram~\ref{eq:inverse_distributive_laws}:
   \begin{equation}
     d((a,(x,n)) = \begin{cases}
       ((a,x),1) & n = 1\\
@@ -129,16 +127,16 @@ is also a commuting diagram in \D.
 
   Having $\*$ distribute over the disjoint sum means that for any maps $f,h,k$ with $h\perp k$, we
   have $f \* (h\djoin k) = (f\*h) \djoin (f\*k)$. We use this in the calculation of the restriction
-  of $f$:
+  of $d$:
   \begin{align*}
     \rst{((1 \* \icpa) \cpa )\djoin ((1\*\icpb) \cpb)}
       &= \rst{((1 \* \icpa) \cpa )}\djoin \rst{((1\*\icpb) \cpb)} \\
       &= (1\* \rst{\icpa}) \djoin (1\* \rst{\icpb}) \\
       &= (1\* (\rst{\icpa} \djoin \rst{\icpb}) \\
       &= 1\* ((1\+0) \djoin (0\+1) )\\
-      &=1 \* 1 = 1
+      &=1 \* 1 = 1.
   \end{align*}
-  and for the inverse,
+  The calculation for $\rst{\inv{d}}$ also shows it is $1$:
   \begin{align*}
     \rst{( \icpa(1 \* \cpa) ) \djoin ( \icpb(1\*\cpb))}
       &= \rst{(\icpa(1 \* \cpa) )}\djoin \rst{(\icpb(1\*\cpb))} \\
@@ -286,9 +284,9 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
   \item Set $f' = f(1\*\cpa)$.
-    To show $f\xequiv{} f'$, we must first show their restriction is the same.
+    To show $f\xequiv{} f'$, we must first show their restriction is the same:
     \[
-      \rst{f(1\*\cpa)} = \rst{f\rst{(1\*\cpa)}} = \rst{f 1} =  \rst{f}
+      \rst{f(1\*\cpa)} = \rst{f\rst{(1\*\cpa)}} = \rst{f 1} =  \rst{f}.
     \]
     The mediating map between $f$ and $f'$ is, of course, $1\*\cpa$:
     \[
@@ -395,32 +393,13 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   Explicitly for $k, f$ and $q_1$, this gives us:
   \[
     \xymatrix @C=20pt @R=20pt{
-      & Y \* C \ar@{.>}[dd]^{1\*q_1}\\
+      & Y \* C \ar@{.>}[dd]^{q_1}\\
       A \ar[ur]^{f} \ar[dr]_{\cpa k} \\
       & Y\*E.
     }
   \]
-  % Additionally, as $f' = f(1\*\cpa)$, we have $\cpa k \xequiv{q_1(1\*\cpa)} f'$. Similarly,
-  % $\cpb k \xequiv{q_2(1\*\cpb)} g'$.
 
-  % Furthermore, as we may prepend equivalences with the same map, we may conclude
-  % $\icpa\cpa k \xequiv{q_1(1\*\cpa)} \icpa f'$ and $\icpb\cpb k \xequiv{q_2(1\*\cpb)} \icpb g'$.
-
-
-  % As we have $\icpa f' \perp \icpb g'$, we have $\rst{\icpa f'} \perp \rst{\icpb g'}$ by
-  % \axiom{Dis}{6}. By the definition of our equivalence relation, we therefore have
-  % $\rst{\icpa\cpa k} \perp \rst{\icpb \cpb k}$ as equivalent maps have the equal restrictions. As
-  % $\Delta \* 1$ is total, $\rst{\icpa\cpa k} = \rst{\icpa \cpa k (\Delta \*1)}$ and we may further
-  % conclude   $\rst{\icpa\cpa k (\Delta \*1)} \perp \rst{\icpb \cpb k (\Delta \*1)}$.
-
-  % Then, following the same reasoning as in
-  % Lemma~\ref{lem:maps_from_disjoint_sums_have_disjoint_equivalences}\ref{lemitem:constructed_are_disjoint},
-  % we know that \[\wrg{1\*\cpa}\perp \wrg{1\*\cpb}.\] By
-  % Lemma~\ref{lem:ordering_of_restriction_and_range}~\ref{lemitem:ordering_1} ($\wrg{f h} \le
-  % \rg{h}$) and \axiom{Dis}{3}, we have \[\wrg{q_1(1\*\cpa)} \perp \wrg{q_2(1\*\cpb)}.\]
-
-  Now, we turn out attention to showing that $k \xequiv{} h = \icpa f' \djoin \icpb g'$. Consider the
-  diagram
+  Now, we turn out attention to showing that $k \xequiv{} h = \icpa f' \djoin \icpb g'$. Consider
   \begin{equation}
     \xymatrix @C=35pt @R=20pt{
       & Y \* (C\+D)\ar@{.>}[dd]^{t}\\

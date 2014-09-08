@@ -237,11 +237,11 @@ expressed as:
 \end{proof}
 
 In a restriction category \X, we will use the notation $\open{A}$ for the restriction idempotents
-of $A$, an object of \X. $\open{A} = \{x:A\to A| x = \rst{x}\}$. The notation $\open{A}$ was chosen
+of $A$, an object of \X, that is, $\open{A} = \{x:A\to A| x = \rst{x}\}$. The notation $\open{A}$ was chosen
 to be suggestive of open sets, as in \topcatp, see Example~\ref{ex:restriction_category_top}.
 
 \begin{lemma}\label{lem:open_a_is_a_meet_semilattice}
-  In a restriction category \X, $\open{A}$ is a meet semi-lattice - a poset with a top element and
+  In a restriction category \X, $\open{A}$ is a meet semi-lattice --- a poset with a top element and
   binary meets.
 \end{lemma}
 \begin{proof}
@@ -508,7 +508,7 @@ by the properties of sets and intersections. For the final requirement,
 \end{align*}
 Thus, intersection is a meet in \pinj.
 
-Note that the calculations above apply immediately to \Par as well and therefore intersection is a
+Note that the calculations above apply immediately to \Par as well, therefore intersection is a
 meet in \Par.
 
 \end{example}
@@ -520,7 +520,7 @@ Partial isomorphisms play a central role in this thesis. Below we present
 some of their basic properties.
 
 \begin{definition}\label{def:partial_inverse_etc}
-  For maps $f$ in a restriction category \X:
+  In a restriction category \X, a map $f$ may have some of the following properties:
   \begin{itemize}
     \item $f$ is a \emph{partial isomorphism} when there is a \emph{partial inverse}, written
       $\inv{f}$ with $f\inv{f} =\restr{f}$ and $\inv{f}f = \restr{\inv{f}}$;
@@ -533,12 +533,14 @@ some of their basic properties.
 
 For example, consider the following maps in \Par, $f_1, f_2, f_3:\{1,2\} \to \{a,b,c\}$ where
 \[
-  f_1(1) = a, f_1(2) \undef;\quad   f_2(1) = a, f_2(2)=b;\quad   f_3(1) = a, f_3(2)=a.
+  f_1(1) = a, f_1(2)=b;\quad  f_2(1) = a, f_2(2) \undef;\quad    f_3(1) = f_3(2)=a.
 \]
-Then, $f_1$ is a partial isomorphism, but is neither a partial monic nor a restriction monic. $f_2$ is a
-restriction monic and a total partial isomorphism and a partial monic. $f_3$ is none of the items in
-Definition~\ref{def:partial_inverse_etc}.
-%todo - Find a partial monic that is not the others....
+Then, $f_1$ is a total partial isomorphism and a partial monic and a restriction monic. $f_2$  is a
+partial isomorphism and is a partial monic but is not a restriction monic as it is not a
+section. $f_3$ is none of the items in Definition~\ref{def:partial_inverse_etc}. Finally, in the
+category \topcatp, we shall see in Example~\ref{ex:topcatp-not-discrete} that $\Delta$ does not have
+a partial inverse unless the topological space is discrete. But as $\Delta$ is monic and total, it
+is a partial monic.
 
 Note that restriction monic is a stronger notion than that of section. In fact, restriction monics
 are the partial isomorphisms which are total.
@@ -799,11 +801,10 @@ in $\spl{E}{\X}$.
       = V(f g)$.
   \end{description}
 
-  Recalling from Lemma \ref{lem:properties_of_meets_in_restriction_categories}, $(e\meet 1)$
+  By Lemma \ref{lem:properties_of_meets_in_restriction_categories} $(e\meet 1)$
   is a restriction idempotent. Using this fact, the commutativity of restriction idempotents
-  and the general idempotent identities from
-  \ref{lem:properties_of_meets_in_restriction_categories}, the composite functor $U V$ is
-  the identity on $\spl{r}{\X}$ as when $e$ is a restriction idempotent,
+  and Lemma~\ref{lem:properties_of_meets_in_restriction_categories}, the composite functor $U V$ is
+  the identity on $\spl{r}{\X}$. This is because when $e$ is a restriction idempotent,
   $e = e (e\meet 1) = (e\meet 1) e = (e\meet 1)$.
 
   For the other direction,  note that for a particular idempotent $e:A\to A$,  this gives the
@@ -1175,7 +1176,7 @@ of the section.
     &= \< \rst{(1 \times f)\inv{\Delta}} \pi_0,
       \rst{(1 \times f)\inv{\Delta}}\pi_1 \>\\ %(a x b);pi0 = a
     &= \rst{(1 \times f)\inv{\Delta}} \< \pi_0, \pi_1 \>\\ % products
-    &= \rst{(1 \times f)\inv{\Delta}}
+    &= \rst{(1 \times f)\inv{\Delta}}.
   \end{align*}
   The above follows in a discrete Cartesian restriction category, as we have
   \begin{equation*}
@@ -1202,8 +1203,8 @@ discrete and non-discrete variety.
 \end{example}
 
 \begin{example}[Semi-lattice is discrete]\label{ex:semi-lattice_is_discrete}
-  As the product is the meet of the semi-lattice and $A\wedge A = A$, we have $\Delta = 1$ and
-  therefore is always invertible. Note that a total discrete Cartesian restriction category must be a
+  As the product is the meet of the semi-lattice and $A\wedge A = A$, we have $\Delta = 1$ and,
+  therefore, is always invertible. Note that a total discrete Cartesian restriction category must be a
   semi-lattice. Also, we see that any Cartesian restriction category which is a restriction preorder
   will also be discrete.
 \end{example}

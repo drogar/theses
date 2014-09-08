@@ -42,13 +42,13 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
 \input{chapters/subsection/frobenius-algebras}
 
 \subsection{\CFrob is an inverse category}\label{ssec:cfrob_x_is_an_inverse_category}
-\begin{example}[Commutative separable Frobenius algebras]\label{example:commfrob}
+\begin{example}[Commutative separable Frobenius algebras\cite{kock04}]\label{example:commfrob}
   Let \X be a symmetric monoidal category and form \CFrob as follows: \paragraph{\textbf{Objects:}}
-  Commutative separable Frobenius algebras\cite{kock04}: A quintuple $(A,\nabla,\eta,\Delta,\epsilon)$ where
+  Commutative separable Frobenius algebras, a quintuple $(A,\nabla,\eta,\Delta,\epsilon)$ where
   $A$ is an object of \X with the following maps:
   $\nabla :A\*A \to A$, $\eta:I\to A$, $\Delta : A \to A\*A$, $\epsilon : A \to I$ which are natural
-  maps in \X, with $(A,\nabla,\eta)$ a monoid and $(A,\Delta,\epsilon)$ a comonoid. Additionally, these
-  satisfy
+  maps in \X, with $(A,\nabla,\eta)$ a monoid and $(A,\Delta,\epsilon)$ a comonoid. Additionally,
+  these satisfy
   \[
     \xymatrix @C=10pt @R=20pt{
       A \* A \ar[dd]_{1\*\Delta} \ar[dr]^{\nabla}
@@ -112,8 +112,8 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
 
   In the following proofs, we also use the following two identities from \cite{kock04}:
   \begin{align}
-    (1\*\eta)\nabla &= id\\
-    \Delta(1\*\epsilon) &= id.
+    (1\*\eta)\nabla &= 1,\\
+    \Delta(1\*\epsilon) &= 1.
   \end{align}
   Diagrammatically, this is:
   \[
@@ -570,7 +570,7 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
     \draw [] (start) to[out=270,in=90] (f3);
     \draw [] (f3) to[out=270,in=90] (end);
   \end{tikzpicture}
-  \ \raisebox{40pt}{$= f$}
+  \ \raisebox{40pt}{$= f$.}
   \]
   Proof of Equation~\ref{eq:ffinv_commutes_gginv}:  $f\inv{f}g\inv{g} =$
 

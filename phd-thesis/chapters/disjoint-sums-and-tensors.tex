@@ -2,8 +2,8 @@
 \chapter{Disjoint sums} % (fold)
 \label{chap:disjoint_sum_tensors}
 
-In this chapter, we introduce the disjoint sum and show how it may be used to define a tensor in an
-inverse category. Conversely, we then show how a tensor $\+$ may be used to create a disjointness
+This chapter introduces the disjoint sum and shows how it may be used to define a tensor in an
+inverse category. Conversely, it goes on to then show how a tensor $\+$ may be used to create a disjointness
 relation and a disjoint join in an inverse category  --- at which point we can prove that $A\+B$ is
 a disjoint sum with respect to this structure.
 
@@ -14,14 +14,12 @@ a disjoint sum with respect to this structure.
 \section{Disjointness via a tensor}
 \label{sec:disjointness_via_a_tensor}
 
-Our next objective is to characterize when a tensor provides a disjoint sum. The first step will be
+The next objective is to characterize when a tensor provides a disjoint sum. The first step will be
 to show how a disjointness tensor, defined below, may be used to create a disjointness relation in
-an inverse category. We will do this by first determining when it is possible for maps to work
+an inverse category. This is done by first determining when it is possible for maps to work
 separately on the components of the tensor. This ability to separate the action of the maps will
 allow us to define when the restriction and range of functions are disjoint, and therefore when the
 maps are disjoint.
-
-%todo - can there be something more said here indicating it is a lot of work?
 
 Suppose \X is an inverse category  with a restriction zero, and $\+$ is a tensor product on $\X$.
 We are assuming the following naming for the standard monoidal tensor isomorphisms:
@@ -33,14 +31,14 @@ We are assuming the following naming for the standard monoidal tensor isomorphis
  \end{align*}
 
 \begin{definition}\label{def:disjointness_tensor}
-  Given we have an inverse category \X with restriction zero and a symmetric monoidal tensor
+  Given an inverse category \X with restriction zero and a symmetric monoidal tensor
   $\+$, the tensor $\+$ is a \emph{disjointness tensor} when:
   \begin{enumerate}[{(}i{)}]
     \item It is a restriction functor --- i.e., $\_ \+ \_ : \X \times \X \to \X$.
     \item The unit is the restriction zero. ($0 : \boldsymbol{1}\to \X$ picks out the restriction
     zero in \X).
     \item Define $\cpa = \inv{\upr}(1\+0):A\to A\+B$ and $\cpb = \inv{\upl}(0\+1): A\to B\+A$.
-      $\cpa$ and $\cpb$ must be jointly epic. That is, if $\cpa f = \cpa g$ and $\cpb f = \cpb g$, then
+      The maps $\cpa$ and $\cpb$ must be jointly epic. That is, if $\cpa f = \cpa g$ and $\cpb f = \cpb g$, then
       $f = g$.\label{enuitem:cpa-and-cpb-epic}
     \item Define $\scpa := (1\+0)\upr: A\+B \to A$ and $\scpb := (0\+1)\upl:A\+B \to B$.
       $\scpa$  and $\scpb$ must be jointly monic. That is, whenever $f\scpa = g \scpa$ and
@@ -50,32 +48,32 @@ We are assuming the following naming for the standard monoidal tensor isomorphis
 \end{definition}
 
 \begin{example}[\pinj has a disjointness tensor]\label{ex:pinj_has_disjointness_tensor}
-  In \pinj, the disjoint union, $\disjointunion$, is a disjointness tensor. We will designate elements of
+  In \pinj, the disjoint union, $\disjointunion$, is a disjointness tensor. Designate elements of
   the disjoint union as pairs of the elements of the original sets and the order in the disjoint
   join. That is, when
   \[
      A=\{a\}, B=\{b\}, \text{ then } A\disjointunion B = \{(x,n) | n\in\{1,2\},n =1 \implies x \in A, n = 2
      \implies x\in B\}.
   \]
-  Setting $\+$ as $\disjointunion$, we  have the identity for the tensor is $\emptyset$. The action
+  Setting $\+$ as $\disjointunion$, the identity for the tensor is $\emptyset$. The action
   of the tensor on maps $f:A\to C = \{(a,c)\}$, $g:B\to D = \{(b,d)\}$ is given by:
   \[
     f\+g:A\+B\to C\+D = \{((x,n),(v,m)) | (x,v)\in f \text{ or } (x,v) \in g\}.
   \]
-  From our definitions above, we may define our tensor structure maps:
+  From our definitions above, define our tensor structure maps:
   \begin{align*}
-    \upl &:0\+A \to A, &(a,2) \mapsto a\\
-    \upr &:A\+0 \to A, &(a,1) \mapsto a\\
-    a_\+ &: (A\+B)\+C, &((a,1),1) \mapsto (a,1)\\
+    \upl &:0\+A \to A &(a,2) \mapsto a,\\
+    \upr &:A\+0 \to A &(a,1) \mapsto a,\\
+    a_\+ &: (A\+B)\+C &((a,1),1) \mapsto (a,1)\\
      &  &((b,2),1) \mapsto ((b,1),2)\\
-     &  &(c,2) \mapsto ((c,1),2)\\
+     &  &(c,2) \mapsto ((c,1),2),\\
     c_\+ &: A\+B \to B\+ A & (a,1) \mapsto (a,2)\\
-    & & (a,2) \mapsto (a,1)
+    & & (a,2) \mapsto (a,1).
   \end{align*}
 
   The map $\cpa = \inv{\upr}(1\+0)$ is given by the mapping $a\in A\mapsto (a,1) \in
   A\+B$. Similarly, $\cpb = \inv{\upl}(0\+1)$ is given by the mapping $a\in A\mapsto (a,2) \in
-  B\+A$. We immediately see $\cpa$ and $\cpb$ are jointly epic. Similarly, $\icpa$ and $\icpb$ are
+  B\+A$. From their definitions, $\cpa$ and $\cpb$ are jointly epic. Similarly, $\icpa$ and $\icpb$ are
   jointly monic.
 \end{example}
 
@@ -102,28 +100,6 @@ We are assuming the following naming for the standard monoidal tensor isomorphis
   and therefore the map $\zeroob\+\zeroob: A\+B \to C\+D$ is the same as the map $\zeroob: A\+B \to C\+D$.
 \end{proof}
 
-%
-% This really is immediate = move or amalgamate was the comment.
-
-% \begin{lemma}\label{lem:disjointness_tensor_has_injections}
-%   Given an inverse category \X with a restriction zero and a disjointness tensor, the map $\cpa$ is
-%   natural in the left component and $\cpb$ is natural in the right, up to isomorphism. This means:
-%   \[
-%     \cpa (f\+g) = f \cpa \quad\text{and}\quad \cpb (f\+g) = g \cpb.
-%   \]
-% \end{lemma}
-% \begin{proof}
-%   For the left and right naturality, we see:
-%   \[
-%     \cpa (f\+g) = \inv{\upr} (1\+0) (f\+g) = \inv{\upr} (f \+ 0) =
-%       f \inv{\upr} (1\+0) = f \cpa,
-%   \]
-%   and
-%   \[
-%     \cpb (f\+g) = \inv{\upl} (0\+1) (f\+g) = \inv{\upl} (0 \+ g) =
-%       g \inv{\upl} (0\+1) = g \cpb.
-%   \]
-% \end{proof}
 
 \begin{lemma}\label{lem:tensor_identities}
   Given an inverse category \X with restriction zero and disjointness tensor $\+$,
@@ -137,50 +113,49 @@ We are assuming the following naming for the standard monoidal tensor isomorphis
   \end{enumerate}
 \end{lemma}
 \begin{proof}
-  For \ref{lemitem:disjointness_tensor_identities_1}, recalling that the restriction zero is its own
-  partial inverse, we see that
-  \[
-    \icpa = \inv{(\inv{\upr}(1\+0))}  = \inv{(1\+0)}\upr = (1\+0)\upr = \scpa.
-  \]
-  Similarly,
-  \[
-    \icpb = \inv{(\inv{\upl}(0\+1))} = (0\+1)\upl = \scpb.
-  \]
-  Hence, we may calculate the restriction of $\cpa$,
-  \begin{equation*}
-    \cpa \scpa   = \inv{\upr}(1\+0) (1\+0)\upr
-      = (\inv{\upr}(1\+0))\upr = 1 \inv{\upr}\upr= 1.
-  \end{equation*}
-  The calculation for $\scpb$ and $\cpb$ is analogous.
-  For \ref{lemitem:disjointness_tensor_identities_2}, to show $\rst{\scpa} \scpb = 0$ and
-  $\rst{\scpb} \scpa = 0$,
-  \[
-    \rst{\scpa} \scpb  = \rst{(1\+0)\upr}(0\+1)\upl = \rst{1\+0} (0 \+ 1)\upl = (1\+0) (0\+1)\upl= (0\+0)\upl  = 0,
-  \]
-  and
-  \[
-    \rst{\scpb} \scpa  = \rst{(0\+1)\upl}(1\+0)\upr = (0\+1) (1\+0)\upr= (0\+0)\upr= 0.
- \]
-  We show \ref{lemitem:disjointness_tensor_identities_3}, $\cp{i} \scp{j} = 0$, $\cp{i}
-  \rst{\scp{j}} = 0$ when $i\ne j$,
-  \[
-    \cpa \scpb = (\inv{\upr}(1\+0))(0\+1) \upl= \inv{\upr}(0\+0)\upl= 0
-  \]
-  and
-  \[
-    \cpb \scpa = (\inv{\upl}(0\+1))(1\+0) \upr= \inv{\upl}(0\+0)\upr= 0.
-  \]
-  As $\rst{\scpa} = 1\+0$ and $\rst{\scpb} = 0 \+1$, we see the other two identities hold as well.
-
-  Finally, to prove \ref{lemitem:disjointness_tensor_identities_4}, we first show $\cpa$ is
-  monic. Suppose $f\cpa = g\cpa$. Therefore we must have
-  \[
-    f = f (\cpa \icpa) = (f \cpa) \icpa = (g \cpa) \icpa = g (\cpa \icpa) = g.
-  \]
-  The proof that $\cpb$ is monic follows via a similar argument.
+  \prepprooflist
+  \setlist[enumerate,1]{leftmargin=1.2cm}
+  \begin{enumerate}[{(}i{)}]
+  \item Recalling that the restriction zero is its own partial inverse,
+    \[
+      \icpa = \inv{(\inv{\upr}(1\+0))}  = \inv{(1\+0)}\upr = (1\+0)\upr = \scpa.
+     \]
+     Similarly,
+     \[
+       \icpb = \inv{(\inv{\upl}(0\+1))} = (0\+1)\upl = \scpb.
+     \]
+     Hence, calculating the restriction of $\cpa$,
+     \begin{equation*}
+       \cpa \scpa   = \inv{\upr}(1\+0) (1\+0)\upr
+       = (\inv{\upr}(1\+0))\upr = 1 \inv{\upr}\upr= 1.
+     \end{equation*}
+     The calculation for $\scpb$ and $\cpb$ is analogous.
+  \item To show $\rst{\scpa} \scpb = 0$ and  $\rst{\scpb} \scpa = 0$,
+    \[
+      \rst{\scpa} \scpb  = \rst{(1\+0)\upr}(0\+1)\upl = \rst{1\+0} (0 \+ 1)\upl = (1\+0) (0\+1)\upl= (0\+0)\upl  = 0,
+    \]
+    and
+    \[
+      \rst{\scpb} \scpa  = \rst{(0\+1)\upl}(1\+0)\upr = (0\+1) (1\+0)\upr= (0\+0)\upr= 0.
+    \]
+  \item  $\cp{i} \scp{j} = 0$, $\cp{i} \rst{\scp{j}} = 0$ when $i\ne j$,
+    \[
+      \cpa \scpb = (\inv{\upr}(1\+0))(0\+1) \upl= \inv{\upr}(0\+0)\upl= 0
+    \]
+    and
+    \[
+     \cpb \scpa = (\inv{\upl}(0\+1))(1\+0) \upr= \inv{\upl}(0\+0)\upr= 0.
+    \]
+    As $\rst{\scpa} = 1\+0$ and $\rst{\scpb} = 0 \+1$, we see the other two identities hold as well.
+  \item The first requirement is to show $\cpa$ is  monic. Suppose $f\cpa = g\cpa$. Therefore we must have
+    \[
+      f = f (\cpa \icpa) = (f \cpa) \icpa = (g \cpa) \icpa = g (\cpa \icpa) = g.
+    \]
+    The proof that $\cpb$ is monic follows via a similar argument.
+  \end{enumerate}
 \end{proof}
 
-As we have shown that $\scp{i} = \icp{i}$, we will prefer the explicit notation of $\icp{i}$ for the
+As the above proof showed $\scp{i} = \icp{i}$, the explicit notation of $\icp{i}$ will be used for the
 remainder of this thesis.
 
 \begin{corollary}\label{cor:split_plus_tensor}
@@ -208,15 +183,15 @@ remainder of this thesis.
   The calculations for $f\+g$ follow from
   Lemma~\ref{lem:tensor_identities}. For example, $\cpa (f\+g) \icpa = f \cpa \icpa = f$.
 
-  For the second claim, note that we have $\cpa (t \icpa) = t_1 = \cpa ( t_1 \+ t_2)\icpa$ and
+  For the second claim, note that $\cpa (t \icpa) = t_1 = \cpa ( t_1 \+ t_2)\icpa$ and
   $\cpb  (t \icpa) = 0 = \cpb ( t_1 \+ t_2)\icpa$, hence $t \icpa = ( t_1 \+ t_2)\icpa$. Similarly,
-  we see $t\icpb = ( t_1 \+ t_2)\icpb$ and therefore $t = t_1 \+ t_2$.
+  $t\icpb = ( t_1 \+ t_2)\icpb$ and therefore $t = t_1 \+ t_2$.
 \end{proof}
 
 \begin{definition}\label{def:up_triangle_and_down_triangle}
-  In an inverse category \X with a restriction zero and disjointness tensor, we define a partial
+  In an inverse category \X with a restriction zero and disjointness tensor, define a partial
   pairing and a partial copairing operation on arrows in  \X. First, for arrows
-  $f:A \to B$ and $g:A \to C$, we define $f\tjdown g$ as
+  $f:A \to B$ and $g:A \to C$, define $f\tjdown g$ as
   being the map that makes Diagram~\ref{eq:tjdowndefinition} below commute, when it exists.
   \begin{equation}
     \xymatrix@C+0pt @R+20pt{
@@ -224,7 +199,7 @@ remainder of this thesis.
       B&&B\+C \ar[ll]^{\icpa} \ar[rr]_{\icpb} && C.
       }\label{eq:tjdowndefinition}
   \end{equation}
-  Then for $h:B \to A$, $k: C \to A$, $h\tjup k$ is that map that makes
+  Then for $h:B \to A$, $k: C \to A$, define $h\tjup k$ as the map that makes
   Diagram~\ref{eq:tjupdefinition} commute, if it exists.
   \begin{equation}
     \xymatrix@C+0pt @R+20pt{
@@ -237,7 +212,7 @@ remainder of this thesis.
   Similarly, as $\cpa$ and $\cpb$ are jointly epic, $f\tjup g$ is unique when it exists.
 \end{definition}
 \begin{example}[\pinj]\label{ex:pinj_has_triangle_maps_when_restriction_is_disjoint}
-  Continuing from Example~\ref{ex:pinj_has_a_disjoint_join}, we see that $f\tjdown g$ can only exist
+  Continuing from Example~\ref{ex:pinj_has_a_disjoint_join}, $f\tjdown g$ can only exist
   when $\rst{f} \meet \rst{g} = 0$, as it must be a set function, i.e., $f\tjdown g$ of some element
   $a$ must be either $(b,1)$ when  $f(a) = b\in B$ or $(c,2)$ when $g(a) = c\in C$.
 
@@ -249,8 +224,8 @@ our mechanism for defining disjointness and eventually the disjoint join of maps
 the pairing map $f\tjdown g$ ensures the restrictions of $f$ and $g$ are disjoint, while
 the copairing map $f\tjup d$ exists only when the ranges of $f$ and $g$ are disjoint.
 
-To arrive at the disjointness we first give the following lemma detailing properties of the two
-operations $\tjdown$ and $\tjup$:
+To arrive at the disjointness relation we first give the following lemma detailing properties of the
+two operations $\tjdown$ and $\tjup$:
 
 \begin{lemma}\label{lem:properties_of_tjdown_and_tjup}
   Given \X is an inverse category with a restriction zero and a disjointness tensor $\+$ then the
@@ -301,7 +276,7 @@ operations $\tjdown$ and $\tjup$:
       \]
       Similarly, $\rst{g}f = f\tjdown g \rst{\icpb}\icpa = 0$.
 
-      Recall that $\icpa$ and $\icpb$ are jointly monic. We have
+      Recall that $\icpa$ and $\icpb$ are jointly monic. Then,
       $\rst{f}(f \tjdown g) \icpa = \rst{f} f = f = (f\tjdown 0) \icpa$ and
       $\rst{f}(f \tjdown g) \icpb = \rst{f}g = 0= (f\tjdown 0) \icpb$.
       Therefore, $\rst{f}(f \tjdown g) = f \tjdown 0$. Similarly,
@@ -313,16 +288,16 @@ operations $\tjdown$ and $\tjup$:
           \cpb(f\tjup g) \rst{\inv{(f\tjup g)}\rst{\icpa}} =
           \rst{\cpb \rst{(f\tjup g)} \rst{\icpa}}\cpb(f\tjup g) = \\
           \rst{\cpb \rst{\icpa}\rst{(f\tjup g)} }\cpb(f\tjup g) =
-          \rst{0}\cpb(f\tjup g) = 0
+          \rst{0}\cpb(f\tjup g) = 0.
       \end{multline*}
       Similarly, $f\rg{g} =  0$.
 
-      Recall that $\cpa$ and $\cpb$ are jointly epic. We have
+      Recall that $\cpa$ and $\cpb$ are jointly epic. Then
       $\cpa(f \tjup g)\rg{f} = f\rg{f} = f = \cpa(f\tjup 0) $ and
       $\cpb(f \tjup g)\rg{f} = g\rg{f} = 0= \cpb(f\tjup 0)$.
       Therefore, $(f \tjup g)\rg{f} = f \tjup 0$. Similarly,
       $(f \tjup g) \rg{g} = 0 \tjup g$.
-    \item Calculating, we have
+    \item Calculating,
       \[
         f \tjdown g (h \+ k) \icpa = f\tjdown g \icpa h = f h
       \]
@@ -334,23 +309,23 @@ operations $\tjdown$ and $\tjup$:
       $f \tjdown g (h \+ k) = f h \tjdown g k$ by the joint monic property of $\icpa$, $\icpb$.
     \item The proof for this is dual to \ref{lemitem:l_r_l_pull_right}, and depends on the joint
       epic property of $\cpa$ and $\cpb$.
-    \item We are given $f\tjdown g$ exists, therefore $f = (f\tjdown g)\icpa$ and
+    \item The assumption is $f\tjdown g$ exists, thus $f = (f\tjdown g)\icpa$ and
       $g = (f\tjdown g)\icpb$. But this means $hf = h(f\tjdown g)\icpa$ and
       $h g = h(f\tjdown g)\icpb$, from which we may conclude $hf \tjdown h g = h(f\tjdown g)$ by
       the fact that $\icpa$ and $\icpb$ are jointly monic. The proof of
       $(f\tjup g)h = f h \tjup g h$ is similar.
-    \item We are given $\rst{f} = \rst{f}\tjdown\rst{g} \icpa$. Therefore,
+    \item The assumption is $\rst{f} = \rst{f}\tjdown\rst{g} \icpa$. Therefore,
       \[
         \rst{f} = \inv{\rst{f}} = \inv{\icpa}\inv{(\rst{f}\tjdown\rst{g})}
           = \cpa \inv{(\rst{f}\tjdown\rst{g})}.
       \]
       Similarly, $\rst{g} = \cpb \inv{(\rst{f}\tjdown\rst{g})}$. But this means
       $\inv{(\rst{f}\tjdown\rst{g})} = \rst{f}\tjup\rst{g}$.
-    \item Note that from \ref{lemitem:l_r_l_pull_right}, we know that
-      $f \tjdown g  = \rst{f} \tjdown \rst{g} (f\+g)$. We are given $f' \le f$ and $g' \le g$. This
-      gives us $\rst{f'}f =f'$, $\rst{g'}g =g'$, $\rst{f'}\,\rst{f} =\rst{f'}$ and
+    \item Note that \ref{lemitem:l_r_l_pull_right} implies
+      $f \tjdown g  = \rst{f} \tjdown \rst{g} (f\+g)$. By assumption, $f' \le f$ and $g' \le g$. This
+      gives  $\rst{f'}f =f'$, $\rst{g'}g =g'$, $\rst{f'}\,\rst{f} =\rst{f'}$ and
       $\rst{g'}\,\rst{g} =\rst{g'}$. Consider the map
-      $\rst{f} \tjdown \rst{g} (\rst{f'}\+\rst{g'})(f\+g)$. Calculating, we see
+      $\rst{f} \tjdown \rst{g} (\rst{f'}\+\rst{g'})(f\+g)$. Calculating,
       \begin{align*}
         \rst{f} \tjdown \rst{g} (\rst{f'}\+\rst{g'})(f\+g)
           &= \rst{f} \tjdown \rst{g} (\rst{f'}\+\rst{g'})(\rst{f'}\+\rst{g'})(f\+g) \\
@@ -360,19 +335,18 @@ operations $\tjdown$ and $\tjup$:
           & = \rst{f'} \tjdown \rst{g'}  (f'\+g') \\
           & = f'\tjdown g'.
       \end{align*}
-    \item From our diagram for $\tjup$, we know:
+    \item From the diagram for $\tjup$, we know:
       \begin{align*}
         \inv{f} &= \inv{(f\tjup g)} \icpa\text{ and}\\
         \inv{g} &= \inv{(f\tjup g)} \icpb.
       \end{align*}
-      As well, we know that $\cpa(f\tjup g) = f$ and
-      $\cpa(f\tjup g) = g$.
-      Therefore, we have:
+      As well, from the diagram, $\cpa(f\tjup g) = f$ and $\cpa(f\tjup g) = g$.
+      Therefore:
       \[
          \cpa(f\tjup g)\inv{(f\tjup g)} \icpa = \rst{f} \text{ and  }
           \cpb(f\tjup g)\inv{(f\tjup g)} \icpb = \rst{g}.
       \]
-      As $f\tperp g$, we know that $f\inv{g} = f \rg{g} \inv{g} = 0 \inv{g} = 0$ and therefore,
+      As $f\tperp g$, by \axiom{Dis}{2} $f\inv{g} = f \rg{g} \inv{g} = 0 \inv{g} = 0$ and therefore,
 
       \[
          \cpa(f\tjup g)\inv{(f\tjup g)} \icpb = 0 \text{ and  }
@@ -380,8 +354,8 @@ operations $\tjdown$ and $\tjup$:
       \]
       By Corollary~\ref{cor:split_plus_tensor} this means
       $(f\tjup g)\inv{(f\tjup g)} = \rst{f} \+ \rst{g}$.
-    \item As $(f\tjdown g)\+ (h\tjdown k)\icpa = (f\tjdown g)$ and
-      $(f\tjdown g)\+ (h\tjdown k) \icpb = (h\tjdown k)$, we see that
+    \item The fact that $(f\tjdown g)\+ (h\tjdown k)\icpa = (f\tjdown g)$ and
+      $(f\tjdown g)\+ (h\tjdown k) \icpb = (h\tjdown k)$, implies that
       $(f\tjdown g)\+ (h\tjdown k)$ satisfies the diagram for $(f\+h)\tjdown(g\+k)$. Dually, as
       $\cpa (f\tjup g)\+ (h\tjup k) = (f\tjup g)$ and
       $\cpb(f\tjup g)\+ (h\tjup k) = (h\tjup k)$, $(f\tjup g)\+ (h\tjup k)$ satisfies
@@ -390,10 +364,10 @@ operations $\tjdown$ and $\tjup$:
 \end{proof}
 
 % \begin{definition}\label{def:general_triangle}
-%   In an inverse category \X with a restriction zero and disjointness tensor, we define two partial
+%   In an inverse category \X with a restriction zero and disjointness tensor, define two partial
 %   operations on pairs of arrows in \X to another arrow in \X. First, for arrows
-%   $f:A \to B$ and $g:A \to C$, suppose we have arrows $f':A  \to B\+X$ and $g': A \to C\+X$
-%   such that $f'\icpa =f$, $g'\icpa = g$ and $f'\icpb = g' \icpb$. Then, we say $f\gtjdown g$ if
+%   $f:A \to B$ and $g:A \to C$, suppose there are arrows $f':A  \to B\+X$ and $g': A \to C\+X$
+%   such that $f'\icpa =f$, $g'\icpa = g$ and $f'\icpb = g' \icpb$. Then,  $f\gtjdown g$ if
 %   regardless of the choice of $f',\ g'$ and $X$, there exists a map $\alpha$ that makes
 %   diagram \ref{eq:gtjdowndefinition} below commute.
 %   \begin{equation}
@@ -424,7 +398,7 @@ operations $\tjdown$ and $\tjup$:
 % \end{lemma}
 % \begin{proof}
 %   Suppose $f \gtjdown g$. Then set $f' = f \inv{\upr}$, $g' = g \inv{\upr}$ and $X = 0$. Then
-%   $\alpha: A \to B\+C\+0$ exists and we can see that setting $f\tjdown g = \alpha \upr$ makes the
+%   $\alpha: A \to B\+C\+0$ exists and note that setting $f\tjdown g = \alpha \upr$ makes the
 %   first diagram of Definition~\ref{def:up_triangle_and_down_triangle} commute. In detail,
 %   \[
 %     \xymatrix@C+0pt @R+10pt{
@@ -441,62 +415,60 @@ operations $\tjdown$ and $\tjup$:
 %   we set $f\tjup = \beta \upr.$
 % \end{proof}
 
-We are now set up to prove that we can create a disjointness relation based on the existence of our
-pairing and copairing maps:
+We are now set up to prove that it is possible to create a disjointness relation based on the
+existence of our pairing and copairing maps:
 \begin{lemma}\label{lem:tensor_disjointness_is_disjointness}
   Define $f \tperp g$ ($f$ is tensor disjoint to $g$) when $f, g: A\to B$ and both $f\tjdown g$ and
   $f\tjup g$ exist.  If \X is an inverse category with a restriction zero and a disjointness tensor
   $\+$ then the relation $\tperp$ is a disjointness relation.
 \end{lemma}
 \begin{proof}
-  We need to show that $\tperp$ satisfies the disjointness axioms. We will use \axiom{Dis}{6'} in
-  place of \axiom{Dis}{6} and \axiom{Dis}{7} as discussed in
+  The proof requires us to show that $\tperp$ satisfies the disjointness axioms. We will use
+  \axiom{Dis}{6'} in place of \axiom{Dis}{6} and \axiom{Dis}{7} as discussed in
   Lemma~\ref{lem:disjointness_equivalent_axioms}.
   \setlist[itemize,1]{leftmargin=1.5cm}
   \begin{itemize}
-    \item[\axiom{Dis}{1}] We must show $f \tperp 0$. This follows immediately from
+    \item[\axiom{Dis}{1}] The requirement is $f \tperp 0$. This follows immediately from
       Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item \ref{lemitem:l_r_zero_exists}.
     \item[\axiom{Dis}{2}] Show $f \tperp g$ implies $\rst{f}g = 0$. This is a direct consequence of
       Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
       \ref{lemitem:l_r_rst_orthogonal_to_zero}.
-    \item[\axiom{Dis}{3}] We require $f\tperp g$, $f' \le f$, $g' \le g$ implies $f' \tperp g'$.
-      From Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item \ref{lemitem:l_r_less_than}, we
-      immediately have $f' \tjdown g'$ exists. Using a similar argument to the proof of this item,
-      we also have $f' \tjup g'$ exists and hence $f' \tperp g'$.
+    \item[\axiom{Dis}{3}] This requires that $f\tperp g$, $f' \le f$, $g' \le g$ implies $f' \tperp g'$.
+      From Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item \ref{lemitem:l_r_less_than},
+      $f'  \tjdown g'$ exists. Using a similar argument to the proof of this item,
+      $f' \tjup g'$ exists and hence $f' \tperp g'$.
     \item[\axiom{Dis}{4}] Commutativity of $\tperp$ follows from the symmetry of the two required
-    diagrams, see Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
+      diagrams, see Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
       \ref{lemitem:l_r_commute}.
     \item[\axiom{Dis}{5}] Show that if $f\tperp g$ then $h f \tperp h g$ for any map $h$.
-      Assuming $f\tjdown g$ exists, by  Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
-      \ref{lemitem:l_r_l_universal_r_stable}, we know that $h f \tjdown h g$ exists.
-      Assuming $f\tjup g$, by item \ref{lemitem:l_r_r_pull_left} of the same lemma,
+      By  Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_l_universal_r_stable}, when $f\tjdown g$ exists, $h f \tjdown h g$ exists.
+      Assuming $f\tjup g$, by \ref{lemitem:l_r_r_pull_left} of the same lemma,
       $(h f)\tjup (h g)$ exists and equals $(h \+ h) (f\tjup g)$  and therefore $h f \tperp h g$.
-    \item[\axiom{Dis}{6'}] We need to show $f\tperp g$ if and only if $\rst{f} \tperp \rst{g}$ and
-      $\rg{f}\tperp \rg{g}$. This follows directly from
-      Lemma~\ref{lem:properties_of_tjdown_and_tjup}, items
-      \ref{lemitem:l_r_l_pull_right} and       \ref{lemitem:l_r_r_pull_left}, which give us
-      $f\tjdown g = \rst{f}\tjdown \rst{g} (f\+g)$ and
+    \item[\axiom{Dis}{6'}] This requires showing $f\tperp g$ if and only if $\rst{f} \tperp \rst{g}$
+      and $\rg{f}\tperp \rg{g}$. This follows directly from
+      Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_l_pull_right} and
+      \ref{lemitem:l_r_r_pull_left}, which give us $f\tjdown g = \rst{f}\tjdown \rst{g} (f\+g)$ and
       $f\tjup g = (f \+ g)\rg{f}\tjup \rg{g}$, where the equalities hold if either side of
       the equation exists.
   \end{itemize}
 \end{proof}
 
 \begin{example}[$\tperp$ in \pinj]\label{ex:tensor_perp_in_pinj}
-  Referring to Example~\ref{ex:pinj_has_triangle_maps_when_restriction_is_disjoint}, we noted
+  Referring to Example~\ref{ex:pinj_has_triangle_maps_when_restriction_is_disjoint},
   $f\tjdown g$ exists when $\rst{f} \meet \rst{g} = 0$ and that $f \tjup g$ exists when $\rg{f} \meet
-  \rg{g} = 0$. But this agrees with our initial definition of disjointness $(\perp)$ in \pinj from
-  Example~\ref{ex:pinj_has_a_disjointness_relation} and hence we have that $\tperp$ is the same
-  relation as $\perp$ in \pinj.
+  \rg{g} = 0$. But this agrees with the initial definition of disjointness $(\perp)$ in \pinj from
+  Example~\ref{ex:pinj_has_a_disjointness_relation} and hence $\tperp$ is the same relation as
+  $\perp$ in \pinj.
 \end{example}
 
 \section{Disjoint joins via a tensor}
 \label{sec:disjoint_joins_via_a_tensor}
 The operations $\tjdown$ and $\tjup$ are sufficient to define a disjointness relation
-on an inverse category. However, when we wish to extend this to a disjoint join, the two relations
-are insufficient to prove $\axiom{DJ}{4}$, That is, we need to show that $\tperp [f,g,h]$ implies $f
-\tperp (g \tjoin h)$.
+on an inverse category. However, when attempting to extend this to a disjoint join, the two relations
+are insufficient to prove $\axiom{DJ}{4}$, That is, requiring that $\tperp [f,g,h]$ implies
+$f\tperp (g \tjoin h)$.
 
-Therefore, we add one more assumption regarding our tensor in order to define disjointness.
+Therefore, we must add one more assumption regarding our tensor in order to define disjointness.
 
 \begin{definition}\label{def:disjoint_sum_tensor}
   Let \X be an inverse category with a disjointness tensor $\+$ and a restriction zero. Consider the
@@ -535,14 +507,14 @@ Therefore, we add one more assumption regarding our tensor in order to define di
        \end{cases}
  \]
  For the converse, assume $\alpha$ exists, meaning $\alpha(a)$ must be one of $(x,1), (y,2)$ or $(z,3)$. As
- $f\icpb = \alpha\icp{1,2}\icpb$ and $g\icpb = \alpha\icp{1,3}\icpb$, we see this immediately
+ $f\icpb = \alpha\icp{1,2}\icpb$ and $g\icpb = \alpha\icp{1,3}\icpb$, this
  requires that $\rst{f\icpb}\meet\rst{g\icpb} =0$ and therefore $f \icpb  \tjdown g \icpb$ exists.
 
  The reasoning for Diagram~\ref{dia:tensor_complete_right} is similar.
 \end{example}
 \begin{lemma}\label{lem:complete_disjointness_means_multiple_disjoints}
   Let \X be an inverse category with a disjoint sum tensor as in
-  Definition~\ref{def:disjoint_sum_tensor} and we are given $f,g,h:A\to B$ with
+  Definition~\ref{def:disjoint_sum_tensor} where $f,g,h:A\to B$ with
   $\tperp[f,g,h]$. Then both $f \tjdown (g \tjdown h)$ and $f\tjup(g\tjup h)$ exist.
 \end{lemma}
 \begin{proof}
@@ -562,7 +534,7 @@ Therefore, we add one more assumption regarding our tensor in order to define di
   Definition~\ref{def:disjoint_sum_tensor}. The upper rightmost triangle of the diagram commutes by
   the definition of $g\tjdown f$. Noting that $\icp{0,1}:B\+B\+B \to B\+B$ is the same map as
   $\icpa:(B\+B)\+B\to (B\+B)$ and $\icp{0,2} \icpb:B\+B\+B \to B\+B \to B$ is the same map as
-  $\icpb:(B\+B)\+B\to B$, we see $\alpha$ does make the $\tjdown$ diagram for $g\tjdown h$ and $f$
+  $\icpb:(B\+B)\+B\to B$, therefore $\alpha$ does make the $\tjdown$ diagram for $g\tjdown h$ and $f$
   commute. Therefore by Lemma~\ref{lem:properties_of_tjdown_and_tjup}, $f\tjdown(g\tjdown h)$
   exists and is equal to $\alpha \com{\+\,\{01,2\}}$.
 
@@ -598,25 +570,25 @@ Therefore, we add one more assumption regarding our tensor in order to define di
   \end{equation}
   which gives us $\gamma \comp = f \tjdown (g\tjdown h): A \to B\+(B\+B)$.
 
-  Note from Diagrams~\ref{dia:alpha_plus_h} and \ref{dia:gamma_plus_f} we have
+  From Diagrams~\ref{dia:alpha_plus_h} and \ref{dia:gamma_plus_f}:
   \begin{align*}
     \gamma \comp  \icp{0}         =\, &f  = \alpha \assocp\icpa\\
     \gamma \comp  \icp{1} \icp{0} =\, &g  = \alpha \assocp\icpb\icpa\\
     \gamma \comp  \icp{1} \icpb   =\, & h = \alpha \assocp\icpb\icpb.
   \end{align*}
-  By the assumption that $\icpa, \icpb$ are jointly monic, we have
+  By the assumption that $\icpa, \icpb$ are jointly monic,
   $\alpha = \gamma \comp  \assocp$. Therefore $f \tjdown (g \tjdown h) = (f \tjdown g) \tjdown h$,
   up to the associativity isomorphism.
 \end{proof}
 
-We may now state the main result of this chapter:
+We may now state the main result of this section:
 \begin{proposition}\label{prop:disjointness_tensor_gives_disjoint_join}
   An inverse category with a restriction zero and a disjoint sum tensor has disjoint joins.
 \end{proposition}
 
-Given two  maps $f,g$ with $f\tperp g$, we claim the map $f \tjoin g = \rst{f}\tjdown\rst{g} (f\+g)
-\rg{f}\tjup\rg{g}$  is a disjoint join. We will prove this after giving an example and a lemma
-detailing the properties of $\tjoin$.
+Given two  maps $f,g$ with $f\tperp g$, the candidate for disjoint join is  the map
+$f \tjoin g = \rst{f}\tjdown\rst{g} (f\+g) \rg{f}\tjup\rg{g}$. The proof that this is a disjoint
+join will follow  after giving an example and a lemma detailing the properties of $\tjoin$.
 
 For reference, the map $f \tjoin g$ may be visualized as follows:
 \[
@@ -631,7 +603,7 @@ For reference, the map $f \tjoin g$ may be visualized as follows:
   }
 \]
 
-Using Lemma~\ref{lem:properties_of_tjdown_and_tjup}, we may rewrite this in a variety of
+Using Lemma~\ref{lem:properties_of_tjdown_and_tjup}, this may be rewritten in a variety of
 equivalent ways:
 \begin{align*}
   f \tjoin g &= \rst{f}\tjdown\rst{g} (f\+g) \rg{f}\tjup\rg{g} \\
@@ -644,10 +616,8 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 (\rst{f}\tjup\rst{g})$ as $\rg{\rst{g}} = \rst{g}$.
 
 \begin{example}[Disjoint sum tensor in \pinj]\label{ex:tensor_join_in_pinj}
-  We will use the third equality of those above for $f\tjoin g$, i.e.,
-  $\rst{f}\tjdown\rst{g}\,  f\tjup g$.
-
-  We have:
+  Using the third equality of those above for $f\tjoin g$, i.e.,
+  $\rst{f}\tjdown\rst{g}\,  f\tjup g$, calculate:
   \begin{equation}
     \rst{f}\tjdown\rst{g}(a) =
     \begin{cases}
@@ -664,11 +634,11 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
     \end{cases}\label{eq:definition_of_f_tjup_g_in_pinj}
   \end{equation}
   Combining Equation~\ref{eq:definition_of_rf_tjdown_rg_in_pinj} with
-  Equation~\ref{eq:definition_of_f_tjup_g_in_pinj} then gives us the same definition as that of
+  Equation~\ref{eq:definition_of_f_tjup_g_in_pinj} then gives the same definition as that of
   $\djoin$ as given in Example~\ref{ex:pinj_has_a_disjoint_join}.
 \end{example}
 \begin{lemma}\label{lem:tensor_disjoint_join_properties}
-  Let \X be an inverse category with a disjointness tensor and restriction zero. Let \X have the
+  Let \X be an inverse category with a disjoint sum tensor and restriction zero. Let \X have the
   maps $f,g: A \to B$ with $f\tperp g$. Then $\tjoin$ has the following properties.
   \begin{enumerate}[{(}i{)}]
     \item For all maps $h:A \to B$, $\rst{f}h \tjoin \rst{g}h = (\rst{f}\tjoin \rst{g})h$.
@@ -679,8 +649,8 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item By Lemma~\ref{lem:disjointness_various} \ref{lemitem:djv_universal}, we know that
-    $\rst{f}h \tperp \rst{g} h$, hence we can form $\rst{f}h \tjoin \rst{g}h$.
+    \item By Lemma~\ref{lem:disjointness_various} \ref{lemitem:djv_universal},
+    $\rst{f}h \tperp \rst{g} h$, hence the disjoint join exists: $\rst{f}h \tjoin \rst{g}h$.
     Also, noting that
       \[
         h \wrg{\rst{f} h} = h \rst{\inv{h}\rst{f}} = \rst{h \inv{h} \rst{f}} h
@@ -696,8 +666,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
           & = (\rst{f} \tjoin \rst{g} ) h.
       \end{align*}
     \item
-    Using Lemma~\ref{lem:properties_of_tjdown_and_tjup} \ref{lemitem:l_r_rst_is_natural},
-    we can compute:
+    Using Lemma~\ref{lem:properties_of_tjdown_and_tjup} \ref{lemitem:l_r_rst_is_natural}:
     \begin{align*}
       \rst{f\tjoin g} & = f \tjoin g \inv{(f\tjoin g)} \\
       & = \left((\rst{f} \tjdown \rst{g})(f\tjup g)\right)
@@ -715,7 +684,7 @@ We may now complete the proof of Proposition~\ref{prop:disjointness_tensor_gives
 \begin{proof}
   \setlist[itemize,1]{leftmargin=1.5cm}
   \begin{itemize}
-    \item [\axiom{DJ}{1}] We must show $f, g \le f \tjoin g$.
+    \item [\axiom{DJ}{1}] This requires $f, g \le f \tjoin g$.
       \begin{align*}
         \rst{f}\,(\rst{f}\tjdown\rst{g})  f\tjup g
           &= (\rst{f}\tjdown\rst{g}) \icpa (\rst{f}\tjdown\rst{g} ) f\tjup g \\
@@ -726,8 +695,8 @@ We may now complete the proof of Proposition~\ref{prop:disjointness_tensor_gives
         &= \rst{f} f \\
         &=f.
       \end{align*}
-      Thus, we see $f \le f \tjoin g$. Showing $g \le f \tjoin g$ proceeds in the same manner.
-    \item [\axiom{DJ}{2}] We must show that $f \le h,\ g\le h$ and $f\tperp g$ implies
+      Thus, $f \le f \tjoin g$. Showing $g \le f \tjoin g$ proceeds in the same manner.
+    \item [\axiom{DJ}{2}] The requirement is that $f \le h,\ g\le h$ and $f\tperp g$ implies
       $f \tjoin g \le h$.
       \begin{align*}
         \rst{f \tjoin g} \,h & = \rst{\rst{f} h \tjoin \rst{g} h} \,h\\
@@ -739,7 +708,7 @@ We may now complete the proof of Proposition~\ref{prop:disjointness_tensor_gives
         & = (\rst{f}h\tjoin \rst{g}h)\\
         & = (f\tjoin g).
       \end{align*}
-    \item [\axiom{DJ}{3}] We must show stability of $\tjoin$, i.e., that
+    \item [\axiom{DJ}{3}] This is the stability of $\tjoin$, i.e., that
       $h(f\tjoin g) = h f \tjoin h g$.
 
       \begin{align*}
@@ -752,14 +721,14 @@ We may now complete the proof of Proposition~\ref{prop:disjointness_tensor_gives
       \end{align*}
 
 
-    \item [\axiom{DJ}{4}] We need to show $\tperp [f,g,h]$ if and only if $f \tperp (g \tjoin h)$.
+    \item [\axiom{DJ}{4}] This requires $\tperp [f,g,h]$ if and only if $f \tperp (g \tjoin h)$.
       For the right to left implication, note that the existence of $g\tjoin h$ implies $g \tperp
-      h$. We also know $g, h \le g\tjoin h$ by \axiom{DJ}{4}, as shown in this lemma. This gives us
+      h$. By \axiom{DJ}{1} $g, h \le g\tjoin h$ , as shown in this proof. This gives
       that $f \tperp g$ and $f \tperp h$, hence $\tperp [f,g,h]$.
 
-      For the left to right implication, we use
-      Lemma~\ref{lem:complete_disjointness_means_multiple_disjoints}. As we have $\tperp [f,g,h]$,
-      we  know $f\tjdown(g\tjdown h)$ and $f\tjup(g\tjup h)$ exist.
+      For the left to right implication, use
+      Lemma~\ref{lem:complete_disjointness_means_multiple_disjoints}. As $\tperp [f,g,h]$,
+      this means $f\tjdown(g\tjdown h)$ and $f\tjup(g\tjup h)$ exist.
 
       Recall that $g\tjoin h = (g\tjdown h)(\rg{g}\tjup\rg{h})$. Then the map
       \[
@@ -768,7 +737,7 @@ We may now complete the proof of Proposition~\ref{prop:disjointness_tensor_gives
       makes the diagram for $f \tjdown (g\tjoin h)$ commute.
 
       Recalling that  $g\tjoin h =
-      (\rst{g}\tjdown \rst{h})(g\tjup h)$, we also see that
+      (\rst{g}\tjdown \rst{h})(g\tjup h)$, this gives
       \[
         A\+A\xrightarrow{1\+(\rst{g}\tjdown\rst{h})}A\+A\+A\xrightarrow{f\tjup(g\tjup h)}B
       \]
@@ -783,18 +752,18 @@ Next, we show that the disjoint sum tensor is universal with respect to the disj
   Given an inverse category \X with a disjoint sum tensor $\+$, then $\+$ preserves the disjoint
   join. That is,
   \begin{align}
-    f \cdperp g, \ h \cdperp k&\text{ implies } f\+ h \cdperp g \+ k
+    f \cdperp g, \ h \cdperp k&\text{ implies } f\+ h \cdperp g \+ k,
     \label{eq:disjoint_sum_preserve_perp}\\
     f \cdperp g, \ h \cdperp k &\text{ implies } (f\djoin g)\+(h\djoin k) = (f \+h )\djoin (g\+k).
     \label{eq:disjoint_sum_preserve_join}
   \end{align}
 \end{lemma}
 \begin{proof}
-  For Condition~\ref{eq:disjoint_sum_preserve_perp}, suppose we have $f \tperp g$ and $\ h \tperp k$.
-  From Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_preserve_tensor}, we
-  know both $(f\+h)\tjdown(g\+k)$ and $(f\+h)\tjup(g\+k)$ exist, hence $(f\+h)\tperp(g\+k)$.
+  For Condition~\ref{eq:disjoint_sum_preserve_perp}, suppose  $f \tperp g$ and $\ h \tperp k$.
+  From Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_preserve_tensor},
+  both $(f\+h)\tjdown(g\+k)$ and $(f\+h)\tjup(g\+k)$ exist, hence $(f\+h)\tperp(g\+k)$.
 
-  For Condition~\ref{eq:disjoint_sum_preserve_join}, we compute from the right hand side:
+  For Condition~\ref{eq:disjoint_sum_preserve_join}, compute from the right hand side:
   \begin{align*}
     (f\+h)\tjoin(g\+k) &= (f\+h)\tjdown (g\+k) \wrg{(f\+h)}\tjup \wrg{(g\+k)}\\
     &= \left( (f\tjdown g)\+ (h \tjdown k) \right)
@@ -822,36 +791,44 @@ a disjoint sum tensor.
   objects $A,B$, $A\+B$ is a disjoint sum.
 \end{proposition}
 \begin{proof}
-  We claim that setting $i_i = \cp{i}$ and $x_i = \icp{i}$ and setting $X = A\+B$ produces a disjoint
+  Setting $i_i = \cp{i}$ and $x_i = \icp{i}$ and setting $X = A\+B$ produces a disjoint
   sum in \X. We show this satisfies the four conditions of Definition~\ref{def:disjoint_sum}.
   \begin{enumerate}[{(}i{)}]
-    \item From Lemma~\ref{lem:tensor_identities}, we know that $\cpa$ and $\cpb$ are monic maps.
+    \item From Lemma~\ref{lem:tensor_identities}, both $\cpa$ and $\cpb$ are monic maps.
     \item $\cpa : A \to A\+B$, $\cpb: B \to A\+B$, $\icpa: A\+B \to A$ and $\icpb: A\+B \to B$.
     \item $\inv{\cpa} = \icpa$ and $\inv{\cpb} = \icpb$.
     \item $\inv{i_1}i_1 = 1\+ 0 \tperp 0\+1 = \inv{i_2}i_2$ as
-      $1\+0 \tjdown 0\+1 = (\inv{\upr}\+\inv{\upl})$ and
-      $1\+0 \tjup 0\+1 = (\icpa\+\icpb)$. For their join,
-      $(1\+0)\tjoin (0\+1) = (\inv{\upr}\+\inv{\upl})(\icpa\+\icpb) =
-      \inv{\upr}\icpa \+ \inv{\upl}\icpb = 1\+1 = 1$.
-  \end{enumerate}
+      \[
+        1\+0 \tjdown 0\+1 = (\inv{\upr}\+\inv{\upl})\text{ and }
+        1\+0 \tjup 0\+1 = (\icpa\+\icpb).
+      \]
+      For their join,
+      \begin{multline*}
+        (1\+0)\tjoin (0\+1) = (\inv{\upr}\+\inv{\upl})(\icpa\+\icpb) =\\
+        \inv{\upr}\icpa \+ \inv{\upl}\icpb = 1\+1 = 1.
+      \end{multline*}
+    \end{enumerate}
 \end{proof}
 
-Finally, to complete the cycle, we have:
+Finally, to complete the cycle:
 \begin{proposition}\label{prop:enough_disjoint_sums_make_a_disjoint_sum_tensor}
   Given \X is an inverse category where every pair of objects has a disjoint sum, then the tensor
   $\+$ derived from the disjoint sum of $A,B$ is a disjoint sum tensor.
 \end{proposition}
 \begin{proof}
-  In Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor} we showed that
-  $\+$ was a symmetric monoidal tensor. Therefore we need only to show that it is a disjointness
-  tensor that also satisfies Definition~\ref{def:disjoint_sum_tensor}.
+  Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor} showed that
+  $\+$ was a symmetric monoidal tensor. Therefore, it only remains to show that it is a disjointness
+  tensor and that it satisfies Definition~\ref{def:disjoint_sum_tensor}, i.e., is a disjoint sum
+  tensor as well.
 
-  We first note that we immediately have that it is a   disjointness tensor as:
+  First note that we immediately have that it is a   disjointness tensor as:
     \begin{enumerate}[{(}i{)}]
-      \item We have shown above it is a restriction functor. (Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor})
-      \item We have shown above that the unit is the restriction zero. (Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor})
-      \item From the above, we see $\cpa = i_1$ and $\cpb = i_2$. Assume we have $\cpa f = \cpa g$
-        and $\cpb f = \cpb g$. As $\icpa \cpa \djoin \icpb \cpb = 1$, we have
+      \item Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor} shows it
+        is a restriction functor.
+      \item Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor} shows that
+        the unit is the restriction zero.
+      \item From the above, $\cpa = i_1$ and $\cpb = i_2$. Assume $\cpa f = \cpa g$
+        and $\cpb f = \cpb g$. As $\icpa \cpa \djoin \icpb \cpb = 1$,
         \begin{multline*}
            f = (\icpa \cpa \djoin \icpb \cpb) f = \icpa \cpa f \djoin \icpb \cpb f = \\
            \icpa \cpa g \djoin \icpb \cpb g =  (\icpa \cpa \djoin \icpb \cpb) g = g
@@ -868,10 +845,14 @@ Finally, to complete the cycle, we have:
   To show it is a disjoint sum tensor, we must show the existence of the maps $\alpha$ and $\beta$
   from Definition~\ref{def:disjoint_sum_tensor}.
 
-  For Diagram~\ref{dia:tensor_complete_left}, assuming we have $f\icpb \tjdown g\icpb$ exists,
-  then $\alpha = (f\icpa)\cpa \djoin ((f\icpb \tjdown g \icpb)\cpb)$ satisfies the diagram. If
-  $\alpha$ does exist, then $\alpha \icpb$ satisfies the diagram for $f\icpb \tjdown g\icpb$. The
-  argument for satisfying Diagram~\ref{dia:tensor_complete_right} is analogous.
+  For Diagram~\ref{dia:tensor_complete_left}, assuming  $f\icpb \tjdown g\icpb$ exists,
+  then
+  \[
+    \alpha = (f\icpa)\cpa \djoin ((f\icpb \tjdown g \icpb)\cpb)
+  \]
+  satisfies the diagram. If $\alpha$ does exist, then $\alpha \icpb$ satisfies the diagram for
+  $f\icpb \tjdown g\icpb$. The argument for satisfying Diagram~\ref{dia:tensor_complete_right} is
+  analogous.
 
   Therefore, $\+$ is a disjoint sum tensor.
 \end{proof}
