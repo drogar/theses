@@ -11,11 +11,11 @@ which already has a disjoint join. As we shall see, it is sufficient to have ``e
   $B$ when there exist maps $i_1,\ i_2,\ \xa,\ \xb$ such that:
   \begin{enumerate}[{(}i{)}]
     \item $i_1$ and $i_2$ are monic;
-    \item $i_1 : A \to X$, $i_2: B \to X$, $\xa: X \to A$ and $\xb: X \to B$.
-    \item $\inv{i_1} = \xa$ and $\inv{i_2} = \xb$.
+    \item $i_1 : A \to X$, $i_2: B \to X$, $\xa: X \to A$ and $\xb: X \to B$;
+    \item $\inv{i_1} = \xa$ and $\inv{i_2} = \xb$;
     \item $\inv{i_1}i_1 \perp \inv{i_2}i_2$ and $\inv{i_1}i_1 \djoin \inv{i_2}i_2 = 1_X$.
   \end{enumerate}
-  $i_1$ and $i_2$ will be referred to as the \emph{injection} maps of the disjoint sum.
+  The maps $i_1$ and $i_2$ will be referred to as the \emph{injection} maps of the disjoint sum.
 \end{definition}
 
 \begin{lemma}\label{lem:disjoint_sum_is_unique}
@@ -41,23 +41,23 @@ which already has a disjoint join. As we shall see, it is sufficient to have ``e
 
   Next, by Lemma~\ref{lem:disjointness_various}, $\rst{\xa}\cdperp\rst{\xb}$ as both
   $i_1$ and $i_2$ are monic. By the same lemma, $\rg{\jay_1} \cdperp \rg{\jay_2}$ as $y_1, y_2$
-  are the inverses of monic maps.  Then, from \axiom{Dis}{7}, $x_2 \jay_1 \cdperp x_2 \jay_2$,
-  hence we may form $x_2 \jay_1 \djoin x_2 \jay_2 : X \to Y$.
+  are the inverses of monic maps.  Then, from \axiom{Dis}{7}, $x_1 \jay_1 \cdperp x_2 \jay_2$,
+  hence we may form $x_1 \jay_1 \djoin x_2 \jay_2 : X \to Y$.
 
   Similarly, we may form the map $y_1 i_1 \djoin y_2 i_2 : Y \to X$. Computing their composition:
   \begin{align*}
-    (x_2 \jay_1 \djoin x_2 \jay_2)(y_1 i_1 \djoin y_2 i_2)
-      &= (x_2 \jay_1 (y_1 i_1 \djoin y_2 i_2))\djoin (x_2 \jay_2(y_1 i_1 \djoin y_2 i_2))\\
-      &= x_2 \jay_1 y_1 i_1 \djoin x_2 \jay_1 y_2 i_2 \djoin x_2 \jay_2 y_1 i_1 \djoin x_2
+    (x_1 \jay_1 \djoin x_2 \jay_2)(y_1 i_1 \djoin y_2 i_2)
+      &= (x_1 \jay_1 (y_1 i_1 \djoin y_2 i_2))\djoin (x_2 \jay_2(y_1 i_1 \djoin y_2 i_2))\\
+      &= x_1 \jay_1 y_1 i_1 \djoin x_1 \jay_1 y_2 i_2 \djoin x_2 \jay_2 y_1 i_1 \djoin x_2
         \jay_2 y_2 i_2 \\
-      &= x_2\, 1\, i_1 \djoin x_2\, 0\, i_2 \djoin x_2\, 0\, i_1 \djoin x_2\, 1\, i_2\\
-      &= x_2 i_1 \djoin x_2 i_2 = 1.
+      &= x_1\, 1\, i_1 \djoin x_1\, 0\, i_2 \djoin x_2\, 0\, i_1 \djoin x_2\, 1\, i_2\\
+      &= x_1 i_1 \djoin x_2 i_2 = 1.
   \end{align*}
   Computing the other direction,
   \begin{align*}
-    (y_1 i_1 \djoin y_2 i_2)(x_2 \jay_1 \djoin x_2 \jay_2)
-      &= (y_1 i_1 (x_2 \jay_1 \djoin x_2 \jay_2) )\djoin (y_2 i_2(x_2 \jay_1 \djoin x_2 \jay_2))\\
-      &= y_1 i_1 x_2 \jay_1 \djoin y_1 i_1 x_2 \jay_2 \djoin y_2 i_2 x_2 \jay_1
+    (y_1 i_1 \djoin y_2 i_2)(x_1 \jay_1 \djoin x_2 \jay_2)
+      &= (y_1 i_1 (x_1 \jay_1 \djoin x_2 \jay_2) )\djoin (y_2 i_2(x_1 \jay_1 \djoin x_2 \jay_2))\\
+      &= y_1 i_1 x_1 \jay_1 \djoin y_1 i_1 x_2 \jay_2 \djoin y_2 i_2 x_1 \jay_1
         \djoin y_2 i_2 x_2 \jay_2\\
       &= y_1\, 1\, \jay_1 \djoin y_1\, 0\, \jay_2 \djoin y_2\, 0\, \jay_1 \djoin y_2\, 1\, \jay_2\\
       &= y_1 \jay_1 \djoin y_2 \jay_2 = 1.\\

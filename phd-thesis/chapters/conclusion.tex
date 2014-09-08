@@ -8,13 +8,6 @@ tensor to behave like a coproduct --- the disjoint sum.
 
 The following are the main results of this thesis.
 
-
-% \item The development of disjointness relations and disjoint joins in inverse categories and how
-%   they arise from suitable tensors on the inverse category in
-%   Proposition~\ref{prop:disjointness_tensor_gives_disjoint_join}.
-%   Corollary~\ref{cor:xt_is_a_distributive_restriction_category}.
-% \end{enumerate}
-
 \begin{enumerate}
 \item \textbf{Restriction Products and Coproducts in Inverse Categories}
 
@@ -64,12 +57,12 @@ Disjoint sums in an inverse category are given in Definition~\ref{def:disjoint_s
 an inverse category having all disjoint sums has a symmetric monoidal tensor in
 Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor}.
 
-Disjointness tensors, Definition~\ref{def:disjointness_tensor} are shown to provide enough structure
-to allow the creation of a disjointness relation in
-Lemma~\ref{lem:tensor_disjointness_is_disjointness}. However, additional conditions are given in
-Definition~\ref{def:disjoint_sum_tensor} of a disjoint sum tensor. Given a disjoint sum tensor we
-are now able to define a disjoint joint on disjoint maps, where the additional conditions of the
-disjoint sum tensor are needed to prove the fourth axiom of disjoint joins hold.
+Disjointness tensors, Definition~\ref{def:disjointness_tensor}, are shown in
+Lemma~\ref{lem:tensor_disjointness_is_disjointness} to provide enough structure to allow the
+creation of a disjointness relation . However, to create a disjoint join requires a disjoint sum
+tensor. Disjoint sum tensors are given in Definition~\ref{def:disjoint_sum_tensor} as additional
+conditions on a disjointness tensor. Given a disjoint sum tensor,
+Proposition~\ref{prop:disjointness_tensor_gives_disjoint_join} defines a disjoint join.
 
 Section~\ref{sec:disjoint-sums-via-a-disjoint-sum-tensor} proves, in
 Proposition~\ref{prop:a_disjoint_sum_tensor_gives_disjoint_sums} and
@@ -79,11 +72,12 @@ the creation of a disjoint sum tensor and conversely, a disjoint sum tensor prod
 In Chapter~\ref{cha:matrix_categories}, Definition~\ref{def:inverse_matrix_category} gives us
 $\imatx$, a matrix category over the inverse category \X with disjoint
 joins. Theorem~\ref{thm:imatx_is_an_disjoint_sum_category} proves this is an inverse category with
-disjoint sums. Lemma~\ref{lem:m_is_a_functor} shows that there is a functor from an inverse category
-with disjoint joins to its matrix category and this gives an adjoint between \DSum, the category of
-inverse categories with disjoint sums and \DJoin, the category of inverse categories with disjoint
-joins. Furthermore, Proposition~\ref{pro:x_and_imatx_are_equivalent} shows that an inverse category
-\X with disjoint sums is equivalent to $\imatx$.
+disjoint sums. Lemma~\ref{lem:m_is_a_functor} shows that there is a functor $M$ from an inverse
+category with disjoint joins to its matrix category.  The matrix construction gives an adjoint
+between \DSum, the category of inverse categories with disjoint sums and \DJoin, the category of
+inverse categories with disjoint joins. Furthermore,
+Proposition~\ref{pro:x_and_imatx_are_equivalent} shows that an inverse category \X with disjoint
+sums is equivalent to $\imatx$.
 
 
 \item \textbf{Distributive Inverse Categories}
@@ -116,7 +110,7 @@ Inverse Turing categories and inverse partial combinatory algebras are defined i
 Definition~\ref{def:inverse_turing_category} and
 Definition~\ref{def:inverse_partial_combinatory_algebra} respectively. First, we show in
 Lemma~\ref{lem:discrete_turing_category_inverses_make_inverse_turing_category} that if we have a
-discrete Turing category $\T$, then $\Inv{\T}$, the inverse subcategory of $\T$ is an inverse Turing
+discrete Turing category $\T$, then $\Inv{\T}$, the inverse subcategory of $\T$, is an inverse Turing
 category. Then we show that the Cartesian Completion of an inverse Turing category gives a Turing
 category. In Proposition~\ref{prop:inverse-pca-iff-pca} we show that a discrete inverse category \X
 has an inverse PCA if and only if \Xt has a PCA. Furthermore, we discuss the category of computable
@@ -137,15 +131,15 @@ existing reversible languages such as \textbf{Inv} \cite{muetal04:injreversible}
 functions used throughout this thesis provides the basis for the semantics of \textbf{Inv}.
 
 It would be interesting to understand how to formulate datatypes, higher order structures, etc. at the
-inverse category level. The obvious correspondences are from product types to the inverse product and
-between sum types and the disjoint sum. From there, one would study the trace and explore infinite
-and recursive types. Note that some of this work would follow naturally from exploring the semantics
+inverse category level. The obvious correspondences are from product types to the inverse product as
+well as between sum types and the disjoint sum. From there, one would study the trace and explore
+infinite and recursive types. Note that some of this work would follow naturally from exploring the semantics
 of Theseus from \cite{james2013isomorphic,james2012information}.
 
 An interesting direction, in my opinion, would be to further investigate the work on reversible
 CCS as in \cite{danos2004reversible} and \cite{phillips2006operational}. This could be combined with
 the work of Chakraborty on MPL \cite{chakraborty2014} to describe the communication of multiple
-processes and generalize that to a series of reversible processes.
+processes and generalize to a series of reversible processes.
 
 
 The connection to quantum computing, as exampled in

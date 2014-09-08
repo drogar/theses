@@ -508,7 +508,7 @@ by the properties of sets and intersections. For the final requirement,
 \end{align*}
 Thus, intersection is a meet in \pinj.
 
-Note that the calculations above apply immediately to \Par as well and therefore intersection is a
+Note that the calculations above apply immediately to \Par as well, therefore intersection is a
 meet in \Par.
 
 \end{example}
@@ -520,7 +520,7 @@ Partial isomorphisms play a central role in this thesis. Below we present
 some of their basic properties.
 
 \begin{definition}\label{def:partial_inverse_etc}
-  For maps $f$ in a restriction category \X:
+  In a restriction category \X, a map $f$ may have some of the following properties:
   \begin{itemize}
     \item $f$ is a \emph{partial isomorphism} when there is a \emph{partial inverse}, written
       $\inv{f}$ with $f\inv{f} =\restr{f}$ and $\inv{f}f = \restr{\inv{f}}$;
@@ -801,11 +801,10 @@ in $\spl{E}{\X}$.
       = V(f g)$.
   \end{description}
 
-  Recalling from Lemma \ref{lem:properties_of_meets_in_restriction_categories}, $(e\meet 1)$
+  By Lemma \ref{lem:properties_of_meets_in_restriction_categories} $(e\meet 1)$
   is a restriction idempotent. Using this fact, the commutativity of restriction idempotents
-  and the general idempotent identities from
-  \ref{lem:properties_of_meets_in_restriction_categories}, the composite functor $U V$ is
-  the identity on $\spl{r}{\X}$ as when $e$ is a restriction idempotent,
+  and Lemma~\ref{lem:properties_of_meets_in_restriction_categories}, the composite functor $U V$ is
+  the identity on $\spl{r}{\X}$. This is because when $e$ is a restriction idempotent,
   $e = e (e\meet 1) = (e\meet 1) e = (e\meet 1)$.
 
   For the other direction,  note that for a particular idempotent $e:A\to A$,  this gives the
@@ -1177,7 +1176,7 @@ of the section.
     &= \< \rst{(1 \times f)\inv{\Delta}} \pi_0,
       \rst{(1 \times f)\inv{\Delta}}\pi_1 \>\\ %(a x b);pi0 = a
     &= \rst{(1 \times f)\inv{\Delta}} \< \pi_0, \pi_1 \>\\ % products
-    &= \rst{(1 \times f)\inv{\Delta}}
+    &= \rst{(1 \times f)\inv{\Delta}}.
   \end{align*}
   The above follows in a discrete Cartesian restriction category, as we have
   \begin{equation*}
@@ -1204,8 +1203,8 @@ discrete and non-discrete variety.
 \end{example}
 
 \begin{example}[Semi-lattice is discrete]\label{ex:semi-lattice_is_discrete}
-  As the product is the meet of the semi-lattice and $A\wedge A = A$, we have $\Delta = 1$ and
-  therefore is always invertible. Note that a total discrete Cartesian restriction category must be a
+  As the product is the meet of the semi-lattice and $A\wedge A = A$, we have $\Delta = 1$ and,
+  therefore, is always invertible. Note that a total discrete Cartesian restriction category must be a
   semi-lattice. Also, we see that any Cartesian restriction category which is a restriction preorder
   will also be discrete.
 \end{example}

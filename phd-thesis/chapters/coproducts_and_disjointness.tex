@@ -343,11 +343,8 @@ The relation $\perpab$ is a disjointness relation:
   Proposition~\ref{prop:disjointness_is_open_disjointness}, this is an open disjointness $\ocdperp =
   \perp \intersection (\union_{A\in\X}\open{A}\times\open{A})$.
 
-  By Proposition~\ref{prop:extended_disjointness_is_a_disjointness_relation}, $\perpab$ defined by
-  \[
-    f\perpab g \iff  \rst{f}\ocdperp\rst{g}  \text{ and }  \rg{f}\ocdperp\rg{g}.
-  \]
-  is a disjointness relation on $\X$.
+  By Proposition~\ref{prop:extended_disjointness_is_a_disjointness_relation}, $\perpab$ defined from
+  $\ocdperp$ is a disjointness relation on $\X$.
 
   Assume $f\perp g$. By \axiom{Dis}{6} and Proposition~\ref{prop:disjointness_is_open_disjointness},
   $\rst{f}\ocdperp\rst{g}$ and $\rg{f}\ocdperp\rg{g}$. Then by its definition, we have $f \perpab g$.
@@ -447,7 +444,7 @@ up to this point, extending disjointness to sets of maps is done by considering 
 pairwise: $\cdperp \{f_1,f_2,\ldots,f_n\} \definedas f_i \cdperp f_k$ whenever $i \ne j$.
 
 \begin{definition}\label{def:disjoint_join}
-  An inverse category with $\X$ with a restriction $0$ and a disjointness relation $\perp$ has
+  An inverse category $\X$ with a restriction $0$ and a disjointness relation $\perp$ has
   \emph{disjoint joins} when there is a binary operator on disjoint parallel maps:
   \[
     \infer{f \djoin g : A \to B}{f: A\to B,\ g: A\to B,\ f \perp g}
@@ -630,7 +627,7 @@ Clearly the product of two inverse categories with disjoint joins has a disjoint
         & \qquad\qquad \text{ or }(\exists a',\dot{a}.\dot{a} = a', (a',\dot{b}) \in g, (c,\dot{a}) \in h)\}\\
         & = \{(c,\dot{b}) |\exists a, \dot{a}.\dot{a} = a, (a,\dot{b}) \in f, (c,\dot{a}) \in h\} \bigcup\\
         & \qquad\qquad\{(c,\dot{b}) | \exists a',\dot{a}.\dot{a} = a', (a',\dot{b}) \in g, (c,\dot{a}) \in h\}\\
-        &= h f \djoin h g
+        &= h f \djoin h g.
       \end{align*}
     \item[\axiom{DJ}{4}] Suppose $\cdperp [f, f', f'']$, $f=\{(a,b)\}, f'=\{(a',b')\},
       f''=\{(a'',b'')\}$. Then the set $\{a\}$ does not intersect either $\{a'\}$ nor $\{a''\}$ and

@@ -21,8 +21,6 @@ separately on the components of the tensor. This ability to separate the action 
 allow us to define when the restriction and range of functions are disjoint, and therefore when the
 maps are disjoint.
 
-%todo - can there be something more said here indicating it is a lot of work?
-
 Suppose \X is an inverse category  with a restriction zero, and $\+$ is a tensor product on $\X$.
 We are assuming the following naming for the standard monoidal tensor isomorphisms:
 \begin{align*}
@@ -40,7 +38,7 @@ We are assuming the following naming for the standard monoidal tensor isomorphis
     \item The unit is the restriction zero. ($0 : \boldsymbol{1}\to \X$ picks out the restriction
     zero in \X).
     \item Define $\cpa = \inv{\upr}(1\+0):A\to A\+B$ and $\cpb = \inv{\upl}(0\+1): A\to B\+A$.
-      $\cpa$ and $\cpb$ must be jointly epic. That is, if $\cpa f = \cpa g$ and $\cpb f = \cpb g$, then
+      The maps $\cpa$ and $\cpb$ must be jointly epic. That is, if $\cpa f = \cpa g$ and $\cpb f = \cpb g$, then
       $f = g$.\label{enuitem:cpa-and-cpb-epic}
     \item Define $\scpa := (1\+0)\upr: A\+B \to A$ and $\scpb := (0\+1)\upl:A\+B \to B$.
       $\scpa$  and $\scpb$ must be jointly monic. That is, whenever $f\scpa = g \scpa$ and
@@ -70,7 +68,7 @@ We are assuming the following naming for the standard monoidal tensor isomorphis
      &  &((b,2),1) \mapsto ((b,1),2)\\
      &  &(c,2) \mapsto ((c,1),2)\\
     c_\+ &: A\+B \to B\+ A & (a,1) \mapsto (a,2)\\
-    & & (a,2) \mapsto (a,1)
+    & & (a,2) \mapsto (a,1).
   \end{align*}
 
   The map $\cpa = \inv{\upr}(1\+0)$ is given by the mapping $a\in A\mapsto (a,1) \in
@@ -226,8 +224,8 @@ our mechanism for defining disjointness and eventually the disjoint join of maps
 the pairing map $f\tjdown g$ ensures the restrictions of $f$ and $g$ are disjoint, while
 the copairing map $f\tjup d$ exists only when the ranges of $f$ and $g$ are disjoint.
 
-To arrive at the disjointness we first give the following lemma detailing properties of the two
-operations $\tjdown$ and $\tjup$:
+To arrive at the disjointness relation we first give the following lemma detailing properties of the
+two operations $\tjdown$ and $\tjup$:
 
 \begin{lemma}\label{lem:properties_of_tjdown_and_tjup}
   Given \X is an inverse category with a restriction zero and a disjointness tensor $\+$ then the
@@ -290,7 +288,7 @@ operations $\tjdown$ and $\tjup$:
           \cpb(f\tjup g) \rst{\inv{(f\tjup g)}\rst{\icpa}} =
           \rst{\cpb \rst{(f\tjup g)} \rst{\icpa}}\cpb(f\tjup g) = \\
           \rst{\cpb \rst{\icpa}\rst{(f\tjup g)} }\cpb(f\tjup g) =
-          \rst{0}\cpb(f\tjup g) = 0
+          \rst{0}\cpb(f\tjup g) = 0.
       \end{multline*}
       Similarly, $f\rg{g} =  0$.
 
@@ -311,7 +309,7 @@ operations $\tjdown$ and $\tjup$:
       $f \tjdown g (h \+ k) = f h \tjdown g k$ by the joint monic property of $\icpa$, $\icpb$.
     \item The proof for this is dual to \ref{lemitem:l_r_l_pull_right}, and depends on the joint
       epic property of $\cpa$ and $\cpb$.
-    \item The assumption is $f\tjdown g$ exists, therefore $f = (f\tjdown g)\icpa$ and
+    \item The assumption is $f\tjdown g$ exists, thus $f = (f\tjdown g)\icpa$ and
       $g = (f\tjdown g)\icpb$. But this means $hf = h(f\tjdown g)\icpa$ and
       $h g = h(f\tjdown g)\icpb$, from which we may conclude $hf \tjdown h g = h(f\tjdown g)$ by
       the fact that $\icpa$ and $\icpb$ are jointly monic. The proof of
@@ -443,13 +441,12 @@ existence of our pairing and copairing maps:
       diagrams, see Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
       \ref{lemitem:l_r_commute}.
     \item[\axiom{Dis}{5}] Show that if $f\tperp g$ then $h f \tperp h g$ for any map $h$.
-      Assuming $f\tjdown g$ exists, by  Lemma~\ref{lem:properties_of_tjdown_and_tjup}, item
-      \ref{lemitem:l_r_l_universal_r_stable},  $h f \tjdown h g$ exists.
-      Assuming $f\tjup g$, by item \ref{lemitem:l_r_r_pull_left} of the same lemma,
+      By  Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_l_universal_r_stable}, when $f\tjdown g$ exists, $h f \tjdown h g$ exists.
+      Assuming $f\tjup g$, by \ref{lemitem:l_r_r_pull_left} of the same lemma,
       $(h f)\tjup (h g)$ exists and equals $(h \+ h) (f\tjup g)$  and therefore $h f \tperp h g$.
     \item[\axiom{Dis}{6'}] This requires showing $f\tperp g$ if and only if $\rst{f} \tperp \rst{g}$
       and $\rg{f}\tperp \rg{g}$. This follows directly from
-      Lemma~\ref{lem:properties_of_tjdown_and_tjup}, items \ref{lemitem:l_r_l_pull_right} and
+      Lemma~\ref{lem:properties_of_tjdown_and_tjup}\ref{lemitem:l_r_l_pull_right} and
       \ref{lemitem:l_r_r_pull_left}, which give us $f\tjdown g = \rst{f}\tjdown \rst{g} (f\+g)$ and
       $f\tjup g = (f \+ g)\rg{f}\tjup \rg{g}$, where the equalities hold if either side of
       the equation exists.
@@ -641,7 +638,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
   $\djoin$ as given in Example~\ref{ex:pinj_has_a_disjoint_join}.
 \end{example}
 \begin{lemma}\label{lem:tensor_disjoint_join_properties}
-  Let \X be an inverse category with a disjointness tensor and restriction zero. Let \X have the
+  Let \X be an inverse category with a disjoint sum tensor and restriction zero. Let \X have the
   maps $f,g: A \to B$ with $f\tperp g$. Then $\tjoin$ has the following properties.
   \begin{enumerate}[{(}i{)}]
     \item For all maps $h:A \to B$, $\rst{f}h \tjoin \rst{g}h = (\rst{f}\tjoin \rst{g})h$.
@@ -844,9 +841,13 @@ Finally, to complete the cycle:
   from Definition~\ref{def:disjoint_sum_tensor}.
 
   For Diagram~\ref{dia:tensor_complete_left}, assuming  $f\icpb \tjdown g\icpb$ exists,
-  then $\alpha = (f\icpa)\cpa \djoin ((f\icpb \tjdown g \icpb)\cpb)$ satisfies the diagram. If
-  $\alpha$ does exist, then $\alpha \icpb$ satisfies the diagram for $f\icpb \tjdown g\icpb$. The
-  argument for satisfying Diagram~\ref{dia:tensor_complete_right} is analogous.
+  then
+  \[
+    \alpha = (f\icpa)\cpa \djoin ((f\icpb \tjdown g \icpb)\cpb)
+  \]
+  satisfies the diagram. If $\alpha$ does exist, then $\alpha \icpb$ satisfies the diagram for
+  $f\icpb \tjdown g\icpb$. The argument for satisfying Diagram~\ref{dia:tensor_complete_right} is
+  analogous.
 
   Therefore, $\+$ is a disjoint sum tensor.
 \end{proof}

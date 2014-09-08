@@ -6,9 +6,9 @@ This chapter will introduce inverse categories. We first give
 a few results about inverse categories and then proceed to show an inverse category which has
 restriction products is a restriction preorder.
 
-Given this, the chapter then focuses on adding product-like structures to an inverse category, which
-we call \emph{inverse products}. These will be defined below in
-Subsection~\ref{sub:inverse_product_definition}: Inverse products are given by a natural structure
+Given this fact, the chapter then focuses on adding product-like structures to an inverse category,
+which we call \emph{inverse products}. These will be defined below in
+Subsection~\ref{sub:inverse_product_definition}. Inverse products are given by a natural structure
 on a tensor product which includes a diagonal but lacks projections. The diagonal map is required to
 give a natural Frobenius structure on each object.
 
@@ -45,12 +45,12 @@ give a natural Frobenius structure on each object.
       \rst{g} \rst{\inv{f}} = \rst{\inv{f}} \rst{g} =\rg{f} \rst{g}$;
     \item[\rrfour]  $\wrg{\rg{f}g} = \rst{\inv{(\rst{\inv{f}} g)}} =
       \rst{\inv{g}\inv{\rst{\inv{f}}}} = \rst{\inv{g} \rst{\inv{f}}} =
-      \rst{\inv{g} \inv{f}} = \rst{\inv{(f g)}} = \wrg{f g}$
+      \rst{\inv{g} \inv{f}} = \rst{\inv{(f g)}} = \wrg{f g}$.
   \end{enumerate}
 \end{proof}
 
-For an inverse category \X, as $\inv{()}$ is an involution, in fact $(\rg{\_})$ is more than just a
-range, it is a restriction in $\X^{op}$.
+For an inverse category \X, as $\inv{()}$ is an involution, the range $(\rg{\_})$ is in fact more
+than just a range, it is a restriction in $\X^{op}$.
 
 The property of being an inverse category is preserved by splitting.
 
@@ -104,9 +104,9 @@ The property of being an inverse category is preserved by splitting.
   Given a category $\cP$, create a partial map category as in
   Section~\ref{sub:partial_map_categories}, where the stable system of monics, $\Mstab$, contains of
   all  isomorphisms in $\cP$. Then the partial isomorphisms are the maps of the form
-  $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{m'}\\A&&B}$, where $m'\in\Mstab$. Its inverse is
-  $\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m'} \ar[dr]^{m}\\B&&A}$. The composition is
-  $\xymatrix @R-15pt @C-15pt{&A\ar[dl]_{m^{-1}m} \ar[dr]^{m^{-1}m}\\A&&A}$ which is the
+  \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{m'}\\A&&B}$}, where $m'\in\Mstab$. Its inverse is
+  \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m'} \ar[dr]^{m}\\B&&A}$}. The composition is
+   \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A\ar[dl]_{m^{-1}m} \ar[dr]^{m^{-1}m}\\A&&A}$}, which is the
   identity when $m$ is an isomorphism. The partial isomorphisms will have either $m$ or $m'$ be in
   $\Mstab$, but not be an isomorphism. Taking just the partial isomorphisms gives us an inverse
   category.
@@ -315,8 +315,8 @@ then we have:
 \begin{center}$\Delta$ is canonical.\end{center}
 
   Thus, $\Delta$ is a cocommutative, coassociative map which together with $\inv{\Delta}$ forms a
-  special semi-Frobenius algebra. We use the prefix ``semi-'' as we are not requiring the unit laws
-  of a Frobenius algebra as will be discussed later in Definition~\ref{def:frobeniusalgebra}.
+  special semi-Frobenius algebra. We use the prefix ``semi-'' since we are not requiring the unit laws
+  of a Frobenius algebra which will be discussed later in Definition~\ref{def:frobeniusalgebra}.
 \end{definition}
 
 Note also, cocommutativity implies commutativity, i.e., that $c_{\*}\inv{\Delta} = \inv{\Delta}$.
@@ -330,7 +330,7 @@ One can see this as:
 This means that both $\inv{\Delta}$ and $c_{\*}\inv{\Delta}$ are partial inverses for $\Delta$
 and are therefore equal.
 
-Similarly, coassociativity implies associativity as one can show that
+Similarly, coassociativity implies associativity, by showing that
 $(1\*\inv{\Delta})\inv{\Delta} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
 \begin{align*}
   \Delta(1\*\Delta)\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} &=
@@ -352,7 +352,7 @@ $(1\*\inv{\Delta})\inv{\Delta} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
       \usl &: \{(*,a)\} \mapsto \{a\}
       &\usr &: \{(a,*)\} \mapsto \{a\}\\
       a_{\*} &: \{((a,b),c)\} \mapsto \{(a,(b,c))\}
-      &c_{\*} &: \{(a,b)\} \mapsto \{(b,a)\}
+      &c_{\*} &: \{(a,b)\} \mapsto \{(b,a)\}.
     \end{align*}
 
   Define $\Delta_A = \{(a,(a,a)) | a\in A\}$. Then \pinj is a discrete inverse category with the
@@ -456,9 +456,11 @@ In the diagrams, we will use the following representations:
   \item Unit removal (often referred to as an $\epsilon$ map): \begin{tikzpicture}
       \path node [epsilon] at (0,0) {}; \end{tikzpicture}.
 \end{itemize}
-String diagrams in this thesis are to be read from top to bottom.
+String diagrams in this thesis are to be read from top to bottom. Note that unit introduction and
+unit removal maps are not required in a discrete inverse category. However, when they are present
+they will be represented diagrammatically as above.
 
-The axioms of Definition~\ref{def:inverse_product} then become:\\
+The axioms of Definition~\ref{def:inverse_product}, as string diagrams, become:\\
 \begin{tikzpicture}
   \begin{pgfonlayer}{nodelayer}
     \node [style=nothing] (0) at (-3.75, 5.5) {};
@@ -470,7 +472,7 @@ The axioms of Definition~\ref{def:inverse_product} then become:\\
     \node [style=delta] (6) at (-2.25, 5) {};
     \node [style=nothing] (7) at (-2.5, 4.25) {};
     \node [style=nothing] (8) at (-2, 4.25) {};
-    \node [style=nothing] (9) at (-3, 4) {Cocommutativity};
+    \node [style=nothing] (9) at (-3, 4) {Cocommutativity,};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
       \draw [] (0) to (1);
@@ -497,7 +499,7 @@ The axioms of Definition~\ref{def:inverse_product} then become:\\
     \node [style=nothing] (7a) at (-2.5, 4) {};
     \node [style=nothing] (7b) at (-2.25, 4) {};
     \node [style=nothing] (7c) at (-1.75, 4) {};
-    \node [style=nothing] (9) at (-3, 3.5) {Coassociativity};
+    \node [style=nothing] (9) at (-3, 3.5) {coassociativity,};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
       \draw [] (0) to (1);
@@ -528,7 +530,7 @@ The axioms of Definition~\ref{def:inverse_product} then become:\\
     \node [style=nothing] (e2) at (-1.125, 2) {};
     \node [style=tensor] (t3) at (-.125, 2.5) {$\scriptstyle \*$};
     \node [style=nothing] (e3) at (-0.125, 2) {};
-    \node [style=nothing] (16) at (-1.5, 1.5) {Exchange};
+    \node [style=nothing] (16) at (-1.5, 1.5) {exchange,};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
       \draw [] (s0) to (d0);
@@ -568,7 +570,7 @@ The axioms of Definition~\ref{def:inverse_product} then become:\\
     \node [style=nothing] (17) at (-0.75, 3.75) {};
     \node [style=nothing] (18) at (-1.25, 2) {};
     \node [style=nothing] (19) at (-0.75, 2) {};
-    \node [style=nothing] (20) at (-1, 1.75) {Frobenius};
+    \node [style=nothing] (20) at (-1, 1.75) {Frobenius.};
     \end{pgfonlayer}
     \begin{pgfonlayer}{edgelayer}
       \draw [] (0) to (2);
@@ -604,16 +606,16 @@ We now present some properties of discrete inverse categories.
   In a discrete inverse category \X with the inverse product $\*$ and $\Delta$, where
   $e=\rst{e}$ is a restriction idempotent and $f,g,h$ are arrows in \X, the following are true:
   \begin{enumerate}[{(}i{)}]
-    \item{}$e=\Delta (e\* 1) \inv{\Delta}$.\label{le:eisde1}
+    \item{}$e=\Delta (e\* 1) \inv{\Delta}$;\label{le:eisde1}
     \item{}$e\Delta (f \* g) = \Delta (e f \* g) $ (and $= \Delta (f \* e g) $ and
-      $ = \Delta (e f \* e g)$.)\label{le:deltaefg}
+      $ = \Delta (e f \* e g)$);\label{le:deltaefg}
     \item{}$ (f \* g e) \inv{\Delta} =(f \* g) \inv{\Delta} e $ (and $= (f e\* g) \inv{\Delta}$ and
-      $ = (f e\* g e)\inv{\Delta}$.)\label{le:efginvdelta}
+      $ = (f e\* g e)\inv{\Delta}$);\label{le:efginvdelta}
     \item{}$\restr{\Delta (f \* g) \inv{\Delta}} =
-       \Delta(1\* g \inv{f})\inv{\Delta}$ when $f,g:A\to A$. \label{le:restfg}
+       \Delta(1\* g \inv{f})\inv{\Delta}$ when $f,g:A\to A$; \label{le:restfg}
     \item{} If $\Delta (h \* g) \inv{\Delta} = \restr{\Delta (h \* g) \inv{\Delta}}$ then
-      $(\Delta (h \* g) \inv{\Delta}) h = \Delta (h \* g) \inv{\Delta}$.\label{le:hge}
-    \item{}$\Delta (f\*1) = \Delta (g\*1) \implies f = g$.\label{le:dfgisfg}
+      $(\Delta (h \* g) \inv{\Delta}) h = \Delta (h \* g) \inv{\Delta}$;\label{le:hge}
+    \item{}$\Delta (f\*1) = \Delta (g\*1) \implies f = g$;\label{le:dfgisfg}
     \item{}$(f\*1) = (g\*1) \implies f = g$.\label{le:fgisfg}
   \end{enumerate}
 \end{lemma}
@@ -1026,7 +1028,7 @@ We now present some properties of discrete inverse categories.
       \]
       The other equalities follow for the same reasons as in \ref{le:deltaefg}.
 
-    \item[\ref{le:restfg}]Here, we start by using the fact all maps have a partial inverse,
+    \item[\ref{le:restfg}]Here, we start by using the fact that all maps have a partial inverse,
       therefore we have:
       \[
         \restr{\Delta (f \* g) \inv{\Delta} } =\Delta (f \* g) \inv{\Delta} \Delta (\inv{f} \*
@@ -1654,7 +1656,7 @@ subcategory which is a discrete inverse category.
   In \X, these become:
   \begin{align}
     \inv{\Delta_{\X}} \Delta_{\X}
-      &= (\Delta_{\X} \times 1) \<\pi_0 \pi_0,\<\pi_0 \pi_1,\pi_1\>\>(1\times\inv{\Delta_{\X}})
+      &= (\Delta_{\X} \times 1) \<\pi_0 \pi_0,\<\pi_0 \pi_1,\pi_1\>\>(1\times\inv{\Delta_{\X}}),
       \label{eq:frobenius_righths_expressed_in_x}\\
     \inv{\Delta_{\X}}\Delta_{\X}
       &= (1 \times \Delta_{\X}) \<\<\pi_0, \pi_1 \pi_0\>,\pi_1 \pi_1\>(\inv{\Delta_{\X}}\times 1).
@@ -1672,7 +1674,7 @@ subcategory which is a discrete inverse category.
   \[
     \inv{\Delta_{\X}} \Delta_{\X}
        = \<\inv{\Delta_{\X}} \Delta_{\X}(1\times !), \inv{\Delta_{\X}} \Delta_{\X} (! \times 1)\>
-    = \<\inv{\Delta_{\X}}, \inv{\Delta_{\X}} \>
+    = \<\inv{\Delta_{\X}}, \inv{\Delta_{\X}} \>.
   \]
   Similarly, removing the associativity maps, the right hand side of the same equation becomes:
   \begin{align*}
@@ -1941,6 +1943,7 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
           \draw (n1) to (end1);
         \end{tikzpicture}
         }
+    \raisebox{45pt}{.}
    \]
 
    For~\ref{lemitem:delta_nabla_3}, this follows immediately from
@@ -2061,7 +2064,7 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
     \draw (d3) to[out=305,in=55] (t3);
     \draw (t3) to (e2);
   \end{tikzpicture}
-  \raisebox{45pt}{$ =\Delta$ }
+  \raisebox{45pt}{$ =\Delta$.}
 \]
 \end{proof}
 
@@ -2085,11 +2088,11 @@ this precise in the following proposition:
   category. We must show the restriction is in $\X[A]$, i.e.,
   $h=\dmap{h}$ then $\rst{h} = \dmap{\rst{h}}$ and that $\X[A]$ has a tensor and a Frobenius $\Delta$.
 
-  Recalling that $\rst{(1\*h)} = 1\* \rst{h}$ we have
+  Recalling that $\rst{(1\*h)} = 1\* \rst{h}$,
   \begin{multline*}
-    (\Delta\*1) \rst{(1\*h)} (\inv{\Delta}\*1) = \rst{(\Delta\*1)(1\*h)}(\Delta\*1)
-    (\inv{\Delta}\*1) = \rst{(\Delta\*1)(1\*h)} \\
-      \le \rst{(\Delta\*1)(1\*h)(\inv{\Delta}\*1)} = \rst{h}.
+    (\Delta\*1) \rst{(1\*h)} (\inv{\Delta}\*1) = \rst{(\Delta\*1)(1\*h)}(\Delta\*1)(\inv{\Delta}\*1)
+    = \\
+    \rst{(\Delta\*1)(1\*h)} \le \rst{(\Delta\*1)(1\*h)(\inv{\Delta}\*1)} = \rst{h}.
   \end{multline*}
   Note this means there is some $k$ such that
   $\rst{k} = (\Delta\*1) \rst{(1\*h)}(\inv{\Delta}\*1)$. Next, computing $\rst{k}h$ we have:
@@ -2108,7 +2111,7 @@ this precise in the following proposition:
   The tensor of objects $X\*Y$ in $\X[A]$ is the element $A\* X\*Y$ in $\X$. For two maps $h,g$
   in $\X[A]$, $h\*g$ is given by the $\X$ map
   $(\Delta\*1\*1)(1\*c_{\*}\*1)(h\*g)(1\*c_{\*}\*1)(\inv{\Delta}\*1\*1)$. This is a map in
-  $\X[A]$ as
+  $\X[A]$:
   \[
     \raisebox{50pt}{$\dmap{(h\*g)}=$ }
         \begin{tikzpicture}
@@ -2190,7 +2193,7 @@ this precise in the following proposition:
           \draw (g) to[out=305,in=90] (end3);
           \draw (n1) to (end1);
         \end{tikzpicture}}
-      \ \raisebox{50pt}{$= h\*g$}\
+      \ \raisebox{50pt}{$= h\*g$.}
   \]
 
   The $\Delta$ in $\X[A]$ is given by the map $1\*\Delta$ in \X. The various identities required of

@@ -9,9 +9,9 @@ the theorems of the earlier chapters, we will be able to transfer these ideas in
 way from discrete Cartesian restriction categories to discrete inverse categories.  Inverse Turing
 categories are defined below and correspond to Turing categories using
 Theorem~\ref{thm:inverse_turing_category_gives_a_turing_category}: This  provides the link between
-reversible computation and standard models of computation as promised in our introduction.
+reversible computation and standard models of computation as promised in the introduction.
 
-As noted in our introduction, Bennett\cite{bennett:1973reverse} showed how a reversible Turing
+As noted in the introduction, Bennett\cite{bennett:1973reverse} showed how a reversible Turing
 machine can emulate a standard Turing machine. As Turing machines can perform the applications of a
 partial combinatory algebra, we have a link between inverse Turing categories through Turing
 categories to reversible Turing machines.
@@ -65,7 +65,7 @@ $\name{f}$ is referred to as a \emph{code} of $f$.
       \[ \Phi^{(n)}(e,x_1,\ldots,x_n) = \phi_e(x_1,\ldots,x_n) \]
       which are called the \emph{universal functions}.
     \item \textbf{Parameter Theorem:}There are primitive recursive functions $S_m^n$ for each $n,m >
-      0$ such that
+      0$ such that:
       \[ \Phi^{(n+m)}(e,x_1,\ldots,x_m,u_1,\ldots,u_n) = \Phi^{(m)}(S_m^n(e,x_1,\ldots,x_m),u_1,\ldots,u_n).\]
   \end{itemize}
 
@@ -77,7 +77,7 @@ $\name{f}$ is referred to as a \emph{code} of $f$.
 
   Now, consider the category with objects being the finite powers of $\nat$ and a map $\nat^k \to
   \nat^m$ is an $m$-tuple of partial recursive function of $k$ variables. When $k$ is zero, the map
-  simply picks an $m$-tuple of $\nat$. We denote this category by $\compn$.
+  simply picks a specific $m$-tuple of $\nat$. We denote this category by $\compn$.
   Then, $\compn$ is a Turing category with $\N$ being a Turing object, using Kleene-application
   as the application map. We know $\N$ is isomorphic to $\N\times \N$ and hence we have $\N\times \N
   \retract \N$. Application is guaranteed to be partial recursive by the universal functions item
@@ -86,7 +86,7 @@ $\name{f}$ is referred to as a \emph{code} of $f$.
 
 \begin{definition}\label{def:turing_structure}
   Given $\T$ is a Turing category and $A$ is an object of \T,
-  \begin{enumerate}
+  \begin{enumerate}[{(}i{)}]
     \item If $\Upsilon=\{\txy: A\times X \to Y | X,Y \in \T_o\}$, then $\Upsilon$ is called an
       \emph{applicative family} for $A$.
     \item An applicative family $\Upsilon$ is called \emph{universal for $A$} when each $\txy$ is
@@ -236,7 +236,7 @@ First, we observe:
   inverse category. Thus, all that remains is to show:
   \begin{enumerate}[{(}i{)}]
     \item There is a map $\diamond:T\*T \to T\*T$ in $\Inv{\T}$;
-    \item given a  map $f$ in $\Inv{\T}$, there is another map $\iname{f}$ which makes
+    \item for a  map $f$ in $\Inv{\T}$, there is another map $\iname{f}$ which makes
       Diagram~\ref{dia:inverse-turing-category-code} commute.
   \end{enumerate}
 
@@ -330,8 +330,8 @@ Lemma~\ref{lem:t_t_to_t_gives_a_turing_category}.
 In a Cartesian restriction category, for any operation $f:A\times A\to A$ define $\multiapp{f}{n}$
 for $n\ge 1$  recursively by:
 \begin{enumerate}[{(}i{)}]
-  \item $\multiapp{f}{1} = f$
-  \item $\multiapp{f}{n+1} = (f\times 1) \multiapp{f}{n}$
+  \item $\multiapp{f}{1} = f$,
+  \item $\multiapp{f}{n+1} = (f\times 1) \multiapp{f}{n}$.
 \end{enumerate}
 
 \begin{definition}\label{def:partial_combinatory_algebra}
@@ -349,7 +349,7 @@ for $n\ge 1$  recursively by:
         A\times A\times A\times A \ar[r]^(.6){\multibullet{3}}&A\\
         &A\times A \ar[u]_{\bullet}\\
         A\times A\times A \ar[uu]^{s\times1\times1\times1} \ar[r]_(.4){\theta_A'}
-          & (A\times A) \times (A\times A). \ar[u]_{\bullet\times\bullet}
+          & (A\times A) \times (A\times A), \ar[u]_{\bullet\times\bullet}
       }
     \]
     \item $A\times A \xrightarrow{s\times1\times1} A\times A\times A \xrightarrow{\bullet^2} A$ is total.\label{defitem:pca-3}
@@ -423,7 +423,7 @@ define $\imultiapp{f}{n}$ recursively by:
 \end{enumerate}
 
 \begin{definition}\label{def:inverse_partial_combinatory_algebra}
-  A discrete inverse category \X has a \emph{inverse partial combinatory algebra} when there is an
+  A discrete inverse category \X has an \emph{inverse partial combinatory algebra} when there is an
    object $A$ in \X with a map $A\*A  \xrightarrow{\bullet} A\*A$ and two total elements:
   \[
       1\xrightarrow{k}A \qquad 1\xrightarrow{s}{A}
@@ -477,7 +477,7 @@ define $\imultiapp{f}{n}$ recursively by:
   For the reverse, when we have a partial combinatory algebra over $A$ in $\Xt$, a discrete Cartesian
   restriction category, by Lemma~\ref{lem:a_discrete_crc_is_precisely_a_graphic_crc} we know that
   the map $\<\bullet,1\>$ is invertible and hence is in $\X$. The two maps $\<k,1\>$ and $\<s,1\>$
-  are also invertible are therefore also in $\X$.
+  are also invertible and therefore are in $\X$.
 
   Given this, the diagrams of the partial combinatory algebra in \Xt translate directly to the
   \axiom{iCPA}{1} and \axiom{iCPA}{2} where $\bullet$ in \X is the invertible map $\<\bullet,1\>$.

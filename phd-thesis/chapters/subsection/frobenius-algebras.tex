@@ -41,14 +41,15 @@ with an orthonormal basis $\{\ket{\phi_{i}}\}$ and define $\Delta:H\to H\*H: \ke
 $\dagger$-Frobenius algebra.
 
 
-In \cite{coeckeetal08:ortho}, Coecke et. al. provide an algebraic description of orthogonal bases in
-finite dimensional Hilbert spaces. An orthonormal basis for such a space determines, as above,
-a special commutative $\dagger$-Frobenius algebra. To show the other direction, given a commutative
-$\dagger$-Frobenius algebra, $(H,\nabla,\eta)$ and for each element $\alpha\in H$, define the right
-action of $\alpha$ as $R_{\alpha}:=(id\*\alpha)\, \nabla:H\to H$. Note the use of the fact that
-elements $\alpha\in H$ can be considered as linear maps $\alpha:\complex \to H:1\mapsto \ket{\alpha}$.
-The dagger of a right action is also a right action, $\dgr{R_{\alpha}} = R_{\alpha'}$ where
-$\alpha'= \eta\, \nabla\, (id\* \dgr{\alpha})$, which is a consequence of the Frobenius identities.
+In \cite{coeckeetal08:ortho}, Coecke et. al. give a correspondence between Frobenius algebras and
+orthogonal bases in finite dimensional Hilbert spaces. An orthonormal basis for such a space
+determines, as above, a special commutative $\dagger$-Frobenius algebra. To show the other
+direction, given a commutative $\dagger$-Frobenius algebra, $(H,\nabla,\eta)$, for each element
+$\alpha\in H$ define the right action of $\alpha$ as $R_{\alpha}:=(id\*\alpha)\, \nabla:H\to
+H$. Note the use of the fact that elements $\alpha\in H$ can be considered as linear maps
+$\alpha:\complex \to H:1\mapsto \ket{\alpha}$. The dagger of a right action is also a right action,
+$\dgr{R_{\alpha}} = R_{\alpha'}$ where $\alpha'= \eta\, \nabla\, (id\* \dgr{\alpha})$, which is a
+consequence of the Frobenius identities.
 
 The $(\_)'$ construction is actually an involution:
 \begin{eqnarray*}
@@ -58,7 +59,7 @@ The $(\_)'$ construction is actually an involution:
   && = (u \* \alpha) (\nabla \* id) (id \* \Delta) (id \*  \epsilon)\\
   && = (u \* \alpha) (id \* \Delta) (\nabla \* id) (id \*  \epsilon)\\
   && = (u \* \alpha)  (id \*  \epsilon)\\
-  && = \alpha
+  && = \alpha.
 \end{eqnarray*}
 
 \begin{lemma}\label{lemma:cstaralgebra}
