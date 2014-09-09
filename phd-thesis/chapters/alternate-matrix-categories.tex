@@ -22,13 +22,13 @@ The types of matrices allowed in the matrix category are subject to certain cons
   in \X is a matrix of maps $[f_{i j}]$ where $i \in \{1,\ldots, n\}$ and $j \in \{1,\ldots, m\}$ with
   $f_{i\jay}:A_i \to B_\jay$ which satisfy the two conditions:
   \begin{align}
-    &\text{For each }i,\ \cdperp\{f_{i \jay} \ell_{\jay}\}_{\jay=1,\ldots,m}
-    \text{ where }\forall  \ell_{\jay}: B_\jay \to X.
+    &\text{Rows: For each }i,\ \cdperp\{\rst{f_{i \jay}}\}_{\jay=1,\ldots,m}.
       \label{eq:disjoint_sum_matrix_row_perp}\\
-    &\text{For each }j,\ \cdperp\{k_i f_{i \jay}\}_{i=1,\ldots,n}
-    \text{ where }\forall  k_i : Y \to A_i.
+    &\text{Columns: For each }j,\ \cdperp\{\wrg{f_{i \jay}}\}_{i=1,\ldots,n}.
     \label{eq:disjoint_sum_matrix_column_perp}
   \end{align}
+  In other words, for each column, the ranges of the functions in that column are disjoint and for
+  each row the restrictions of the functions in that column are disjoint.
 \end{definition}
 
   % In the above and following we will use the notation $\cp{i}$ for the $i^{\text{th}}$ injection
@@ -40,7 +40,7 @@ The types of matrices allowed in the matrix category are subject to certain cons
   addition  replaced with composition in \X and the disjoint join respectively.
 
 \begin{definition}\label{def:inverse_matrix_category}
-  Given an inverse category \X with disjoint sums, we define the \emph{inverse
+  Given an inverse category \X with disjoint joins, we define the \emph{inverse
   matrix category} of \X, \imatx, as follows:
   \rcategory{Lists of the objects of $\X$}{
     Disjoint sum matrices $[f_{i\jay}]: [A_i] \to [B_\jay]$. In such a matrix each individual map
@@ -56,7 +56,7 @@ The types of matrices allowed in the matrix category are subject to certain cons
 \end{definition}
 
 \begin{lemma}\label{lem:inverse_matrix_category_is_a_restriction_category}
-  When $\X$ is an inverse category with disjoint sums, \imatx is an inverse category.
+  When $\X$ is an inverse category with disjoint joins, \imatx is an inverse category.
 \end{lemma}
 \begin{proof}
   We need to show the following:
@@ -68,12 +68,23 @@ The types of matrices allowed in the matrix category are subject to certain cons
 
   \emph{Composition is well defined:} Consider $[h_{i k}] = [f_{i j}] [g_{j k}]$ where $[f_{i j}]:
   [A_1,\ldots, A_n] \to [B_1,\ldots, B_m]$ and $[g_{j k}]: [B_1,\ldots, B_m] \to [C_1,\ldots,
-  C_\ell]$. By definition, we know $h_{i k} = \djoinbig_\jay f_{i \jay} g_{\jay k}$. As each of
-  $ [f_{i j}]$ and $ [g_{j k}]$ are disjoint sum matrices, we know that
-  $\cdperp \{f_{i \jay} g_{\jay k}\}$. Hence, we know the composition
-  $h_{i k} = \djoinbig_\jay f_{i \jay} g_{\jay k}$ is defined and $h_{i k}:A_i\to C_{k}$. By
-  the stability and universality of $\djoin$, we know $\cdperp\{k_i h_{i k}\}$ and $\cdperp\{h_{i_k}
-  \ell_k\}$. Thus the matrix $[h_{i k}]$ is a disjoint sum matrix and is in the category. Therefore
+  C_\ell]$. As each of $ [f_{i j}]$ and $ [g_{j k}]$ are disjoint sum matrices, by \axiom{Dis}{7} we know that
+  $\cdperp \{f_{i \jay} g_{\jay k}\}$ for each choice of $i$ and $k$. Hence, we know the composition
+  $h_{i k} = \djoinbig_\jay f_{i \jay} g_{\jay k}$ is defined and $h_{i k}:A_i\to C_{k}$. We must
+  now show that the $h_{ik}$ satisfy Equation~\ref{eq:disjoint_sum_matrix_row_perp} and
+  Equation~\ref{eq:disjoint_sum_matrix_column_perp}. Calculating the restriction of row elements,
+  \[
+    \rst{h_{ik}} = \rst{ \djoinbig_\jay f_{i \jay} g_{\jay k}} = \djoinbig_\jay \rst{ f_{i \jay}
+      g_{\jay k}}.
+  \]
+  By \axiom{DJ}{4}, these are disjoint for the $i$'s when each component is disjoint. But each
+  component is of the form $\rst{f_{i\jay}g_{\jay k}}$ and by
+  Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}, it is less than or equal to
+  $\rst{f_{i\jay}}$ each of which are disjoint by assumption. Therefore, by \axiom{Dis}{3} the
+  restriction of each of the entries in a row of $[h_{i k}]$ are disjoint. By a similar argument,
+  the range of each of the entries in a column of $[h_{i k}]$ are disjoint.
+
+  Thus the matrix $[h_{i k}]$ is a disjoint sum matrix and is in the category. Therefore
   composition is well-defined.
 
   \emph{Associativity of composition.} We have
@@ -148,10 +159,16 @@ The types of matrices allowed in the matrix category are subject to certain cons
   \emph{Existence of partial inverses.}
   The inverse of the map $f = [f_{i\jay}]$ is the map $\inv{f}\definedas[\inv{f_{\jay i}}]$.
   For the off diagonal elements of $f \inv{f}$, they are a disjoint join of \X maps of the form
-  $f_{i j} \inv{f_{\ell j}}$. By the definition of a disjoint sum matrix we know that for all $h$,
-  we have $h f_{i j}\cdperp h f_{\ell j}$. But this means $ h f_{i j} \inv{ h f_{\ell j}} = 0$,
-  giving $ h f_{i j} \inv{f_{\ell j}}\inv{h} = 0$ for all $h$, which means
-  $f_{i j} \inv{f_{\ell j}} = 0$ and therefore all off-diagonal elements are $0$. The $j^{th}$
+  $f_{i j} \inv{f_{\ell j}}$. By the definition of a disjoint sum matrix $\wrg{f_{i j}} \cdperp
+  \wrg{f_{\ell j}}$, thus by
+  Lemma~\ref{def:disjointness_relation}~\ref{lemitem:djv_disjoint_composition_is_0},
+  $0 = \wrg{f_{i j}} \wrg{\wrg{f_{\ell j}}} =\wrg{f_{i j}} \wrg{f_{\ell j}}$. Then,
+  \[
+    f_{i j} \inv{f_{\ell j}} =   f_{i j}\wrg{f_{i j}} \rst{\inv{f_{\ell j}}} \inv{f_{\ell j}}
+      =   f_{i j}\wrg{f_{i j}} \wrg{f_{\ell j}} \inv{f_{\ell j}} =  f_{i j} 0  \inv{f_{\ell j}}
+      = 0.
+  \]
+  Therefore all off-diagonal elements are $0$. The $j^{th}$
   diagonal element is $\djoin_k f_{j k}\inv{f_{j_k}} = \djoin \rst{f_{j k}}$ and thus
   $f\inv{f} = \diag_j [\djoin_k \rst{f_{\jay k}}] = \rst{f}$.
 \end{proof}
@@ -513,7 +530,7 @@ That is, it is writable as the matrix:
   A\+B \to C\+D.
 \]
 
-The $0$ map in the category corresponds to the $0$-dimensional matrix,
+The map from $0$ in the category corresponds to the $0$-dimensional matrix,
 \[
   0\xrightarrow{[]}B.
 \]
