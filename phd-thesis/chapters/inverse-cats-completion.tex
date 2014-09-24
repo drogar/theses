@@ -100,6 +100,25 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
   \end{description}
 \end{proof}
 
+Although Definition~\ref{def:xequivalence} above does not require a unique $h$, we may always find a
+minimal such $h$.
+\begin{lemma}\label{lem:equivalence-has-a-minimal-map}
+Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$.
+\end{lemma}
+\begin{proof}
+  We know that $h=\dmap{h}$. But by Lemma~\ref{lem:delta_nabla_maps_are_closed}, we may pre-compose
+  and post-compose with restriction idempotents, thus, $\rg{f}h\rg{g} = \dmap{(\rg{f}h\rg{g})}$. By
+  $f\xequiv{h}g$, we have $fh = g$. Therefore,
+  \[
+    f(\rg{f}h\rg{g}) = f h \rg{g} = g \rg{g} = g.
+  \]
+  This gives us that  $f\xequiv{\rg{f}h\rg{g}} g$.
+\end{proof}
+
+\begin{corollary}\label{cor:inv-f-g-provides-equivalence}
+  Given $f, g$ in a discrete inverse category, if $\rst{f} = \rst{g}$ and $\inv{f} g =
+  \dmap{(\inv{f} g)}$, then $f \xequiv{} g$.
+\end{corollary}
 % end_fold sec:equivalence_classes_of_maps_in_hypx
 
 \subsection{\hypXt is a restriction category} % (fold)
