@@ -230,16 +230,16 @@ We will prove this in a series of lemmas.
   With this definition, we see that $\+$ is a restriction functor:
   \begin{align*}
     1_X \+ 1_Y &= 1_{X\+Y}, \\
-    f_1 g_1 \+ f_2 g_2 &= h_1 \+ h_2 =
+    f_1 g_1 \+ f_2 g_2 &=
     \begin{bmatrix}
-      h_1 & 0 \\ 0 & h_2
+      f_1 g_1 & 0 \\ 0 & f_2 g_2
     \end{bmatrix} =
     \begin{bmatrix}
-      f_1 & 0 \\ 0 & g_1
+      f_1 & 0 \\ 0 & f_2
     \end{bmatrix}
     \begin{bmatrix}
-      f_2 & 0 \\ 0 & g_2
-    \end{bmatrix} = (f_1 \+ g_1) (f_2 \+ g_2).
+      g_1 & 0 \\ 0 & g_2
+    \end{bmatrix} = (f_1 \+ f_2) (g_1 \+ g_2).
   \end{align*}
 
   Following Definition~\ref{def:disjointness_tensor}, we note $\icpa = (1\+0)\upr =
