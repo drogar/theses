@@ -1799,6 +1799,9 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
   \end{matrix}
   .
 \]
+
+Maps of this form satisfy a variety of closure properties, as shown in the lemmas below.
+
 \begin{lemma}\label{lem:delta_nabla_is_idempotent}
   For any map $h$ in a discrete inverse category, $\dmap{\dmap{h}} = \dmap{h}$.
 \end{lemma}
@@ -1873,6 +1876,90 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
   \end{matrix} = \dmap{h}.
   \]
 \end{proof}
+
+The self-closure aspect of maps where $h=\dmap{h}$ allows us to show all restriction idempotents
+have this property:
+\begin{corollary}\label{cor:restriction-idempotents-have-dmap-property}
+  When $e=\rst{e}:A\*B \to A\*C$, then $e = \dmap{e}$.
+\end{corollary}
+\begin{proof}
+
+Using
+Lemma~\ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category} and the exchange rule,
+when $e = \rst{e}: A\*Y \to A\*Y$, we have
+\begin{equation}
+  e =
+  \begin{matrix}
+    \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (e1);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw (e1) to[out=270,in=125] (n1);
+        \draw [] (n1) to (end);
+      \end{tikzpicture}
+  \end{matrix}
+  =
+  \begin{matrix}
+    \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0.5,3) (start1) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (0.5,2.5) [delta] (d2) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [nabla] (n1) {};
+        \node at (0.5,1.5) [nabla] (n2) {};
+        \node at (0,1) (end) {};
+        \node at (0.5,1) (end1) {};
+        \draw [] (start) to (d1);
+        \draw [] (start1) to (d2);
+        \draw [] (d1) to[out=235,in=110] (e1);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw [] (d2) to[out=235,in=70] (e1);
+        \draw [] (d2) to[out=305,in=55] (n2);
+        \draw (e1) to[out=250,in=125] (n1);
+        \draw (e1) to[out=290,in=125] (n2);
+        \draw [] (n1) to (end);
+        \draw [] (n2) to (end1);
+      \end{tikzpicture}
+  \end{matrix}
+  =
+  \begin{matrix}
+    \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0.5,3) (start1) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (0.5,2.5) [delta] (d2) {};
+        \node at (.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [nabla] (n1) {};
+        \node at (0.5,1.5) [nabla] (n2) {};
+        \node at (0,1) (end) {};
+        \node at (0.5,1) (end1) {};
+        \draw [] (start) to (d1);
+        \draw [] (start1) to (d2);
+        \draw [] (d1) to[out=305,in=110] (e1);
+        \draw [] (d1) to[out=235,in=125] (n1);
+        \draw [] (d2) to[out=235,in=70] (e1);
+        \draw [] (d2) to[out=305,in=55] (n2);
+        \draw (e1) to[out=250,in=55] (n1);
+        \draw (e1) to[out=290,in=125] (n2);
+        \draw [] (n1) to (end);
+        \draw [] (n2) to (end1);
+      \end{tikzpicture}
+  \end{matrix}
+  .
+  \label{eq:idempotents-with-double-delta-nabla}
+\end{equation}
+
+But then the same graphical argument  as shown in Lemma~\ref{lem:delta_nabla_is_idempotent}  applied
+to the right hand term of Equation~\ref{eq:idempotents-with-double-delta-nabla} gives $e = \dmap{e}$.
+\end{proof}
+
+There are a variety of other closure properties:
 \begin{lemma}\label{lem:delta_nabla_maps_are_closed}
   In a discrete inverse category \X, for a fixed object $A$, the set of maps $h:A\*Y\to A\* Z$ where
   $h=\dmap{h}$ has the following properties:
@@ -1881,8 +1968,6 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
   \item it is closed under composition;\label{lemitem:delta_nabla_2}
   \item it contains all maps of the form $1\*k$ where $k:Y\to Z$;\label{lemitem:delta_nabla_3}
   \item it contains $\Delta:A\*B \to A\*B\*A\*B$;\label{lemitem:delta_nabla_4}
-  \item it is closed under pre-composition or post-composition with restriction idempotents, i.e., with
-    $e=\rst{e}:A\*Y\to A\*Y$  or $d=\rst{d}:A\*Z\to Z\*Z$.\label{lemitem:delta_nabla_5}
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -2158,210 +2243,6 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
   \end{tikzpicture}
   \end{matrix} =\Delta.
 \]
-
-For~\ref{lemitem:delta_nabla_5}, using
-Lemma~\ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category} and the exchange rule,
-when $e = \rst{e}: A\*Y \to A\*Y$, we have
-\[
-  e =
-  \begin{matrix}
-    \begin{tikzpicture}
-        \node at (0,3) (start) {};
-        \node at (0,2.5) [delta] (d1) {};
-        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
-        \node at (0,1.5) [nabla] (n1) {};
-        \node at (0,1) (end) {};
-        \draw [] (start) to (d1);
-        \draw [] (d1) to[out=235,in=90] (e1);
-        \draw [] (d1) to[out=305,in=55] (n1);
-        \draw (e1) to[out=270,in=125] (n1);
-        \draw [] (n1) to (end);
-      \end{tikzpicture}
-  \end{matrix}
-  =
-  \begin{matrix}
-    \begin{tikzpicture}
-        \node at (0,3) (start) {};
-        \node at (0.5,3) (start1) {};
-        \node at (0,2.5) [delta] (d1) {};
-        \node at (0.5,2.5) [delta] (d2) {};
-        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
-        \node at (0,1.5) [nabla] (n1) {};
-        \node at (0.5,1.5) [nabla] (n2) {};
-        \node at (0,1) (end) {};
-        \node at (0.5,1) (end1) {};
-        \draw [] (start) to (d1);
-        \draw [] (start1) to (d2);
-        \draw [] (d1) to[out=235,in=110] (e1);
-        \draw [] (d1) to[out=305,in=55] (n1);
-        \draw [] (d2) to[out=235,in=70] (e1);
-        \draw [] (d2) to[out=305,in=55] (n2);
-        \draw (e1) to[out=250,in=125] (n1);
-        \draw (e1) to[out=290,in=125] (n2);
-        \draw [] (n1) to (end);
-        \draw [] (n2) to (end1);
-      \end{tikzpicture}
-  \end{matrix}
-  =
-  \begin{matrix}
-    \begin{tikzpicture}
-        \node at (0,3) (start) {};
-        \node at (0.5,3) (start1) {};
-        \node at (0,2.5) [delta] (d1) {};
-        \node at (0.5,2.5) [delta] (d2) {};
-        \node at (.25,2) [map] (e1) {$\scriptstyle e$};
-        \node at (0,1.5) [nabla] (n1) {};
-        \node at (0.5,1.5) [nabla] (n2) {};
-        \node at (0,1) (end) {};
-        \node at (0.5,1) (end1) {};
-        \draw [] (start) to (d1);
-        \draw [] (start1) to (d2);
-        \draw [] (d1) to[out=305,in=110] (e1);
-        \draw [] (d1) to[out=235,in=125] (n1);
-        \draw [] (d2) to[out=235,in=70] (e1);
-        \draw [] (d2) to[out=305,in=55] (n2);
-        \draw (e1) to[out=250,in=55] (n1);
-        \draw (e1) to[out=290,in=125] (n2);
-        \draw [] (n1) to (end);
-        \draw [] (n2) to (end1);
-      \end{tikzpicture}
-  \end{matrix}
-  .
-\]
-
-Then, for $h=\dmap{h}$,
-\[
-  \dmap{(e h)} =
-  \begin{matrix}
-    \begin{tikzpicture}
-      \node at (0.25,4) (s1) {};
-      \node at (.5,4) (s2) {};
-      \node at (0.25,3.5) [delta] (d1) {};
-      \node at (.65,3) [map] (h) {$\scriptstyle \ e\ $};
-      \node at (.65,2.5) [map] (g) {$\scriptstyle \ h\ $};
-      \node at (0.25, 2) [nabla] (n1) {};
-      \node at (0.25,1.5) (end1) {};
-      \node at (.5,1.5) (end2) {};
-      \draw [] (s1) to (d1);
-      \draw (d1) to[out=235,in=125] (n1);
-      \draw (d1) to[out=305,in=125] (h);
-      \draw [] (s2) to[out=270,in=55] (h);
-      \draw (h) to[out=235,in=125] (g);
-      \draw (h) to[out=305,in=55] (g);
-      \draw (g) to[out=235,in=55] (n1);
-      \draw (g) to[out=305,in=90] (end2);
-      \draw (n1) to (end1);
-    \end{tikzpicture}
-  \end{matrix}
-\]
-and therefore we need to show $(\Delta\*1) e = e (\Delta\*1)$.
-Calculating,
-\[
-  (\Delta\*1) e =
-  \begin{matrix}
-    \begin{tikzpicture}
-      \node at (0.25,4) (s1) {};
-      \node at (.5,4) (s2) {};
-      \node at (0.25,3.5) [delta] (d1) {};
-      \node at (.65,3) [map] (e) {$\scriptstyle \ e\ $};
-      \node at (0.25,2.5) (end1) {};
-      \node at (.5,2.5) (end2) {};
-      \node at (.75,2.5) (end3) {};
-      \draw [] (s1) to (d1);
-      \draw (d1) to[out=235,in=90] (end1);
-      \draw (d1) to[out=305,in=125] (e);
-      \draw [] (s2) to[out=270,in=55] (e);
-      \draw (e) to[out=235,in=90] (end2);
-      \draw (e) to[out=305,in=90] (end3);
-    \end{tikzpicture}
-  \end{matrix}
-  =
-  \begin{matrix}
-    \begin{tikzpicture}
-      \node at (0,4) (s1) {};
-      \node at (.75,4) (s2) {};
-      \node at (0,3.5) [delta] (d0) {};
-        \node at (0.25,3) [delta] (d1) {};
-        \node at (0.75,3) [delta] (d2) {};
-        \node at (.5,2.5) [map] (e) {$\scriptstyle e$};
-        \node at (0.25,2) [nabla] (n1) {};
-        \node at (0.75,2) [nabla] (n2) {};
-      \node at (0,1.5) (end1) {};
-      \node at (.25,1.5) (end2) {};
-      \node at (.75,1.5) (end3) {};
-      \draw [] (s1) to (d0);
-      \draw [] (s2) to (d2);
-      \draw (d0) to[out=235,in=90] (end1);
-      \draw (d0) to[out=305,in=90] (d1);
-      \draw (d1) to[out=235,in=125] (n1);
-      \draw (d1) to[out=305,in=110] (e);
-      \draw (d2) to[out=235,in=70] (e);
-      \draw (d2) to[out=305,in=55] (n2);
-      \draw (e) to[out=250,in=55] (n1);
-      \draw (e) to[out=290,in=125] (n2);
-      \draw (n1) to (end2);
-      \draw (n2) to (end3);
-    \end{tikzpicture}
-  \end{matrix}
-  =
-  \begin{matrix}
-    \begin{tikzpicture}
-      \node at (0.25,3.5) (s1) {};
-      \node at (.75,3.5) (s2) {};
-        \node at (0.25,3) [delta] (d1) {};
-        \node at (0.75,3) [delta] (d2) {};
-      \node at (0,2.5) [delta] (d0) {};
-        \node at (.5,2.5) [map] (e) {$\scriptstyle e$};
-        \node at (0.25,2) [nabla] (n1) {};
-        \node at (0.75,2) [nabla] (n2) {};
-      \node at (0,1.5) (end1) {};
-      \node at (.25,1.5) (end2) {};
-      \node at (.75,1.5) (end3) {};
-      \draw [] (s1) to (d1);
-      \draw [] (s2) to (d2);
-      \draw (d0) to[out=235,in=90] (end1);
-      \draw (d0) to[out=305,in=125] (n1);
-      \draw (d1) to[out=235,in=90] (d0);
-      \draw (d1) to[out=305,in=110] (e);
-      \draw (d2) to[out=235,in=70] (e);
-      \draw (d2) to[out=305,in=55] (n2);
-      \draw (e) to[out=250,in=55] (n1);
-      \draw (e) to[out=290,in=125] (n2);
-      \draw (n1) to (end2);
-      \draw (n2) to (end3);
-    \end{tikzpicture}
-  \end{matrix}
-  =
-  \begin{matrix}
-    \begin{tikzpicture}
-      \node at (0.25,3.5) (s1) {};
-      \node at (.75,3.5) (s2) {};
-        \node at (0.25,3) [delta] (d1) {};
-        \node at (0.75,3) [delta] (d2) {};
-        \node at (.5,2.5) [map] (e) {$\scriptstyle e$};
-        \node at (0.25,2) [nabla] (n1) {};
-        \node at (0.75,2) [nabla] (n2) {};
-      \node at (0.25,1.5) [delta] (d0) {};
-      \node at (0,1) (end1) {};
-      \node at (.5,1) (end2) {};
-      \node at (.75,1) (end3) {};
-      \draw [] (s1) to (d1);
-      \draw [] (s2) to (d2);
-      \draw (d0) to[out=235,in=90] (end1);
-      \draw (d0) to[out=305,in=90] (end2);
-      \draw (d1) to[out=235,in=125] (n1);
-      \draw (d1) to[out=305,in=110] (e);
-      \draw (d2) to[out=235,in=70] (e);
-      \draw (d2) to[out=305,in=55] (n2);
-      \draw (e) to[out=250,in=55] (n1);
-      \draw (e) to[out=290,in=125] (n2);
-      \draw (n1) to[out=270,in=90] (d0);
-      \draw (n2) to (end3);
-    \end{tikzpicture}
-  \end{matrix}
-  =e (\Delta \*1).
-\]
-The proof for post-composing with an idempotent follows a similar pattern.
 \end{proof}
 
 Because of these closure rules, rather than stating $h = \dmap{h}$ we may equivalently say $h\in

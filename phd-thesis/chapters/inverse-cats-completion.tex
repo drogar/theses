@@ -103,22 +103,45 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
 Although Definition~\ref{def:xequivalence} above does not require a unique $h$, we may always find a
 minimal such $h$.
 \begin{lemma}\label{lem:equivalence-has-a-minimal-map}
-Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$.
+Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$ and $\rg{f}h\rg{g} \le h$.
 \end{lemma}
 \begin{proof}
-  We know that $h=\dmap{h}$. But by Lemma~\ref{lem:delta_nabla_maps_are_closed}, we may pre-compose
-  and post-compose with restriction idempotents, thus, $\rg{f}h\rg{g} = \dmap{(\rg{f}h\rg{g})}$. By
+  We know that $h=\dmap{h}$. But by Lemma~\ref{lem:delta_nabla_maps_are_closed} and
+  Corollary~\ref{cor:restriction-idempotents-have-dmap-property}, we may pre-compose and
+  post-compose $h$ with restriction idempotents, thus, $\rg{f}h\rg{g} = \dmap{(\rg{f}h\rg{g})}$. By
   $f\xequiv{h}g$, we have $fh = g$. Therefore,
   \[
     f(\rg{f}h\rg{g}) = f h \rg{g} = g \rg{g} = g.
   \]
   This gives us that  $f\xequiv{\rg{f}h\rg{g}} g$.
+
+  The inequality follows by applying Lemma~\ref{lem:restrictionvarious} twice and then \axiom{R}{4}:
+  \[
+     \rst{\rg{f}h\rg{g}} h = \rst{\rst{\inv{f}} h \rst{\inv{g}}} h
+     = \rst{\rst{\inv{f}} h \inv{g}} h = \rst{\rst{\inv{f}} h \inv{g}} \rst{\inv{f}} h
+     = \rst{\inv{f}} h \rst{\inv{g}} = \rg{f} h \rg{g}.
+  \]
 \end{proof}
 
 \begin{corollary}\label{cor:inv-f-g-provides-equivalence}
-  Given $f, g$ in a discrete inverse category, if $\rst{f} = \rst{g}$ and $\inv{f} g =
-  \dmap{(\inv{f} g)}$, then $f \xequiv{} g$.
+  Given $f, g$ in a discrete inverse category, if $f\xequiv{h} g$,
+  then $f \xequiv{\inv{f}g} g$ and $\inv{f} g$ is  minimal among all $h$ such
+  that $f\xequiv{h} g$.
 \end{corollary}
+\begin{proof}
+  First, it is necessary to show that $\inv{f}g = \dmap{(\inv{f}g)}$. We have $f h = g$ and $h=
+  \dmap{h}$. This means $\inv{f} f h = \inv{f} g$. As $\inv{f} f = \rg{f}$ is a restriction
+  idempotent, we have $\inv{f}g = \dmap{(\inv{f} g)}$.
+  As $f \inv{f} g = \rst{f} g = \rst{g} g = g$, the required diagram of
+  Definition~\ref{def:xequivalence} commutes.
+
+  Given another $h$ such that $f\xequiv{h}g$, we have $\rg{f}h\rg{g} \le h$ and
+  \[
+    \rst{\inv{f}g}\rg{f}h\rg{g} =  \rst{\inv{f}g}\inv{f} f h\rg{g} =
+    \inv{f}\rst{g} f h\rg{g} = \inv{f} \rst{g} g \rg{g} = \inv{f}g.
+  \]
+  Thus, by the transitivity of the ordering $\inv{f}g \le h$ and is the minimal such map.
+\end{proof}
 % end_fold sec:equivalence_classes_of_maps_in_hypx
 
 \subsection{\hypXt is a restriction category} % (fold)
