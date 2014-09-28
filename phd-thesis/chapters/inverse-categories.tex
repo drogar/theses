@@ -1744,6 +1744,10 @@ subcategory which is a discrete inverse category.
     = \<\inv{\Delta_{\X}}, \inv{\Delta_{\X}} \>.
   \]
   Similarly, removing the associativity maps, the right hand side of the same equation becomes:
+% LHS below works as
+%$  (1\times \inv{\Delta_{\X}})(!\times 1) = (! \times 1 \times 1 )( \inv{\Delta_{\X}})$
+% And then $(\Delta_{\X} \times 1)(! \times 1 \times 1 ) = 1 \times 1 = 1$
+
   \begin{align*}
     (\Delta_{\X} \times 1) (1\times\inv{\Delta_{\X}}) &
       = \<(\Delta_{\X} \times 1) (1\times\inv{\Delta_{\X}}) (1\times !),
@@ -1880,7 +1884,7 @@ Maps of this form satisfy a variety of closure properties, as shown in the lemma
 The self-closure aspect of maps where $h=\dmap{h}$ allows us to show all restriction idempotents
 have this property:
 \begin{corollary}\label{cor:restriction-idempotents-have-dmap-property}
-  When $e=\rst{e}:A\*B \to A\*C$, then $e = \dmap{e}$.
+  When $e=\rst{e}:A\*Y \to A\*Y$, then $e = \dmap{e}$.
 \end{corollary}
 \begin{proof}
 
@@ -2262,28 +2266,30 @@ this precise in the following proposition:
 \end{proposition}
 \begin{proof}
   Given Lemma~\ref{lem:delta_nabla_maps_are_closed}, we see immediately that $\X[A]$ is a
-  category. We must show the restriction is in $\X[A]$, i.e.,
-  $h=\dmap{h}$ then $\rst{h} = \dmap{\rst{h}}$ and that $\X[A]$ has a tensor and a Frobenius $\Delta$.
+  category. By Corollary~\ref{cor:restriction-idempotents-have-dmap-property}, we know $\rst{h} = \dmap{\rst{h}}$.
+  We must show  that $\X[A]$ has a tensor and a Frobenius $\Delta$.
+  % We must show the restriction is in $\X[A]$, i.e.,
+  % $h=\dmap{h}$ then $\rst{h} = \dmap{\rst{h}}$ and that $\X[A]$ has a tensor and a Frobenius $\Delta$.
 
-  Recalling that $\rst{(1\*h)} = 1\* \rst{h}$,
-  \begin{multline*}
-    (\Delta\*1) \rst{(1\*h)} (\inv{\Delta}\*1) = \rst{(\Delta\*1)(1\*h)}(\Delta\*1)(\inv{\Delta}\*1)
-    = \\
-    \rst{(\Delta\*1)(1\*h)} \le \rst{(\Delta\*1)(1\*h)(\inv{\Delta}\*1)} = \rst{h}.
-  \end{multline*}
-  Note this means there is some $k$ such that
-  $\rst{k} = (\Delta\*1) \rst{(1\*h)}(\inv{\Delta}\*1)$. Next, computing $\rst{k}h$ we have:
-  \begin{align*}
-    \rst{k}h &= (\Delta\*1) \rst{(1\*h)} (\inv{\Delta}\*1) (\Delta\*1) (1\*h) (\inv{\Delta}\*1) \\
-    & = (\Delta\*1) \rst{(1\*h)}\, \rst{(\inv{\Delta}\*1)} (1\*h) (\inv{\Delta}\*1) \\
-    & = (\Delta\*1) \rst{(\inv{\Delta}\*1)}\,  \rst{(1\*h)}(1\*h) (\inv{\Delta}\*1) \\
-    & = (\Delta\*1) \wrg{(\Delta\*1)}  (1\*h) (\inv{\Delta}\*1) \\
-    & = (\Delta\*1) (1\*h) (\inv{\Delta}\*1) \\
-    & = h.
-  \end{align*}
-  But by Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}, if $\rst{k} h = h$, we have
-  $\rst{h} \le \rst{k}$. As we already have $\rst{k}\le\rst{h}$ this means they are equal and the
-  restriction is in $\X[A]$, thus, $\X[A]$ is a restriction category.
+  % Recalling that $\rst{(1\*h)} = 1\* \rst{h}$,
+  % \begin{multline*}
+  %   (\Delta\*1) \rst{(1\*h)} (\inv{\Delta}\*1) = \rst{(\Delta\*1)(1\*h)}(\Delta\*1)(\inv{\Delta}\*1)
+  %   = \\
+  %   \rst{(\Delta\*1)(1\*h)} \le \rst{(\Delta\*1)(1\*h)(\inv{\Delta}\*1)} = \rst{h}.
+  % \end{multline*}
+  % Note this means there is some $k$ such that
+  % $\rst{k} = (\Delta\*1) \rst{(1\*h)}(\inv{\Delta}\*1)$. Next, computing $\rst{k}h$ we have:
+  % \begin{align*}
+  %   \rst{k}h &= (\Delta\*1) \rst{(1\*h)} (\inv{\Delta}\*1) (\Delta\*1) (1\*h) (\inv{\Delta}\*1) \\
+  %   & = (\Delta\*1) \rst{(1\*h)}\, \rst{(\inv{\Delta}\*1)} (1\*h) (\inv{\Delta}\*1) \\
+  %   & = (\Delta\*1) \rst{(\inv{\Delta}\*1)}\,  \rst{(1\*h)}(1\*h) (\inv{\Delta}\*1) \\
+  %   & = (\Delta\*1) \wrg{(\Delta\*1)}  (1\*h) (\inv{\Delta}\*1) \\
+  %   & = (\Delta\*1) (1\*h) (\inv{\Delta}\*1) \\
+  %   & = h.
+  % \end{align*}
+  % But by Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}, if $\rst{k} h = h$, we have
+  % $\rst{h} \le \rst{k}$. As we already have $\rst{k}\le\rst{h}$ this means they are equal and the
+  % restriction is in $\X[A]$, thus, $\X[A]$ is a restriction category.
 
   The tensor of objects $X\*Y$ in $\X[A]$ is the element $A\* X\*Y$ in $\X$. For two maps $h,g$
   in $\X[A]$, $h\*g$ is given by the $\X$ map

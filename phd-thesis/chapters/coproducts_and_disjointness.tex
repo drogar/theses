@@ -209,7 +209,7 @@ k \lozenge g k$.
     \item Assume $f \cdperp g$. By \ref{lemitem:djv_inverses}, $\inv{f}\cdperp\inv{g}$. By
       \axiom{Dis}{5}, $\inv{h}\inv{f}\cdperp\inv{h}\inv{g}$, giving $\inv{(f h)} \cdperp
       \inv{(g h)}$. Applying \ref{lemitem:djv_inverses}, we now have $f h \cdperp g h$.
-    \item Assume $f \cdperp g$. From \ref{lemitem:djv_inverses} and reflexivity, we know that
+    \item Assume $f \cdperp g$. From \ref{lemitem:djv_inverses} and symmetry, we know that
       $\inv{g} \cdperp \inv{f}$ and therefore $\rst{\inv{g}}\inv{f} = \rg{g}\inv{f}= 0$. However, in
       an inverse category, $\inv{0} = 0$ and therefore $0 = \inv{(\rg{g}\inv{f})} = f \inv{\rg{g}} =
       f \rg{g}$.
@@ -226,7 +226,7 @@ We may equivalently define a disjointness relation by a relation on the restrict
 
 \begin{definition}\label{def:disjointness_in_open_x}
   Given an inverse category \X, a relation $\ocdperpsub{A} \subseteq \open{A}\times\open{A}$ for
-  each $A \in \mathrm{ob}(\X)$, is an \emph{open disjointness} relation when for all $e, e' \in
+  each $A \in \objects{\X}$, is an \emph{open disjointness} relation when for all $e, e' \in
   \open{A}$
   \begin{align*}
     \axiom{$\mathcal{O}$dis}{1}\quad &1 \ocdperpsub{A} 0; &\text{(Zero disjoint to identity)}\\

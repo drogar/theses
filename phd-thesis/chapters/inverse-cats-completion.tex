@@ -115,7 +115,8 @@ Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$ and $\rg{f}h\rg{g} \le 
   \]
   This gives us that  $f\xequiv{\rg{f}h\rg{g}} g$.
 
-  The inequality follows by applying Lemma~\ref{lem:restrictionvarious} twice and then \axiom{R}{4}:
+  The inequality $\rg{f}h\rg{g} \le h$ follows by applying Lemma~\ref{lem:restrictionvarious} twice
+  and then \axiom{R}{4}:
   \[
      \rst{\rg{f}h\rg{g}} h = \rst{\rst{\inv{f}} h \rst{\inv{g}}} h
      = \rst{\rst{\inv{f}} h \inv{g}} h = \rst{\rst{\inv{f}} h \inv{g}} \rst{\inv{f}} h
@@ -678,7 +679,7 @@ Next, define  $\eta:\X \to \Inv{\Xt}$ as an identity on objects functor. For a m
 \X, $\eta: f \mapsto (f\inv{\usr},1)$. This is a functor as
 \begin{align*}
   \eta(1) & = (\inv{\usr},1) \quad\text{and}\\
-  \eta(f g) &= (f g\inv{\usr},1) \xequiv{} (f\inv{\usr},1)(g\inv{\usr},1) = \eta{f}\eta{g}.
+  \eta(f g) &= (f g\inv{\usr},1) \xequiv{} (f\inv{\usr},1)(g\inv{\usr},1) = \eta(f)\eta(g).
 \end{align*}
 
 Now, we may define the functor $F^{\#}:\Xt \to \D$. Recall that $\Inv{\D}$ is a subcategory of $\D$
@@ -703,7 +704,7 @@ We will now  show \ref{dia:universal_property_of_inverse_categories} is a univer
 \begin{proof}
   Using our definitions above, given a map $f$ in \X, then:
   \begin{align*}
-    \Inv{F^{\#}}(\eta(f) &= \Inv{F^{\#}}((f\inv{\usr},1))\\
+    \Inv{F^{\#}}(\eta(f)) &= \Inv{F^{\#}}((f\inv{\usr},1))\\
     &= F^{\#}((f\inv{\usr},1))\\
     &= F(f\inv{\usr}\pi_0)\\
     &= F(f).\\
