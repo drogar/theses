@@ -28,7 +28,7 @@ The types of matrices allowed in the matrix category are subject to certain cons
     \label{eq:disjoint_sum_matrix_column_perp}
   \end{align}
   In other words, for each column, the ranges of the functions in that column are disjoint and for
-  each row the restrictions of the functions in that column are disjoint.
+  each row the restrictions of the functions in that row are disjoint.
 \end{definition}
 
   % In the above and following we will use the notation $\cp{i}$ for the $i^{\text{th}}$ injection
@@ -110,7 +110,7 @@ The types of matrices allowed in the matrix category are subject to certain cons
       \text{ as diagonal matrices commute and }\djoin\text{ is commutative.}\\
   \end{align*}
   \begin{align*}
-    \rthree \quad & \rst{\rst{[f_i\jay]}[g_{\jay k}]} =
+    \rthree \quad & \rst{\rst{[f_{i\jay}]}[g_{\jay k}]} =
       \rst{\diag[\djoin_\jay \rst{f_{1\jay}},\ldots,\djoin_\jay \rst{f_{n \jay}}] [g_{\jay k}]}
       \\
       & = \rst{\begin{bmatrix}
@@ -123,7 +123,7 @@ The types of matrices allowed in the matrix category are subject to certain cons
       & = \diag[\djoin_k (\djoin_\jay(\rst{f_{1\jay}}) \rst{g_{1k}}), \ldots,
                  \djoin_k (\djoin_\jay(\rst{f_{n\jay}}) \rst{g_{n k}})]\\
       & = \diag[(\djoin_\jay(\rst{f_{1\jay}}) \djoin_k  \rst{g_{1k}}), \ldots,
-                 (\djoin_\jay(\rst{f_{n\jay}}) \djoin_k  \rst{g_{n k}})] = \rst{[f_i\jay]}\,\rst{[g_{\jay k}]}.\\
+                 (\djoin_\jay(\rst{f_{n\jay}}) \djoin_k  \rst{g_{n k}})] = \rst{[f_{i\jay}]}\,\rst{[g_{\jay k}]}.\\
   \end{align*}
   \begin{align*}
       \rfour \quad & [f_{i\jay}]\rst{[g_{\jay k}]} =
