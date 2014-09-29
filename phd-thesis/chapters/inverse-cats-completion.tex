@@ -687,7 +687,7 @@ having the same objects, but only the invertible maps. Given a functor $F:\X \to
 $F^{\#}$ as follows:
 \begin{description}
   \item{On objects:} $F^{\#}:A \mapsto F(A) \in \D_{o}$.
-  \item{On maps:} $F^{\#}:(f,C) \mapsto F(f\pi_0)\in \D_{m}$.
+  \item{On maps:} $F^{\#}:(f,C) \mapsto F(f)\pi_0\in \D_{m}$.
 \end{description}
 
 We will now  show \ref{dia:universal_property_of_inverse_categories} is a universal diagram.
@@ -706,7 +706,7 @@ We will now  show \ref{dia:universal_property_of_inverse_categories} is a univer
   \begin{align*}
     \Inv{F^{\#}}(\eta(f)) &= \Inv{F^{\#}}((f\inv{\usr},1))\\
     &= F^{\#}((f\inv{\usr},1))\\
-    &= F(f\inv{\usr}\pi_0)\\
+    &= F(f\inv{\usr})\pi_0\\
     &= F(f).\\
   \end{align*}
   % Chasing maps around the diagram, we have:

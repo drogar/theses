@@ -473,27 +473,39 @@ Given a specific disjointness relation on a category, there is only one disjoint
   $f \altjoin g \le f\djoin g$, hence $f \djoin g = f \altjoin g$.
 \end{proof}
 \begin{lemma}\label{lem:join_is_associative_and_commutative_monoid}
-  In an inverse category with disjoint joins, the disjoint join respects the restriction and is
-  universal. Additionally, it is a partial associative and
-  commutative operation, with identity $\zeroob$. That is, the following hold:
+  In an inverse category with disjoint joins, the disjoint join is a partial associative and
+  commutative operation, with identity $\zeroob$. Additionally, it respects the restriction and is
+  universal. That is, the following hold:
   \begin{enumerate}[{(}i{)}]
-    \item $\rst{f\djoin g} = \rst{f} \djoin \rst{g}$;
-    \item $(f \djoin g)k = f k \djoin g k$ (Universal);
+    \item $f \djoin \zeroob = f$; \label{lemitem:identity_for_join}
     \item $f \perp g,\ g\perp h,\ f\perp h$ implies that $(f\djoin g)\djoin h = f\djoin(g\djoin
       h)$; \label{lemitem:associative_join}
-    \item $f \perp g$ implies $f \djoin g = g \djoin f$; \label{lemitem:commutative_join}
-    \item $f \djoin \zeroob = f$. \label{lemitem:identity_for_join}
+    \item $\rst{f\djoin g} = \rst{f} \djoin \rst{g}$;
+    \item $(f \djoin g)k = f k \djoin g k$ (Universal);
+    \item $f \perp g$ implies $f \djoin g = g \djoin f$. \label{lemitem:commutative_join}
   \end{enumerate}
 \end{lemma}
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
+    \item \emph{Identity}: By \axiom{DJ}{1}, $f \le f \djoin \zeroob$. As $\zeroob \le f$ and $f \le
+      f$, by \axiom{DJ}{2}, $f \djoin \zeroob \le f$ and therefore $f = f \djoin \zeroob$.
+    \item \emph{Associativity}: Note that \axiom{DJ}{4} shows that both sides of the equation
+      exist.
+      From \axiom{DJ}{1} $f\djoin g, h \le (f\djoin g)\djoin h$, which also means
+      $f, g \le (f\djoin g)\djoin h$. Similarly, $g\djoin h \le (f\djoin g)\djoin h $ and then $f
+      \djoin (g\djoin h)\le (f\djoin g)\djoin h$. Conversely, $f,g,h \le f \djoin (g\djoin h)$ and
+      therefore $(f\djoin g)\djoin h \le f \djoin (g\djoin h)$ and both sides are equal.
+    \item \emph{Commutativity}: Note first that both $f$ and $g$ are less than or equal to each of
+      $f\djoin g$ and $g \djoin f$, by \axiom{DJ}{1}. By \axiom{DJ}{2}, $f \djoin g \le
+      g\djoin f$ and $g\djoin f \le f \djoin g$ and thus $f \djoin g = g \djoin f$.
     \item As $\rst{f}, \rst{g} \le \rst{f\djoin g}$, \axiom{DJ}{2} gives
       $\rst{f} \djoin \rst{g} \le \rst{f \djoin g}$. To show the other direction, consider
       \begin{align*}
         \rst{f}(\rst{f} \djoin \rst{g}) (f \djoin g)
         &= (\rst{f}\,\rst{f} \djoin \rst{f}\rst{g})(f \djoin g) &\text{\axiom{DJ}{3}}\\
-        &= \rst{f} (f\djoin g) &\text{Lemma~\ref{lem:restrictionvarious}, \axiom{Dis}{2}}\\
+        &= (\rst{f}\,\rst{f} \djoin 0)(f \djoin g) &\text{\axiom{Dis}{2}}\\
+        &= \rst{f} (f\djoin g) &\text{\ref{lemitem:identity_for_join}, Lemma~\ref{lem:restrictionvarious}}\\
         &= f.
       \end{align*}
       Hence, $f \le (\rst{f} \djoin \rst{g}) (f \djoin g)$ and similarly, so is $g$. By
@@ -518,21 +530,10 @@ Given a specific disjointness relation on a category, there is only one disjoint
         & = \rst{f}\,\rst{(f\djoin g)k } \djoin \rst{g}\, \rst{(f\djoin g)k }
           &\text{idempotent universal}\\
         & = \rst{\rst{f} (f\djoin g)k} \djoin \rst{\rst{g} (f\djoin g)k} & \rthree\\
-        & = \rst{f k} \djoin \rst{g k}\\
+        & = \rst{f k} \djoin \rst{g k}&\text{\axiom{DJ}{3}}\\
         & = \rst{f k \djoin g k}.
       \end{align*}
       Therefore, as the restrictions are equal, $(f\djoin g)k = f k \djoin g k$.
-    \item \emph{Associativity}: Note that \axiom{DJ}{4} shows that both sides of the equation
-      exist.
-      From \axiom{DJ}{1} $f\djoin g, h \le (f\djoin g)\djoin h$, which also means
-      $f, g \le (f\djoin g)\djoin h$. Similarly, $g\djoin h \le (f\djoin g)\djoin h $ and then $f
-      \djoin (g\djoin h)\le (f\djoin g)\djoin h$. Conversely, $f,g,h \le f \djoin (g\djoin h)$ and
-      therefore $(f\djoin g)\djoin h \le f \djoin (g\djoin h)$ and both sides are equal.
-    \item \emph{Commutativity}: Note first that both $f$ and $g$ are less than or equal to each of
-      $f\djoin g$ and $g \djoin f$, by \axiom{DJ}{1}. By \axiom{DJ}{2}, $f \djoin g \le
-      g\djoin f$ and $g\djoin f \le f \djoin g$ and thus $f \djoin g = g \djoin f$.
-    \item \emph{Identity}: By \axiom{DJ}{1}, $f \le f \djoin \zeroob$. As $\zeroob \le f$ and $f \le
-      f$, by \axiom{DJ}{2}, $f \djoin \zeroob \le f$ and therefore $f = f \djoin \zeroob$.
   \end{enumerate}
 \end{proof}
 
@@ -604,7 +605,7 @@ Clearly the product of two inverse categories with disjoint joins has a disjoint
 
 \begin{example}[\pinj has a disjoint join]\label{ex:pinj_has_a_disjoint_join}
   Continuing from Example~\ref{ex:pinj_has_a_disjointness_relation}, we show that \pinj has disjoint
-  joins. If $f = \{(a,b)\}$ and $g=\{(a',b'\}$ are disjoint parallel maps in \pinj from $A$ to $B$,
+  joins. If $f = \{(a,b)\}$ and $g=\{(a',b')\}$ are disjoint parallel maps in \pinj from $A$ to $B$,
   define $f\djoin g \definedas \{(a'',b'') | (a'',b'') \in f\text{ or }(a'',b'') \in g\}$, i.e., the
   union of $f$ and $g$.
 
