@@ -340,20 +340,9 @@ $(1\*\inv{\Delta})\inv{\Delta} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
 \end{align*}
 
 \begin{example}[\pinj is a discrete inverse category]\label{ex:pinj_is_a_discrete_inverse_category}
-  In the inverse category \pinj (see Example~\ref{ex:pinj_is_an_inverse_category}), suppose we add
-  the tensor given by the Cartesian product of sets. In detail, this means:
-  \begin{align*}
-    A \* B &= \{(a,b)| a\in A, b\in B\}\\
-    f \* g &= \{((a,c),(b,d)) | (a,b) \in f, (c,d) \in g\}\\
-    1 & = \{*\}\text{, a single element set.}
-  \end{align*}
-  The symmetric monoid isomorphisms are:
-    \begin{align*}
-      \usl &: \{(*,a)\} \mapsto \{a\}
-      &\usr &: \{(a,*)\} \mapsto \{a\}\\
-      a_{\*} &: \{((a,b),c)\} \mapsto \{(a,(b,c))\}
-      &c_{\*} &: \{(a,b)\} \mapsto \{(b,a)\}.
-    \end{align*}
+  In the inverse category \pinj (see Examples~\ref{ex:category_pinj} and
+  \ref{ex:pinj_is_an_inverse_category}), we saw in Example~\ref{ex:pinj-has-a-smt} that Cartesian
+  product is a symmetric tensor.
 
   Define $\Delta_A = \{(a,(a,a)) | a\in A\}$. Then \pinj is a discrete inverse category with the
   inverse product of $\*$. The required properties of cocommutativity, coassociativity and

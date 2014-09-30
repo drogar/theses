@@ -9,6 +9,10 @@ Restriction categories were introduced in
 as a way to give an algebraic treatment of partiality. We will introduce restriction
 categories and provide a variety of results.
 
+From this point forward in the thesis, we will use the symbol $\undef$ to mean a function is
+undefined on some value or values. For example, if $f: \{1,2\} \to \{a,b,c\}$ where $f(1) = a$ and
+$f(2)$ is not defined, then we write $f(2)$ is $\undef$.
+
 \section{Definitions}
 \label{sec:definitions}
 
@@ -26,7 +30,7 @@ categories and provide a variety of results.
     &\rone\ \restr{f} f = f & &
     \rtwo\ \restr{g}  \restr{f} = \restr{f}  \restr{g}\\
     &\rthree\ \restr{\restr{f}  g} = \restr{f}   \restr{g} & &
-    \rfour\  f \restr{g} = \restr{f g} f.
+    \rfour\  f \restr{h} = \restr{f h} f.
   \end{align*}
 \end{definition}
 
