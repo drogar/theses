@@ -173,7 +173,7 @@ inverse distributive category. We now show the converse is true.
   $f\tjup g$ exists.
 \end{lemma}
 \begin{proof}
-  Let $h:A \to C$, $f:B \to D$ and $g: B \to E$. Consider the following diagram:
+  Let $h:A \to B$, $f:C \to D$ and $g: C \to E$. Consider the following diagram:
   \[
     \xymatrix@R+20pt@C+10pt{
       & && B\*E\\
@@ -434,7 +434,7 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
 
   This means we may form the map $q_1\tjup q_2:Y\*(C\+D) \to Y\*E$. But then the map
   $(q_1\tjup  q_2)$  makes Diagram~\ref{diag:k-equiv-f-djoin-g} commute. At the same time,
-  $q_1,q_2\in\dmap{Y}$, but this means $q_1\tjup q_2 \in \dmap{Y}$ as
+  $q_1,q_2\in\dmap{Y}$, which gives
   \[
     \raisebox{40pt}{$q_1=$ }
     \begin{tikzpicture}
@@ -579,7 +579,7 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
     \,\raisebox{40pt}{$= (1\*\cpa)\dmap{(q_1\tjup q_2)}$.}
   \]
   Similarly, $q_2 = (1\*\cpb)\dmap{(q_1\tjup q_2)}$ giving us $q_1\tjup q_2 \in \dmap{Y}$ by the
-  uniqueness of the $\tjup$ map. Therefore $q_1\tjup q_2$ provides an
+  uniqueness of the $\tjup$ operation. Therefore $q_1\tjup q_2$ provides an
   equivalence between $k$ and $\icpa f' \djoin \icpb g'$, meaning the coproduct is unique.
 \end{proof}
 

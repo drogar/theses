@@ -100,6 +100,49 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
   \end{description}
 \end{proof}
 
+Although Definition~\ref{def:xequivalence} above does not require a unique $h$, we may always find a
+minimal such $h$.
+\begin{lemma}\label{lem:equivalence-has-a-minimal-map}
+Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$ and $\rg{f}h\rg{g} \le h$.
+\end{lemma}
+\begin{proof}
+  We know that $h=\dmap{h}$. But by Lemma~\ref{lem:delta_nabla_maps_are_closed} and
+  Corollary~\ref{cor:restriction-idempotents-have-dmap-property}, we may pre-compose and
+  post-compose $h$ with restriction idempotents, thus, $\rg{f}h\rg{g} = \dmap{(\rg{f}h\rg{g})}$. By
+  $f\xequiv{h}g$, we have $fh = g$. Therefore,
+  \[
+    f(\rg{f}h\rg{g}) = f h \rg{g} = g \rg{g} = g.
+  \]
+  This gives us that  $f\xequiv{\rg{f}h\rg{g}} g$.
+
+  The inequality $\rg{f}h\rg{g} \le h$ follows by applying Lemma~\ref{lem:restrictionvarious} twice
+  and then \axiom{R}{4}:
+  \[
+     \rst{\rg{f}h\rg{g}} h = \rst{\rst{\inv{f}} h \rst{\inv{g}}} h
+     = \rst{\rst{\inv{f}} h \inv{g}} h = \rst{\rst{\inv{f}} h \inv{g}} \rst{\inv{f}} h
+     = \rst{\inv{f}} h \rst{\inv{g}} = \rg{f} h \rg{g}.
+  \]
+\end{proof}
+
+\begin{corollary}\label{cor:inv-f-g-provides-equivalence}
+  Given $f, g$ in a discrete inverse category, if $f\xequiv{h} g$,
+  then $f \xequiv{\inv{f}g} g$ and $\inv{f} g$ is  minimal among all $h$ such
+  that $f\xequiv{h} g$.
+\end{corollary}
+\begin{proof}
+  First, it is necessary to show that $\inv{f}g = \dmap{(\inv{f}g)}$. We have $f h = g$ and $h=
+  \dmap{h}$. This means $\inv{f} f h = \inv{f} g$. As $\inv{f} f = \rg{f}$ is a restriction
+  idempotent, we have $\inv{f}g = \dmap{(\inv{f} g)}$.
+  As $f \inv{f} g = \rst{f} g = \rst{g} g = g$, the required diagram of
+  Definition~\ref{def:xequivalence} commutes.
+
+  Given another $h$ such that $f\xequiv{h}g$, we have $\rg{f}h\rg{g} \le h$ and
+  \[
+    \rst{\inv{f}g}\rg{f}h\rg{g} =  \rst{\inv{f}g}\inv{f} f h\rg{g} =
+    \inv{f}\rst{g} f h\rg{g} = \inv{f} \rst{g} g \rg{g} = \inv{f}g.
+  \]
+  Thus, by the transitivity of the ordering $\inv{f}g \le h$ and is the minimal such map.
+\end{proof}
 % end_fold sec:equivalence_classes_of_maps_in_hypx
 
 \subsection{\hypXt is a restriction category} % (fold)
@@ -636,7 +679,7 @@ Next, define  $\eta:\X \to \Inv{\Xt}$ as an identity on objects functor. For a m
 \X, $\eta: f \mapsto (f\inv{\usr},1)$. This is a functor as
 \begin{align*}
   \eta(1) & = (\inv{\usr},1) \quad\text{and}\\
-  \eta(f g) &= (f g\inv{\usr},1) \xequiv{} (f\inv{\usr},1)(g\inv{\usr},1) = \eta{f}\eta{g}.
+  \eta(f g) &= (f g\inv{\usr},1) \xequiv{} (f\inv{\usr},1)(g\inv{\usr},1) = \eta(f)\eta(g).
 \end{align*}
 
 Now, we may define the functor $F^{\#}:\Xt \to \D$. Recall that $\Inv{\D}$ is a subcategory of $\D$
@@ -644,7 +687,7 @@ having the same objects, but only the invertible maps. Given a functor $F:\X \to
 $F^{\#}$ as follows:
 \begin{description}
   \item{On objects:} $F^{\#}:A \mapsto F(A) \in \D_{o}$.
-  \item{On maps:} $F^{\#}:(f,C) \mapsto F(f\pi_0)\in \D_{m}$.
+  \item{On maps:} $F^{\#}:(f,C) \mapsto F(f)\pi_0\in \D_{m}$.
 \end{description}
 
 We will now  show \ref{dia:universal_property_of_inverse_categories} is a universal diagram.
@@ -661,9 +704,9 @@ We will now  show \ref{dia:universal_property_of_inverse_categories} is a univer
 \begin{proof}
   Using our definitions above, given a map $f$ in \X, then:
   \begin{align*}
-    \Inv{F^{\#}}(\eta(f) &= \Inv{F^{\#}}((f\inv{\usr},1))\\
+    \Inv{F^{\#}}(\eta(f)) &= \Inv{F^{\#}}((f\inv{\usr},1))\\
     &= F^{\#}((f\inv{\usr},1))\\
-    &= F(f\inv{\usr}\pi_0)\\
+    &= F(f\inv{\usr})\pi_0\\
     &= F(f).\\
   \end{align*}
   % Chasing maps around the diagram, we have:
