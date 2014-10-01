@@ -63,10 +63,10 @@ We give a few examples of categories:
   immediately satisfied.
 \end{example}
 \begin{example}[Dual Category]\label{ex:dual_category}
-Given a category $\B$, we may form the \emph{dual} of $\B$, written $\B^{op}$ as the following
+Given a category $\B$, we may form the \emph{dual} of $\B$, written $\dual{\B}$ as the following
 category:
-\category{The objects of $\B$}{$f^{op}:B\to A$ in $\B^{op}$ when $f:A\to B$ in $\B$}{
-The identity maps of $\B$}{If $f g = h$ in $\B$, $g^{op} f^{op} = h^{op}$}
+\category{The objects of $\B$}{$\dual{f}:B\to A$ in $\dual{\B}$ when $f:A\to B$ in $\B$}{
+The identity maps of $\B$}{If $f g = h$ in $\B$, $\dual{g} \dual{f} = \dual{h}$}
 \end{example}
 
 Note the format of the previous example, where we list the four basic requirements of a
@@ -75,7 +75,7 @@ complexity of the definition, we may add further proof that it meets \catone and
 
 The previous example is an important one, as we will often speak of \emph{dualizing} a notion, or
 that concept ``x'' is the \emph{dual} of concept ``y''. This means that when ``y'' holds in a
-category \B, the ``x'' holds in $\B^{op}$.
+category \B, the ``x'' holds in $\dual{\B}$.
 
 \section{Properties of maps} % (fold)
 \label{sub:properties_of_maps}

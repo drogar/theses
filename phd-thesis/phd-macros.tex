@@ -322,9 +322,10 @@
 \newcommand{\categorysection}[1]{{#1}^\diamond}
 \newcommand{\retraction}[1]{{#1}_\diamond}
 
-\newcommand{\objects}[1]{{#1}_o}
-\newcommand{\arrows}[1]{{#1}_m}
+\newcommand{\objects}[1]{\ensuremath{{#1}_o}\xspace}
+\newcommand{\arrows}[1]{\ensuremath{{#1}_m}\xspace}
 
+\newcommand{\dual}[1]{\ensuremath{{#1}^{op}}\xspace}
 \newcommand{\categoryns}[4]{%
 \begin{description}%
 \item{\textbf{Objects: }}{#1}%
@@ -547,7 +548,7 @@
 %-------------------------------------------------
 % sub/super scripting and decorating
 
-\newcommand{\dual}[1]{\ensuremath{{#1}^{*}}}
+\newcommand{\ccdual}[1]{\ensuremath{{#1}^{*}}}
 
 \newcommand{\dgr}[1]{\ensuremath{{#1}^{\dagger}}}
 
