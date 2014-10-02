@@ -16,7 +16,7 @@ make it reversible: Here we know how to add the history to make it invertible!
 We begin by giving the construction of $\Xt$.
 
 \begin{definition}[Cartesian Completion]\label{def:xt}
-  When \X is an inverse category, define \Xt, the Cartesian Completion of \X, as:
+  When \X is a discrete inverse category, define \Xt, the Cartesian Completion of \X, as:
   \categoryns{objects as in \X;}
   {
     A map $(f,C):A\to B$ in \Xt is the equivalence class of the map $f:A\to B\*C$ in \X (detailed below in
@@ -96,7 +96,7 @@ When considering an \Xt\ map $(f,C):A\to B$ in \X, we occasionally use the notat
     \itembf{Transitivity: } Suppose $f\xequiv{h} f'$ and $f' \xequiv{k} f''$, i.e., $f h = f'$ and
     $f' k = f''$. Therefore, $f h k = f' k = f''$ and by
     Lemma~\ref{lem:delta_nabla_maps_are_closed}, we know $h k = \dmap{(h k)}$ and therefore we have
-    an equivalence.
+    an equivalence, $f \xequiv{h k} f''$.
   \end{description}
 \end{proof}
 
@@ -155,7 +155,7 @@ Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$ and $\rg{f}h\rg{g} \le 
 \begin{proof}
   The maps are well defined, as shown in
   Lemma~\ref{lem:mediating_map_equivalence_is_symmetric_reflexive_and_transitive}. The existence of
-  the identity map is due to the tensor $\*$ being defined on \X, an inverse category, hence
+  the identity map is due to the tensor $\*$ being defined on \X, a discrete inverse category, hence
   $\inv{\usr}$ is defined.
 
   It remains to show the composition is associative and that $(\inv{\usr}, 1)$ acts as an identity
@@ -391,7 +391,7 @@ Define the restriction in \Xt\ as follows:
             &A \* 1 \ar[r]^(.41){\inv{\usr}\* 1}
             \ar[ddd]_{\usr}
             &(A \* 1) \* 1 \ar[r]^{a_{\*}}
-            \ar[dddd]_{\usr}
+            \ar[dddd]_{\usr\*1}
             & A \* (1\*1) \ar@{.>}[ddddd]^{1\*\usr}\\
           &A\ar@{=}[dr]\\
           &&A \ar[dr]_{\restr{g}}\\
@@ -457,11 +457,11 @@ Define the restriction in \Xt\ as follows:
 
 
 \begin{lemma}\label{lem:tensor_unit_of_x_is_terminal_object_of_xt}
-  The unit of the inverse product in \X is the terminal object in \Xt.
+  The unit of the inverse product in \X, a discrete inverse category,  is the terminal object in \Xt.
 \end{lemma}
 \begin{proof}
   The unique map to the terminal object for any object $A$ in \Xt is the equivalence class of maps
-  represented by $(\inv{\usl},A)$. For this to be a terminal object, the diagram
+  given by $(\inv{\usl},A)$ and is designated as $!_A$. For this to be a terminal object, the diagram
   \[
     \xymatrix @C=40pt @R=25pt{
       X \ar[r]^{\restr{(f,C)}} \ar[d]^{(f,C)} & X \ar[r]^{!_X}  &\top  \\
@@ -502,8 +502,8 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
 \end{definition}
 
 \begin{lemma}\label{lem:tensor_on_x_is_the_restriction_product_on_xt}
-  On \Xt, $\*$ is a restriction product with projections $\pi_0, \pi_1$ and the product of maps
-  $f, g$ being $\<f,g\>$.
+  For \X a discrete inverse category, $\*$ is a restriction product in \Xt with projections $\pi_0,
+  \pi_1$ and the product of maps  $f, g$ being $\<f,g\>$.
 \end{lemma}
 \begin{proof}
   From the definition above, as $1$ and $c_{\*}$ are isomorphisms, the maps $\pi_0, \pi_1$ are
@@ -582,7 +582,7 @@ At this point, we have shown that \Xt is a restriction category with restriction
 leads us to the following theorem:
 
 \begin{theorem}\label{thm:xt_is_a_discrete_crc_when_x_is_an_inverse_category}
-  For any inverse category \X, the category \Xt is a discrete Cartesian restriction category.
+  For any discrete inverse category \X, the category \Xt is a discrete Cartesian restriction category.
 \end{theorem}
 \begin{proof}
   The fact that \Xt is a Cartesian restriction category is immediate from
@@ -653,8 +653,10 @@ on the partial inverses. That is, given $G:\B \to \D$, then:
   $H:\B\to\D$ as follows:
   \begin{description}
     \item{Action on objects:} $H(A) = G(A),$
-    \item{Objects on maps:} $H(f) = G(\<f,1\>)\pi_0.$
+    \item{Objects on maps:} $H(f) = G(\<f,1\>)\pi_0$, where $\<f,1\>$ is the product map of $f$ and
+      $1$ in \B.
   \end{description}
+
   $H$ is well defined as we know $\<f,1\>$ is an invertible map and therefore in the domain of $G$.
   To see $H$ is a functor:
   \begin{align*}
@@ -667,9 +669,9 @@ on the partial inverses. That is, given $G:\B \to \D$, then:
 
   Next, assume we have $F,G:\B\to\D$ with $\Inv{F} = \Inv{G}$. Considering $F(f)$ and $F(g)$, we
   know $F(\<f,1\>) = G(\<f,1\>) $ as $\<f,1\>$ is invertible. Thus, as the functors preserve the
-  product structure, we have
+  product structure, i.e., $F(\pi_0) = \pi_0 = G(\pi_0)$, we have
   \[
-    F(f) = F(\<f,1\>)F(\pi_0)= G(\<f,1\>)G(\pi_0)= G(f).
+    F(f) = F(\<f,1\>\pi_0)= F(\<f,1\>)F(\pi_0)= G(\<f,1\>)G(\pi_0)= G(f).
   \]
   Thus, $\Invf$ is faithful.
 \end{proof}
@@ -874,7 +876,7 @@ maps
   b \xrightarrow{(id,b) \ (\equiv (id, c) \equiv (id, d))} b , \qquad b \xrightarrow{(id,b)} c,
     \qquad b \xrightarrow{(id,b)} d\\
   c \xrightarrow{(id, c) \ (\equiv (id, d))} c ,   \qquad c \xrightarrow{(id,c)} d\\
-  d \xrightarrow{(id,d)} d
+  d \xrightarrow{(id,d)} d.
 \end{align*}
 resulting in the straight-line ($a \to b \to c \to d$) lattice. The tensor in \D becomes the meet
 and hence is a categorical product in $\widetilde{\D}$. Note that the only partial inverses in

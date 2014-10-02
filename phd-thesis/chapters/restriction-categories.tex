@@ -1100,19 +1100,19 @@ of the section.
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item To show closure, it is necessary to show that $\<f g,1\>$ has a partial inverse.
-      By Lemma \ref{lem:rcs_partial_monic_section_inverse_properties}, the uniqueness of the
-      partial inverse gives
+    \item To show closure, it is necessary to show for graphic maps $f:A\to B$ and $g:B\to C$ that
+      $\<f g,1\>$ has a partial inverse. By Lemma
+      \ref{lem:rcs_partial_monic_section_inverse_properties}, the uniqueness of the  partial inverse gives
       \[
-        \inv{(\<f,1\> ; \<g,1\>\times 1)} = \inv{\<g,1\>} \times 1 ; \inv{\<f,1\>} .
+        \inv{(\<f,1\> ( \<g,1\>\times 1))} = (\inv{\<g,1\>} \times 1) \inv{\<f,1\>} .
       \]
       By the definition of the restriction product, we have $\rst{\<f g,1\>} = \rst{f g}$. Additionally,
       a straightforward calculation shows that
-        $\rst{\<f,1\>;\<g,1\> \times 1} =
-          \rst{\<f\<g,1\>, 1\>} = \rst{f ;\< g,1\>}
-          = \rst{\<f;g, f\>} = \rst{f g}\,\rst{f} = \rst{f g}
+        $\rst{\<f,1\>(\<g,1\> \times 1)} =
+          \rst{\<f\<g,1\>, 1\>} = \rst{f \< g,1\>}
+          = \rst{\<f g, f\>} = \rst{f g}\,\rst{f} = \rst{f g}
         $
-      where the last equality is by \rtwo, \rthree and finally \rone.
+      where the last equality is from Lemma~\ref{lem:restrictionvarious}.
 
     Consider the diagram
     \[
@@ -1144,7 +1144,7 @@ of the section.
     $\<f g,1\>$ is a partial isomorphism.
 
     \item This follows from the definition of graphic and that
-       $\rst{\<f,1\>} = \rst{f} = \restr{\rst{f}}$.
+       $\rst{\<f,1\>} = \rst{f} = \restr{\rst{f}} = \rst{\<\rst{f},1\>}$.
 
     \item Given a discrete object $A$, the identity on $A$ is graphic as $\<1,1\> = \Delta$
       and therefore $\inv{\<1,1\>} = \inv{\Delta}$. Conversely, if $\<1,1\> = \Delta$ has an
@@ -1153,11 +1153,11 @@ of the section.
 \end{proof}
 
 \begin{lemma}\label{lem:a_discrete_crc_is_precisely_a_graphic_crc}
-  A discrete Cartesian restriction category is precisely a graphic Cartesian restriction category.
+  A discrete Cartesian restriction category \D is precisely a graphic Cartesian restriction category.
 \end{lemma}
 \begin{proof}
-  The requirement is that $\<f,1\>$ (and $\<\rst{f},1\>$) each have partial inverses. For
-  $\<f,1\>$, the inverse is $\rst{(1 \times f)\inv{\Delta}} \pi_1$.
+  The requirement is that for all $f\in \arrows{\D}$ both $\<f,1\>$ and $\<\rst{f},1\>$ have partial
+  inverses. For $\<f,1\>$ the inverse is $\rst{(1 \times f)\inv{\Delta}} \pi_1$.
 
   To show this, calculate  the two compositions. First,
   \[
