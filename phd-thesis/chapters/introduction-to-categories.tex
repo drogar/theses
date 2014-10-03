@@ -637,9 +637,23 @@ $\<1, 1\>$ will be designated by $\Delta$ and $[1,1]$ by $\nabla$.
 \begin{definition}\label{symmetricmonoidalcat}
   A \emph{symmetric monoidal category}\cite{barr:ctcs,maclan97:categorieswrkmath} \cD{} is a
   category equipped with a monoid $\*$ (a bi-functor $\*:\cD \times \cD \to \cD$) together with
-  four families of natural isomorphisms:  $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u^r_{A}:A\*I\to A$,
-  $u^l_{A}:I\*A \to A$ and $c_{A,B}:A\*B \to B\* A$, which satisfy coherence diagrams and
-  equations shown in Figures~\ref{fig:SMC_pentagon}, \ref{fig:SMC_unit}, \ref{fig:SMC_commutes},
+  four families of natural isomorphisms:
+  \begin{align*}
+    u^l_{A}&:I\*A \to A&
+    u^r_{A}&:A\*I\to A \\
+    a_{A,B,C} &: A\*(B\*C) \to (A\*B)\*C &
+    c_{A,B}&:A\*B \to B\* A.
+  \end{align*}
+  When the objects are identified in other ways, we often write the maps with the tensor as a
+  subscript:
+  \begin{align*}
+    \usl &: I \* A \to A &
+    \usr &: A \* I \to A\\
+    a_\* &: (A \* B) \* C \to A \* (B \* C) &
+    c_\* &: A \* B \to B \* A.
+  \end{align*}
+  These maps must satisfy the coherence diagrams and equations shown in
+  Figures~\ref{fig:SMC_pentagon}, \ref{fig:SMC_unit}, \ref{fig:SMC_commutes},
   \ref{fig:SMC_unit_symmettry} and \ref{fig:SMC_associativity_symmetry}. The essence of the
   coherence diagrams is that any diagram composed solely of the structure isomorphisms will
   commute. The isomorphisms are referred to as the \emph{structure isomorphisms}. $I$ is the

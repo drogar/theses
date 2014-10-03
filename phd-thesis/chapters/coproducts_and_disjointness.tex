@@ -131,18 +131,21 @@ the zero object.
 
 \section{Disjointness in an inverse category} % (fold)
 \label{sec:disjointness_in_an_inverse_category}
-This section and the next first add a relation, \emph{disjointness}, and then an operation,
-\emph{disjoint join}, on parallel maps in  an inverse category with a restriction zero and zero
-maps. The disjoint join is evocative of the join as defined in
-Section~\ref{sub:joins_in_restriction_categories}. This section will begin by defining disjointness
-on parallel maps and then show this is equivalent to a definition of disjointness on the restriction
-idempotents.
+This section and the next add a relation, \emph{disjointness}, and an operation, \emph{disjoint
+  join}, on parallel maps in  an inverse category with a restriction zero and zero maps. The
+disjoint join is evocative of the join as defined in
+Section~\ref{sub:joins_in_restriction_categories}. In later chapters, we shall see how the disjoint
+join will allow us to add a tensor to a discrete inverse category, which will then become a
+coproduct via the Cartesian Construction from Chapter
+\ref{chap:completing_a_discrete_inverse_category}.
+This section will begin by defining disjointness on parallel maps and then show this is equivalent
+to a definition of disjointness on the restriction idempotents.
 
 From this point forward in the thesis, we will work with a number of relations and operations on
-parallel pairs of maps. Suppose there is a relation $\lozenge$ between maps $f,g:B\to C$, i.e., $f
-\lozenge g$. Then, $\lozenge$ will be referred to as \emph{stable} whenever given $h:A \to B$, then $h f
-\lozenge h g$. As well, $\lozenge$ will be referred to as \emph{universal} whenever given $k:C \to D$, then $f
-k \lozenge g k$.
+parallel pairs of maps. Suppose there is a relation $\lozenge$ between maps $f,g:B\to C$, i.e.,
+$f \lozenge g$. Then, $\lozenge$ will be referred to as \emph{stable} whenever given $h:A \to B$,
+then $h f \lozenge h g$. As well, $\lozenge$ will be referred to as \emph{universal} whenever given
+$k:C \to D$, then $f k \lozenge g k$.
 
 
 \begin{definition}\label{def:disjointness_relation}
@@ -230,17 +233,21 @@ We may equivalently define a disjointness relation by a relation on the restrict
   \open{A}$
   \begin{align*}
     \axiom{$\mathcal{O}$dis}{1}\quad &1 \ocdperpsub{A} 0; &\text{(Zero disjoint to identity)}\\
-    \axiom{$\mathcal{O}$dis}{2}\quad &e \ocdperpsub{A} e' \text{ implies }e' \ocdperpsub{A} e;
+    \axiom{$\mathcal{O}$dis}{2}\quad &e \ocdperpsub{A} e' \text{ implies }e e' = 0; &\text{(Disjoint implies no intersection)}\\
+    \axiom{$\mathcal{O}$dis}{3}\quad &e \ocdperpsub{A} e',\ e_1 \le e,\ e_1' \le e'
+      \text{ implies }e_1 \ocdperpsub{A} e_1'; &\text{(Down closed)}\\
+    \axiom{$\mathcal{O}$dis}{4}\quad &e \ocdperpsub{A} e' \text{ implies }e' \ocdperpsub{A} e;
     &\text{(Symmetric)}\\
-    \axiom{$\mathcal{O}$dis}{3}\quad &e \ocdperpsub{A} e' \text{ implies }e e' = 0; &\text{(Disjoint implies no intersection)}\\
-    \axiom{$\mathcal{O}$dis}{4}\quad &e \ocdperpsub{A} e' \text{ implies }\rst{f e} \ocdperpsub{B}
-      \rst{f e'}\text{ for all }f:B \to A; &\text{(Stable)}\\
-    \axiom{$\mathcal{O}$dis}{5}\quad &e \ocdperpsub{A} e' \text{ implies }\wrg{e g} \ocdperpsub{C}
-      \wrg{e' g}\text{ for all }g:A \to C; &\text{(Universal)}\\
-    \axiom{$\mathcal{O}$dis}{6}\quad &e \ocdperpsub{A} e',\ e_1 \le e,\ e_1' \le e'
-      \text{ implies }e_1 \ocdperpsub{A} e_1' &\text{(Down closed)}.
+    \axiom{$\mathcal{O}$dis}{5}\quad &e \ocdperpsub{A} e' \text{ implies }\rst{f e} \ocdperpsub{B}
+      \rst{f e'}\text{ for all }f:B \to A; &\text{(Stable)}.\\
+%    \axiom{$\mathcal{O}$dis}{6}\quad &e \ocdperpsub{A} e' \text{ implies }\wrg{e g} \ocdperpsub{C}
+%      \wrg{e' g}\text{ for all }g:A \to C; &\text{(Universal)}.\\
   \end{align*}
 \end{definition}
+
+Note that as we are in an inverse category, \axiom{$\mathcal{O}$dis}{5} immediately implies that $e
+\ocdperpsub{A} e'$ gives us $\wrg{e g} \ocdperpsub{C}  \wrg{e' g}$ for all $g:A \to C$ by simply
+taking the inverses and recalling that $\rg{g} = \rst{\inv{g}}$.
 
 We will normally write $\ocdperp$ rather than $\ocdperpsub{A}$ where the object is clear.
 
@@ -255,17 +262,17 @@ We will normally write $\ocdperp$ rather than $\ocdperpsub{A}$ where the object 
   \begin{enumerate}
     \item[\axiom{$\mathcal{O}$dis}{1}] This follows immediately from \axiom{Dis}{1} by taking
       $f = 1$.
-    \item[\axiom{$\mathcal{O}$dis}{2}] Symmetry follows directly from  \axiom{Dis}{4}.
-    \item[\axiom{$\mathcal{O}$dis}{3}] By \axiom{Dis}{2}, $0 = \rst{e} e' = e e'$.
-    \item[\axiom{$\mathcal{O}$dis}{4}] Given $e \cdperp e'$, this means $f e \cdperp f e'$ by
-      \axiom{Dis}{5}. Then, \axiom{Dis}{6} gives a conclusion of $\rst{f e} \cdperp \rst{f e'}$.
-    \item[\axiom{$\mathcal{O}$dis}{5}] This follows from the above item, using $\inv{g}$ for $f$.
-      This means $\rst{\inv{g}e} \cdperp \rst{\inv{g}e'}$. But this gives $\rst{\inv{(e
-      g)}} \cdperp \rst{\inv{(e' g)}}$. Recalling from
-      Lemma~\ref{lem:inverse_categories_are_range_categories} that $\rg{k} = \rst{\inv{k}}$, the
-      conclusion is $\wrg{e g} \cdperp \wrg{e' g}$.
-    \item[\axiom{$\mathcal{O}$dis}{6}] Assuming $e \cdperp e'$ and $e_1 \le e,\ e'_1 \le e'$, by
+    \item[\axiom{$\mathcal{O}$dis}{2}] By \axiom{Dis}{2}, $0 = \rst{e} e' = e e'$.
+    \item[\axiom{$\mathcal{O}$dis}{3}] Assuming $e \cdperp e'$ and $e_1 \le e,\ e'_1 \le e'$, by
       \axiom{Dis}{3}, $e_1 \cdperp e'_1$.
+    \item[\axiom{$\mathcal{O}$dis}{4}] Symmetry follows directly from  \axiom{Dis}{4}.
+    \item[\axiom{$\mathcal{O}$dis}{5}] Given $e \cdperp e'$, this means $f e \cdperp f e'$ by
+      \axiom{Dis}{5}. Then, \axiom{Dis}{6} gives a conclusion of $\rst{f e} \cdperp \rst{f e'}$.
+%    \item[\axiom{$\mathcal{O}$dis}{6}] This follows from the above item, using $\inv{g}$ for $f$.
+%      This means $\rst{\inv{g}e} \cdperp \rst{\inv{g}e'}$. But this gives $\rst{\inv{(e
+%      g)}} \cdperp \rst{\inv{(e' g)}}$. Recalling from
+%      Lemma~\ref{lem:inverse_categories_are_range_categories} that $\rg{k} = \rst{\inv{k}}$, the
+%      conclusion is $\wrg{e g} \cdperp \wrg{e' g}$.
   \end{enumerate}
   Therefore, $\ocdperp = \cdperp \intersection (\union_{A\in\X} \open{A}\times \open{A})$ acts as an
   open disjointness relation on $\open{A}^2$.
@@ -300,17 +307,17 @@ The relation $\perpab$ is a disjointness relation:
     \item[\axiom{Dis}{3}] This axiom assumes $f \cdperp g$, $f' \le f$ and $g' \le g$. By
       Lemma~\refitem{lem:restriction_cats_are_partial_order_enriched}{lemitem:rst_ordering_2}
       $\rst{f'} \le \rst{f}$ and $\rst{g'} \le \rst{g}$. Then,  $\rst{f'} \ocdperp \rst{g'}$ by
-      \axiom{$\mathcal{O}$dis}{6}, as  $\rst{f} \ocdperp \rst{g}$. By
+      \axiom{$\mathcal{O}$dis}{3}, as  $\rst{f} \ocdperp \rst{g}$. By
       Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_2}, both $\wrg{f'}
-      \le \rg{f}$ and $\wrg{g'} \le \rg{g}$ and by \axiom{$\mathcal{O}$dis}{6}, $\wrg{f'} \ocdperp
+      \le \rg{f}$ and $\wrg{g'} \le \rg{g}$ and by \axiom{$\mathcal{O}$dis}{3}, $\wrg{f'} \ocdperp
       \wrg{g'}$ as $\rg{f} \ocdperp \rg{g}$. This means $f' \cdperp g'$.
     \item[\axiom{Dis}{4}] Symmetry of $\cdperp$ follows immediately from the symmetry of
       $\ocdperp$.
     \item[\axiom{Dis}{5}] Assume $f \cdperp g$, i.e., $\rst{f}\ocdperp \rst{g}$ and $\rg{f}
-      \ocdperp \rg{g}$. By \axiom{$\mathcal{O}$dis}{4}, $\rst{hf}\ocdperp \rst{h g}$. By
+      \ocdperp \rg{g}$. By \axiom{$\mathcal{O}$dis}{5}, $\rst{hf}\ocdperp \rst{h g}$. By
       Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1}, $\wrg{h f}
       \le \rg{f}$ and $\wrg{h g} \le \rg{g}$. Therefore $\wrg{h f}\ocdperp \wrg{h g}$ by
-      \axiom{$\mathcal{O}$dis}{6} and therefore $h f \cdperp h g$.
+      \axiom{$\mathcal{O}$dis}{3} and therefore $h f \cdperp h g$.
     \item[\axiom{Dis}{6}] Assume $f\perpab g$ which gives both $\rst{f}\ocdperp\rst{g}$ and
       $\rg{f}\ocdperp\rg{g}$. By Lemma~\ref{lem:basic_range_category_properties} for any map
       $h$, $\rg{\rst{h}} = \rst{h}$ and by Lemma~\ref{lem:restrictionvarious} we have $\rst{\rst{h}}
@@ -323,10 +330,10 @@ The relation $\perpab$ is a disjointness relation:
       \rg{k}$, which gives $\rst{f} \ocdperp \rst{g}$ and $\rg{h} \ocdperp \rg{k}$. By
       Lemma~\refitem{lem:restriction_cats_are_partial_order_enriched}{lemitem:rst_ordering_3}, both
       $\rst{f h} \le \rst{f}$ and $\rst{g k} \le \rst{g}$. Therefore, $\rst{f h} \ocdperp
-      \rst{g k}$ by \axiom{$\mathcal{O}$dis}{6}. By
+      \rst{g k}$ by \axiom{$\mathcal{O}$dis}{3}. By
       Lemma~\refitem{lem:ordering_of_restriction_and_range}{lemitem:ordering_1}, $\wrg{f h} \le
       \rg{h}$ and $\wrg{g k} \le \rg{k}$, giving us $\wrg{f h}\ocdperp \wrg{g k}$ also by
-      \axiom{$\mathcal{O}$dis}{6}. This means $f h \cdperp g k$.
+      \axiom{$\mathcal{O}$dis}{3}. This means $f h \cdperp g k$.
   \end{enumerate}
 \end{proof}
 \begin{theorem}\label{thm:open_disjointness_is_disjointness}
@@ -367,12 +374,17 @@ than one disjointness relation on the category. To see this, consider the trivia
 relation, where $f \perp_0 g$ if and only if $f = 0$ or $g = 0$. As $\rst{0} = 0 = \rg{0}$, $f \le 0
 \iff f = 0$ and $h 0 =0$ for any map $h$, axioms \axiom{Dis}{1} through \axiom{Dis}{7} are
 immediately satisfied. $\perp_0$ is definable on any inverse category with zero maps, hence is
-definable on \pinj. However, \pinj does have a more useful disjointness relation:
+definable on \pinj.
+
+However, \pinj does have a more useful disjointness relation:
 \begin{example}[\pinj has a disjointness relation]\label{ex:pinj_has_a_disjointness_relation}
   Consider the inverse category \pinj, introduced in Example~\ref{ex:pinj_is_a_restriction_category}
   and Example~\ref{ex:pinj_is_a_discrete_inverse_category}.
-  Note the restriction zero is the empty set, $\emptyset$, with initial and terminal maps being
-  $\emptyset$ and therefore $\zeroob_{A,B} = \emptyset$.
+  Note the restriction zero is the empty set, $\emptyset$. Recalling that a map $f:A\to B$ in \pinj
+  is given by the set $\{(a,b)| a\in A, b\in B\}$ (see Example~\ref{ex:category_pinj}), we see the
+  initial map $?_A:\emptyset \to A$ must be $\{\}$, i.e., the empty set. Similarly,
+  $!_A:A\to\emptyset$ must be the partial map also given by $\emptyset$ and therefore
+  $\zeroob_{A,B} = \emptyset$.
 
   Define the disjointness relation $\perp$ by $f \perp g$ if and only if
   $\rst{f}\intersection\rst{g}=\emptyset$ and $\rg{f}\intersection\rg{g} = \emptyset$. It is then
@@ -392,10 +404,8 @@ definable on \pinj. However, \pinj does have a more useful disjointness relation
     Therefore, $f h \cdperp g k$.
   \end{proof}
 
-  Alternatively, define $f \perp_0 g$ on \pinj as well: $f \perp_0 g$ if and only if one of $f$
-  or $g$ is the restriction $\zeroob$, $\emptyset$. As $\zeroob = \rst{\zeroob} = \rg{\zeroob} = h
-  \zeroob = \zeroob k$, all of the seven disjointness axioms are easily verifiable. This shows that
-  disjointness is additional structure on a restriction category.
+  The open disjointness relation, $\ocdperp$, on the idempotents is given by
+  $e \ocdperp e' \iff e\intersection e' = \emptyset$.
 \end{example}
 
 Although disjointness is additional structure, one can use the disjointness structure of the base
@@ -439,7 +449,7 @@ categories to define a disjointness structure on the product category.
 \label{sec:disjoint_joins}
 
 This section will now consider additional structure on the inverse category, the disjoint join,
-dependent upon the disjointness relation. Although we have only considered with binary disjointness
+dependent upon the disjointness relation. Although we have only considered  binary disjointness
 up to this point, extending disjointness to sets of maps is done by considering disjointness
 pairwise: $\cdperp \{f_1,f_2,\ldots,f_n\} \definedas f_i \cdperp f_k$ whenever $i \ne j$.
 

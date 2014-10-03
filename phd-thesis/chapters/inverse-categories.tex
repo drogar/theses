@@ -194,7 +194,7 @@ and thus, is a very restrictive notion.
 \end{proof}
 
 \begin{corollary}
-  \X\ is an inverse category with restriction products if and only if Total($\spl{}{\X}$) is a meet preorder.
+  \X\ is an inverse category with restriction products iff Total($\spl{}{\X}$) is a meet preorder.
 \end{corollary}
 
 \begin{proof}
@@ -250,16 +250,16 @@ and thus, is a very restrictive notion.
   An \emph{inverse product} on an inverse category \X is given by a symmetric tensor product, based
   on a restriction  bi-functor, $\_\*\_:\X\times\X \to \X$. Recall the structural maps of the tensor
   are the following  natural isomorphisms:
-    \begin{align*}
-      1 &: \boldsymbol{1}\to \X \\
-      \usl &: 1 \* A \xrightarrow{\cong} A
-      &\usr &: A \* 1 \xrightarrow{\cong} A\\
-      a_{\*} &: (A \* B) \* C \xrightarrow{\cong} A \* (B \* C)
-      &c_{\*} &: A \* B \xrightarrow{\cong} B \* A.
-    \end{align*}The tensor makes \X a  symmetric
-  monoidal category and there is a natural  ``semi-Frobenius'' diagonal map, $\Delta$ which is canonical.   If an
+  \begin{align*}
+    1 &: \boldsymbol{1}\to \X \\
+    \usl &: 1 \* A \xrightarrow{\cong} A
+    &\usr &: A \* 1 \xrightarrow{\cong} A\\
+    a_{\*} &: (A \* B) \* C \xrightarrow{\cong} A \* (B \* C)
+    &c_{\*} &: A \* B \xrightarrow{\cong} B \* A.
+  \end{align*}
+  The tensor makes \X a  symmetric  monoidal category as per Definition \ref{symmetricmonoidalcat}
+  and there is a natural  ``semi-Frobenius'' diagonal map, $\Delta$ which is canonical.   If an
   inverse category has inverse products, it is called  a \emph{discrete inverse category}.
-
 
   The diagonal map $\Delta_A:A \to A\*A$ must be total and create a cosemigroup. It
   must satisfy the following diagrams:

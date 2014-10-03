@@ -2,10 +2,10 @@
 \chapter{Disjoint sums} % (fold)
 \label{chap:disjoint_sum_tensors}
 
-This chapter introduces the disjoint sum and shows how it may be used to define a tensor in an
-inverse category. Conversely, it goes on to then show how a tensor $\+$ may be used to create a disjointness
-relation and a disjoint join in an inverse category  --- at which point we can prove that $A\+B$ is
-a disjoint sum with respect to this structure.
+This chapter introduces the disjoint sum and shows how it may be used to define a symmetric monoidal
+tensor in an inverse category. Conversely, it goes on to then show how a tensor $\+$ may be used to
+create a disjointness relation and a disjoint join in an inverse category  --- at which point we can
+prove that $A\+B$ is a disjoint sum with respect to this structure.
 
 
 
@@ -14,21 +14,22 @@ a disjoint sum with respect to this structure.
 \section{Disjointness via a tensor}
 \label{sec:disjointness_via_a_tensor}
 
-The next objective is to characterize when a tensor provides a disjoint sum. The first step will be
-to show how a disjointness tensor, defined below, may be used to create a disjointness relation in
-an inverse category. This is done by first determining when it is possible for maps to work
-separately on the components of the tensor. This ability to separate the action of the maps will
-allow us to define when the restriction and range of functions are disjoint, and therefore when the
-maps are disjoint.
+The next objective is to characterize when a symmetric monoidal tensor provides a disjoint sum. The
+first step will be to show how a disjointness tensor, defined below, may be used to create a
+disjointness relation in an inverse category. This is done by first determining when it is possible
+for maps to work separately on the components of the tensor. This ability to separate the action of
+the maps will allow us to define when the restriction and range of functions are disjoint, and
+therefore when the maps are disjoint.
 
 Suppose \X is an inverse category  with a restriction zero, and $\+$ is a tensor product on $\X$.
-We are assuming the following naming for the standard monoidal tensor isomorphisms:
+As in Definition~\ref{symmetricmonoidalcat}, we are assuming the following naming for the standard
+monoidal tensor isomorphisms:
 \begin{align*}
-   \upl &: 0 \+ A \to A &
-   \upr &: A \+ 0 \to A\\
-   a_\+ &: (A \+ B) \+ C \to A \+ (B \+ C) &
-   c_\+ &: A \+ B \to B \+ A.
- \end{align*}
+  \upl &: 0 \+ A \to A &
+  \upr &: A \+ 0 \to A\\
+  a_\+ &: (A \+ B) \+ C \to A \+ (B \+ C) &
+  c_\+ &: A \+ B \to B \+ A.
+\end{align*}
 
 \begin{definition}\label{def:disjointness_tensor}
   Given an inverse category \X with restriction zero and a symmetric monoidal tensor
@@ -64,7 +65,7 @@ We are assuming the following naming for the standard monoidal tensor isomorphis
   \begin{align*}
     \upl &:0\+A \to A &(a,2) \mapsto a,\\
     \upr &:A\+0 \to A &(a,1) \mapsto a,\\
-    a_\+ &: (A\+B)\+C &((a,1),1) \mapsto (a,1)\\
+    a_\+ &: (A\+B)\+C \to A\+(B\+C)&((a,1),1) \mapsto (a,1)\\
      &  &((b,2),1) \mapsto ((b,1),2)\\
      &  &(c,2) \mapsto ((c,1),2),\\
     c_\+ &: A\+B \to B\+ A & (a,1) \mapsto (a,2)\\
@@ -169,7 +170,8 @@ remainder of this thesis.
       \item $\cpb (f\+ g) \icpb = g$.
     \end{enumerate}
   \end{multicols}
-  Additionally, if $t$ is a map such that for $i \in \{1,2\}$,
+  Additionally, if $t:A\+B \to C\+D$ is a map such that there are maps $t_1:A\to C$ and $t_2:B\to D$
+  with:
   \[
     \cp{i} t \icp{j} =
     \begin{cases}
@@ -216,11 +218,13 @@ remainder of this thesis.
   when $\rst{f} \meet \rst{g} = 0$, as it must be a set function, i.e., $f\tjdown g$ of some element
   $a$ must be either $(b,1)$ when  $f(a) = b\in B$ or $(c,2)$ when $g(a) = c\in C$.
 
-  Similarly, $h\tjup k$ can only exist when $\rg{h} \meet \rg{k} = 0$.
+  Similarly, $h\tjup k$ can only exist when $\rg{h} \meet \rg{k} = 0$, otherwise $h\tjup k$ would
+  not be injective.
 \end{example}
 
 The partial pairing and copairing of Definition~\ref{def:up_triangle_and_down_triangle} will provide
-our mechanism for defining disjointness and eventually the disjoint join of maps. The existence of
+our mechanism for defining disjointness and eventually the disjoint join of maps. As we are
+operating in an inverse category, the existence of
 the pairing map $f\tjdown g$ ensures the restrictions of $f$ and $g$ are disjoint, while
 the copairing map $f\tjup d$ exists only when the ranges of $f$ and $g$ are disjoint.
 
@@ -237,7 +241,7 @@ two operations $\tjdown$ and $\tjup$:
     \item When $f\tjdown g$ exists, $\rst{f}(f\tjdown g) = f \tjdown 0$, $\rst{f}g = 0$,
       $\rst{g}(f \tjdown g) = 0 \tjdown g$ and $\rst{g}f = 0$.
       \label{lemitem:l_r_rst_orthogonal_to_zero}
-    \item Dually to the previous item, when $f\tjup g$ exists,
+    \item Dually to \ref{lemitem:l_r_rst_orthogonal_to_zero}, when $f\tjup g$ exists,
       $(f\tjup g)\rg{f} = f \tjup 0$, $g\rg{f} = 0$, $(f \tjup g)\rg{g} = 0 \tjup g$ and
       $f\rg{g} = 0$.\label{lemitem:l_r_rg_orthogonal_to_zero}
     \item When $f\tjdown g$ exists, $f\tjdown g (h\+k) = f h \tjdown g k$.
