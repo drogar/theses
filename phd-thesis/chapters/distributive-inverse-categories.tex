@@ -11,7 +11,7 @@ distributes over the coproduct.
 \label{sec:distributive_restriction_categories}
 
 \begin{definition}\label{def:distributive_category}
-  A Cartesian category $\B$ with coproducts is called a
+  A Cartesian category $\B$ with coproduct $+$ and is called a
   \emph{distributive}\cite{cockett1993-introduction-distributive} category when
   \[
     (A\times B) + (A\times C) \cong A \times (B+ C).
@@ -19,7 +19,8 @@ distributes over the coproduct.
 \end{definition}
 
 \begin{definition}\label{def:distributive_restriction_category}
-  A Cartesian restriction category $\D$ with a restriction zero and coproducts is called a
+  A Cartesian restriction category $\D$ (as in Definition~\ref{def:cartesian_restriction_category}),
+  with a restriction zero and coproducts is called a
   \emph{distributive restriction category}\cite{cockettlack2004:restcategories3}
   when there is an isomorphism $\rho$ such that
   \[
@@ -98,7 +99,7 @@ is also a commuting diagram in \D.
     \item an inverse  product $\*$ which distributes over disjoint joins, (that is,
       $f\*(g\djoin h) = (f\*g) \djoin (f\* h)$).
   \end{itemize}
-  Then, \X is an inverse distributive  category.
+  Then, \X is an distributive inverse  category.
 \end{lemma}
 \begin{proof}
   By assumption, we have the first three items of
@@ -210,7 +211,7 @@ inverse distributive category. We now show the converse is true.
 \begin{corollary}\label{cor:inverse_product_and_disjointness}
   Suppose we have an inverse distributive category \X. Then,
   \begin{enumerate}[{(}i{)}]
-    \item if $f \perp g$, then $h\*f \perp h\*  g$ for any $h$,
+    \item if $f \perp g$, then $(h\*f) \perp (h\*  g)$ for any $h$,
     \item  if  $f\perp g : A\to B$ and $h \perp k: C\to D$, then $(f\*h)\perp (g\*k)$.
    \end{enumerate}
 \end{corollary}
@@ -232,7 +233,9 @@ inverse distributive category. We now show the converse is true.
 We now consider the case where we have a discrete inverse category with inverse product
  $\*$ and a disjoint sum $\+$, where the $\*$ tensor preserves the disjoint join.
 
-A map in \Xt is related to a map in \X in the following way:
+Recall that the Cartesian Completion, from Definition \ref{def:xt}, when applied to the discrete
+inverse category \X produces the discrete Cartesian restriction category \Xt. A map in \Xt is
+related to a map in \X in the following way:
 \[
   \infer{A\xrightarrow{f} B\*C \text{ in }\X.}{A \xrightarrow{\ (f,C)\ } B \text{ in } \Xt}
 \]
@@ -241,8 +244,7 @@ Our goal is to show that a disjoint sum in a distributive inverse category becom
 in \Xt.
 
 \begin{lemma}\label{lem:x_tilde_has_a_restriction_zero}
-  Given $\X$ is a distributive inverse category, then $\Xt$, the discrete Cartesian restriction
-  category created from $\X$, has a restriction zero.
+  Given $\X$ is a distributive inverse category, then $\Xt$ has a restriction zero.
 \end{lemma}
 \begin{proof}
   Recall from Theorem~\ref{thm:discrete_inverse_categories_are_equivalent_to_discrete_restriction_categories}
@@ -273,11 +275,12 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
 \begin{lemma}\label{lem:maps_from_disjoint_sums_have_disjoint_equivalences}
   In a distributive inverse category \X, the following hold:
   \begin{enumerate}[{(}i{)}]
-    \item Given $f : A \to Y\*C$, we can construct $f' : A \to Y \* (C\+D)$  for some object $D$ such
-      that $f \xequiv{} f'$.\label{lemitem:construct_f_prime}
+    \item Given $f : A \to Y\*C$  we can construct maps $f' : A \to Y \* (C\+D)$ and $f'':A\to Y \*
+      (E\*C)$ for some objects $D, E$ such
+      that $f \xequiv{} f'$ and $f \xequiv{} f''$.\label{lemitem:construct_f_prime}
     \item Given $f : A \to Y \* C$, $g : A\to Y \* D$, then the $f' : A \to Y \* (C\+D)$,
-      $g' : B \to Y \* (C\+D)$ as constructed in  \ref{lemitem:construct_f_prime} satisfies $\icpa f'
-      \perp \icpb g'$.\label{lemitem:constructed_are_disjoint}
+      $g'' : B \to Y \* (C\+D)$ as constructed in  \ref{lemitem:construct_f_prime} satisfies
+      $\icpa f' \perp \icpb g''$.\label{lemitem:constructed_are_disjoint}
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -296,35 +299,35 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
       & Y\*(C\+ D).
     }
     \]
-  By the same reasoning we may also create $f':A\to Y\*(D\+C)$ by setting $f' = f(1\*\cpb)$.
-  \item First note we have $\icpa f',\,\icpb g': A\+B \to Y\*(C\+D)$. In order to show  $\icpa f'
-    \perp \icpb g'$, we will proceed by showing their restrictions and ranges are disjoint.
+  By the same reasoning we may also create $f'':A\to Y\*(D\+C)$ by setting $f'' = f(1\*\cpb)$.
+  \item First note we have $\icpa f',\,\icpb g'': A\+B \to Y\*(C\+D)$. In order to show  $\icpa f'
+    \perp \icpb g''$, we will proceed by showing their restrictions and ranges are disjoint.
     As $\rst{\inv{\cpa}} \perp \rst{\inv{\cpb}}$ and $\rst{\inv{\cpa}f'} \le \rst{\inv{\cpa}}$ and
     $\rst{\inv{\cpb}g'} \le \rst{\inv{\cpb}}$, we immediately have
-    $\rst{\inv{\cpa}f'} \perp \rst{\inv{\cpb}g'}$.
+    $\rst{\inv{\cpa}f'} \perp \rst{\inv{\cpb}g''}$.
 
     For the ranges, we have
     \begin{align*}
-      \wrg{\inv{\cpa} (f (1\*\cpa))} &=
+      \wrg{\inv{\cpa} f'} = \wrg{\inv{\cpa} (f (1\*\cpa))} &=
       \rst{((1\*\icpa)\inv{f})\cpa}\\
       &= \rst{((1\*\icpa)\inv{f}}\\
       &\le \rst{(1\*\icpa)}
     \end{align*}
     and similarly
     \[
-      \wrg{\inv{\cpb} g'} \le \rst{(1\*\icpb)}.
+      \wrg{\inv{\cpb} g''} \le \rst{(1\*\icpb)}.
     \]
 
     Using Lemma~\ref{lem:disjointness_various}
     we know that $\rst{(\icpa)}\perp \rst{(\icpb)}$. From
     Corollary~\ref{cor:inverse_product_and_disjointness}
     we conclude that $\rst{(1\*\icpa)}\perp \rst{(1\*\icpb)}$ and giving us
-    $\wrg{\inv{\cpa}f'} \perp \wrg{\inv{\cpb}g'}$ and therefore $\inv{\cpa}f' \perp \inv{\cpb}g'$.
+    $\wrg{\inv{\cpa}f'} \perp \wrg{\inv{\cpb}g''}$ and therefore $\inv{\cpa}f' \perp \inv{\cpb}g''$.
   \end{enumerate}
 \end{proof}
-\begin{proposition}\label{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category}
+\begin{theorem}\label{thm:x_tilde_has_coproducts_if_x_is_inverse_distributive_category}
   Given \X is a distributive inverse category, then the category \Xt has coproducts.
-\end{proposition}
+\end{theorem}
 \begin{proof}
   The tensor object $A\+B$ in \X will become the coproduct of $A, B$ in \Xt.
 
@@ -356,29 +359,29 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   \begin{equation}
     \xymatrix@R+20pt {
       A \ar[dr]^{\cpa} \ar[drrrrr]^{f'}\\
-      &A\+B \ar[rrrr]^(.4){\icpa f' \djoin \icpb g'} &&&& Y\*(C\+D)\\
-      B \ar[ur]^{\cpb} \ar[urrrrr]_{g'}\\
+      &A\+B \ar[rrrr]^(.4){\icpa f' \djoin \icpb g''} &&&& Y\*(C\+D)\\
+      B \ar[ur]^{\cpb} \ar[urrrrr]_{g''}\\
     }\label{diag:pre-coproduct-with-common-map}
   \end{equation}
-  where $f'$ and $g'$ are respectively equivalent to $f,g$.
+  where $f'$ and $g''$ are respectively equivalent to $f,g$.
 
   Lifting Diagram~\ref{diag:pre-coproduct-with-common-map} to \X, we see this corresponds to the
-  desired coproduct diagram, where  $h$ in \Xt is the map $(\icpa f' \djoin \icpb g', (C\+D))$.
+  desired coproduct diagram, where  $h$ in \Xt is the map $(\icpa f' \djoin \icpb g'', (C\+D))$.
 
   By construction, in \X, we have
   \[
-    \cpa (\icpa f' \djoin \cpa\icpb g') = (\cpa\icpa f') \djoin (\cpa\icpb g') = f' \djoin 0 = f'
+    \cpa (\icpa f' \djoin \cpa\icpb g'') = (\cpa\icpa f') \djoin (\cpa\icpb g'') = f' \djoin 0 = f'
   \]
   and
   \[
-    \cpb (\icpa f' \djoin \cpa\icpb g') = g'.
+    \cpb (\icpa f' \djoin \cpa\icpb g'') = g''.
   \]
   Hence, in \Xt, we have  $(i_1 \usr, 1) h = f$ and $(i_2 \usr, 1) h = g$.
 
   All that remains to be shown is that $h$ is unique.
 
   Suppose there is another $(k,E)$ in \Xt such that it satisfies the coproduct properties, i.e.,
-  that $i_1 (k,E) = (f',C\+D)$ and $i_2 (k,E) = (g',C\+D)$. In \X, $k:A\+B \to Y \* E$ and we have
+  that $i_1 (k,E) = (f',C\+D)$ and $i_2 (k,E) = (g'',C\+D)$. In \X, $k:A\+B \to Y \* E$ and we have
   \begin{align*}
     \cpa k &\xequiv{} f'\quad\text{and}\\
     \cpb k &\xequiv{} g'.
@@ -399,17 +402,17 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
     }
   \]
 
-  Now, we turn out attention to showing that $k \xequiv{} h = \icpa f' \djoin \icpb g'$. Consider
+  Now, we turn out attention to showing that $k \xequiv{} h = \icpa f' \djoin \icpb g''$. Consider
   \begin{equation}
     \xymatrix @C=35pt @R=20pt{
       & Y \* (C\+D)\ar@{.>}[dd]^{t}\\
-      A \ar[ur]^(.4){\icpa f' \djoin \icpb g'\ \ \,} \ar[dr]_{k} \\
+      A \ar[ur]^(.4){\icpa f' \djoin \icpb g''\ \ \,} \ar[dr]_{k} \\
       & Y\*E.
     }\label{diag:k-equiv-f-djoin-g}
   \end{equation}
 
   As \X is an inverse category, we know there is a map $t$ that makes this diagram commute,
-  namely $t =  \inv{(\icpa f' \djoin \icpb g')}k$. However, we must show this is in $\dmap{Y}$.
+  namely $t =  \inv{(\icpa f' \djoin \icpb g'')}k$. However, we must show this is in $\dmap{Y}$.
 
   Next, recalling Definition~\ref{def:up_triangle_and_down_triangle} consider
   \begin{equation*}
@@ -422,7 +425,7 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   The map $q_1\tjup q_2$ exists iff $\wrg{q_1} \perp \wrg{q_2}$. But, the map $t$ from above
   does make the diagram commute. This can be shown by
   \begin{align*}
-    (1\*\cpa)& \inv{(\icpa f' \djoin \icpb g')}k\\
+    (1\*\cpa)& \inv{(\icpa f' \djoin \icpb g'')}k\\
     &=  (1\*\cpa)\inv{(\icpa f(1\*\cpa) \djoin \icpb g(1\*\cpb))}k\\
     &=  (1\*\cpa)((1\*\icpa) \inv{f}\cpa \djoin (1\*\icpb) \inv{g}\cpb) k \\
     &=  ((1\*1) \inv{f}\cpa \djoin (1\*0) \inv{g}\cpb) k \\ % as Y\*0
@@ -580,7 +583,7 @@ $\wtf$ is a restriction functor, so in $\Xt$ we have
   \]
   Similarly, $q_2 = (1\*\cpb)\dmap{(q_1\tjup q_2)}$ giving us $q_1\tjup q_2 \in \dmap{Y}$ by the
   uniqueness of the $\tjup$ operation. Therefore $q_1\tjup q_2$ provides an
-  equivalence between $k$ and $\icpa f' \djoin \icpb g'$, meaning the coproduct is unique.
+  equivalence between $k$ and $\icpa f' \djoin \icpb g''$, meaning the coproduct is unique.
 \end{proof}
 
 \begin{corollary}\label{cor:xt_is_a_distributive_restriction_category}

@@ -246,7 +246,7 @@ two operations $\tjdown$ and $\tjup$:
       $f\rg{g} = 0$.\label{lemitem:l_r_rg_orthogonal_to_zero}
     \item When $f\tjdown g$ exists, $f\tjdown g (h\+k) = f h \tjdown g k$.
       \label{lemitem:l_r_l_pull_right}
-    \item Dually, when $f \tjup g$ exists, $(h \+ k) f \tjup g = h f \tjup k g$.
+    \item Dually to \ref{lemitem:l_r_l_pull_right}, when $f \tjup g$ exists, $(h \+ k) f \tjup g = h f \tjup k g$.
       \label{lemitem:l_r_r_pull_left}
     \item When $f \tjdown g$ exists, then $h(f \tjdown g) = h f \tjdown h g$ and when $f \tjup g$
       exists, $(f \tjup g)h = f h \tjup g h$.
@@ -463,6 +463,10 @@ existence of our pairing and copairing maps:
   \rg{g} = 0$. But this agrees with the initial definition of disjointness $(\perp)$ in \pinj from
   Example~\ref{ex:pinj_has_a_disjointness_relation} and hence $\tperp$ is the same relation as
   $\perp$ in \pinj.
+
+  Note that this is due to the actual choices of the tensor and $\perp$. If we had initially chosen
+  a different $\perp$, such as $\perp_0$, where $f\perp_0 g$ iff $f$ or $g$ are $\zeroob$, then
+  $\tperp \ne \perp_0$.
 \end{example}
 
 \section{Disjoint joins via a tensor}
@@ -505,7 +509,7 @@ Therefore, we must add one more assumption regarding our tensor in order to defi
   vice versa. In such a case $\alpha$ exists and is defined as:
   \[
      \alpha(a) = \begin{cases}
-       (x,1) & f(a) = (x,1)\in X\+Y \text{ and }g(a) = (x,1) in X\+Z\\
+       (x,1) & f(a) = (x,1)\in X\+Y \text{ and }g(a) = (x,1) \in X\+Z\\
        (y,2) & f(a) = (y,2)\in X\+Y \text{ and }g(a) \undef\\
        (z,3) & g(a) = (z,2)\in X\+Z \text{ and }f(a) \undef.
        \end{cases}
@@ -610,10 +614,10 @@ For reference, the map $f \tjoin g$ may be visualized as follows:
 Using Lemma~\ref{lem:properties_of_tjdown_and_tjup}, this may be rewritten in a variety of
 equivalent ways:
 \begin{align*}
-  f \tjoin g &= \rst{f}\tjdown\rst{g} (f\+g) \rg{f}\tjup\rg{g} \\
-  &= f \tjdown g\, \rg{f}\tjup\rg{g}\\
-  & = \rst{f}\tjdown\rst{g}\,  f\tjup g\\
-  & = f \tjdown g (\inv{f}\+\inv{g})f\tjup g.
+  f \tjoin g &= (\rst{f}\tjdown\rst{g}) (f\+g)( \rg{f}\tjup\rg{g}) \\
+  &= (f \tjdown g)\, (\rg{f}\tjup\rg{g})\\
+  & = (\rst{f}\tjdown\rst{g})\,  (f\tjup g)\\
+  & = (f \tjdown g) (\inv{f}\+\inv{g})(f\tjup g).
 \end{align*}
 
 In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
@@ -621,7 +625,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 
 \begin{example}[Disjoint sum tensor in \pinj]\label{ex:tensor_join_in_pinj}
   Using the third equality of those above for $f\tjoin g$, i.e.,
-  $\rst{f}\tjdown\rst{g}\,  f\tjup g$, calculate:
+  $(\rst{f}\tjdown\rst{g})\,  (f\tjup g)$, calculate:
   \begin{equation}
     \rst{f}\tjdown\rst{g}(a) =
     \begin{cases}
@@ -756,9 +760,9 @@ Next, we show that the disjoint sum tensor is universal with respect to the disj
   Given an inverse category \X with a disjoint sum tensor $\+$, then $\+$ preserves the disjoint
   join. That is,
   \begin{align}
-    f \cdperp g, \ h \cdperp k&\text{ implies } f\+ h \cdperp g \+ k,
+    f \tperp g, \ h \tperp k&\text{ implies } f\+ h \tperp g \+ k,
     \label{eq:disjoint_sum_preserve_perp}\\
-    f \cdperp g, \ h \cdperp k &\text{ implies } (f\djoin g)\+(h\djoin k) = (f \+h )\djoin (g\+k).
+    f \tperp g, \ h \tperp k &\text{ implies } (f\tjoin g)\+(h\tjoin k) = (f \+h )\tjoin (g\+k).
     \label{eq:disjoint_sum_preserve_join}
   \end{align}
 \end{lemma}
@@ -784,6 +788,9 @@ Next, we show that the disjoint sum tensor is universal with respect to the disj
 \end{proof}
 \section{Disjoint sums via a disjoint sum tensor}
 \label{sec:disjoint-sums-via-a-disjoint-sum-tensor}
+
+%todo - can we give separating examples of tensor - not disjointness, tensor disjointness but not
+%disjoint sum?
 
 The significant amount of technical machinery of Section~\ref{sec:disjointness_via_a_tensor} and
 Section~\ref{sec:disjoint_joins_via_a_tensor} now allow us to show that a disjoint sum tensor will
