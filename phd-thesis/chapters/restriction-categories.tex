@@ -941,6 +941,9 @@ $\text{Par}(\B,\Mstab)$ is:
 For the maps, $(m,f) \sim (m',f')$ when there is an isomorphism $\gamma : A'' \to A'$
 such that $\gamma m' = m$ and $\gamma f' = f$.
 
+The proof that this is a restriction category is given by Proposition 3.1 in
+\cite{cockett2002:restcategories1}.
+
 In \cite{cockettlack2003:restcategories2}, it is shown that:
 \begin{theorem}[Cockett-Lack]
   Every restriction category is a full subcategory of a partial map category.
@@ -1225,6 +1228,21 @@ Besides the example of \topcatp given at the beginning of this section, the foll
   \item $\text{Par}(\X,\Mstab)$ is not discrete unless $\Delta: X\to X\times X$ is in \Mstab.
   \item $\dual{\stabLat}$ is not discrete.
   \end{enumerate}
+  We will give the details for $\dual{\stabLat}$. Recall $\stabLat$ is the category of meet
+  semi-lattices whose maps preserve the meet, but do not necessarily preserve the top, $\top$. The
+  corestriction of $f:L_1\to L_2$ is given by $\rst{f}:L_2\to L_2$, $f(y) = y\wedge f(\top)$. Hence,
+  the total maps are those which preserve the top element.
+
+  The restriction product in $\dual{\stabLat}$ is given by the Cartesian product of the
+  semi-lattices, where the partial ordering is pointwise. In $\stabLat$, we have the maps $in_0: L_0
+  \to L_0\times L_1$ and $in_1:L_2 \to L_1\times L_2$ where $i_0: m\mapsto (m,\top)$ and $i_1: n \mapsto
+  (\top,n)$. Then, $\pi_i = \dual{in_i}$ are the projections in $\dual{\stabLat}$. Again considering
+  $\stabLat$, for $f:L_0 \to L_2$, $g:L_1 \to L_2$, there is the map $[f,g]:L_0\times L_1 \to L_2$
+  where $[f,g]:(m,n)\mapsto f(m)\wedge g(n)$. The product map in $\dual{\stabLat}$,
+  $\<\dual{f},\dual{g}\>$ is $\dual{[f,g]}:L_2 \to L_0\times L_1$.
+
+  From this we see $\Delta$ in $\dual{\stabLat}$ is $\dual{[1,1]}$.
+
 \end{example}
 
 
