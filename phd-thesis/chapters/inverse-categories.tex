@@ -258,15 +258,16 @@ and thus, is a very restrictive notion.
     &c_{\*} &: A \* B \xrightarrow{\cong} B \* A.
   \end{align*}
   The tensor makes \X a  symmetric  monoidal category as per Definition \ref{symmetricmonoidalcat}
-  and there is a natural  ``semi-Frobenius'' diagonal map, $\Delta$ which is canonical.   If an
-  inverse category has inverse products, it is called  a \emph{discrete inverse category}.
+  and there is a natural  diagonal map $\Delta$, which is canonical. If an inverse category has
+  inverse products, it is called  a \emph{discrete inverse category}.
 
   The diagonal map $\Delta_A:A \to A\*A$ must be total and create a cosemigroup. It
-  must satisfy the following diagrams:
+  must satisfy Diagrams~\ref{dia:delta-is-cocommutative}, \ref{dia:delta-is-coassociative},
+  \ref{dia:delta-is-semi-frobenius} and \ref{dia:delta-is-canonical} below.
  % in Figures~\ref{fig:inverse_product_cocommutativity},
  %  \ref{fig:inverse_product_coassociativity}, \ref{fig:inverse_product_exchange}, and
  %  \ref{fig:inverse_product_frobenius}.
-  \[
+  \begin{equation}
     \xymatrix @!0 @C=90pt @R=35pt{
       A \ar[dr]_{\Delta} \ar[r]^{\Delta} &
       A \* A \ar[d]^{c_{\*}}\\
@@ -275,12 +276,12 @@ and thus, is a very restrictive notion.
     \xymatrix @!0 @C=90pt @R=35pt{
       A \* A \ar[d]^{c_{\*}} \ar[r]^{\inv{\Delta}}  & A\\
       A \* A  \ar[ur]_{\inv{\Delta}}
-    }
-  \]
-\begin{center}Cocommutative and Commutative;\end{center}
+    }\label{dia:delta-is-cocommutative}
+  \end{equation}
+  \begin{center}Cocommutative and Commutative;\end{center}
 %\caption*{Cocommutative}\label{fig:inverse_product_cocommutativity}
 
-  \[
+  \begin{equation}
     \xymatrix @C=20pt @R=30pt{
       A \ar[rr]^{\Delta} \ar[d]_{\Delta} & &
       A \* A \ar[d]^{1\*\Delta}\\
@@ -292,14 +293,14 @@ and thus, is a very restrictive notion.
       A\*(A\*A) \ar[rr]^{1\*\idelta} \ar[d]_{\inv{a_\*}} && A\*A \ar[d]^{\idelta}\\
       (A\*A)\*A \ar[dr]_{\idelta\*1}&&A\\
      & A\*A \ar[ur]_{\idelta}
-    }
-  \]
-\begin{center}Coassociative and Associative;\end{center}
+    }\label{dia:delta-is-coassociative}
+  \end{equation}
+  \begin{center}Coassociative and Associative;\end{center}
 %\caption*{Coassociative and Associative}\label{fig:inverse_product_coassociativity}
 
 %\caption{Exchange}\label{fig:inverse_product_exchange}
 
-  \[
+  \begin{equation}
     \xymatrix @C=40pt @R=25pt{
       A \* A \ar[dd]_{(1\*\Delta) \inv{a_{\*}}} \ar[dr]^{\inv{\Delta}}
       \ar[rr]^{(\Delta \* 1) a_{\*}} & &
@@ -307,23 +308,23 @@ and thus, is a very restrictive notion.
       & A \ar[dr]^{\Delta} & \\
       (A \* A) \* A \ar[rr]_{\inv{\Delta} \* 1} & &
       A \* A
-    }
-  \]
-\begin{center}$\Delta$ is Frobenius.\end{center}
+    }\label{dia:delta-is-semi-frobenius}
+  \end{equation}
+  \begin{center}$\Delta$ is Semi-Frobenius.\end{center}
 %\caption{Frobenius}\label{fig:inverse_product_frobenius}
 If we define the map:
   \[
     \excs =  a_{\*}(1\*\inv{a_{\*}})(1\*(c_{\*}\*1))(1\* a_{\*})\inv{a_{\*}}): (A\*B)\*(C\*D) \to (A\*C) \* (B\*D)
   \]
 then we have:
-  \[
+  \begin{equation}
     \xymatrix @C=25pt @R=35pt{
       A \* B \ar[dr]_{\Delta}
       \ar[rr]^{\Delta \* \Delta} && (A \* A) \* (B \* B) \ar[dl]^{\excs}\\
       &(A \* B) \* (A \* B)
-    }
-  \]
-\begin{center}$\Delta$ is canonical.\end{center}
+    }\label{dia:delta-is-canonical}
+  \end{equation}
+  \begin{center}$\Delta$ is canonical.\end{center}
 
   Thus, $\Delta$ is a cocommutative, coassociative map which together with $\inv{\Delta}$ forms a
   special semi-Frobenius algebra. We use the prefix ``semi-'' since we are not requiring the unit laws
@@ -2405,7 +2406,10 @@ rather than the required
   \infer{\X[A](X,G(Y))}{\X(F(X),Y)}.
 \]
 
-
+\begin{example}
+In \Pinj, note that the slice over the object $\{*\}$ just gives us a category where the maps are in
+bijective correspondence with the maps of \Pinj, as $\{*\}$ is the identity for the inverse product.
+\end{example}
 % chapter inverse_categories (end)
 %%% Local Variables:
 %%% mode: latex
