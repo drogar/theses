@@ -227,10 +227,11 @@ Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$ and $\rg{f}h\rg{g} \le 
     (f,C) (\inv{\usr}, 1) = (f,C) = (\inv{\usr}, 1) (f,C)
   \]
   for all maps $A\xrightarrow{(f,C)}B$ in \Xt. In \X, this corresponds to requiring:
-  \[
-     f (\inv{\usr}\*1) a_{\*} \xequiv{} f \xequiv{} \inv{\usr} (f \*1)  a_{\*}.
-  \]
-  By Lemma~\ref{lem:restrictionvarious} we have
+  \begin{align}
+     f \xequiv{} & f(\inv{\usr}\*1) a_{\*}\text{ and}\label{eq:cc-identity-1}\\
+     f \xequiv{} &\inv{\usr} (f \*1)  a_{\*}.\label{eq:cc-identity-2}
+  \end{align}
+  For Equation~\ref{eq:cc-identity-1}, by Lemma~\ref{lem:restrictionvarious} we have
   $\restr{f (\inv{\usr}\*1) a_{\*}} = \restr{f}$. Then, calculating in \X, we have a mediating map
   of $1 \* \usl$ as shown below.
   \[
@@ -245,8 +246,8 @@ Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$ and $\rg{f}h\rg{g} \le 
       &&& B \* C.
     }
   \]
-  For the restrictions, $\restr{\inv{\usr} (f \*1)  a_{\*}} = \restr{f}$ by the naturality of
-  $\inv{\usr}$ and Lemma~\ref{lem:restrictionvarious}. The diagram
+  Similarly, for Equation~\ref{eq:cc-identity-2}, $\restr{\inv{\usr} (f \*1)  a_{\*}} = \restr{f}$
+  by the naturality of $\inv{\usr}$ and Lemma~\ref{lem:restrictionvarious}. The diagram
   \[
     \xymatrix @C=50pt @R=45pt{
       A \ar@{=}[dd] \ar[r]^{\inv{\usr}} \ar[dr]_{f}
@@ -258,27 +259,28 @@ Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$ and $\rg{f}h\rg{g} \le 
     }
   \]
   shows our mediating map is $1 \* \usr$.
+
+  Hence we have shown both Equation~\ref{eq:cc-identity-1} and Equation~\ref{eq:cc-identity-2}
+  hold and therefore $(\inv{\usr},1)$ is the identity map in \Xt.
 \end{proof}
 
-
-Define the restriction in \Xt\ as follows:
-\[
-  \infer{A\xrightarrow{\restr{f}  \inv{u_{\*}^r}} A\*1 \text{ in }\X.}
-        {\infer{A\xrightarrow{\restr{(f,C)}}A}
-               {A\xrightarrow{(f,C)}B}
-        }
-\]
+Now that we have shown \Xt is a category, we may define a restriction:
 
 \begin{lemma}\label{lem:xt_is_a_restriction_category}
-  The category \Xt with restriction defined as above is a restriction category.
+  The category \Xt with restriction defined as
+  \[
+    \rst{(f,C)} \definedas (\rst{f}\inv{\usr},1)
+  \]
+ is a restriction category.
 \end{lemma}
 \begin{proof}
-  Given the above definition the four restriction axioms must now be checked. For the remainder of
+  First we note that for $(f,C):A\to B$, we have $\rst{(f,C)}:A\to A$.
+  The four restriction axioms must now be checked. For the remainder of
   this proof, all diagrams will be in $\X$. We make use of
   Lemma~\ref{lem:delta_nabla_maps_are_closed}~\ref{lemitem:delta_nabla_3},  which states $1\*f \in
   \dmap{A}$ for all $f$.
 
-  \rone ($\restr{f} f = f$). Calculating the restriction of the left hand side in
+  \rone ($\restr{(f,C)} (f,C) = (f,C)$). Calculating the restriction of the left hand side in
       \X, we have:
       \begin{align*}
         \restr{\rst{f}\inv{\usr} (f\*1) a_{\*}} & = \restr{\rst{f}\inv{\usr} (f\*1)}
@@ -294,16 +296,16 @@ Define the restriction in \Xt\ as follows:
           A \ar[r]^{\restr{f} \inv{\usr}}
           \ar @/_25pt/[ddrrr]_f  \ar[drr]^{\restr{f}f}
           &A \* 1 \ar[r]^{f\* 1}
-          &(A \* B) \* 1 \ar[r]^{a_{\*}} \ar[ddr]^{\usr}
-          &A \* (B \* 1) \ar@{.>}[dd]^{1 \* {\usr}}\\
-          &&A\*B \ar[u]^{\inv{\usr}} \ar@{=} [dr]\\
-          && &A \* B
+          &(B \* C) \* 1 \ar[r]^{a_{\*}} \ar[ddr]^{\usr}
+          &B \* (C \* 1) \ar@{.>}[dd]^{1 \* {\usr}}\\
+          &&B\*C \ar[u]^{\inv{\usr}} \ar@{=} [dr]\\
+          && &B \* C
         }
       \]
-      shows $\rst{f}\inv{\usr} (f\*1) a_{\*} \xequiv{1 \* {\usr}} f$ in \X and therefore $\rst{f}f
-      = f$ in \Xt.
+      shows $\rst{f}\inv{\usr} (f\*1) a_{\*} \xequiv{1 \* {\usr}} f$ in \X and therefore
+      $\restr{(f,C)} (f,C) = (f,C)$ in \Xt.
 
-     \rtwo ($\restr{g} \restr{f} = \restr{f} \restr{g}$). We must show
+     \rtwo ($\restr{(g,D)} \restr{(f,C)} = \restr{(f,C)} \restr{(g,D)}$). We must show
       \begin{equation}
         \rst{f}\inv{\usr} ((\restr{g}\inv\usr)\*1)) a_{\*} \xequiv{}
         \rst{g}\inv{\usr}((\restr{f}\inv\usr)\*1) a_{\*}.
@@ -339,9 +341,9 @@ Define the restriction in \Xt\ as follows:
             &&& A \* (1\*1)
         }
       \]
-      which allows us to conclude $\rst{f} \rst{g} = \rst{g} \rst{f}$ in \Xt.
+      which allows us to conclude $\restr{(g,D)} \restr{(f,C)} = \restr{(f,C)} \restr{(g,D)}$ in \Xt.
 
-    \rthree ($\restr{\restr{f} g} = \restr{f} \restr{g}$ ). We must show
+    \rthree ($\restr{\restr{(f,C)} (g,D)} = \restr{(f,C)} \restr{(g,D)}$ ). We must show
       \begin{equation}
         \restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} \inv{\usr} \xequiv{}
         (\restr{f} \inv{\usr})(\rst{g} \inv{\usr}\* 1) a_{\*}.
@@ -360,7 +362,7 @@ Define the restriction in \Xt\ as follows:
         & = \restr{\restr{f} g } & \text{Lemma \ref{lem:restrictionvarious}}\\
         & = \restr{f} \rst{g} & \text{\rthree in }\X.
       \end{align*}
-      The restriction of the right hand side computes in \X as:
+      The restriction of the right hand side of Equation~\ref{eq:rthree_in_xt} computes as:
       \begin{align*}
         &\rst{(\restr{f} \inv{\usr})(\rst{g} \inv{\usr}\* 1) a_{\*}}\\
         & = \rst{(\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) } &  \text{Lemma \ref{lem:restrictionvarious}}\\
@@ -369,18 +371,18 @@ Define the restriction in \Xt\ as follows:
         & = \restr{f} \rst{g} & \text{Lemma \ref{lem:restrictionvarious}}.
       \end{align*}
 
-      Additionally, we see $\rst{\rst{f} g}$ in \Xt is expressed in \X as:
+      Additionally, we see $\rst{\rst{(f,C)} (g,D)}$ in \Xt is expressed in \X as:
       \begin{align*}
         &\restr{(\restr{f} \inv{\usr})(g\* 1) a_{\*}} \inv{\usr} \\
-        & = \rst{f} \inv{\usr} \rst{g\* 1} & \text{\rthree, \rfour} \\
-        & = \rst{f} \rst{g} \inv{\usr} & \*
-          \text{a restriction bi-functor, }\inv{\usr}\text{ natural.}
+        &= \restr{\restr{f} g \inv{\usr} a_{\*}} \inv{\usr} &\inv{\usr}\text{ natural}\\
+        &= \restr{\restr{f} g } \inv{\usr} &\inv{\usr},\ a_{\*}\text{ isomorphisms}\\
+        & = \rst{f} \rst{g} \inv{\usr} & \text{\rthree}.
       \end{align*}
 
       The following diagram in \X follows the right hand side of Equation~\ref{eq:rthree_in_xt}
       with the top curved arrow and the left hand side of Equation~\ref{eq:rthree_in_xt} with the
-      bottom curved arrow. Note that we are using that
-      $\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}} = \restr{f}\rst{g}$ as shown above.
+      bottom curved arrow, using the proviso that
+      $\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}}\inv{\usr} = \restr{f}\rst{g}\inv{\usr}$ as shown above.
       \[
         \xymatrix @C=33pt @R=20pt{
           A \ar@/^45pt/[rrrrr]^{\restr{f} \inv{\usr}(\restr{g} \inv{\usr} \* 1)a_{\*}}
@@ -407,7 +409,7 @@ Define the restriction in \Xt\ as follows:
       (\restr{f} \inv{\usr}) (\rst{g} \inv{\usr}\* 1) a_{\*}$ and therefore $\restr{\restr{f} g} =
       \restr{f} \restr{g}$ in \Xt.
 
-      \rfour ($f \restr{g} = \restr{f g} f$). We must show
+      \rfour ($(f,C) \restr{(g,D)} = \restr{(f,C) (g,D)} (f,C)$). We must show
       \begin{equation}
         f (\restr{g} \inv{\usr}\* 1) a_{\*} \xequiv{}
         \rst{f (g \* 1)} \inv{\usr} (f\* 1) a_{\*}.
@@ -434,7 +436,7 @@ Define the restriction in \Xt\ as follows:
       \begin{align*}
         \rst{f(g\* 1)a_{\*}} \inv{\usr} (f\* 1) a_{\*}
           & = \rst{f(g\* 1)} f \inv{\usr} a_{\*} & \inv{\usr}\text{ natural,}\\
-        & = f (\rst{g} \* 1) \inv{\usr} a_{\*} & \rfour.
+        & = f (\rst{g} \* 1) \inv{\usr} a_{\*} & \rfour,\ \*\text{ a restriction functor}.
       \end{align*}
 
       Thus,
@@ -443,15 +445,16 @@ Define the restriction in \Xt\ as follows:
           A \ar[r]^f \ar[dr]_{f}
             & B\* C \ar[rr]^{\restr{g} \inv{\usr}\* 1} \ar@{=}[d]
             &
-            & (B\* 1) \* C \ar[r]^{a_{\*}} \ar[d]^{a_{\*}(1\*c_{\*})}
+            & (B\* 1) \* C \ar[r]^{a_{\*}} \ar[d]^{a_{\*}(1\*c_{\*})\inv{a_{\*}}}
             & B \* (1 \* C)\ar@{.>}[d]^{1\*c_{\*}}\\
           & B\*C \ar[r]_{\rst{g}\*1}
-            & B \* C \ar[r]_{\inv{\usr}}
+            & B \* C \ar[r]_{\inv{\usr}}\ar[ur]^{\inv{\usr}\*1}
             & (B \* C) \* 1 \ar[r]_{a_{\*}}
             & B \* (C\*1)
         }
       \]
-  and hence, \Xt\ is a restriction category.
+  giving us $\rst{f(g\* 1)a_{\*}} \inv{\usr} (f\* 1) a_{\*} = f (\rst{g} \* 1) \inv{\usr} a_{\*}
+  \xequiv{1\*c_{\*}} f (\restr{g} \inv{\usr}\* 1) a_{\*}$ and hence, \Xt\ is a restriction category.
 \end{proof}
 % subsection the_restriction_category_hypxt (end)
 \subsection{\hypXt is a discrete Cartesian restriction category} % (fold)
@@ -475,8 +478,8 @@ Define the restriction in \Xt\ as follows:
   \[
     \xymatrix @C=40pt @R=25pt{
       X \ar[r]^{\restr{f}} \ar[d]^{f} & X \ar[r]^{\inv{\usr} }
-      & X\*1 \ar[r]^{\inv{\usl}}  &1\*X\*1 \ar@{.>}[dl]_{1\*(\usr f)}  \\
-      Y \*C\ar[rr]_{\inv{\usl}} & & 1 \*Y \* C
+      & X\*1 \ar[r]^{\inv{\usl}}  &1\*X\*1 \ar@{.>}[d]^{1\*(\usr f)}  \\
+      Y \*C\ar[rrr]_{\inv{\usl}} & & & 1 \*Y \* C
     }
   \]
   to commute, which is true by \rone and from the coherence diagrams for the inverse product tensor.
@@ -509,12 +512,19 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
   \pi_1$ and the product of maps  $f, g$ being $\<f,g\>$.
 \end{lemma}
 \begin{proof}
-  From the definition above, as $1$ and $c_{\*}$ are isomorphisms, the maps $\pi_0, \pi_1$ are
+  To show that the tensor is a product in \Xt, we must show three things:
+  \begin{enumerate}[{(}i{)}]
+    \item That the maps $\pi_0$ and $\pi_1$ are total; \label{item:xt-product-1}
+    \item That  $\rst{\<(f,C),(g,D)\>} = \rst{(f,C)}\,\rst{(g,D)}$; \label{item:xt-product-2}
+    \item That $\<(f,C),(g,D)\> \pi_0 \le (f,C)$ and $\<(f,C),(g,D)\> \pi_1 \le (g,D)$. \label{item:xt-product-3}
+  \end{enumerate}
+  For \ref{item:xt-product-1}, as $1$ and $c_{\*}$ are isomorphisms, the maps $\pi_0, \pi_1$ are
   total.
 
-  In order to show that $\rst{\<f,g\>} = \rst{f}\,\rst{g}$, first reduce the left hand side:
+  For \ref{item:xt-product-2}, to show $\rst{\<(f,C),(g,D)\>} = \rst{(f,C)}\,\rst{(g,D)}$, first
+  reduce the left hand side in \X:
   \begin{align*}
-    \rst{\<f,g\>}
+    \rst{\<(f,C),(g,D)\>}
       &=\rst{\Delta(f\*g)(1\*c_{\*}\*1)}\inv{\usr}&\text{in }\X, \text{ definition of restriction}\\
     &=\rst{\Delta(f\*g)}\inv{\usr} &\\
     &=\rst{\Delta\rst{(f\*g)}}\inv{\usr} &\text{from Lemma \ref{lem:restrictionvarious}}\\
@@ -525,43 +535,51 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
     &=\rst{f}\,\rst{g}\inv{\usr}  &\text{Lemma  \ref{lem:restrictionvarious}.}\\
   \end{align*}
 
-  Then, the right hand side reduces as:
+  Then, the right hand side of \ref{item:xt-product-2} reduces as:
   \begin{align*}
-    \rst{f} \rst{g}
+    \rst{(f,C)} \rst{(g,D)}
     &= \rst{f}\inv{\usr}(\rst{g}\inv{\usr} \* 1) a_{\*} & \text{in \X by definitions}\\
     &= \rst{f} \rst{g}\inv{\usr}\inv{\usr} a_{\*} &  \inv{\usr}\text{ natural.}
   \end{align*}
-  The restriction of the left hand side and the right hand side, in \X, is $\rst{\rst{f} \rst{g}}$.
-  This is done by applying Lemma~\ref{lem:restrictionvarious} once to the left hand side,
-  $\rst{f}\,\rst{g}\inv{\usr}$ and thrice to the right hand side,
-  $\rst{f} \rst{g}\inv{\usr}\inv{\usr} a_{\*}$.
 
-  Thus, this shows $\rst{\<f,g\>}=\rst{f} \rst{g}$ in \Xt where the mediating map in \X is
-  $1\*\usr$.
+  Thus, to show the equality of \ref{item:xt-product-2} in \Xt, we need only show that
+  $\rst{f}\,\rst{g}\inv{\usr}$ is equivalent to $\rst{f} \rst{g}\inv{\usr}\inv{\usr} a_{\*}$ in \X.
+  The restriction of both of these, in \X, is $\rst{\rst{f} \rst{g}}$, via
+  Lemma~\ref{lem:restrictionvarious}. Thus, using the mediating map $1\*\usr$, we have
+  \[
+    \rst{f}\,\rst{g}\inv{\usr}\xequiv{1\*\usr}\rst{f} \rst{g}\inv{\usr}\inv{\usr} a_{\*}.
+  \]
+  This shows $\rst{\<(f,C),(g,D)\>}=\rst{(f,C)} \rst{(g,D)}$ in \Xt.
 
-  Next, to show $\<f,g\> \pi_0 \le f$ (and $\<f,g\> \pi_1 \le g$), it is required to show
-  $\rst{\<f,g\>\pi_{0}} f = \<f,g\> \pi_{0}$. Calculating the left side, we see:
+
+  Finally, for \ref{item:xt-product-3}, to show $\<(f,C),(g,D)\> \pi_0 \le (f,C)$ (and
+  $\<(f,C),(g,D)\> \pi_1 \le (g,D)$), it is required to show
+  $\rst{\<(f,C),(g,D)\>\pi_{0}} (f,C) = \<(f,C),(g,D)\> \pi_{0}$. Calculating the left side, we see:
   \begin{align*}
-    \rst{\<f,g\>\pi_{0}} f &=\rst{\<f,g\>\rst{\pi_{0}}} f &\text{Lemma \ref{lem:restrictionvarious}}\\
-    &=\rst{\<f,g\>} f &\pi_{0}\text{ is total}\\
-    &=\rst{f}\,\rst{g}\, f&\text{ by above}\\
-    &=\rst{g} \rst{f} f & \rtwo\\
-    &=\rst{g} f& \rone.
+    \rst{\<(f,C),(g,D)\>\pi_{0}} (f,C) &=\rst{\<(f,C),(g,D)\>\rst{\pi_{0}}} (f,C) &\text{Lemma \ref{lem:restrictionvarious}}\\
+    &=\rst{\<(f,C),(g,D)\>} (f,C) &\pi_{0}\text{ is total}\\
+    &=\rst{(f,C)}\,\rst{(g,D)}\, (f,C)&\text{ by above}\\
+    &=\rst{(g,D)} \rst{(f,C)} (f,C) & \rtwo\\
+    &=\rst{(g,D)} (f,C)& \rone.
   \end{align*}
   Now, turning to the right hand side:
   \begin{align*}
-    \<f,g\>\pi_{0} &= \Delta(f\*g)(1\*c_{\*}\*1) 1 &\text{in \X, by definition.}
+    \<(f,C),(g,D)\>\pi_{0} &= \Delta(f\*g)(1\*c_{\*}\*1) 1 &\text{in \X, by definition.}
   \end{align*}
   To show these are equal in \Xt, we need to first show the restrictions are the same in \X and
-  then show there is a mediating map between the images in \X. The restriction of $\rst{g} f$ is
-  $\rst{f} \rst{g}$ immediately by \rthree and \rtwo. For the right hand side, calculate in \X:
+  then give a mediating map. For  $\rst{(g,D)} (f,C)$, in \X, this is
+  $\rst{g}\inv{\usr}}(f\*1)$. Calculating the restriction, we have
+  \[
+    \rst{\rst{g}\inv{\usr}(f\*1)} = \rst{\rst{g} f \inv{\usr}} = \rst{\rst{g} f} = \rst{f}\rst{g}.
+  \]
+  For the right hand side, calculate in \X:
   \begin{align*}
     \rst{\Delta(f\*g)(1\*c_{\*}\*1)}
       & = \rst{\Delta(f\*g)} & \text{Lemma  \ref{lem:restrictionvarious}}\\
     & = \Delta(f\*g)(\inv{f} \* \inv{g})\inv{\Delta} & \X \text{ is an inverse category}\\
     & = \Delta(\rst{f} \* \rst{g})\inv{\Delta} & \\
     & = \rst{f} \rst{g} \Delta\inv{\Delta}
-      & \text{Lemma \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}(\ref{le:deltaefg}) twice}\\
+      & \text{Lemma \ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category}\ref{le:deltaefg} twice}\\
     & = \rst{f} \rst{g}.
   \end{align*}
 
@@ -577,6 +595,133 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
       & & A\*B\*C\*C'.
     }
   \]
+
+  To see that this commutes, we will use the diagram language introduced in
+  SubSection~\ref{sub:diagrammatic_language}, where we drop the common term of $1\*c_{\*}\*1$. Then
+  we have $\rst{g}f\Delta(1\*\inv{f})(1\*1\*g) =$
+      \[
+  \begin{matrix}
+      \begin{tikzpicture}
+        \node at (.5,3.5) (start) {};
+        \node at (.5,3) [map] (g-bar) {$\scriptstyle \rst{g}$};
+        \node at (.5,2.5) [map] (f1) {$\scriptstyle f$};
+        \node at (0,1.75) [delta] (d1) {};
+        \node at (1,1.75) [delta] (d2) {};
+        \node at (1,.5) [map] (f-inverse) {$\scriptstyle \inv{f}$};
+        \node at (1,0) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,-.5) (e1) {};
+        \node at (.25,-.5) (e2) {};
+        \node at (.75,-.5) (e3) {};
+        \node at (1.25,-.5) (e4) {};
+        \draw (start) to (g-bar);
+        \draw (g-bar) to (f1);
+        \draw (f1) to[out=235,in=90] (d1);
+        \draw (f1) to[out=305,in=90] (d2);
+        \draw (d1) to[out=235,in=90] (e1);
+        \draw (d1) to[out=305,in=125] (f-inverse);
+        \draw (d2) to[out=235,in=90] (e2);
+        \draw (d2) to[out=305,in=55] (f-inverse);
+        \draw (f-inverse) to (g);
+        \draw (g) to[out=235,in=90] (e3);
+        \draw (g) to[out=305,in=90] (e4);
+      \end{tikzpicture}
+  \end{matrix}
+  =
+  \begin{matrix}
+      \begin{tikzpicture}
+        \node at (.5,3.5) (start) {};
+        \node at (.5,3) [map] (g-bar) {$\scriptstyle \rst{g}$};
+        \node at (.5,2.5) [delta] (d1) {};
+        \node at (0,1.75) [map] (f1) {$\scriptstyle f$};
+        \node at (1,1.75) [map] (f2) {$\scriptstyle f$};
+        \node at (1,.5) [map] (f-inverse) {$\scriptstyle \inv{f}$};
+        \node at (1,0) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,-.5) (e1) {};
+        \node at (.25,-.5) (e2) {};
+        \node at (.75,-.5) (e3) {};
+        \node at (1.25,-.5) (e4) {};
+        \draw (start) to (g-bar);
+        \draw (g-bar) to (d1);
+        \draw (d1) to[out=235,in=90] (f1);
+        \draw (d1) to[out=305,in=90] (f2);
+        \draw (f1) to[out=235,in=90] (e1);
+        \draw (f1) to[out=305,in=90] (e2);
+        \draw (f2) to[out=235,in=135] (f-inverse);
+        \draw (f2) to[out=305,in=55] (f-inverse);
+        \draw (f-inverse) to (g);
+        \draw (g) to[out=235,in=90] (e3);
+        \draw (g) to[out=305,in=90] (e4);
+      \end{tikzpicture}
+  \end{matrix}
+  =
+  \begin{matrix}
+      \begin{tikzpicture}
+        \node at (.5,3.5) (start) {};
+        \node at (.5,3) [map] (g-bar) {$\scriptstyle \rst{g}$};
+        \node at (.5,2.5) [delta] (d1) {};
+        \node at (0,1.75) [map] (f1) {$\scriptstyle f$};
+        \node at (1,1.75) [map] (f2) {$\scriptstyle \rst{f}$};
+        \node at (1,1) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,.5) (e1) {};
+        \node at (.25,.5) (e2) {};
+        \node at (.75,.5) (e3) {};
+        \node at (1.25,.5) (e4) {};
+        \draw (start) to (g-bar);
+        \draw (g-bar) to (d1);
+        \draw (d1) to[out=235,in=90] (f1);
+        \draw (d1) to[out=305,in=90] (f2);
+        \draw (f1) to[out=235,in=90] (e1);
+        \draw (f1) to[out=305,in=90] (e2);
+        \draw (f2) to (g);
+        \draw (g) to[out=235,in=90] (e3);
+        \draw (g) to[out=305,in=90] (e4);
+      \end{tikzpicture}
+  \end{matrix}
+  =
+  \begin{matrix}
+      \begin{tikzpicture}
+        \node at (.5,3.5) (start) {};
+        \node at (.5,3) [map] (g-bar) {$\scriptstyle \rst{g}$};
+        \node at (.5,2.5) [delta] (d1) {};
+        \node at (0,1.75) [map] (f1) {$\scriptstyle \rst{f}f$};
+        \node at (1,1.75) [map] (g) {$\scriptstyle g$};
+        \node at (-.25,1.25) (e1) {};
+        \node at (.25,1.25) (e2) {};
+        \node at (.75,1.25) (e3) {};
+        \node at (1.25,1.25) (e4) {};
+        \draw (start) to (g-bar);
+        \draw (g-bar) to (d1);
+        \draw (d1) to[out=235,in=90] (f1);
+        \draw (d1) to[out=305,in=90] (g);
+        \draw (f1) to[out=235,in=90] (e1);
+        \draw (f1) to[out=305,in=90] (e2);
+        \draw (g) to[out=235,in=90] (e3);
+        \draw (g) to[out=305,in=90] (e4);
+      \end{tikzpicture}
+  \end{matrix}
+  =
+  \begin{matrix}
+      \begin{tikzpicture}
+        \node at (.5,3.0) (start) {};
+        \node at (.5,2.5) [delta] (d1) {};
+        \node at (0,1.75) [map] (f1) {$\scriptstyle \rst{f}f$};
+        \node at (1,1.75) [map] (g) {$\scriptstyle \rst{g}g$};
+        \node at (-.25,1.25) (e1) {};
+        \node at (.25,1.25) (e2) {};
+        \node at (.75,1.25) (e3) {};
+        \node at (1.25,1.25) (e4) {};
+        \draw (start) to (d1);
+        \draw (d1) to[out=235,in=90] (f1);
+        \draw (d1) to[out=305,in=90] (g);
+        \draw (f1) to[out=235,in=90] (e1);
+        \draw (f1) to[out=305,in=90] (e2);
+        \draw (g) to[out=235,in=90] (e3);
+        \draw (g) to[out=305,in=90] (e4);
+      \end{tikzpicture}
+  \end{matrix}
+  = \Delta(f\*g).
+\]
+
 \end{proof}
 
 % subsection the_category_hypxt_is_cartesian (end)
