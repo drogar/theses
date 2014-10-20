@@ -101,7 +101,7 @@ its converse are both orthogonal). While the paper does use reversible term rewr
 basis for computation, its emphasis is on how one can derive a linear combinatory algebra.
 Linear combinatory algebras are themselves not reversible systems.
 
-In \cite{mu06bidirectional} and \cite{muetal04:injreversible}, Mu et.al. introduce the language
+In \cite{mu06bidirectional} and \cite{muetal04:injreversible}, Mu, Hu and Takeichi introduce the language
 \textbf{Inv}, a language that is composed only of partial injective functions. The language has an
 operational semantics based on determinate relations and converses. They provide a variety of examples of the
 language, including translations from XML to HTML and simple functions such as $wrap$, which wraps
@@ -110,12 +110,13 @@ injective ones in \textbf{Inv} via the addition of logging. In fact, they use th
 the language is equivalent in terms of power to the reversible Turing machine of
 \cite{bennett:1973reverse}.
 
-Some of the ideas of Mu et.al. are closely related to the theory developed in this thesis. For
-example,  given two functions $f,g$ of \textbf{Inv}, constructing their union, $f\union g$ requires
-that both $\dom f \intersection \dom g = \nothing$ and $\rng f \intersection \rng g =
-\nothing$. This is an example of a disjoint join as introduced in Section~\ref{sec:disjoint_joins}.
+Some of the ideas of \cite{mu06bidirectional,muetal04:injreversible} are closely related to
+the theory developed in this thesis. For example,  given two functions $f,g$ of \textbf{Inv},
+constructing their union, $f\union g$ requires that both $\dom f \intersection \dom g = \nothing$
+and $\rng f \intersection \rng g = \nothing$. This is an example of a disjoint join as introduced in
+Section~\ref{sec:disjoint_joins}.
 
-In Di Pierro et.al. \cite{DiPierro200625}, the authors consider groupoids as their mathematical
+In \cite{DiPierro200625}, Di Pierro, Hankin and Wiklicky consider groupoids as their mathematical
 model for reversible computations. This leads them to develop \textbf{rCL}, reversible combinatory
 logic. This logic consists of a pair of terms, $\<M|H\>$, where $M$ is a term of standard combinatory
 logic and $H$ is a history, with a specified syntax. In standard combinatory logic, the $k$ term is
@@ -185,6 +186,20 @@ algebras, directly based on Turing category and partial combinatory algebras  fr
 result of this thesis. This places the connection between reversible and irreversible
 computing on a more abstract footing.
 
+While the thesis does cover many important aspects of reversible computing, there are interesting
+areas related to reversible computing that are not within the scope of this thesis.
+
+The thesis does not, in general, consider resource usage or computability classes. For example,
+although we do mention Turing machines in the introduction, we do not develop this further. In
+particular the thesis does not consider whether the Cartesian Completion alters computability
+classes of programs if it were to be applied to an inverse category whose maps consisted of
+programs.
+
+As another example, we define the concept of ``powerful'' in
+Section~\ref{sec:partial_combinatory_algebras} when discussing partial combinatory algebras. In that
+section, ``powerful'' does not relate to resource usage or a particular computability class, but
+rather that an object $X$ contains copies of the objects products with itself, i.e., $X\times X,\
+X\times X\times X\,\ldots$. An example of such an object is the integers.
 
 \section{Outline} % (fold)
 \label{sec:outline}
