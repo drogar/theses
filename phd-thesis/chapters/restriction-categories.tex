@@ -9,6 +9,10 @@ Restriction categories were introduced in
 as a way to give an algebraic treatment of partiality. We will introduce restriction
 categories and provide a variety of results.
 
+From this point forward in the thesis, we will use the symbol $\undef$ to mean a function is
+undefined on some value or values. For example, if $f: \{1,2\} \to \{a,b,c\}$ where $f(1) = a$ and
+$f(2)$ is not defined, then we write $f(2)$ is $\undef$.
+
 \section{Definitions}
 \label{sec:definitions}
 
@@ -26,7 +30,7 @@ categories and provide a variety of results.
     &\rone\ \restr{f} f = f & &
     \rtwo\ \restr{g}  \restr{f} = \restr{f}  \restr{g}\\
     &\rthree\ \restr{\restr{f}  g} = \restr{f}   \restr{g} & &
-    \rfour\  f \restr{g} = \restr{f g} f.
+    \rfour\  f \restr{h} = \restr{f h} f.
   \end{align*}
 \end{definition}
 
@@ -110,7 +114,8 @@ total maps correspond precisely to the functions that are defined on all element
 The category \rel from Example~\ref{ex:category_rel} is \emph{not} a restriction category with the
 candidate restriction of $R=\{(a,b)\}$ being $\rst{R} = \{(a,a) | \exists b. (a,b) \in R\}$. The
 axiom that fails is \rfour, as can be seen by setting $R=\{(1,1),(1,2)\}, S=\{(2,3)\}$. Then we
-have $\rst{RS} = \{(1,1)\}$ and therefore $\rst{RS} R = R$. However, $R\rst{S} = R\{(2,2)\} = \{(1,2)\}$.
+have $RS = \{(1,3)\}$, $\rst{RS} = \{(1,1)\}$ and therefore $\rst{RS} R = R$. However,
+$R\rst{S} = R\{(2,2)\} = \{(1,2)\}$.
 \end{example}
 
 \begin{example}[\pinj]\label{ex:pinj_is_a_restriction_category}
@@ -146,17 +151,18 @@ sub-restriction category of \Par. We will show the four restriction axioms:
 \end{example}
 
 \begin{example}\label{ex:algebras-not-preserving-unit-as-restriction-cat}
-  Given $\cS$ is a symmetric monoidal category, define $\specialcat{Copy}(\cS)$ as the category whose objects are
-  the objects of $\cS$ which are commutative comonoids and semigroup homomorphisms, i.e., maps which
-  do not preserve the unit. As noted in \cite{cockett2002:restcategories1}, when there is a counit,
-  $!:B\to I$, this is a restriction category, where the restriction is given by
+  Given $\cS$ is a symmetric monoidal category, define $\specialcat{Copy}(\cS)$ as the category
+  whose objects are the objects of $\cS$ which are commutative comonoids and maps are semigroup
+  homomorphisms, i.e., maps which do not preserve the unit. As noted in
+  \cite{cockett2002:restcategories1}, when there is a counit, $!:B\to I$ where $I$ is the unit of
+  the tensor, this is a restriction category, where the restriction is given by
   \[
     \infer{A\xrightarrow{\rst{f}}A \definedas A \xrightarrow{\Delta} A\*A \xrightarrow{f\*1} B\* A
       \xrightarrow{!\*1} I\*A \xrightarrow{\usl} A.}{A\xrightarrow{f}B}
   \]
 
   We may also consider commutative monoids with semigroup morphisms,
-  $\specialcat{Copy}(\cS)^{op}$. These will have a corestriction operator, i.e., an operator
+  $\dual{\specialcat{Copy}(\cS)}$. These will have a corestriction operator, i.e., an operator
   $\rst{(\_)}$ on $f:A\to B$ with $\rst{f}:B\to B$ fulfilling the duals of the restriction axioms.
 
 %  This is the dual of a counital copy category as defined in
@@ -164,7 +170,7 @@ sub-restriction category of \Par. We will show the four restriction axioms:
 %  shows that counital copy categories have a restriction.
 
   For example, consider the category of commutative monoids in \Ab, the category of abelian
-  categories. This is the same as $(\specialcat{Copy}(\Ab^{op}))^{op}$ and thus is a corestriction
+  categories. This is the same as $\dual{(\specialcat{Copy}(\dual{\Ab}))}$ and thus is a corestriction
   category. At the same time, this is the category of commutative rings with homomorphisms which do
   not preserve the unit.
 
@@ -188,8 +194,8 @@ expressed as:
 \end{definition}
 
 \begin{lemma}\label{lem:restriction_cats_are_partial_order_enriched}
-  Any restriction category \X is enriched in category of partial orders under the ordering $\le$ from
-  Definition~\ref{def:restriction_category_hom_set_ordering} and the following hold:
+  Any restriction category \X is enriched in a category of partial orders under the ordering $\le$
+  from  Definition~\ref{def:restriction_category_hom_set_ordering} and the following hold:
   \begin{multicols}{2}
     \begin{enumerate}[{(}i{)}]
       \item $f \le g \implies \restr{f} \le \restr{g}$;\label{lemitem:rst_ordering_2}
@@ -225,6 +231,8 @@ expressed as:
   \begin{enumerate}[{(}i{)}]
     \item The premise is that $\restr{f} g = f$. From this, $ \restr{f}\, \restr{g} =
       \restr{\restr{f} g} = \restr{f}$, showing $\restr{f} \le \restr{g}$.
+    \item Computing, $\rst{\rst{fg}}\,\rst{f} = \rst{fg}\, \rst{f} = \rst{fg}$ where the last step is by
+      Lemma~\ref{lem:restrictionvarious}\ref{lemitem:rv_2}.
     \item $\restr{h f} h g = h \restr{f} g = h f$  and therefore $h f \le h g$.
     \item $\restr{f} g = f$, this shows $\restr{f h} g h = \restr{\restr{f} g h} g h
       = \restr{f}\, \restr{g h} g h = \restr{f} g h = f h$ and therefore $f h \le g h$.
@@ -252,14 +260,15 @@ to be suggestive of open sets, as in \topcatp, see Example~\ref{ex:restriction_c
 
 Let \stabLat be the category whose objects are meet semi-lattices and maps are stable homomorphisms,
 that is, they preserve the meets but not necessarily the top. From Example 13 in
-\cite{cockett2002:restcategories1}, this is a corestriction category, i.e. $\stabLat^{op}$ is a
+\cite{cockett2002:restcategories1}, this is a corestriction category, i.e. $\dual{\stabLat}$ is a
 restriction category. We see that the operation $\mathcal{O}$ is a functor, $\mathcal{O}: \X \to
-\stabLat^{op}$, and is the fundamental functor.
+\dual{\stabLat}$.
+%TODO - do we add this, what does it mean? ", and is the fundamental functor."
 
 \section{Joins} % (fold)
 \label{sub:joins_in_restriction_categories}
 
-The restriction operator allows to algebraically axiomatize the concept of ``domain of definition''
+The restriction operator allows one to algebraically axiomatize the concept of ``domain of definition''
 for a function. With that axiomatization, we may then consider other questions about the maps. In
 this section, we consider when maps are identical on their common domain of definition. Two maps
 having this property are called compatible.
@@ -283,7 +292,7 @@ combines $f$ and $g$. Such a map needs to have certain properties:
   \emph{joins}\cite{guox:thesis} whenever there is an operator $\join$
   \[
     \infer{A\xrightarrow{f\join g} B}
-      {A\overset{f}{\underset{g}{\rightrightarrows}}B\ f\compatible g}
+      {A\overset{f}{\underset{g}{\rightrightarrows}}B,\ f\compatible g}
   \]
   such that:
   \begin{enumerate}[{(}i{)}]
@@ -370,7 +379,8 @@ semi-lattice. Joins are related to the coproduct by the following:
   is a coproduct if and only if:
   \begin{enumerate}[{(}i{)}]
     \item $\cpa$ and $\cpb$ are restriction monics;
-    \item $\rst{\icpa}\,\rst{\icpb} = 0$ and
+    \item $\rst{\icpa}\,\rst{\icpb} = \zeroob_{CC}$ (the zero map required by the definition of
+      join) and
     \item $\rst{\icpa} \join \rst{\icpb} = 1_C$.
   \end{enumerate}
 \end{theorem}
@@ -537,10 +547,11 @@ For example, consider the following maps in \Par, $f_1, f_2, f_3:\{1,2\} \to \{a
 \]
 Then, $f_1$ is a total partial isomorphism and a partial monic and a restriction monic. $f_2$  is a
 partial isomorphism and is a partial monic but is not a restriction monic as it is not a
-section. $f_3$ is none of the items in Definition~\ref{def:partial_inverse_etc}. Finally, in the
-category \topcatp, we shall see in Example~\ref{ex:topcatp-not-discrete} that $\Delta$ does not have
-a partial inverse unless the topological space is discrete. But as $\Delta$ is monic and total, it
-is a partial monic.
+section, i.e., there is no map $\categorysection{f_2}$ such that $f_2\categorysection{f_2} =
+1$. $f_3$ is none of the items in Definition~\ref{def:partial_inverse_etc}. Finally, in the
+category \topcatp, we shall see in Example~\ref{ex:topcatp-not-discrete} that the diagonal
+map, $\Delta: a\mapsto (a,a)$, does not have a partial inverse unless the topological space is
+discrete. But as $\Delta$ is monic and total, it is a partial monic.
 
 Note that restriction monic is a stronger notion than that of section. In fact, restriction monics
 are the partial isomorphisms which are total.
@@ -624,7 +635,10 @@ are the partial isomorphisms which are total.
 Corresponding to Definition~\ref{def:restriction_category} for restriction, which axiomatizes the
 concept of a domain of definition, we now introduce range categories
 \cite{guox:thesis,cockett-guo-hofstra-2012:range,cockett-guo-hofstra-2012:range2}
-which algebraically axiomatize the concept of the range for a function.
+which algebraically axiomatize the concept of the range for a function, in the presence of a
+restriction. Note this is different from a corestriction category \Y, which has a single operator, the
+corestriction operator such that the corestriction is a restriction in \dual{\Y}. In general, the
+range is not a corestriction in that it may fail \axiom{R}{4}.
 
 \begin{definition}\label{def:range_category}
   A restriction category \X is a \emph{range category} when it has an operator on all maps
@@ -690,6 +704,8 @@ this, assume we have two ranges $\wrg{(\_)}$ and $\widetilde{(\_)}$. Then,
 \begin{example}\label{ex:ranges}
    In \pinj, $\rg{f} = \{(y,y) | \exists x. (x,y) \in f\}$.
 \end{example}
+
+For a further example, see Section~\ref{sec:inverse_categories}.
 \section{Split restriction categories} % (fold)
 \label{sub:split_restriction_categories}
 
@@ -724,32 +740,25 @@ given by $e_1 \restr{f}$ in \X. Note that for $f:(A,d)\to(B,e)$, in \X we have:
 
   Checking the 4 restriction axioms:
   \begin{align*}
-    &[\text{{\bfseries R.1}}]\  \llbracket\restr{f}f\rrbracket = e_1 \restr{f} f
-    = e_1 f = \llbracket f\rrbracket.\\
+    &[\text{{\bfseries R.1}}]\  e_1 \restr{f} f
+    = e_1 f = f.\\
     %
-    & [\text{{\textbf{R.2}}}]\ \llbracket\restr{g}\restr{f}\rrbracket =
-    e_1\restr{g}  e_1\restr{f}
+    & [\text{{\textbf{R.2}}}]\  e_1\restr{g}  e_1\restr{f}
     = e_1 e_1\restr{g}  \restr{f} = e_1 e_1\restr{f}  \restr{g}
-    = e_1\restr{f}  e_1\restr{g}  = \llbracket\restr{f}\restr{g}\rrbracket.\\
+    = e_1\restr{f}  e_1\restr{g}.\\
     %
-    & [\text{{\textbf{R.3}}}]\ \llbracket\restr{\restr{f} g } \equiv
-    e_1 \restr{e_1 \restr{f}  g}
+    & [\text{{\textbf{R.3}}}]\  e_1 (\restr{e_1 \restr{f}  g})
     =  \restr{e_1 e_1 \restr{f} g} e_1
     =  \restr{e_1 \restr{f} g} e_1
     =  e_1 \restr{\restr{f} g}
     = e_1 \restr{f}\restr{g}
     = e_{1}e_{1}\restr{f}\restr{g}
-    = e_1 \restr{f}e_1\restr{g}
-    = \llbracket\restr{f}\, \restr{g}\rrbracket.\\
+    = e_1 \restr{f}e_1\restr{g}.\\
     %
-    &[\text{{\textbf{R.4}}}]\  \llbracket f \restr{g} \rrbracket =
-     e_1f e_2 \restr{g}
-    = \restr{e_1 f e_2 g} e_1 f e_2
-    = \restr{e_1 e_1 f e_2 g} e_1 e_1 f e_2 \\
-    & \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad
-    = e_1 \restr{ e_1 f e_2 g} e_1 f e_2
-    = e_1 \restr{f g} e_1 f e_2
-    = \llbracket\restr{f g} f\rrbracket.
+    &[\text{{\textbf{R.4}}}]\ f e_2 \restr{g}
+    = \restr{ f e_2 g} f e_2
+    = (\restr{e_1  f g} e_1)  f
+    = e_1 \restr{  f  g}  f.
   \end{align*}
 \end{proof}
 
@@ -760,7 +769,7 @@ in $\spl{E}{\X}$.
 
 
 \begin{proposition}\label{pro:in_rc_x_with_meets_split_x_is_cong_to_split_r_x}
-  In a restriction category \X, with meets, let $R$ be the set of restriction idempotents.
+  In a restriction category \X with meets, let $R$ be the set of restriction idempotents.
   Then, $\spl{}{\X} \cong \spl{R}{\X}$. That is, splitting over all the idempotents is equivalent to
   splitting over just the restriction idempotents.
   Furthermore, $\spl{R}{\X}$ has meets.
@@ -804,7 +813,7 @@ in $\spl{E}{\X}$.
   By Lemma \ref{lem:properties_of_meets_in_restriction_categories} $(e\meet 1)$
   is a restriction idempotent. Using this fact, the commutativity of restriction idempotents
   and Lemma~\ref{lem:properties_of_meets_in_restriction_categories}, the composite functor $U V$ is
-  the identity on $\spl{r}{\X}$. This is because when $e$ is a restriction idempotent,
+  the identity on $\spl{R}{\X}$. This is because when $e$ is a restriction idempotent,
   $e = e (e\meet 1) = (e\meet 1) e = (e\meet 1)$.
 
   For the other direction,  note that for a particular idempotent $e:A\to A$,  this gives the
@@ -912,7 +921,7 @@ is referred to as an \Mstab-category.
   is a pullback.
 \end{proof}
 
-Given a category \B and a stable system of monics, the \emph{partial map category},
+Given a category \B and a stable system of monics $\Mstab$, the \emph{partial map category},
 $\text{Par}(\B,\Mstab)$ is:
   \rcategoryequivns{$A\in\B$;}
     {$(m,f):A\to B$  with $m:A' \to A$ is in \Mstab and $f:A' \to B$ is a map in \B. i.e.,
@@ -931,6 +940,9 @@ $\text{Par}(\B,\Mstab)$ is:
 
 For the maps, $(m,f) \sim (m',f')$ when there is an isomorphism $\gamma : A'' \to A'$
 such that $\gamma m' = m$ and $\gamma f' = f$.
+
+The proof that this is a restriction category is given by Proposition 3.1 in
+\cite{cockett2002:restcategories1}.
 
 In \cite{cockettlack2003:restcategories2}, it is shown that:
 \begin{theorem}[Cockett-Lack]
@@ -1091,19 +1103,19 @@ of the section.
 \begin{proof}
   \prepprooflist
   \begin{enumerate}[{(}i{)}]
-    \item To show closure, it is necessary to show that $\<f g,1\>$ has a partial inverse.
-      By Lemma \ref{lem:rcs_partial_monic_section_inverse_properties}, the uniqueness of the
-      partial inverse gives
+    \item To show closure, it is necessary to show for graphic maps $f:A\to B$ and $g:B\to C$ that
+      $\<f g,1\>$ has a partial inverse. By Lemma
+      \ref{lem:rcs_partial_monic_section_inverse_properties}, the uniqueness of the  partial inverse gives
       \[
-        \inv{(\<f,1\> ; \<g,1\>\times 1)} = \inv{\<g,1\>} \times 1 ; \inv{\<f,1\>} .
+        \inv{(\<f,1\> ( \<g,1\>\times 1))} = (\inv{\<g,1\>} \times 1) \inv{\<f,1\>} .
       \]
       By the definition of the restriction product, we have $\rst{\<f g,1\>} = \rst{f g}$. Additionally,
       a straightforward calculation shows that
-        $\rst{\<f,1\>;\<g,1\> \times 1} =
-          \rst{\<f\<g,1\>, 1\>} = \rst{f ;\< g,1\>}
-          = \rst{\<f;g, f\>} = \rst{f g}\,\rst{f} = \rst{f g}
+        $\rst{\<f,1\>(\<g,1\> \times 1)} =
+          \rst{\<f\<g,1\>, 1\>} = \rst{f \< g,1\>}
+          = \rst{\<f g, f\>} = \rst{f g}\,\rst{f} = \rst{f g}
         $
-      where the last equality is by \rtwo, \rthree and finally \rone.
+      where the last equality is from Lemma~\ref{lem:restrictionvarious}.
 
     Consider the diagram
     \[
@@ -1135,7 +1147,7 @@ of the section.
     $\<f g,1\>$ is a partial isomorphism.
 
     \item This follows from the definition of graphic and that
-       $\rst{\<f,1\>} = \rst{f} = \restr{\rst{f}}$.
+       $\rst{\<f,1\>} = \rst{f} = \restr{\rst{f}} = \rst{\<\rst{f},1\>}$.
 
     \item Given a discrete object $A$, the identity on $A$ is graphic as $\<1,1\> = \Delta$
       and therefore $\inv{\<1,1\>} = \inv{\Delta}$. Conversely, if $\<1,1\> = \Delta$ has an
@@ -1144,11 +1156,11 @@ of the section.
 \end{proof}
 
 \begin{lemma}\label{lem:a_discrete_crc_is_precisely_a_graphic_crc}
-  A discrete Cartesian restriction category is precisely a graphic Cartesian restriction category.
+  A discrete Cartesian restriction category \D is precisely a graphic Cartesian restriction category.
 \end{lemma}
 \begin{proof}
-  The requirement is that $\<f,1\>$ (and $\<\rst{f},1\>$) each have partial inverses. For
-  $\<f,1\>$, the inverse is $\rst{(1 \times f)\inv{\Delta}} \pi_1$.
+  The requirement is that for all $f\in \arrows{\D}$ both $\<f,1\>$ and $\<\rst{f},1\>$ have partial
+  inverses. For $\<f,1\>$ the inverse is $\rst{(1 \times f)\inv{\Delta}} \pi_1$.
 
   To show this, calculate  the two compositions. First,
   \[
@@ -1214,8 +1226,30 @@ Besides the example of \topcatp given at the beginning of this section, the foll
   \begin{enumerate}[{(}i{)}]
   \item Any total non-trivial (i.e., not a semi-lattice) Cartesian category is not discrete.
   \item $\text{Par}(\X,\Mstab)$ is not discrete unless $\Delta: X\to X\times X$ is in \Mstab.
-  \item $\stabLat^{op}$ is not discrete.
+  \item $\dual{\stabLat}$ is not discrete.
   \end{enumerate}
+  We will give the details for $\dual{\stabLat}$. Recall $\stabLat$ is the category of meet
+  semi-lattices whose maps preserve the meet, but do not necessarily preserve the top, $\top$. The
+  corestriction of $f:L_1\to L_2$ is given by $\rst{f}:L_2\to L_2$, $f(y) = y\wedge f(\top)$. Hence,
+  the total maps are those which preserve the top element.
+
+  The restriction product in $\dual{\stabLat}$ is given by the Cartesian product of the
+  semi-lattices, where the partial ordering is pointwise. In $\stabLat$, we have the maps $in_0: L_0
+  \to L_0\times L_1$ and $in_1:L_2 \to L_1\times L_2$ where $i_0: m\mapsto (m,\top)$ and $i_1: n \mapsto
+  (\top,n)$. Then, $\pi_i = \dual{in_i}$ are the projections in $\dual{\stabLat}$. Again considering
+  $\stabLat$, for $f:L_0 \to L_2$, $g:L_1 \to L_2$, there is the map $[f,g]:L_0\times L_1 \to L_2$
+  where $[f,g]:(m,n)\mapsto f(m)\wedge g(n)$. The product map in $\dual{\stabLat}$,
+  $\<\dual{f},\dual{g}\>$ is $\dual{[f,g]}:L_2 \to L_0\times L_1$.
+
+  From this we see $\Delta:L_1\to L_1\times L_1$ in $\dual{\stabLat}$ is $\dual{[1,1]}$. For this to
+  have an inverse, we  need a map $h:L_1\to L_1\times L_1$ in \stabLat such that
+  $\Delta \dual{h} = 1_{L_1}$, i.e.,  $h[1,1] = 1_{L_1}$ in \stabLat. In \stabLat, we may write $h$
+  as having two components, that is, $h(x) = (h_1(x),h_2(x))$ and therefore we must have
+  $h_1(x)\wedge  h_2(x) = x$. Hence
+  \[
+    (h_1(x\wedge y), h_2(x\wedge y)) = x\wedge y =  h(\top)\wedge (x,y) \wedge y =
+  \]
+%TODO - fix this
 \end{example}
 
 

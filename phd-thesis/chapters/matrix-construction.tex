@@ -18,7 +18,7 @@ an inverse category with disjoint sums and that $\X$ embeds within this category
 
 The types of matrices allowed in the matrix category are subject to certain constraints:
 \begin{definition}\label{def:disjoint_sum_matrix}
-  Suppose we have \X is an inverse category with disjoint joins. Then an \emph{disjoint sum matrix}
+  Suppose we have \X is an inverse category with disjoint joins. Then a \emph{disjoint sum matrix}
   in \X is a matrix of maps $[f_{i j}]$ where $i \in \{1,\ldots, n\}$ and $j \in \{1,\ldots, m\}$ with
   $f_{i\jay}:A_i \to B_\jay$ which satisfy the two conditions:
   \begin{align}
@@ -44,8 +44,9 @@ The types of matrices allowed in the matrix category are subject to certain cons
   matrix category} of \X, \imatx, as follows:
   \rcategory{Lists of the objects of $\X$}{
     Disjoint sum matrices $[f_{i\jay}]: [A_i] \to [B_\jay]$. In such a matrix each individual map
-    $f_{i\jay}:A_i \to B_{\jay}$ is a map in $\X$}{ %For each $j$, $B_\jay$ is given by  applying the map $\djoin_i \icp{i} f_{i\jay}$ to the object $\+_i A_i$
-    The disjoint sum matrix $I$}{
+    $f_{i\jay}:A_i \to B_{\jay}$ is a map in $\X$}{
+    The disjoint sum matrix $I$ --- A diagonal matrix with $1:A_i \to A_i$ at the $i,i$ position and
+  zero maps elsewhere}{
     Given $[f_{i\jay}]: [A_i] \to [B_\jay]$ and $[g_{j k}] : [B_\jay] \to [C_k]$, then
     $[h_{i k}] = [f_{i\jay}][g_{\jay k}]: [A_i] \to [C_k]$ is defined as
     $h_{i k} = \djoinbig_\jay f_{i \jay}g_{\jay k}$}{
@@ -175,11 +176,12 @@ The types of matrices allowed in the matrix category are subject to certain cons
 
 Furthermore, $\imatx$ is actually a disjoint sum category:
 \begin{theorem}\label{thm:imatx_is_an_disjoint_sum_category}
-  Given \X an inverse category with disjoint joins and restriction zero, \imatx has
-  disjoint sums.
+  Given \X an inverse category with disjoint joins and restriction zero, \imatx is an inverse
+  category with disjoint sums.
 \end{theorem}
 
-We will prove this in a series of lemmas.
+Lemma~\ref{lem:inverse_matrix_category_is_a_restriction_category} shows that \imatx is an inverse
+category. We will prove \imatx has disjoint sums in a series of lemmas.
 
 \begin{lemma}\label{lem:imat_has_restriction_zero}
   Given \X is an inverse restriction category with a restriction zero and a disjoint join,
@@ -272,7 +274,7 @@ We will prove this in a series of lemmas.
   list catenation is a disjointness tensor. To show that it is a disjoint sum tensor, we must
   show the diagrams and conditions of Definition~\ref{def:disjoint_sum_tensor} hold.
 
-  First, for the diagram below, we show that $\alpha$ exists if and only if
+  For the diagram below we show that $\alpha$ exists if and only if
   $f\icpb \tjdown g\icpb$.
   \begin{align*}
     \xymatrix@C+10pt@R+5pt{
@@ -323,9 +325,10 @@ disjoint sums.
 
 \section{Equivalence between a disjoint sum category and its matrix category} % (fold)
 \label{sec:equivalence_between_an_disjoint_sum_category_and_its_matrix_category}
-This section starts with giving a functor from an inverse category with disjoint joins to its matrix
+This section starts by giving a functor from an inverse category with disjoint joins to its matrix
 category, followed by exhibiting a reflection between inverse categories with disjoint sums
 (Disjoint Sum Cats) and categories with a disjoint join (Disjoint Join Cats). That is,
+%todo - equation label
 \[
    \xymatrix@R+10pt@C+20pt{
      \text{Disjoint Sum Cats} \ar@{^{(}->}[r]

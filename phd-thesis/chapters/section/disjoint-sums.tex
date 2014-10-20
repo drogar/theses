@@ -8,14 +8,18 @@ which already has a disjoint join. As we shall see, it is sufficient to have ``e
 
 \begin{definition}\label{def:disjoint_sum}
   In an inverse category with disjoint joins, an object $X$ is the \emph{disjoint sum} of $A$ and
-  $B$ when there exist maps $i_1,\ i_2,\ \xa,\ \xb$ such that:
+  $B$ when there exist maps $i_1 : A \to X$, $i_2: B \to X$ such that:
   \begin{enumerate}[{(}i{)}]
     \item $i_1$ and $i_2$ are monic;
-    \item $i_1 : A \to X$, $i_2: B \to X$, $\xa: X \to A$ and $\xb: X \to B$;
-    \item $\inv{i_1} = \xa$ and $\inv{i_2} = \xb$;
     \item $\inv{i_1}i_1 \perp \inv{i_2}i_2$ and $\inv{i_1}i_1 \djoin \inv{i_2}i_2 = 1_X$.
   \end{enumerate}
-  The maps $i_1$ and $i_2$ will be referred to as the \emph{injection} maps of the disjoint sum.
+  The maps $i_1$ and $i_2$ will be referred to as the \emph{injection} maps of the disjoint
+  sum. This arrangement is normally visualized as:
+  \[
+    \xymatrix{
+      A\ar[r]^{i_1} &X\ar@/^9pt/[l]^{\inv{i_1}} \ar@/_9pt/[r]_{\inv{i_1}} & B \ar[l]_{i_2}
+    }
+   \]
 \end{definition}
 
 \begin{lemma}\label{lem:disjoint_sum_is_unique}
@@ -25,42 +29,42 @@ which already has a disjoint join. As we shall see, it is sufficient to have ``e
   Assume there are two disjoint sums over $A$ and $B$:
   \[
     \xymatrix{
-      A\ar[r]^{i_1} &X\ar@/^9pt/[l]^{x_1} \ar@/_9pt/[r]_{x_2} & B \ar[l]_{i_2}
+      A\ar[r]^{i_1} &X\ar@/^9pt/[l]^{\inv{i_1}} \ar@/_9pt/[r]_{\inv{i_2}} & B \ar[l]_{i_2}
     }
     \qquad  \text{ and  }\qquad
     \xymatrix{
-      A\ar[r]^{\jay_1} &Y\ar@/^9pt/[l]^{y_1} \ar@/_9pt/[r]_{y_2} & B \ar[l]_{\jay_2}
+      A\ar[r]^{\jay_1} &Y\ar@/^9pt/[l]^{\inv{\jay_1}} \ar@/_9pt/[r]_{\inv{\jay_2}} & B \ar[l]_{\jay_2}
     }.
   \]
-  We will show that the map $x_1 \jay_1 \djoin x_2 \jay_2 : X \to Y$ is an isomorphism.
+  We will show that the map $\inv{i_1} \jay_1 \djoin \inv{i_2} \jay_2 : X \to Y$ is an isomorphism.
 
   Note by the fact that $i_1, i_2$ are monic and \axiom{Dis}{2},
-  $0 = \rst{x_1 i_1} x_2 = \rst{x_1\rst{i_1}} x_2 = \rst{x_1} x_2 = \wrg{i_1}{x_2}$. But then
-  $i_1 x_2 = i_1 \wrg{i_1} x_2 = i_1 0 = 0$. Similarly, $i_2 x_1 = 0$, $j_1 y_2 =0$ and
-  $j_2 y_1 = 0$.
+  $0 = \rst{\inv{i_1} i_1} \inv{i_2} = \rst{\inv{i_1}\rst{i_1}} \inv{i_2} = \rst{\inv{i_1}} \inv{i_2} = \wrg{i_1}{\inv{i_2}}$. But then
+  $i_1 \inv{i_2} = i_1 \wrg{i_1} \inv{i_2} = i_1 0 = 0$. Similarly, $i_2 \inv{i_1} = 0$, $j_1 \inv{\jay_2} =0$ and
+  $j_2 \inv{\jay_1} = 0$.
 
   Next, by Lemma~\ref{lem:disjointness_various}, $\rst{\xa}\cdperp\rst{\xb}$ as both
-  $i_1$ and $i_2$ are monic. By the same lemma, $\rg{\jay_1} \cdperp \rg{\jay_2}$ as $y_1, y_2$
-  are the inverses of monic maps.  Then, from \axiom{Dis}{7}, $x_1 \jay_1 \cdperp x_2 \jay_2$,
-  hence we may form $x_1 \jay_1 \djoin x_2 \jay_2 : X \to Y$.
+  $i_1$ and $i_2$ are monic. By the same lemma, $\rg{\jay_1} \cdperp \rg{\jay_2}$ as $\inv{\jay_1}, \inv{\jay_2}$
+  are the inverses of monic maps.  Then, from \axiom{Dis}{7}, $\inv{i_1} \jay_1 \cdperp \inv{i_2} \jay_2$,
+  hence we may form $\inv{i_1} \jay_1 \djoin \inv{i_2} \jay_2 : X \to Y$.
 
-  Similarly, we may form the map $y_1 i_1 \djoin y_2 i_2 : Y \to X$. Computing their composition:
+  Similarly, we may form the map $\inv{\jay_1} i_1 \djoin \inv{\jay_2} i_2 : Y \to X$. Computing their composition:
   \begin{align*}
-    (x_1 \jay_1 \djoin x_2 \jay_2)(y_1 i_1 \djoin y_2 i_2)
-      &= (x_1 \jay_1 (y_1 i_1 \djoin y_2 i_2))\djoin (x_2 \jay_2(y_1 i_1 \djoin y_2 i_2))\\
-      &= x_1 \jay_1 y_1 i_1 \djoin x_1 \jay_1 y_2 i_2 \djoin x_2 \jay_2 y_1 i_1 \djoin x_2
-        \jay_2 y_2 i_2 \\
-      &= x_1\, 1\, i_1 \djoin x_1\, 0\, i_2 \djoin x_2\, 0\, i_1 \djoin x_2\, 1\, i_2\\
-      &= x_1 i_1 \djoin x_2 i_2 = 1.
+    (\inv{i_1} \jay_1 &\djoin \inv{i_2} \jay_2)(\inv{\jay_1} i_1 \djoin \inv{\jay_2} i_2)\\
+      &= (\inv{i_1} \jay_1 (\inv{\jay_1} i_1 \djoin \inv{\jay_2} i_2))\djoin (\inv{i_2} \jay_2(\inv{\jay_1} i_1 \djoin \inv{\jay_2} i_2))\\
+      &= \inv{i_1} \jay_1 \inv{\jay_1} i_1 \djoin \inv{i_1} \jay_1 \inv{\jay_2} i_2 \djoin \inv{i_2} \jay_2 \inv{\jay_1} i_1 \djoin \inv{i_2}
+        \jay_2 \inv{\jay_2} i_2 \\
+      &= \inv{i_1}\, 1\, i_1 \djoin \inv{i_1}\, 0\, i_2 \djoin \inv{i_2}\, 0\, i_1 \djoin \inv{i_2}\, 1\, i_2\\
+      &= \inv{i_1} i_1 \djoin \inv{i_2} i_2 = 1.
   \end{align*}
   Computing the other direction,
   \begin{align*}
-    (y_1 i_1 \djoin y_2 i_2)(x_1 \jay_1 \djoin x_2 \jay_2)
-      &= (y_1 i_1 (x_1 \jay_1 \djoin x_2 \jay_2) )\djoin (y_2 i_2(x_1 \jay_1 \djoin x_2 \jay_2))\\
-      &= y_1 i_1 x_1 \jay_1 \djoin y_1 i_1 x_2 \jay_2 \djoin y_2 i_2 x_1 \jay_1
-        \djoin y_2 i_2 x_2 \jay_2\\
-      &= y_1\, 1\, \jay_1 \djoin y_1\, 0\, \jay_2 \djoin y_2\, 0\, \jay_1 \djoin y_2\, 1\, \jay_2\\
-      &= y_1 \jay_1 \djoin y_2 \jay_2 = 1.\\
+    (\inv{\jay_1} i_1 &\djoin \inv{\jay_2} i_2)(\inv{i_1} \jay_1 \djoin \inv{i_2} \jay_2)\\
+      &= (\inv{\jay_1} i_1 (\inv{i_1} \jay_1 \djoin \inv{i_2} \jay_2) )\djoin (\inv{\jay_2} i_2(\inv{i_1} \jay_1 \djoin \inv{i_2} \jay_2))\\
+      &= \inv{\jay_1} i_1 \inv{i_1} \jay_1 \djoin \inv{\jay_1} i_1 \inv{i_2} \jay_2 \djoin \inv{\jay_2} i_2 \inv{i_1} \jay_1
+        \djoin \inv{\jay_2} i_2 \inv{i_2} \jay_2\\
+      &= \inv{\jay_1}\, 1\, \jay_1 \djoin \inv{\jay_1}\, 0\, \jay_2 \djoin \inv{\jay_2}\, 0\, \jay_1 \djoin \inv{\jay_2}\, 1\, \jay_2\\
+      &= \inv{\jay_1} \jay_1 \djoin \inv{\jay_2} \jay_2 = 1.\\
   \end{align*}
   This shows that the map between any two disjoint sums over the same two objects is an isomorphism.
 \end{proof}

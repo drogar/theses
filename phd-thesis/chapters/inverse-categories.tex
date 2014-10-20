@@ -32,7 +32,8 @@ give a natural Frobenius structure on each object.
 \end{proof}
 
 \begin{lemma}\label{lem:inverse_categories_are_range_categories}
-  An inverse category \X is a range category, where $\rg{f} = \inv{f}f = \rst{\inv{f}}$.
+  An inverse category \X is a range category (Definition~\ref{def:range_category}), where
+  $\rg{f} = \inv{f}f = \rst{\inv{f}}$.
 \end{lemma}
 \begin{proof}
   \prepprooflist
@@ -50,7 +51,7 @@ give a natural Frobenius structure on each object.
 \end{proof}
 
 For an inverse category \X, as $\inv{()}$ is an involution, the range $(\rg{\_})$ is in fact more
-than just a range, it is a restriction in $\X^{op}$.
+than just a range, it is a restriction in $\dual{\X}$.
 
 The property of being an inverse category is preserved by splitting.
 
@@ -58,25 +59,23 @@ The property of being an inverse category is preserved by splitting.
   When \X is an inverse category, $\spl{E}{X}$ is an inverse category.
 \end{lemma}
 \begin{proof}
-  The inverse of $f:(A,e_1)\to(B,e_2)$   in \spl{E}{\X} is $e_2\inv{f}e_1$ as
+  First recall that in the split category, for  $f:(A,e_1)\to(B,e_2)$, we have
+  $f = e_1 f e_2 = e_1 f = f e_2$ and  by Proposition~\ref{prop:spleisarestrictioncat}  the
+  restriction of  $f:(A,e_1)\to(B,e_2)$ is $e_1\rst{f}$. Then, the inverse of
+  $f:(A,e_1)\to(B,e_2)$   in \spl{E}{\X}  is $\inv{f}$ as
   \[
-    \llbracket f \inv{f} \rrbracket = e_1 f e_2 e_2 \inv{f} e_1
-    = e_1 e_1 f e_2 \inv{f} e_1
-    = e_1 f  \inv{f} e_1
-    = e_1 e_1 \restr{f} e_1
-    = e_1 \restr{f}
-    = \llbracket\restr{f}\rrbracket
+    \inv{f} = \inv{e_1 f e_2} = \inv{e_2} \inv{f} \inv{e_1} = e_2 \inv{f} e_1.
   \]
-  and
-  \begin{multline*}
-    \llbracket \inv{f} f\rrbracket=
-    e_2 \inv{f} e_1 e_1 f e_2
-    = e_2 \inv{f} e_1 f e_2 e_2
-    = e_2 \inv{f} f  e_2\\
-    = e_2 e_2 \restr{\inv{f}}  e_2
-    = e_2 \restr{\inv{f}}
-    = \llbracket\restr{\inv{f}}\rrbracket.
-  \end{multline*}
+  Note the last equality uses
+  Lemma~\ref{lem:inverse_idempotents_are_restriction_idempotents}. Additionally, we have
+  \[
+    f \inv{f}
+    = e_1 f \inv{f} = e_1 \rst{f}
+    \text{ and }
+    \inv{f} f =
+    e_2 \inv{f} f
+    = e_2 \restr{\inv{f}}.
+  \]
 
 \end{proof}
 
@@ -107,8 +106,8 @@ The property of being an inverse category is preserved by splitting.
   \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{m'}\\A&&B}$}, where $m'\in\Mstab$. Its inverse is
   \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m'} \ar[dr]^{m}\\B&&A}$}. The composition is
    \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A\ar[dl]_{m^{-1}m} \ar[dr]^{m^{-1}m}\\A&&A}$}, which is the
-  identity when $m$ is an isomorphism. The partial isomorphisms will have either $m$ or $m'$ be in
-  $\Mstab$, but not be an isomorphism. Taking just the partial isomorphisms gives us an inverse
+  identity when $m$ is an isomorphism. The partial isomorphisms will have either $m$ or $m'$ in
+  $\Mstab$, but may not be an isomorphism. Taking just the partial isomorphisms gives us an inverse
   category.
 \end{example}
 
@@ -129,21 +128,21 @@ The property of being an inverse category is preserved by splitting.
   Equivalence relations of finite sets are representable as a pair of surjective functions onto
   another set. That is,
   \[
+    \raisebox{-15pt}{$A \longsquiggly{E_{[f,g]}} B :=$ }
     \xymatrix{
       &C\\
       A\ar@{->>}[ur]^f && B\ar@{->>}[ul]_{g}
     }
     \raisebox{-15pt}{$\iff$}
     \xymatrix{
-      A+B \ar@{->>}[d]^{[f,g]}\\
-      C
+      C\\
+      A+B \ar@{->>}[u]^{[f,g]}
     }
-    \raisebox{-15pt}{$\iff$}
-    \xymatrix{
-      E_{[f,g]} \ar@<0.5ex>[d] \ar@<-0.5ex>[d]\\
-      A+B
-      }
-    \raisebox{-15pt}{$\iff A \longsquiggly{E_{[f,g]}} B$.}
+    % \raisebox{-15pt}{$\iff$}
+    % \xymatrix{
+    %   E_{[f,g]} \ar@<0.5ex>[d] \ar@<-0.5ex>[d]\\
+    %   A+B
+    %   }
   \]
 
   Define the category $\specialcat{EqR}$ with objects being finite sets and maps being equivalence classes of the
@@ -179,7 +178,7 @@ and thus, is a very restrictive notion.
   \]
 \end{proposition}
 \begin{proof}
-  Notice that $ \inv{\pi_1}  = \Delta \pi_1 \inv{\pi_1} =\Delta \restr{\pi_1} = \Delta$.
+  Notice that for $\pi_1:A\times A \to A$, $\inv{\pi_1}  = \Delta \pi_1 \inv{\pi_1} =\Delta \restr{\pi_1} = \Delta$.
   This gives $\restr{\inv{\pi_1}} = 1$ and therefore $\pi_1$ (and similarly, $\pi_0$) is an
   isomorphism.
 
@@ -195,7 +194,7 @@ and thus, is a very restrictive notion.
 \end{proof}
 
 \begin{corollary}
-  \X\ is a inverse category with restriction products if and only if Total($\spl{r}{\X}$) is a meet preorder.
+  \X\ is an inverse category with restriction products iff Total($\spl{}{\X}$) is a meet preorder.
 \end{corollary}
 
 \begin{proof}
@@ -203,12 +202,16 @@ and thus, is a very restrictive notion.
   maps is compatible. As total compatible maps are equal, there is at most
   one map between any two objects. Hence, Total(\X) is a preorder with the meet being the product.
 
-  Similarly, from \cite{cockett2002:restcategories1} and \cite{cockettlack2004:restcategories3},
-  Total($\spl{r}{\X}$) is an inverse category and has products and is therefore also a meet
-  preorder. This shows the ``only if'' side of the corollary.
+  By Lemma~\ref{lem:the_idempotent_splitting_of_an_inverse_category_is_an_inverse_category} and
+  Lemma~\ref{lem:inverse_idempotents_are_restriction_idempotents}, $\spl{}{\X}$, the split of \X
+  over all idempotents, is an inverse category.
 
-  For the other direction, if Total($\spl{r}{\X}$) is a meet preorder, define the product as the
-  meet of the maps and the terminal object as the supremum of all maps.
+  Similarly, from \cite{cockett2002:restcategories1} and \cite{cockettlack2004:restcategories3},
+  Total($\spl{}{\X}$) has products and is therefore also a meet  preorder. This shows the ``only
+  if'' side of the corollary.
+
+  For the other direction, if Total($\spl{}{\X}$) is a meet preorder, then the product is the
+  meet of the maps and the terminal object is the supremum of all maps.
 \end{proof}
 
 \begin{corollary}
@@ -245,17 +248,26 @@ and thus, is a very restrictive notion.
 
 \begin{definition}\label{def:inverse_product}
   An \emph{inverse product} on an inverse category \X is given by a symmetric tensor product, based
-  on a restriction  bi-functor, $\_\*\_:\X\times\X \to \X$. The tensor makes \X a  symmetric
-  monoidal category and there is a natural  ``semi-Frobenius'' diagonal map, $\Delta$ which is canonical.   If an
-  inverse category has inverse products, it is called  a \emph{discrete inverse category}.
-
+  on a restriction  bi-functor, $\_\*\_:\X\times\X \to \X$. Recall the structural maps of the tensor
+  are the following  natural isomorphisms:
+  \begin{align*}
+    1 &: \boldsymbol{1}\to \X \\
+    \usl &: 1 \* A \xrightarrow{\cong} A
+    &\usr &: A \* 1 \xrightarrow{\cong} A\\
+    a_{\*} &: (A \* B) \* C \xrightarrow{\cong} A \* (B \* C)
+    &c_{\*} &: A \* B \xrightarrow{\cong} B \* A.
+  \end{align*}
+  The tensor makes \X a  symmetric  monoidal category as per Definition \ref{symmetricmonoidalcat}
+  and there is a natural  diagonal map $\Delta$, which is canonical. If an inverse category has
+  inverse products, it is called  a \emph{discrete inverse category}.
 
   The diagonal map $\Delta_A:A \to A\*A$ must be total and create a cosemigroup. It
-  must satisfy the following diagrams:
+  must satisfy Diagrams~\ref{dia:delta-is-cocommutative}, \ref{dia:delta-is-coassociative},
+  \ref{dia:delta-is-semi-frobenius} and \ref{dia:delta-is-canonical} below.
  % in Figures~\ref{fig:inverse_product_cocommutativity},
  %  \ref{fig:inverse_product_coassociativity}, \ref{fig:inverse_product_exchange}, and
  %  \ref{fig:inverse_product_frobenius}.
-  \[
+  \begin{equation}
     \xymatrix @!0 @C=90pt @R=35pt{
       A \ar[dr]_{\Delta} \ar[r]^{\Delta} &
       A \* A \ar[d]^{c_{\*}}\\
@@ -264,12 +276,12 @@ and thus, is a very restrictive notion.
     \xymatrix @!0 @C=90pt @R=35pt{
       A \* A \ar[d]^{c_{\*}} \ar[r]^{\inv{\Delta}}  & A\\
       A \* A  \ar[ur]_{\inv{\Delta}}
-    }
-  \]
-\begin{center}Cocommutative and Commutative;\end{center}
+    }\label{dia:delta-is-cocommutative}
+  \end{equation}
+  \begin{center}Cocommutative and Commutative;\end{center}
 %\caption*{Cocommutative}\label{fig:inverse_product_cocommutativity}
 
-  \[
+  \begin{equation}
     \xymatrix @C=20pt @R=30pt{
       A \ar[rr]^{\Delta} \ar[d]_{\Delta} & &
       A \* A \ar[d]^{1\*\Delta}\\
@@ -281,14 +293,14 @@ and thus, is a very restrictive notion.
       A\*(A\*A) \ar[rr]^{1\*\idelta} \ar[d]_{\inv{a_\*}} && A\*A \ar[d]^{\idelta}\\
       (A\*A)\*A \ar[dr]_{\idelta\*1}&&A\\
      & A\*A \ar[ur]_{\idelta}
-    }
-  \]
-\begin{center}Coassociative and Associative;\end{center}
+    }\label{dia:delta-is-coassociative}
+  \end{equation}
+  \begin{center}Coassociative and Associative;\end{center}
 %\caption*{Coassociative and Associative}\label{fig:inverse_product_coassociativity}
 
 %\caption{Exchange}\label{fig:inverse_product_exchange}
 
-  \[
+  \begin{equation}
     \xymatrix @C=40pt @R=25pt{
       A \* A \ar[dd]_{(1\*\Delta) \inv{a_{\*}}} \ar[dr]^{\inv{\Delta}}
       \ar[rr]^{(\Delta \* 1) a_{\*}} & &
@@ -296,27 +308,27 @@ and thus, is a very restrictive notion.
       & A \ar[dr]^{\Delta} & \\
       (A \* A) \* A \ar[rr]_{\inv{\Delta} \* 1} & &
       A \* A
-    }
-  \]
-\begin{center}$\Delta$ is Frobenius.\end{center}
+    }\label{dia:delta-is-semi-frobenius}
+  \end{equation}
+  \begin{center}$\Delta$ is Semi-Frobenius.\end{center}
 %\caption{Frobenius}\label{fig:inverse_product_frobenius}
 If we define the map:
   \[
     \excs =  a_{\*}(1\*\inv{a_{\*}})(1\*(c_{\*}\*1))(1\* a_{\*})\inv{a_{\*}}): (A\*B)\*(C\*D) \to (A\*C) \* (B\*D)
   \]
 then we have:
-  \[
+  \begin{equation}
     \xymatrix @C=25pt @R=35pt{
       A \* B \ar[dr]_{\Delta}
       \ar[rr]^{\Delta \* \Delta} && (A \* A) \* (B \* B) \ar[dl]^{\excs}\\
       &(A \* B) \* (A \* B)
-    }
-  \]
-\begin{center}$\Delta$ is canonical.\end{center}
+    }\label{dia:delta-is-canonical}
+  \end{equation}
+  \begin{center}$\Delta$ is canonical.\end{center}
 
   Thus, $\Delta$ is a cocommutative, coassociative map which together with $\inv{\Delta}$ forms a
   special semi-Frobenius algebra. We use the prefix ``semi-'' since we are not requiring the unit laws
-  of a Frobenius algebra which will be discussed later in Definition~\ref{def:frobeniusalgebra}.
+  of a Frobenius algebra as presented in Definition~\ref{def:frobeniusalgebra}.
 \end{definition}
 
 Note also, cocommutativity implies commutativity, i.e., that $c_{\*}\inv{\Delta} = \inv{\Delta}$.
@@ -340,20 +352,9 @@ $(1\*\inv{\Delta})\inv{\Delta} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
 \end{align*}
 
 \begin{example}[\pinj is a discrete inverse category]\label{ex:pinj_is_a_discrete_inverse_category}
-  In the inverse category \pinj (see Example~\ref{ex:pinj_is_an_inverse_category}), suppose we add
-  the tensor given by the Cartesian product of sets. In detail, this means:
-  \begin{align*}
-    A \* B &= \{(a,b)| a\in A, b\in B\}\\
-    f \* g &= \{((a,c),(b,d)) | (a,b) \in f, (c,d) \in g\}\\
-    1 & = \{*\}\text{, a single element set.}
-  \end{align*}
-  The symmetric monoid isomorphisms are:
-    \begin{align*}
-      \usl &: \{(*,a)\} \mapsto \{a\}
-      &\usr &: \{(a,*)\} \mapsto \{a\}\\
-      a_{\*} &: \{((a,b),c)\} \mapsto \{(a,(b,c))\}
-      &c_{\*} &: \{(a,b)\} \mapsto \{(b,a)\}.
-    \end{align*}
+  In the inverse category \pinj (see Examples~\ref{ex:category_pinj} and
+  \ref{ex:pinj_is_an_inverse_category}), we saw in Example~\ref{ex:pinj-has-a-smt} that Cartesian
+  product is a symmetric tensor.
 
   Define $\Delta_A = \{(a,(a,a)) | a\in A\}$. Then \pinj is a discrete inverse category with the
   inverse product of $\*$. The required properties of cocommutativity, coassociativity and
@@ -1965,8 +1966,8 @@ to the right hand term of Equation~\ref{eq:idempotents-with-double-delta-nabla} 
 
 There are a variety of other closure properties:
 \begin{lemma}\label{lem:delta_nabla_maps_are_closed}
-  In a discrete inverse category \X, for a fixed object $A$, the set of maps $h:A\*Y\to A\* Z$ where
-  $h=\dmap{h}$ has the following properties:
+  In a discrete inverse category \X with the object $A$ define $\dmap{A}$ as the set of
+  maps $h:A\*Y\to A\* Z$ where $h=\dmap{h}$. Then $\dmap{A}$ has the following properties:
   \begin{enumerate}[{(}i{)}]
   \item It is closed under partial inverses;\label{lemitem:delta_nabla_1}
   \item it is closed under composition;\label{lemitem:delta_nabla_2}
@@ -2405,7 +2406,10 @@ rather than the required
   \infer{\X[A](X,G(Y))}{\X(F(X),Y)}.
 \]
 
-
+\begin{example}
+In \pinj, note that the slice over the object $\{*\}$ just gives us a category where the maps are in
+bijective correspondence with the maps of \Pinj, as $\{*\}$ is the identity for the inverse product.
+\end{example}
 % chapter inverse_categories (end)
 %%% Local Variables:
 %%% mode: latex

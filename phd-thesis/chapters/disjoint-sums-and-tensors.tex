@@ -2,10 +2,10 @@
 \chapter{Disjoint sums} % (fold)
 \label{chap:disjoint_sum_tensors}
 
-This chapter introduces the disjoint sum and shows how it may be used to define a tensor in an
-inverse category. Conversely, it goes on to then show how a tensor $\+$ may be used to create a disjointness
-relation and a disjoint join in an inverse category  --- at which point we can prove that $A\+B$ is
-a disjoint sum with respect to this structure.
+This chapter introduces the disjoint sum and shows how it may be used to define a symmetric monoidal
+tensor in an inverse category. Conversely, it goes on to then show how a tensor $\+$ may be used to
+create a disjointness relation and a disjoint join in an inverse category  --- at which point we can
+prove that $A\+B$ is a disjoint sum with respect to this structure.
 
 
 
@@ -14,21 +14,22 @@ a disjoint sum with respect to this structure.
 \section{Disjointness via a tensor}
 \label{sec:disjointness_via_a_tensor}
 
-The next objective is to characterize when a tensor provides a disjoint sum. The first step will be
-to show how a disjointness tensor, defined below, may be used to create a disjointness relation in
-an inverse category. This is done by first determining when it is possible for maps to work
-separately on the components of the tensor. This ability to separate the action of the maps will
-allow us to define when the restriction and range of functions are disjoint, and therefore when the
-maps are disjoint.
+The next objective is to characterize when a symmetric monoidal tensor provides a disjoint sum. The
+first step will be to show how a disjointness tensor, defined below, may be used to create a
+disjointness relation in an inverse category. This is done by first determining when it is possible
+for maps to work separately on the components of the tensor. This ability to separate the action of
+the maps will allow us to define when the restriction and range of functions are disjoint, and
+therefore when the maps are disjoint.
 
 Suppose \X is an inverse category  with a restriction zero, and $\+$ is a tensor product on $\X$.
-We are assuming the following naming for the standard monoidal tensor isomorphisms:
+As in Definition~\ref{symmetricmonoidalcat}, we are assuming the following naming for the standard
+monoidal tensor isomorphisms:
 \begin{align*}
-   \upl &: 0 \+ A \to A &
-   \upr &: A \+ 0 \to A\\
-   a_\+ &: (A \+ B) \+ C \to A \+ (B \+ C) &
-   c_\+ &: A \+ B \to B \+ A.
- \end{align*}
+  \upl &: 0 \+ A \to A &
+  \upr &: A \+ 0 \to A\\
+  a_\+ &: (A \+ B) \+ C \to A \+ (B \+ C) &
+  c_\+ &: A \+ B \to B \+ A.
+\end{align*}
 
 \begin{definition}\label{def:disjointness_tensor}
   Given an inverse category \X with restriction zero and a symmetric monoidal tensor
@@ -64,7 +65,7 @@ We are assuming the following naming for the standard monoidal tensor isomorphis
   \begin{align*}
     \upl &:0\+A \to A &(a,2) \mapsto a,\\
     \upr &:A\+0 \to A &(a,1) \mapsto a,\\
-    a_\+ &: (A\+B)\+C &((a,1),1) \mapsto (a,1)\\
+    a_\+ &: (A\+B)\+C \to A\+(B\+C)&((a,1),1) \mapsto (a,1)\\
      &  &((b,2),1) \mapsto ((b,1),2)\\
      &  &(c,2) \mapsto ((c,1),2),\\
     c_\+ &: A\+B \to B\+ A & (a,1) \mapsto (a,2)\\
@@ -169,7 +170,8 @@ remainder of this thesis.
       \item $\cpb (f\+ g) \icpb = g$.
     \end{enumerate}
   \end{multicols}
-  Additionally, if $t$ is a map such that for $i \in \{1,2\}$,
+  Additionally, if $t:A\+B \to C\+D$ is a map such that there are maps $t_1:A\to C$ and $t_2:B\to D$
+  with:
   \[
     \cp{i} t \icp{j} =
     \begin{cases}
@@ -216,11 +218,13 @@ remainder of this thesis.
   when $\rst{f} \meet \rst{g} = 0$, as it must be a set function, i.e., $f\tjdown g$ of some element
   $a$ must be either $(b,1)$ when  $f(a) = b\in B$ or $(c,2)$ when $g(a) = c\in C$.
 
-  Similarly, $h\tjup k$ can only exist when $\rg{h} \meet \rg{k} = 0$.
+  Similarly, $h\tjup k$ can only exist when $\rg{h} \meet \rg{k} = 0$, otherwise $h\tjup k$ would
+  not be injective.
 \end{example}
 
 The partial pairing and copairing of Definition~\ref{def:up_triangle_and_down_triangle} will provide
-our mechanism for defining disjointness and eventually the disjoint join of maps. The existence of
+our mechanism for defining disjointness and eventually the disjoint join of maps. As we are
+operating in an inverse category, the existence of
 the pairing map $f\tjdown g$ ensures the restrictions of $f$ and $g$ are disjoint, while
 the copairing map $f\tjup d$ exists only when the ranges of $f$ and $g$ are disjoint.
 
@@ -237,12 +241,12 @@ two operations $\tjdown$ and $\tjup$:
     \item When $f\tjdown g$ exists, $\rst{f}(f\tjdown g) = f \tjdown 0$, $\rst{f}g = 0$,
       $\rst{g}(f \tjdown g) = 0 \tjdown g$ and $\rst{g}f = 0$.
       \label{lemitem:l_r_rst_orthogonal_to_zero}
-    \item Dually to the previous item, when $f\tjup g$ exists,
+    \item Dually to \ref{lemitem:l_r_rst_orthogonal_to_zero}, when $f\tjup g$ exists,
       $(f\tjup g)\rg{f} = f \tjup 0$, $g\rg{f} = 0$, $(f \tjup g)\rg{g} = 0 \tjup g$ and
       $f\rg{g} = 0$.\label{lemitem:l_r_rg_orthogonal_to_zero}
     \item When $f\tjdown g$ exists, $f\tjdown g (h\+k) = f h \tjdown g k$.
       \label{lemitem:l_r_l_pull_right}
-    \item Dually, when $f \tjup g$ exists, $(h \+ k) f \tjup g = h f \tjup k g$.
+    \item Dually to \ref{lemitem:l_r_l_pull_right}, when $f \tjup g$ exists, $(h \+ k) f \tjup g = h f \tjup k g$.
       \label{lemitem:l_r_r_pull_left}
     \item When $f \tjdown g$ exists, then $h(f \tjdown g) = h f \tjdown h g$ and when $f \tjup g$
       exists, $(f \tjup g)h = f h \tjup g h$.
@@ -459,6 +463,10 @@ existence of our pairing and copairing maps:
   \rg{g} = 0$. But this agrees with the initial definition of disjointness $(\perp)$ in \pinj from
   Example~\ref{ex:pinj_has_a_disjointness_relation} and hence $\tperp$ is the same relation as
   $\perp$ in \pinj.
+
+  Note that this is due to the actual choices of the tensor and $\perp$. If we had initially chosen
+  a different $\perp$, such as $\perp_0$, where $f\perp_0 g$ iff $f$ or $g$ are $\zeroob$, then
+  $\tperp \ne \perp_0$.
 \end{example}
 
 \section{Disjoint joins via a tensor}
@@ -501,7 +509,7 @@ Therefore, we must add one more assumption regarding our tensor in order to defi
   vice versa. In such a case $\alpha$ exists and is defined as:
   \[
      \alpha(a) = \begin{cases}
-       (x,1) & f(a) = (x,1)\in X\+Y \text{ and }g(a) = (x,1) in X\+Z\\
+       (x,1) & f(a) = (x,1)\in X\+Y \text{ and }g(a) = (x,1) \in X\+Z\\
        (y,2) & f(a) = (y,2)\in X\+Y \text{ and }g(a) \undef\\
        (z,3) & g(a) = (z,2)\in X\+Z \text{ and }f(a) \undef.
        \end{cases}
@@ -591,6 +599,7 @@ $f \tjoin g = \rst{f}\tjdown\rst{g} (f\+g) \rg{f}\tjup\rg{g}$. The proof that th
 join will follow  after giving an example and a lemma detailing the properties of $\tjoin$.
 
 For reference, the map $f \tjoin g$ may be visualized as follows:
+%todo add equation label
 \[
   \xymatrix@C+20pt @R+10pt{
     &A
@@ -606,10 +615,10 @@ For reference, the map $f \tjoin g$ may be visualized as follows:
 Using Lemma~\ref{lem:properties_of_tjdown_and_tjup}, this may be rewritten in a variety of
 equivalent ways:
 \begin{align*}
-  f \tjoin g &= \rst{f}\tjdown\rst{g} (f\+g) \rg{f}\tjup\rg{g} \\
-  &= f \tjdown g\, \rg{f}\tjup\rg{g}\\
-  & = \rst{f}\tjdown\rst{g}\,  f\tjup g\\
-  & = f \tjdown g (\inv{f}\+\inv{g})f\tjup g.
+  f \tjoin g &= (\rst{f}\tjdown\rst{g}) (f\+g)( \rg{f}\tjup\rg{g}) \\
+  &= (f \tjdown g)\, (\rg{f}\tjup\rg{g})\\
+  & = (\rst{f}\tjdown\rst{g})\,  (f\tjup g)\\
+  & = (f \tjdown g) (\inv{f}\+\inv{g})(f\tjup g).
 \end{align*}
 
 In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
@@ -617,7 +626,7 @@ In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 
 \begin{example}[Disjoint sum tensor in \pinj]\label{ex:tensor_join_in_pinj}
   Using the third equality of those above for $f\tjoin g$, i.e.,
-  $\rst{f}\tjdown\rst{g}\,  f\tjup g$, calculate:
+  $(\rst{f}\tjdown\rst{g})\,  (f\tjup g)$, calculate:
   \begin{equation}
     \rst{f}\tjdown\rst{g}(a) =
     \begin{cases}
@@ -752,9 +761,9 @@ Next, we show that the disjoint sum tensor is universal with respect to the disj
   Given an inverse category \X with a disjoint sum tensor $\+$, then $\+$ preserves the disjoint
   join. That is,
   \begin{align}
-    f \cdperp g, \ h \cdperp k&\text{ implies } f\+ h \cdperp g \+ k,
+    f \tperp g, \ h \tperp k&\text{ implies } f\+ h \tperp g \+ k,
     \label{eq:disjoint_sum_preserve_perp}\\
-    f \cdperp g, \ h \cdperp k &\text{ implies } (f\djoin g)\+(h\djoin k) = (f \+h )\djoin (g\+k).
+    f \tperp g, \ h \tperp k &\text{ implies } (f\tjoin g)\+(h\tjoin k) = (f \+h )\tjoin (g\+k).
     \label{eq:disjoint_sum_preserve_join}
   \end{align}
 \end{lemma}
@@ -780,6 +789,9 @@ Next, we show that the disjoint sum tensor is universal with respect to the disj
 \end{proof}
 \section{Disjoint sums via a disjoint sum tensor}
 \label{sec:disjoint-sums-via-a-disjoint-sum-tensor}
+
+%todo - can we give separating examples of tensor - not disjointness, tensor disjointness but not
+%disjoint sum?
 
 The significant amount of technical machinery of Section~\ref{sec:disjointness_via_a_tensor} and
 Section~\ref{sec:disjoint_joins_via_a_tensor} now allow us to show that a disjoint sum tensor will
@@ -820,6 +832,7 @@ Finally, to complete the cycle:
   $\+$ was a symmetric monoidal tensor. Therefore, it only remains to show that it is a disjointness
   tensor and that it satisfies Definition~\ref{def:disjoint_sum_tensor}, i.e., is a disjoint sum
   tensor as well.
+%todo - are the references correct here?
 
   First note that we immediately have that it is a   disjointness tensor as:
     \begin{enumerate}[{(}i{)}]
