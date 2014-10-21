@@ -163,6 +163,21 @@ The property of being an inverse category is preserved by splitting.
   is, $\inv{E_{[f,g]}} = E_{[g,f]}$. The total maps are those where $f$ is a bijection.
 \end{example}
 
+\begin{example}[Partial isometries]\label{ex:partial-isometries-are-inverse-cats}
+  In a finite dimensional Hilbert space, endomaps which are self-adjoint and idempotent are called
+  \emph{projectors}. Endomaps in \fdh also form a lattice where the meet of two maps, $f\wedge g$
+  is given by $\lim_{n\to\infty} (f g)^n$.
+
+   If we are given a map $f:H_1\to H_2$ between finite dimensional Hilbert spaces,
+  then when $f f^{*}:H_1\to H_1$ is a projector, then $f$ is called a \emph{partial isometry}
+  \cite{hines2010structure}. In general, partial isometries are not closed under
+  composition. However, if composition of $f:H_1 \to H_2$ and $g:H_2 \to H_3$ is defined as:
+  \[
+      f g = f (f^* f \wedge g g^*) g,
+  \]
+  then Hilbert spaces with partial isometries form an inverse category. This is shown in Theorem~9.5.4
+  of \cite{hines2010structure}.
+\end{example}
 \section{Inverse categories with restriction products} % (fold)
 \label{sec:inverse_categories_with_restriction_products}
 We start by showing that an inverse category with restriction products is a restriction preorder
