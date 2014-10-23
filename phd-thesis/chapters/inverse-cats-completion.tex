@@ -247,7 +247,7 @@ Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$ and $\rg{f}h\rg{g} \le 
     }
   \]
   Similarly, for Equation~\ref{eq:cc-identity-2}, $\restr{\inv{\usr} (f \*1)  a_{\*}} = \restr{f}$
-  by the naturality of $\inv{\usr}$ and Lemma~\ref{lem:restrictionvarious}. The diagram
+  by Lemma~\ref{lem:restrictionvarious} and $\inv{\usr}$ is natural. The diagram
   \[
     \xymatrix @C=50pt @R=45pt{
       A \ar@{=}[dd] \ar[r]^{\inv{\usr}} \ar[dr]_{f}
@@ -260,7 +260,7 @@ Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$ and $\rg{f}h\rg{g} \le 
   \]
   shows our mediating map is $1 \* \usr$.
 
-  Hence we have shown both Equation~\ref{eq:cc-identity-1} and Equation~\ref{eq:cc-identity-2}
+  Hence we have shown both Equations~\ref{eq:cc-identity-1} and~\ref{eq:cc-identity-2}
   hold and therefore $(\inv{\usr},1)$ is the identity map in \Xt.
 \end{proof}
 
@@ -963,13 +963,16 @@ invertible maps in $\Xt$ are the equivalence class of the form  $(f \inv{\usr},1
 
 Thus, we may now draw out the relationship between Cartesian restriction categories, discrete
 Cartesian restriction categories and discrete inverse categories:
-%todo make this a figure.... or at least label it.
+\begin{figure}[!htbp]
 \[
   \xymatrix{
     \text{\textbf{DCartRest}} \ar@{^{(}->}[rr]^{\top} && \text{\textbf{CartRest}} \ar@/_15pt/[ll]\\
     \text{\textbf{DInv}}\ar@{<->}[u]
   }
 \]
+\caption{Functors between Cartesian restriction categories and inverse
+  categories.}\label{fig:dcartrest-to-cartrest-to-dinv}
+\end{figure}
 where the arrow from discrete Cartesian restriction categories to Cartesian restriction categories
 is the standard embedding and the reverse arrow picks out the discrete objects in the Cartesian
 restriction category. Of course, the terminal object is always discrete, as noted in
