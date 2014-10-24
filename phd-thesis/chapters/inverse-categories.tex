@@ -163,6 +163,21 @@ The property of being an inverse category is preserved by splitting.
   is, $\inv{E_{[f,g]}} = E_{[g,f]}$. The total maps are those where $f$ is a bijection.
 \end{example}
 
+\begin{example}[Partial isometries]\label{ex:partial-isometries-are-inverse-cats}
+  In a finite dimensional Hilbert space, endomaps which are self-adjoint and idempotent are called
+  \emph{projectors}. Endomaps in \fdh also form a lattice where the meet of two maps, $f\wedge g$
+  is given by $\lim_{n\to\infty} (f g)^n$.
+
+   If we are given a map $f:H_1\to H_2$ between finite dimensional Hilbert spaces,
+  then when $f f^{*}:H_1\to H_1$ is a projector, then $f$ is called a \emph{partial isometry}
+  \cite{hines2010structure}. In general, partial isometries are not closed under
+  composition. However, if composition of $f:H_1 \to H_2$ and $g:H_2 \to H_3$ is defined as:
+  \[
+      f g = f (f^* f \wedge g g^*) g,
+  \]
+  then Hilbert spaces with partial isometries form an inverse category. This is shown in Theorem~9.5.4
+  of \cite{hines2010structure}.
+\end{example}
 \section{Inverse categories with restriction products} % (fold)
 \label{sec:inverse_categories_with_restriction_products}
 We start by showing that an inverse category with restriction products is a restriction preorder
@@ -2408,8 +2423,80 @@ rather than the required
 
 \begin{example}
 In \pinj, note that the slice over the object $\{*\}$ just gives us a category where the maps are in
-bijective correspondence with the maps of \Pinj, as $\{*\}$ is the identity for the inverse product.
+bijective correspondence with the maps of \pinj, as $\{*\}$ is the identity for the inverse product.
 \end{example}
+
+\subsection{The interpretation of the slice construction in resource theory}
+\label{subsec:interpretation-of-the-slice}
+Although resource theory is generally not in the scope of this thesis, the slice construction of
+this section may be examined from the viewpoint of resource theory as  given in Coecke, Fritz and
+Spekkens\cite{coecke2014mathematical}. Coecke, Fritz and Spekkens describe a mathematical theory of
+resources inspired, in part, by the pragmatic approach exemplified in chemistry --- understanding
+something means being able to make use of it. Specifically in chemistry, this means understanding
+chemicals as resources.  The way to model this mathematically is with a symmetric monoidal category:
+
+\begin{definition}[\cite{coecke2014mathematical}, Definition 2.1]\label{def:resource-theory}
+  A \emph{resource theory} is a symmetric monoidal category $(\R, \*)$, where the objects
+  $\objects{\R}$ represent the actual resources and the morphisms $f:A\to B$ represent the
+  transformation of resource $A$ into resource $B$ which can be done with no cost.
+\end{definition}
+
+In this definition, composition of maps then represent sequential composition of transformation, the
+operation $\*$ represents parallel composition of transformation and the identity $I$ of $\*$
+denotes an empty resource.
+
+An important question in such a theory is ``Given a resource $A$, is it possible to transform it to
+a resource $B$?'' Of course, answering such a question will depend upon the details of the category
+and the difficulty of answering such a question may vary greatly. This may be reduced to a question
+of resource convertibility:
+
+\begin{definition}[\cite{coecke2014mathematical}, Definition 4.1]\label{def:resource-convertibility}
+  A \emph{theory of resource convertibility} $(R,+,\succeq,0)$ is a set $R$ with a binary operation
+  $+$, element $0\in R$ such that when $a\simeq b \definedas a \succeq b$ and $b \succeq a$, then
+  \[
+    a+(b+c) \simeq (a+b)+c \qquad a+b\simeq b+a \qquad a+0 \simeq 0 +a
+  \]
+  and
+  \[
+     a\succeq b,\ c\succeq d \implies a+c \succeq b+d.
+  \]
+\end{definition}
+
+When $\R$ is a resource theory, then if we set $R \definedas \objects{\R}$, $+\definedas \*$, $a
+\succeq b \definedas \R(a,b) \neq \emptyset$ and $0\definedas I$, then $(R,+,\succeq,0)$ is a theory
+of resource convertibility.
+
+From this, it is possible to define what is meant by a catalyst:
+\begin{definition}[\cite{coecke2014mathematical}, Definition 4.8]\label{def:catalyst}
+  Given $R$ is a theory of resource convertibility, then a resource $a\in R$ is a \emph{catalyst}
+  for $b,c\in R$ when $b\nsucceq c$ but $a+b \succeq a+c$.
+\end{definition}
+
+Lifting this definition to a resource theory says the object $A$ is a catalyst for objects $B,C$
+when there is a map $f: A\*B \to A\*C$, but no map $g:B\to C$. We could call such maps $f$
+\emph{catalytic transformations} and objects \emph{catalytic objects}.
+
+Here, we begin to see the connection to the slice category in a discrete inverse category. As a
+discrete inverse category is also a symmetric monoidal category, it is therefore also a resource
+theory and hence may generate a theory of resource convertibility.
+
+However, given $\X$ is a discrete inverse category, the slice category $\X[A]$ does not correspond
+directly to the catalytic transformations as defined above for two reasons:
+\begin{enumerate}[{(}i{)}]
+  \item For two objects $B,C$ in $\X[A]$ with $f:B\to C$ in $\X[A]$, there is no guarantee that we
+    do \emph{not} have a map  $g:B\to C$ in \X.
+  \item There may be maps $f:A\+B \to A\+C$ in \X, which are not in $\X[A]$ since they do not
+    preserve $A$, i.e., $f \in \dmap{A}$.
+\end{enumerate}
+
+Continuing with the inspiration of chemistry, we note that $\X[A]$ may perhaps be considered as an
+alternate way of describing  ``the catalytic transformations'' for $A$. In chemistry, one of the
+requirements is that the catalyst is not changed by the transformation in any way. The theory of
+resource convertibility from Definition~\ref{def:resource-convertibility} handles this by
+considering the resource as an indivisible item. When one moves to a resource theory, it may be
+desirable to have a way of describing that the catalytic object is not changed in any way. One way
+of accomplishing this is to require the catalytic transformation be in $\dmap{A}$.
+
 % chapter inverse_categories (end)
 %%% Local Variables:
 %%% mode: latex

@@ -599,8 +599,8 @@ $f \tjoin g = \rst{f}\tjdown\rst{g} (f\+g) \rg{f}\tjup\rg{g}$. The proof that th
 join will follow  after giving an example and a lemma detailing the properties of $\tjoin$.
 
 For reference, the map $f \tjoin g$ may be visualized as follows:
-%todo add equation label
-\[
+
+\begin{equation}
   \xymatrix@C+20pt @R+10pt{
     &A
       & B  \ar[dr]^{\rg{f}} \ar[d]_{\cpa}\\
@@ -609,24 +609,23 @@ For reference, the map $f \tjoin g$ may be visualized as follows:
         \ar[r]^{f\+g}
        &B\+B \ar@{.>}[r]^{\rg{f}\tjup\rg{g}} & B.\\
     & A & B\ar[ur]_{\rg{g}} \ar[u]^{\cpb}
-  }
-\]
+  }\label{eq:definition-of-f-tjoin-g}
+\end{equation}
 
 Using Lemma~\ref{lem:properties_of_tjdown_and_tjup}, this may be rewritten in a variety of
 equivalent ways:
-\begin{align*}
-  f \tjoin g &= (\rst{f}\tjdown\rst{g}) (f\+g)( \rg{f}\tjup\rg{g}) \\
-  &= (f \tjdown g)\, (\rg{f}\tjup\rg{g})\\
-  & = (\rst{f}\tjdown\rst{g})\,  (f\tjup g)\\
-  & = (f \tjdown g) (\inv{f}\+\inv{g})(f\tjup g).
-\end{align*}
+\begin{align}
+  f \tjoin g &= (\rst{f}\tjdown\rst{g}) (f\+g)( \rg{f}\tjup\rg{g}) \label{eq:f-tjoin-g-1}\\
+  &= (f \tjdown g)\, (\rg{f}\tjup\rg{g}) \label{eq:f-tjoin-g-2}\\
+  & = (\rst{f}\tjdown\rst{g})\,  (f\tjup g) \label{eq:f-tjoin-g-3}\\
+  & = (f \tjdown g) (\inv{f}\+\inv{g})(f\tjup g). \label{eq:f-tjoin-g-4}
+\end{align}
 
 In particular, note that $\rst{f}\tjoin \rst{g} = (\rst{f} \tjdown \rst{g})
 (\rst{f}\tjup\rst{g})$ as $\rg{\rst{g}} = \rst{g}$.
 
 \begin{example}[Disjoint sum tensor in \pinj]\label{ex:tensor_join_in_pinj}
-  Using the third equality of those above for $f\tjoin g$, i.e.,
-  $(\rst{f}\tjdown\rst{g})\,  (f\tjup g)$, calculate:
+  Using Equation~\ref{eq:f-tjoin-g-3} for $f\tjoin g$,  calculate:
   \begin{equation}
     \rst{f}\tjdown\rst{g}(a) =
     \begin{cases}
@@ -832,7 +831,6 @@ Finally, to complete the cycle:
   $\+$ was a symmetric monoidal tensor. Therefore, it only remains to show that it is a disjointness
   tensor and that it satisfies Definition~\ref{def:disjoint_sum_tensor}, i.e., is a disjoint sum
   tensor as well.
-%todo - are the references correct here?
 
   First note that we immediately have that it is a   disjointness tensor as:
     \begin{enumerate}[{(}i{)}]
