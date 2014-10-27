@@ -918,8 +918,9 @@ We may also consider \CFrob as a bicategory\cite{leinster1998basic}, with the fo
 \begin{enumerate}[{(}i{)}]
   \item Objects of the bicategory are the objects of \CFrob, that is, the objects of the underlying
   symmetric monoidal category \X.
-  \item The hom-sets $\CFrob(A,B)$ are each categories, with the objects being the elements of the
-    hom-set and the maps being the natural transformations between the hom-set elements.
+  \item The hom-sets $\CFrob(A,B)$ are each categories, with the objects being the maps between $A$
+    and $B$ (elements of the hom-set) and the maps being the partial ordering given by the
+    restriction as shown in Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}.
   \item The composition functor is based upon the composition in \X. The identity functor gives us
     the identity map in each hom-set.
   \item The associativity and identity transforms are identity transforms, hence this is a 2-category.
@@ -930,11 +931,9 @@ With this data, we see that the Frobenius structure of $(A,\nabla,\eta,\Delta,\e
 satisfies the further condition that each object is \emph{discrete} and therefore is considered a
 ``bicategory of relations'' as defined in \cite{carboni1987cartesian}, Defintion~2.1.
 Carboni and Walters describe a number of
-consequences resulting when the base bicategory is locally posetal. Note we are not assuming this
-restriction in the construction of \CFrob.
+consequences resulting when the base bicategory is locally posetal.
 
-\begin{remark}
-Additionally, Coecke, Paquette and Pavlovi\'c in  \cite{coecke08classical}, model quantum and
+Coecke, Paquette and Pavlovi\'c in  \cite{coecke08classical}, model quantum and
 classical computations in a $\dagger$-symmetric monoidal category $\cD$. The basic definitions for this
 include a compact structure, a quantum structure and a classical structure:
 
@@ -969,9 +968,9 @@ Note that $A$ is self-dual in definition \ref{def:quantumstructure}.
   Frobenius algebra.
 \end{definition}
 
-These definitions allow the creation of categories whose objects are aforementioned quantum or
-classical structures. The creation of these categories and the use of the classical structure
-inspired the choice made in the section to examine \CFrob.
+These definitions allow the creation of categories whose objects are quantum or classical
+structures. The creation of these categories and the use of the classical structure inspired the
+choice made in the section to examine \CFrob.
 \end{remark}
 
 \begin{remark}

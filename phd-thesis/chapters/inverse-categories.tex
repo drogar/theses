@@ -2473,8 +2473,8 @@ From this, it is possible to define what is meant by a catalyst:
 \end{definition}
 
 Lifting this definition to a resource theory says the object $A$ is a catalyst for objects $B,C$
-when there is a map $f: A\*B \to A\*C$, but no map $g:B\to C$. We could call such maps $f$
-\emph{catalytic transformations} and objects \emph{catalytic objects}.
+when there is a map $f: A\*B \to A\*C$, but no map $g:B\to C$. We might call such maps $f$,
+\emph{catalytic transformations} and objects $A$, \emph{catalytic objects}.
 
 Here, we begin to see the connection to the slice category in a discrete inverse category. As a
 discrete inverse category is also a symmetric monoidal category, it is therefore also a resource
@@ -2486,7 +2486,7 @@ directly to the catalytic transformations as defined above for two reasons:
   \item For two objects $B,C$ in $\X[A]$ with $f:B\to C$ in $\X[A]$, there is no guarantee that we
     do \emph{not} have a map  $g:B\to C$ in \X.
   \item There may be maps $f:A\+B \to A\+C$ in \X, which are not in $\X[A]$ since they do not
-    preserve $A$, i.e., $f \in \dmap{A}$.
+    preserve $A$.
 \end{enumerate}
 
 Continuing with the inspiration of chemistry, we note that $\X[A]$ may perhaps be considered as an
@@ -2495,7 +2495,8 @@ requirements is that the catalyst is not changed by the transformation in any wa
 resource convertibility from Definition~\ref{def:resource-convertibility} handles this by
 considering the resource as an indivisible item. When one moves to a resource theory, it may be
 desirable to have a way of describing that the catalytic object is not changed in any way. One way
-of accomplishing this is to require the catalytic transformation be in $\dmap{A}$.
+of accomplishing this is to identify a subcategory of ``reversible'' transformations an then to
+require the catalytic transformation be in $\X[A]$.
 
 % chapter inverse_categories (end)
 %%% Local Variables:

@@ -18,7 +18,7 @@ an inverse category with disjoint sums and that $\X$ embeds within this category
 
 The types of matrices allowed in the matrix category are subject to certain constraints:
 \begin{definition}\label{def:disjoint_sum_matrix}
-  Suppose we have \X is an inverse category with disjoint joins. Then a \emph{disjoint sum matrix}
+  Suppose \X is an inverse category with disjoint joins, then a \emph{disjoint sum matrix}
   in \X is a matrix of maps $[f_{i j}]$ where $i \in \{1,\ldots, n\}$ and $j \in \{1,\ldots, m\}$ with
   $f_{i\jay}:A_i \to B_\jay$ which satisfy the two conditions:
   \begin{align}
@@ -550,11 +550,23 @@ The map from $0$ in the category corresponds to the $0$-dimensional matrix,
   If $\X$ is an inverse category with disjoint sums, then it is a unique decomposition category.
 \end{corollary}
 
+The fact that we get a unique decomposition category is important as Proposition 4.0.11 of
+\cite{haghverdi:2000phd} gives a formula for computing the trace, when it exists. In a unique
+decomposition category, for a function $f:X\+U \to Y\+U$, which may be represented by the matrix
+\[
+   f =  \begin{bmatrix}
+     f_{11} & f_{12}\\
+     f_{21} & f_{22}
+  \end{bmatrix}
+\]
+the trace is given by the formula:
+\begin{equation}
+  Tr^{U}_{X,Y}(f) = f_{11} +\sum_{n=0}^{\infty}f_{12}f_{22}^n f_{21},\label{eq:trace}
+\end{equation}
+ whenever this sum exists.
 
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "../phd-thesis"
-%%% End:
+Therefore, to show an inverse category with a disjoint sum has a trace, we would simply need to show
+the conditions for which the sum in Equation~\ref{eq:trace} exists.
 
 %%% Local Variables:
 %%% mode: latex
