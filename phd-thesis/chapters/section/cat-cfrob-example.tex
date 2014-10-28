@@ -921,24 +921,29 @@ We may also consider \CFrob as a bicategory\cite{leinster1998basic}, with the fo
   \item The hom-sets $\CFrob(A,B)$ are each categories, with the objects being the maps between $A$
     and $B$ (elements of the hom-set) and the maps being the partial ordering given by the
     restriction as shown in Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}.
-  \item The composition functor is based upon the composition in \X. The identity functor gives us
-    the identity map in each hom-set.
-  \item The associativity and identity transforms are identity transforms, hence this is a 2-category.
+  \item The composition functor is based upon the composition in \X and by
+    Lemma~\ref{lem:restriction_cats_are_partial_order_enriched} we have that $f \le g$, $h\le k$
+    gives $f h \le g k$. The identity functor $I_A:1\to \CFrob(A,A)$ maps to the identity map in
+    each hom-set.
+  \item The associativity and identity transforms are identities, i.e. $f(g h) = (f g) h$ and $f I_A
+    = f = I_A f$, hence this is a 2-category.
 \end{enumerate}
 With this data, we see that the Frobenius structure of $(A,\nabla,\eta,\Delta,\epsilon)$ ensure that
 \CFrob is actually a Cartesian bicategory as defined in Carboni and Walters
 \cite{carboni1987cartesian}. Moreover, as we have $\nabla \Delta = (\Delta \*1) (1\* \nabla)$, this
 satisfies the further condition that each object is \emph{discrete} and therefore is considered a
-``bicategory of relations'' as defined in \cite{carboni1987cartesian}, Defintion~2.1.
-Carboni and Walters describe a number of
-consequences resulting when the base bicategory is locally posetal.
+``bicategory of relations'' as defined in \cite{carboni1987cartesian}, Definition~2.1.
+Carboni and Walters describe a number of consequences resulting when the base bicategory is locally
+posetal.
 
-Coecke, Paquette and Pavlovi\'c in  \cite{coecke08classical}, model quantum and
-classical computations in a $\dagger$-symmetric monoidal category $\cD$. The basic definitions for this
-include a compact structure, a quantum structure and a classical structure:
+Frobenius algebras are not the only structure of interest when considering symmetric monoidal
+categories. Coecke, Paquette and Pavlovi\'c in  \cite{coecke08classical}, model quantum and
+classical computations in a $\dagger$-symmetric monoidal category $\cD$. Their basic definitions for
+include a compact structure, a quantum structure and a classical structure, that latter of which is
+a special Frobenius algebra:
 
 \begin{definition}\label{def:compact_structure}
-  A compact structure on an object $A$ in the category $\cD$ is given by the object $A$, an object
+  A \emph{compact structure} on an object $A$ in the category $\cD$ is given by the object $A$, an object
   $A^{*}$ called its \emph{dual} and the maps $\eta:I \to A^{*}\* A$, $\epsilon: A\* A^{*} \to I$
   such that the diagrams
   \[
@@ -970,8 +975,8 @@ Note that $A$ is self-dual in definition \ref{def:quantumstructure}.
 
 These definitions allow the creation of categories whose objects are quantum or classical
 structures. The creation of these categories and the use of the classical structure inspired the
-choice made in the section to examine \CFrob.
-\end{remark}
+choice made in this section to examine \CFrob.
+
 
 \begin{remark}
   For an alternate way of using inverse categories to describe quantum computation, refer to
