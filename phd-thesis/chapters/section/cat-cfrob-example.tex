@@ -921,7 +921,7 @@ We may also consider \CFrob as a bicategory\cite{leinster1998basic}, with the fo
   \item The hom-sets $\CFrob(A,B)$ are each categories, with the objects being the maps between $A$
     and $B$ (elements of the hom-set) and the maps being the partial ordering given by the
     restriction as shown in Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}.
-  \item The composition functor is based upon the composition in \X and by
+  \item The composition functor is based upon the composition in \X. By
     Lemma~\ref{lem:restriction_cats_are_partial_order_enriched} we have that $f \le g$, $h\le k$
     gives $f h \le g k$. The identity functor $I_A:1\to \CFrob(A,A)$ maps to the identity map in
     each hom-set.
@@ -937,7 +937,7 @@ Carboni and Walters describe a number of consequences resulting when the base bi
 posetal.
 
 Frobenius algebras are not the only structure of interest when considering symmetric monoidal
-categories. Coecke, Paquette and Pavlovi\'c in  \cite{coecke08classical}, model quantum and
+categories. Coecke, Paquette and Pavlovi\'c In  \cite{coecke08classical}, model quantum and
 classical computations in a $\dagger$-symmetric monoidal category $\cD$. Their basic definitions for
 include a compact structure, a quantum structure and a classical structure, that latter of which is
 a special Frobenius algebra:
@@ -973,9 +973,17 @@ Note that $A$ is self-dual in definition \ref{def:quantumstructure}.
   Frobenius algebra.
 \end{definition}
 
-These definitions allow the creation of categories whose objects are quantum or classical
-structures. The creation of these categories and the use of the classical structure inspired the
-choice made in this section to examine \CFrob.
+Coecke, Paquette and Pavlovi\'c then examine two categories based on these structures: The category
+$\cD_q$, the category whose objects are quantum structures in \cD, with
+\[
+  \cD_q((A,\eta_A),(B,\eta_B)) \definedas \cD(A,B)
+\] and  $\cD_c$, the category whose maps are classical structures in
+\cD, with
+\[
+  \cD_q((X,\Delta_X,\epsilon_X), (Y,\Delta_Y,\epsilon_Y)) \definedas \cD(A,B).
+\]
+The creation of these categories and the use of the classical structure motivated the examination of
+\CFrob in this section.
 
 
 \begin{remark}
