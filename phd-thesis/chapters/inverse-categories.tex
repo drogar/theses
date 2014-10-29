@@ -32,7 +32,8 @@ give a natural Frobenius structure on each object.
 \end{proof}
 
 \begin{lemma}\label{lem:inverse_categories_are_range_categories}
-  An inverse category \X is a range category, where $\rg{f} = \inv{f}f = \rst{\inv{f}}$.
+  An inverse category \X is a range category (Definition~\ref{def:range_category}), where
+  $\rg{f} = \inv{f}f = \rst{\inv{f}}$.
 \end{lemma}
 \begin{proof}
   \prepprooflist
@@ -50,7 +51,7 @@ give a natural Frobenius structure on each object.
 \end{proof}
 
 For an inverse category \X, as $\inv{()}$ is an involution, the range $(\rg{\_})$ is in fact more
-than just a range, it is a restriction in $\X^{op}$.
+than just a range, it is a restriction in $\dual{\X}$.
 
 The property of being an inverse category is preserved by splitting.
 
@@ -58,25 +59,23 @@ The property of being an inverse category is preserved by splitting.
   When \X is an inverse category, $\spl{E}{X}$ is an inverse category.
 \end{lemma}
 \begin{proof}
-  The inverse of $f:(A,e_1)\to(B,e_2)$   in \spl{E}{\X} is $e_2\inv{f}e_1$ as
+  First recall that in the split category, for  $f:(A,e_1)\to(B,e_2)$, we have
+  $f = e_1 f e_2 = e_1 f = f e_2$ and  by Proposition~\ref{prop:spleisarestrictioncat}  the
+  restriction of  $f:(A,e_1)\to(B,e_2)$ is $e_1\rst{f}$. Then, the inverse of
+  $f:(A,e_1)\to(B,e_2)$   in \spl{E}{\X}  is $\inv{f}$ as
   \[
-    \llbracket f \inv{f} \rrbracket = e_1 f e_2 e_2 \inv{f} e_1
-    = e_1 e_1 f e_2 \inv{f} e_1
-    = e_1 f  \inv{f} e_1
-    = e_1 e_1 \restr{f} e_1
-    = e_1 \restr{f}
-    = \llbracket\restr{f}\rrbracket
+    \inv{f} = \inv{e_1 f e_2} = \inv{e_2} \inv{f} \inv{e_1} = e_2 \inv{f} e_1.
   \]
-  and
-  \begin{multline*}
-    \llbracket \inv{f} f\rrbracket=
-    e_2 \inv{f} e_1 e_1 f e_2
-    = e_2 \inv{f} e_1 f e_2 e_2
-    = e_2 \inv{f} f  e_2\\
-    = e_2 e_2 \restr{\inv{f}}  e_2
-    = e_2 \restr{\inv{f}}
-    = \llbracket\restr{\inv{f}}\rrbracket.
-  \end{multline*}
+  Note the last equality uses
+  Lemma~\ref{lem:inverse_idempotents_are_restriction_idempotents}. Additionally, we have
+  \[
+    f \inv{f}
+    = e_1 f \inv{f} = e_1 \rst{f}
+    \text{ and }
+    \inv{f} f =
+    e_2 \inv{f} f
+    = e_2 \restr{\inv{f}}.
+  \]
 
 \end{proof}
 
@@ -107,8 +106,8 @@ The property of being an inverse category is preserved by splitting.
   \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{m'}\\A&&B}$}, where $m'\in\Mstab$. Its inverse is
   \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m'} \ar[dr]^{m}\\B&&A}$}. The composition is
    \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A\ar[dl]_{m^{-1}m} \ar[dr]^{m^{-1}m}\\A&&A}$}, which is the
-  identity when $m$ is an isomorphism. The partial isomorphisms will have either $m$ or $m'$ be in
-  $\Mstab$, but not be an isomorphism. Taking just the partial isomorphisms gives us an inverse
+  identity when $m$ is an isomorphism. The partial isomorphisms will have either $m$ or $m'$ in
+  $\Mstab$, but may not be an isomorphism. Taking just the partial isomorphisms gives us an inverse
   category.
 \end{example}
 
@@ -129,21 +128,21 @@ The property of being an inverse category is preserved by splitting.
   Equivalence relations of finite sets are representable as a pair of surjective functions onto
   another set. That is,
   \[
+    \raisebox{-15pt}{$A \longsquiggly{E_{[f,g]}} B :=$ }
     \xymatrix{
       &C\\
       A\ar@{->>}[ur]^f && B\ar@{->>}[ul]_{g}
     }
     \raisebox{-15pt}{$\iff$}
     \xymatrix{
-      A+B \ar@{->>}[d]^{[f,g]}\\
-      C
+      C\\
+      A+B \ar@{->>}[u]^{[f,g]}
     }
-    \raisebox{-15pt}{$\iff$}
-    \xymatrix{
-      E_{[f,g]} \ar@<0.5ex>[d] \ar@<-0.5ex>[d]\\
-      A+B
-      }
-    \raisebox{-15pt}{$\iff A \longsquiggly{E_{[f,g]}} B$.}
+    % \raisebox{-15pt}{$\iff$}
+    % \xymatrix{
+    %   E_{[f,g]} \ar@<0.5ex>[d] \ar@<-0.5ex>[d]\\
+    %   A+B
+    %   }
   \]
 
   Define the category $\specialcat{EqR}$ with objects being finite sets and maps being equivalence classes of the
@@ -164,6 +163,22 @@ The property of being an inverse category is preserved by splitting.
   is, $\inv{E_{[f,g]}} = E_{[g,f]}$. The total maps are those where $f$ is a bijection.
 \end{example}
 
+\begin{example}[Partial isometries]\label{ex:partial-isometries-are-inverse-cats}
+  In a finite dimensional Hilbert space, endomaps which are self-adjoint and idempotent are called
+  \emph{projectors}. Endomaps in \fdh also form a lattice where the meet of two maps, $f\wedge g$
+  is given by $\lim_{n\to\infty} (f g)^n$.
+
+   If we are given a map $f:H_1\to H_2$ between finite dimensional Hilbert spaces,
+  then when $f f^{*}:H_1\to H_1$ is a projector, then $f$ is called a \emph{partial isometry}
+  \cite{hines2010structure}. In general, partial isometries are not closed under
+  composition. However, if composition of $f:H_1 \to H_2$ and $g:H_2 \to H_3$ is defined as:
+  \[
+      f g = f (f^* f \wedge g g^*) g,
+  \]
+  then Hilbert spaces with partial isometries form an inverse category. This is shown in Theorem~9.5.4
+  of \cite{hines2010structure}. The construction of the composition for this inverse category is an
+  application of a general construction for inverse semigroups given by Lawson\cite{lawson1998}.
+\end{example}
 \section{Inverse categories with restriction products} % (fold)
 \label{sec:inverse_categories_with_restriction_products}
 We start by showing that an inverse category with restriction products is a restriction preorder
@@ -179,7 +194,7 @@ and thus, is a very restrictive notion.
   \]
 \end{proposition}
 \begin{proof}
-  Notice that $ \inv{\pi_1}  = \Delta \pi_1 \inv{\pi_1} =\Delta \restr{\pi_1} = \Delta$.
+  Notice that for $\pi_1:A\times A \to A$, $\inv{\pi_1}  = \Delta \pi_1 \inv{\pi_1} =\Delta \restr{\pi_1} = \Delta$.
   This gives $\restr{\inv{\pi_1}} = 1$ and therefore $\pi_1$ (and similarly, $\pi_0$) is an
   isomorphism.
 
@@ -195,7 +210,7 @@ and thus, is a very restrictive notion.
 \end{proof}
 
 \begin{corollary}
-  \X\ is a inverse category with restriction products if and only if Total($\spl{r}{\X}$) is a meet preorder.
+  \X\ is an inverse category with restriction products iff Total($\spl{}{\X}$) is a meet preorder.
 \end{corollary}
 
 \begin{proof}
@@ -203,12 +218,16 @@ and thus, is a very restrictive notion.
   maps is compatible. As total compatible maps are equal, there is at most
   one map between any two objects. Hence, Total(\X) is a preorder with the meet being the product.
 
-  Similarly, from \cite{cockett2002:restcategories1} and \cite{cockettlack2004:restcategories3},
-  Total($\spl{r}{\X}$) is an inverse category and has products and is therefore also a meet
-  preorder. This shows the ``only if'' side of the corollary.
+  By Lemma~\ref{lem:the_idempotent_splitting_of_an_inverse_category_is_an_inverse_category} and
+  Lemma~\ref{lem:inverse_idempotents_are_restriction_idempotents}, $\spl{}{\X}$, the split of \X
+  over all idempotents, is an inverse category.
 
-  For the other direction, if Total($\spl{r}{\X}$) is a meet preorder, define the product as the
-  meet of the maps and the terminal object as the supremum of all maps.
+  Similarly, from \cite{cockett2002:restcategories1} and \cite{cockettlack2004:restcategories3},
+  Total($\spl{}{\X}$) has products and is therefore also a meet  preorder. This shows the ``only
+  if'' side of the corollary.
+
+  For the other direction, if Total($\spl{}{\X}$) is a meet preorder, then the product is the
+  meet of the maps and the terminal object is the supremum of all maps.
 \end{proof}
 
 \begin{corollary}
@@ -245,17 +264,26 @@ and thus, is a very restrictive notion.
 
 \begin{definition}\label{def:inverse_product}
   An \emph{inverse product} on an inverse category \X is given by a symmetric tensor product, based
-  on a restriction  bi-functor, $\_\*\_:\X\times\X \to \X$. The tensor makes \X a  symmetric
-  monoidal category and there is a natural  ``semi-Frobenius'' diagonal map, $\Delta$ which is canonical.   If an
-  inverse category has inverse products, it is called  a \emph{discrete inverse category}.
-
+  on a restriction  bi-functor, $\_\*\_:\X\times\X \to \X$. Recall the structural maps of the tensor
+  are the following  natural isomorphisms:
+  \begin{align*}
+    1 &: \boldsymbol{1}\to \X \\
+    \usl &: 1 \* A \xrightarrow{\cong} A
+    &\usr &: A \* 1 \xrightarrow{\cong} A\\
+    a_{\*} &: (A \* B) \* C \xrightarrow{\cong} A \* (B \* C)
+    &c_{\*} &: A \* B \xrightarrow{\cong} B \* A.
+  \end{align*}
+  The tensor makes \X a  symmetric  monoidal category as per Definition \ref{symmetricmonoidalcat}
+  and there is a natural  diagonal map $\Delta$, which is canonical. If an inverse category has
+  inverse products, it is called  a \emph{discrete inverse category}.
 
   The diagonal map $\Delta_A:A \to A\*A$ must be total and create a cosemigroup. It
-  must satisfy the following diagrams:
+  must satisfy Diagrams~\ref{dia:delta-is-cocommutative}, \ref{dia:delta-is-coassociative},
+  \ref{dia:delta-is-semi-frobenius} and \ref{dia:delta-is-canonical} below.
  % in Figures~\ref{fig:inverse_product_cocommutativity},
  %  \ref{fig:inverse_product_coassociativity}, \ref{fig:inverse_product_exchange}, and
  %  \ref{fig:inverse_product_frobenius}.
-  \[
+  \begin{equation}
     \xymatrix @!0 @C=90pt @R=35pt{
       A \ar[dr]_{\Delta} \ar[r]^{\Delta} &
       A \* A \ar[d]^{c_{\*}}\\
@@ -264,12 +292,12 @@ and thus, is a very restrictive notion.
     \xymatrix @!0 @C=90pt @R=35pt{
       A \* A \ar[d]^{c_{\*}} \ar[r]^{\inv{\Delta}}  & A\\
       A \* A  \ar[ur]_{\inv{\Delta}}
-    }
-  \]
-\begin{center}Cocommutative and Commutative;\end{center}
+    }\label{dia:delta-is-cocommutative}
+  \end{equation}
+  \begin{center}Cocommutative and Commutative;\end{center}
 %\caption*{Cocommutative}\label{fig:inverse_product_cocommutativity}
 
-  \[
+  \begin{equation}
     \xymatrix @C=20pt @R=30pt{
       A \ar[rr]^{\Delta} \ar[d]_{\Delta} & &
       A \* A \ar[d]^{1\*\Delta}\\
@@ -281,14 +309,14 @@ and thus, is a very restrictive notion.
       A\*(A\*A) \ar[rr]^{1\*\idelta} \ar[d]_{\inv{a_\*}} && A\*A \ar[d]^{\idelta}\\
       (A\*A)\*A \ar[dr]_{\idelta\*1}&&A\\
      & A\*A \ar[ur]_{\idelta}
-    }
-  \]
-\begin{center}Coassociative and Associative;\end{center}
+    }\label{dia:delta-is-coassociative}
+  \end{equation}
+  \begin{center}Coassociative and Associative;\end{center}
 %\caption*{Coassociative and Associative}\label{fig:inverse_product_coassociativity}
 
 %\caption{Exchange}\label{fig:inverse_product_exchange}
 
-  \[
+  \begin{equation}
     \xymatrix @C=40pt @R=25pt{
       A \* A \ar[dd]_{(1\*\Delta) \inv{a_{\*}}} \ar[dr]^{\inv{\Delta}}
       \ar[rr]^{(\Delta \* 1) a_{\*}} & &
@@ -296,27 +324,27 @@ and thus, is a very restrictive notion.
       & A \ar[dr]^{\Delta} & \\
       (A \* A) \* A \ar[rr]_{\inv{\Delta} \* 1} & &
       A \* A
-    }
-  \]
-\begin{center}$\Delta$ is Frobenius.\end{center}
+    }\label{dia:delta-is-semi-frobenius}
+  \end{equation}
+  \begin{center}$\Delta$ is Semi-Frobenius.\end{center}
 %\caption{Frobenius}\label{fig:inverse_product_frobenius}
 If we define the map:
   \[
     \excs =  a_{\*}(1\*\inv{a_{\*}})(1\*(c_{\*}\*1))(1\* a_{\*})\inv{a_{\*}}): (A\*B)\*(C\*D) \to (A\*C) \* (B\*D)
   \]
 then we have:
-  \[
+  \begin{equation}
     \xymatrix @C=25pt @R=35pt{
       A \* B \ar[dr]_{\Delta}
       \ar[rr]^{\Delta \* \Delta} && (A \* A) \* (B \* B) \ar[dl]^{\excs}\\
       &(A \* B) \* (A \* B)
-    }
-  \]
-\begin{center}$\Delta$ is canonical.\end{center}
+    }\label{dia:delta-is-canonical}
+  \end{equation}
+  \begin{center}$\Delta$ is canonical.\end{center}
 
   Thus, $\Delta$ is a cocommutative, coassociative map which together with $\inv{\Delta}$ forms a
   special semi-Frobenius algebra. We use the prefix ``semi-'' since we are not requiring the unit laws
-  of a Frobenius algebra which will be discussed later in Definition~\ref{def:frobeniusalgebra}.
+  of a Frobenius algebra as presented in Definition~\ref{def:frobeniusalgebra}.
 \end{definition}
 
 Note also, cocommutativity implies commutativity, i.e., that $c_{\*}\inv{\Delta} = \inv{\Delta}$.
@@ -340,20 +368,9 @@ $(1\*\inv{\Delta})\inv{\Delta} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
 \end{align*}
 
 \begin{example}[\pinj is a discrete inverse category]\label{ex:pinj_is_a_discrete_inverse_category}
-  In the inverse category \pinj (see Example~\ref{ex:pinj_is_an_inverse_category}), suppose we add
-  the tensor given by the Cartesian product of sets. In detail, this means:
-  \begin{align*}
-    A \* B &= \{(a,b)| a\in A, b\in B\}\\
-    f \* g &= \{((a,c),(b,d)) | (a,b) \in f, (c,d) \in g\}\\
-    1 & = \{*\}\text{, a single element set.}
-  \end{align*}
-  The symmetric monoid isomorphisms are:
-    \begin{align*}
-      \usl &: \{(*,a)\} \mapsto \{a\}
-      &\usr &: \{(a,*)\} \mapsto \{a\}\\
-      a_{\*} &: \{((a,b),c)\} \mapsto \{(a,(b,c))\}
-      &c_{\*} &: \{(a,b)\} \mapsto \{(b,a)\}.
-    \end{align*}
+  In the inverse category \pinj (see Examples~\ref{ex:category_pinj} and
+  \ref{ex:pinj_is_an_inverse_category}), we saw in Example~\ref{ex:pinj-has-a-smt} that Cartesian
+  product is a symmetric tensor.
 
   Define $\Delta_A = \{(a,(a,a)) | a\in A\}$. Then \pinj is a discrete inverse category with the
   inverse product of $\*$. The required properties of cocommutativity, coassociativity and
@@ -612,7 +629,7 @@ We now present some properties of discrete inverse categories.
     \item{}$ (f \* g e) \inv{\Delta} =(f \* g) \inv{\Delta} e $ (and $= (f e\* g) \inv{\Delta}$ and
       $ = (f e\* g e)\inv{\Delta}$);\label{le:efginvdelta}
     \item{}$\restr{\Delta (f \* g) \inv{\Delta}} =
-       \Delta(1\* g \inv{f})\inv{\Delta}$ when $f,g:A\to A$; \label{le:restfg}
+       \Delta(1\* g \inv{f})\inv{\Delta}$; \label{le:restfg}
     \item{} If $\Delta (h \* g) \inv{\Delta} = \restr{\Delta (h \* g) \inv{\Delta}}$ then
       $(\Delta (h \* g) \inv{\Delta}) h = \Delta (h \* g) \inv{\Delta}$;\label{le:hge}
     \item{}$\Delta (f\*1) = \Delta (g\*1) \implies f = g$;\label{le:dfgisfg}
@@ -624,7 +641,7 @@ We now present some properties of discrete inverse categories.
   \begin{enumerate}[{(}i{)}]
     \item[\ref{le:eisde1}]
       \[
-      \raisebox{30pt}{
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,1) (start) {};
         \node at (0,.5) [map] (e) {$\scriptstyle e$};
@@ -632,8 +649,9 @@ We now present some properties of discrete inverse categories.
         \draw (start) to (e);
         \draw (e) to (end);
       \end{tikzpicture}
-      }
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -651,7 +669,9 @@ We now present some properties of discrete inverse categories.
         \draw [] (n2) to (e);
         \draw (e) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -669,7 +689,9 @@ We now present some properties of discrete inverse categories.
         \draw [] (n2) to (e);
         \draw (e) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -691,7 +713,9 @@ We now present some properties of discrete inverse categories.
         \draw [] (n1) to[out=270,in=55] (n2);
         \draw [] (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -711,7 +735,9 @@ We now present some properties of discrete inverse categories.
         \draw [] (e2) to[out=270,in=55] (n2);
         \draw [] (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -731,7 +757,9 @@ We now present some properties of discrete inverse categories.
         \draw (e2) to[out=270,in=55] (n2);
         \draw [] (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -751,9 +779,11 @@ We now present some properties of discrete inverse categories.
         \draw (e2) to[out=270,in=125] (n2);
         \draw [] (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
       \]
       \[
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -773,7 +803,9 @@ We now present some properties of discrete inverse categories.
         \draw [] (e2) to[out=270,in=125] (n2);
         \draw [] (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,2.5) (start) {};
         \node at (0,2) [delta] (d1) {};
@@ -795,7 +827,9 @@ We now present some properties of discrete inverse categories.
         \draw [] (e3) to[out=270,in=125] (n2);
         \draw [] (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -813,7 +847,9 @@ We now present some properties of discrete inverse categories.
         \draw (n1) to[out=270,in=55] (n2);
         \draw [] (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -831,8 +867,9 @@ We now present some properties of discrete inverse categories.
         \draw [] (d2) to[out=305,in=55] (n2);
         \draw [] (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
-      \raisebox{15pt}{
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -845,13 +882,12 @@ We now present some properties of discrete inverse categories.
         \draw (e1) to[out=270,in=125] (n1);
         \draw [] (n1) to (end);
       \end{tikzpicture}
-      }
-      \,\raisebox{45pt}{.}
+  \end{matrix}.
       \]
     \item[\ref{le:deltaefg}]This equality uses the previous equality, the commutativity
       of restriction idempotents (\rtwo) and the identity $\Delta\rst{\inv{\Delta}} = \Delta$.
       \[
-      \raisebox{10pt}{
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,2) (start) {};
         \node at (0,1.5) [map] (e) {$\scriptstyle e$};
@@ -867,8 +903,9 @@ We now present some properties of discrete inverse categories.
         \draw (f) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
-      }
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -889,7 +926,9 @@ We now present some properties of discrete inverse categories.
         \draw (f) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -908,7 +947,9 @@ We now present some properties of discrete inverse categories.
         \draw (f) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -927,8 +968,9 @@ We now present some properties of discrete inverse categories.
         \draw (f) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
-      \raisebox{20pt}{
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,1.5) (start) {};
         \node at (0,1) [delta] (d1) {};
@@ -942,8 +984,7 @@ We now present some properties of discrete inverse categories.
         \draw (f_e) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
-      }
-      \,\raisebox{45pt}{.}
+  \end{matrix} .
       \]
       The second equality ($e\Delta(f\*g) = \Delta(f\*e g)$) follows by cocommutativity. The third
       equality,  ($e\Delta(f\*g) = \Delta(e f\*e g)$) follows by naturality of $\Delta$.
@@ -951,7 +992,7 @@ We now present some properties of discrete inverse categories.
     \item[\ref{le:efginvdelta}] As in \ref{le:deltaefg}, details are only given for the
       first equality. This proof is obtained by reversing the diagrams of \ref{le:deltaefg}.
       \[
-      \raisebox{10pt}{
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,0) (start) {};
         \node at (0,.5) [map] (e) {$\scriptstyle e$};
@@ -967,8 +1008,9 @@ We now present some properties of discrete inverse categories.
         \draw (f) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
-      }
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,0) (start) {};
         \node at (0,.5) [nabla] (d1) {};
@@ -989,7 +1031,9 @@ We now present some properties of discrete inverse categories.
         \draw (f) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,0) (start) {};
         \node at (0,.5) [nabla] (d1) {};
@@ -1008,8 +1052,9 @@ We now present some properties of discrete inverse categories.
         \draw (f) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
-      \raisebox{20pt}{
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,0) (start) {};
         \node at (0,.5) [nabla] (d1) {};
@@ -1023,8 +1068,7 @@ We now present some properties of discrete inverse categories.
         \draw (f e) to (end1);
         \draw (g) to (end2);
       \end{tikzpicture}
-      }
-      \,\raisebox{45pt}{.}
+  \end{matrix} .
       \]
       The other equalities follow for the same reasons as in \ref{le:deltaefg}.
 
@@ -1037,6 +1081,7 @@ We now present some properties of discrete inverse categories.
      Now, we proceed with showing the rest of the equality via diagrams.
 
      \[
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1060,7 +1105,9 @@ We now present some properties of discrete inverse categories.
         \draw (g-inverse) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1084,7 +1131,9 @@ We now present some properties of discrete inverse categories.
         \draw (f-inverse) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1108,7 +1157,9 @@ We now present some properties of discrete inverse categories.
         \draw (f-inverse) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1132,9 +1183,11 @@ v        \draw (g) to (f-inverse);
         \draw (n1) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
      \]
      \[
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1152,7 +1205,9 @@ v        \draw (g) to (f-inverse);
         \draw (n1) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1170,7 +1225,9 @@ v        \draw (g) to (f-inverse);
         \draw (n1) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3) (start) {};
         \node at (0,2.5) [delta] (d1) {};
@@ -1188,8 +1245,9 @@ v        \draw (g) to (f-inverse);
         \draw (g-f-inverse) to[out=270,in=125] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
-      \raisebox{15pt}{
+  \end{matrix}
+  =
+  \begin{matrix}
        \begin{tikzpicture}
         \node at (0,2) (start) {};
         \node at (0,1.5) [delta] (d2) {};
@@ -1202,12 +1260,12 @@ v        \draw (g) to (f-inverse);
         \draw (g-f-inverse) to[out=270,in=55] (n2);
         \draw (n2) to (end);
       \end{tikzpicture}
-      }
-      \,\raisebox{45pt}{.}
+  \end{matrix}.
      \]
     \item[\ref{le:hge}]Beginning with the assumption that $\Delta (h \* g)\inv{\Delta}$ equals its
       restriction and by item \ref{le:restfg}, we have:
       \[
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1224,7 +1282,9 @@ v        \draw (g) to (f-inverse);
         \draw (n1) to (h);
         \draw (h) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1239,7 +1299,9 @@ v        \draw (g) to (f-inverse);
         \draw (n1) to (h);
         \draw (h) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1256,7 +1318,9 @@ v        \draw (g) to (f-inverse);
         \draw (h2) to[out=270,in=55] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1271,7 +1335,9 @@ v        \draw (g) to (f-inverse);
         \draw (g-h-inverse) to[out=270,in=55] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1286,8 +1352,9 @@ v        \draw (g) to (f-inverse);
         \draw (g) to[out=270,in=55] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
-      \raisebox{15pt}{
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1302,9 +1369,9 @@ v        \draw (g) to (f-inverse);
         \draw (g) to[out=270,in=55] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      }
-      \ \raisebox{45pt}{$=$}\
-      \raisebox{15pt}{
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1319,12 +1386,12 @@ v        \draw (g) to (f-inverse);
         \draw (g) to[out=270,in=125] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      }
-      \,\raisebox{45pt}{.}
+    \end{matrix}.
       \]
 
     \item[\ref{le:dfgisfg}] Our assumption is that:
       \[
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,1.5) (start) {};
         \node at (0,1) [delta] (d1) {};
@@ -1336,7 +1403,9 @@ v        \draw (g) to (f-inverse);
         \draw [] (d1) to[out=235,in=90] (g);
         \draw (g) to (end1);
       \end{tikzpicture}
-      \ \raisebox{20pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,1.5) (start) {};
         \node at (0,1) [delta] (d1) {};
@@ -1348,7 +1417,9 @@ v        \draw (g) to (f-inverse);
         \draw [] (d1) to[out=235,in=90] (f);
         \draw (f) to (end1);
       \end{tikzpicture}
-      \raisebox{20pt}{ and by cocommutativity, }
+  \end{matrix}
+      \text{ and by cocommutativity, }
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,1.5) (start) {};
         \node at (0,1) [delta] (d1) {};
@@ -1360,7 +1431,9 @@ v        \draw (g) to (f-inverse);
         \draw [] (d1) to[out=305,in=90] (g);
         \draw (g) to (end1);
       \end{tikzpicture}
-      \ \raisebox{20pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,1.5) (start) {};
         \node at (0,1) [delta] (d1) {};
@@ -1372,12 +1445,11 @@ v        \draw (g) to (f-inverse);
         \draw [] (d1) to[out=305,in=90] (f);
         \draw (f) to (end1);
       \end{tikzpicture}
-      \,\raisebox{20pt}{.}
+  \end{matrix}.
       \]
       Hence,
       \[
-      \ \raisebox{45pt}{$f=$}\
-      \raisebox{15pt}{
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1392,8 +1464,9 @@ v        \draw (g) to (f-inverse);
         \draw (f1) to[out=270,in=125] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      }
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1408,7 +1481,9 @@ v        \draw (g) to (f-inverse);
         \draw (f1) to[out=270,in=125] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1423,7 +1498,9 @@ v        \draw (g) to (f-inverse);
         \draw (g1) to[out=270,in=125] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1438,7 +1515,9 @@ v        \draw (g) to (f-inverse);
         \draw (g1) to[out=270,in=125] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1453,7 +1532,8 @@ v        \draw (g) to (f-inverse);
         \draw (g1) to[out=270,in=125] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$= g.$}\
+  \end{matrix}
+  = g.
       \]
     \item[\ref{le:fgisfg}] Use the same diagrammatic argument as in item \ref{le:dfgisfg}.
   \end{enumerate}
@@ -1465,8 +1545,8 @@ v        \draw (g) to (f-inverse);
 \begin{proof}
   $f\meet g \le f$:
   \[
-  \raisebox{45pt}{$f\meet g =$}
-      \raisebox{15pt}{
+     f\meet g =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1481,9 +1561,9 @@ v        \draw (g) to (f-inverse);
         \draw (f) to[out=270,in=125] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      }
-      \raisebox{45pt}{$=$}
-      \raisebox{15pt}{
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1498,9 +1578,9 @@ v        \draw (g) to (f-inverse);
         \draw (f) to[out=270,in=125] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      }
-      \raisebox{45pt}{$=$}
-      \raisebox{15pt}{
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1515,8 +1595,9 @@ v        \draw (g) to (f-inverse);
         \draw (f) to[out=270,in=125] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      }
-      \raisebox{45pt}{$=$}
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1533,7 +1614,9 @@ v        \draw (g) to (f-inverse);
         \draw (f) to[out=270,in=125] (n1);
         \draw (n1) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (0,3) [delta] (d1) {};
@@ -1548,7 +1631,8 @@ v        \draw (g) to (f-inverse);
         \draw (n1) to (f);
         \draw (f) to (end);
       \end{tikzpicture}
-      \ \raisebox{45pt}{$= \rst{f\meet g}f.$}
+  \end{matrix}
+  = \rst{f\meet g}f.
   \]
 
   $f\meet f = f$:
@@ -1677,6 +1761,10 @@ subcategory which is a discrete inverse category.
     = \<\inv{\Delta_{\X}}, \inv{\Delta_{\X}} \>.
   \]
   Similarly, removing the associativity maps, the right hand side of the same equation becomes:
+% LHS below works as
+%$  (1\times \inv{\Delta_{\X}})(!\times 1) = (! \times 1 \times 1 )( \inv{\Delta_{\X}})$
+% And then $(\Delta_{\X} \times 1)(! \times 1 \times 1 ) = 1 \times 1 = 1$
+
   \begin{align*}
     (\Delta_{\X} \times 1) (1\times\inv{\Delta_{\X}}) &
       = \<(\Delta_{\X} \times 1) (1\times\inv{\Delta_{\X}}) (1\times !),
@@ -1711,7 +1799,8 @@ In a discrete inverse category, suppose we are given a map $h:A\*B \to A\*C$. We
 $\dmap{h}:A\*B \to A\*C$ as the composite $(\Delta\*1)(1\*h)(\inv{\Delta}\*1)$. We want to consider
 those maps where $h = \dmap{h}$. In our graphical language, this means
 \[
-      \ \raisebox{27pt}{$h=$ }
+    h=
+  \begin{matrix}
         \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (.6,3.5) (start2) {};
@@ -1728,14 +1817,19 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
         \draw (h) to[out=305,in=90] (end2);
         \draw (n1) to (end);
       \end{tikzpicture}
-      \ \raisebox{27pt}{.}
+  \end{matrix}
+  .
 \]
+
+Maps of this form satisfy a variety of closure properties, as shown in the lemmas below.
+
 \begin{lemma}\label{lem:delta_nabla_is_idempotent}
   For any map $h$ in a discrete inverse category, $\dmap{\dmap{h}} = \dmap{h}$.
 \end{lemma}
 \begin{proof}
   \[
-    \raisebox{42pt}{$\dmap{\dmap{h}}=$ }
+    \dmap{\dmap{h}}=
+  \begin{matrix}
     \begin{tikzpicture}
       \node at (0,3) (start) {};
       \node at (.6,3) (start2) {};
@@ -1757,7 +1851,9 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
       \draw (n2) to[out=270,in=55] (n1);
       \draw (n1) to (end);
     \end{tikzpicture}
-    \ \raisebox{42pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
     \begin{tikzpicture}
       \node at (0,3) (start) {};
       \node at (.6,3) (start2) {};
@@ -1779,8 +1875,9 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
       \draw (n2) to[out=270,in=125] (n1);
       \draw (n1) to (end);
     \end{tikzpicture}
-    \ \raisebox{42pt}{=}
-    \raisebox{15pt}{
+  \end{matrix}
+  =
+  \begin{matrix}
       \begin{tikzpicture}
         \node at (0,3.5) (start) {};
         \node at (.6,3.5) (start2) {};
@@ -1797,18 +1894,101 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
         \draw (h) to[out=305,in=90] (end2);
         \draw (n1) to (end);
       \end{tikzpicture}
-      }
-      \raisebox{42pt}{$ = \dmap{h}$.}
+  \end{matrix} = \dmap{h}.
   \]
 \end{proof}
+
+The self-closure aspect of maps where $h=\dmap{h}$ allows us to show all restriction idempotents
+have this property:
+\begin{corollary}\label{cor:restriction-idempotents-have-dmap-property}
+  When $e=\rst{e}:A\*Y \to A\*Y$, then $e = \dmap{e}$.
+\end{corollary}
+\begin{proof}
+
+Using
+Lemma~\ref{lem:properties_of_delta_and_tensor_in_a_discrete_inverse_category} and the exchange rule,
+when $e = \rst{e}: A\*Y \to A\*Y$, we have
+\begin{equation}
+  e =
+  \begin{matrix}
+    \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [nabla] (n1) {};
+        \node at (0,1) (end) {};
+        \draw [] (start) to (d1);
+        \draw [] (d1) to[out=235,in=90] (e1);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw (e1) to[out=270,in=125] (n1);
+        \draw [] (n1) to (end);
+      \end{tikzpicture}
+  \end{matrix}
+  =
+  \begin{matrix}
+    \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0.5,3) (start1) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (0.5,2.5) [delta] (d2) {};
+        \node at (-.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [nabla] (n1) {};
+        \node at (0.5,1.5) [nabla] (n2) {};
+        \node at (0,1) (end) {};
+        \node at (0.5,1) (end1) {};
+        \draw [] (start) to (d1);
+        \draw [] (start1) to (d2);
+        \draw [] (d1) to[out=235,in=110] (e1);
+        \draw [] (d1) to[out=305,in=55] (n1);
+        \draw [] (d2) to[out=235,in=70] (e1);
+        \draw [] (d2) to[out=305,in=55] (n2);
+        \draw (e1) to[out=250,in=125] (n1);
+        \draw (e1) to[out=290,in=125] (n2);
+        \draw [] (n1) to (end);
+        \draw [] (n2) to (end1);
+      \end{tikzpicture}
+  \end{matrix}
+  =
+  \begin{matrix}
+    \begin{tikzpicture}
+        \node at (0,3) (start) {};
+        \node at (0.5,3) (start1) {};
+        \node at (0,2.5) [delta] (d1) {};
+        \node at (0.5,2.5) [delta] (d2) {};
+        \node at (.25,2) [map] (e1) {$\scriptstyle e$};
+        \node at (0,1.5) [nabla] (n1) {};
+        \node at (0.5,1.5) [nabla] (n2) {};
+        \node at (0,1) (end) {};
+        \node at (0.5,1) (end1) {};
+        \draw [] (start) to (d1);
+        \draw [] (start1) to (d2);
+        \draw [] (d1) to[out=305,in=110] (e1);
+        \draw [] (d1) to[out=235,in=125] (n1);
+        \draw [] (d2) to[out=235,in=70] (e1);
+        \draw [] (d2) to[out=305,in=55] (n2);
+        \draw (e1) to[out=250,in=55] (n1);
+        \draw (e1) to[out=290,in=125] (n2);
+        \draw [] (n1) to (end);
+        \draw [] (n2) to (end1);
+      \end{tikzpicture}
+  \end{matrix}
+  .
+  \label{eq:idempotents-with-double-delta-nabla}
+\end{equation}
+
+But then the same graphical argument  as shown in Lemma~\ref{lem:delta_nabla_is_idempotent}  applied
+to the right hand term of Equation~\ref{eq:idempotents-with-double-delta-nabla} gives $e = \dmap{e}$.
+\end{proof}
+
+There are a variety of other closure properties:
 \begin{lemma}\label{lem:delta_nabla_maps_are_closed}
-  In a discrete inverse category \X, for a fixed object $A$, the set of maps $h:A\*Y\to A\* Z$ where
-  $h=\dmap{h}$ is:
+  In a discrete inverse category \X with the object $A$ define $\dmap{A}$ as the set of
+  maps $h:A\*Y\to A\* Z$ where $h=\dmap{h}$. Then $\dmap{A}$ has the following properties:
   \begin{enumerate}[{(}i{)}]
-  \item Closed under partial inverses;\label{lemitem:delta_nabla_1}
-  \item closed under composition;\label{lemitem:delta_nabla_2}
-  \item contains all maps of the form $1\*k$ where $k:Y\to Z$;\label{lemitem:delta_nabla_3}
-  \item contains $\Delta:A\*B \to A\*B\*A\*B$.\label{lemitem:delta_nabla_4}
+  \item It is closed under partial inverses;\label{lemitem:delta_nabla_1}
+  \item it is closed under composition;\label{lemitem:delta_nabla_2}
+  \item it contains all maps of the form $1\*k$ where $k:Y\to Z$;\label{lemitem:delta_nabla_3}
+  \item it contains $\Delta:A\*B \to A\*B\*A\*B$;\label{lemitem:delta_nabla_4}
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -1821,7 +2001,8 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
 
   To show ~\ref{lemitem:delta_nabla_2}, we compose $h$ and $g$:
   \[
-    \raisebox{45pt}{$h g=$ }
+    h g=
+  \begin{matrix}
         \begin{tikzpicture}
           \node at (0.25,4) (s1) {};
           \node at (.5,4) (s2) {};
@@ -1846,7 +2027,9 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
           \draw (g) to[out=305,in=90] (end2);
           \draw (n3) to (end1);
         \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
           \node at (0.25,4.5) (s1) {};
           \node at (.5,4.5) (s2) {};
@@ -1871,7 +2054,9 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
           \draw (g) to[out=305,in=90] (end2);
           \draw (n1) to (end1);
         \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
           \node at (0.25,4.5) (s1) {};
           \node at (.5,4.5) (s2) {};
@@ -1896,7 +2081,9 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
           \draw (g) to[out=305,in=90] (end2);
           \draw (n1) to (end1);
         \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
           \node at (0.25,4.5) (s1) {};
           \node at (.5,4.5) (s2) {};
@@ -1921,8 +2108,9 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
           \draw (g) to[out=305,in=90] (end2);
           \draw (n1) to (end1);
         \end{tikzpicture}
-      \ \raisebox{45pt}{$=$}\
-      \raisebox{15pt}{
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
           \node at (0.25,4) (s1) {};
           \node at (.5,4) (s2) {};
@@ -1942,12 +2130,13 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
           \draw (g) to[out=305,in=90] (end2);
           \draw (n1) to (end1);
         \end{tikzpicture}
-        }
-    \raisebox{45pt}{.}
+  \end{matrix}
+  .
    \]
 
    For~\ref{lemitem:delta_nabla_3}, this follows immediately from
   \[
+  \begin{matrix}
     \begin{tikzpicture}
       \node at (0,2) (s1) {};
       \node at (.5,2) (s2) {};
@@ -1963,7 +2152,9 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
       \draw (h) to (end2);
       \draw (n1) to (end1);
     \end{tikzpicture}
-    \ \raisebox{28pt}{$=\ $}
+  \end{matrix}
+  =
+  \begin{matrix}
     \begin{tikzpicture}
       \node at (0.25,2) (s1) {};
       \node at (.5,2) (s2) {};
@@ -1974,12 +2165,13 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
       \draw [] (s2) to (h);
       \draw (h) to (end2);
     \end{tikzpicture}
-    \ \raisebox{28pt}{$= 1\* h$.}
+  \end{matrix}= 1\* h.
   \]
 
-  Finally, for~\ref{lemitem:delta_nabla_4}, recalling the exchange rule, we have
+ To show~\ref{lemitem:delta_nabla_4}, recalling the exchange rule, we have
 \[
-  \raisebox{45pt}{$\dmap{\Delta} =$ }
+  \dmap{\Delta} =
+  \begin{matrix}
   \begin{tikzpicture}
     \node [style=nothing] (s1) at (-1, 3) {};
     \node [style=nothing] (s2) at (-0.25, 3) {};
@@ -2003,7 +2195,9 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
     \draw (n1) to (e1);
     \draw (t3) to (e2);
   \end{tikzpicture}
-  \raisebox{45pt}{$ =$ }
+  \end{matrix}
+  =
+  \begin{matrix}
   \begin{tikzpicture}
     \node [style=nothing] (s1) at (-1, 2.5) {};
     \node [style=nothing] (s2) at (-0.25, 2.5) {};
@@ -2025,7 +2219,9 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
     \draw (n1) to (e1);
     \draw (t3) to (e2);
   \end{tikzpicture}
-  \raisebox{45pt}{$ =$ }
+  \end{matrix}
+  =
+  \begin{matrix}
   \begin{tikzpicture}
     \node [style=nothing] (s1) at (-1, 2.5) {};
     \node [style=nothing] (s2) at (-0.25, 2.5) {};
@@ -2047,7 +2243,9 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
     \draw (n1) to (e1);
     \draw (t3) to (e2);
   \end{tikzpicture}
-  \raisebox{45pt}{$ =$ }
+  \end{matrix}
+  =
+  \begin{matrix}
   \begin{tikzpicture}
     \node [style=nothing] (s1) at (-1, 2.5) {};
     \node [style=nothing] (s2) at (-0.25, 2.5) {};
@@ -2064,7 +2262,7 @@ those maps where $h = \dmap{h}$. In our graphical language, this means
     \draw (d3) to[out=305,in=55] (t3);
     \draw (t3) to (e2);
   \end{tikzpicture}
-  \raisebox{45pt}{$ =\Delta$.}
+  \end{matrix} =\Delta.
 \]
 \end{proof}
 
@@ -2085,35 +2283,38 @@ this precise in the following proposition:
 \end{proposition}
 \begin{proof}
   Given Lemma~\ref{lem:delta_nabla_maps_are_closed}, we see immediately that $\X[A]$ is a
-  category. We must show the restriction is in $\X[A]$, i.e.,
-  $h=\dmap{h}$ then $\rst{h} = \dmap{\rst{h}}$ and that $\X[A]$ has a tensor and a Frobenius $\Delta$.
+  category. By Corollary~\ref{cor:restriction-idempotents-have-dmap-property}, we know $\rst{h} = \dmap{\rst{h}}$.
+  We must show  that $\X[A]$ has a tensor and a Frobenius $\Delta$.
+  % We must show the restriction is in $\X[A]$, i.e.,
+  % $h=\dmap{h}$ then $\rst{h} = \dmap{\rst{h}}$ and that $\X[A]$ has a tensor and a Frobenius $\Delta$.
 
-  Recalling that $\rst{(1\*h)} = 1\* \rst{h}$,
-  \begin{multline*}
-    (\Delta\*1) \rst{(1\*h)} (\inv{\Delta}\*1) = \rst{(\Delta\*1)(1\*h)}(\Delta\*1)(\inv{\Delta}\*1)
-    = \\
-    \rst{(\Delta\*1)(1\*h)} \le \rst{(\Delta\*1)(1\*h)(\inv{\Delta}\*1)} = \rst{h}.
-  \end{multline*}
-  Note this means there is some $k$ such that
-  $\rst{k} = (\Delta\*1) \rst{(1\*h)}(\inv{\Delta}\*1)$. Next, computing $\rst{k}h$ we have:
-  \begin{align*}
-    \rst{k}h &= (\Delta\*1) \rst{(1\*h)} (\inv{\Delta}\*1) (\Delta\*1) (1\*h) (\inv{\Delta}\*1) \\
-    & = (\Delta\*1) \rst{(1\*h)}\, \rst{(\inv{\Delta}\*1)} (1\*h) (\inv{\Delta}\*1) \\
-    & = (\Delta\*1) \rst{(\inv{\Delta}\*1)}\,  \rst{(1\*h)}(1\*h) (\inv{\Delta}\*1) \\
-    & = (\Delta\*1) \wrg{(\Delta\*1)}  (1\*h) (\inv{\Delta}\*1) \\
-    & = (\Delta\*1) (1\*h) (\inv{\Delta}\*1) \\
-    & = h.
-  \end{align*}
-  But by Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}, if $\rst{k} h = h$, we have
-  $\rst{h} \le \rst{k}$. As we already have $\rst{k}\le\rst{h}$ this means they are equal and the
-  restriction is in $\X[A]$, thus, $\X[A]$ is a restriction category.
+  % Recalling that $\rst{(1\*h)} = 1\* \rst{h}$,
+  % \begin{multline*}
+  %   (\Delta\*1) \rst{(1\*h)} (\inv{\Delta}\*1) = \rst{(\Delta\*1)(1\*h)}(\Delta\*1)(\inv{\Delta}\*1)
+  %   = \\
+  %   \rst{(\Delta\*1)(1\*h)} \le \rst{(\Delta\*1)(1\*h)(\inv{\Delta}\*1)} = \rst{h}.
+  % \end{multline*}
+  % Note this means there is some $k$ such that
+  % $\rst{k} = (\Delta\*1) \rst{(1\*h)}(\inv{\Delta}\*1)$. Next, computing $\rst{k}h$ we have:
+  % \begin{align*}
+  %   \rst{k}h &= (\Delta\*1) \rst{(1\*h)} (\inv{\Delta}\*1) (\Delta\*1) (1\*h) (\inv{\Delta}\*1) \\
+  %   & = (\Delta\*1) \rst{(1\*h)}\, \rst{(\inv{\Delta}\*1)} (1\*h) (\inv{\Delta}\*1) \\
+  %   & = (\Delta\*1) \rst{(\inv{\Delta}\*1)}\,  \rst{(1\*h)}(1\*h) (\inv{\Delta}\*1) \\
+  %   & = (\Delta\*1) \wrg{(\Delta\*1)}  (1\*h) (\inv{\Delta}\*1) \\
+  %   & = (\Delta\*1) (1\*h) (\inv{\Delta}\*1) \\
+  %   & = h.
+  % \end{align*}
+  % But by Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}, if $\rst{k} h = h$, we have
+  % $\rst{h} \le \rst{k}$. As we already have $\rst{k}\le\rst{h}$ this means they are equal and the
+  % restriction is in $\X[A]$, thus, $\X[A]$ is a restriction category.
 
   The tensor of objects $X\*Y$ in $\X[A]$ is the element $A\* X\*Y$ in $\X$. For two maps $h,g$
   in $\X[A]$, $h\*g$ is given by the $\X$ map
   $(\Delta\*1\*1)(1\*c_{\*}\*1)(h\*g)(1\*c_{\*}\*1)(\inv{\Delta}\*1\*1)$. This is a map in
   $\X[A]$:
   \[
-    \raisebox{50pt}{$\dmap{(h\*g)}=$ }
+    \dmap{(h\*g)}=
+  \begin{matrix}
         \begin{tikzpicture}
           \node at (0,3.5) (s1) {};
           \node at (.5,3.5) (s2) {};
@@ -2141,7 +2342,9 @@ this precise in the following proposition:
           \draw (n2) to[out=270,in=55] (n1);
           \draw (n1) to (end1);
         \end{tikzpicture}
-      \ \raisebox{50pt}{$=$}\
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
           \node at (0,3.5) (s1) {};
           \node at (.5,3.5) (s2) {};
@@ -2169,8 +2372,9 @@ this precise in the following proposition:
           \draw (n2) to[out=270,in=125] (n1);
           \draw (n1) to (end1);
         \end{tikzpicture}
-      \ \raisebox{50pt}{$=$}\
-      \raisebox{15pt}{
+  \end{matrix}
+  =
+  \begin{matrix}
         \begin{tikzpicture}
           \node at (0,2.5) (s1) {};
           \node at (.5,2.5) (s2) {};
@@ -2192,8 +2396,9 @@ this precise in the following proposition:
           \draw (g) to[out=235,in=55] (n1);
           \draw (g) to[out=305,in=90] (end3);
           \draw (n1) to (end1);
-        \end{tikzpicture}}
-      \ \raisebox{50pt}{$= h\*g$.}
+        \end{tikzpicture}
+  \end{matrix}
+= h\*g.
   \]
 
   The $\Delta$ in $\X[A]$ is given by the map $1\*\Delta$ in \X. The various identities required of
@@ -2217,6 +2422,81 @@ rather than the required
   \infer{\X[A](X,G(Y))}{\X(F(X),Y)}.
 \]
 
+\begin{example}
+In \pinj, note that the slice over the object $\{*\}$ just gives us a category where the maps are in
+bijective correspondence with the maps of \pinj, as $\{*\}$ is the identity for the inverse product.
+\end{example}
+
+\subsection{The interpretation of the slice construction in resource theory}
+\label{subsec:interpretation-of-the-slice}
+Although resource theory is generally not in the scope of this thesis, the slice construction of
+this section may be examined from the viewpoint of resource theory as  given in Coecke, Fritz and
+Spekkens\cite{coecke2014mathematical}. Coecke, Fritz and Spekkens describe a mathematical theory of
+resources inspired, in part, by the pragmatic approach exemplified in chemistry --- understanding
+something means being able to make use of it. Specifically in chemistry, this means understanding
+chemicals as resources.  The way to model this mathematically is with a symmetric monoidal category:
+
+\begin{definition}[\cite{coecke2014mathematical}, Definition 2.1]\label{def:resource-theory}
+  A \emph{resource theory} is a symmetric monoidal category $(\R, \*)$, where the objects
+  $\objects{\R}$ represent the actual resources and the morphisms $f:A\to B$ represent the
+  transformation of resource $A$ into resource $B$ which can be done with no cost.
+\end{definition}
+
+In this definition, composition of maps then represent sequential composition of transformation, the
+operation $\*$ represents parallel composition of transformation and the identity $I$ of $\*$
+denotes an empty resource.
+
+An important question in such a theory is ``Given a resource $A$, is it possible to transform it to
+a resource $B$?'' Of course, answering such a question will depend upon the details of the category
+and the difficulty of answering such a question may vary greatly. This may be reduced to a question
+of resource convertibility:
+
+\begin{definition}[\cite{coecke2014mathematical}, Definition 4.1]\label{def:resource-convertibility}
+  A \emph{theory of resource convertibility} $(R,+,\succeq,0)$ is a set $R$ with a binary operation
+  $+$, element $0\in R$ such that when $a\simeq b \definedas a \succeq b$ and $b \succeq a$, then
+  \[
+    a+(b+c) \simeq (a+b)+c \qquad a+b\simeq b+a \qquad a+0 \simeq 0 +a
+  \]
+  and
+  \[
+     a\succeq b,\ c\succeq d \implies a+c \succeq b+d.
+  \]
+\end{definition}
+
+When $\R$ is a resource theory, then if we set $R \definedas \objects{\R}$, $+\definedas \*$, $a
+\succeq b \definedas \R(a,b) \neq \emptyset$ and $0\definedas I$, then $(R,+,\succeq,0)$ is a theory
+of resource convertibility.
+
+From this, it is possible to define what is meant by a catalyst:
+\begin{definition}[\cite{coecke2014mathematical}, Definition 4.8]\label{def:catalyst}
+  Given $R$ is a theory of resource convertibility, then a resource $a\in R$ is a \emph{catalyst}
+  for $b,c\in R$ when $b\nsucceq c$ but $a+b \succeq a+c$.
+\end{definition}
+
+Lifting this definition to a resource theory says the object $A$ is a catalyst for objects $B,C$
+when there is a map $f: A\*B \to A\*C$, but no map $g:B\to C$. We might call such maps $f$,
+\emph{catalytic transformations} and objects $A$, \emph{catalytic objects}.
+
+Here, we begin to see the connection to the slice category in a discrete inverse category. As a
+discrete inverse category is also a symmetric monoidal category, it is therefore also a resource
+theory and hence may generate a theory of resource convertibility.
+
+However, given $\X$ is a discrete inverse category, the slice category $\X[A]$ does not correspond
+directly to the catalytic transformations as defined above for two reasons:
+\begin{enumerate}[{(}i{)}]
+  \item For two objects $B,C$ in $\X[A]$ with $f:B\to C$ in $\X[A]$, there is no guarantee that we
+    do \emph{not} have a map  $g:B\to C$ in \X.
+  \item There may be maps $f:A\+B \to A\+C$ in \X, which are not in $\X[A]$ since they do not
+    preserve $A$.
+\end{enumerate}
+
+Continuing with the inspiration of chemistry, we note that $\X[A]$ may perhaps be considered as an
+alternate way of describing  ``the catalytic transformations'' for $A$. In chemistry, one of the
+requirements is that the catalyst is not changed by the transformation in any way. The theory of
+resource convertibility from Definition~\ref{def:resource-convertibility} handles this by
+considering the resource as an indivisible item. In a resource theory, one way to specify that the
+catalytic object has not changed is to identify a subcategory of ``reversible'' transformations and
+then to require the catalytic transformation be in $\X[A]$.
 
 % chapter inverse_categories (end)
 %%% Local Variables:

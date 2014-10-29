@@ -15,8 +15,8 @@ exploration of partial and reversible maps, we choose a definition that highligh
 nature of these.
 
 \begin{definition}\label{def:category}
-  A \emph{category} $\A$ is a directed graph consisting of objects $\A_o$ and maps $\A_m$. Each $f\in
-  \A_m$ has two associated objects in $\A_o$, called the domain, $\catdomain{f}$, and codomain,
+  A \emph{category} $\A$ is a directed graph consisting of objects $\objects{\A}$ and maps $\arrows{\A}$. Each $f\in
+  \arrows{\A}$ has two associated objects in $\objects{\A}$, called the domain, $\catdomain{f}$, and codomain,
   $\catcodomain{f}$. When $\catdomain{f}$ is the object $X$  and $\catcodomain{f}$ is the object $Y$, we
   will write $f:X \to Y$. For $f, g \in \A_m$, if $f:X\to Y$ and $g:Y \to Z$, there is a map called
   the \emph{composite} of $f$ and $g$, written $f g$,\footnote{Note that composition is written in
@@ -27,6 +27,9 @@ nature of these.
     \cattwo &\text{ given }f:X \to Y,\ g:Y \to Z\text{ and }h: Z\to W\text{, then }f (g h) = (f g) h.&\text{( Associativity)}
   \end{align*}
 \end{definition}
+
+For a category $\A$, given objects $X,Y\in\objects{A}$, the set of maps between $X$ and $Y$ is
+referred to as the \emph{hom-set} of $\A$ between $X$ and $Y$ and written as $\A(X,Y)$.
 
 Throughout   this thesis, we will be working with \emph{small} categories, that is, those categories
 whose collection of maps and collection of objects is, in fact, a set. We will give categories of
@@ -60,10 +63,10 @@ We give a few examples of categories:
   immediately satisfied.
 \end{example}
 \begin{example}[Dual Category]\label{ex:dual_category}
-Given a category $\B$, we may form the \emph{dual} of $\B$, written $\B^{op}$ as the following
+Given a category $\B$, we may form the \emph{dual} of $\B$, written $\dual{\B}$ as the following
 category:
-\category{The objects of $\B$}{$f^{op}:B\to A$ in $\B^{op}$ when $f:A\to B$ in $\B$}{
-The identity maps of $\B$}{If $f g = h$ in $\B$, $g^{op} f^{op} = h^{op}$}
+\category{The objects of $\B$}{$\dual{f}:B\to A$ in $\dual{\B}$ when $f:A\to B$ in $\B$}{
+The identity maps of $\B$}{If $f g = h$ in $\B$, $\dual{g} \dual{f} = \dual{h}$}
 \end{example}
 
 Note the format of the previous example, where we list the four basic requirements of a
@@ -72,7 +75,7 @@ complexity of the definition, we may add further proof that it meets \catone and
 
 The previous example is an important one, as we will often speak of \emph{dualizing} a notion, or
 that concept ``x'' is the \emph{dual} of concept ``y''. This means that when ``y'' holds in a
-category \B, the ``x'' holds in $\B^{op}$.
+category \B, the ``x'' holds in $\dual{\B}$.
 
 \section{Properties of maps} % (fold)
 \label{sub:properties_of_maps}
@@ -158,7 +161,7 @@ create a category based on the original one in which all idempotents do split.
 
 \begin{definition}\label{def:split_category}
   Given a category $\B$ and a set of idempotents $E$ of $\B$, we may create the category of \B split
-  over the idempotents $E$. This is normally written as $\spl{E}{\B}$, and defined as:
+  over the idempotents $E$. This is  normally written as $\spl{E}{\B}$, and defined as:
   \categoryns{$(A,e)$, where $A$ is an object of \B, $e:A\to A$ and $e\in E$.}
     {$f_{d,e}:(A,d)\to(B,e)$ is given by $f:A\to B$ in \B, where $f = d\uts f e$.}
     {The map $e_{e,e}$ for $(A,e)$.}
@@ -227,13 +230,17 @@ $\spl{}{\B}$:
   in  $\spl{}{\B}$.
 \end{lemma}
 \begin{proof}
+  First, recall $\spl{}{\B}$ means we are splitting over all idempotents in $\B$, including the
+  identity maps.
   We identify each object $A$ in $\B$ with the object $(A,1)$ in $\spl{}{\B}$. The only maps between
   $(A,1)$ and $(B,1)$ in $\spl{}{\B}$ are the maps between $A$ and $B$ in $\B$, hence we have a
   full subcategory.
 
-  Suppose we have the map $d_{e,e}: (A,e) \to (A,e)$ with $d d = d$, i.e., it is idempotent in $C$
-  and $\spl{}{\B}$. In $\spl{}{\B}$, we have the maps $d_{e,d}:(A,e) \to (A,d)$ and $d_{d,e}:(A,d) \to
-  (A,e)$ where $d_{d,e} d_{e,d} = d_{d,d} = 1_{(A,d)}$ and $d_{e,d} d_{d,e} = d_{e,e}$. Hence,
+  Suppose we have the map $d_{e,e}: (A,e) \to (A,e)$ with $d d = d$, i.e., it is idempotent in $\B$
+  and $\spl{}{\B}$. In $\spl{}{\B}$, we have the maps $d_{e,d}:(A,e) \to (A,d)$  as
+  $e d d = e (e d  e) d = e d e d = d d = d$ and
+  $d_{d,e}:(A,d) \to (A,e)$ as $d d e = d e = (e d e) e = e d e = d$. The compositions
+  are $d_{d,e} d_{e,d} = d_{d,d} = 1_{(A,d)}$ and $d_{e,d} d_{d,e} = d_{e,e}$. Hence,
   it is a splitting of the map  $d_{e,e}$.
 \end{proof}
 
@@ -300,7 +307,7 @@ Adjointness refers to an \emph{adjoint pair} of functors. There are various equi
 defining adjoints and we will approach them using universality.
 
 \begin{definition}\label{def:universal_pair}
-  Given $G:\A\to\B$ is a functor and $A\in \A$, then an object $U$ in \B together with a map
+  Given $G:\B\to\A$ is a functor and $A\in \A$, then an object $U$ in \B together with a map
   $\eta_A:A\to G(U)$ is a \emph{universal pair} for the $G$ at $A$ if whenever there is a map
   $f:A\to G(Y)$, there is a unique $f^{\#}:U\to Y$ such that
   \[
@@ -315,13 +322,13 @@ defining adjoints and we will approach them using universality.
 Consider what happens when we have the situation above, but the $U$ in $\B$ is definable
 based on the $A\in\A$.
 \begin{lemma}\label{lem:adjoint-setup}
-  Suppose for $G:\B\to\A$ is a functor such that for each $A\in\A$, there is an operation
-  $F:\A\to\B$ such that  $(F(A),\eta_A)$ is a universal pair. Then:
+  Suppose $G:\B\to\A$ is a functor such that for each $A\in\objects{\A}$, there is an map on objects
+  $F:\objects{\A}\to\objects{\B}$ such that  $(F(A),\eta_A)$ is a universal pair. Then:
   \begin{itemize}
     \item $F$ is a functor with $F(g) = (g\eta)^{\#}$;
     \item $\eta_A: A \to G(F(A))$ is a natural transformation;
     \item $\epsilon_B = 1_{G(B)}^{\#}:F(G(B)) \to B$ is a natural transformation;
-    \item The triangle equalities, $\eta_{G(B)}G(\epsilon_B) = 1_B$ and $F(\eta_A)\epsilon_{F(A)} =
+    \item The triangle equalities, $\eta_{G(B)}G(\epsilon_B) = 1_{G(B)}$ and $F(\eta_A)\epsilon_{F(A)} =
       1_{F(A)}$ hold.
   \end{itemize}
   Conversely, if we have functors $F,G$ with transformation $\eta$ and $\epsilon$ which satisfy the
@@ -357,23 +364,26 @@ defining the bijection, this is often written in the form of an inference:
 
 \begin{example}[Simple slice adjoint]\label{ex:simple-slice-adjoint}
   Consider the  \emph{simple slice} category\cite{blute2009cartesian}, $\B[A]$  defined as:
-  \categoryns{Objects of \B.}{$f:C\to D$ is given by maps $f:C\times A \to D$.}{projection --
-    $\pi_0$.}{$C\xrightarrow{f}D\xrightarrow{g}E$ is given by $C\times A \xrightarrow{1\times \Delta}
-    C\times A\times A\xrightarrow{f\times 1} D\times A \xrightarrow{g} E$.}
+  \categoryns{Objects of \B.
+  }{a map $f_A:C\to D$ in $\B[A]$ is given by the map $f:C\times A \to D$ in \B.
+  }{projection -- $\pi_0$.
+  }{$C\xrightarrow{f_A}D\xrightarrow{g_A}E$ in $\B[A]$ is given by
+    $C\times A \xrightarrow{1\times \Delta}
+    C\times A\times A\xrightarrow{f\times 1} D\times A \xrightarrow{g} E$ in \B.}
   Note the definition of simple slice category relies on products in categories, to be introduced
   below in Section~\ref{sub:limits_and_colimits_in_categories}.
 
   There is an adjunction between $\B[A]$ and $\B$.
 
-  Define $F:\B[A]\to \B$ by $F:C \mapsto C\times A$, $F:(f:C\to D) \mapsto (1\times \Delta) (f\times
+  Define $F:\B[A]\to \B$ by $F:C \mapsto C\times A$, $F:(f_A:C\to D) \mapsto (1\times \Delta) (f\times
   1)$.
-  Define $G:\B \to \B[A]$ by $G:C\mapsto C$, $G:(f:C\to D) \mapsto \pi_0 f$. We see immediately
+  Define $G:\B \to \B[A]$ by $G:C\mapsto C$, $G:(f:C\to D) \mapsto (\pi_0 f)_A$. We see immediately
   there is a  correspondence $\phi$ of hom-sets
   \[
     \infer{\B[A](C,G(D))}{\B(F(C), D)}
     \qquad \raisebox{8pt}{$\equiv$}\ \ \infer{\B[A](C,D)}{\B(C\times A, D)}
   \]
-  given by $\phi(f) = f$.
+  where $\phi:\B(C\times A, D)\to\B[A](C,D)$ is given by $\phi(f) = f_A$.
   Thus $F\leftadjoint G$.
 \end{example}
 
@@ -400,7 +410,7 @@ enriched in abelian groups, vector spaces, posets, categories or commutative mon
 Specific types of enrichment may force a structure on a category. Examples:
 \begin{enumerate}
  \item If $\X$ is enriched in sets of cardinality of 0 or 1, then $\X$ is a preorder.
- \item If $\X$ is enriched in pointed sets with the monoid of smash product, the $\X$ has zero morphisms.
+ \item If $\X$ is enriched in pointed sets with the monoid of smash product, then $\X$ has zero morphisms.
 % \item If $\X$ is enriched in abelian groups, then $\X$ is a preadditive category (has zero
 %   morphisms and has finite products which are the same as the coproduct).
 \end{enumerate}
@@ -419,11 +429,11 @@ In this section, we will offer a few examples of categories.
   = G$, this category is enriched in groups.
 \end{example}
 
-Four categories derived from sets are \rel, \sets, \Par, and \pinj:
+Four categories whose objects are sets are \rel, \sets, \Par, and \pinj:
 
 \begin{example}[\rel]\label{ex:category_rel}
 \rel is often of interest in quantum programming language semantics:
-\category{All sets}{Relations: $R\subseteq X\times Y$}{$1_X = \{(x,x) | x \in X\}$}{$RS = \{(x,z) |\,
+\category{All sets}{$R:X\to Y$ is a relation: $R\subseteq X\times Y$}{$1_X = \{(x,x) | x \in X\}$}{$RS = \{(x,z) |\,
 \exists y. (x,y) \in R$ and $(y,z)\in S\}$}
 \end{example}
 
@@ -447,30 +457,34 @@ partial functions, i.e., deterministic relations $f$ where if $(x,y), (x,y') \in
 
 \begin{example}[\pinj]\label{ex:category_pinj}
 Our final example based on sets is one that will be used throughout this thesis. The category \pinj consists of
-the partial injective functions over sets. Similarly to \sets and \Par, it may be considered as a subcategory
+the partial injective functions over sets. Similarly to \sets and \Par, it is a subcategory
 of \rel. The maps $f,g$ (relations in \rel) in \pinj are subject to two conditions:
 \begin{align}
    (x,y)\in f\text{ and }(x,y')\in f & \text{ implies } y = y',\label{eq:pinj_relation_is_a_function}\\
    (x,y)\in f\text{ and }(x',y)\in f & \text{ implies } x = x'.\label{eq:pinj_converse_relation_is_a_function}
 \end{align}
-\category{All sets}{Relations: $f:X \to Y$ which satisfy Equation~\ref{eq:pinj_relation_is_a_function} and
-Equation~\ref{eq:pinj_converse_relation_is_a_function}}{$1_X = \{(x,x) | x \in X\}$}{$f g = \{(x,z) |\,
-\exists y. (x,y) \in f$ and $(y,z)\in g\}$}
+
 \end{example}
 
 \begin{example}[\topcat]\label{ex:category_top}
-  A topological space is defined as a pair $(T,\open{T})$ where $T$ is a set and $\open{T} \subseteq
-  \mathcal{P}(T)$ satisfying three properties:
+  For a set $S$, $\power{S}$ is the power set of $S$, that is, the set of all subjects of $S$,
+  including the empty set and $S$ itself.
+
+  We define $\open{T}$, the \emph{open sets} of $T$, as follows:
   \begin{enumerate}[{(}i{)}]
+    \item $\open{T} \subseteq \power{T}$;
     \item $T\in \open{T}$ and $\emptyset \in \open{T}$;
     \item The union of any sets in $\open{T}$ is again in $\open{T}$;
     \item The intersection of finitely many sets in $\open{T}$ is in $\open{T}$.
   \end{enumerate}
-  The sets in $\open{T}$ are referred to as the open sets of the topological space.
+
+  A topological space is defined as a pair $(T,\open{T})$ where $T$ is a set and $\open{T}$ are the
+  open sets of $T$. Note that we may choose different open sets for $T$, resulting in different
+  topological spaces.
 
   Maps between two topological spaces $(T,\open{T})$ and $(S,\open{S})$ consist of
-  a set map $f:T \to S$ such that the inverse image of any open set  is an open set. Such
-  maps are referred to as \emph{continuous functions}.
+  a set map $f:T \to S$ such that the inverse image of any open set in $S$ is an open set in
+  $T$. Such maps are referred to as \emph{continuous functions}.
 
   The identity map is always continuous and composition of continuous functions yields another
   continuous function, hence setting $\topcat_o$ to be the set of all topological spaces and
@@ -623,14 +637,30 @@ $\<1, 1\>$ will be designated by $\Delta$ and $[1,1]$ by $\nabla$.
 \begin{definition}\label{symmetricmonoidalcat}
   A \emph{symmetric monoidal category}\cite{barr:ctcs,maclan97:categorieswrkmath} \cD{} is a
   category equipped with a monoid $\*$ (a bi-functor $\*:\cD \times \cD \to \cD$) together with
-  four families of natural isomorphisms:  $a_{A,B,C}:A\*(B\*C) \to (A\*B)\*C$, $u^r_{A}:A\*I\to A$,
-  $u^l_{A}:I\*A \to A$ and $c_{A,B}:A\*B \to B\* A$, which satisfy coherence diagrams and
-  equations shown in Figures~\ref{fig:SMC_pentagon}, \ref{fig:SMC_unit}, \ref{fig:SMC_commutes},
+  four families of natural isomorphisms:
+  \begin{align*}
+    u^l_{A}&:I\*A \to A&
+    u^r_{A}&:A\*I\to A \\
+    a_{A,B,C} &: A\*(B\*C) \to (A\*B)\*C &
+    c_{A,B}&:A\*B \to B\* A.
+  \end{align*}
+  When the objects are identified in other ways, we often write the maps with the tensor as a
+  subscript:
+  \begin{align*}
+    \usl &: I \* A \to A &
+    \usr &: A \* I \to A\\
+    a_\* &: (A \* B) \* C \to A \* (B \* C) &
+    c_\* &: A \* B \to B \* A.
+  \end{align*}
+  These maps must satisfy the coherence diagrams and equations shown in
+  Figures~\ref{fig:SMC_pentagon}, \ref{fig:SMC_unit}, \ref{fig:SMC_commutes},
   \ref{fig:SMC_unit_symmettry} and \ref{fig:SMC_associativity_symmetry}. The essence of the
   coherence diagrams is that any diagram composed solely of the structure isomorphisms will
   commute. The isomorphisms are referred to as the \emph{structure isomorphisms}. $I$ is the
   unit of the monoid. A symmetric monoidal category is called \emph{strict} when each of
   $a_{A,B,C}$, $u^r_{A}$, $u^l_{A}$ and $c_{A,B}$ are identity maps.
+
+  A tensor with these properties is also referred to as a \emph{symmetric tensor}.
 \end{definition}
 
 \begin{figure}[!htbp]
@@ -689,6 +719,25 @@ $\<1, 1\>$ will be designated by $\Delta$ and $[1,1]$ by $\nabla$.
 \]
 \caption{Associativity symmetry in an SMC.}\label{fig:SMC_associativity_symmetry}
 \end{figure}
+\begin{example}
+  Any category \D with a product $\times$ and a terminal object $\top$ is a symmetric monoidal
+  category with $\* \definedas \times$ and $I \definedas \top$.
+\end{example}
+\begin{example}[\pinj has a symmetric tensor]\label{ex:pinj-has-a-smt}
+  A symmetric tensor in \pinj is given by the Cartesian product of sets. In detail, this means:
+  \begin{align*}
+    A \* B &= \{(a,b)| a\in A, b\in B\}\\
+    f \* g &= \{((a,c),(b,d)) | (a,b) \in f, (c,d) \in g\}\\
+    1 & = \{*\}\text{, a single element set.}
+  \end{align*}
+  The symmetric monoid isomorphisms are:
+    \begin{align*}
+      \usl &: \{(*,a)\} \mapsto \{a\}
+      &\usr &: \{(a,*)\} \mapsto \{a\}\\
+      a_{\*} &: \{((a,b),c)\} \mapsto \{(a,(b,c))\}
+      &c_{\*} &: \{(a,b)\} \mapsto \{(b,a)\}.
+    \end{align*}
+\end{example}
 % subsection symmetric monoidal categories (end)
 %%% Local Variables:
 %%% mode: latex

@@ -322,6 +322,10 @@
 \newcommand{\categorysection}[1]{{#1}^\diamond}
 \newcommand{\retraction}[1]{{#1}_\diamond}
 
+\newcommand{\objects}[1]{\ensuremath{{#1}_o}\xspace}
+\newcommand{\arrows}[1]{\ensuremath{{#1}_m}\xspace}
+
+\newcommand{\dual}[1]{\ensuremath{{#1}^{op}}\xspace}
 \newcommand{\categoryns}[4]{%
 \begin{description}%
 \item{\textbf{Objects: }}{#1}%
@@ -359,7 +363,7 @@
 \newcommand{\pinj}{\specialcat{Pinj}}
 
 \newcommand{\sets}{\specialcat{Sets}}
-\newcommand{\finsets}{\ensuremath{\sets_f}}
+\newcommand{\finsets}{\ensuremath{\specialcat{FinSets}}}
 \newcommand{\ord}{\specialcat{Ord}}
 \newcommand{\cat}{\specialcat{Cat}}
 \newcommand{\Par}{\specialcat{Par}}
@@ -519,6 +523,7 @@
 
 
 \newcommand{\open}[1]{\ensuremath{\mathcal{O}({#1})}}
+\newcommand{\power}[1]{\ensuremath{\mathcal{P}({#1})}}
 
 \newcommand{\upl}{\uleft{\+}}
 \newcommand{\upr}{\uright{\+}}
@@ -531,8 +536,8 @@
 
 \newcommand{\ea}{e_1}
 \newcommand{\eb}{e_2}
-\newcommand{\xa}{x_1}
-\newcommand{\xb}{x_2}
+\newcommand{\xa}{\inv{i_1}}
+\newcommand{\xb}{\inv{i_2}}
 
 \DeclareMathOperator{\rstp}{\rst{+}}
 \DeclareMathOperator{\rgp}{\rg{+}}
@@ -543,7 +548,7 @@
 %-------------------------------------------------
 % sub/super scripting and decorating
 
-\newcommand{\dual}[1]{\ensuremath{{#1}^{*}}}
+\newcommand{\ccdual}[1]{\ensuremath{{#1}^{*}}}
 
 \newcommand{\dgr}[1]{\ensuremath{{#1}^{\dagger}}}
 

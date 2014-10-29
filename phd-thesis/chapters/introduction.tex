@@ -1,16 +1,15 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
 \chapter{Introduction}\label{chap:introduction}
 \section{Summary}\label{sec:summary}
-A ``quantum'' setting has a fundamental duality given by the ``dagger'' of dagger
+A ``quantum'' setting has a duality given by the ``dagger'' of dagger
 categories\cite{selinger05:dagger,abramsky05:abstractscalars}. On the other hand, classical
-computation is fundamentally asymmetric and has no duality. In passing from a quantum setting to a more classical setting, one
-may want to keep this duality for as long as possible and, thus, consider the intermediate step of
-passing to ``reversible'' computation --- which has an obvious self-duality given by the ability to
-reverse the computation. It is reasonable to
-wonder whether one can then pass from a reversible setting to a classical setting quite
-independently from the underlying quantum setting. Such an abstract
-passage would allow a direct translation into the reversible world of the classical notions of
-computation, as an example.
+computation is fundamentally asymmetric and has no duality. In passing from a quantum setting to a
+more classical setting, one may want to keep this duality for as long as possible and, thus,
+consider the intermediate step of passing to ``reversible'' computation --- which has an obvious
+self-duality given by the ability to reverse the computation. It is reasonable to wonder whether one
+can then pass from a reversible setting to a classical setting quite independently from the
+underlying quantum setting. Such an abstract passage would allow a direct translation into the
+reversible world of the classical notions of computation, as an example.
 
 Of course, from a quantum setting, it is already possible to pass directly to a classical setting by
 taking the homomorphisms between special coalgebras, where ``special'' means the coalgebra must be
@@ -101,7 +100,7 @@ its converse are both orthogonal). While the paper does use reversible term rewr
 basis for computation, its emphasis is on how one can derive a linear combinatory algebra.
 Linear combinatory algebras are themselves not reversible systems.
 
-In \cite{mu06bidirectional} and \cite{muetal04:injreversible}, Mu et.al. introduce the language
+In \cite{mu06bidirectional} and \cite{muetal04:injreversible}, Mu, Hu and Takeichi introduce the language
 \textbf{Inv}, a language that is composed only of partial injective functions. The language has an
 operational semantics based on determinate relations and converses. They provide a variety of examples of the
 language, including translations from XML to HTML and simple functions such as $wrap$, which wraps
@@ -110,12 +109,13 @@ injective ones in \textbf{Inv} via the addition of logging. In fact, they use th
 the language is equivalent in terms of power to the reversible Turing machine of
 \cite{bennett:1973reverse}.
 
-Some of the ideas of Mu et.al. are closely related to the theory developed in this thesis. For
-example,  given two functions $f,g$ of \textbf{Inv}, constructing their union, $f\union g$ requires
-that both $\dom f \intersection \dom g = \nothing$ and $\rng f \intersection \rng g =
-\nothing$. This is an example of a disjoint join as introduced in Section~\ref{sec:disjoint_joins}.
+Some of the ideas of \cite{mu06bidirectional,muetal04:injreversible} are closely related to
+the theory developed in this thesis. For example,  given two functions $f,g$ of \textbf{Inv},
+constructing their union, $f\union g$ requires that both $\dom f \intersection \dom g = \nothing$
+and $\rng f \intersection \rng g = \nothing$. This is an example of a disjoint join as introduced in
+Section~\ref{sec:disjoint_joins}.
 
-In Di Pierro et.al. \cite{DiPierro200625}, the authors consider groupoids as their mathematical
+In \cite{DiPierro200625}, Di Pierro, Hankin and Wiklicky consider groupoids as their mathematical
 model for reversible computations. This leads them to develop \textbf{rCL}, reversible combinatory
 logic. This logic consists of a pair of terms, $\<M|H\>$, where $M$ is a term of standard combinatory
 logic and $H$ is a history, with a specified syntax. In standard combinatory logic, the $k$ term is
@@ -161,10 +161,11 @@ with dagger compact closed categories
 We present inverse categories as an abstract semantics for partial reversible computation.
 Inverse categories admit product-like and coproduct-like structures, respectively called
 inverse product and disjoint sum. Inverse categories with an inverse product are called discrete
-inverse categories, due to their possessing an inverse for comultiplication. Similarly, when
+inverse categories. The name discrete is derived from topological spaces, where $\Delta$ has an
+inverse only when the topological space has the discrete topology. Similarly, when
 $\Delta$ in a Cartesian restriction category has an inverse, it will be called a discrete Cartesian
 restriction category. Section~\ref{sec:the_restriction_category_hypxt} shows how the ``Cartesian
-Completion'' of an inverse category can be constructed. This enables us to create a discrete
+Completion'' of a discrete inverse category can be constructed. This enables us to create a discrete
 Cartesian restriction category from a discrete inverse category. It is then shown that we have an
 equivalence between the category of discrete inverse categories and the category of discrete
 Cartesian restriction categories.
@@ -184,6 +185,22 @@ algebras, directly based on Turing category and partial combinatory algebras  fr
 result of this thesis. This places the connection between reversible and irreversible
 computing on a more abstract footing.
 
+While the thesis does cover many important aspects of reversible computing, there are interesting
+areas related to reversible computing that are not within the scope of this thesis.
+
+The thesis does not, in general, consider resource usage or complexity classes. For example,
+although we do mention Turing machines in the introduction, we do not develop this further. In
+particular the thesis does not consider whether the Cartesian Completion preserves a given
+complexity of programs when applied to an inverse category whose maps are programs. The reader
+wishing to relate resource theory and the work in this thesis could use the recent work by Coecke,
+Fritz and Spekkens\cite{coecke2014mathematical}, which defines a resource
+theory as a symmetric monoidal category, as a starting point. We do look at this briefly in
+SubSection~\ref{subsec:interpretation-of-the-slice}.
+
+
+Additionally, the thesis does not address the creation or invention of specific algorithms. For
+example, in the quantum world, finding the ``right'' set of invertible transforms to produce the
+desired answer is a significant problem\cite{neilsen2000:QuantumComputationAndInfo}.
 
 \section{Outline} % (fold)
 \label{sec:outline}
@@ -249,7 +266,7 @@ Completion of a distributive inverse category turns the disjoint sum into a copr
 will create a distributive restriction category.
 
 Chapter~\ref{chap:commutative_frobenius_algebras} discusses commutative Frobenius algebras. The
-chapter starts with providing a background on dagger categories and frobenius algebras, showing how
+chapter starts with providing a background on dagger categories and Frobenius algebras, showing how
 the latter are equivalent to bases in a finite dimensional Hilbert space. The category \CFrob,
 the category of commutative Frobenius algebras in a symmetric monoidal category $\X$, is
 introduced. \CFrob is shown to be a discrete inverse category. Furthermore, when \X is an

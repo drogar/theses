@@ -14,16 +14,16 @@ non-degenerate pairing operation. Here we present the general categorical defini
         && X\*X\*X \ar[dd]^{\nabla\*1}\\
       & X\ar[dr]^{\Delta}\\
       X\*X\*X\ar[rr]_{1\*\nabla}  && X\*X
-    }\quad
-    \xymatrix{
-      A \ar[r]^{\Delta} \ar@{=}[ddr] & A\*A \ar[d]^{\epsilon\*1} \\
-      & I\*A \ar[d]^{\usl}\\
-      & A
-    }\quad
-    \xymatrix{
-      A \ar[r]^{\inv{\usr}} \ar@{=}[ddr] & A\*I \ar[d]^{1\*\eta}\\
-      & A\*A \ar[d]^{\nabla} \\
-      & A
+    }\qquad
+    \xymatrix@C+15pt{
+      X \ar[r]^{\Delta} \ar@{=}[ddr] & X\*X \ar[d]^{\epsilon\*1} \\
+      & I\*X \ar[d]^{\usl}\\
+      & X
+    }\qquad
+    \xymatrix@C+15pt{
+      X \ar[r]^{\inv{\usr}} \ar@{=}[ddr] & X\*I \ar[d]^{1\*\eta}\\
+      & X\*X \ar[d]^{\nabla} \\
+      & X
     }
   \]
   all commute. The Frobenius algebra is \emph{special} when $\Delta \nabla = 1_{X}$ and
@@ -41,9 +41,9 @@ with an orthonormal basis $\{\ket{\phi_{i}}\}$ and define $\Delta:H\to H\*H: \ke
 $\dagger$-Frobenius algebra.
 
 
-In \cite{coeckeetal08:ortho}, Coecke et. al. give a correspondence between Frobenius algebras and
-orthogonal bases in finite dimensional Hilbert spaces. An orthonormal basis for such a space
-determines, as above, a special commutative $\dagger$-Frobenius algebra. To show the other
+In \cite{coeckeetal08:ortho}, Coecke, Pavlovi\'c and Vicary give a correspondence between Frobenius
+algebras and orthogonal bases in finite dimensional Hilbert spaces. An orthonormal basis for such a
+space determines, as above, a special commutative $\dagger$-Frobenius algebra. To show the other
 direction, given a commutative $\dagger$-Frobenius algebra, $(H,\nabla,\eta)$, for each element
 $\alpha\in H$ define the right action of $\alpha$ as $R_{\alpha}:=(id\*\alpha)\, \nabla:H\to
 H$. Note the use of the fact that elements $\alpha\in H$ can be considered as linear maps
@@ -80,9 +80,9 @@ $C^{*}$-algebra to $\complex$ form a basis for the dual of the underlying vector
 homomorphisms as $\dgr{\phi_{i}}:H \to \complex$. Then their adjoints, $\phi_{i}:\complex\to H$ will form a
 basis for the space $H$. These are the copyable elements in $H$.
 
-This, together with continued applications of the Frobenius rules and linear algebra allow the
-authors to prove the following Theorem.
-\begin{theorem}
+This, together with continued applications of the Frobenius rules and linear algebra allow Coecke,
+Pavlovi\'c and Vicary to prove the following Theorem.
+\begin{theorem}[Coecke, Pavolvi\'c, Vicary]\label{thm:cpv5.1}
   Every commutative $\dagger$-Frobenius algebra in \fdh determines an orthogonal basis consisting
   of its copyable elements. Conversely, every orthogonal basis $\{\ket{\phi_{i}}\}_{i}$ determines
   a commutative $\dagger$-Frobenius algebra via \[\Delta:H\to H\*H: \ket{\phi_{i}}\mapsto
@@ -90,59 +90,21 @@ authors to prove the following Theorem.
   constructions are inverse to each other.
 \end{theorem}
 
-% In \cite{coecke08structures}, Coecke et.al. build on the results of \cite{coeckeetal08:ortho}
-% to start from a $\dagger$-symmetric monoidal category and construct the minimal machinery needed to
-% model quantum and classical computations. For the rest of this section, $\cD$ will be assumed to be
-% such a category, with $\*$ the monoid tensor and $I$ the unit of the monoid.
+An interesting aspect of Theorem~\ref{thm:cpv5.1} is that it uses only algebraic structures to
+determine a basis as the ``copyable elements''. In a quantum computation, the choice of basis
+determines the copyable elements.
 
-% \begin{definition}\label{def:compact_structure}
-%   A compact structure on an object $A$ in the category $\cD$ is given by the object $A$, an object
-%   $A^{*}$ called its \emph{dual} and the maps $\eta:I \to A^{*}\* A$, $\epsilon: A\* A^{*} \to I$
-%   such that the diagrams
-%   \[
-%     \xymatrix@C+20pt{
-%       A^{*} \ar[dr]^{id} \ar[d]_{\eta\*A^{*}} \\
-%       A^{*} \*A\*A^{*}  \ar[r]_(.6){A^{*} \*\epsilon} & A^{*}
-%     }
-%     \text{ and }
-%     \xymatrix@C+20pt{
-%       A \ar[r]^(.4){A\*\eta} \ar[dr]_{id} & A\* A^{*}\* A \ar[d]^{\epsilon\*A}\\
-%       & A
-%     }
-%   \]
-%   commute.
-% \end{definition}
-
-% \begin{definition}\label{def:quantumstructure}
-%   A \emph{quantum structure} is an object $A$ and map $\eta:I\to A\*A$ such that
-%   $(A,A,\eta,\dgr{\eta})$ form a compact structure.
-% \end{definition}
-% Note that $A$ is self-dual in definition \ref{def:quantumstructure}.
-
-% This allows the creation of the category $\cD_{q}$ which has as objects quantum structures and maps
-% are the maps in $\cD$ between the objects in the quantum structures.
-
-% In the category $\cD_{q}$, it is now possible to define the upper and lower $*$ operations on maps,
-% such that $(f_{*})^{*}= (f^{*})_{*} = \dgr{f}$:
-% \begin{eqnarray*}
-% &f^{*} &:= (\eta_{A}\*1) (1 \* f\*1) (1\*\dgr{\eta}_{B}),\\
-% &f_{*} &:= (\eta_{B}\*1) (1 \* \dgr{f}\*1) (1\*\dgr{\eta}_{A}).
-% \end{eqnarray*}
-
-% Next, define a classical structure on \cD.
-% \begin{definition}\label{def:classicalstructure}
-%   A \emph{classical structure} in \cD{} is an object $X$ together with two maps, $\Delta :X \to X\* X$,
-%   $\epsilon:X\to I$ such that $(X,\dgr{\Delta},\dgr{\epsilon},\Delta,\epsilon)$ forms a special
-%   Frobenius algebra.
-% \end{definition}
-
-% As above, this allows us to define $\cD_{c}$, the category whose objects are the classical
-% structures of $\cD$. The maps in $\cD_{c}$ are given by the maps in $\cD$ between the
-% objects of the classical structure.
-
-% Note that a classical structure will induce a quantum structure, setting $\eta_{X}$ to be
-% $\dgr{\epsilon_{X}}\, \Delta_{X}$.
-
+\begin{remark}
+  Vicary, in \cite{vicary2011categorical}, further explores $\dagger$-Frobenius algebras to define
+  \emph{involution monoids} on $\dagger$-monoidal categories with duals. This led to an alternate
+  proof of Lemma~\ref{lemma:cstaralgebra} based on monoids. From this, Vicary shows that
+  the category of commutative $\dagger$-monoids in \fdh, with monoid morphisms as maps, is equivalent
+  to $\dual{\finsets}$ -- the dual of the category of finite sets. Of course, this is another way to
+  move to the classical world from the quantum world.  Vicary goes on in
+  \cite{mclarty1992elementary} to define a finite quantum Boolean topos and finite Boolean topos and
+  show that the category of classical structures in a finite quantum Boolean topos is equivalent to
+  a finite Boolean topos and in fact, every finite Boolean topos arises in this way.
+\end{remark}
 % subsection frobenius_algebras (end)
 
 %%% Local Variables:

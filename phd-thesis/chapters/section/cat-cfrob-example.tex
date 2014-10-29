@@ -22,7 +22,7 @@ A^{*} \* A$ (the \emph{unit}) and $\epsilon_{A}: A\*A^{*}\to I$ (the \emph{couni
   \xymatrix@C+15pt{
     A^{*} \ar[r]^{u_{A^*}} \ar@{=}[d]  & I\*A^* \ar[r]^(.4){\eta_{A}\*1}
         & (A^{*}\* A)\*A^{*} \ar[d]^{a_{A^{*},A,A^{*}}^{-1}} \\
-    A & A\*I \ar[l]^{u_{A^*}^{-1}} & A^{*}\*(A\*A^{*}) \ar[l]^(.6){1\*\epsilon_{A}}
+    A^* & A^*\*I \ar[l]^{u_{A^*}^{-1}} & A^{*}\*(A\*A^{*}) \ar[l]^(.6){1\*\epsilon_{A}}
     }
   \]
 commute.
@@ -44,8 +44,8 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
 \subsection{\CFrob is an inverse category}\label{ssec:cfrob_x_is_an_inverse_category}
 \begin{example}[Commutative separable Frobenius algebras\cite{kock04}]\label{example:commfrob}
   Let \X be a symmetric monoidal category and form \CFrob as follows: \paragraph{\textbf{Objects:}}
-  Commutative separable Frobenius algebras, a quintuple $(A,\nabla,\eta,\Delta,\epsilon)$ where
-  $A$ is an object of \X with the following maps:
+  Commutative separable Frobenius algebras: These are quintuples
+  $(A,\nabla,\eta,\Delta,\epsilon)$ where $A$ is an object of \X with the following maps:
   $\nabla :A\*A \to A$, $\eta:I\to A$, $\Delta : A \to A\*A$, $\epsilon : A \to I$ which are natural
   maps in \X, with $(A,\nabla,\eta)$ a monoid and $(A,\Delta,\epsilon)$ a comonoid. Additionally,
   these satisfy
@@ -79,7 +79,7 @@ Given a map $f:A\to B$ in a compact closed category,  define the map $f^{*}:B^{*
 \end{example}
 
 \begin{lemma}\label{lem:cfrobx_is_an_inverse_category}
-  When \X is a symmetric monoidal category, \CFrob is a inverse category.
+  When \X is a symmetric monoidal category, \CFrob is an inverse category.
 \end{lemma}
 \begin{proof}
   We need to show that \CFrob has restrictions and that each map has a partial inverse. We do
@@ -909,6 +909,92 @@ Hence, \CFrob is an inverse category.
   coassociativity and the exchange rule all follow from the properties of the commutative Frobenius
   algebras and therefore \CFrob is a discrete inverse category.
 \end{proof}
+
+Note that the category \CFrob possesses additional structure over that of a general discrete inverse
+category, specifically, the existence of unit maps $\eta:I \to A$ and $\epsilon:A\to I$ for each
+object $A$.
+
+We may also consider \CFrob as a bicategory\cite{leinster1998basic}, with the following data:
+\begin{enumerate}[{(}i{)}]
+  \item Objects of the bicategory are the objects of \CFrob, that is, the objects of the underlying
+  symmetric monoidal category \X.
+  \item The hom-sets $\CFrob(A,B)$ are each categories, with the objects being the maps between $A$
+    and $B$ (elements of the hom-set) and the maps being the partial ordering given by the
+    restriction as shown in Lemma~\ref{lem:restriction_cats_are_partial_order_enriched}.
+  \item The composition functor is based upon the composition in \X. By
+    Lemma~\ref{lem:restriction_cats_are_partial_order_enriched} we have that $f \le g$, $h\le k$
+    gives $f h \le g k$. The identity functor $I_A:1\to \CFrob(A,A)$ maps to the identity map in
+    each hom-set.
+  \item The associativity and identity transforms are identities, i.e. $f(g h) = (f g) h$ and $f I_A
+    = f = I_A f$, hence this is a 2-category.
+\end{enumerate}
+With this data, we see that the Frobenius structure of $(A,\nabla,\eta,\Delta,\epsilon)$ ensure that
+\CFrob is actually a Cartesian bicategory as defined in Carboni and Walters
+\cite{carboni1987cartesian}. Moreover, as we have $\nabla \Delta = (\Delta \*1) (1\* \nabla)$, this
+satisfies the further condition that each object is \emph{discrete} and therefore is considered a
+``bicategory of relations'' as defined in \cite{carboni1987cartesian}, Definition~2.1.
+Carboni and Walters describe a number of consequences resulting when the base bicategory is locally
+posetal.
+
+Frobenius algebras are not the only structure of interest when considering symmetric monoidal
+categories. Coecke, Paquette and Pavlovi\'c In  \cite{coecke08classical}, model quantum and
+classical computations in a $\dagger$-symmetric monoidal category $\cD$. Their basic definitions for
+include a compact structure, a quantum structure and a classical structure, that latter of which is
+a special Frobenius algebra:
+
+\begin{definition}\label{def:compact_structure}
+  A \emph{compact structure} on an object $A$ in the category $\cD$ is given by the object $A$, an object
+  $A^{*}$ called its \emph{dual} and the maps $\eta:I \to A^{*}\* A$, $\epsilon: A\* A^{*} \to I$
+  such that the diagrams
+  \[
+    \xymatrix@C+20pt{
+      A^{*} \ar[dr]^{id} \ar[d]_{\eta\*A^{*}} \\
+      A^{*} \*A\*A^{*}  \ar[r]_(.6){A^{*} \*\epsilon} & A^{*}
+    }
+    \text{ and }
+    \xymatrix@C+20pt{
+      A \ar[r]^(.4){A\*\eta} \ar[dr]_{id} & A\* A^{*}\* A \ar[d]^{\epsilon\*A}\\
+      & A
+    }
+  \]
+  commute.
+\end{definition}
+
+\begin{definition}\label{def:quantumstructure}
+  A \emph{quantum structure} is an object $A$ and map $\eta:I\to A\*A$ such that
+  $(A,A,\eta,\dgr{\eta})$ form a compact structure.
+\end{definition}
+Note that $A$ is self-dual in definition \ref{def:quantumstructure}.
+
+
+\begin{definition}\label{def:classicalstructure}
+  A \emph{classical structure} in \cD{} is an object $X$ together with two maps, $\Delta :X \to X\* X$,
+  $\epsilon:X\to I$ such that $(X,\dgr{\Delta},\dgr{\epsilon},\Delta,\epsilon)$ forms a special
+  Frobenius algebra.
+\end{definition}
+
+Coecke, Paquette and Pavlovi\'c then examine two categories based on these structures: The category
+$\cD_q$, the category whose objects are quantum structures in \cD, with
+\[
+  \cD_q((A,\eta_A),(B,\eta_B)) \definedas \cD(A,B)
+\] and  $\cD_c$, the category whose maps are classical structures in
+\cD, with
+\[
+  \cD_q((X,\Delta_X,\epsilon_X), (Y,\Delta_Y,\epsilon_Y)) \definedas \cD(A,B).
+\]
+The creation of these categories and the use of the classical structure motivated the examination of
+\CFrob in this section.
+
+
+\begin{remark}
+  For an alternate way of using inverse categories to describe quantum computation, refer to
+  Example~\ref{ex:partial-isometries-are-inverse-cats} and Hines and Braunstein's paper ``The
+  structure of partial isometries'' \cite{hines2010structure}. This paper discusses how the category
+  of partial isometries (an inverse category) may be considered a reasonable interpretation of
+  von~Neumann-Birkhoff quantum logic\cite{birkhoff1936logic}. At the same time, they show this model
+  in inconsistent with that of \cite{abramsky04:catsemquantprot} in that one can not model
+  teleportation and in fact, is not even compact closed.
+\end{remark}
 
 % section the_category_of_commutative_frobenius_algebras (end)
 
