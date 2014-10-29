@@ -10,11 +10,11 @@ which already has a disjoint join. As we shall see, it is sufficient to have ``e
   In an inverse category with disjoint joins, an object $X$ is the \emph{disjoint sum} of $A$ and
   $B$ when there exist maps $i_1 : A \to X$, $i_2: B \to X$ such that:
   \begin{enumerate}[{(}i{)}]
-    \item $i_1$ and $i_2$ are monic;
+    \item $i_1$ and $i_2$ are total (equivalently -- monic);
     \item $\inv{i_1}i_1 \perp \inv{i_2}i_2$ and $\inv{i_1}i_1 \djoin \inv{i_2}i_2 = 1_X$.
   \end{enumerate}
   The maps $i_1$ and $i_2$ will be referred to as the \emph{injection} maps of the disjoint
-  sum. This arrangement is normally visualized as:
+  sum. This arrangement may be visualized as:
   \[
     \xymatrix{
       A\ar[r]^{i_1} &X\ar@/^9pt/[l]^{\inv{i_1}} \ar@/_9pt/[r]_{\inv{i_1}} & B \ar[l]_{i_2}
@@ -90,7 +90,7 @@ First, the next lemma shows how to construct maps between the disjoint sums:
   disjoint sums.
 \end{proof}
 
-The argument in the above lemma is one we will used from time to time. Specifically, that
+The argument in the above lemma is one we will used from time to time. In particular, this means
 $\rst{\inv{i_1} g} \cdperp \rst{\inv{i_2} h}$ for arbitrary $g,h$ and that
 $\wrg{h i_1} \cdperp \wrg{k i_2}$.
 

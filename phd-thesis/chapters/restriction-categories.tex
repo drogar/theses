@@ -204,6 +204,7 @@ expressed as:
       \item $f \le g \implies f h \le g h$;
       \item $f \le g$ and $\rst{f} = \rst{g}$ implies $f = g$;
       \item $f \le 1 \iff f = \restr{f}$;
+      \item $f \le g$, $h \le k \implies f h \le g k$;
       \item $\rst{g}f = f$ implies $\rst{f} \le \rst{g}$.
     \end{enumerate}
   \end{multicols}
@@ -238,6 +239,7 @@ expressed as:
       = \restr{f}\, \restr{g h} g h = \restr{f} g h = f h$ and therefore $f h \le g h$.
     \item $g = \rst{g} g = \rst{f} g = f$.
     \item As $f \le 1$ means precisely $\restr{f}1 = f$.
+    \item $\rst{fh}gk = \rst{fh}\,\rst{f} g k = \rst{fh} f k = f \rst{h} k = f h$.
     \item Assuming $\rst{g} f = f$, we need to show $\rst{f}\, \rst{g} = \rst{f}$. Using \rtwo and
       then \rthree we have $\rst{f}\,\rst{g} = \rst{g}\rst{f}  = \rst{\rst{g} f}  = \rst{f}$.
       Hence, $\rst{f} \le \rst{g}$.
@@ -636,9 +638,9 @@ Corresponding to Definition~\ref{def:restriction_category} for restriction, whic
 concept of a domain of definition, we now introduce range categories
 \cite{guox:thesis,cockett-guo-hofstra-2012:range,cockett-guo-hofstra-2012:range2}
 which algebraically axiomatize the concept of the range for a function, in the presence of a
-restriction. Note this is different from a corestriction category \Y, which has a single operator, the
-corestriction operator such that the corestriction is a restriction in \dual{\Y}. In general, the
-range is not a corestriction in that it may fail \axiom{R}{4}.
+restriction. Note this is different from a corestriction category \Y, which has a single operator,
+the corestriction, which is a restriction in \dual{\Y}. In general, the range is weaker than a
+corestriction in that it may fail \axiom{R}{4}.
 
 \begin{definition}\label{def:range_category}
   A restriction category \X is a \emph{range category} when it has an operator on all maps
@@ -1233,22 +1235,28 @@ Besides the example of \topcatp given at the beginning of this section, the foll
   corestriction of $f:L_1\to L_2$ is given by $\rst{f}:L_2\to L_2$, $f(y) = y\wedge f(\top)$. Hence,
   the total maps are those which preserve the top element.
 
-  The restriction product in $\dual{\stabLat}$ is given by the Cartesian product of the
-  semi-lattices, where the partial ordering is pointwise. In $\stabLat$, we have the maps $in_0: L_0
-  \to L_0\times L_1$ and $in_1:L_2 \to L_1\times L_2$ where $in_0: \ell\mapsto (\ell,\top)$ and
-  $in_1: m \mapsto (\top,m)$. Then, $\pi_i = \dual{in_i}$ are the projections in $\dual{\stabLat}$. Again considering
+  The restriction product in $\dual{\stabLat}$ is given by the coproduct of the semi-lattices, which
+  is also the product as the category has biproducts. In $\stabLat$, we have the maps
+  \[
+     in_0: L_0 \to L_0\times L_1\quad\text{ and }\quad in_1:L_2 \to L_1\times L_2
+  \]
+  where
+  \[
+     in_0: \ell\mapsto (\ell,\top) \quad\text{ and }in_1: m \mapsto (\top,m).
+  \]
+  Then, $\pi_i = \dual{in_i}$ are the projections in $\dual{\stabLat}$. Again considering
   $\stabLat$, for $f:L_0 \to L_2$, $g:L_1 \to L_2$, there is the map $[f,g]:L_0\times L_1 \to L_2$
   where $[f,g]:(\ell,m)\mapsto f(\ell)\wedge g(m)$. The product map in $\dual{\stabLat}$,
   $\<\dual{f},\dual{g}\>$ is $\dual{[f,g]}:L_2 \to L_0\times L_1$.
 
-  From this we see $\Delta:L_1\to L_1\times L_1$ in $\dual{\stabLat}$ is $\dual{[1,1]}$. For this to
-  have an inverse, we  need a map $h:L_1\to L_1\times L_1$ in \stabLat such that
-  $\Delta \dual{h} = 1_{L_1}$, i.e.,  $h[1,1] = 1_{L_1}$ in \stabLat. In \stabLat, we may write $h$
-  as having two components, that is, $h(x) = (h_1(x),h_2(x))$.
+  Using the standard notation of $\nabla$ for the map $[1,1]$ in \stabLat, we see $\Delta:L_1\to
+  L_1\times L_1$ in $\dual{\stabLat}$ is $\dual{\nabla}$. For this to have an inverse, we  need a
+  map $h:L_1\to L_1\times L_1$ in \stabLat such that $\Delta \dual{h} = 1_{L_1}$, i.e.,  $h\nabla =
+  1_{L_1}$ in \stabLat. In \stabLat, we may write $h$ as having two components, that is, $h(x) = (h_1(x),h_2(x))$.
   %As $\top = h(\top)[1,1] = h_1(\top)\wedge
   %h2(\top)$, we must have $h_1(\top) = h_2(\top) = \top$.
 
-  As we know that $x\wedge y = [1,1](h(x\wedge y)$, we have that $h(\top) \wedge (x,y) = h (x\wedge
+  As we know that $x\wedge y = \nabla(h(x\wedge y)$, we have that $h(\top) \wedge (x,y) = h (x\wedge
   y)$. But this gives us $(h_1(\top) \wedge x, h_2(\top) \wedge y) = (h_1(x\wedge y), h_2(x\wedge
   y))$.
   Therefore:
@@ -1263,9 +1271,10 @@ Besides the example of \topcatp given at the beginning of this section, the foll
   which means that $h_1(\top)\wedge h_2(\top) = \top$, which gives $h_1(x\wedge y) = x$ and
   $h_2(x\wedge y) = y$. In any lattice where there is a non top element $p$, this produces a
   contradiction as $h_1(p) = h_1(p\wedge \top) = p$ and $h_1(p) = h_1(\top\wedge p) = \top$ which
-  can only happen when $\top = p$.
+  can only happen when $\top = p$. This shows that the only discrete object in $\dual{\stabLat}$ is
+  the one element semi-lattice, $\{\top\}$.
 
-  Thus, the map $h$ does not exist in general and $\dual{\stabLat}$ is not discrete.
+  Thus, the map $h$ does not exist in general and $\dual{\stabLat}$ Is not discrete.
 \end{example}
 
 
