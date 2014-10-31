@@ -563,11 +563,11 @@ are the partial isomorphisms which are total.
   \label{lem:rcs_partial_monic_section_inverse_properties}
   In a restriction category:
   \begin{enumerate}[{(}i{)}]
-    \item $f,\ g$ partial monic implies $f g$ is partial monic;
+    \item $f$ and $g$ partial monic implies $f g$ is partial monic;
 %    \item $f$ a partial section implies $f$ is partial monic;
 %    \item $f,\ g$ partial sections implies $f g$ is a partial section;
     \item The partial inverse of $f$, when it exists, is unique;
-    \item If $f,\ g$ have partial inverses and $f\,g$ exists, then $f\,g$ has a partial inverse;
+    \item If $f$ and $g$ have partial inverses and $f g$ exists, then $f g$ has a partial inverse;
     \item A restriction monic $s$ is a partial isomorphism.
   \end{enumerate}
 \end{lemma}
@@ -972,7 +972,7 @@ Restriction categories have analogues of products and terminal objects.
 \end{definition}
 
 \begin{definition}\label{def:restriction_terminal_object}
-  In a restriction category \X\, a \emph{restriction terminal object}
+  In a restriction category \X, a \emph{restriction terminal object}
   is an object $\top$ such that for all objects $X$, there is a
   unique total map $!_X : X \to \top$ and the diagram
   \[
@@ -1026,7 +1026,7 @@ $\pi_1:(x,y)\mapsto y$. The product map $\<f,g\>:Z\to X\times Y$ is given as:
   subcover of the form $\union_i U_i\times U_i$. For $\inv{\Delta}$ to be a continuous
   map, that means the diagonal must be an open set. But if $\Delta$ is open, then $\Delta = \union_i
   U_i\times V_i$ if and only if $\Delta \subseteq \union_i (U_i\intersection V_i) \times (U_i \intersection
-  V_I) \subseteq \union_i U_i \times U_i \subseteq \Delta$. So, $\Delta = \union_i U_i \times U_i$,
+  V_i) \subseteq \union_i U_i \times U_i \subseteq \Delta$. So, $\Delta = \union_i U_i \times U_i$,
   which gives us $U_i \times U_i \subseteq \Delta$, but this can only happen when $U_i = \{x\}$, a
   singleton set.  Therefore, $T$ has the discrete topology.
 \end{example}
@@ -1274,7 +1274,7 @@ Besides the example of \topcatp given at the beginning of this section, the foll
   can only happen when $\top = p$. This shows that the only discrete object in $\dual{\stabLat}$ is
   the one element semi-lattice, $\{\top\}$.
 
-  Thus, the map $h$ does not exist in general and $\dual{\stabLat}$ Is not discrete.
+  Thus, the map $h$ does not exist in general and $\dual{\stabLat}$ is not discrete.
 \end{example}
 
 
