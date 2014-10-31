@@ -1,6 +1,6 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
 
-\chapter{Introduction to Categories}\label{chap:introduction_to_categories}
+\chapter{Introduction to categories}\label{chap:introduction_to_categories}
 
 This chapter introduces categories and fixes notation for them. More
 details for category theory can be found from, e.g., \cite{barr:ctcs}, \cite{cockett2009:ctcs},
@@ -111,7 +111,7 @@ maps in a category $C$ with $e:A \to A$ and $f,g:A \to B$.
       \hline
     \end{tabular}
   \end{center}
-  \caption{Properties of Maps In Categories}
+  \caption{Properties of maps in categories}
   \label{tab:properties_of_maps_in_categories}
 \end{table}
 
@@ -140,7 +140,7 @@ There are number of basic properties of maps enumerated in Table~\ref{tab:proper
       1 = k 1$ and therefore $h = k$  and $f$ is monic.
     \item We are given $f\categorysection{f} =1$ and $g\categorysection{g} =1 $. But then $f g
       \categorysection{g}\categorysection{f} = f \categorysection{f} = 1$ and $f g$ is a section.
-    \item We are given there is some $h$ such that $(f g) h = 1$. This means $f (g h) =1$ and $f$ is
+    \item We are given there is an $h$ such that $(f g) h = 1$. This means $f (g h) =1$ and $f$ is
       a section.
     \item See \cite{cockett2009:ctcs}, Lemma 1.2.2.
     \item See \cite{cockett2009:ctcs}, Lemma 1.2.3.
@@ -157,7 +157,7 @@ Suppose $f:A \to B$ is a retraction with left inverse $\retraction{f}:B \to A$. 
 retraction $f$ with $e = f \retraction{f}$.
 
 In general, not all idempotents in a category will split. The following construction allows us to
-create a category based on the original one in which all idempotents do split.
+create a category based on the original one, in which all idempotents do split.
 
 \begin{definition}\label{def:split_category}
   Given a category $\B$ and a set of idempotents $E$ of $\B$, we may create the category of \B split
@@ -192,8 +192,8 @@ envelope (whence the notation) or Cauchy completion.
   \prepprooflist
   \categoryns{Categories.}{Functors.}{The identity functor which takes an object to the same object
     and a map to the same map.}{Given $F:\A\to\B$, $G:\B\to\D$, define the functor  $F G:\A\to\D$ such that
-    $F G(x) = G(F(x))$ which is clearly associative.}
-  Note this is often regarded as a \emph{large} category, as its collection of objects is not a set.
+    $F G(x) = G(F(x))$. This is clearly associative.}
+  Note \cat is often regarded as a \emph{large} category, as its collection of objects is not a set.
 \end{proof}
 
 
@@ -222,7 +222,7 @@ When $\B$ is a subcategory of $\D$, the functor $J:\B \to \D$ which takes each o
 $\D$ and each map to itself in $\D$ is called the inclusion functor. When $J$ is a full functor, we
 say $\B$ is a full subcategory of $\D$.
 
-We now have the machinery to discus the relationship between a category \B and its splitting
+We now have the machinery to discuss the relationship between a category \B and its splitting
 $\spl{}{\B}$:
 
 \begin{lemma}\label{lem:split_category_splits_and_has_category}
@@ -322,7 +322,7 @@ defining adjoints and we will approach them using universality.
 Consider what happens when we have the situation above, but the $U$ in $\B$ is definable
 based on the $A\in\A$.
 \begin{lemma}\label{lem:adjoint-setup}
-  Suppose $G:\B\to\A$ is a functor such that for each $A\in\objects{\A}$, there is an map on objects
+  Suppose $G:\B\to\A$ is a functor such that for each $A\in\objects{\A}$, there is a map on objects
   $F:\objects{\A}\to\objects{\B}$ such that  $(F(A),\eta_A)$ is a universal pair. Then:
   \begin{itemize}
     \item $F$ is a functor with $F(g) = (g\eta)^{\#}$;
@@ -439,9 +439,9 @@ Four categories whose objects are sets are \rel, \sets, \Par, and \pinj:
 
 
 Note that \rel is enriched in posets (see Example~\ref{ex:preorders-are-categories}), via set
-inclusion. \sets and \Par can be viewed as subcategories of \rel, with the same objects, but
-restricting the maps allowed --- see below. \Par is also enriched in posets, via the same inclusion
-ordering as in \rel.
+inclusion. \sets, \Par and \pinj can be viewed as subcategories of \rel, with the same objects, but
+restricting the maps allowed --- see each example below. \Par is also enriched in posets, via the
+same inclusion ordering as in \rel.
 
 \begin{example}[\sets]\label{ex:category_sets}
 This is the subcategory of \rel which has the same  objects (sets) but only allowing maps which are
@@ -474,7 +474,7 @@ of \rel. The maps $f,g$ (relations in \rel) in \pinj are subject to two conditio
   \begin{enumerate}[{(}i{)}]
     \item $\open{T} \subseteq \power{T}$;
     \item $T\in \open{T}$ and $\emptyset \in \open{T}$;
-    \item The union of any sets in $\open{T}$ is again in $\open{T}$;
+    \item The union of any sets in $\open{T}$ is in $\open{T}$;
     \item The intersection of finitely many sets in $\open{T}$ is in $\open{T}$.
   \end{enumerate}
 
@@ -565,7 +565,7 @@ We now turn to products and coproducts.
   $A$ and $B$ when:
   \begin{itemize}
     \item There exist maps $\pi_0, \pi_1$ with $\pi_0:A\times B \to A$, $\pi_1:A\times B \to B$;
-    \item Given an object $C$ with maps $f:C\to A$ and $g:C \to B$ there is a unique map
+    \item Given an object $C$ with maps $f:C\to A$ and $g:C \to B$, there is a unique map
     $\<f,g\>$ such that the following diagram commutes:
     \[
       \xymatrix@C+5pt@R+15pt{
@@ -585,7 +585,7 @@ A coproduct is the dual of a product.
   $A$ and $B$ when:
   \begin{itemize}
     \item There exist maps $\cpa, \cpb$ with $\cpa:A \to A + B$, $\cpb:B \to A+ B$;
-    \item Given an object $C$ with maps $h:A\to C$ and $k:B \to C$ there is a unique map
+    \item Given an object $C$ with maps $h:A\to C$ and $k:B \to C$, there is a unique map
     $[h,k]$ such that the following diagram commutes:
     \[
       \xymatrix@C+5pt@R+15pt{
@@ -631,7 +631,7 @@ $\<1, 1\>$ will be designated by $\Delta$ and $[1,1]$ by $\nabla$.
 % subsection limits_and_colimits_in_categories (end)
 
 
-\section{Symmetric Monoidal Categories} % (fold)
+\section{Symmetric monoidal categories} % (fold)
 \label{sub:categories_with_additional_structure}
 
 \begin{definition}\label{symmetricmonoidalcat}
@@ -720,7 +720,7 @@ $\<1, 1\>$ will be designated by $\Delta$ and $[1,1]$ by $\nabla$.
 \caption{Associativity symmetry in an SMC.}\label{fig:SMC_associativity_symmetry}
 \end{figure}
 \begin{example}
-  Any category \D with a product $\times$ and a terminal object $\top$ is a symmetric monoidal
+  Any category \D with a product, $\times$, and a terminal object, $\top$, is a symmetric monoidal
   category with $\* \definedas \times$ and $I \definedas \top$.
 \end{example}
 \begin{example}[\pinj has a symmetric tensor]\label{ex:pinj-has-a-smt}

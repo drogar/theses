@@ -101,14 +101,14 @@ The property of being an inverse category is preserved by splitting.
 \end{example}
 \begin{example}\label{ex:partial_map_monics_is_inverse_category}
   Given a category $\cP$, create a partial map category as in
-  Section~\ref{sub:partial_map_categories}, where the stable system of monics, $\Mstab$, contains of
-  all  isomorphisms in $\cP$. Then the partial isomorphisms are the maps of the form
-  \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{m'}\\A&&B}$}, where $m'\in\Mstab$. Its inverse is
-  \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m'} \ar[dr]^{m}\\B&&A}$}. The composition is
-   \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A\ar[dl]_{m^{-1}m} \ar[dr]^{m^{-1}m}\\A&&A}$}, which is the
-  identity when $m$ is an isomorphism. The partial isomorphisms will have either $m$ or $m'$ in
-  $\Mstab$, but may not be an isomorphism. Taking just the partial isomorphisms gives us an inverse
-  category.
+  Section~\ref{sub:partial_map_categories}, where the stable system of monics, $\Mstab$, contains
+  all of the isomorphisms in $\cP$. Then the partial isomorphisms are the maps of the form
+  \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m} \ar[dr]^{m'}\\A&&B}$}, where
+  $m'\in\Mstab$. Its inverse is \raisebox{12pt}{$\xymatrix @R-15pt @C-15pt{&A'\ar[dl]_{m'}
+      \ar[dr]^{m}\\B&&A}$}. The composition is \raisebox{12pt}{$\xymatrix @R-15pt
+    @C-15pt{&A\ar[dl]_{m^{-1}m} \ar[dr]^{m^{-1}m}\\A&&A}$}, which is the identity when $m$ is an
+  isomorphism. The partial isomorphisms will have either $m$ or $m'$ in $\Mstab$, but may not be an
+  isomorphism. Taking just the partial isomorphisms gives us an inverse category.
 \end{example}
 
 \begin{example}\label{ex:inverse-semigroups-are-inverse-categories}
@@ -136,7 +136,7 @@ The property of being an inverse category is preserved by splitting.
     \raisebox{-15pt}{$\iff$}
     \xymatrix{
       C\\
-      A+B \ar@{->>}[u]^{[f,g]}
+      A+B. \ar@{->>}[u]^{[f,g]}
     }
     % \raisebox{-15pt}{$\iff$}
     % \xymatrix{
@@ -284,38 +284,33 @@ and thus, is a very restrictive notion.
  %  \ref{fig:inverse_product_coassociativity}, \ref{fig:inverse_product_exchange}, and
  %  \ref{fig:inverse_product_frobenius}.
   \begin{equation}
-    \xymatrix @!0 @C=90pt @R=35pt{
+    \xymatrix @!0 @C=90pt @R=30pt{
       A \ar[dr]_{\Delta} \ar[r]^{\Delta} &
       A \* A \ar[d]^{c_{\*}}\\
       & A \* A
     }\qquad
-    \xymatrix @!0 @C=90pt @R=35pt{
+    \xymatrix @!0 @C=90pt @R=30pt{
       A \* A \ar[d]^{c_{\*}} \ar[r]^{\inv{\Delta}}  & A\\
       A \* A  \ar[ur]_{\inv{\Delta}}
     }\label{dia:delta-is-cocommutative}
   \end{equation}
   \begin{center}Cocommutative and Commutative;\end{center}
 %\caption*{Cocommutative}\label{fig:inverse_product_cocommutativity}
-
   \begin{equation}
-    \xymatrix @C=20pt @R=30pt{
+    \xymatrix @C=20pt @R=20pt{
       A \ar[rr]^{\Delta} \ar[d]_{\Delta} & &
       A \* A \ar[d]^{1\*\Delta}\\
       A\*A \ar[dr]_{\Delta \* 1}& &
       A \* ( A \* A) \\
       &   (A \* A) \* A \ar[ur]_{a_{\*}}
     }\ \quad
-    \xymatrix @C=20pt @R=30pt{
+    \xymatrix @C=20pt @R=20pt{
       A\*(A\*A) \ar[rr]^{1\*\idelta} \ar[d]_{\inv{a_\*}} && A\*A \ar[d]^{\idelta}\\
       (A\*A)\*A \ar[dr]_{\idelta\*1}&&A\\
      & A\*A \ar[ur]_{\idelta}
     }\label{dia:delta-is-coassociative}
   \end{equation}
-  \begin{center}Coassociative and Associative;\end{center}
-%\caption*{Coassociative and Associative}\label{fig:inverse_product_coassociativity}
-
-%\caption{Exchange}\label{fig:inverse_product_exchange}
-
+  \begin{center}Coassociative and    Associative;\end{center}
   \begin{equation}
     \xymatrix @C=40pt @R=25pt{
       A \* A \ar[dd]_{(1\*\Delta) \inv{a_{\*}}} \ar[dr]^{\inv{\Delta}}
@@ -359,7 +354,11 @@ This means that both $\inv{\Delta}$ and $c_{\*}\inv{\Delta}$ are partial inverse
 and are therefore equal.
 
 Similarly, coassociativity implies associativity, in that
-$(1\*\inv{\Delta})\inv{\Delta} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
+
+\[
+(1\*\inv{\Delta})\inv{\Delta} = \inv{(\Delta(1\*\Delta))} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}.
+\]
+This can be seen from the following calculation:
 \begin{align*}
   \Delta(1\*\Delta)\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} &=
   \Delta(\Delta\*1)a_{\*}\inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta} \\
@@ -369,7 +368,7 @@ $(1\*\inv{\Delta})\inv{\Delta} =  \inv{a_{\*}}(\inv{\Delta}\* 1)\inv{\Delta}$ as
 
 \begin{example}[\pinj is a discrete inverse category]\label{ex:pinj_is_a_discrete_inverse_category}
   In the inverse category \pinj (see Examples~\ref{ex:category_pinj} and
-  \ref{ex:pinj_is_an_inverse_category}), we saw in Example~\ref{ex:pinj-has-a-smt} that Cartesian
+  \ref{ex:pinj_is_an_inverse_category}), we saw in Example~\ref{ex:pinj-has-a-smt} that the Cartesian
   product is a symmetric tensor.
 
   Define $\Delta_A = \{(a,(a,a)) | a\in A\}$. Then \pinj is a discrete inverse category with the
@@ -448,7 +447,7 @@ As $\D$ is discrete, $\Delta$ is forced to be the identity. One can check easily
 conditions for being an inverse product are satisfied by $\*$ and by $\odot$ with the trivial diagonal.
 
 % subsection inverse_products (end)
-\subsection{Diagrammatic Language} % (fold)
+\subsection{Diagrammatic language} % (fold)
 \label{sub:diagrammatic_language}
 
 While it is certainly possible to prove results about inverse products using direct algebraic
@@ -1988,7 +1987,7 @@ There are a variety of other closure properties:
   \item It is closed under partial inverses;\label{lemitem:delta_nabla_1}
   \item it is closed under composition;\label{lemitem:delta_nabla_2}
   \item it contains all maps of the form $1\*k$ where $k:Y\to Z$;\label{lemitem:delta_nabla_3}
-  \item it contains $\Delta:A\*B \to A\*B\*A\*B$;\label{lemitem:delta_nabla_4}
+  \item it contains $\Delta:A\*B \to A\*B\*A\*B$.\label{lemitem:delta_nabla_4}
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -2272,7 +2271,7 @@ Because of these closure rules, rather than stating $h = \dmap{h}$ we may equiva
 From Lemma~\ref{lem:delta_nabla_maps_are_closed}, we see that we will be able to form a category
 based on maps $h$ such that $h=\dmap{h}$. Of course, this category is dependent upon the choice of
 the object $A$, hence we will label it $\X[A]$, as it is reminiscent of the simple slice category of
-Example~\ref{ex:simple-slice-adjoint} over an object $A$ for an ordinary Cartesian category. We make
+Example~\ref{ex:simple-slice-adjoint}. We make
 this precise in the following proposition:
 
 \begin{proposition}\label{prop:slice-a-is-a-discrete-inverse-category}

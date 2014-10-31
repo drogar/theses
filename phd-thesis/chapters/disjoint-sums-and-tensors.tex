@@ -3,9 +3,9 @@
 \label{chap:disjoint_sum_tensors}
 
 This chapter introduces the disjoint sum and shows how it may be used to define a symmetric monoidal
-tensor in an inverse category. Conversely, it goes on to then show how a tensor $\+$ may be used to
-create a disjointness relation and a disjoint join in an inverse category  --- at which point we can
-prove that $A\+B$ is a disjoint sum with respect to this structure.
+tensor in an inverse category. Conversely, it goes on to then show how a tensor, denoted as $\+$,
+may be used to create a disjointness relation and a disjoint join in an inverse category  --- at
+which point we can prove that $A\+B$ is a disjoint sum with respect to this structure.
 
 
 
@@ -32,8 +32,8 @@ monoidal tensor isomorphisms:
 \end{align*}
 
 \begin{definition}\label{def:disjointness_tensor}
-  Given an inverse category \X with restriction zero and a symmetric monoidal tensor
-  $\+$, the tensor $\+$ is a \emph{disjointness tensor} when:
+  Given an inverse category \X with restriction zero and $\+$ a symmetric monoidal tensor, then $\+$
+  is a \emph{disjointness tensor} when:
   \begin{enumerate}[{(}i{)}]
     \item It is a restriction functor --- i.e., $\_ \+ \_ : \X \times \X \to \X$.
     \item The unit is the restriction zero. ($0 : \boldsymbol{1}\to \X$ picks out the restriction
@@ -50,8 +50,8 @@ monoidal tensor isomorphisms:
 
 \begin{example}[\pinj has a disjointness tensor]\label{ex:pinj_has_disjointness_tensor}
   In \pinj, the disjoint union, $\disjointunion$, is a disjointness tensor. Designate elements of
-  the disjoint union as pairs of the elements of the original sets and the order in the disjoint
-  join. That is, when
+  the disjoint union as a pair $(x,n)$ where $x$ is an element of the sets in the disjoint union
+  and $n$ is the  order of the disjoint union. That is, when
   \[
      A=\{a\}, B=\{b\}, \text{ then } A\disjointunion B = \{(x,n) | n\in\{1,2\},n =1 \implies x \in A, n = 2
      \implies x\in B\}.
@@ -79,7 +79,7 @@ monoidal tensor isomorphisms:
 \end{example}
 
 \begin{lemma}\label{lem:zero_plus_zero_is_zero}
-  Given an inverse category \X with restriction zero and disjointness tensor $\+$, then the map
+  Given an inverse category \X with restriction zero and $+$ a disjointness tensor, then the map
   $\zeroob\+\zeroob: A\+B \to C\+D$ is the map $\zeroob: A\+B \to C\+D$.
 \end{lemma}
 \begin{proof}
@@ -103,8 +103,8 @@ monoidal tensor isomorphisms:
 
 
 \begin{lemma}\label{lem:tensor_identities}
-  Given an inverse category \X with restriction zero and disjointness tensor $\+$,
-  $\scpa = \icpa$ and $\scpb = \icpb$ and the following identities hold:
+  Given an inverse category \X with restriction zero and $\+$ a disjointness tensor,
+  then $\scpa = \icpa$ and $\scpb = \icpb$ and the following identities hold:
   \begin{enumerate}[{(}i{)}]
     \item $\scp{i} \cp{i} = \rst{\scp{i}}$ and $\cp{i}\scp{i} = \rst{\cp{i}} = 1$;\label{lemitem:disjointness_tensor_identities_1}
     \item $\rst{\scpa} \scpb = \zeroob$ and $\rst{\scpb} \scpa = \zeroob$;\label{lemitem:disjointness_tensor_identities_2}
@@ -160,7 +160,7 @@ As the above proof showed $\scp{i} = \icp{i}$, the explicit notation of $\icp{i}
 remainder of this thesis.
 
 \begin{corollary}\label{cor:split_plus_tensor}
-  In an inverse category \X with a restriction zero and disjointness tensor, the following
+  In an inverse category \X with a restriction zero and $\+$ a disjointness tensor, the following
   identities hold:
   \begin{multicols}{2}
     \begin{enumerate}[{(}i{)}]
@@ -191,7 +191,7 @@ remainder of this thesis.
 \end{proof}
 
 \begin{definition}\label{def:up_triangle_and_down_triangle}
-  In an inverse category \X with a restriction zero and disjointness tensor, define a partial
+  In an inverse category \X with a restriction zero and $\+$ a disjointness tensor, define a partial
   pairing and a partial copairing operation on arrows in  \X. First, for arrows
   $f:A \to B$ and $g:A \to C$, define $f\tjdown g$ as
   being the map that makes Diagram~\ref{eq:tjdowndefinition} below commute, when it exists.
@@ -232,7 +232,7 @@ To arrive at the disjointness relation we first give the following lemma detaili
 two operations $\tjdown$ and $\tjup$:
 
 \begin{lemma}\label{lem:properties_of_tjdown_and_tjup}
-  Given \X is an inverse category with a restriction zero and a disjointness tensor $\+$ then the
+  Given \X is an inverse category with a restriction zero and $\+$ a disjointness tensor then the
   following relations hold for $\tjdown$ and $\tjup$:
    \begin{enumerate}[{(}i{)}]
     \item If $f \tjdown g$ exists, then $g \tjdown f$ exists. If $f \tjup g$ exists, then
@@ -423,8 +423,8 @@ We are now set up to prove that it is possible to create a disjointness relation
 existence of our pairing and copairing maps:
 \begin{lemma}\label{lem:tensor_disjointness_is_disjointness}
   Define $f \tperp g$ ($f$ is tensor disjoint to $g$) when $f, g: A\to B$ and both $f\tjdown g$ and
-  $f\tjup g$ exist.  If \X is an inverse category with a restriction zero and a disjointness tensor
-  $\+$ then the relation $\tperp$ is a disjointness relation.
+  $f\tjup g$ exist.  If \X is an inverse category with a restriction zero and $\+$ a disjointness
+  tensor then the relation $\tperp$ is a disjointness relation.
 \end{lemma}
 \begin{proof}
   The proof requires us to show that $\tperp$ satisfies the disjointness axioms. We will use
@@ -479,7 +479,7 @@ $f\tperp (g \tjoin h)$.
 Therefore, we must add one more assumption regarding our tensor in order to define disjointness.
 
 \begin{definition}\label{def:disjoint_sum_tensor}
-  Let \X be an inverse category with a disjointness tensor $\+$ and a restriction zero. Consider the
+  Let \X be an inverse category with $\+$ a disjointness tensor and a restriction zero. Consider the
   commutative diagrams \ref{dia:tensor_complete_left} and \ref{dia:tensor_complete_right}.
   \begin{align}
     &\xymatrix@C+5pt@R+10pt{
@@ -757,7 +757,7 @@ We may now complete the proof of Proposition~\ref{prop:disjointness_tensor_gives
 Next, we show that the disjoint sum tensor is universal with respect to the disjoint join.
 
 \begin{lemma}\label{lem:disjoint_sum_tensor_preserves_the_disjoint_join}
-  Given an inverse category \X with a disjoint sum tensor $\+$, then $\+$ preserves the disjoint
+  Given an inverse category \X with $\+$ a disjoint sum tensor, then $\+$ preserves the disjoint
   join. That is,
   \begin{align}
     f \tperp g, \ h \tperp k&\text{ implies } f\+ h \tperp g \+ k,
@@ -824,13 +824,13 @@ a disjoint sum tensor.
 Finally, to complete the cycle:
 \begin{proposition}\label{prop:enough_disjoint_sums_make_a_disjoint_sum_tensor}
   Given \X is an inverse category where every pair of objects has a disjoint sum, then the tensor
-  $\+$ derived from the disjoint sum of $A,B$ is a disjoint sum tensor.
+  derived from the disjoint sum of $A,B$ is a disjoint sum tensor.
 \end{proposition}
 \begin{proof}
-  Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor} showed that
-  $\+$ was a symmetric monoidal tensor. Therefore, it only remains to show that it is a disjointness
-  tensor and that it satisfies Definition~\ref{def:disjoint_sum_tensor}, i.e., is a disjoint sum
-  tensor as well.
+  Proposition~\ref{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor} showed that when
+  $\+$ is derived from the disjoint sum, it is a symmetric monoidal tensor. Therefore, it only
+  remains to show that it is a disjointness tensor and that it satisfies
+  Definition~\ref{def:disjoint_sum_tensor}, i.e., is a disjoint sum tensor as well.
 
   First note that we immediately have that it is a   disjointness tensor as:
     \begin{enumerate}[{(}i{)}]

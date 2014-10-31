@@ -141,7 +141,7 @@ Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$ and $\rg{f}h\rg{g} \le 
     \rst{\inv{f}g}\rg{f}h\rg{g} =  \rst{\inv{f}g}\inv{f} f h\rg{g} =
     \inv{f}\rst{g} f h\rg{g} = \inv{f} \rst{g} g \rg{g} = \inv{f}g.
   \]
-  Thus, by the transitivity of the ordering $\inv{f}g \le h$ and is the minimal such map.
+  Thus, by transitivity  $\inv{f}g \le h$ and is minimal among all $h$ such that $f\xequiv{h} g$.
 \end{proof}
 % end_fold sec:equivalence_classes_of_maps_in_hypx
 
@@ -154,9 +154,9 @@ Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$ and $\rg{f}h\rg{g} \le 
 \end{lemma}
 \begin{proof}
   The maps are well defined, as shown in
-  Lemma~\ref{lem:mediating_map_equivalence_is_symmetric_reflexive_and_transitive}. The existence of
-  the identity map is due to the tensor $\*$ being defined on \X, a discrete inverse category, hence
-  $\inv{\usr}$ is defined.
+  Lemma~\ref{lem:mediating_map_equivalence_is_symmetric_reflexive_and_transitive}. As \X is a
+  discrete inverse category, $\inv{\usr}$  is defined and therefore the $(\inv{\usr}, 1)$ is a map
+  in \Xt.
 
   It remains to show the composition is associative and that $(\inv{\usr}, 1)$ acts as an identity
   in \Xt. For all of these, we will make use of
@@ -233,7 +233,7 @@ Suppose $f\xequiv{h}g$. Then $f\xequiv{\rg{f}h\rg{g}} g$ and $\rg{f}h\rg{g} \le 
   \end{align}
   For Equation~\ref{eq:cc-identity-1}, by Lemma~\ref{lem:restrictionvarious} we have
   $\restr{f (\inv{\usr}\*1) a_{\*}} = \restr{f}$. Then, calculating in \X, we have a mediating map
-  of $1 \* \usl$ as shown below.
+  of $1 \* \usl$ as shown below:
   \[
     \xymatrix @C=50pt @R=45pt{
       A \ar[r]^f \ar[ddrrr]_f&
@@ -381,7 +381,7 @@ Now that we have shown \Xt is a category, we may define a restriction:
 
       The following diagram in \X follows the right hand side of Equation~\ref{eq:rthree_in_xt}
       with the top curved arrow and the left hand side of Equation~\ref{eq:rthree_in_xt} with the
-      bottom curved arrow, using the proviso that
+      bottom curved arrow, using the fact that
       $\restr{(\restr{f} \inv{\usr}) (g\* 1) a_{\*}}\inv{\usr} = \restr{f}\rst{g}\inv{\usr}$ as shown above.
       \[
         \xymatrix @C=33pt @R=20pt{
@@ -514,9 +514,9 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
 \begin{proof}
   To show that the tensor is a product in \Xt, we must show three things:
   \begin{enumerate}[{(}i{)}]
-    \item That the maps $\pi_0$ and $\pi_1$ are total; \label{item:xt-product-1}
-    \item That  $\rst{\<(f,C),(g,D)\>} = \rst{(f,C)}\,\rst{(g,D)}$; \label{item:xt-product-2}
-    \item That $\<(f,C),(g,D)\> \pi_0 \le (f,C)$ and $\<(f,C),(g,D)\> \pi_1 \le (g,D)$. \label{item:xt-product-3}
+    \item The maps $\pi_0$ and $\pi_1$ are total; \label{item:xt-product-1}
+    \item $\rst{\<(f,C),(g,D)\>} = \rst{(f,C)}\,\rst{(g,D)}$; \label{item:xt-product-2}
+    \item $\<(f,C),(g,D)\> \pi_0 \le (f,C)$ and $\<(f,C),(g,D)\> \pi_1 \le (g,D)$. \label{item:xt-product-3}
   \end{enumerate}
   For \ref{item:xt-product-1}, as $1$ and $c_{\*}$ are isomorphisms, the maps $\pi_0, \pi_1$ are
   total.
@@ -586,7 +586,7 @@ First, define total maps $\pi_0$, $\pi_1$ in \Xt by:
 
   The diagram below shows the required mediating map. By
   Lemma~\ref{lem:delta_nabla_maps_are_closed}, $\Delta\in\dmap{A}$, $1\*k\in\dmap{A}$ and $\dmap{A}$
-  is closed under composition.
+  is closed under composition:
   \[
     \xymatrix @C=27pt @R=25pt{
       & &  A \* C\ar@{.>}[d]^{\Delta}\\
@@ -961,8 +961,6 @@ invertible maps in $\Xt$ are the equivalence class of the form  $(f \inv{\usr},1
   of \cite{cockett2009:ctcs} we have the equivalence of the two categories.
 \end{proof}
 
-Thus, we may now draw out the relationship between Cartesian restriction categories, discrete
-Cartesian restriction categories and discrete inverse categories:
 \begin{figure}[!htbp]
 \[
   \xymatrix{
@@ -973,10 +971,13 @@ Cartesian restriction categories and discrete inverse categories:
 \caption{Functors between Cartesian restriction categories and inverse
   categories.}\label{fig:dcartrest-to-cartrest-to-dinv}
 \end{figure}
-where the arrow from discrete Cartesian restriction categories to Cartesian restriction categories
-is the standard embedding and the reverse arrow picks out the discrete objects in the Cartesian
-restriction category. Of course, the terminal object is always discrete, as noted in
-Example~\ref{ex:terminal_object_is_discrete}.
+
+Thus, we may now draw out the relationship between Cartesian restriction categories, discrete
+Cartesian restriction categories and discrete inverse categories in
+Figure~\ref{fig:dcartrest-to-cartrest-to-dinv}. In the figure, the arrow from discrete Cartesian
+restriction categories to Cartesian restriction categories is the standard embedding and the reverse
+arrow picks out the discrete objects in the Cartesian restriction category. Of course, the terminal
+object is always discrete, as noted in Example~\ref{ex:terminal_object_is_discrete}.
 
 % subsection equivalence_of_categories (end)
 \section{Examples of the Cartesian Construction} % (fold)
@@ -1030,9 +1031,9 @@ maps
   c \xrightarrow{(id, c) \ (\equiv (id, d))} c ,   \qquad c \xrightarrow{(id,c)} d\\
   d \xrightarrow{(id,d)} d.
 \end{align*}
-resulting in the straight-line ($a \to b \to c \to d$) lattice. The tensor in \D becomes the meet
-and hence is a categorical product in $\widetilde{\D}$. Note that the only partial inverses in
-$\widetilde{\D}$ are the identity functions and that for all maps $f$, $\<f,1\> = id$.
+This shows $\widetilde{\D}$ is  the straight-line ($a \to b \to c \to d$) lattice. The tensor in \D
+becomes the meet and hence is a categorical product in $\widetilde{\D}$. Note that the only partial
+inverses in $\widetilde{\D}$ are the identity functions and that for all maps $f$, $\<f,1\> = id$.
 
 With the second tensor, $\odot$ from Table~\ref{tab:two_different_inverse_products}, we have:
 \begin{align*}
@@ -1040,9 +1041,9 @@ With the second tensor, $\odot$ from Table~\ref{tab:two_different_inverse_produc
     a \xrightarrow{(id,a)} b, \qquad a \xrightarrow{(id, a)} c , \qquad a \xrightarrow{(id, a)} d \\
   b \xrightarrow{(id,b) \ (\equiv (id, d))} b ,  \qquad b \xrightarrow{(id,b)} d\\
   c \xrightarrow{(id, c) \ (\equiv (id, d))} c,   \qquad c \xrightarrow{(id,c)} d\\
-  d \xrightarrow{(id,d)} d
+  d \xrightarrow{(id,d)} d.
 \end{align*}
-resulting in the ``diamond'' lattice, \raisebox{19pt}{
+In this case, $\widetilde{\D}$ results in the ``diamond'' lattice, \raisebox{19pt}{
 $
   \xymatrix @R=3pt @C=8pt {
     & b \ar[dr]\\
