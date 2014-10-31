@@ -1,5 +1,5 @@
 %!TEX root = /Users/gilesb/UofC/thesis/phd-thesis/phd-thesis.tex
-\chapter{Disjointness in Inverse Categories} % (fold)
+\chapter{Disjointness in inverse categories} % (fold)
 \label{cha:disjointness_in_inverse_categories}
 
 This chapter explores coproduct like structure in inverse categories. It starts by showing,
@@ -170,21 +170,25 @@ $k:C \to D$, then $f k \lozenge g k$.
 \begin{lemma}\label{lem:disjointness_equivalent_axioms}
   In \ref{def:disjointness_relation}, given $\axiom{Dis}{1-5}$, the axioms $\axiom{Dis}{6}$ and
   $\axiom{Dis}{7}$ may be replaced by:
-  \begin{align*}
-    \axiom{Dis}{6'}\quad &f\cdperp g\text{ if and only if }\rst{f} \cdperp \rst{g}
+  \[
+    \axiom{Dis}{6'}\quad f\cdperp g \iff \rst{f} \cdperp \rst{g}
       \text{ and }\rg{f}\cdperp\rg{g}.
-  \end{align*}
+  \]
 \end{lemma}
 \begin{proof}
-  Given $\axiom{Dis}{6}$ and $\axiom{Dis}{7}$, the \emph{only if} direction of $\axiom{Dis}{6'}$ is
-  immediate. To show the \emph{if} direction, assume $\rst{f} \cdperp \rst{g}$ and
+  First, we show $\axiom{Dis}{6}$ and $\axiom{Dis}{7}$ imply $\axiom{Dis}{6'}$:
+
+  Given $\axiom{Dis}{6}$, the $\implies$ direction of $\axiom{Dis}{6'}$ is
+  immediate. To show the other direction, assume $\rst{f} \cdperp \rst{g}$ and
   $\rg{f}\cdperp\rg{g}$. This also means that $\rst{\rst{f}} \cdperp \rst{\rst{g}}$. Then, by
-  \axiom{Dis}{7}, $\rst{f} f \cdperp \rst{g}g$ and therefore $f \cdperp g$, showing $\axiom{Dis}{6}$
+  \axiom{Dis}{7}, $\rst{f} f \cdperp \rst{g}g$ and therefore $f \cdperp g$. Thus $\axiom{Dis}{6}$
   and $\axiom{Dis}{7}$ imply $\axiom{Dis}{6'}$.
 
-  Conversely, assume \axiom{Dis}{6'}. Then, \axiom{Dis}{6} follows immediately. To show
+  Next, we must show \axiom{Dis}{6'} implies  $\axiom{Dis}{6}$ and $\axiom{Dis}{7}$:
+
+  Given \axiom{Dis}{6'}, \axiom{Dis}{6} follows immediately. To show
   \axiom{Dis}{7}, assume $\rst{f}\cdperp \rst{g},\ \rg{h}\cdperp \rg{k}$. As
-  $\rst{f h} \le \rst{f}$ and $\rst{g k}\le\rst{g}$, by \axiom{Dis}{3}, it follows that
+  $\rst{f h} \le \rst{f}$ and $\rst{g k}\le\rst{g}$, \axiom{Dis}{3} gives us that
   $\rst{f h} \cdperp \rst{g k}$. Similarly, $\wrg{f h} \le \rg{h}$ and $\wrg{g k} \le \rg{k}$,
   giving us $\wrg{f h}\cdperp \wrg{g k}$. Then, from \axiom{Dis}{6'} we may conclude
   $f h \cdperp g k$, showing \axiom{Dis}{7} holds.
@@ -490,9 +494,9 @@ Given a specific disjointness relation on a category, there is only one disjoint
     \item $f \djoin \zeroob = f$; \label{lemitem:identity_for_join}
     \item $f \perp g,\ g\perp h,\ f\perp h$ implies that $(f\djoin g)\djoin h = f\djoin(g\djoin
       h)$; \label{lemitem:associative_join}
+    \item $f \perp g$ implies $f \djoin g = g \djoin f$; \label{lemitem:commutative_join}
     \item $\rst{f\djoin g} = \rst{f} \djoin \rst{g}$;
-    \item $(f \djoin g)k = f k \djoin g k$ (Universal);
-    \item $f \perp g$ implies $f \djoin g = g \djoin f$. \label{lemitem:commutative_join}
+    \item $(f \djoin g)k = f k \djoin g k$ ($\djoin$ is universal).
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -641,8 +645,8 @@ Clearly the product of two inverse categories with disjoint joins has a disjoint
         &= h f \djoin h g.
       \end{align*}
     \item[\axiom{DJ}{4}] Suppose $\cdperp [f, f', f'']$, $f=\{(a,b)\}, f'=\{(a',b')\},
-      f''=\{(a'',b'')\}$. Then the set $\{a\}$ does not intersect either $\{a'\}$ nor $\{a''\}$ and
-      similarly for the sets $\{b\}, \{b'\}$ and $\{b''\}'$. Thus we have $f \perp (g\djoin h)$. The
+      f''=\{(a'',b'')\}$. Then the set $\{a\}$  intersects neither $\{a'\}$ nor $\{a''\}$ and
+      similarly for the sets $\{b\}, \{b'\}$ and $\{b''\}$. Thus we have $f \perp (g\djoin h)$. The
       reverse direction is argued similarly.
   \end{enumerate}
 \end{example}

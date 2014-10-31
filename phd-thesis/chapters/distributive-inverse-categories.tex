@@ -3,7 +3,7 @@
 \chapter{Distributive inverse categories} % (fold)
 \label{chap:distributive_inverse_categories}
 We now consider inverse categories with both a disjoint sum and inverse product, where the inverse
-product distributes overs the disjoint sum in a specific way. This chapter will show that the
+product distributes over the disjoint sum in a specific way. This chapter will show that the
 Cartesian Completion of such a category is a distributive restriction category where the product
 distributes over the coproduct.
 
@@ -85,7 +85,7 @@ diagram~\ref{eq:inverse_distributive_laws} available to us. That is,
 is also a commuting diagram in \D.
 
 \begin{definition}\label{def:join_of_perp_rst_maps}
-  Suppose \X is an inverse category with a disjoint sum tensor $\+$ and a restriction zero. Then
+  Suppose \X is an inverse category with $\+$ a disjoint sum tensor and a restriction zero. Then
   for maps $f:A \to B$ and $g:A \to C$ with $\rst{f} \perp \rst{g}$, define the map $[f,g]:A \to
   B\+C$ as $(f \cpa) \djoin (g \cpb)$. This is well defined as $\wrg{\cpa} \perp \wrg{\cpb}$ and
   therefore by \axiom{Dis}{7}, $f\cpa \perp g\cpb$.
@@ -94,9 +94,9 @@ is also a commuting diagram in \D.
 \begin{lemma}
   Suppose \X is an inverse category \X\ with:
   \begin{itemize}
-    \item a disjoint sum tensor $\+$,
+    \item $\+$ a disjoint sum tensor,
     \item a restriction zero, and
-    \item an inverse  product $\*$ which distributes over disjoint joins, (that is,
+    \item an inverse product $\*$ which distributes over disjoint joins, (that is,
       $f\*(g\djoin h) = (f\*g) \djoin (f\* h)$).
   \end{itemize}
   Then, \X is an distributive inverse  category.
@@ -192,7 +192,7 @@ inverse distributive category. We now show the converse is true.
   %TODO: Is the isomorphism important? Do we need to do something with it?
 \end{proof}
 \begin{lemma}\label{lem:distributive_means_distribute_over_join}
-  Given an inverse distributive category \X, then $\*$ distributes over the disjoint join.
+  Given an inverse distributive category \X, $\*$ distributes over the disjoint join.
 \end{lemma}
 \begin{proof}
   First recall the definition of $f\djoin g = (\rst{f}\tjdown\rst{g})(f\tjup g)$. In order

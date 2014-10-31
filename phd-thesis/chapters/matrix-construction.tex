@@ -275,7 +275,7 @@ category. We will prove \imatx has disjoint sums in a series of lemmas.
   show the diagrams and conditions of Definition~\ref{def:disjoint_sum_tensor} hold.
 
   For the diagram below we show that $\alpha$ exists if and only if
-  $f\icpb \tjdown g\icpb$.
+  $f\icpb \tjdown g\icpb$:
   \begin{align*}
     \xymatrix@C+10pt@R+5pt{
       [A] \ar@/_/[ddr]_f \ar@/^/[drr]^g \ar@{.>}[dr]|-{\alpha} \\
@@ -302,7 +302,7 @@ category. We will prove \imatx has disjoint sums in a series of lemmas.
   $h\icpa = f\icpb$ and $h\icpb = g\icpb$, hence $h = f\icpb \tjdown g\icpb$.
 
   The proof that $\beta$ in the diagram below exists if and only if $\cp{2}h\tjup \cp{2}k$
-  follows similar reasoning.
+  is similar:
   \[
     \xymatrix@C+5pt{
         &&[A] \\
@@ -414,7 +414,7 @@ disjoint sum:
 The functors $S$ and $M$ provide an equivalence:
 
 \begin{proposition}\label{pro:x_and_imatx_are_equivalent}
-  Given an inverse category \X with a disjoint sum tensor $\+$ and restriction zero, then the
+  Given an inverse category \X with $\+$ a disjoint sum tensor and a restriction zero, then the
   categories $\X$ and \imatx are equivalent.
 \end{proposition}
 \begin{proof}
@@ -472,7 +472,7 @@ The functors $S$ and $M$ provide an equivalence:
 
 Note that as we have an equivalence, we have the adjoint equivalence between hom-sets of
 \[
-  \infer{iMat(\X)(X, M(Y))}{\X(S(X),Y)}
+  \infer{\imatx(X, M(Y))}{\X(S(X),Y)}
 \]
 as $S$ is the left adjoint of $M$.
 % subsection equivalence_between_an_disjoint_sum_category_and_its_matrix_category (end)
@@ -557,7 +557,7 @@ decomposition category, for a function $f:X\+U \to Y\+U$, which may be represent
    f =  \begin{bmatrix}
      f_{11} & f_{12}\\
      f_{21} & f_{22}
-  \end{bmatrix}
+  \end{bmatrix},
 \]
 the unique inductive trace is given by the formula:
 \begin{equation}
