@@ -90,13 +90,13 @@ First, the next lemma shows how to construct maps between the disjoint sums:
   disjoint sums.
 \end{proof}
 
-The argument in the above lemma is one we will used from time to time. In particular, this means
+The argument in the above lemma is one we will use from time to time. In particular, this means
 $\rst{\inv{i_1} g} \cdperp \rst{\inv{i_2} h}$ for arbitrary $g,h$ and that
 $\wrg{h i_1} \cdperp \wrg{k i_2}$.
 
 \begin{proposition}\label{prop:enough_disjoint_sums_make_a_symmetrict_monoidal_tensor}
   Given \X is an inverse category where every pair of objects has a disjoint sum, then the tensor
-  $\+$ where $A\+B$ is a disjoint sum of $A,B$ is a symmetric monoidal tensor.
+  $\+:\X\times \X \to \X$ where $A\+B$ is a disjoint sum of $A,B$ is a symmetric monoidal tensor.
 \end{proposition}
 \begin{proof}
   It is necessary to show that $\+$ is a bi-functor and that the required structural maps exist.
@@ -113,8 +113,7 @@ $\wrg{h i_1} \cdperp \wrg{k i_2}$.
     \rst{\inv{i_1}}$, meaning $\inv{i_1}$ is total. Thus, $\inv{i_1}$ is an isomorphism and is
   $\upr$. Similarly, $\inv{i_2} = \upl:\zeroob\+A \to A$ is an isomorphism.
 
-  For the symmetry map, note $c_\+ = \inv{i_1}i_2 \djoin \inv{i_2}i_1: A\+B \to B\+A$ is a symmetry
-  map and that
+  For the symmetry map, note $c_\+ = \inv{i_1}i_2 \djoin \inv{i_2}i_1: A\+B \to B\+A$ and that
   \begin{align*}
     (\inv{i_1}i_2 \djoin \inv{i_2}i_1)&(\inv{i_1}i_2 \djoin \inv{i_2}i_1)\\
     &=\inv{i_1}i_2(\inv{i_1}i_2
